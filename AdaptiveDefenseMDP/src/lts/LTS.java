@@ -308,6 +308,7 @@ public class LTS {
 	}
 
 
+	
 	private void addTransitions(String action_name, HashMap<String, String> state, HashSet<Effect> effects) {
 		for(Effect effect : effects){
 			HashMap<String, String> eff = effect.getEffect();

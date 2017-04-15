@@ -37,18 +37,18 @@ public class AdaptiveDefenseMDP {
 		//lts.print();
 		solveMDP(lts.getTransitionMatrixAttacker(), lts.getRewardMatrixAttacker(),0.96);
 		//double[] policy = solver.getPolicy();
-		//double[] value = solver.getValue();
+		double[] value = solver.getValue();
 		
-		//solveMDP(lts.getTransitionMatrixDefender(), lts.getRewardMatrixDefender(value),0.96);
+		solveMDP(lts.getTransitionMatrixDefender(), lts.getRewardMatrixDefender(value),0.96);
 
 	}
 	
 	private static void solveMDP(double[][][] p, double[][][] r, double discount) {
 
 		solver.setP(p);
-		solver.printTransitionMatrix();;
+		//solver.printTransitionMatrix();;
 		solver.setR(r);
-		solver.printRewardMatrix();
+		//solver.printRewardMatrix();
 		solver.setDiscount(0.96);
 		solver.checkInput();
 
