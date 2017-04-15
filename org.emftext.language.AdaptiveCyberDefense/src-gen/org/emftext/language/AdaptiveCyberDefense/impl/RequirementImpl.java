@@ -3,16 +3,20 @@
 package org.emftext.language.AdaptiveCyberDefense.impl;
 
 
+import java.util.Collection;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.InternalEList;
 import org.emftext.language.AdaptiveCyberDefense.AdaptiveCyberDefensePackage;
 import org.emftext.language.AdaptiveCyberDefense.ConditionExpression;
 import org.emftext.language.AdaptiveCyberDefense.Requirement;
@@ -27,10 +31,10 @@ import org.emftext.language.AdaptiveCyberDefense.RequirementType;
  * </p>
  * <ul>
  *   <li>{@link org.emftext.language.AdaptiveCyberDefense.impl.RequirementImpl#getName <em>Name</em>}</li>
- *   <li>{@link org.emftext.language.AdaptiveCyberDefense.impl.RequirementImpl#getActivation <em>Activation</em>}</li>
- *   <li>{@link org.emftext.language.AdaptiveCyberDefense.impl.RequirementImpl#getDeadline <em>Deadline</em>}</li>
+ *   <li>{@link org.emftext.language.AdaptiveCyberDefense.impl.RequirementImpl#getActivations <em>Activations</em>}</li>
+ *   <li>{@link org.emftext.language.AdaptiveCyberDefense.impl.RequirementImpl#getDeadlines <em>Deadlines</em>}</li>
  *   <li>{@link org.emftext.language.AdaptiveCyberDefense.impl.RequirementImpl#getCost <em>Cost</em>}</li>
- *   <li>{@link org.emftext.language.AdaptiveCyberDefense.impl.RequirementImpl#getRequirement <em>Requirement</em>}</li>
+ *   <li>{@link org.emftext.language.AdaptiveCyberDefense.impl.RequirementImpl#getRequirements <em>Requirements</em>}</li>
  * </ul>
  *
  * @generated
@@ -57,24 +61,24 @@ public abstract class RequirementImpl extends EObjectImpl implements Requirement
 	protected String name = NAME_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getActivation() <em>Activation</em>}' containment reference.
+	 * The cached value of the '{@link #getActivations() <em>Activations</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getActivation()
+	 * @see #getActivations()
 	 * @generated
 	 * @ordered
 	 */
-	protected ConditionExpression activation;
+	protected EList<ConditionExpression> activations;
 
 	/**
-	 * The cached value of the '{@link #getDeadline() <em>Deadline</em>}' containment reference.
+	 * The cached value of the '{@link #getDeadlines() <em>Deadlines</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getDeadline()
+	 * @see #getDeadlines()
 	 * @generated
 	 * @ordered
 	 */
-	protected ConditionExpression deadline;
+	protected EList<ConditionExpression> deadlines;
 
 	/**
 	 * The default value of the '{@link #getCost() <em>Cost</em>}' attribute.
@@ -97,14 +101,14 @@ public abstract class RequirementImpl extends EObjectImpl implements Requirement
 	protected Integer cost = COST_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getRequirement() <em>Requirement</em>}' containment reference.
+	 * The cached value of the '{@link #getRequirements() <em>Requirements</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getRequirement()
+	 * @see #getRequirements()
 	 * @generated
 	 * @ordered
 	 */
-	protected ConditionExpression requirement;
+	protected EList<ConditionExpression> requirements;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -151,23 +155,11 @@ public abstract class RequirementImpl extends EObjectImpl implements Requirement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ConditionExpression getActivation() {
-		return activation;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetActivation(ConditionExpression newActivation, NotificationChain msgs) {
-		ConditionExpression oldActivation = activation;
-		activation = newActivation;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, AdaptiveCyberDefensePackage.REQUIREMENT__ACTIVATION, oldActivation, newActivation);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
+	public EList<ConditionExpression> getActivations() {
+		if (activations == null) {
+			activations = new EObjectContainmentEList<ConditionExpression>(ConditionExpression.class, this, AdaptiveCyberDefensePackage.REQUIREMENT__ACTIVATIONS);
 		}
-		return msgs;
+		return activations;
 	}
 
 	/**
@@ -175,61 +167,11 @@ public abstract class RequirementImpl extends EObjectImpl implements Requirement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setActivation(ConditionExpression newActivation) {
-		if (newActivation != activation) {
-			NotificationChain msgs = null;
-			if (activation != null)
-				msgs = ((InternalEObject)activation).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - AdaptiveCyberDefensePackage.REQUIREMENT__ACTIVATION, null, msgs);
-			if (newActivation != null)
-				msgs = ((InternalEObject)newActivation).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - AdaptiveCyberDefensePackage.REQUIREMENT__ACTIVATION, null, msgs);
-			msgs = basicSetActivation(newActivation, msgs);
-			if (msgs != null) msgs.dispatch();
+	public EList<ConditionExpression> getDeadlines() {
+		if (deadlines == null) {
+			deadlines = new EObjectContainmentEList<ConditionExpression>(ConditionExpression.class, this, AdaptiveCyberDefensePackage.REQUIREMENT__DEADLINES);
 		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, AdaptiveCyberDefensePackage.REQUIREMENT__ACTIVATION, newActivation, newActivation));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public ConditionExpression getDeadline() {
-		return deadline;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetDeadline(ConditionExpression newDeadline, NotificationChain msgs) {
-		ConditionExpression oldDeadline = deadline;
-		deadline = newDeadline;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, AdaptiveCyberDefensePackage.REQUIREMENT__DEADLINE, oldDeadline, newDeadline);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setDeadline(ConditionExpression newDeadline) {
-		if (newDeadline != deadline) {
-			NotificationChain msgs = null;
-			if (deadline != null)
-				msgs = ((InternalEObject)deadline).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - AdaptiveCyberDefensePackage.REQUIREMENT__DEADLINE, null, msgs);
-			if (newDeadline != null)
-				msgs = ((InternalEObject)newDeadline).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - AdaptiveCyberDefensePackage.REQUIREMENT__DEADLINE, null, msgs);
-			msgs = basicSetDeadline(newDeadline, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, AdaptiveCyberDefensePackage.REQUIREMENT__DEADLINE, newDeadline, newDeadline));
+		return deadlines;
 	}
 
 	/**
@@ -258,42 +200,11 @@ public abstract class RequirementImpl extends EObjectImpl implements Requirement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ConditionExpression getRequirement() {
-		return requirement;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetRequirement(ConditionExpression newRequirement, NotificationChain msgs) {
-		ConditionExpression oldRequirement = requirement;
-		requirement = newRequirement;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, AdaptiveCyberDefensePackage.REQUIREMENT__REQUIREMENT, oldRequirement, newRequirement);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
+	public EList<ConditionExpression> getRequirements() {
+		if (requirements == null) {
+			requirements = new EObjectContainmentEList<ConditionExpression>(ConditionExpression.class, this, AdaptiveCyberDefensePackage.REQUIREMENT__REQUIREMENTS);
 		}
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setRequirement(ConditionExpression newRequirement) {
-		if (newRequirement != requirement) {
-			NotificationChain msgs = null;
-			if (requirement != null)
-				msgs = ((InternalEObject)requirement).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - AdaptiveCyberDefensePackage.REQUIREMENT__REQUIREMENT, null, msgs);
-			if (newRequirement != null)
-				msgs = ((InternalEObject)newRequirement).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - AdaptiveCyberDefensePackage.REQUIREMENT__REQUIREMENT, null, msgs);
-			msgs = basicSetRequirement(newRequirement, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, AdaptiveCyberDefensePackage.REQUIREMENT__REQUIREMENT, newRequirement, newRequirement));
+		return requirements;
 	}
 
 	/**
@@ -304,12 +215,12 @@ public abstract class RequirementImpl extends EObjectImpl implements Requirement
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case AdaptiveCyberDefensePackage.REQUIREMENT__ACTIVATION:
-				return basicSetActivation(null, msgs);
-			case AdaptiveCyberDefensePackage.REQUIREMENT__DEADLINE:
-				return basicSetDeadline(null, msgs);
-			case AdaptiveCyberDefensePackage.REQUIREMENT__REQUIREMENT:
-				return basicSetRequirement(null, msgs);
+			case AdaptiveCyberDefensePackage.REQUIREMENT__ACTIVATIONS:
+				return ((InternalEList<?>)getActivations()).basicRemove(otherEnd, msgs);
+			case AdaptiveCyberDefensePackage.REQUIREMENT__DEADLINES:
+				return ((InternalEList<?>)getDeadlines()).basicRemove(otherEnd, msgs);
+			case AdaptiveCyberDefensePackage.REQUIREMENT__REQUIREMENTS:
+				return ((InternalEList<?>)getRequirements()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -324,14 +235,14 @@ public abstract class RequirementImpl extends EObjectImpl implements Requirement
 		switch (featureID) {
 			case AdaptiveCyberDefensePackage.REQUIREMENT__NAME:
 				return getName();
-			case AdaptiveCyberDefensePackage.REQUIREMENT__ACTIVATION:
-				return getActivation();
-			case AdaptiveCyberDefensePackage.REQUIREMENT__DEADLINE:
-				return getDeadline();
+			case AdaptiveCyberDefensePackage.REQUIREMENT__ACTIVATIONS:
+				return getActivations();
+			case AdaptiveCyberDefensePackage.REQUIREMENT__DEADLINES:
+				return getDeadlines();
 			case AdaptiveCyberDefensePackage.REQUIREMENT__COST:
 				return getCost();
-			case AdaptiveCyberDefensePackage.REQUIREMENT__REQUIREMENT:
-				return getRequirement();
+			case AdaptiveCyberDefensePackage.REQUIREMENT__REQUIREMENTS:
+				return getRequirements();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -341,23 +252,27 @@ public abstract class RequirementImpl extends EObjectImpl implements Requirement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case AdaptiveCyberDefensePackage.REQUIREMENT__NAME:
 				setName((String)newValue);
 				return;
-			case AdaptiveCyberDefensePackage.REQUIREMENT__ACTIVATION:
-				setActivation((ConditionExpression)newValue);
+			case AdaptiveCyberDefensePackage.REQUIREMENT__ACTIVATIONS:
+				getActivations().clear();
+				getActivations().addAll((Collection<? extends ConditionExpression>)newValue);
 				return;
-			case AdaptiveCyberDefensePackage.REQUIREMENT__DEADLINE:
-				setDeadline((ConditionExpression)newValue);
+			case AdaptiveCyberDefensePackage.REQUIREMENT__DEADLINES:
+				getDeadlines().clear();
+				getDeadlines().addAll((Collection<? extends ConditionExpression>)newValue);
 				return;
 			case AdaptiveCyberDefensePackage.REQUIREMENT__COST:
 				setCost((Integer)newValue);
 				return;
-			case AdaptiveCyberDefensePackage.REQUIREMENT__REQUIREMENT:
-				setRequirement((ConditionExpression)newValue);
+			case AdaptiveCyberDefensePackage.REQUIREMENT__REQUIREMENTS:
+				getRequirements().clear();
+				getRequirements().addAll((Collection<? extends ConditionExpression>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -374,17 +289,17 @@ public abstract class RequirementImpl extends EObjectImpl implements Requirement
 			case AdaptiveCyberDefensePackage.REQUIREMENT__NAME:
 				setName(NAME_EDEFAULT);
 				return;
-			case AdaptiveCyberDefensePackage.REQUIREMENT__ACTIVATION:
-				setActivation((ConditionExpression)null);
+			case AdaptiveCyberDefensePackage.REQUIREMENT__ACTIVATIONS:
+				getActivations().clear();
 				return;
-			case AdaptiveCyberDefensePackage.REQUIREMENT__DEADLINE:
-				setDeadline((ConditionExpression)null);
+			case AdaptiveCyberDefensePackage.REQUIREMENT__DEADLINES:
+				getDeadlines().clear();
 				return;
 			case AdaptiveCyberDefensePackage.REQUIREMENT__COST:
 				setCost(COST_EDEFAULT);
 				return;
-			case AdaptiveCyberDefensePackage.REQUIREMENT__REQUIREMENT:
-				setRequirement((ConditionExpression)null);
+			case AdaptiveCyberDefensePackage.REQUIREMENT__REQUIREMENTS:
+				getRequirements().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -400,14 +315,14 @@ public abstract class RequirementImpl extends EObjectImpl implements Requirement
 		switch (featureID) {
 			case AdaptiveCyberDefensePackage.REQUIREMENT__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-			case AdaptiveCyberDefensePackage.REQUIREMENT__ACTIVATION:
-				return activation != null;
-			case AdaptiveCyberDefensePackage.REQUIREMENT__DEADLINE:
-				return deadline != null;
+			case AdaptiveCyberDefensePackage.REQUIREMENT__ACTIVATIONS:
+				return activations != null && !activations.isEmpty();
+			case AdaptiveCyberDefensePackage.REQUIREMENT__DEADLINES:
+				return deadlines != null && !deadlines.isEmpty();
 			case AdaptiveCyberDefensePackage.REQUIREMENT__COST:
 				return COST_EDEFAULT == null ? cost != null : !COST_EDEFAULT.equals(cost);
-			case AdaptiveCyberDefensePackage.REQUIREMENT__REQUIREMENT:
-				return requirement != null;
+			case AdaptiveCyberDefensePackage.REQUIREMENT__REQUIREMENTS:
+				return requirements != null && !requirements.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

@@ -17,10 +17,12 @@ import org.emftext.language.AdaptiveCyberDefense.ActionRequirement;
 import org.emftext.language.AdaptiveCyberDefense.AdaptiveCyberDefenseFactory;
 import org.emftext.language.AdaptiveCyberDefense.AdaptiveCyberDefensePackage;
 import org.emftext.language.AdaptiveCyberDefense.AttackerAction;
+import org.emftext.language.AdaptiveCyberDefense.ComposedCondion;
 import org.emftext.language.AdaptiveCyberDefense.ConditionExpression;
 import org.emftext.language.AdaptiveCyberDefense.Conjunction;
 import org.emftext.language.AdaptiveCyberDefense.DefenderAction;
 import org.emftext.language.AdaptiveCyberDefense.DomainDescription;
+import org.emftext.language.AdaptiveCyberDefense.ExpressionOperator;
 import org.emftext.language.AdaptiveCyberDefense.OperationalRequirement;
 import org.emftext.language.AdaptiveCyberDefense.OperationalRequirementType;
 import org.emftext.language.AdaptiveCyberDefense.ProbabilisticEffect;
@@ -305,7 +307,7 @@ public class AdaptiveCyberDefensePackageImpl extends EPackageImpl implements Ada
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getActionDescription_Precondition() {
+	public EReference getActionDescription_Preconditions() {
 		return (EReference)actionDescriptionEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -467,7 +469,7 @@ public class AdaptiveCyberDefensePackageImpl extends EPackageImpl implements Ada
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getRequirement_Activation() {
+	public EReference getRequirement_Activations() {
 		return (EReference)requirementEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -476,7 +478,7 @@ public class AdaptiveCyberDefensePackageImpl extends EPackageImpl implements Ada
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getRequirement_Deadline() {
+	public EReference getRequirement_Deadlines() {
 		return (EReference)requirementEClass.getEStructuralFeatures().get(2);
 	}
 
@@ -494,7 +496,7 @@ public class AdaptiveCyberDefensePackageImpl extends EPackageImpl implements Ada
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getRequirement_Requirement() {
+	public EReference getRequirement_Requirements() {
 		return (EReference)requirementEClass.getEStructuralFeatures().get(4);
 	}
 
@@ -679,7 +681,7 @@ public class AdaptiveCyberDefensePackageImpl extends EPackageImpl implements Ada
 
 		actionDescriptionEClass = createEClass(ACTION_DESCRIPTION);
 		createEReference(actionDescriptionEClass, ACTION_DESCRIPTION__PROBABILISTICEFFECT);
-		createEReference(actionDescriptionEClass, ACTION_DESCRIPTION__PRECONDITION);
+		createEReference(actionDescriptionEClass, ACTION_DESCRIPTION__PRECONDITIONS);
 		createEReference(actionDescriptionEClass, ACTION_DESCRIPTION__ACTION);
 		createEAttribute(actionDescriptionEClass, ACTION_DESCRIPTION__COST);
 
@@ -703,10 +705,10 @@ public class AdaptiveCyberDefensePackageImpl extends EPackageImpl implements Ada
 
 		requirementEClass = createEClass(REQUIREMENT);
 		createEAttribute(requirementEClass, REQUIREMENT__NAME);
-		createEReference(requirementEClass, REQUIREMENT__ACTIVATION);
-		createEReference(requirementEClass, REQUIREMENT__DEADLINE);
+		createEReference(requirementEClass, REQUIREMENT__ACTIVATIONS);
+		createEReference(requirementEClass, REQUIREMENT__DEADLINES);
 		createEAttribute(requirementEClass, REQUIREMENT__COST);
-		createEReference(requirementEClass, REQUIREMENT__REQUIREMENT);
+		createEReference(requirementEClass, REQUIREMENT__REQUIREMENTS);
 
 		conditionExpressionEClass = createEClass(CONDITION_EXPRESSION);
 
@@ -782,7 +784,7 @@ public class AdaptiveCyberDefensePackageImpl extends EPackageImpl implements Ada
 
 		initEClass(actionDescriptionEClass, ActionDescription.class, "ActionDescription", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getActionDescription_Probabilisticeffect(), this.getProbabilisticEffect(), null, "probabilisticeffect", null, 1, -1, ActionDescription.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getActionDescription_Precondition(), this.getConditionExpression(), null, "precondition", null, 1, 1, ActionDescription.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getActionDescription_Preconditions(), this.getConditionExpression(), null, "preconditions", null, 1, -1, ActionDescription.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getActionDescription_Action(), this.getAction(), null, "action", null, 1, 1, ActionDescription.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getActionDescription_Cost(), ecorePackage.getEIntegerObject(), "cost", null, 1, 1, ActionDescription.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
@@ -806,10 +808,10 @@ public class AdaptiveCyberDefensePackageImpl extends EPackageImpl implements Ada
 
 		initEClass(requirementEClass, Requirement.class, "Requirement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getRequirement_Name(), ecorePackage.getEString(), "name", null, 1, 1, Requirement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getRequirement_Activation(), this.getConditionExpression(), null, "activation", null, 1, 1, Requirement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getRequirement_Deadline(), this.getConditionExpression(), null, "deadline", null, 1, 1, Requirement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getRequirement_Activations(), this.getConditionExpression(), null, "activations", null, 1, -1, Requirement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getRequirement_Deadlines(), this.getConditionExpression(), null, "deadlines", null, 1, -1, Requirement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getRequirement_Cost(), ecorePackage.getEIntegerObject(), "cost", null, 1, 1, Requirement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getRequirement_Requirement(), this.getConditionExpression(), null, "requirement", null, 1, 1, Requirement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getRequirement_Requirements(), this.getConditionExpression(), null, "requirements", null, 1, -1, Requirement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(conditionExpressionEClass, ConditionExpression.class, "ConditionExpression", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
@@ -877,13 +879,13 @@ public class AdaptiveCyberDefensePackageImpl extends EPackageImpl implements Ada
 			 "name", "probabilisticeffects"
 		   });	
 		addAnnotation
-		  (getActionDescription_Precondition(), 
+		  (getActionDescription_Preconditions(), 
 		   source, 
 		   new String[] {
 			 "name", "precondition"
 		   });	
 		addAnnotation
-		  (getRequirement_Deadline(), 
+		  (getRequirement_Deadlines(), 
 		   source, 
 		   new String[] {
 			 "name", "deadline"

@@ -150,13 +150,13 @@ public interface AdaptiveCyberDefensePackage extends EPackage {
 	int ACTION_DESCRIPTION__PROBABILISTICEFFECT = 0;
 
 	/**
-	 * The feature id for the '<em><b>Precondition</b></em>' containment reference.
+	 * The feature id for the '<em><b>Preconditions</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ACTION_DESCRIPTION__PRECONDITION = 1;
+	int ACTION_DESCRIPTION__PRECONDITIONS = 1;
 
 	/**
 	 * The feature id for the '<em><b>Action</b></em>' reference.
@@ -381,22 +381,22 @@ public interface AdaptiveCyberDefensePackage extends EPackage {
 	int REQUIREMENT__NAME = 0;
 
 	/**
-	 * The feature id for the '<em><b>Activation</b></em>' containment reference.
+	 * The feature id for the '<em><b>Activations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int REQUIREMENT__ACTIVATION = 1;
+	int REQUIREMENT__ACTIVATIONS = 1;
 
 	/**
-	 * The feature id for the '<em><b>Deadline</b></em>' containment reference.
+	 * The feature id for the '<em><b>Deadlines</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int REQUIREMENT__DEADLINE = 2;
+	int REQUIREMENT__DEADLINES = 2;
 
 	/**
 	 * The feature id for the '<em><b>Cost</b></em>' attribute.
@@ -408,13 +408,13 @@ public interface AdaptiveCyberDefensePackage extends EPackage {
 	int REQUIREMENT__COST = 3;
 
 	/**
-	 * The feature id for the '<em><b>Requirement</b></em>' containment reference.
+	 * The feature id for the '<em><b>Requirements</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int REQUIREMENT__REQUIREMENT = 4;
+	int REQUIREMENT__REQUIREMENTS = 4;
 
 	/**
 	 * The number of structural features of the '<em>Requirement</em>' class.
@@ -462,7 +462,6 @@ public interface AdaptiveCyberDefensePackage extends EPackage {
 	 * @ordered
 	 */
 	int CONJUNCTION_FEATURE_COUNT = CONDITION_EXPRESSION_FEATURE_COUNT + 2;
-
 
 	/**
 	 * The meta object id for the '{@link org.emftext.language.AdaptiveCyberDefense.impl.ActionImpl <em>Action</em>}' class.
@@ -542,22 +541,22 @@ public interface AdaptiveCyberDefensePackage extends EPackage {
 	int SECURITY_REQUIREMENT__NAME = REQUIREMENT__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Activation</b></em>' containment reference.
+	 * The feature id for the '<em><b>Activations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SECURITY_REQUIREMENT__ACTIVATION = REQUIREMENT__ACTIVATION;
+	int SECURITY_REQUIREMENT__ACTIVATIONS = REQUIREMENT__ACTIVATIONS;
 
 	/**
-	 * The feature id for the '<em><b>Deadline</b></em>' containment reference.
+	 * The feature id for the '<em><b>Deadlines</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SECURITY_REQUIREMENT__DEADLINE = REQUIREMENT__DEADLINE;
+	int SECURITY_REQUIREMENT__DEADLINES = REQUIREMENT__DEADLINES;
 
 	/**
 	 * The feature id for the '<em><b>Cost</b></em>' attribute.
@@ -569,13 +568,13 @@ public interface AdaptiveCyberDefensePackage extends EPackage {
 	int SECURITY_REQUIREMENT__COST = REQUIREMENT__COST;
 
 	/**
-	 * The feature id for the '<em><b>Requirement</b></em>' containment reference.
+	 * The feature id for the '<em><b>Requirements</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SECURITY_REQUIREMENT__REQUIREMENT = REQUIREMENT__REQUIREMENT;
+	int SECURITY_REQUIREMENT__REQUIREMENTS = REQUIREMENT__REQUIREMENTS;
 
 	/**
 	 * The feature id for the '<em><b>Type</b></em>' attribute.
@@ -615,22 +614,22 @@ public interface AdaptiveCyberDefensePackage extends EPackage {
 	int OPERATIONAL_REQUIREMENT__NAME = REQUIREMENT__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Activation</b></em>' containment reference.
+	 * The feature id for the '<em><b>Activations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATIONAL_REQUIREMENT__ACTIVATION = REQUIREMENT__ACTIVATION;
+	int OPERATIONAL_REQUIREMENT__ACTIVATIONS = REQUIREMENT__ACTIVATIONS;
 
 	/**
-	 * The feature id for the '<em><b>Deadline</b></em>' containment reference.
+	 * The feature id for the '<em><b>Deadlines</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATIONAL_REQUIREMENT__DEADLINE = REQUIREMENT__DEADLINE;
+	int OPERATIONAL_REQUIREMENT__DEADLINES = REQUIREMENT__DEADLINES;
 
 	/**
 	 * The feature id for the '<em><b>Cost</b></em>' attribute.
@@ -642,13 +641,13 @@ public interface AdaptiveCyberDefensePackage extends EPackage {
 	int OPERATIONAL_REQUIREMENT__COST = REQUIREMENT__COST;
 
 	/**
-	 * The feature id for the '<em><b>Requirement</b></em>' containment reference.
+	 * The feature id for the '<em><b>Requirements</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATIONAL_REQUIREMENT__REQUIREMENT = REQUIREMENT__REQUIREMENT;
+	int OPERATIONAL_REQUIREMENT__REQUIREMENTS = REQUIREMENT__REQUIREMENTS;
 
 	/**
 	 * The feature id for the '<em><b>Type</b></em>' attribute.
@@ -832,15 +831,15 @@ public interface AdaptiveCyberDefensePackage extends EPackage {
 	EReference getActionDescription_Probabilisticeffect();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link org.emftext.language.AdaptiveCyberDefense.ActionDescription#getPrecondition <em>Precondition</em>}'.
+	 * Returns the meta object for the containment reference list '{@link org.emftext.language.AdaptiveCyberDefense.ActionDescription#getPreconditions <em>Preconditions</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Precondition</em>'.
-	 * @see org.emftext.language.AdaptiveCyberDefense.ActionDescription#getPrecondition()
+	 * @return the meta object for the containment reference list '<em>Preconditions</em>'.
+	 * @see org.emftext.language.AdaptiveCyberDefense.ActionDescription#getPreconditions()
 	 * @see #getActionDescription()
 	 * @generated
 	 */
-	EReference getActionDescription_Precondition();
+	EReference getActionDescription_Preconditions();
 
 	/**
 	 * Returns the meta object for the reference '{@link org.emftext.language.AdaptiveCyberDefense.ActionDescription#getAction <em>Action</em>}'.
@@ -1024,26 +1023,26 @@ public interface AdaptiveCyberDefensePackage extends EPackage {
 	EAttribute getRequirement_Name();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link org.emftext.language.AdaptiveCyberDefense.Requirement#getActivation <em>Activation</em>}'.
+	 * Returns the meta object for the containment reference list '{@link org.emftext.language.AdaptiveCyberDefense.Requirement#getActivations <em>Activations</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Activation</em>'.
-	 * @see org.emftext.language.AdaptiveCyberDefense.Requirement#getActivation()
+	 * @return the meta object for the containment reference list '<em>Activations</em>'.
+	 * @see org.emftext.language.AdaptiveCyberDefense.Requirement#getActivations()
 	 * @see #getRequirement()
 	 * @generated
 	 */
-	EReference getRequirement_Activation();
+	EReference getRequirement_Activations();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link org.emftext.language.AdaptiveCyberDefense.Requirement#getDeadline <em>Deadline</em>}'.
+	 * Returns the meta object for the containment reference list '{@link org.emftext.language.AdaptiveCyberDefense.Requirement#getDeadlines <em>Deadlines</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Deadline</em>'.
-	 * @see org.emftext.language.AdaptiveCyberDefense.Requirement#getDeadline()
+	 * @return the meta object for the containment reference list '<em>Deadlines</em>'.
+	 * @see org.emftext.language.AdaptiveCyberDefense.Requirement#getDeadlines()
 	 * @see #getRequirement()
 	 * @generated
 	 */
-	EReference getRequirement_Deadline();
+	EReference getRequirement_Deadlines();
 
 	/**
 	 * Returns the meta object for the attribute '{@link org.emftext.language.AdaptiveCyberDefense.Requirement#getCost <em>Cost</em>}'.
@@ -1057,15 +1056,15 @@ public interface AdaptiveCyberDefensePackage extends EPackage {
 	EAttribute getRequirement_Cost();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link org.emftext.language.AdaptiveCyberDefense.Requirement#getRequirement <em>Requirement</em>}'.
+	 * Returns the meta object for the containment reference list '{@link org.emftext.language.AdaptiveCyberDefense.Requirement#getRequirements <em>Requirements</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Requirement</em>'.
-	 * @see org.emftext.language.AdaptiveCyberDefense.Requirement#getRequirement()
+	 * @return the meta object for the containment reference list '<em>Requirements</em>'.
+	 * @see org.emftext.language.AdaptiveCyberDefense.Requirement#getRequirements()
 	 * @see #getRequirement()
 	 * @generated
 	 */
-	EReference getRequirement_Requirement();
+	EReference getRequirement_Requirements();
 
 	/**
 	 * Returns the meta object for class '{@link org.emftext.language.AdaptiveCyberDefense.ConditionExpression <em>Condition Expression</em>}'.
@@ -1324,12 +1323,12 @@ public interface AdaptiveCyberDefensePackage extends EPackage {
 		EReference ACTION_DESCRIPTION__PROBABILISTICEFFECT = eINSTANCE.getActionDescription_Probabilisticeffect();
 
 		/**
-		 * The meta object literal for the '<em><b>Precondition</b></em>' containment reference feature.
+		 * The meta object literal for the '<em><b>Preconditions</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference ACTION_DESCRIPTION__PRECONDITION = eINSTANCE.getActionDescription_Precondition();
+		EReference ACTION_DESCRIPTION__PRECONDITIONS = eINSTANCE.getActionDescription_Preconditions();
 
 		/**
 		 * The meta object literal for the '<em><b>Action</b></em>' reference feature.
@@ -1480,20 +1479,20 @@ public interface AdaptiveCyberDefensePackage extends EPackage {
 		EAttribute REQUIREMENT__NAME = eINSTANCE.getRequirement_Name();
 
 		/**
-		 * The meta object literal for the '<em><b>Activation</b></em>' containment reference feature.
+		 * The meta object literal for the '<em><b>Activations</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference REQUIREMENT__ACTIVATION = eINSTANCE.getRequirement_Activation();
+		EReference REQUIREMENT__ACTIVATIONS = eINSTANCE.getRequirement_Activations();
 
 		/**
-		 * The meta object literal for the '<em><b>Deadline</b></em>' containment reference feature.
+		 * The meta object literal for the '<em><b>Deadlines</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference REQUIREMENT__DEADLINE = eINSTANCE.getRequirement_Deadline();
+		EReference REQUIREMENT__DEADLINES = eINSTANCE.getRequirement_Deadlines();
 
 		/**
 		 * The meta object literal for the '<em><b>Cost</b></em>' attribute feature.
@@ -1504,12 +1503,12 @@ public interface AdaptiveCyberDefensePackage extends EPackage {
 		EAttribute REQUIREMENT__COST = eINSTANCE.getRequirement_Cost();
 
 		/**
-		 * The meta object literal for the '<em><b>Requirement</b></em>' containment reference feature.
+		 * The meta object literal for the '<em><b>Requirements</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference REQUIREMENT__REQUIREMENT = eINSTANCE.getRequirement_Requirement();
+		EReference REQUIREMENT__REQUIREMENTS = eINSTANCE.getRequirement_Requirements();
 
 		/**
 		 * The meta object literal for the '{@link org.emftext.language.AdaptiveCyberDefense.impl.ConditionExpressionImpl <em>Condition Expression</em>}' class.

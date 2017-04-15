@@ -234,18 +234,28 @@ public class LTS {
 		}		
 	}
 
+	protected Set<HashMap<String,String>> getConditions(EList<ConditionExpression> preconditions) {
+
+		Set<HashMap<String,String>> preconds = new HashSet<HashMap<String,String>>();
+		for(ConditionExpression precondition : preconditions) {
+			HashMap<String,String> precond = new HashMap<String,String>();
+			precondition.getConditions(precond);
+			preconds.add(precond);
+		}
+		return preconds;
+	}
+
 	public void readActionDescriptions(EList<ActionDescription> action_descriptions) {
 		for(ActionDescription action_description:action_descriptions){
 			String action_name = action_description.getAction().getName();
-			ConditionExpression precondition = action_description.getPrecondition();
+			EList<ConditionExpression> preconditions = action_description.getPreconditions();
 			Integer cost = action_description.getCost();
 
-			HashMap<String,String> preconditions = new HashMap<String,String>();
-			precondition.getConditions(preconditions);
+			Set<HashMap<String,String>> preconds = getConditions(preconditions);
 
 			ActionDescr desc = new ActionDescr();
 
-			desc.setPrecondition(preconditions);
+			desc.setPrecondition(preconds);
 			desc.setCost(cost);
 
 			EList<ProbabilisticEffect> effects = action_description.getProbabilisticeffect();
@@ -275,8 +285,9 @@ public class LTS {
 			while(it2.hasNext()){
 				String action_name = it2.next();
 				ActionDescr action_description = action_descriptions.get(action_name);
-				HashMap<String, String> precondition = action_description.getPrecondition();
-				if(satisfied(precondition,state)){
+				Set<HashMap<String, String>> preconditions = action_description.getPrecondition();
+
+				if(satisfied(preconditions,state)){
 					if(this.applicable.containsKey(state_id)){
 						HashSet<String> set_of_actions = applicable.get(state_id);
 						set_of_actions.add(action_name);
@@ -287,6 +298,8 @@ public class LTS {
 					}
 					addTransitions(action_name, state,action_description.getEffects());
 				}
+
+
 			}
 		}
 		System.out.println("\nnumber of transitions="+transitions.size());
@@ -321,17 +334,29 @@ public class LTS {
 	}
 
 
-	protected boolean satisfied(HashMap<String, String> precondition, HashMap<String, String> state) {
-		Iterator<String> it = precondition.keySet().iterator();
-		while(it.hasNext()){
-			String fluent_name = it.next();
-			String fluent_value = precondition.get(fluent_name);
-			if(state.containsKey(fluent_name)) {
-				if(state.get(fluent_name).equals(fluent_value)) {
-				} else return false;
-			} else return false;
-		}
-		return true;
+	protected boolean satisfied(Set<HashMap<String, String>> preconditions, HashMap<String, String> state) {
+		Iterator<HashMap<String, String>> it2 = preconditions.iterator();
+		Boolean res = false;
+		while(it2.hasNext() && res == false){
+			res = true;
+			HashMap<String, String> precondition = it2.next();
+			Iterator<String> it = precondition.keySet().iterator();
+			while(it.hasNext()){
+				String fluent_name = it.next();
+				String fluent_value = precondition.get(fluent_name);
+				if(state.containsKey(fluent_name)) {
+					if(state.get(fluent_name).equals(fluent_value)) {
+					} else {
+						res = false;
+						break;
+					}
+				} else {
+					res = false;
+					break;
+				}
+			} 
+		} 
+		return res;
 	}
 
 	public void generateLTS() {
@@ -378,7 +403,7 @@ public class LTS {
 			while(it.hasNext()){
 				String action_name = it.next();
 				ActionDescr action_description = action_descriptions.get(action_name);
-				HashMap<String, String> precondition = action_description.getPrecondition();
+				Set<HashMap<String, String>> precondition = action_description.getPrecondition();
 				/* 
 				 * check if the action is applicable
 				 */

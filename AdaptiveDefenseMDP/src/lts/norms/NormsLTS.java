@@ -1,11 +1,10 @@
 package lts.norms;
 
 
-import java.math.BigDecimal;
 import java.nio.file.Path;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.Set;
 
 import org.eclipse.emf.common.util.EList;
 import org.emftext.language.AdaptiveCyberDefense.Action;
@@ -59,24 +58,22 @@ public class NormsLTS extends LTS{
 
 	public void addRequirements(EList<Requirement> requirements2) {
 		for(Requirement req : requirements2){
-			ConditionExpression activation = req.getActivation();
-			ConditionExpression deadline = req.getDeadline();
-			ConditionExpression requirement = req.getRequirement();
+			EList<ConditionExpression> activations = req.getActivations();
+			EList<ConditionExpression> deadlines = req.getDeadlines();
+			EList<ConditionExpression> requirments = req.getRequirements();
 
 			Integer cost = req.getCost();
 			String name = req.getName();
 			String type = req.getReqType();
 
-			HashMap<String,String> act = new HashMap<String,String>();
-			HashMap<String,String> ddln = new HashMap<String,String>();
-			HashMap<String,String> rqmt = new HashMap<String,String>();
+			Set<HashMap<String,String>> acts = getConditions(activations);
+			Set<HashMap<String,String>> deads = getConditions(deadlines);
+			Set<HashMap<String,String>> reqs = getConditions(requirments);
 
-			activation.getConditions(act);
-			deadline.getConditions(ddln);
-			requirement.getConditions(rqmt);
-
-			RequirementDescription new_desr = new RequirementDescription(name,type,rqmt,act,ddln,cost);
+			RequirementDescription new_desr = new RequirementDescription(name,type,reqs,acts,deads,cost);
+			
 			requirements.put(name, new_desr);
+			
 			if(type.equals("prevent") || type.equals("avoid")) {
 				security_requirements.put(name,new_desr);
 			} else if(type.equals("maintain") || type.equals("achieve")){
@@ -257,7 +254,7 @@ public class NormsLTS extends LTS{
 			while(it2.hasNext()){
 				String req_id = it2.next();
 				RequirementDescription sec_descr = security_requirements.get(req_id);
-				HashMap<String, String> sec_condition = sec_descr.getCondition();
+				Set<HashMap<String, String>> sec_condition = sec_descr.getCondition();
 				if(satisfied(sec_condition,dest_state)&&!satisfied(sec_condition,src_state)){
 					r[src-1][dest-1][this.attack_actions.get(action_name)]= sec_descr.getCost_reward();
 				}

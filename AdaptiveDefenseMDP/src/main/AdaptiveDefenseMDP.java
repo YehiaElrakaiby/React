@@ -34,12 +34,12 @@ public class AdaptiveDefenseMDP {
 		lts.readDomainDescription(domain_description_location);
 		lts.generateLTSFromInitialState();
 		lts.showInGraphiv("/Users/yehia/Documents/lts.dot",lts);
-		
+		//lts.print();
 		solveMDP(lts.getTransitionMatrixAttacker(), lts.getRewardMatrixAttacker(),0.96);
-		double[] policy = solver.getPolicy();
-		double[] value = solver.getValue();
+		//double[] policy = solver.getPolicy();
+		//double[] value = solver.getValue();
 		
-		solveMDP(lts.getTransitionMatrixDefender(), lts.getRewardMatrixDefender(value),0.96);
+		//solveMDP(lts.getTransitionMatrixDefender(), lts.getRewardMatrixDefender(value),0.96);
 
 	}
 	

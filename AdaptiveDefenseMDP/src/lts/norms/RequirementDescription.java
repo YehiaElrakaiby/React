@@ -1,11 +1,12 @@
 package lts.norms;
 
 import java.util.HashMap;
+import java.util.Set;
 
 public class RequirementDescription {
-	private HashMap<String,String> activation;
-	private HashMap<String,String> cancellation;
-	private HashMap<String,String> condition;
+	private Set<HashMap<String,String>> activation;
+	private Set<HashMap<String,String>> cancellation;
+	private Set<HashMap<String,String>> condition;
 	private int cost_reward;
 	private String type;
 	private String name;
@@ -15,12 +16,12 @@ public class RequirementDescription {
 		// TODO Auto-generated constructor stub
 	}
 
-	public RequirementDescription(String id, String type, HashMap<String, String> condition, HashMap<String, String> activation, HashMap<String, String> cancellation,
+	public RequirementDescription(String id, String type, Set<HashMap<String, String>> reqs, Set<HashMap<String, String>> acts, Set<HashMap<String, String>> deads,
 			 int cost_reward) {
 		super();
-		this.activation = activation;
-		this.cancellation = cancellation;
-		this.condition = condition;
+		this.activation = acts;
+		this.cancellation = deads;
+		this.condition = reqs;
 		this.cost_reward = cost_reward;
 		this.type = type;
 		this.name = id;
@@ -43,27 +44,27 @@ public class RequirementDescription {
 		this.name = name;
 	}
 
-	public HashMap<String, String> getActivation() {
+	public Set<HashMap<String,String>> getActivation() {
 		return activation;
 	}
 
-	public void setActivation(HashMap<String, String> activation) {
+	public void setActivation(Set<HashMap<String,String>> activation) {
 		this.activation = activation;
 	}
 
-	public HashMap<String, String> getCancellation() {
+	public Set<HashMap<String,String>> getCancellation() {
 		return cancellation;
 	}
 
-	public void setCancellation(HashMap<String, String> cancellation) {
+	public void setCancellation(Set<HashMap<String,String>> cancellation) {
 		this.cancellation = cancellation;
 	}
 
-	public HashMap<String, String> getCondition() {
+	public Set<HashMap<String,String>> getCondition() {
 		return condition;
 	}
 
-	public void setCondition(HashMap<String, String> condition) {
+	public void setCondition(Set<HashMap<String,String>> condition) {
 		this.condition = condition;
 	}
 

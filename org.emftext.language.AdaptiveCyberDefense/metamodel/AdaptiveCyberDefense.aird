@@ -231,7 +231,7 @@
             <styles xmi:type="notation:FilteringStyle" xmi:id="_8dTIAyAXEeek2NhfO67nvw"/>
           </children>
           <styles xmi:type="notation:ShapeStyle" xmi:id="_8dSg8SAXEeek2NhfO67nvw" fontName=".SF NS Text" fontHeight="8"/>
-          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_8dSg8iAXEeek2NhfO67nvw" x="-116" y="104" width="184" height="67"/>
+          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_8dSg8iAXEeek2NhfO67nvw" x="-116" y="116" width="215" height="55"/>
         </children>
         <children xmi:type="notation:Node" xmi:id="_FVaYMCAYEeek2NhfO67nvw" type="2003" element="_FVKgkCAYEeek2NhfO67nvw">
           <children xmi:type="notation:Node" xmi:id="_FVa_QCAYEeek2NhfO67nvw" type="5007"/>
@@ -603,7 +603,7 @@
           <styles xmi:type="notation:ConnectorStyle" xmi:id="_BGYzASAYEeek2NhfO67nvw" routing="Tree"/>
           <styles xmi:type="notation:FontStyle" xmi:id="_BGYzAiAYEeek2NhfO67nvw" fontName=".SF NS Text" fontHeight="8"/>
           <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_BGYzAyAYEeek2NhfO67nvw" points="[0, 0, -39, -19]$[39, 19, 0, 0]"/>
-          <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_BGb2UCAYEeek2NhfO67nvw" id="(0.7967032967032966,0.6923076923076923)"/>
+          <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_BGb2UCAYEeek2NhfO67nvw" id="(0.6807511737089202,0.6226415094339622)"/>
           <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_BGb2USAYEeek2NhfO67nvw" id="(0.5,0.3961038961038961)"/>
         </edges>
         <edges xmi:type="notation:Edge" xmi:id="_BuwakCAYEeek2NhfO67nvw" type="4001" element="_Bugi8CAYEeek2NhfO67nvw" source="_6YEg4CAXEeek2NhfO67nvw" target="_BnEJcBt-Eeeobc1oZnWsww">
@@ -868,9 +868,9 @@
         <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@subNodeMappings[name='EC%20EAttribute']"/>
       </ownedElements>
     </ownedDiagramElements>
-    <ownedDiagramElements xmi:type="diagram:DEdge" xmi:id="_ybSGUBt-Eee9KLWr1_kTCw" name="[1..1] activation" sourceNode="_Bm80sBt-Eeeobc1oZnWsww" targetNode="_mvkuUBuYEeeSP9WWt9K8wA">
-      <target xmi:type="ecore:EReference" href="AdaptiveCyberDefense.ecore#//Requirement/activation"/>
-      <semanticElements xmi:type="ecore:EReference" href="AdaptiveCyberDefense.ecore#//Requirement/activation"/>
+    <ownedDiagramElements xmi:type="diagram:DEdge" xmi:id="_ybSGUBt-Eee9KLWr1_kTCw" name="[1..*] activations" sourceNode="_Bm80sBt-Eeeobc1oZnWsww" targetNode="_mvkuUBuYEeeSP9WWt9K8wA">
+      <target xmi:type="ecore:EReference" href="AdaptiveCyberDefense.ecore#//Requirement/activations"/>
+      <semanticElements xmi:type="ecore:EReference" href="AdaptiveCyberDefense.ecore#//Requirement/activations"/>
       <ownedStyle xmi:type="diagram:EdgeStyle" xmi:id="_5WOOcBuaEee6xZrDdDEliA" description="_pnwikBt7Eeeobc1oZnWsww" sourceArrow="FillDiamond" routingStyle="manhattan" strokeColor="0,0,0">
         <centerLabelStyle xmi:type="diagram:CenterLabelStyle" xmi:id="_5WOOcRuaEee6xZrDdDEliA" showIcon="false">
           <labelFormat>bold</labelFormat>
@@ -879,9 +879,9 @@
       </ownedStyle>
       <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@edgeMappings[name='EC_EReference']"/>
     </ownedDiagramElements>
-    <ownedDiagramElements xmi:type="diagram:DEdge" xmi:id="_4AZ7wBt-Eee9KLWr1_kTCw" name="[1..1] deadline" sourceNode="_Bm80sBt-Eeeobc1oZnWsww" targetNode="_mvkuUBuYEeeSP9WWt9K8wA">
-      <target xmi:type="ecore:EReference" href="AdaptiveCyberDefense.ecore#//Requirement/deadline"/>
-      <semanticElements xmi:type="ecore:EReference" href="AdaptiveCyberDefense.ecore#//Requirement/deadline"/>
+    <ownedDiagramElements xmi:type="diagram:DEdge" xmi:id="_4AZ7wBt-Eee9KLWr1_kTCw" name="[1..*] deadlines" sourceNode="_Bm80sBt-Eeeobc1oZnWsww" targetNode="_mvkuUBuYEeeSP9WWt9K8wA">
+      <target xmi:type="ecore:EReference" href="AdaptiveCyberDefense.ecore#//Requirement/deadlines"/>
+      <semanticElements xmi:type="ecore:EReference" href="AdaptiveCyberDefense.ecore#//Requirement/deadlines"/>
       <ownedStyle xmi:type="diagram:EdgeStyle" xmi:id="_4649UBuaEee6xZrDdDEliA" description="_pnwikBt7Eeeobc1oZnWsww" sourceArrow="FillDiamond" routingStyle="manhattan" strokeColor="0,0,0">
         <centerLabelStyle xmi:type="diagram:CenterLabelStyle" xmi:id="_4649URuaEee6xZrDdDEliA" showIcon="false">
           <labelFormat>bold</labelFormat>
@@ -979,9 +979,9 @@
       </ownedStyle>
       <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@edgeMappings[name='EC_EReference']"/>
     </ownedDiagramElements>
-    <ownedDiagramElements xmi:type="diagram:DEdge" xmi:id="_eax7sBuaEee6xZrDdDEliA" name="[1..1] precondition" sourceNode="_q5McoBt4Eeeobc1oZnWsww" targetNode="_mvkuUBuYEeeSP9WWt9K8wA">
-      <target xmi:type="ecore:EReference" href="AdaptiveCyberDefense.ecore#//ActionDescription/precondition"/>
-      <semanticElements xmi:type="ecore:EReference" href="AdaptiveCyberDefense.ecore#//ActionDescription/precondition"/>
+    <ownedDiagramElements xmi:type="diagram:DEdge" xmi:id="_eax7sBuaEee6xZrDdDEliA" name="[1..*] preconditions" sourceNode="_q5McoBt4Eeeobc1oZnWsww" targetNode="_mvkuUBuYEeeSP9WWt9K8wA">
+      <target xmi:type="ecore:EReference" href="AdaptiveCyberDefense.ecore#//ActionDescription/preconditions"/>
+      <semanticElements xmi:type="ecore:EReference" href="AdaptiveCyberDefense.ecore#//ActionDescription/preconditions"/>
       <ownedStyle xmi:type="diagram:EdgeStyle" xmi:id="_nvY6oBuaEee6xZrDdDEliA" description="_pnwikBt7Eeeobc1oZnWsww" sourceArrow="FillDiamond" routingStyle="manhattan" strokeColor="0,0,0">
         <centerLabelStyle xmi:type="diagram:CenterLabelStyle" xmi:id="_nvY6oRuaEee6xZrDdDEliA" showIcon="false">
           <labelFormat>bold</labelFormat>
@@ -990,9 +990,9 @@
       </ownedStyle>
       <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@edgeMappings[name='EC_EReference']"/>
     </ownedDiagramElements>
-    <ownedDiagramElements xmi:type="diagram:DEdge" xmi:id="_wXrmIBuaEee6xZrDdDEliA" name="[1..1] requirement" sourceNode="_Bm80sBt-Eeeobc1oZnWsww" targetNode="_mvkuUBuYEeeSP9WWt9K8wA">
-      <target xmi:type="ecore:EReference" href="AdaptiveCyberDefense.ecore#//Requirement/requirement"/>
-      <semanticElements xmi:type="ecore:EReference" href="AdaptiveCyberDefense.ecore#//Requirement/requirement"/>
+    <ownedDiagramElements xmi:type="diagram:DEdge" xmi:id="_wXrmIBuaEee6xZrDdDEliA" name="[1..*] requirements" sourceNode="_Bm80sBt-Eeeobc1oZnWsww" targetNode="_mvkuUBuYEeeSP9WWt9K8wA">
+      <target xmi:type="ecore:EReference" href="AdaptiveCyberDefense.ecore#//Requirement/requirements"/>
+      <semanticElements xmi:type="ecore:EReference" href="AdaptiveCyberDefense.ecore#//Requirement/requirements"/>
       <ownedStyle xmi:type="diagram:EdgeStyle" xmi:id="_y7tCEBuaEee6xZrDdDEliA" description="_pnwikBt7Eeeobc1oZnWsww" sourceArrow="FillDiamond" routingStyle="manhattan" strokeColor="0,0,0">
         <centerLabelStyle xmi:type="diagram:CenterLabelStyle" xmi:id="_y7tCERuaEee6xZrDdDEliA" showIcon="false">
           <customFeatures>labelSize</customFeatures>

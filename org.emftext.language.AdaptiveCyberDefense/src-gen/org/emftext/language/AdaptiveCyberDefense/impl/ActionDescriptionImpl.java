@@ -33,7 +33,7 @@ import org.emftext.language.AdaptiveCyberDefense.ProbabilisticEffect;
  * </p>
  * <ul>
  *   <li>{@link org.emftext.language.AdaptiveCyberDefense.impl.ActionDescriptionImpl#getProbabilisticeffect <em>Probabilisticeffect</em>}</li>
- *   <li>{@link org.emftext.language.AdaptiveCyberDefense.impl.ActionDescriptionImpl#getPrecondition <em>Precondition</em>}</li>
+ *   <li>{@link org.emftext.language.AdaptiveCyberDefense.impl.ActionDescriptionImpl#getPreconditions <em>Preconditions</em>}</li>
  *   <li>{@link org.emftext.language.AdaptiveCyberDefense.impl.ActionDescriptionImpl#getAction <em>Action</em>}</li>
  *   <li>{@link org.emftext.language.AdaptiveCyberDefense.impl.ActionDescriptionImpl#getCost <em>Cost</em>}</li>
  * </ul>
@@ -52,14 +52,14 @@ public class ActionDescriptionImpl extends EObjectImpl implements ActionDescript
 	protected EList<ProbabilisticEffect> probabilisticeffect;
 
 	/**
-	 * The cached value of the '{@link #getPrecondition() <em>Precondition</em>}' containment reference.
+	 * The cached value of the '{@link #getPreconditions() <em>Preconditions</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getPrecondition()
+	 * @see #getPreconditions()
 	 * @generated
 	 * @ordered
 	 */
-	protected ConditionExpression precondition;
+	protected EList<ConditionExpression> preconditions;
 
 	/**
 	 * The cached value of the '{@link #getAction() <em>Action</em>}' reference.
@@ -127,42 +127,11 @@ public class ActionDescriptionImpl extends EObjectImpl implements ActionDescript
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ConditionExpression getPrecondition() {
-		return precondition;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetPrecondition(ConditionExpression newPrecondition, NotificationChain msgs) {
-		ConditionExpression oldPrecondition = precondition;
-		precondition = newPrecondition;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, AdaptiveCyberDefensePackage.ACTION_DESCRIPTION__PRECONDITION, oldPrecondition, newPrecondition);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
+	public EList<ConditionExpression> getPreconditions() {
+		if (preconditions == null) {
+			preconditions = new EObjectContainmentEList<ConditionExpression>(ConditionExpression.class, this, AdaptiveCyberDefensePackage.ACTION_DESCRIPTION__PRECONDITIONS);
 		}
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setPrecondition(ConditionExpression newPrecondition) {
-		if (newPrecondition != precondition) {
-			NotificationChain msgs = null;
-			if (precondition != null)
-				msgs = ((InternalEObject)precondition).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - AdaptiveCyberDefensePackage.ACTION_DESCRIPTION__PRECONDITION, null, msgs);
-			if (newPrecondition != null)
-				msgs = ((InternalEObject)newPrecondition).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - AdaptiveCyberDefensePackage.ACTION_DESCRIPTION__PRECONDITION, null, msgs);
-			msgs = basicSetPrecondition(newPrecondition, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, AdaptiveCyberDefensePackage.ACTION_DESCRIPTION__PRECONDITION, newPrecondition, newPrecondition));
+		return preconditions;
 	}
 
 	/**
@@ -234,8 +203,8 @@ public class ActionDescriptionImpl extends EObjectImpl implements ActionDescript
 		switch (featureID) {
 			case AdaptiveCyberDefensePackage.ACTION_DESCRIPTION__PROBABILISTICEFFECT:
 				return ((InternalEList<?>)getProbabilisticeffect()).basicRemove(otherEnd, msgs);
-			case AdaptiveCyberDefensePackage.ACTION_DESCRIPTION__PRECONDITION:
-				return basicSetPrecondition(null, msgs);
+			case AdaptiveCyberDefensePackage.ACTION_DESCRIPTION__PRECONDITIONS:
+				return ((InternalEList<?>)getPreconditions()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -250,8 +219,8 @@ public class ActionDescriptionImpl extends EObjectImpl implements ActionDescript
 		switch (featureID) {
 			case AdaptiveCyberDefensePackage.ACTION_DESCRIPTION__PROBABILISTICEFFECT:
 				return getProbabilisticeffect();
-			case AdaptiveCyberDefensePackage.ACTION_DESCRIPTION__PRECONDITION:
-				return getPrecondition();
+			case AdaptiveCyberDefensePackage.ACTION_DESCRIPTION__PRECONDITIONS:
+				return getPreconditions();
 			case AdaptiveCyberDefensePackage.ACTION_DESCRIPTION__ACTION:
 				if (resolve) return getAction();
 				return basicGetAction();
@@ -274,8 +243,9 @@ public class ActionDescriptionImpl extends EObjectImpl implements ActionDescript
 				getProbabilisticeffect().clear();
 				getProbabilisticeffect().addAll((Collection<? extends ProbabilisticEffect>)newValue);
 				return;
-			case AdaptiveCyberDefensePackage.ACTION_DESCRIPTION__PRECONDITION:
-				setPrecondition((ConditionExpression)newValue);
+			case AdaptiveCyberDefensePackage.ACTION_DESCRIPTION__PRECONDITIONS:
+				getPreconditions().clear();
+				getPreconditions().addAll((Collection<? extends ConditionExpression>)newValue);
 				return;
 			case AdaptiveCyberDefensePackage.ACTION_DESCRIPTION__ACTION:
 				setAction((Action)newValue);
@@ -298,8 +268,8 @@ public class ActionDescriptionImpl extends EObjectImpl implements ActionDescript
 			case AdaptiveCyberDefensePackage.ACTION_DESCRIPTION__PROBABILISTICEFFECT:
 				getProbabilisticeffect().clear();
 				return;
-			case AdaptiveCyberDefensePackage.ACTION_DESCRIPTION__PRECONDITION:
-				setPrecondition((ConditionExpression)null);
+			case AdaptiveCyberDefensePackage.ACTION_DESCRIPTION__PRECONDITIONS:
+				getPreconditions().clear();
 				return;
 			case AdaptiveCyberDefensePackage.ACTION_DESCRIPTION__ACTION:
 				setAction((Action)null);
@@ -321,8 +291,8 @@ public class ActionDescriptionImpl extends EObjectImpl implements ActionDescript
 		switch (featureID) {
 			case AdaptiveCyberDefensePackage.ACTION_DESCRIPTION__PROBABILISTICEFFECT:
 				return probabilisticeffect != null && !probabilisticeffect.isEmpty();
-			case AdaptiveCyberDefensePackage.ACTION_DESCRIPTION__PRECONDITION:
-				return precondition != null;
+			case AdaptiveCyberDefensePackage.ACTION_DESCRIPTION__PRECONDITIONS:
+				return preconditions != null && !preconditions.isEmpty();
 			case AdaptiveCyberDefensePackage.ACTION_DESCRIPTION__ACTION:
 				return action != null;
 			case AdaptiveCyberDefensePackage.ACTION_DESCRIPTION__COST:

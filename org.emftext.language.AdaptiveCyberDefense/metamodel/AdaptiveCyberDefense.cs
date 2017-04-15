@@ -47,14 +47,15 @@ RULES {
 	StateVariable ::=  name[] ":" "{" values ("," values)* "}";
 	Value ::= value[];
 	
-	ActionDescription ::= action[] "=" "<" "{" precondition "}" "," probabilisticeffect+ "," cost[INTEGER]">";
+	ActionDescription ::= action[] "=" "<" "{" preconditions ("||" preconditions)* "}" "," probabilisticeffect+ "," cost[INTEGER]">";
 	
 	@Operator(type="primitive",weight="3",superclass="ConditionExpression")
 	StateLiteral ::= "(" statevariable[] "," value[] ")";
 	
 	
-	SecurityRequirement ::= "req(" name[] "," type[prevent:"prevent", avoid:"avoid"] ","  requirement "," activation "," deadline "," cost[INTEGER] ")";
-	OperationalRequirement ::= "req(" name[] "," type[maintain:"maintain", achieve:"achieve"] ","  requirement "," activation "," deadline "," cost[INTEGER] ")";
+	SecurityRequirement ::= "req(" name[] "," type[prevent:"prevent", avoid:"avoid"] ","  requirements ("||" requirements)* "," activations ("||" activations)* "," deadlines ("||" deadlines)* "," cost[INTEGER] ")";
+	
+	OperationalRequirement ::= "req(" name[] "," type[maintain:"maintain", achieve:"achieve"] ","  requirements ("||" requirements)* "," activations ("||" activations)* "," deadlines ("||" deadlines)* "," cost[INTEGER] ")";
 	
 	ProbabilisticEffect ::= "<" probability[FLOAT] "," "{" effect "}" ">";
 		

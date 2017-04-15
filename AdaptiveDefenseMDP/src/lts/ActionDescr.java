@@ -2,16 +2,17 @@ package lts;
 
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Set;
 
 
 public class ActionDescr {
-	private HashMap<String,String> precondition;
+	private Set<HashMap<String, String>> precondition;
 	private HashSet<Effect> effects;
 	private Integer cost;
 	private String type;
 
 	public ActionDescr() {
-		this.precondition = new HashMap<String,String>();
+		this.precondition = new HashSet<HashMap<String, String>>();
 		this.effects = new HashSet<Effect>();
 	}
 
@@ -27,13 +28,13 @@ public class ActionDescr {
 
 
 
-	public HashMap<String, String> getPrecondition() {
+	public Set<HashMap<String, String>> getPrecondition() {
 		return precondition;
 	}
 
 
-	public void setPrecondition(HashMap<String, String> precondition) {
-		this.precondition = precondition;
+	public void setPrecondition(Set<HashMap<String, String>> preconds) {
+		this.precondition = preconds;
 	}
 
 

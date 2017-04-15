@@ -16,7 +16,7 @@ import org.eclipse.emf.ecore.EObject;
  * </p>
  * <ul>
  *   <li>{@link org.emftext.language.AdaptiveCyberDefense.ActionDescription#getProbabilisticeffect <em>Probabilisticeffect</em>}</li>
- *   <li>{@link org.emftext.language.AdaptiveCyberDefense.ActionDescription#getPrecondition <em>Precondition</em>}</li>
+ *   <li>{@link org.emftext.language.AdaptiveCyberDefense.ActionDescription#getPreconditions <em>Preconditions</em>}</li>
  *   <li>{@link org.emftext.language.AdaptiveCyberDefense.ActionDescription#getAction <em>Action</em>}</li>
  *   <li>{@link org.emftext.language.AdaptiveCyberDefense.ActionDescription#getCost <em>Cost</em>}</li>
  * </ul>
@@ -44,31 +44,21 @@ public interface ActionDescription extends EObject {
 	EList<ProbabilisticEffect> getProbabilisticeffect();
 
 	/**
-	 * Returns the value of the '<em><b>Precondition</b></em>' containment reference.
+	 * Returns the value of the '<em><b>Preconditions</b></em>' containment reference list.
+	 * The list contents are of type {@link org.emftext.language.AdaptiveCyberDefense.ConditionExpression}.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Precondition</em>' containment reference isn't clear,
+	 * If the meaning of the '<em>Preconditions</em>' containment reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Precondition</em>' containment reference.
-	 * @see #setPrecondition(ConditionExpression)
-	 * @see org.emftext.language.AdaptiveCyberDefense.AdaptiveCyberDefensePackage#getActionDescription_Precondition()
+	 * @return the value of the '<em>Preconditions</em>' containment reference list.
+	 * @see org.emftext.language.AdaptiveCyberDefense.AdaptiveCyberDefensePackage#getActionDescription_Preconditions()
 	 * @model containment="true" required="true"
 	 *        extendedMetaData="name='precondition'"
 	 * @generated
 	 */
-	ConditionExpression getPrecondition();
-
-	/**
-	 * Sets the value of the '{@link org.emftext.language.AdaptiveCyberDefense.ActionDescription#getPrecondition <em>Precondition</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Precondition</em>' containment reference.
-	 * @see #getPrecondition()
-	 * @generated
-	 */
-	void setPrecondition(ConditionExpression value);
+	EList<ConditionExpression> getPreconditions();
 
 	/**
 	 * Returns the value of the '<em><b>Action</b></em>' reference.
