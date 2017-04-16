@@ -3,6 +3,7 @@ package lts.norms;
 
 import java.nio.file.Path;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
 
@@ -11,6 +12,7 @@ import org.emftext.language.AdaptiveCyberDefense.Action;
 import org.emftext.language.AdaptiveCyberDefense.ConditionExpression;
 import org.emftext.language.AdaptiveCyberDefense.Requirement;
 
+import lts.ActionDescr;
 
 //import org.apache.commons.collections4.bidimap.HashMap;
 
@@ -199,10 +201,10 @@ public class NormsLTS extends LTS{
 	//	}
 
 
-	public void showInGraphiv(String string, NormsLTS lts) {
-		DOT_Writer visualizer = new DOT_Writer(string, lts);
-		visualizer.openFromDesktop();
-	}
+	//	public void showInGraphiv(String string, NormsLTS lts) {
+	//		DOT_Writer visualizer = new DOT_Writer(string, lts);
+	//		visualizer.openFromDesktop();
+	//	}
 
 
 	public void readDomainDescription(Path domain_description_location) {
@@ -242,10 +244,14 @@ public class NormsLTS extends LTS{
 		 */
 		Iterator<String> it = this.getTransitions().keySet().iterator();
 		while(it.hasNext()) {
+			Integer reward =0;
 			String trans_id = it.next();
 			Transition descr = this.transitions.get(trans_id);
 			String action_name = descr.getName();
 			if(attack_actions.containsKey(action_name)){
+				ActionDescr act_descr = action_descriptions.get(action_name);
+				reward -= act_descr.getCost();
+
 				Integer src = descr.getSrc();
 				Integer dest = descr.getDest();
 				//BigDecimal prob = descr.getProbability();
@@ -264,8 +270,21 @@ public class NormsLTS extends LTS{
 					RequirementDescription sec_descr = security_requirements.get(req_id);
 					//Set<HashMap<String, String>> sec_condition = sec_descr.getCondition();
 					if(satisfied(req_id,"sat",dest_state) && !satisfied(req_id,"sat",src_state)){
-						r[src-1][dest-1][this.attack_actions.get(action_name)]= sec_descr.getCost_reward();
+						reward += sec_descr.getCost_reward();
 					}
+				}
+				r[src-1][dest-1][this.attack_actions.get(action_name)] = reward;
+			}
+		}
+		Iterator<Integer> itx = this.not_applicable.keySet().iterator();
+		while(itx.hasNext()) {
+			Integer src = itx.next();
+			HashSet<String> actions = not_applicable.get(src);
+			Iterator<String> ity = actions.iterator();
+			while(ity.hasNext()){
+				String action_name = ity.next();
+				if(attack_actions.containsKey(action_name)){
+					r[src-1][src-1][this.attack_actions.get(action_name)] = -1;
 				}
 			}
 		}
@@ -284,7 +303,7 @@ public class NormsLTS extends LTS{
 	public double[][][] getRewardMatrixDefender(double[] attacker_value) {
 		if(defender_actions.isEmpty())identifyDefenderActions();
 
-		double[][][] r = new double[states.size()][states.size()][attack_actions.size()];
+		double[][][] r = new double[states.size()][states.size()][defender_actions.size()];
 		/*
 		 * iterate over transitions and fill the transition matrix accordingly
 		 * the transition matrix is of the form (src,dest,action)
@@ -340,6 +359,18 @@ public class NormsLTS extends LTS{
 					}
 				}
 				r[src-1][dest-1][this.defender_actions.get(action_name)]= reward;
+			}
+		}
+		Iterator<Integer> itx = this.not_applicable.keySet().iterator();
+		while(itx.hasNext()) {
+			Integer src = itx.next();
+			HashSet<String> actions = not_applicable.get(src);
+			Iterator<String> ity = actions.iterator();
+			while(ity.hasNext()){
+				String action_name = ity.next();
+				if(defender_actions.containsKey(action_name)){
+					r[src-1][src-1][this.defender_actions.get(action_name)] = -1;
+				}
 			}
 		}
 		return r;

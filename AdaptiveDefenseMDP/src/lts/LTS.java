@@ -18,7 +18,9 @@ import org.emftext.language.AdaptiveCyberDefense.StateVariable;
 import org.emftext.language.AdaptiveCyberDefense.Value;
 import org.emftext.language.AdaptiveCyberDefense.support.FluentLiteral;
 
+import lts.norms.NormsLTS;
 import lts.norms.RequirementDescription;
+import visualizer.DOT_Writer;
 
 public class LTS {
 	/**
@@ -31,7 +33,11 @@ public class LTS {
 	 *  Mapping action_name --> action type 
 	 */
 	protected HashMap<String, String> action_type;
-
+	/**
+	 *  Actions:
+	 *  Mapping action_name --> action identifier and action_name
+	 */
+	//protected HashMap<String,Integer> actions;
 	/**
 	 * Attack Actions:
 	 *  Mapping action_name --> action identifier and action_name is an attack action 
@@ -60,6 +66,11 @@ public class LTS {
 	 *  Mapping state_id --> set of action_names
 	 */
 	protected HashMap<Integer,HashSet<String>> applicable;
+	/**
+	 * NotApplicable actions:
+	 *  Mapping state_id --> action_name
+	 */
+	protected HashMap<Integer,HashSet<String>> not_applicable;
 
 	/**
 	 * LTS States:
@@ -106,9 +117,12 @@ public class LTS {
 		this.action_descriptions = new HashMap<String,ActionDescr>();
 		this.initial_state = new HashMap<String,String>();
 		this.applicable = new HashMap<Integer,HashSet<String>>();
+		this.not_applicable = new HashMap<Integer,HashSet<String>>();
 		this.action_type = new HashMap<String,String>();
 		this.attack_actions = new HashMap<String,Integer>();
 		this.defender_actions = new HashMap<String,Integer>();
+		//this.actions = new HashMap<String,Integer>();
+
 	}
 
 	private void addActionDescription(String name, ActionDescr desc){
@@ -297,9 +311,16 @@ public class LTS {
 						this.applicable.put(state_id, set_of_actions);
 					}
 					addTransitions(action_name, state,action_description.getEffects());
+				} else {
+					if(this.not_applicable.containsKey(state_id)){
+						HashSet<String> set_of_actions = not_applicable.get(state_id);
+						set_of_actions.add(action_name);
+					} else {
+						HashSet<String> set_of_actions = new HashSet<String>();
+						set_of_actions.add(action_name);
+						this.not_applicable.put(state_id, set_of_actions);
+					}
 				}
-
-
 			}
 		}
 		System.out.println("\nnumber of transitions="+transitions.size());
@@ -308,7 +329,7 @@ public class LTS {
 	}
 
 
-	
+
 	private void addTransitions(String action_name, HashMap<String, String> state, HashSet<Effect> effects) {
 		for(Effect effect : effects){
 			HashMap<String, String> eff = effect.getEffect();
@@ -405,11 +426,11 @@ public class LTS {
 				String action_name = it.next();
 				ActionDescr action_description = action_descriptions.get(action_name);
 				Set<HashMap<String, String>> precondition = action_description.getPrecondition();
+				Integer src = states_id.get(state);
 				/* 
 				 * check if the action is applicable
 				 */
 				if(satisfied(precondition,state)){
-					Integer src = states_id.get(state);
 					/*
 					 * 1) Add (state,action) to applicable HashMap
 					 */
@@ -448,15 +469,61 @@ public class LTS {
 						Transition trans = new Transition(action_name,src,dest,prob);
 						transitions.put(src+"_"+action_name+"_"+dest, trans);
 					}
+				} else {
+					if(this.not_applicable.containsKey(src)){
+						HashSet<String> set_of_actions = not_applicable.get(src);
+						set_of_actions.add(action_name);
+					} else {
+						HashSet<String> set_of_actions = new HashSet<String>();
+						set_of_actions.add(action_name);
+						this.not_applicable.put(src, set_of_actions);
+					}
 				}
 			}
 		}
 
 	}
 
+	public LTS generateLTSFromPolicy(double[] policy, String string) {
+		LTS temp = new LTS();
+		temp.setStates(states);
+		HashMap<String, Transition> trans = filterTransitions(policy,string);
+		temp.setTransitions(trans);
+
+		return temp;
+	}
+
+	public void showInGraphiv(String string) {
+		DOT_Writer visualizer = new DOT_Writer(string, this);
+		visualizer.openFromDesktop();
+	}
 
 
-
+	private HashMap<String, Transition> filterTransitions(double[] policy, String string) {
+		Iterator<String> it = this.transitions.keySet().iterator();
+		HashMap<String, Transition> temp_trans = new HashMap<String, Transition>();
+		while(it.hasNext()) {
+			String transition_id = it.next();
+			Transition trans_descr = transitions.get(transition_id);
+			String trans_name = trans_descr.getName();
+			Integer trans_src = trans_descr.getSrc();
+			Integer action_id = (int) (policy[trans_src-1]-1);
+			if(string.equals("attack")) {
+				if(attack_actions.containsKey(trans_name)) {
+					if(attack_actions.get(trans_name).equals(action_id)){
+						temp_trans.put(transition_id, trans_descr);
+					}
+				}
+			} else if(string.equals("defense")) {
+				if(this.defender_actions.containsKey(trans_name)) {
+					if(defender_actions.get(trans_name).equals(action_id)){
+						temp_trans.put(transition_id, trans_descr);
+					}
+				}
+			}
+		}
+		return temp_trans;
+	}
 
 	protected HashMap<String, String> calculateDestinationState(String action_name,HashMap<String, String> state,
 			HashMap<String, String> eff) {
@@ -597,7 +664,22 @@ public class LTS {
 			}
 		}
 	}
-
+	//
+	//	public void identifyActions() {
+	//		/*
+	//		 * find the attack actions and store them in a HashMap <action_name, id>
+	//		 */
+	//		actions = new HashMap<String,Integer>();
+	//		Iterator<String> it = action_type.keySet().iterator();
+	//		Integer id = 0;
+	//		while(it.hasNext()){
+	//			String act_name = it.next();
+	//			String act_type = action_type.get(act_name);
+	//			if(act_type.equals("attacker")) {
+	//				attack_actions.put(act_name,id++);
+	//			}
+	//		}
+	//	}
 
 	public void setInitialState(ConditionExpression initial) {
 		initial_state = new HashMap<String,String>();

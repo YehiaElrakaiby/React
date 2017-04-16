@@ -3,6 +3,7 @@ package main;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
+import lts.LTS;
 import lts.norms.NormsLTS;
 import mdp.MDPSolver;
 
@@ -33,14 +34,22 @@ public class AdaptiveDefenseMDP {
 		solver = new MDPSolver();
 		lts.readDomainDescription(domain_description_location);
 		lts.generateLTSFromInitialState();
-		lts.showInGraphiv("/Users/yehia/Documents/lts.dot",lts);
+		lts.showInGraphiv("/Users/yehia/Documents/lts.dot");
 		//lts.print();
 		solveMDP(lts.getTransitionMatrixAttacker(), lts.getRewardMatrixAttacker(),0.96);
-		//double[] policy = solver.getPolicy();
+		double[] policy = solver.getPolicy();
 		double[] value = solver.getValue();
+
+		LTS lts1 = lts.generateLTSFromPolicy(policy,"attack");
+		lts1.showInGraphiv("/Users/yehia/Documents/lts_attack_policy.dot");
 		
 		solveMDP(lts.getTransitionMatrixDefender(), lts.getRewardMatrixDefender(value),0.96);
+		policy = solver.getPolicy();
+		value = solver.getValue();
 
+		LTS lts2 = lts.generateLTSFromPolicy(policy,"defense");
+		lts2.showInGraphiv("/Users/yehia/Documents/lts_defense_policy.dot");
+		
 	}
 	
 	private static void solveMDP(double[][][] p, double[][][] r, double discount) {
@@ -48,7 +57,7 @@ public class AdaptiveDefenseMDP {
 		solver.setP(p);
 		//solver.printTransitionMatrix();;
 		solver.setR(r);
-		//solver.printRewardMatrix();
+		solver.printRewardMatrix();
 		solver.setDiscount(0.96);
 		solver.checkInput();
 
