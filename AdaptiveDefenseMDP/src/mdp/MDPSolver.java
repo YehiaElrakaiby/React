@@ -8,7 +8,7 @@ import com.mathworks.engine.EngineException;
 import com.mathworks.engine.MatlabEngine;
 
 public class MDPSolver {
-	
+
 	private double[][][] p;
 	private double[][][] r;
 	private double discount;
@@ -90,14 +90,42 @@ public class MDPSolver {
 		}
 	}
 
-	public void printAllInput() {
+	public void checkAllInput() {
 		try {
-			ml.eval("P");
-			ml.eval("R");
+			check(this.p);
+			//check(this.r);
+			//ml.eval("P");
+			//ml.eval("R");
 			ml.eval("discount");
 		} catch (CancellationException | InterruptedException | ExecutionException e) {
 			e.printStackTrace();
 		}
+	}
+
+	static void check(double[][][] p2) {
+		int nb_of_states = p2.length;
+		System.out.println("Number of states is: "+nb_of_states);
+		int nb_of_actions = p2[0][0].length;
+		System.out.println("Number of actions is: "+nb_of_actions);
+
+		for(int k=0;k<nb_of_actions;k++) {
+			for(int i=0;i<nb_of_states;i++) {
+				double sum_of_row=0;
+				String row = "";
+				for(int j=0;j<nb_of_states;j++) {
+					sum_of_row+=p2[i][j][k];
+					row=row+" "+p2[i][j][k];
+				}
+				if(sum_of_row != 1.0) {
+					System.out.println("Problem with row action is "+k+" state is "+i);
+					System.out.println(row);
+
+				}
+				System.out.println();
+			}
+			System.out.println();
+		}
+		System.out.println();
 	}
 
 	public void solveMDP() {
@@ -123,8 +151,8 @@ public class MDPSolver {
 			System.out.println(e);
 		}
 	}
-	
-	
+
+
 
 	public double[] getValue() {
 		return value;

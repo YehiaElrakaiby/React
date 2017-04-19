@@ -35,30 +35,30 @@ public class AdaptiveDefenseMDP {
 		solver = new MDPSolver();
 		lts.readDomainDescription(domain_description_location);
 		lts.generateLTSFromInitialState();
-		lts.showInGraphiv("/Users/yehia/Documents/lts.dot",NormsLTS.SHOW_UTIL_REQ);
+		lts.showInGraphiv("/Users/yehia/Documents/lts.dot",NormsLTS.SHOW_ALL);
 		lts.print();
 		
-		solveMDP(lts.getTransitionMatrixAttacker(), lts.getRewardMatrixAttacker(),0.96);
-		double[] policy_attacker = solver.getPolicy();
-		double[] value_attacker = solver.getValue();
-
-		LTS lts1 = lts.generateLTSFromPolicy(policy_attacker,value_attacker,"attack");
-		lts1.showInGraphiv("/Users/yehia/Documents/lts_attack_policy.dot",NormsLTS.SHOW_UTIL_REQ);
-		
+//		solveMDP(lts.getTransitionMatrixAttacker(), lts.getRewardMatrixAttacker(),0.96);
+//		double[] policy_attacker = solver.getPolicy();
+//		double[] value_attacker = solver.getValue();
+//
+//		LTS lts1 = lts.generateLTSFromPolicy(policy_attacker,value_attacker,"attack");
+//		lts1.showInGraphiv("/Users/yehia/Documents/lts_attack_policy.dot",NormsLTS.SHOW_UTIL_REQ);
+//		
 		solveMDP(lts.getTransitionMatrixDefender(), lts.getRewardMatrixDefender(),0.96);
 		double[] policy_defender = solver.getPolicy();
 		double[] value_defender = solver.getValue();
 
 		LTS lts2 = lts.generateLTSFromPolicy(policy_defender,value_defender,"defense");
-		lts2.showInGraphiv("/Users/yehia/Documents/lts_service_policy.dot",NormsLTS.SHOW_UTIL);
+		lts2.showInGraphiv("/Users/yehia/Documents/lts_service_policy.dot",NormsLTS.SHOW_UTIL_REQ);
 		
-		solveMDP(lts.getTransitionMatrixDefender(), lts.getTradeOffRewardMatrixDefender(value_attacker,value_defender),0.96);
-		double[] policy = solver.getPolicy();
-		double[] value= solver.getValue();
-
-		LTS lts3 = lts.generateLTSFromPolicy(policy,value,"defense");
-		lts3.showInGraphiv("/Users/yehia/Documents/lts_tradeoff_policy.dot",NormsLTS.SHOW_UTIL);
-	
+//		solveMDP(lts.getTransitionMatrixDefender(), lts.getTradeOffRewardMatrixDefender(value_attacker,value_defender),0.96);
+//		double[] policy = solver.getPolicy();
+//		double[] value= solver.getValue();
+//
+//		LTS lts3 = lts.generateLTSFromPolicy(policy,value,"defense");
+//		lts3.showInGraphiv("/Users/yehia/Documents/lts_tradeoff_policy.dot",NormsLTS.SHOW_UTIL);
+//	
 		
 	}
 	
@@ -72,7 +72,7 @@ public class AdaptiveDefenseMDP {
 		solver.checkInput();
 
 		//System.out.println(lts.getAttack_actions().toString());
-		//solver.printAllInput();
+		solver.checkAllInput();
 		solver.solveMDP();
 	}
 
