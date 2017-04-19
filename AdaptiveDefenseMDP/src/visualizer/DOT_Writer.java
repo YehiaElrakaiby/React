@@ -11,6 +11,7 @@ import java.util.Set;
 
 import lts.LTS;
 import lts.Transition;
+import lts.norms.NormsLTS;
 
 
 public class DOT_Writer {
@@ -32,7 +33,8 @@ public class DOT_Writer {
 	LTS lts;
 	BufferedWriter bw;
 	File file;
-	
+	private String option = "ap utility req";
+
 	public DOT_Writer(String pathTographivFile,
 			LTS lts,
 			boolean show_action_names2, 
@@ -83,6 +85,25 @@ public class DOT_Writer {
 		//findVoidTransition();
 		file=null;
 	}
+
+	public DOT_Writer(String pathTographivFile, LTS lts, String option) {
+		this.lts=lts;
+		this.outputFileName=pathTographivFile;
+		this.show_action_names=true;
+		this.show_void_transition=true;
+		this.option = option;
+		//this.show_only_states_in_transition=only_show_states_in_transition;
+		this.show_negated=false;
+		//this.remove_similar_states = remove_similar_states2;
+		this.show_state_name_in_node = true;
+		//this.remove_policy_component = remove_policy_component;
+		//this.fluentsToHide=fluentsToHide2;
+		//this.fluentsStartingWithToHide=fluentsStartingWithToHide2;
+		//this.states_to_show = states_to_show;
+		//this.policyFluents = policyFluents;
+		//this.policyTransitions = policyTransitions;
+		//findVoidTransition();
+		file=null;	}
 
 	public File writeToFile() {
 
@@ -162,12 +183,14 @@ public class DOT_Writer {
 				while(it2.hasNext()) {
 					String fluent_name = it2.next();
 					String value = literals.get(fluent_name);
-					if(value.equals("tt")) {
-						bw.write(fluent_name+"\\n");
-					} else if(value.equals("ff")) {
-						
-					} else {
-						bw.write(fluent_name+"="+value+"\\n");
+					if(!filter(fluent_name)) {
+						if(value.equals("tt")) {
+							bw.write(fluent_name+"\\n");
+						} else if(value.equals("ff")) {
+
+						} else {
+							bw.write(fluent_name+"="+value+"\\n");
+						}
 					}
 				}
 				bw.write("\"]\n");
@@ -207,6 +230,17 @@ public class DOT_Writer {
 		//		}
 	}
 
+	private boolean filter(String fluent_name) {
+		if(this.option.contains("utility") && fluent_name.startsWith("utility")) {
+			return false;
+		} else if(this.option.contains("ap") && !fluent_name.startsWith("utility") && !fluent_name.startsWith("req")) {
+			return false;
+		}  else if(this.option.contains("req") && fluent_name.startsWith("req")) {
+			return false;
+		} 
+		return true;
+	}
+
 	private void writeTransitions() {
 		HashMap<String, Transition> transitions = lts.getTransitions();
 		Iterator<String> it = transitions.keySet().iterator();
@@ -236,48 +270,48 @@ public class DOT_Writer {
 
 
 
-//		Iterator<Transition> transition = transitions.iterator();
-//
-//		while(transition.hasNext()){
-//			Transition t = transition.next();
-//			if(this.show_void_transition || !t.getEvent().getName().equals(this.void_transition)){
-//				String src = t.getSrc();
-//				String dst = t.getDest();
-//
-//				if(states_to_show.isEmpty() || (states_to_show.contains(src) && states_to_show.contains(dst))){
-//
-//					try {
-//						bw.write(t.getSrc()+" -> "+t.getDest());
-//						if(this.show_action_names==false){
-//							bw.write("[label="+t.getEvent().getName()+"]");
-//						}
-//						else if (this.show_action_names==true){
-//							bw.write(" [label=\"");
-//							Iterator<ActionConstant> action = t.getEvent().getActions().iterator();
-//
-//							while(action.hasNext()){
-//								if(this.show_negated==true){
-//									bw.write(action.next().toString()+"\\n");
-//								}else 
-//								{
-//									ActionConstant a = action.next();
-//									if(!a.getValue().equals("ff")){
-//										bw.write(a.toString()+"\\n");
-//									}
-//
-//								}
-//							}
-//							bw.write("\"]\n");
-//						}
-//						bw.write("\n");
-//
-//					} catch (IOException e) {
-//						// TODO Auto-generated catch block
-//						e.printStackTrace();
-//					}
-//				}
-//			}
-//		}
+		//		Iterator<Transition> transition = transitions.iterator();
+		//
+		//		while(transition.hasNext()){
+		//			Transition t = transition.next();
+		//			if(this.show_void_transition || !t.getEvent().getName().equals(this.void_transition)){
+		//				String src = t.getSrc();
+		//				String dst = t.getDest();
+		//
+		//				if(states_to_show.isEmpty() || (states_to_show.contains(src) && states_to_show.contains(dst))){
+		//
+		//					try {
+		//						bw.write(t.getSrc()+" -> "+t.getDest());
+		//						if(this.show_action_names==false){
+		//							bw.write("[label="+t.getEvent().getName()+"]");
+		//						}
+		//						else if (this.show_action_names==true){
+		//							bw.write(" [label=\"");
+		//							Iterator<ActionConstant> action = t.getEvent().getActions().iterator();
+		//
+		//							while(action.hasNext()){
+		//								if(this.show_negated==true){
+		//									bw.write(action.next().toString()+"\\n");
+		//								}else 
+		//								{
+		//									ActionConstant a = action.next();
+		//									if(!a.getValue().equals("ff")){
+		//										bw.write(a.toString()+"\\n");
+		//									}
+		//
+		//								}
+		//							}
+		//							bw.write("\"]\n");
+		//						}
+		//						bw.write("\n");
+		//
+		//					} catch (IOException e) {
+		//						// TODO Auto-generated catch block
+		//						e.printStackTrace();
+		//					}
+		//				}
+		//			}
+		//		}
 
 	}
 

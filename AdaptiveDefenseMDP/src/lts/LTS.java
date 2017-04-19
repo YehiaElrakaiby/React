@@ -87,7 +87,8 @@ public class LTS {
 	 * Initial State
 	 */
 	protected HashMap<String,String> initial_state;
-
+	
+	
 	//protected Set<Event> events;
 
 
@@ -484,20 +485,31 @@ public class LTS {
 
 	}
 
-	public LTS generateLTSFromPolicy(double[] policy, String string) {
+	public LTS generateLTSFromPolicy(double[] policy, double[] value, String string) {
 		LTS temp = new LTS();
-		temp.setStates(states);
-		HashMap<String, Transition> trans = filterTransitions(policy,string);
-		temp.setTransitions(trans);
+		HashMap<Integer, HashMap<String, String>> temp_states = (HashMap<Integer, HashMap<String, String>>) states.clone();
+		Iterator<Integer> it = temp_states.keySet().iterator();
+		while(it.hasNext()){
+			Integer state_id = it.next();
+			double val = value[state_id-1];
+			temp_states.get(state_id).put("utility", String.valueOf(val));
+		}
+		temp.setStates(temp_states);
+		HashMap<String, Transition> temp_trans = filterTransitions(policy,string);
+		temp.setTransitions(temp_trans);
 
 		return temp;
 	}
 
-	public void showInGraphiv(String string) {
-		DOT_Writer visualizer = new DOT_Writer(string, this);
+	public void showInGraphiv(String path) {
+		DOT_Writer visualizer = new DOT_Writer(path, this);
 		visualizer.openFromDesktop();
 	}
 
+	public void showInGraphiv(String path, String option) {
+		DOT_Writer visualizer = new DOT_Writer(path, this, option);
+		visualizer.openFromDesktop();		
+	}
 
 	private HashMap<String, Transition> filterTransitions(double[] policy, String string) {
 		Iterator<String> it = this.transitions.keySet().iterator();
@@ -799,5 +811,7 @@ public class LTS {
 		System.out.println("\n\n\t\t*********  End Printing LTS  ***************\n\n\n");
 
 	}
+
+	
 
 }

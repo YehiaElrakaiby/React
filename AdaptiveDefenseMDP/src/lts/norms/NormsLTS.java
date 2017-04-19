@@ -19,10 +19,18 @@ import lts.ActionDescr;
 import lts.LTS;
 import lts.Transition;
 import lts.norms.readers.DomainDescriptionReader;
-import visualizer.DOT_Writer;
 
 public class NormsLTS extends LTS{
 
+
+	public static final String SHOW_UTIL = "utility";
+	public static final String SHOW_AP = "ap";
+	public static final String SHOW_REQ = "req";
+
+	public static final String SHOW_UTIL_AP = "utility ap";
+	public static final String SHOW_UTIL_REQ = "utility req";
+	public static final String SHOW_AP_REQ = "ap req";
+	public static final String SHOW_ALL = "utility ap req";
 
 	/**
 	 * Requirements:
@@ -48,6 +56,8 @@ public class NormsLTS extends LTS{
 	 */
 	private HashMap<String, RequirementDescription> operational_requirements;
 
+	
+	
 
 	public NormsLTS() {
 		super();
@@ -268,9 +278,24 @@ public class NormsLTS extends LTS{
 				while(it2.hasNext()){
 					String req_id = it2.next();
 					RequirementDescription sec_descr = security_requirements.get(req_id);
+					String req_type = sec_descr.getType();
+
 					//Set<HashMap<String, String>> sec_condition = sec_descr.getCondition();
-					if(satisfied(req_id,"sat",dest_state) && !satisfied(req_id,"sat",src_state)){
-						reward += sec_descr.getCost_reward();
+					
+					if(req_type.equals("prevent")) {
+						/*
+						 * for prevent requirements, only the transition is rewarded
+						 */
+						if(satisfied(req_id,"sat",dest_state) && !satisfied(req_id,"sat",src_state)){
+							reward += sec_descr.getCost_reward();
+						}
+					} else if(req_type.equals("avoid")) {
+						/*
+						 * for avoid requirements, every state where the requirement is satisfied is rewarded
+						 */
+						if(satisfied(req_id,"sat",dest_state)){
+							reward += sec_descr.getCost_reward();
+						}
 					}
 				}
 				r[src-1][dest-1][this.attack_actions.get(action_name)] = reward;
@@ -300,7 +325,7 @@ public class NormsLTS extends LTS{
 	}
 
 
-	public double[][][] getRewardMatrixDefender(double[] attacker_value) {
+	public double[][][] getRewardMatrixDefender() {
 		if(defender_actions.isEmpty())identifyDefenderActions();
 
 		double[][][] r = new double[states.size()][states.size()][defender_actions.size()];
@@ -317,14 +342,14 @@ public class NormsLTS extends LTS{
 			if(defender_actions.containsKey(descr.getName())) {
 				Integer src = descr.getSrc();
 				Integer dest = descr.getDest();
-				double src_vuln = attacker_value[src-1];
-				double dest_vuln = attacker_value[dest-1];
-				double vuln_reduction = src_vuln - dest_vuln;
+				//double src_vuln = attacker_value[src-1];
+				//double dest_vuln = attacker_value[dest-1];
+				//double vuln_reduction = src_vuln - dest_vuln;
 				Integer action_cost = this.action_descriptions.get(action_name).getCost();
 
 				Integer reward = 0;
 				reward = reward - action_cost;
-				reward = (reward + (int) vuln_reduction);
+				//reward = (reward + (int) vuln_reduction);
 
 				//BigDecimal prob = descr.getProbability();
 				/*
@@ -376,7 +401,90 @@ public class NormsLTS extends LTS{
 		return r;
 	}
 
+	public double[][][] getTradeOffRewardMatrixDefender(double[] value_attacker, double[] value_defender) {
+		if(defender_actions.isEmpty())identifyDefenderActions();
 
+		double[][][] r = new double[states.size()][states.size()][defender_actions.size()];
+		/*
+		 * iterate over transitions and fill the transition matrix accordingly
+		 * the transition matrix is of the form (src,dest,action)
+		 * a -1 is used since indexing in matrices starts at 0 whereas identifiers of states and actions start at 1
+		 */
+		Iterator<String> it = this.getTransitions().keySet().iterator();
+		while(it.hasNext()) {
+			String trans_id = it.next();
+			Transition descr = this.transitions.get(trans_id);
+			String action_name = descr.getName();
+			/*
+			 * if the transition's action is a defender action
+			 */
+			if(defender_actions.containsKey(action_name)) {
+				Integer src = descr.getSrc();
+				Integer dest = descr.getDest();
+				double attacker_value_src = value_attacker[src-1];
+				double defender_value_src = value_defender[src-1];
+
+				double attacker_value_dest = value_attacker[dest-1];
+				double defender_value_dest = value_defender[dest-1];
+
+				//double src_vuln = attacker_value[src-1];
+				//double dest_vuln = attacker_value[dest-1];
+				//double vuln_reduction = src_vuln - dest_vuln;
+				//Integer action_cost = this.action_descriptions.get(action_name).getCost();
+
+				double reward = 0;
+				reward = (defender_value_dest - attacker_value_dest) - (defender_value_src - attacker_value_src);
+				//reward = (reward + (int) vuln_reduction);
+
+				//BigDecimal prob = descr.getProbability();
+				/*
+				 * get the source and destination states
+				 */
+				//HashMap<String, String> dest_state = states.get(dest);
+				//HashMap<String, String> src_state = states.get(src);
+
+				/* 
+				 * iterate over the security requirements, if the requirement is satisfied in the destination state but not in the source state, then reward the transition
+				 */
+//				Iterator<String> it2 = operational_requirements.keySet().iterator();
+//				while(it2.hasNext()){
+//
+//					String req_id = it2.next();
+//					RequirementDescription op_descr = operational_requirements.get(req_id);
+//					//Set<HashMap<String, String>> sec_condition = sec_descr.getCondition();
+//					if(op_descr.getType().equals("maintain")){
+//						if(!satisfied(req_id,"viol",dest_state) && satisfied(req_id,"viol",src_state)){
+//							reward += op_descr.getCost_reward();
+//						} else if(satisfied(req_id,"viol",dest_state) && !satisfied(req_id,"viol",src_state)){
+//							reward -= op_descr.getCost_reward();
+//						} 
+//						if(op_descr.getType().equals("achieve")){
+//							if(satisfied(req_id,"inact",dest_state) && satisfied(req_id,"act",src_state)){
+//								reward -= op_descr.getCost_reward();
+//							} else if(satisfied(req_id,"sat",dest_state) && satisfied(req_id,"act",src_state)){
+//								reward += op_descr.getCost_reward();
+//							} 
+//
+//						}
+//					}
+//				}
+				r[src-1][dest-1][this.defender_actions.get(action_name)]= reward;
+			}
+		}
+		Iterator<Integer> itx = this.not_applicable.keySet().iterator();
+		while(itx.hasNext()) {
+			Integer src = itx.next();
+			HashSet<String> actions = not_applicable.get(src);
+			Iterator<String> ity = actions.iterator();
+			while(ity.hasNext()){
+				String action_name = ity.next();
+				if(defender_actions.containsKey(action_name)){
+					r[src-1][src-1][this.defender_actions.get(action_name)] = -1;
+				}
+			}
+		}
+		return r;
+	}
 	public void print() {
 		System.out.println("\n\n\n\t\t*********  Printing LTS  ***************\n\n");
 		System.out.println("Nb of fluent Descriptions: "+this.fluent_descriptions.size()+"\n");
@@ -398,5 +506,8 @@ public class NormsLTS extends LTS{
 		System.out.println("\n\n\t\t*********  End Printing LTS  ***************\n\n\n");
 
 	}
+
+
+	
 
 }
