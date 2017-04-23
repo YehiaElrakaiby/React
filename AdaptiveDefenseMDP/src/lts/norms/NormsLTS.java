@@ -56,8 +56,8 @@ public class NormsLTS extends LTS{
 	 */
 	private HashMap<String, RequirementDescription> operational_requirements;
 
-	
-	
+
+
 
 	public NormsLTS() {
 		super();
@@ -260,7 +260,7 @@ public class NormsLTS extends LTS{
 			String action_name = descr.getName();
 			if(attack_actions.containsKey(action_name)){
 				ActionDescr act_descr = action_descriptions.get(action_name);
-				reward -= act_descr.getCost();
+				reward += act_descr.getCost();
 
 				Integer src = descr.getSrc();
 				Integer dest = descr.getDest();
@@ -281,7 +281,7 @@ public class NormsLTS extends LTS{
 					String req_type = sec_descr.getType();
 
 					//Set<HashMap<String, String>> sec_condition = sec_descr.getCondition();
-					
+
 					if(req_type.equals("prevent")) {
 						/*
 						 * for prevent requirements, only the transition is rewarded
@@ -293,9 +293,9 @@ public class NormsLTS extends LTS{
 						/*
 						 * for avoid requirements, every state where the requirement is satisfied is rewarded
 						 */
-						if(satisfied(req_id,"sat",dest_state)){
+						if(satisfied(req_id,"sat",dest_state) && !satisfied(req_id,"sat",src_state)){
 							reward += sec_descr.getCost_reward();
-						}
+						} 
 					}
 				}
 				r[src-1][dest-1][this.attack_actions.get(action_name)] = reward;
@@ -367,22 +367,47 @@ public class NormsLTS extends LTS{
 					String req_id = it2.next();
 					RequirementDescription op_descr = operational_requirements.get(req_id);
 					//Set<HashMap<String, String>> sec_condition = sec_descr.getCondition();
+					//					if(op_descr.getType().equals("maintain")){
+					//						if(!satisfied(req_id,"viol",dest_state) && satisfied(req_id,"viol",src_state)){
+					//							reward += op_descr.getCost_reward();
+					//						} else if(satisfied(req_id,"viol",dest_state) && !satisfied(req_id,"viol",src_state)){
+					//							reward -= op_descr.getCost_reward();
+					//						} 
+					//						if(op_descr.getType().equals("achieve")){
+					//							if(satisfied(req_id,"inact",dest_state) && satisfied(req_id,"act",src_state)){
+					//								reward -= op_descr.getCost_reward();
+					//							} else if(satisfied(req_id,"sat",dest_state) && satisfied(req_id,"act",src_state)){
+					//								reward += op_descr.getCost_reward();
+					//							} 
+					//
+					//						}
+					//					}
 					if(op_descr.getType().equals("maintain")){
-						if(!satisfied(req_id,"viol",dest_state) && satisfied(req_id,"viol",src_state)){
-							reward += op_descr.getCost_reward();
-						} else if(satisfied(req_id,"viol",dest_state) && !satisfied(req_id,"viol",src_state)){
+						// violation after inactive or satisfaction
+						if(satisfied(req_id,"viol",dest_state) && (satisfied(req_id,"inact",src_state)||satisfied(req_id,"sat",src_state))){
 							reward -= op_descr.getCost_reward();
 						} 
-						if(op_descr.getType().equals("achieve")){
-							if(satisfied(req_id,"inact",dest_state) && satisfied(req_id,"act",src_state)){
-								reward -= op_descr.getCost_reward();
-							} else if(satisfied(req_id,"sat",dest_state) && satisfied(req_id,"act",src_state)){
-								reward += op_descr.getCost_reward();
-							} 
-
-						}
+						// satisfaction deactivation after violation
+						else if((satisfied(req_id,"inact",dest_state)||satisfied(req_id,"sat",dest_state)) && satisfied(req_id,"viol",src_state)){
+							reward += op_descr.getCost_reward();
+						} 
+					}
+					else if(op_descr.getType().equals("achieve")){
+						//violation
+						if(satisfied(req_id,"inact",dest_state) && satisfied(req_id,"act",src_state)){
+							reward -= op_descr.getCost_reward();
+						} 
+						// activation
+						else if(satisfied(req_id,"act",dest_state) && satisfied(req_id,"inact",src_state)){
+							reward -= op_descr.getCost_reward();
+						} 
+						// satisfaction
+						else if(satisfied(req_id,"sat",dest_state) && satisfied(req_id,"act",src_state)){
+							reward += op_descr.getCost_reward();
+						} 
 					}
 				}
+
 				r[src-1][dest-1][this.defender_actions.get(action_name)]= reward;
 			}
 		}
@@ -433,7 +458,7 @@ public class NormsLTS extends LTS{
 				//Integer action_cost = this.action_descriptions.get(action_name).getCost();
 
 				double reward = 0;
-				reward = (defender_value_dest - attacker_value_dest) - (defender_value_src - attacker_value_src);
+				reward = (defender_value_src - attacker_value_dest) - (defender_value_dest - attacker_value_src);
 				//reward = (reward + (int) vuln_reduction);
 
 				//BigDecimal prob = descr.getProbability();
@@ -446,28 +471,28 @@ public class NormsLTS extends LTS{
 				/* 
 				 * iterate over the security requirements, if the requirement is satisfied in the destination state but not in the source state, then reward the transition
 				 */
-//				Iterator<String> it2 = operational_requirements.keySet().iterator();
-//				while(it2.hasNext()){
-//
-//					String req_id = it2.next();
-//					RequirementDescription op_descr = operational_requirements.get(req_id);
-//					//Set<HashMap<String, String>> sec_condition = sec_descr.getCondition();
-//					if(op_descr.getType().equals("maintain")){
-//						if(!satisfied(req_id,"viol",dest_state) && satisfied(req_id,"viol",src_state)){
-//							reward += op_descr.getCost_reward();
-//						} else if(satisfied(req_id,"viol",dest_state) && !satisfied(req_id,"viol",src_state)){
-//							reward -= op_descr.getCost_reward();
-//						} 
-//						if(op_descr.getType().equals("achieve")){
-//							if(satisfied(req_id,"inact",dest_state) && satisfied(req_id,"act",src_state)){
-//								reward -= op_descr.getCost_reward();
-//							} else if(satisfied(req_id,"sat",dest_state) && satisfied(req_id,"act",src_state)){
-//								reward += op_descr.getCost_reward();
-//							} 
-//
-//						}
-//					}
-//				}
+				//				Iterator<String> it2 = operational_requirements.keySet().iterator();
+				//				while(it2.hasNext()){
+				//
+				//					String req_id = it2.next();
+				//					RequirementDescription op_descr = operational_requirements.get(req_id);
+				//					//Set<HashMap<String, String>> sec_condition = sec_descr.getCondition();
+				//					if(op_descr.getType().equals("maintain")){
+				//						if(!satisfied(req_id,"viol",dest_state) && satisfied(req_id,"viol",src_state)){
+				//							reward += op_descr.getCost_reward();
+				//						} else if(satisfied(req_id,"viol",dest_state) && !satisfied(req_id,"viol",src_state)){
+				//							reward -= op_descr.getCost_reward();
+				//						} 
+				//						if(op_descr.getType().equals("achieve")){
+				//							if(satisfied(req_id,"inact",dest_state) && satisfied(req_id,"act",src_state)){
+				//								reward -= op_descr.getCost_reward();
+				//							} else if(satisfied(req_id,"sat",dest_state) && satisfied(req_id,"act",src_state)){
+				//								reward += op_descr.getCost_reward();
+				//							} 
+				//
+				//						}
+				//					}
+				//				}
 				r[src-1][dest-1][this.defender_actions.get(action_name)]= reward;
 			}
 		}
@@ -508,6 +533,6 @@ public class NormsLTS extends LTS{
 	}
 
 
-	
+
 
 }

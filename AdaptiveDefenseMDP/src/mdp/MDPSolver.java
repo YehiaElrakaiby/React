@@ -94,8 +94,8 @@ public class MDPSolver {
 		try {
 			check(this.p);
 			//check(this.r);
-			//ml.eval("P");
-			//ml.eval("R");
+			ml.eval("P");
+			ml.eval("R");
 			ml.eval("discount");
 		} catch (CancellationException | InterruptedException | ExecutionException e) {
 			e.printStackTrace();
@@ -121,22 +121,30 @@ public class MDPSolver {
 					System.out.println(row);
 
 				}
-				System.out.println();
+				//System.out.println();
 			}
-			System.out.println();
+			//System.out.println();
 		}
-		System.out.println();
+		//System.out.println();
 	}
 
 	public void solveMDP() {
 		try {
-			ml.eval("[V,policy]=mdp_policy_iteration(P,R,discount)");
+			ml.eval("[V,policy,iter,cpu_time]=mdp_policy_iteration(P,R,discount)");
 
 			Future<double[]> future_v = ml.getVariableAsync("V");
 			value = future_v.get();
 
 			Future<double[]> future_policy = ml.getVariableAsync("policy");
 			policy = future_policy.get();
+			
+//			Future<double[]> future_iter = ml.getVariableAsync("iter");
+//			double[] iter = future_iter.get();
+//			System.out.println("Nb of Iterations is: "+iter[0]);
+//			
+//			Future<double[]> future_cpu_time = ml.getVariableAsync("cpu_time");
+//			double[] cpu_time = future_cpu_time.get();
+//			System.out.println("CPU Time is: "+cpu_time[0]);
 
 		} catch (CancellationException | InterruptedException | ExecutionException e) {
 			e.printStackTrace();

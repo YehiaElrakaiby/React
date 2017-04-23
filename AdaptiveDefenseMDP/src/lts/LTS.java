@@ -394,6 +394,7 @@ public class LTS {
 		 * an integer to identify states
 		 */
 		MutableInt state_nb = new MutableInt(1);
+		MutableInt transition_nb = new MutableInt(1);
 
 		/*
 		 * add the initial state to the Maps:
@@ -468,7 +469,8 @@ public class LTS {
 						 * 2b) add the transition to transitions
 						 */
 						Transition trans = new Transition(action_name,src,dest,prob);
-						transitions.put(src+"_"+action_name+"_"+dest, trans);
+						transitions.put(transition_nb.toString(), trans);
+						transition_nb.add(1);;
 					}
 				} else {
 					if(this.not_applicable.containsKey(src)){
