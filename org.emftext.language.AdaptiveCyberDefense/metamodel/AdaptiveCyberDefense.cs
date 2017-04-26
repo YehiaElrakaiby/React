@@ -48,9 +48,9 @@ RULES {
 	StateLiteral ::= "(" statevariable[] "," value[] ")";
 	
 	
-	SecurityRequirement ::= "req(" name[] "," type[prevent:"prevent", avoid:"avoid"] ","  requirements ("||" requirements)* "," activations ("||" activations)* "," deadlines ("||" deadlines)* "," cost[INTEGER] ")";
+	SecurityRequirement ::=  name[] "=" type[prevent:"prevent", avoid:"avoid"] "<"  requirements ("||" requirements)* "," activations ("||" activations)* "," deadlines ("||" deadlines)* "," cost[INTEGER] ">";
 	
-	OperationalRequirement ::= "req(" name[] "," type[maintain:"maintain", achieve:"achieve"] ","  requirements ("||" requirements)* "," activations ("||" activations)* "," deadlines ("||" deadlines)* "," cost[INTEGER] ")";
+	OperationalRequirement ::= name[] "=" type[maintain:"maintain", achieve:"achieve"] "<"  requirements ("||" requirements)* "," activations ("||" activations)* "," deadlines ("||" deadlines)* "," cost[INTEGER] ">";
 	
 	ProbabilisticEffect ::= "<" probability[FLOAT] "," "{" effect "}" ">";
 		
