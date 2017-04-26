@@ -4,11 +4,12 @@ START DomainDescription
 
 
 TOKENS {
-	DEFINE COMMENT $'//'(~('\n'|'\r'|'\uffff'))*$;
+	//DEFINE IDENTIFIER $('A'..'Z' | 'a'..'z' | '_')('A'..'Z' | 'a'..'z' | '0'..'9' | '-'| '_')*$;
 	DEFINE INTEGER $('-')?('1'..'9')('0'..'9')*|'0'$;
 	DEFINE FLOAT $('-')?(('1'..'9') ('0'..'9')* | '0') '.' ('0'..'9')+ $;
-	
-	
+	DEFINE WHITESPACE $(' ' | '\t' | '\f')$;
+	DEFINE LINEBREAK $('\r\n' | '\r' | '\n')$;
+	DEFINE COMMENT $'//'(~('\n'|'\r'|'\uffff'))*$;	
 }
 
 
@@ -16,14 +17,8 @@ TOKENSTYLES {
 	"DomainDescription" COLOR #7F0055, BOLD;
 	"ActionDescription" COLOR #7F0055, BOLD;
 	"Requirements" COLOR #7F0055, BOLD;
-	//"SecurityRequirements" COLOR #7F0055, BOLD;
-	"Actions" COLOR #7F0055, BOLD;
-	//"DefenderActions" COLOR #7F0055, BOLD;
-	
-	"Initial" COLOR #7F0055, BOLD;
-	//"tt" COLOR #7F0055, BOLD;
-	//"ff" COLOR #7F0055, BOLD;
-	
+	"Actions" COLOR #7F0055, BOLD;	
+	"Initial" COLOR #7F0055, BOLD;	
 }
 
 
@@ -47,7 +42,7 @@ RULES {
 	StateVariable ::=  name[] ":" "{" values ("," values)* "}";
 	Value ::= value[];
 	
-	ActionDescription ::= action[] "=" "<" "{" preconditions ("||" preconditions)* "}" "," probabilisticeffect+ "," cost[INTEGER]">";
+	ActionDescription ::= action[] "=" "<" "{" preconditions ("||" preconditions)* "}" "," probabilisticeffect+ "," (cost[FLOAT])?">";
 	
 	@Operator(type="primitive",weight="3",superclass="ConditionExpression")
 	StateLiteral ::= "(" statevariable[] "," value[] ")";

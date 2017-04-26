@@ -2,6 +2,7 @@
  */
 package org.emftext.language.AdaptiveCyberDefense;
 
+import java.math.BigDecimal;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EObject;
@@ -95,12 +96,12 @@ public interface ActionDescription extends EObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Cost</em>' attribute.
-	 * @see #setCost(Integer)
+	 * @see #setCost(BigDecimal)
 	 * @see org.emftext.language.AdaptiveCyberDefense.AdaptiveCyberDefensePackage#getActionDescription_Cost()
-	 * @model required="true"
+	 * @model
 	 * @generated
 	 */
-	Integer getCost();
+	BigDecimal getCost();
 
 	/**
 	 * Sets the value of the '{@link org.emftext.language.AdaptiveCyberDefense.ActionDescription#getCost <em>Cost</em>}' attribute.
@@ -110,6 +111,6 @@ public interface ActionDescription extends EObject {
 	 * @see #getCost()
 	 * @generated
 	 */
-	void setCost(Integer value);
+	void setCost(BigDecimal value);
 
 } // ActionDescription

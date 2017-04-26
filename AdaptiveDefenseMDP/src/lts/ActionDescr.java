@@ -1,5 +1,6 @@
 package lts;
 
+import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
@@ -8,7 +9,7 @@ import java.util.Set;
 public class ActionDescr {
 	private Set<HashMap<String, String>> precondition;
 	private HashSet<Effect> effects;
-	private Integer cost;
+	private BigDecimal cost;
 	private String type;
 
 	public ActionDescr() {
@@ -17,13 +18,13 @@ public class ActionDescr {
 	}
 
 
-	public Integer getCost() {
+	public BigDecimal getCost() {
 		return cost;
 	}
 
 
-	public void setCost(Integer cost) {
-		this.cost = cost;
+	public void setCost(BigDecimal cost2) {
+		this.cost = cost2;
 	}
 
 
@@ -64,7 +65,7 @@ public class ActionDescr {
 
 	@Override
 	public String toString() {
-		return "<" + precondition + "," + effects + ">";
+		return "<" + precondition + "," + effects + "," + cost + ">";
 	}
 	
 	

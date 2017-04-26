@@ -264,7 +264,7 @@ public class LTS {
 		for(ActionDescription action_description:action_descriptions){
 			String action_name = action_description.getAction().getName();
 			EList<ConditionExpression> preconditions = action_description.getPreconditions();
-			Integer cost = action_description.getCost();
+			BigDecimal cost = action_description.getCost();
 
 			Set<HashMap<String,String>> preconds = getConditions(preconditions);
 

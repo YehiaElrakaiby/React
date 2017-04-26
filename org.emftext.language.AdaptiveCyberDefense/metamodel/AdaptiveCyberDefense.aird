@@ -702,11 +702,11 @@
         <description xmi:type="style:FlatContainerStyleDescription" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@style"/>
       </ownedStyle>
       <actualMapping xmi:type="description_1:ContainerMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']"/>
-      <ownedElements xmi:type="diagram:DNodeListElement" xmi:id="_zihwIB3MEeeEYaZRDuvaOQ" name="cost : EIntegerObject" tooltipText="">
+      <ownedElements xmi:type="diagram:DNodeListElement" xmi:id="_zihwIB3MEeeEYaZRDuvaOQ" name="cost : EBigDecimal" tooltipText="">
         <target xmi:type="ecore:EAttribute" href="AdaptiveCyberDefense.ecore#//ActionDescription/cost"/>
         <semanticElements xmi:type="ecore:EAttribute" href="AdaptiveCyberDefense.ecore#//ActionDescription/cost"/>
-        <ownedStyle xmi:type="diagram:BundledImage" xmi:id="_ulRu0B3TEee4R9YPBPGJEg" labelAlignment="LEFT" description="_oiotkBt7Eeeobc1oZnWsww">
-          <labelFormat>bold</labelFormat>
+        <ownedStyle xmi:type="diagram:BundledImage" xmi:id="_q2uekCq6Eee6nZDvlAJtQA" labelAlignment="LEFT">
+          <description xmi:type="style:BundledImageDescription" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@subNodeMappings[name='EC%20EAttribute']/@style"/>
         </ownedStyle>
         <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@subNodeMappings[name='EC%20EAttribute']"/>
       </ownedElements>

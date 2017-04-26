@@ -1,6 +1,7 @@
 package lts.norms;
 
 
+import java.math.BigDecimal;
 import java.nio.file.Path;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -254,14 +255,13 @@ public class NormsLTS extends LTS{
 		 */
 		Iterator<String> it = this.getTransitions().keySet().iterator();
 		while(it.hasNext()) {
-			Integer reward =0;
+			BigDecimal reward = new BigDecimal(0);
 			String trans_id = it.next();
 			Transition descr = this.transitions.get(trans_id);
 			String action_name = descr.getName();
 			if(attack_actions.containsKey(action_name)){
 				ActionDescr act_descr = action_descriptions.get(action_name);
-				reward += act_descr.getCost();
-
+				reward = reward.add(act_descr.getCost());
 				Integer src = descr.getSrc();
 				Integer dest = descr.getDest();
 				//BigDecimal prob = descr.getProbability();
@@ -287,18 +287,18 @@ public class NormsLTS extends LTS{
 						 * for prevent requirements, only the transition is rewarded
 						 */
 						if(satisfied(req_id,"sat",dest_state) && !satisfied(req_id,"sat",src_state)){
-							reward += sec_descr.getCost_reward();
+							reward = reward.add(BigDecimal.valueOf(sec_descr.getCost_reward()));
 						}
 					} else if(req_type.equals("avoid")) {
 						/*
 						 * for avoid requirements, every state where the requirement is satisfied is rewarded
 						 */
 						if(satisfied(req_id,"sat",dest_state) && !satisfied(req_id,"sat",src_state)){
-							reward += sec_descr.getCost_reward();
+							reward = reward.add(BigDecimal.valueOf(sec_descr.getCost_reward()));
 						} 
 					}
 				}
-				r[src-1][dest-1][this.attack_actions.get(action_name)] = reward;
+				r[src-1][dest-1][this.attack_actions.get(action_name)] = reward.doubleValue();
 			}
 		}
 		Iterator<Integer> itx = this.not_applicable.keySet().iterator();
@@ -345,10 +345,10 @@ public class NormsLTS extends LTS{
 				//double src_vuln = attacker_value[src-1];
 				//double dest_vuln = attacker_value[dest-1];
 				//double vuln_reduction = src_vuln - dest_vuln;
-				Integer action_cost = this.action_descriptions.get(action_name).getCost();
+				BigDecimal action_cost = this.action_descriptions.get(action_name).getCost();
 
-				Integer reward = 0;
-				reward = reward - action_cost;
+				BigDecimal reward = new BigDecimal(0);
+				reward = reward.subtract(action_cost);
 				//reward = (reward + (int) vuln_reduction);
 
 				//BigDecimal prob = descr.getProbability();
@@ -385,32 +385,33 @@ public class NormsLTS extends LTS{
 					if(op_descr.getType().equals("maintain")){
 						// violation after inactive or satisfaction
 						if(satisfied(req_id,"viol",dest_state) && (satisfied(req_id,"inact",src_state)||satisfied(req_id,"sat",src_state))){
-							reward -= op_descr.getCost_reward();
+							reward = reward.subtract(BigDecimal.valueOf(op_descr.getCost_reward()));
 						} 
 						// satisfaction deactivation after violation
 						else if((satisfied(req_id,"inact",dest_state)||satisfied(req_id,"sat",dest_state)) && satisfied(req_id,"viol",src_state)){
-							reward += op_descr.getCost_reward();
+							reward = reward.add(BigDecimal.valueOf(op_descr.getCost_reward()));
 						} 
 					}
 					else if(op_descr.getType().equals("achieve")){
 						//violation
 						if(satisfied(req_id,"inact",dest_state) && satisfied(req_id,"act",src_state)){
-							reward -= op_descr.getCost_reward();
+							reward = reward.subtract(BigDecimal.valueOf(op_descr.getCost_reward()));
 						} 
 						// activation
 						else if(satisfied(req_id,"act",dest_state) && satisfied(req_id,"inact",src_state)){
-							reward -= op_descr.getCost_reward();
+							reward = reward.subtract(BigDecimal.valueOf(op_descr.getCost_reward()));
 						} 
 						// satisfaction
 						else if(satisfied(req_id,"sat",dest_state) && satisfied(req_id,"act",src_state)){
-							reward += op_descr.getCost_reward();
+							reward = reward.add(BigDecimal.valueOf(op_descr.getCost_reward()));
 						} 
 					}
 				}
 
-				r[src-1][dest-1][this.defender_actions.get(action_name)]= reward;
+				r[src-1][dest-1][this.defender_actions.get(action_name)]= reward.doubleValue();
 			}
 		}
+		/*
 		Iterator<Integer> itx = this.not_applicable.keySet().iterator();
 		while(itx.hasNext()) {
 			Integer src = itx.next();
@@ -422,7 +423,7 @@ public class NormsLTS extends LTS{
 					r[src-1][src-1][this.defender_actions.get(action_name)] = -1;
 				}
 			}
-		}
+		}*/
 		return r;
 	}
 
@@ -496,6 +497,7 @@ public class NormsLTS extends LTS{
 				r[src-1][dest-1][this.defender_actions.get(action_name)]= reward;
 			}
 		}
+		/*
 		Iterator<Integer> itx = this.not_applicable.keySet().iterator();
 		while(itx.hasNext()) {
 			Integer src = itx.next();
@@ -507,7 +509,7 @@ public class NormsLTS extends LTS{
 					r[src-1][src-1][this.defender_actions.get(action_name)] = -1;
 				}
 			}
-		}
+		}*/
 		return r;
 	}
 	public void print() {

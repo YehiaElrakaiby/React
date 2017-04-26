@@ -2,6 +2,7 @@
  */
 package org.emftext.language.AdaptiveCyberDefense.impl;
 
+import java.math.BigDecimal;
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -79,7 +80,7 @@ public class ActionDescriptionImpl extends EObjectImpl implements ActionDescript
 	 * @generated
 	 * @ordered
 	 */
-	protected static final Integer COST_EDEFAULT = null;
+	protected static final BigDecimal COST_EDEFAULT = null;
 
 	/**
 	 * The cached value of the '{@link #getCost() <em>Cost</em>}' attribute.
@@ -89,7 +90,7 @@ public class ActionDescriptionImpl extends EObjectImpl implements ActionDescript
 	 * @generated
 	 * @ordered
 	 */
-	protected Integer cost = COST_EDEFAULT;
+	protected BigDecimal cost = COST_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -177,7 +178,7 @@ public class ActionDescriptionImpl extends EObjectImpl implements ActionDescript
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Integer getCost() {
+	public BigDecimal getCost() {
 		return cost;
 	}
 
@@ -186,8 +187,8 @@ public class ActionDescriptionImpl extends EObjectImpl implements ActionDescript
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setCost(Integer newCost) {
-		Integer oldCost = cost;
+	public void setCost(BigDecimal newCost) {
+		BigDecimal oldCost = cost;
 		cost = newCost;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, AdaptiveCyberDefensePackage.ACTION_DESCRIPTION__COST, oldCost, cost));
@@ -251,7 +252,7 @@ public class ActionDescriptionImpl extends EObjectImpl implements ActionDescript
 				setAction((Action)newValue);
 				return;
 			case AdaptiveCyberDefensePackage.ACTION_DESCRIPTION__COST:
-				setCost((Integer)newValue);
+				setCost((BigDecimal)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
