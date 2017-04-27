@@ -82,7 +82,7 @@ public class ActionDescriptionImpl extends EObjectImpl implements ActionDescript
 	 * @generated
 	 * @ordered
 	 */
-	protected static final BigDecimal COST_EDEFAULT = null;
+	protected static final BigDecimal COST_EDEFAULT = new BigDecimal("0.00001");
 
 	/**
 	 * The cached value of the '{@link #getCost() <em>Cost</em>}' attribute.

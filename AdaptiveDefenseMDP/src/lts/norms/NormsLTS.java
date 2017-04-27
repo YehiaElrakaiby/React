@@ -10,10 +10,12 @@ import java.util.Set;
 
 import org.eclipse.emf.common.util.EList;
 import org.emftext.language.AdaptiveCyberDefense.Action;
+import org.emftext.language.AdaptiveCyberDefense.ActionVariable;
 import org.emftext.language.AdaptiveCyberDefense.AttackerAction;
 import org.emftext.language.AdaptiveCyberDefense.ConditionExpression;
 import org.emftext.language.AdaptiveCyberDefense.DefenderAction;
 import org.emftext.language.AdaptiveCyberDefense.Requirement;
+import org.emftext.language.AdaptiveCyberDefense.Value;
 
 import lts.ActionDescr;
 import lts.DescriptionAction;
@@ -240,11 +242,12 @@ public class NormsLTS extends LTS{
 	private void readActions(EList<AttackerAction> attack_actions, EList<DefenderAction> defence_actions) {
 		
 		int id=0;
-		
 		for(AttackerAction action : attack_actions) {
+
 			this.attacker_actions.put(action.getName(),new DescriptionAction(action.getName(),action.getValues(),"attacker",id++));
+
 		}
-		
+
 		id=0;
 
 		for(DefenderAction action : defence_actions) {
