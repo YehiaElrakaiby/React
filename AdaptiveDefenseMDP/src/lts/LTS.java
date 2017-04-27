@@ -13,6 +13,8 @@ import org.apache.commons.lang.mutable.MutableInt;
 import org.eclipse.emf.common.util.EList;
 import org.emftext.language.AdaptiveCyberDefense.ActionDescription;
 import org.emftext.language.AdaptiveCyberDefense.ConditionExpression;
+import org.emftext.language.AdaptiveCyberDefense.InitialState;
+import org.emftext.language.AdaptiveCyberDefense.LiteralConjunction;
 import org.emftext.language.AdaptiveCyberDefense.ProbabilisticEffect;
 import org.emftext.language.AdaptiveCyberDefense.StateVariable;
 import org.emftext.language.AdaptiveCyberDefense.Value;
@@ -129,7 +131,7 @@ public class LTS {
 	}
 
 
-	private void addFluentDescription(FluentDescription desc){
+	protected void addFluentDescription(FluentDescription desc){
 		fluent_descriptions.put(desc.name, (HashSet<String>) desc.domain);
 	}
 	/*
@@ -284,6 +286,19 @@ public class LTS {
 
 			this.addActionDescription(action_name, desc);
 		}
+		// Add description of the noop action
+		ActionDescr desc = new ActionDescr();
+		desc.setCost(BigDecimal.valueOf(0));
+		Set<HashMap<String,String>> preconds = new HashSet<HashMap<String,String>>();
+		HashMap<String,String> empty = new HashMap<String,String>();
+		preconds.add(empty);
+		desc.setPrecondition(preconds);
+		Effect effec = new Effect();
+		effec.setEffect(empty);
+		effec.setProb(BigDecimal.valueOf(1));
+		desc.addEffect(effec);
+		this.addActionDescription("noop", desc);
+
 		//System.out.println(this.action_descriptions.toString());
 		System.out.println("number of action descriptions="+action_descriptions.size()+"\n");
 
@@ -694,9 +709,14 @@ public class LTS {
 	//		}
 	//	}
 
-	public void setInitialState(ConditionExpression initial) {
+	public void setInitialState(EList<InitialState> eList) {
 		initial_state = new HashMap<String,String>();
-		initial.getConditions(initial_state);
+		for(InitialState i : eList) {
+			EList<LiteralConjunction> literals = i.getLiteral();
+			for(LiteralConjunction literal : literals) {
+				initial_state.put(literal.getName(), literal.getValue());
+			}
+		}
 	}
 
 

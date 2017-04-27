@@ -17,10 +17,10 @@ import org.eclipse.emf.ecore.EObject;
  * <ul>
  *   <li>{@link org.emftext.language.AdaptiveCyberDefense.DomainDescription#getStatevariable <em>Statevariable</em>}</li>
  *   <li>{@link org.emftext.language.AdaptiveCyberDefense.DomainDescription#getActiondescription <em>Actiondescription</em>}</li>
- *   <li>{@link org.emftext.language.AdaptiveCyberDefense.DomainDescription#getInit <em>Init</em>}</li>
  *   <li>{@link org.emftext.language.AdaptiveCyberDefense.DomainDescription#getRequirements <em>Requirements</em>}</li>
  *   <li>{@link org.emftext.language.AdaptiveCyberDefense.DomainDescription#getDefender_actions <em>Defender actions</em>}</li>
  *   <li>{@link org.emftext.language.AdaptiveCyberDefense.DomainDescription#getAttacker_actions <em>Attacker actions</em>}</li>
+ *   <li>{@link org.emftext.language.AdaptiveCyberDefense.DomainDescription#getInitialstate <em>Initialstate</em>}</li>
  * </ul>
  *
  * @see org.emftext.language.AdaptiveCyberDefense.AdaptiveCyberDefensePackage#getDomainDescription()
@@ -61,32 +61,6 @@ public interface DomainDescription extends EObject {
 	 * @generated
 	 */
 	EList<ActionDescription> getActiondescription();
-
-	/**
-	 * Returns the value of the '<em><b>Init</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Init</em>' containment reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Init</em>' containment reference.
-	 * @see #setInit(ConditionExpression)
-	 * @see org.emftext.language.AdaptiveCyberDefense.AdaptiveCyberDefensePackage#getDomainDescription_Init()
-	 * @model containment="true" required="true"
-	 * @generated
-	 */
-	ConditionExpression getInit();
-
-	/**
-	 * Sets the value of the '{@link org.emftext.language.AdaptiveCyberDefense.DomainDescription#getInit <em>Init</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Init</em>' containment reference.
-	 * @see #getInit()
-	 * @generated
-	 */
-	void setInit(ConditionExpression value);
 
 	/**
 	 * Returns the value of the '<em><b>Requirements</b></em>' containment reference list.
@@ -135,5 +109,21 @@ public interface DomainDescription extends EObject {
 	 * @generated
 	 */
 	EList<AttackerAction> getAttacker_actions();
+
+	/**
+	 * Returns the value of the '<em><b>Initialstate</b></em>' containment reference list.
+	 * The list contents are of type {@link org.emftext.language.AdaptiveCyberDefense.InitialState}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Initialstate</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Initialstate</em>' containment reference list.
+	 * @see org.emftext.language.AdaptiveCyberDefense.AdaptiveCyberDefensePackage#getDomainDescription_Initialstate()
+	 * @model containment="true"
+	 * @generated
+	 */
+	EList<InitialState> getInitialstate();
 
 } // DomainDescription

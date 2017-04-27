@@ -92,10 +92,6 @@ public class AdaptiveCyberDefenseAdapterFactory extends AdapterFactoryImpl {
 				return createValueAdapter();
 			}
 			@Override
-			public Adapter caseActionLiteral(ActionLiteral object) {
-				return createActionLiteralAdapter();
-			}
-			@Override
 			public Adapter caseRequirement(Requirement object) {
 				return createRequirementAdapter();
 			}
@@ -134,6 +130,26 @@ public class AdaptiveCyberDefenseAdapterFactory extends AdapterFactoryImpl {
 			@Override
 			public Adapter caseFalse(False object) {
 				return createFalseAdapter();
+			}
+			@Override
+			public Adapter caseRequirementLiteral(RequirementLiteral object) {
+				return createRequirementLiteralAdapter();
+			}
+			@Override
+			public Adapter caseInitialState(InitialState object) {
+				return createInitialStateAdapter();
+			}
+			@Override
+			public Adapter caseLiteralConjunction(LiteralConjunction object) {
+				return createLiteralConjunctionAdapter();
+			}
+			@Override
+			public Adapter caseActionLiteral(ActionLiteral object) {
+				return createActionLiteralAdapter();
+			}
+			@Override
+			public Adapter caseStateLiteral2(StateLiteral2 object) {
+				return createStateLiteral2Adapter();
 			}
 			@Override
 			public Adapter defaultCase(EObject object) {
@@ -250,6 +266,20 @@ public class AdaptiveCyberDefenseAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createActionLiteralAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.emftext.language.AdaptiveCyberDefense.StateLiteral2 <em>State Literal2</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.emftext.language.AdaptiveCyberDefense.StateLiteral2
+	 * @generated
+	 */
+	public Adapter createStateLiteral2Adapter() {
 		return null;
 	}
 
@@ -390,6 +420,48 @@ public class AdaptiveCyberDefenseAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createFalseAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.emftext.language.AdaptiveCyberDefense.RequirementLiteral <em>Requirement Literal</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.emftext.language.AdaptiveCyberDefense.RequirementLiteral
+	 * @generated
+	 */
+	public Adapter createRequirementLiteralAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.emftext.language.AdaptiveCyberDefense.InitialState <em>Initial State</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.emftext.language.AdaptiveCyberDefense.InitialState
+	 * @generated
+	 */
+	public Adapter createInitialStateAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.emftext.language.AdaptiveCyberDefense.LiteralConjunction <em>Literal Conjunction</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.emftext.language.AdaptiveCyberDefense.LiteralConjunction
+	 * @generated
+	 */
+	public Adapter createLiteralConjunctionAdapter() {
 		return null;
 	}
 

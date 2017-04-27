@@ -33,6 +33,13 @@ public class DescriptionAction {
 		this.id = i;
 		this.type = tp;
 	}
+	public DescriptionAction(String name, HashSet<String> domain2, String tp, int i) {
+		this.name=name;
+		this.domain=domain2;
+		this.id = i;
+		this.type = tp;	
+	}
+
 	public String getName() {
 		return name;
 	}

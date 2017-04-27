@@ -76,15 +76,6 @@ public interface AdaptiveCyberDefenseFactory extends EFactory {
 	Value createValue();
 
 	/**
-	 * Returns a new object of class '<em>Action Literal</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Action Literal</em>'.
-	 * @generated
-	 */
-	ActionLiteral createActionLiteral();
-
-	/**
 	 * Returns a new object of class '<em>Conjunction</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -146,6 +137,42 @@ public interface AdaptiveCyberDefenseFactory extends EFactory {
 	 * @generated
 	 */
 	False createFalse();
+
+	/**
+	 * Returns a new object of class '<em>Requirement Literal</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Requirement Literal</em>'.
+	 * @generated
+	 */
+	RequirementLiteral createRequirementLiteral();
+
+	/**
+	 * Returns a new object of class '<em>Initial State</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Initial State</em>'.
+	 * @generated
+	 */
+	InitialState createInitialState();
+
+	/**
+	 * Returns a new object of class '<em>Action Literal</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Action Literal</em>'.
+	 * @generated
+	 */
+	ActionLiteral createActionLiteral();
+
+	/**
+	 * Returns a new object of class '<em>State Literal2</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>State Literal2</em>'.
+	 * @generated
+	 */
+	StateLiteral2 createStateLiteral2();
 
 	/**
 	 * Returns the package supported by this factory.

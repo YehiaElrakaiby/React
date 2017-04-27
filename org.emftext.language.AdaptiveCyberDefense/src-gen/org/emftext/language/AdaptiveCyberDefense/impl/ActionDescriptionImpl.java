@@ -21,6 +21,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
 
 import org.emftext.language.AdaptiveCyberDefense.Action;
 import org.emftext.language.AdaptiveCyberDefense.ActionDescription;
+import org.emftext.language.AdaptiveCyberDefense.ActionLiteral;
 import org.emftext.language.AdaptiveCyberDefense.ActionVariable;
 import org.emftext.language.AdaptiveCyberDefense.AdaptiveCyberDefensePackage;
 import org.emftext.language.AdaptiveCyberDefense.ConditionExpression;

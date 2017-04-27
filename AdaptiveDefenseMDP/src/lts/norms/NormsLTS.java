@@ -8,6 +8,8 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
 
+import org.apache.commons.collections4.iterators.ArrayListIterator;
+import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.emftext.language.AdaptiveCyberDefense.Action;
 import org.emftext.language.AdaptiveCyberDefense.ActionVariable;
@@ -19,6 +21,7 @@ import org.emftext.language.AdaptiveCyberDefense.Value;
 
 import lts.ActionDescr;
 import lts.DescriptionAction;
+import lts.FluentDescription;
 
 //import org.apache.commons.collections4.bidimap.HashMap;
 
@@ -94,8 +97,26 @@ public class NormsLTS extends LTS{
 
 			if(type.equals("prevent") || type.equals("avoid")) {
 				security_requirements.put(name,new_desr);
+				//Generate Requirement variable and Domain
+				FluentDescription fluent_description = new FluentDescription();
+				fluent_description.setName(name);
+
+				fluent_description.addToDomain("inact");
+				fluent_description.addToDomain("act");
+				fluent_description.addToDomain("sat");
+				addFluentDescription(fluent_description);
+
 			} else if(type.equals("maintain") || type.equals("achieve")){
 				operational_requirements.put(name, new_desr);
+				
+				//Generate Requirement variable and Domain
+				FluentDescription fluent_description = new FluentDescription();
+				fluent_description.setName(name);
+
+				fluent_description.addToDomain("inact");
+				fluent_description.addToDomain("viol");
+				fluent_description.addToDomain("sat");
+				addFluentDescription(fluent_description);
 			}
 		}
 		System.out.println("requirements:\n"+requirements.toString()+"\n");
@@ -225,6 +246,7 @@ public class NormsLTS extends LTS{
 
 	public void readDomainDescription(Path domain_description_location) {
 		DomainDescriptionReader reader = new DomainDescriptionReader(domain_description_location);
+
 		readStateVariables(reader.getState_variables());
 
 		readActions(reader.getAttacker_actions(),reader.getDefender_actions());
@@ -240,20 +262,26 @@ public class NormsLTS extends LTS{
 
 
 	private void readActions(EList<AttackerAction> attack_actions, EList<DefenderAction> defence_actions) {
+		// Create Domain of noop action
+		HashSet<String> domain = new HashSet<String>();
+		domain.add("tt");
+		domain.add("ff");
 		
 		int id=0;
 		for(AttackerAction action : attack_actions) {
-
 			this.attacker_actions.put(action.getName(),new DescriptionAction(action.getName(),action.getValues(),"attacker",id++));
-
 		}
+		// add noop action to attacker actions
+		this.attacker_actions.put("noop",new DescriptionAction("noop",domain,"attacker",id++));
 
 		id=0;
-
 		for(DefenderAction action : defence_actions) {
 			this.defender_actions.put(action.getName(),new DescriptionAction(action.getName(),action.getValues(),"defender",id++));
 		}
-		
+		// add noop action to defender actions
+		this.defender_actions.put("noop",new DescriptionAction("noop",domain,"defender",id++));
+
+
 
 	}
 
@@ -427,7 +455,7 @@ public class NormsLTS extends LTS{
 				r[src-1][dest-1][this.defender_actions.get(action_name).getId()]= reward.doubleValue();
 			}
 		}
-		
+
 		Iterator<Integer> itx = this.not_applicable.keySet().iterator();
 		while(itx.hasNext()) {
 			Integer src = itx.next();
@@ -515,7 +543,7 @@ public class NormsLTS extends LTS{
 				r[src-1][dest-1][this.defender_actions.get(action_name).getId()]= reward.doubleValue();
 			}
 		}
-		
+
 		Iterator<Integer> itx = this.not_applicable.keySet().iterator();
 		while(itx.hasNext()) {
 			Integer src = itx.next();

@@ -13,6 +13,7 @@ import org.emftext.language.AdaptiveCyberDefense.AttackerAction;
 import org.emftext.language.AdaptiveCyberDefense.ConditionExpression;
 import org.emftext.language.AdaptiveCyberDefense.DefenderAction;
 import org.emftext.language.AdaptiveCyberDefense.DomainDescription;
+import org.emftext.language.AdaptiveCyberDefense.InitialState;
 import org.emftext.language.AdaptiveCyberDefense.Requirement;
 import org.emftext.language.AdaptiveCyberDefense.StateVariable;
 import org.emftext.language.AdaptiveCyberDefense.resource.AdaptiveCyberDefense.mopp.AdaptiveCyberDefenseMetaInformation;
@@ -22,7 +23,7 @@ public class DomainDescriptionReader {
 	private DomainDescription description;
 	private EList<StateVariable> state_variables;
 	private EList<ActionDescription> action_descriptions;
-	private ConditionExpression initial;
+	private EList<InitialState> initial;
 	private EList<Requirement> requirements;
 	private EList<AttackerAction> attacker_actions;
 	private EList<DefenderAction> defender_actions;
@@ -38,7 +39,7 @@ public class DomainDescriptionReader {
 		
 		state_variables = description.getStatevariable();
 		action_descriptions = description.getActiondescription();
-		initial = description.getInit();
+		initial = description.getInitialstate();
 		requirements = description.getRequirements();
 		attacker_actions = description.getAttacker_actions();
 		defender_actions = description.getDefender_actions();
@@ -101,12 +102,12 @@ public class DomainDescriptionReader {
 	}
 
 
-	public ConditionExpression getInitial() {
+	public EList<InitialState> getInitial() {
 		return initial;
 	}
 
 
-	public void setInitial(ConditionExpression initial) {
+	public void setInitial(EList<InitialState> initial) {
 		this.initial = initial;
 	}
 

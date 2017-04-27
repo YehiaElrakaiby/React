@@ -16,9 +16,9 @@ TOKENS {
 TOKENSTYLES {
 	"DomainDescription" COLOR #7F0055, BOLD;
 	"ActionDescription" COLOR #7F0055, BOLD;
-	"Requirements" COLOR #7F0055, BOLD;
 	"AttackerActions" COLOR #7F0055, BOLD;	
 	"DefenderActions" COLOR #7F0055, BOLD;	
+	"Requirements" COLOR #7F0055, BOLD;
 	
 	"Initial" COLOR #7F0055, BOLD;	
 }
@@ -29,32 +29,40 @@ RULES {
 		"StateVariables" "=" "<" (statevariable ";")* ">" 
 		"DefenderActions" "=" "<"  (defender_actions ";")* ">"
 		"AttackerActions" "=" "<"  (attacker_actions ";")* ">"
+		"Requirements" "=" "<" (requirements ";")* ">" 		
 		
 		"ActionDescription" "=" "<" (actiondescription ";")* ">" 
-		"Requirements" "=" "<" (requirements ";")* ">" 
-		//"SecurityRequirements" "=" "<" (security_requirements ";")* ">" 
-		
-		"Initial" "=" "<"  init   ">"
+		("Initial" "=" "<"  initialstate   ">")?
 		"}"
 		;
+
+	StateVariable ::=  name[] ":" "{" values ("," values)* "}";
 	
 	AttackerAction ::= name[] ":" "{" values ("," values)* "}";
 	DefenderAction ::= name[] ":" "{" values ("," values)* "}";
 		
-	StateVariable ::=  name[] ":" "{" values ("," values)* "}";
 	Value ::= value[];
-	
-	ActionDescription ::= action[] ("=" value[])? "=" "<" preconditions ("||" preconditions)* "," probabilisticeffect+ ("," cost[FLOAT])?">";
-	
-	@Operator(type="primitive",weight="3",superclass="ConditionExpression")
-	StateLiteral ::=  statevariable[] ("=" value[])? ;
-	
-	
-	SecurityRequirement ::=  name[] "=" type[prevent:"prevent", avoid:"avoid"] "<"  requirements ("||" requirements)* "," activations ("||" activations)* "," deadlines ("||" deadlines)* "," cost[INTEGER] ">";
 	
 	OperationalRequirement ::= name[] "=" type[maintain:"maintain", achieve:"achieve"] "<"  requirements ("||" requirements)* "," activations ("||" activations)* "," deadlines ("||" deadlines)* "," cost[INTEGER] ">";
 	
+	SecurityRequirement ::=  name[] "=" type[prevent:"prevent", avoid:"avoid"] "<"  requirements ("||" requirements)* "," activations ("||" activations)* "," deadlines ("||" deadlines)* "," cost[INTEGER] ">";
+	
+	ActionDescription ::= action[] ("=" value[])? "=" "<" preconditions ("||" preconditions)* "," probabilisticeffect+ ("," cost[FLOAT])?">";
+	
 	ProbabilisticEffect ::= "<" probability[FLOAT] ","  effect  ">";
+		
+
+	@Operator(type="binary_left_associative",weight="1",superclass="ConditionExpression")
+	Conjunction ::= lhs rhs  ;
+
+	@Operator(type="primitive",weight="3",superclass="ConditionExpression")
+	StateLiteral ::=  statevariable[] ("=" value[])? ;
+	
+	@Operator(type="primitive",weight="3",superclass="ConditionExpression")
+	ActionLiteral ::=  actionvariable[] ("=" value[])? ;
+	
+//	@Operator(type="primitive",weight="3",superclass="ConditionExpression")
+//	AttackerActionLiteral ::=  attackeraction[] ("=" value[])? ;
 		
 	@Operator(type="primitive",weight="3",superclass="ConditionExpression")
 	True ::=  "true";
@@ -62,9 +70,14 @@ RULES {
 	@Operator(type="primitive",weight="3",superclass="ConditionExpression")
 	False ::= "false";
 	
-	@Operator(type="binary_left_associative",weight="1",superclass="ConditionExpression")
-	Conjunction ::= lhs rhs  ;
+	@Operator(type="primitive",weight="3",superclass="LiteralConjunction")	
+	RequirementLiteral ::=  requirement[] "=" status[act:"act", inact:"inact", viol:"viol", sat:"sat"];	
 	
-	@Operator(type="primitive",weight="3",superclass="ConditionExpression")
-	ActionLiteral ::=  actionvariable[] ("=" value[])? ;
+	@Operator(type="primitive",weight="3",superclass="LiteralConjunction")		
+	StateLiteral2 ::=  statevariable[] ("=" value[])? ;
+	
+	
+	InitialState ::= literal ("," literal)*;
+	
+
 }

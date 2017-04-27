@@ -63,7 +63,6 @@ public class AdaptiveCyberDefenseFactoryImpl extends EFactoryImpl implements Ada
 			case AdaptiveCyberDefensePackage.STATE_LITERAL: return createStateLiteral();
 			case AdaptiveCyberDefensePackage.PROBABILISTIC_EFFECT: return createProbabilisticEffect();
 			case AdaptiveCyberDefensePackage.VALUE: return createValue();
-			case AdaptiveCyberDefensePackage.ACTION_LITERAL: return createActionLiteral();
 			case AdaptiveCyberDefensePackage.CONJUNCTION: return createConjunction();
 			case AdaptiveCyberDefensePackage.TRUE: return createTrue();
 			case AdaptiveCyberDefensePackage.SECURITY_REQUIREMENT: return createSecurityRequirement();
@@ -71,6 +70,10 @@ public class AdaptiveCyberDefenseFactoryImpl extends EFactoryImpl implements Ada
 			case AdaptiveCyberDefensePackage.ATTACKER_ACTION: return createAttackerAction();
 			case AdaptiveCyberDefensePackage.DEFENDER_ACTION: return createDefenderAction();
 			case AdaptiveCyberDefensePackage.FALSE: return createFalse();
+			case AdaptiveCyberDefensePackage.REQUIREMENT_LITERAL: return createRequirementLiteral();
+			case AdaptiveCyberDefensePackage.INITIAL_STATE: return createInitialState();
+			case AdaptiveCyberDefensePackage.ACTION_LITERAL: return createActionLiteral();
+			case AdaptiveCyberDefensePackage.STATE_LITERAL2: return createStateLiteral2();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -88,6 +91,8 @@ public class AdaptiveCyberDefenseFactoryImpl extends EFactoryImpl implements Ada
 				return createSecurityRequirementTypeFromString(eDataType, initialValue);
 			case AdaptiveCyberDefensePackage.OPERATIONAL_REQUIREMENT_TYPE:
 				return createOperationalRequirementTypeFromString(eDataType, initialValue);
+			case AdaptiveCyberDefensePackage.REQUIREMENT_STATUS:
+				return createRequirementStatusFromString(eDataType, initialValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
@@ -105,6 +110,8 @@ public class AdaptiveCyberDefenseFactoryImpl extends EFactoryImpl implements Ada
 				return convertSecurityRequirementTypeToString(eDataType, instanceValue);
 			case AdaptiveCyberDefensePackage.OPERATIONAL_REQUIREMENT_TYPE:
 				return convertOperationalRequirementTypeToString(eDataType, instanceValue);
+			case AdaptiveCyberDefensePackage.REQUIREMENT_STATUS:
+				return convertRequirementStatusToString(eDataType, instanceValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
@@ -168,16 +175,6 @@ public class AdaptiveCyberDefenseFactoryImpl extends EFactoryImpl implements Ada
 	public Value createValue() {
 		ValueImpl value = new ValueImpl();
 		return value;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public ActionLiteral createActionLiteral() {
-		ActionLiteralImpl actionLiteral = new ActionLiteralImpl();
-		return actionLiteral;
 	}
 
 	/**
@@ -255,6 +252,46 @@ public class AdaptiveCyberDefenseFactoryImpl extends EFactoryImpl implements Ada
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public RequirementLiteral createRequirementLiteral() {
+		RequirementLiteralImpl requirementLiteral = new RequirementLiteralImpl();
+		return requirementLiteral;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public InitialState createInitialState() {
+		InitialStateImpl initialState = new InitialStateImpl();
+		return initialState;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ActionLiteral createActionLiteral() {
+		ActionLiteralImpl actionLiteral = new ActionLiteralImpl();
+		return actionLiteral;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public StateLiteral2 createStateLiteral2() {
+		StateLiteral2Impl stateLiteral2 = new StateLiteral2Impl();
+		return stateLiteral2;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public SecurityRequirementType createSecurityRequirementTypeFromString(EDataType eDataType, String initialValue) {
 		SecurityRequirementType result = SecurityRequirementType.get(initialValue);
 		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
@@ -287,6 +324,26 @@ public class AdaptiveCyberDefenseFactoryImpl extends EFactoryImpl implements Ada
 	 * @generated
 	 */
 	public String convertOperationalRequirementTypeToString(EDataType eDataType, Object instanceValue) {
+		return instanceValue == null ? null : instanceValue.toString();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public RequirementStatus createRequirementStatusFromString(EDataType eDataType, String initialValue) {
+		RequirementStatus result = RequirementStatus.get(initialValue);
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertRequirementStatusToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 

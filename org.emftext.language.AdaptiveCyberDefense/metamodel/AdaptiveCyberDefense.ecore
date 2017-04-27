@@ -15,14 +15,14 @@
         <details key="name" value="actiondescriptions"/>
       </eAnnotations>
     </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="init" lowerBound="1" eType="#//ConditionExpression"
-        containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="requirements" upperBound="-1"
         eType="#//Requirement" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="defender_actions" upperBound="-1"
         eType="#//DefenderAction" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="attacker_actions" upperBound="-1"
         eType="#//AttackerAction" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="initialstate" upperBound="-1"
+        eType="#//InitialState" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ActionDescription">
     <eStructuralFeatures xsi:type="ecore:EReference" name="probabilisticeffect" lowerBound="1"
@@ -63,11 +63,6 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Value">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ActionLiteral" eSuperTypes="#//ConditionExpression">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="actionvariable" lowerBound="1"
-        eType="#//ActionVariable"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Requirement" abstract="true">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
@@ -123,4 +118,37 @@
     <eLiterals name="maintain" value="2"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="False" eSuperTypes="#//ConditionExpression"/>
+  <eClassifiers xsi:type="ecore:EClass" name="RequirementLiteral" eSuperTypes="#//LiteralConjunction">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="requirement" lowerBound="1"
+        eType="#//Requirement"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="status" lowerBound="1"
+        eType="#//RequirementStatus">
+      <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+        <details key="name" value="status"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="RequirementStatus">
+    <eLiterals name="inact" value="1"/>
+    <eLiterals name="act" value="2"/>
+    <eLiterals name="viol" value="3"/>
+    <eLiterals name="sat" value="4"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="InitialState">
+    <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+      <details key="name" value="InitialState"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="literal" lowerBound="1"
+        upperBound="-1" eType="#//LiteralConjunction" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="LiteralConjunction" abstract="true"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ActionLiteral" eSuperTypes="#//ConditionExpression">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="actionvariable" lowerBound="1"
+        eType="#//ActionVariable"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="StateLiteral2" eSuperTypes="#//LiteralConjunction">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="statevariable" eType="#//StateVariable"/>
+  </eClassifiers>
 </ecore:EPackage>

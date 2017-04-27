@@ -20,21 +20,29 @@ import org.emftext.language.AdaptiveCyberDefense.ActionVariable;
 import org.emftext.language.AdaptiveCyberDefense.AdaptiveCyberDefenseFactory;
 import org.emftext.language.AdaptiveCyberDefense.AdaptiveCyberDefensePackage;
 import org.emftext.language.AdaptiveCyberDefense.AttackerAction;
+import org.emftext.language.AdaptiveCyberDefense.AttackerActionLiteral;
 import org.emftext.language.AdaptiveCyberDefense.ComposedCondion;
 import org.emftext.language.AdaptiveCyberDefense.ConditionExpression;
 import org.emftext.language.AdaptiveCyberDefense.Conjunction;
 import org.emftext.language.AdaptiveCyberDefense.DefenderAction;
+import org.emftext.language.AdaptiveCyberDefense.DefenderActionLiteral;
 import org.emftext.language.AdaptiveCyberDefense.DomainDescription;
 import org.emftext.language.AdaptiveCyberDefense.ExpressionOperator;
 import org.emftext.language.AdaptiveCyberDefense.False;
+import org.emftext.language.AdaptiveCyberDefense.InitialState;
+import org.emftext.language.AdaptiveCyberDefense.Literal;
+import org.emftext.language.AdaptiveCyberDefense.LiteralConjunction;
 import org.emftext.language.AdaptiveCyberDefense.OperationalRequirement;
 import org.emftext.language.AdaptiveCyberDefense.OperationalRequirementType;
 import org.emftext.language.AdaptiveCyberDefense.ProbabilisticEffect;
 import org.emftext.language.AdaptiveCyberDefense.Requirement;
+import org.emftext.language.AdaptiveCyberDefense.RequirementLiteral;
+import org.emftext.language.AdaptiveCyberDefense.RequirementStatus;
 import org.emftext.language.AdaptiveCyberDefense.RequirementType;
 import org.emftext.language.AdaptiveCyberDefense.SecurityRequirement;
 import org.emftext.language.AdaptiveCyberDefense.SecurityRequirementType;
 import org.emftext.language.AdaptiveCyberDefense.StateLiteral;
+import org.emftext.language.AdaptiveCyberDefense.StateLiteral2;
 import org.emftext.language.AdaptiveCyberDefense.StateRequirement;
 import org.emftext.language.AdaptiveCyberDefense.StateVariable;
 import org.emftext.language.AdaptiveCyberDefense.True;
@@ -95,6 +103,13 @@ public class AdaptiveCyberDefensePackageImpl extends EPackageImpl implements Ada
 	 * @generated
 	 */
 	private EClass actionLiteralEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass stateLiteral2EClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -171,6 +186,27 @@ public class AdaptiveCyberDefensePackageImpl extends EPackageImpl implements Ada
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	private EClass requirementLiteralEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass initialStateEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass literalConjunctionEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	private EEnum securityRequirementTypeEEnum = null;
 
 	/**
@@ -179,6 +215,13 @@ public class AdaptiveCyberDefensePackageImpl extends EPackageImpl implements Ada
 	 * @generated
 	 */
 	private EEnum operationalRequirementTypeEEnum = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EEnum requirementStatusEEnum = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -276,7 +319,7 @@ public class AdaptiveCyberDefensePackageImpl extends EPackageImpl implements Ada
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getDomainDescription_Init() {
+	public EReference getDomainDescription_Requirements() {
 		return (EReference)domainDescriptionEClass.getEStructuralFeatures().get(2);
 	}
 
@@ -285,7 +328,7 @@ public class AdaptiveCyberDefensePackageImpl extends EPackageImpl implements Ada
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getDomainDescription_Requirements() {
+	public EReference getDomainDescription_Defender_actions() {
 		return (EReference)domainDescriptionEClass.getEStructuralFeatures().get(3);
 	}
 
@@ -294,7 +337,7 @@ public class AdaptiveCyberDefensePackageImpl extends EPackageImpl implements Ada
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getDomainDescription_Defender_actions() {
+	public EReference getDomainDescription_Attacker_actions() {
 		return (EReference)domainDescriptionEClass.getEStructuralFeatures().get(4);
 	}
 
@@ -303,7 +346,7 @@ public class AdaptiveCyberDefensePackageImpl extends EPackageImpl implements Ada
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getDomainDescription_Attacker_actions() {
+	public EReference getDomainDescription_Initialstate() {
 		return (EReference)domainDescriptionEClass.getEStructuralFeatures().get(5);
 	}
 
@@ -474,8 +517,8 @@ public class AdaptiveCyberDefensePackageImpl extends EPackageImpl implements Ada
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getActionLiteral_Actionvariable() {
-		return (EReference)actionLiteralEClass.getEStructuralFeatures().get(0);
+	public EAttribute getActionLiteral_Value() {
+		return (EAttribute)actionLiteralEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -483,8 +526,35 @@ public class AdaptiveCyberDefensePackageImpl extends EPackageImpl implements Ada
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getActionLiteral_Value() {
-		return (EAttribute)actionLiteralEClass.getEStructuralFeatures().get(1);
+	public EReference getActionLiteral_Actionvariable() {
+		return (EReference)actionLiteralEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getStateLiteral2() {
+		return stateLiteral2EClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getStateLiteral2_Value() {
+		return (EAttribute)stateLiteral2EClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getStateLiteral2_Statevariable() {
+		return (EReference)stateLiteral2EClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -681,6 +751,60 @@ public class AdaptiveCyberDefensePackageImpl extends EPackageImpl implements Ada
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getRequirementLiteral() {
+		return requirementLiteralEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getRequirementLiteral_Requirement() {
+		return (EReference)requirementLiteralEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getRequirementLiteral_Status() {
+		return (EAttribute)requirementLiteralEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getInitialState() {
+		return initialStateEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getInitialState_Literal() {
+		return (EReference)initialStateEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getLiteralConjunction() {
+		return literalConjunctionEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EEnum getSecurityRequirementType() {
 		return securityRequirementTypeEEnum;
 	}
@@ -692,6 +816,15 @@ public class AdaptiveCyberDefensePackageImpl extends EPackageImpl implements Ada
 	 */
 	public EEnum getOperationalRequirementType() {
 		return operationalRequirementTypeEEnum;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EEnum getRequirementStatus() {
+		return requirementStatusEEnum;
 	}
 
 	/**
@@ -725,10 +858,10 @@ public class AdaptiveCyberDefensePackageImpl extends EPackageImpl implements Ada
 		domainDescriptionEClass = createEClass(DOMAIN_DESCRIPTION);
 		createEReference(domainDescriptionEClass, DOMAIN_DESCRIPTION__STATEVARIABLE);
 		createEReference(domainDescriptionEClass, DOMAIN_DESCRIPTION__ACTIONDESCRIPTION);
-		createEReference(domainDescriptionEClass, DOMAIN_DESCRIPTION__INIT);
 		createEReference(domainDescriptionEClass, DOMAIN_DESCRIPTION__REQUIREMENTS);
 		createEReference(domainDescriptionEClass, DOMAIN_DESCRIPTION__DEFENDER_ACTIONS);
 		createEReference(domainDescriptionEClass, DOMAIN_DESCRIPTION__ATTACKER_ACTIONS);
+		createEReference(domainDescriptionEClass, DOMAIN_DESCRIPTION__INITIALSTATE);
 
 		actionDescriptionEClass = createEClass(ACTION_DESCRIPTION);
 		createEReference(actionDescriptionEClass, ACTION_DESCRIPTION__PROBABILISTICEFFECT);
@@ -751,10 +884,6 @@ public class AdaptiveCyberDefensePackageImpl extends EPackageImpl implements Ada
 
 		valueEClass = createEClass(VALUE);
 		createEAttribute(valueEClass, VALUE__VALUE);
-
-		actionLiteralEClass = createEClass(ACTION_LITERAL);
-		createEReference(actionLiteralEClass, ACTION_LITERAL__ACTIONVARIABLE);
-		createEAttribute(actionLiteralEClass, ACTION_LITERAL__VALUE);
 
 		requirementEClass = createEClass(REQUIREMENT);
 		createEAttribute(requirementEClass, REQUIREMENT__NAME);
@@ -787,9 +916,27 @@ public class AdaptiveCyberDefensePackageImpl extends EPackageImpl implements Ada
 
 		falseEClass = createEClass(FALSE);
 
+		requirementLiteralEClass = createEClass(REQUIREMENT_LITERAL);
+		createEReference(requirementLiteralEClass, REQUIREMENT_LITERAL__REQUIREMENT);
+		createEAttribute(requirementLiteralEClass, REQUIREMENT_LITERAL__STATUS);
+
+		initialStateEClass = createEClass(INITIAL_STATE);
+		createEReference(initialStateEClass, INITIAL_STATE__LITERAL);
+
+		literalConjunctionEClass = createEClass(LITERAL_CONJUNCTION);
+
+		actionLiteralEClass = createEClass(ACTION_LITERAL);
+		createEAttribute(actionLiteralEClass, ACTION_LITERAL__VALUE);
+		createEReference(actionLiteralEClass, ACTION_LITERAL__ACTIONVARIABLE);
+
+		stateLiteral2EClass = createEClass(STATE_LITERAL2);
+		createEAttribute(stateLiteral2EClass, STATE_LITERAL2__VALUE);
+		createEReference(stateLiteral2EClass, STATE_LITERAL2__STATEVARIABLE);
+
 		// Create enums
 		securityRequirementTypeEEnum = createEEnum(SECURITY_REQUIREMENT_TYPE);
 		operationalRequirementTypeEEnum = createEEnum(OPERATIONAL_REQUIREMENT_TYPE);
+		requirementStatusEEnum = createEEnum(REQUIREMENT_STATUS);
 	}
 
 	/**
@@ -824,7 +971,6 @@ public class AdaptiveCyberDefensePackageImpl extends EPackageImpl implements Ada
 
 		// Add supertypes to classes
 		stateLiteralEClass.getESuperTypes().add(this.getConditionExpression());
-		actionLiteralEClass.getESuperTypes().add(this.getConditionExpression());
 		conjunctionEClass.getESuperTypes().add(this.getConditionExpression());
 		trueEClass.getESuperTypes().add(this.getConditionExpression());
 		securityRequirementEClass.getESuperTypes().add(this.getRequirement());
@@ -832,15 +978,18 @@ public class AdaptiveCyberDefensePackageImpl extends EPackageImpl implements Ada
 		attackerActionEClass.getESuperTypes().add(this.getActionVariable());
 		defenderActionEClass.getESuperTypes().add(this.getActionVariable());
 		falseEClass.getESuperTypes().add(this.getConditionExpression());
+		requirementLiteralEClass.getESuperTypes().add(this.getLiteralConjunction());
+		actionLiteralEClass.getESuperTypes().add(this.getConditionExpression());
+		stateLiteral2EClass.getESuperTypes().add(this.getLiteralConjunction());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(domainDescriptionEClass, DomainDescription.class, "DomainDescription", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getDomainDescription_Statevariable(), this.getStateVariable(), null, "statevariable", null, 0, -1, DomainDescription.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getDomainDescription_Actiondescription(), this.getActionDescription(), null, "actiondescription", null, 0, -1, DomainDescription.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getDomainDescription_Init(), this.getConditionExpression(), null, "init", null, 1, 1, DomainDescription.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getDomainDescription_Requirements(), this.getRequirement(), null, "requirements", null, 0, -1, DomainDescription.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getDomainDescription_Defender_actions(), this.getDefenderAction(), null, "defender_actions", null, 0, -1, DomainDescription.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getDomainDescription_Attacker_actions(), this.getAttackerAction(), null, "attacker_actions", null, 0, -1, DomainDescription.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getDomainDescription_Initialstate(), this.getInitialState(), null, "initialstate", null, 0, -1, DomainDescription.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(actionDescriptionEClass, ActionDescription.class, "ActionDescription", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getActionDescription_Probabilisticeffect(), this.getProbabilisticEffect(), null, "probabilisticeffect", null, 1, -1, ActionDescription.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -863,10 +1012,6 @@ public class AdaptiveCyberDefensePackageImpl extends EPackageImpl implements Ada
 
 		initEClass(valueEClass, Value.class, "Value", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getValue_Value(), ecorePackage.getEString(), "value", null, 1, 1, Value.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(actionLiteralEClass, ActionLiteral.class, "ActionLiteral", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getActionLiteral_Actionvariable(), this.getActionVariable(), null, "actionvariable", null, 1, 1, ActionLiteral.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getActionLiteral_Value(), ecorePackage.getEString(), "value", null, 0, 1, ActionLiteral.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(requirementEClass, Requirement.class, "Requirement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getRequirement_Name(), ecorePackage.getEString(), "name", null, 1, 1, Requirement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -899,6 +1044,23 @@ public class AdaptiveCyberDefensePackageImpl extends EPackageImpl implements Ada
 
 		initEClass(falseEClass, False.class, "False", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
+		initEClass(requirementLiteralEClass, RequirementLiteral.class, "RequirementLiteral", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getRequirementLiteral_Requirement(), this.getRequirement(), null, "requirement", null, 1, 1, RequirementLiteral.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getRequirementLiteral_Status(), this.getRequirementStatus(), "status", null, 1, 1, RequirementLiteral.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(initialStateEClass, InitialState.class, "InitialState", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getInitialState_Literal(), this.getLiteralConjunction(), null, "literal", null, 1, -1, InitialState.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(literalConjunctionEClass, LiteralConjunction.class, "LiteralConjunction", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(actionLiteralEClass, ActionLiteral.class, "ActionLiteral", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getActionLiteral_Value(), ecorePackage.getEString(), "value", null, 0, 1, ActionLiteral.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getActionLiteral_Actionvariable(), this.getActionVariable(), null, "actionvariable", null, 1, 1, ActionLiteral.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(stateLiteral2EClass, StateLiteral2.class, "StateLiteral2", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getStateLiteral2_Value(), ecorePackage.getEString(), "value", null, 0, 1, StateLiteral2.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getStateLiteral2_Statevariable(), this.getStateVariable(), null, "statevariable", null, 1, 1, StateLiteral2.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
 		// Initialize enums and add enum literals
 		initEEnum(securityRequirementTypeEEnum, SecurityRequirementType.class, "SecurityRequirementType");
 		addEEnumLiteral(securityRequirementTypeEEnum, SecurityRequirementType.PREVENT);
@@ -907,6 +1069,12 @@ public class AdaptiveCyberDefensePackageImpl extends EPackageImpl implements Ada
 		initEEnum(operationalRequirementTypeEEnum, OperationalRequirementType.class, "OperationalRequirementType");
 		addEEnumLiteral(operationalRequirementTypeEEnum, OperationalRequirementType.ACHIEVE);
 		addEEnumLiteral(operationalRequirementTypeEEnum, OperationalRequirementType.MAINTAIN);
+
+		initEEnum(requirementStatusEEnum, RequirementStatus.class, "RequirementStatus");
+		addEEnumLiteral(requirementStatusEEnum, RequirementStatus.INACT);
+		addEEnumLiteral(requirementStatusEEnum, RequirementStatus.ACT);
+		addEEnumLiteral(requirementStatusEEnum, RequirementStatus.VIOL);
+		addEEnumLiteral(requirementStatusEEnum, RequirementStatus.SAT);
 
 		// Create resource
 		createResource(eNS_URI);
@@ -965,6 +1133,18 @@ public class AdaptiveCyberDefensePackageImpl extends EPackageImpl implements Ada
 		   source, 
 		   new String[] {
 			 "name", "lhs"
+		   });	
+		addAnnotation
+		  (getRequirementLiteral_Status(), 
+		   source, 
+		   new String[] {
+			 "name", "status"
+		   });	
+		addAnnotation
+		  (initialStateEClass, 
+		   source, 
+		   new String[] {
+			 "name", "InitialState"
 		   });
 	}
 
