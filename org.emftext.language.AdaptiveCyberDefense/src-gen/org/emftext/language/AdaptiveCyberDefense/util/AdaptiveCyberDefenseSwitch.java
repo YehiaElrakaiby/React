@@ -103,10 +103,10 @@ public class AdaptiveCyberDefenseSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case AdaptiveCyberDefensePackage.ACTION_NAME: {
-				ActionName actionName = (ActionName)theEObject;
-				T result = caseActionName(actionName);
-				if (result == null) result = caseConditionExpression(actionName);
+			case AdaptiveCyberDefensePackage.ACTION_LITERAL: {
+				ActionLiteral actionLiteral = (ActionLiteral)theEObject;
+				T result = caseActionLiteral(actionLiteral);
+				if (result == null) result = caseConditionExpression(actionLiteral);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -129,9 +129,9 @@ public class AdaptiveCyberDefenseSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case AdaptiveCyberDefensePackage.ACTION: {
-				Action action = (Action)theEObject;
-				T result = caseAction(action);
+			case AdaptiveCyberDefensePackage.ACTION_VARIABLE: {
+				ActionVariable actionVariable = (ActionVariable)theEObject;
+				T result = caseActionVariable(actionVariable);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -159,14 +159,21 @@ public class AdaptiveCyberDefenseSwitch<T> extends Switch<T> {
 			case AdaptiveCyberDefensePackage.ATTACKER_ACTION: {
 				AttackerAction attackerAction = (AttackerAction)theEObject;
 				T result = caseAttackerAction(attackerAction);
-				if (result == null) result = caseAction(attackerAction);
+				if (result == null) result = caseActionVariable(attackerAction);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
 			case AdaptiveCyberDefensePackage.DEFENDER_ACTION: {
 				DefenderAction defenderAction = (DefenderAction)theEObject;
 				T result = caseDefenderAction(defenderAction);
-				if (result == null) result = caseAction(defenderAction);
+				if (result == null) result = caseActionVariable(defenderAction);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case AdaptiveCyberDefensePackage.FALSE: {
+				False false_ = (False)theEObject;
+				T result = caseFalse(false_);
+				if (result == null) result = caseConditionExpression(false_);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -265,17 +272,17 @@ public class AdaptiveCyberDefenseSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Action Name</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Action Literal</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Action Name</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Action Literal</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseActionName(ActionName object) {
+	public T caseActionLiteral(ActionLiteral object) {
 		return null;
 	}
 
@@ -325,17 +332,17 @@ public class AdaptiveCyberDefenseSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Action</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Action Variable</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Action</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Action Variable</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseAction(Action object) {
+	public T caseActionVariable(ActionVariable object) {
 		return null;
 	}
 
@@ -411,6 +418,21 @@ public class AdaptiveCyberDefenseSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseDefenderAction(DefenderAction object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>False</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>False</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseFalse(False object) {
 		return null;
 	}
 

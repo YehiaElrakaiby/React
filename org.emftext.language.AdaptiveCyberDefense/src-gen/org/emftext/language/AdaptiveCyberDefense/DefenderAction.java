@@ -13,5 +13,5 @@ package org.emftext.language.AdaptiveCyberDefense;
  * @model
  * @generated
  */
-public interface DefenderAction extends Action {
+public interface DefenderAction extends ActionVariable {
 } // DefenderAction

@@ -16,10 +16,6 @@ import org.emftext.language.AdaptiveCyberDefense.ConditionExpression;
 import org.emftext.language.AdaptiveCyberDefense.ProbabilisticEffect;
 import org.emftext.language.AdaptiveCyberDefense.StateVariable;
 import org.emftext.language.AdaptiveCyberDefense.Value;
-import org.emftext.language.AdaptiveCyberDefense.support.FluentLiteral;
-
-import lts.norms.NormsLTS;
-import lts.norms.RequirementDescription;
 import visualizer.DOT_Writer;
 
 public class LTS {
@@ -30,24 +26,26 @@ public class LTS {
 	protected HashMap<String, HashSet<String>> fluent_descriptions;
 	/**
 	 * Actions:
-	 *  Mapping action_name --> action type 
+	 *  Mapping action_name --> Domain(action)
 	 */
-	protected HashMap<String, String> action_type;
+	protected HashMap<String, DescriptionAction> defender_actions;
+	protected HashMap<String, DescriptionAction> attacker_actions;
+
 	/**
 	 *  Actions:
 	 *  Mapping action_name --> action identifier and action_name
 	 */
 	//protected HashMap<String,Integer> actions;
 	/**
-	 * Attack Actions:
+	 *  Actions:
 	 *  Mapping action_name --> action identifier and action_name is an attack action 
 	 */
-	protected HashMap<String,Integer> attack_actions;
-	/**
-	 * Defender Actions:
-	 *  Mapping action_name --> action identifier and action_name is a defender action 
-	 */
-	protected HashMap<String,Integer> defender_actions;
+//	protected HashMap<String,Integer> actions;
+//	/**
+//	 * Defender Actions:
+//	 *  Mapping action_name --> action identifier and action_name is a defender action 
+//	 */
+//	protected HashMap<String,Integer> defender_actions;
 	/**
 	 * Action Description
 	 * Mapping action_name --> precondition, {effect1,...,effectn}
@@ -119,9 +117,9 @@ public class LTS {
 		this.initial_state = new HashMap<String,String>();
 		this.applicable = new HashMap<Integer,HashSet<String>>();
 		this.not_applicable = new HashMap<Integer,HashSet<String>>();
-		this.action_type = new HashMap<String,String>();
-		this.attack_actions = new HashMap<String,Integer>();
-		this.defender_actions = new HashMap<String,Integer>();
+		//this.action_type = new HashMap<String,String>();
+		this.attacker_actions = new HashMap<String,DescriptionAction>();
+		this.defender_actions = new HashMap<String,DescriptionAction>();
 		//this.actions = new HashMap<String,Integer>();
 
 	}
@@ -248,6 +246,7 @@ public class LTS {
 			addFluentDescription(fluent_description);
 		}		
 	}
+	
 
 	protected Set<HashMap<String,String>> getConditions(EList<ConditionExpression> preconditions) {
 
@@ -523,14 +522,14 @@ public class LTS {
 			Integer trans_src = trans_descr.getSrc();
 			Integer action_id = (int) (policy[trans_src-1]-1);
 			if(string.equals("attack")) {
-				if(attack_actions.containsKey(trans_name)) {
-					if(attack_actions.get(trans_name).equals(action_id)){
+				if(attacker_actions.containsKey(trans_name)) {
+					if(attacker_actions.get(trans_name).getId().equals(action_id)){
 						temp_trans.put(transition_id, trans_descr);
 					}
 				}
 			} else if(string.equals("defense")) {
 				if(this.defender_actions.containsKey(trans_name)) {
-					if(defender_actions.get(trans_name).equals(action_id)){
+					if(defender_actions.get(trans_name).getId().equals(action_id)){
 						temp_trans.put(transition_id, trans_descr);
 					}
 				}
@@ -558,9 +557,9 @@ public class LTS {
 	 */
 	public double[][][] getTransitionMatrixAttacker() {
 
-		if(attack_actions.isEmpty())identifyAttackActions();
+		//if(attack_actions.isEmpty())identifyAttackActions();
 
-		double[][][] p = new double[states.size()][states.size()][attack_actions.size()];
+		double[][][] p = new double[states.size()][states.size()][attacker_actions.size()];
 		/*
 		 * iterate over transitions and fill the transition matrix accordingly
 		 * the transition matrix is of the form (src,dest,action)
@@ -574,12 +573,12 @@ public class LTS {
 			Integer dest = descr.getDest();
 			String action_name = descr.getName();
 			BigDecimal prob = descr.getProbability();
-			if(attack_actions.containsKey(action_name)) {
-				p[src-1][dest-1][attack_actions.get(action_name)] = prob.doubleValue();
+			if(attacker_actions.containsKey(action_name)) {
+				p[src-1][dest-1][attacker_actions.get(action_name).getId()] = prob.doubleValue();
 			}
 
 		}
-		Iterator<String> actions = this.attack_actions.keySet().iterator();
+		Iterator<String> actions = this.attacker_actions.keySet().iterator();
 
 
 		while(actions.hasNext()) {
@@ -589,7 +588,7 @@ public class LTS {
 				Integer state_id = it2.next();
 				HashSet<String> actions_applicable_in_state_id = applicable.get(state_id);
 				if(!actions_applicable_in_state_id.contains(action_name)) {
-					p[state_id-1][state_id-1][attack_actions.get(action_name)] = 1;
+					p[state_id-1][state_id-1][this.attacker_actions.get(action_name).getId()] = 1;
 				}
 			}
 
@@ -606,7 +605,7 @@ public class LTS {
 	 */
 	public double[][][] getTransitionMatrixDefender() {
 
-		if(defender_actions.isEmpty())identifyDefenderActions();
+		//if(defender_actions.isEmpty())identifyDefenderActions();
 
 		double[][][] p = new double[states.size()][states.size()][defender_actions.size()];
 		/*
@@ -623,7 +622,7 @@ public class LTS {
 			String action_name = descr.getName();
 			BigDecimal prob = descr.getProbability();
 			if(defender_actions.containsKey(action_name)) {
-				p[src-1][dest-1][defender_actions.get(action_name)] = prob.doubleValue();
+				p[src-1][dest-1][this.defender_actions.get(action_name).getId()] = prob.doubleValue();
 			}
 
 		}
@@ -637,7 +636,7 @@ public class LTS {
 				Integer state_id = it2.next();
 				HashSet<String> actions_applicable_in_state_id = applicable.get(state_id);
 				if(!actions_applicable_in_state_id.contains(action_name)) {
-					p[state_id-1][state_id-1][defender_actions.get(action_name)] = 1;
+					p[state_id-1][state_id-1][this.defender_actions.get(action_name).getId()] = 1;
 				}
 			}
 
@@ -647,37 +646,37 @@ public class LTS {
 		return p;
 	}
 
-	protected void identifyDefenderActions() {
-		/*
-		 * find the attack actions and store them in a HashMap <action_name, id>
-		 */
-		defender_actions = new HashMap<String,Integer>();
-		Iterator<String> it = action_type.keySet().iterator();
-		Integer id = 0;
-		while(it.hasNext()){
-			String act_name = it.next();
-			String act_type = action_type.get(act_name);
-			if(act_type.equals("defender")) {
-				defender_actions.put(act_name,id++);
-			}
-		}		
-	}
+//	protected void identifyDefenderActions() {
+//		/*
+//		 * find the attack actions and store them in a HashMap <action_name, id>
+//		 */
+//		defender_actions = new HashMap<String,Integer>();
+//		Iterator<String> it = action_type.keySet().iterator();
+//		Integer id = 0;
+//		while(it.hasNext()){
+//			String act_name = it.next();
+//			String act_type = action_type.get(act_name);
+//			if(act_type.equals("defender")) {
+//				defender_actions.put(act_name,id++);
+//			}
+//		}		
+//	}
 
-	public void identifyAttackActions() {
-		/*
-		 * find the attack actions and store them in a HashMap <action_name, id>
-		 */
-		attack_actions = new HashMap<String,Integer>();
-		Iterator<String> it = action_type.keySet().iterator();
-		Integer id = 0;
-		while(it.hasNext()){
-			String act_name = it.next();
-			String act_type = action_type.get(act_name);
-			if(act_type.equals("attacker")) {
-				attack_actions.put(act_name,id++);
-			}
-		}
-	}
+//	public void identifyAttackActions() {
+//		/*
+//		 * find the attack actions and store them in a HashMap <action_name, id>
+//		 */
+//		attack_actions = new HashMap<String,Integer>();
+//		Iterator<String> it = action_type.keySet().iterator();
+//		Integer id = 0;
+//		while(it.hasNext()){
+//			String act_name = it.next();
+//			String act_type = action_type.get(act_name);
+//			if(act_type.equals("attacker")) {
+//				attack_actions.put(act_name,id++);
+//			}
+//		}
+//	}
 	//
 	//	public void identifyActions() {
 	//		/*
@@ -772,30 +771,31 @@ public class LTS {
 		this.initial_state = initial_state;
 	}
 
-
-
-	public HashMap<String, String> getAction_type() {
-		return action_type;
-	}
-
-
-	public void setAction_type(HashMap<String, String> action_type) {
-		this.action_type = action_type;
-	}
-
-	public void addAction_type(String action_name, String action_type) {
-		this.action_type.put(action_name, action_type);
-	}
-
-	public HashMap<String, Integer> getAttack_actions() {
-		return attack_actions;
-	}
-
-
-	public HashMap<String, Integer> getDefender_actions() {
+	public HashMap<String, DescriptionAction> getDefender_actions() {
 		return defender_actions;
 	}
 
+	public void setDefender_actions(HashMap<String, DescriptionAction> defender_actions) {
+		this.defender_actions = defender_actions;
+	}
+
+	public HashMap<String, DescriptionAction> getAttacker_actions() {
+		return attacker_actions;
+	}
+
+	public void setAttacker_actions(HashMap<String, DescriptionAction> attacker_actions) {
+		this.attacker_actions = attacker_actions;
+	}
+
+
+
+	public HashMap<Integer, HashSet<String>> getNot_applicable() {
+		return not_applicable;
+	}
+
+	public void setNot_applicable(HashMap<Integer, HashSet<String>> not_applicable) {
+		this.not_applicable = not_applicable;
+	}
 
 	public void print() {
 		System.out.println("\n\n\n\t\t*********  Printing LTS  ***************\n\n");

@@ -20,6 +20,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link org.emftext.language.AdaptiveCyberDefense.ActionDescription#getPreconditions <em>Preconditions</em>}</li>
  *   <li>{@link org.emftext.language.AdaptiveCyberDefense.ActionDescription#getAction <em>Action</em>}</li>
  *   <li>{@link org.emftext.language.AdaptiveCyberDefense.ActionDescription#getCost <em>Cost</em>}</li>
+ *   <li>{@link org.emftext.language.AdaptiveCyberDefense.ActionDescription#getValue <em>Value</em>}</li>
  * </ul>
  *
  * @see org.emftext.language.AdaptiveCyberDefense.AdaptiveCyberDefensePackage#getActionDescription()
@@ -70,12 +71,12 @@ public interface ActionDescription extends EObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Action</em>' reference.
-	 * @see #setAction(Action)
+	 * @see #setAction(ActionVariable)
 	 * @see org.emftext.language.AdaptiveCyberDefense.AdaptiveCyberDefensePackage#getActionDescription_Action()
 	 * @model required="true"
 	 * @generated
 	 */
-	Action getAction();
+	ActionVariable getAction();
 
 	/**
 	 * Sets the value of the '{@link org.emftext.language.AdaptiveCyberDefense.ActionDescription#getAction <em>Action</em>}' reference.
@@ -85,7 +86,7 @@ public interface ActionDescription extends EObject {
 	 * @see #getAction()
 	 * @generated
 	 */
-	void setAction(Action value);
+	void setAction(ActionVariable value);
 
 	/**
 	 * Returns the value of the '<em><b>Cost</b></em>' attribute.
@@ -112,5 +113,32 @@ public interface ActionDescription extends EObject {
 	 * @generated
 	 */
 	void setCost(BigDecimal value);
+
+	/**
+	 * Returns the value of the '<em><b>Value</b></em>' attribute.
+	 * The default value is <code>"tt"</code>.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Value</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Value</em>' attribute.
+	 * @see #setValue(String)
+	 * @see org.emftext.language.AdaptiveCyberDefense.AdaptiveCyberDefensePackage#getActionDescription_Value()
+	 * @model default="tt" dataType="org.eclipse.emf.ecore.xml.type.String"
+	 * @generated
+	 */
+	String getValue();
+
+	/**
+	 * Sets the value of the '{@link org.emftext.language.AdaptiveCyberDefense.ActionDescription#getValue <em>Value</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Value</em>' attribute.
+	 * @see #getValue()
+	 * @generated
+	 */
+	void setValue(String value);
 
 } // ActionDescription

@@ -76,13 +76,13 @@ public interface AdaptiveCyberDefenseFactory extends EFactory {
 	Value createValue();
 
 	/**
-	 * Returns a new object of class '<em>Action Name</em>'.
+	 * Returns a new object of class '<em>Action Literal</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Action Name</em>'.
+	 * @return a new object of class '<em>Action Literal</em>'.
 	 * @generated
 	 */
-	ActionName createActionName();
+	ActionLiteral createActionLiteral();
 
 	/**
 	 * Returns a new object of class '<em>Conjunction</em>'.
@@ -137,6 +137,15 @@ public interface AdaptiveCyberDefenseFactory extends EFactory {
 	 * @generated
 	 */
 	DefenderAction createDefenderAction();
+
+	/**
+	 * Returns a new object of class '<em>False</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>False</em>'.
+	 * @generated
+	 */
+	False createFalse();
 
 	/**
 	 * Returns the package supported by this factory.

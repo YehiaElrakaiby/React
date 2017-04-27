@@ -103,13 +103,22 @@ public interface AdaptiveCyberDefensePackage extends EPackage {
 	int DOMAIN_DESCRIPTION__REQUIREMENTS = 3;
 
 	/**
-	 * The feature id for the '<em><b>Actions</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Defender actions</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DOMAIN_DESCRIPTION__ACTIONS = 4;
+	int DOMAIN_DESCRIPTION__DEFENDER_ACTIONS = 4;
+
+	/**
+	 * The feature id for the '<em><b>Attacker actions</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DOMAIN_DESCRIPTION__ATTACKER_ACTIONS = 5;
 
 	/**
 	 * The number of structural features of the '<em>Domain Description</em>' class.
@@ -118,7 +127,7 @@ public interface AdaptiveCyberDefensePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DOMAIN_DESCRIPTION_FEATURE_COUNT = 5;
+	int DOMAIN_DESCRIPTION_FEATURE_COUNT = 6;
 
 	/**
 	 * The meta object id for the '{@link org.emftext.language.AdaptiveCyberDefense.impl.RequirementImpl <em>Requirement</em>}' class.
@@ -177,13 +186,22 @@ public interface AdaptiveCyberDefensePackage extends EPackage {
 	int ACTION_DESCRIPTION__COST = 3;
 
 	/**
+	 * The feature id for the '<em><b>Value</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ACTION_DESCRIPTION__VALUE = 4;
+
+	/**
 	 * The number of structural features of the '<em>Action Description</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ACTION_DESCRIPTION_FEATURE_COUNT = 4;
+	int ACTION_DESCRIPTION_FEATURE_COUNT = 5;
 
 	/**
 	 * The meta object id for the '{@link org.emftext.language.AdaptiveCyberDefense.impl.StateVariableImpl <em>State Variable</em>}' class.
@@ -344,32 +362,41 @@ public interface AdaptiveCyberDefensePackage extends EPackage {
 	int VALUE_FEATURE_COUNT = 1;
 
 	/**
-	 * The meta object id for the '{@link org.emftext.language.AdaptiveCyberDefense.impl.ActionNameImpl <em>Action Name</em>}' class.
+	 * The meta object id for the '{@link org.emftext.language.AdaptiveCyberDefense.impl.ActionLiteralImpl <em>Action Literal</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.emftext.language.AdaptiveCyberDefense.impl.ActionNameImpl
-	 * @see org.emftext.language.AdaptiveCyberDefense.impl.AdaptiveCyberDefensePackageImpl#getActionName()
+	 * @see org.emftext.language.AdaptiveCyberDefense.impl.ActionLiteralImpl
+	 * @see org.emftext.language.AdaptiveCyberDefense.impl.AdaptiveCyberDefensePackageImpl#getActionLiteral()
 	 * @generated
 	 */
-	int ACTION_NAME = 6;
+	int ACTION_LITERAL = 6;
 
 	/**
-	 * The feature id for the '<em><b>Action</b></em>' reference.
+	 * The feature id for the '<em><b>Actionvariable</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ACTION_NAME__ACTION = CONDITION_EXPRESSION_FEATURE_COUNT + 0;
+	int ACTION_LITERAL__ACTIONVARIABLE = CONDITION_EXPRESSION_FEATURE_COUNT + 0;
 
 	/**
-	 * The number of structural features of the '<em>Action Name</em>' class.
+	 * The feature id for the '<em><b>Value</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ACTION_NAME_FEATURE_COUNT = CONDITION_EXPRESSION_FEATURE_COUNT + 1;
+	int ACTION_LITERAL__VALUE = CONDITION_EXPRESSION_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of structural features of the '<em>Action Literal</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ACTION_LITERAL_FEATURE_COUNT = CONDITION_EXPRESSION_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -464,14 +491,14 @@ public interface AdaptiveCyberDefensePackage extends EPackage {
 	int CONJUNCTION_FEATURE_COUNT = CONDITION_EXPRESSION_FEATURE_COUNT + 2;
 
 	/**
-	 * The meta object id for the '{@link org.emftext.language.AdaptiveCyberDefense.impl.ActionImpl <em>Action</em>}' class.
+	 * The meta object id for the '{@link org.emftext.language.AdaptiveCyberDefense.impl.ActionVariableImpl <em>Action Variable</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.emftext.language.AdaptiveCyberDefense.impl.ActionImpl
-	 * @see org.emftext.language.AdaptiveCyberDefense.impl.AdaptiveCyberDefensePackageImpl#getAction()
+	 * @see org.emftext.language.AdaptiveCyberDefense.impl.ActionVariableImpl
+	 * @see org.emftext.language.AdaptiveCyberDefense.impl.AdaptiveCyberDefensePackageImpl#getActionVariable()
 	 * @generated
 	 */
-	int ACTION = 10;
+	int ACTION_VARIABLE = 10;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -480,17 +507,25 @@ public interface AdaptiveCyberDefensePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ACTION__NAME = 0;
+	int ACTION_VARIABLE__NAME = 0;
 
 	/**
-	 * The number of structural features of the '<em>Action</em>' class.
+	 * The feature id for the '<em><b>Values</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ACTION_FEATURE_COUNT = 1;
+	int ACTION_VARIABLE__VALUES = 1;
 
+	/**
+	 * The number of structural features of the '<em>Action Variable</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ACTION_VARIABLE_FEATURE_COUNT = 2;
 
 	/**
 	 * The meta object id for the '{@link org.emftext.language.AdaptiveCyberDefense.impl.TrueImpl <em>True</em>}' class.
@@ -503,22 +538,13 @@ public interface AdaptiveCyberDefensePackage extends EPackage {
 	int TRUE = 11;
 
 	/**
-	 * The feature id for the '<em><b>Value</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TRUE__VALUE = CONDITION_EXPRESSION_FEATURE_COUNT + 0;
-
-	/**
 	 * The number of structural features of the '<em>True</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TRUE_FEATURE_COUNT = CONDITION_EXPRESSION_FEATURE_COUNT + 1;
+	int TRUE_FEATURE_COUNT = CONDITION_EXPRESSION_FEATURE_COUNT + 0;
 
 
 	/**
@@ -684,7 +710,16 @@ public interface AdaptiveCyberDefensePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ATTACKER_ACTION__NAME = ACTION__NAME;
+	int ATTACKER_ACTION__NAME = ACTION_VARIABLE__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Values</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ATTACKER_ACTION__VALUES = ACTION_VARIABLE__VALUES;
 
 	/**
 	 * The number of structural features of the '<em>Attacker Action</em>' class.
@@ -693,7 +728,7 @@ public interface AdaptiveCyberDefensePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ATTACKER_ACTION_FEATURE_COUNT = ACTION_FEATURE_COUNT + 0;
+	int ATTACKER_ACTION_FEATURE_COUNT = ACTION_VARIABLE_FEATURE_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link org.emftext.language.AdaptiveCyberDefense.impl.DefenderActionImpl <em>Defender Action</em>}' class.
@@ -712,7 +747,16 @@ public interface AdaptiveCyberDefensePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DEFENDER_ACTION__NAME = ACTION__NAME;
+	int DEFENDER_ACTION__NAME = ACTION_VARIABLE__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Values</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DEFENDER_ACTION__VALUES = ACTION_VARIABLE__VALUES;
 
 	/**
 	 * The number of structural features of the '<em>Defender Action</em>' class.
@@ -721,8 +765,27 @@ public interface AdaptiveCyberDefensePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DEFENDER_ACTION_FEATURE_COUNT = ACTION_FEATURE_COUNT + 0;
+	int DEFENDER_ACTION_FEATURE_COUNT = ACTION_VARIABLE_FEATURE_COUNT + 0;
 
+
+	/**
+	 * The meta object id for the '{@link org.emftext.language.AdaptiveCyberDefense.impl.FalseImpl <em>False</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.emftext.language.AdaptiveCyberDefense.impl.FalseImpl
+	 * @see org.emftext.language.AdaptiveCyberDefense.impl.AdaptiveCyberDefensePackageImpl#getFalse()
+	 * @generated
+	 */
+	int FALSE = 16;
+
+	/**
+	 * The number of structural features of the '<em>False</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FALSE_FEATURE_COUNT = CONDITION_EXPRESSION_FEATURE_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link org.emftext.language.AdaptiveCyberDefense.SecurityRequirementType <em>Security Requirement Type</em>}' enum.
@@ -732,7 +795,7 @@ public interface AdaptiveCyberDefensePackage extends EPackage {
 	 * @see org.emftext.language.AdaptiveCyberDefense.impl.AdaptiveCyberDefensePackageImpl#getSecurityRequirementType()
 	 * @generated
 	 */
-	int SECURITY_REQUIREMENT_TYPE = 16;
+	int SECURITY_REQUIREMENT_TYPE = 17;
 
 	/**
 	 * The meta object id for the '{@link org.emftext.language.AdaptiveCyberDefense.OperationalRequirementType <em>Operational Requirement Type</em>}' enum.
@@ -742,7 +805,7 @@ public interface AdaptiveCyberDefensePackage extends EPackage {
 	 * @see org.emftext.language.AdaptiveCyberDefense.impl.AdaptiveCyberDefensePackageImpl#getOperationalRequirementType()
 	 * @generated
 	 */
-	int OPERATIONAL_REQUIREMENT_TYPE = 17;
+	int OPERATIONAL_REQUIREMENT_TYPE = 18;
 
 	/**
 	 * Returns the meta object for class '{@link org.emftext.language.AdaptiveCyberDefense.DomainDescription <em>Domain Description</em>}'.
@@ -799,15 +862,26 @@ public interface AdaptiveCyberDefensePackage extends EPackage {
 	EReference getDomainDescription_Requirements();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link org.emftext.language.AdaptiveCyberDefense.DomainDescription#getActions <em>Actions</em>}'.
+	 * Returns the meta object for the containment reference list '{@link org.emftext.language.AdaptiveCyberDefense.DomainDescription#getDefender_actions <em>Defender actions</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Actions</em>'.
-	 * @see org.emftext.language.AdaptiveCyberDefense.DomainDescription#getActions()
+	 * @return the meta object for the containment reference list '<em>Defender actions</em>'.
+	 * @see org.emftext.language.AdaptiveCyberDefense.DomainDescription#getDefender_actions()
 	 * @see #getDomainDescription()
 	 * @generated
 	 */
-	EReference getDomainDescription_Actions();
+	EReference getDomainDescription_Defender_actions();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link org.emftext.language.AdaptiveCyberDefense.DomainDescription#getAttacker_actions <em>Attacker actions</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Attacker actions</em>'.
+	 * @see org.emftext.language.AdaptiveCyberDefense.DomainDescription#getAttacker_actions()
+	 * @see #getDomainDescription()
+	 * @generated
+	 */
+	EReference getDomainDescription_Attacker_actions();
 
 	/**
 	 * Returns the meta object for class '{@link org.emftext.language.AdaptiveCyberDefense.ActionDescription <em>Action Description</em>}'.
@@ -862,6 +936,17 @@ public interface AdaptiveCyberDefensePackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getActionDescription_Cost();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.emftext.language.AdaptiveCyberDefense.ActionDescription#getValue <em>Value</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Value</em>'.
+	 * @see org.emftext.language.AdaptiveCyberDefense.ActionDescription#getValue()
+	 * @see #getActionDescription()
+	 * @generated
+	 */
+	EAttribute getActionDescription_Value();
 
 	/**
 	 * Returns the meta object for class '{@link org.emftext.language.AdaptiveCyberDefense.StateVariable <em>State Variable</em>}'.
@@ -981,25 +1066,36 @@ public interface AdaptiveCyberDefensePackage extends EPackage {
 	EAttribute getValue_Value();
 
 	/**
-	 * Returns the meta object for class '{@link org.emftext.language.AdaptiveCyberDefense.ActionName <em>Action Name</em>}'.
+	 * Returns the meta object for class '{@link org.emftext.language.AdaptiveCyberDefense.ActionLiteral <em>Action Literal</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Action Name</em>'.
-	 * @see org.emftext.language.AdaptiveCyberDefense.ActionName
+	 * @return the meta object for class '<em>Action Literal</em>'.
+	 * @see org.emftext.language.AdaptiveCyberDefense.ActionLiteral
 	 * @generated
 	 */
-	EClass getActionName();
+	EClass getActionLiteral();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.emftext.language.AdaptiveCyberDefense.ActionName#getAction <em>Action</em>}'.
+	 * Returns the meta object for the reference '{@link org.emftext.language.AdaptiveCyberDefense.ActionLiteral#getActionvariable <em>Actionvariable</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Action</em>'.
-	 * @see org.emftext.language.AdaptiveCyberDefense.ActionName#getAction()
-	 * @see #getActionName()
+	 * @return the meta object for the reference '<em>Actionvariable</em>'.
+	 * @see org.emftext.language.AdaptiveCyberDefense.ActionLiteral#getActionvariable()
+	 * @see #getActionLiteral()
 	 * @generated
 	 */
-	EReference getActionName_Action();
+	EReference getActionLiteral_Actionvariable();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.emftext.language.AdaptiveCyberDefense.ActionLiteral#getValue <em>Value</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Value</em>'.
+	 * @see org.emftext.language.AdaptiveCyberDefense.ActionLiteral#getValue()
+	 * @see #getActionLiteral()
+	 * @generated
+	 */
+	EAttribute getActionLiteral_Value();
 
 	/**
 	 * Returns the meta object for class '{@link org.emftext.language.AdaptiveCyberDefense.Requirement <em>Requirement</em>}'.
@@ -1109,25 +1205,36 @@ public interface AdaptiveCyberDefensePackage extends EPackage {
 	EReference getConjunction_Lhs();
 
 	/**
-	 * Returns the meta object for class '{@link org.emftext.language.AdaptiveCyberDefense.Action <em>Action</em>}'.
+	 * Returns the meta object for class '{@link org.emftext.language.AdaptiveCyberDefense.ActionVariable <em>Action Variable</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Action</em>'.
-	 * @see org.emftext.language.AdaptiveCyberDefense.Action
+	 * @return the meta object for class '<em>Action Variable</em>'.
+	 * @see org.emftext.language.AdaptiveCyberDefense.ActionVariable
 	 * @generated
 	 */
-	EClass getAction();
+	EClass getActionVariable();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.emftext.language.AdaptiveCyberDefense.Action#getName <em>Name</em>}'.
+	 * Returns the meta object for the attribute '{@link org.emftext.language.AdaptiveCyberDefense.ActionVariable#getName <em>Name</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Name</em>'.
-	 * @see org.emftext.language.AdaptiveCyberDefense.Action#getName()
-	 * @see #getAction()
+	 * @see org.emftext.language.AdaptiveCyberDefense.ActionVariable#getName()
+	 * @see #getActionVariable()
 	 * @generated
 	 */
-	EAttribute getAction_Name();
+	EAttribute getActionVariable_Name();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link org.emftext.language.AdaptiveCyberDefense.ActionVariable#getValues <em>Values</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Values</em>'.
+	 * @see org.emftext.language.AdaptiveCyberDefense.ActionVariable#getValues()
+	 * @see #getActionVariable()
+	 * @generated
+	 */
+	EReference getActionVariable_Values();
 
 	/**
 	 * Returns the meta object for class '{@link org.emftext.language.AdaptiveCyberDefense.True <em>True</em>}'.
@@ -1138,17 +1245,6 @@ public interface AdaptiveCyberDefensePackage extends EPackage {
 	 * @generated
 	 */
 	EClass getTrue();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.emftext.language.AdaptiveCyberDefense.True#getValue <em>Value</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Value</em>'.
-	 * @see org.emftext.language.AdaptiveCyberDefense.True#getValue()
-	 * @see #getTrue()
-	 * @generated
-	 */
-	EAttribute getTrue_Value();
 
 	/**
 	 * Returns the meta object for class '{@link org.emftext.language.AdaptiveCyberDefense.SecurityRequirement <em>Security Requirement</em>}'.
@@ -1211,6 +1307,16 @@ public interface AdaptiveCyberDefensePackage extends EPackage {
 	 * @generated
 	 */
 	EClass getDefenderAction();
+
+	/**
+	 * Returns the meta object for class '{@link org.emftext.language.AdaptiveCyberDefense.False <em>False</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>False</em>'.
+	 * @see org.emftext.language.AdaptiveCyberDefense.False
+	 * @generated
+	 */
+	EClass getFalse();
 
 	/**
 	 * Returns the meta object for enum '{@link org.emftext.language.AdaptiveCyberDefense.SecurityRequirementType <em>Security Requirement Type</em>}'.
@@ -1297,12 +1403,20 @@ public interface AdaptiveCyberDefensePackage extends EPackage {
 		EReference DOMAIN_DESCRIPTION__REQUIREMENTS = eINSTANCE.getDomainDescription_Requirements();
 
 		/**
-		 * The meta object literal for the '<em><b>Actions</b></em>' containment reference list feature.
+		 * The meta object literal for the '<em><b>Defender actions</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference DOMAIN_DESCRIPTION__ACTIONS = eINSTANCE.getDomainDescription_Actions();
+		EReference DOMAIN_DESCRIPTION__DEFENDER_ACTIONS = eINSTANCE.getDomainDescription_Defender_actions();
+
+		/**
+		 * The meta object literal for the '<em><b>Attacker actions</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference DOMAIN_DESCRIPTION__ATTACKER_ACTIONS = eINSTANCE.getDomainDescription_Attacker_actions();
 
 		/**
 		 * The meta object literal for the '{@link org.emftext.language.AdaptiveCyberDefense.impl.ActionDescriptionImpl <em>Action Description</em>}' class.
@@ -1345,6 +1459,14 @@ public interface AdaptiveCyberDefensePackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute ACTION_DESCRIPTION__COST = eINSTANCE.getActionDescription_Cost();
+
+		/**
+		 * The meta object literal for the '<em><b>Value</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute ACTION_DESCRIPTION__VALUE = eINSTANCE.getActionDescription_Value();
 
 		/**
 		 * The meta object literal for the '{@link org.emftext.language.AdaptiveCyberDefense.impl.StateVariableImpl <em>State Variable</em>}' class.
@@ -1443,22 +1565,30 @@ public interface AdaptiveCyberDefensePackage extends EPackage {
 		EAttribute VALUE__VALUE = eINSTANCE.getValue_Value();
 
 		/**
-		 * The meta object literal for the '{@link org.emftext.language.AdaptiveCyberDefense.impl.ActionNameImpl <em>Action Name</em>}' class.
+		 * The meta object literal for the '{@link org.emftext.language.AdaptiveCyberDefense.impl.ActionLiteralImpl <em>Action Literal</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.emftext.language.AdaptiveCyberDefense.impl.ActionNameImpl
-		 * @see org.emftext.language.AdaptiveCyberDefense.impl.AdaptiveCyberDefensePackageImpl#getActionName()
+		 * @see org.emftext.language.AdaptiveCyberDefense.impl.ActionLiteralImpl
+		 * @see org.emftext.language.AdaptiveCyberDefense.impl.AdaptiveCyberDefensePackageImpl#getActionLiteral()
 		 * @generated
 		 */
-		EClass ACTION_NAME = eINSTANCE.getActionName();
+		EClass ACTION_LITERAL = eINSTANCE.getActionLiteral();
 
 		/**
-		 * The meta object literal for the '<em><b>Action</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Actionvariable</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference ACTION_NAME__ACTION = eINSTANCE.getActionName_Action();
+		EReference ACTION_LITERAL__ACTIONVARIABLE = eINSTANCE.getActionLiteral_Actionvariable();
+
+		/**
+		 * The meta object literal for the '<em><b>Value</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute ACTION_LITERAL__VALUE = eINSTANCE.getActionLiteral_Value();
 
 		/**
 		 * The meta object literal for the '{@link org.emftext.language.AdaptiveCyberDefense.impl.RequirementImpl <em>Requirement</em>}' class.
@@ -1547,14 +1677,14 @@ public interface AdaptiveCyberDefensePackage extends EPackage {
 		EReference CONJUNCTION__LHS = eINSTANCE.getConjunction_Lhs();
 
 		/**
-		 * The meta object literal for the '{@link org.emftext.language.AdaptiveCyberDefense.impl.ActionImpl <em>Action</em>}' class.
+		 * The meta object literal for the '{@link org.emftext.language.AdaptiveCyberDefense.impl.ActionVariableImpl <em>Action Variable</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.emftext.language.AdaptiveCyberDefense.impl.ActionImpl
-		 * @see org.emftext.language.AdaptiveCyberDefense.impl.AdaptiveCyberDefensePackageImpl#getAction()
+		 * @see org.emftext.language.AdaptiveCyberDefense.impl.ActionVariableImpl
+		 * @see org.emftext.language.AdaptiveCyberDefense.impl.AdaptiveCyberDefensePackageImpl#getActionVariable()
 		 * @generated
 		 */
-		EClass ACTION = eINSTANCE.getAction();
+		EClass ACTION_VARIABLE = eINSTANCE.getActionVariable();
 
 		/**
 		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
@@ -1562,7 +1692,15 @@ public interface AdaptiveCyberDefensePackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute ACTION__NAME = eINSTANCE.getAction_Name();
+		EAttribute ACTION_VARIABLE__NAME = eINSTANCE.getActionVariable_Name();
+
+		/**
+		 * The meta object literal for the '<em><b>Values</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference ACTION_VARIABLE__VALUES = eINSTANCE.getActionVariable_Values();
 
 		/**
 		 * The meta object literal for the '{@link org.emftext.language.AdaptiveCyberDefense.impl.TrueImpl <em>True</em>}' class.
@@ -1573,14 +1711,6 @@ public interface AdaptiveCyberDefensePackage extends EPackage {
 		 * @generated
 		 */
 		EClass TRUE = eINSTANCE.getTrue();
-
-		/**
-		 * The meta object literal for the '<em><b>Value</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute TRUE__VALUE = eINSTANCE.getTrue_Value();
 
 		/**
 		 * The meta object literal for the '{@link org.emftext.language.AdaptiveCyberDefense.impl.SecurityRequirementImpl <em>Security Requirement</em>}' class.
@@ -1637,6 +1767,16 @@ public interface AdaptiveCyberDefensePackage extends EPackage {
 		 * @generated
 		 */
 		EClass DEFENDER_ACTION = eINSTANCE.getDefenderAction();
+
+		/**
+		 * The meta object literal for the '{@link org.emftext.language.AdaptiveCyberDefense.impl.FalseImpl <em>False</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.emftext.language.AdaptiveCyberDefense.impl.FalseImpl
+		 * @see org.emftext.language.AdaptiveCyberDefense.impl.AdaptiveCyberDefensePackageImpl#getFalse()
+		 * @generated
+		 */
+		EClass FALSE = eINSTANCE.getFalse();
 
 		/**
 		 * The meta object literal for the '{@link org.emftext.language.AdaptiveCyberDefense.SecurityRequirementType <em>Security Requirement Type</em>}' enum.

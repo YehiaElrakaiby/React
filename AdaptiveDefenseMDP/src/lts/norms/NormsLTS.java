@@ -10,10 +10,13 @@ import java.util.Set;
 
 import org.eclipse.emf.common.util.EList;
 import org.emftext.language.AdaptiveCyberDefense.Action;
+import org.emftext.language.AdaptiveCyberDefense.AttackerAction;
 import org.emftext.language.AdaptiveCyberDefense.ConditionExpression;
+import org.emftext.language.AdaptiveCyberDefense.DefenderAction;
 import org.emftext.language.AdaptiveCyberDefense.Requirement;
 
 import lts.ActionDescr;
+import lts.DescriptionAction;
 
 //import org.apache.commons.collections4.bidimap.HashMap;
 
@@ -222,7 +225,7 @@ public class NormsLTS extends LTS{
 		DomainDescriptionReader reader = new DomainDescriptionReader(domain_description_location);
 		readStateVariables(reader.getState_variables());
 
-		readActions(reader.getActions());
+		readActions(reader.getAttacker_actions(),reader.getDefender_actions());
 
 		readActionDescriptions(reader.getAction_descriptions());
 
@@ -234,10 +237,20 @@ public class NormsLTS extends LTS{
 	}
 
 
-	private void readActions(EList<Action> actions) {
-		for(Action action : actions) {
-			this.addAction_type(action.getName(),action.getType());
+	private void readActions(EList<AttackerAction> attack_actions, EList<DefenderAction> defence_actions) {
+		
+		int id=0;
+		
+		for(AttackerAction action : attack_actions) {
+			this.attacker_actions.put(action.getName(),new DescriptionAction(action.getName(),action.getValues(),"attacker",id++));
 		}
+		
+		id=0;
+
+		for(DefenderAction action : defence_actions) {
+			this.defender_actions.put(action.getName(),new DescriptionAction(action.getName(),action.getValues(),"defender",id++));
+		}
+		
 
 	}
 
@@ -245,9 +258,9 @@ public class NormsLTS extends LTS{
 
 
 	public double[][][] getRewardMatrixAttacker() {
-		if(attack_actions.isEmpty())identifyAttackActions();
+		//if(attack_actions.isEmpty())identifyAttackActions();
 
-		double[][][] r = new double[states.size()][states.size()][attack_actions.size()];
+		double[][][] r = new double[states.size()][states.size()][attacker_actions.size()];
 		/*
 		 * iterate over transitions and fill the transition matrix accordingly
 		 * the transition matrix is of the form (src,dest,action)
@@ -259,9 +272,9 @@ public class NormsLTS extends LTS{
 			String trans_id = it.next();
 			Transition descr = this.transitions.get(trans_id);
 			String action_name = descr.getName();
-			if(attack_actions.containsKey(action_name)){
+			if(attacker_actions.containsKey(action_name)){
 				ActionDescr act_descr = action_descriptions.get(action_name);
-				reward = reward.add(act_descr.getCost());
+				reward = reward.subtract(act_descr.getCost());
 				Integer src = descr.getSrc();
 				Integer dest = descr.getDest();
 				//BigDecimal prob = descr.getProbability();
@@ -298,7 +311,7 @@ public class NormsLTS extends LTS{
 						} 
 					}
 				}
-				r[src-1][dest-1][this.attack_actions.get(action_name)] = reward.doubleValue();
+				r[src-1][dest-1][this.attacker_actions.get(action_name).getId()] = reward.doubleValue();
 			}
 		}
 		Iterator<Integer> itx = this.not_applicable.keySet().iterator();
@@ -308,8 +321,8 @@ public class NormsLTS extends LTS{
 			Iterator<String> ity = actions.iterator();
 			while(ity.hasNext()){
 				String action_name = ity.next();
-				if(attack_actions.containsKey(action_name)){
-					r[src-1][src-1][this.attack_actions.get(action_name)] = -1;
+				if(attacker_actions.containsKey(action_name)){
+					r[src-1][src-1][this.attacker_actions.get(action_name).getId()] = -100000;
 				}
 			}
 		}
@@ -326,7 +339,7 @@ public class NormsLTS extends LTS{
 
 
 	public double[][][] getRewardMatrixDefender() {
-		if(defender_actions.isEmpty())identifyDefenderActions();
+		//if(defender_actions.isEmpty())identifyDefenderActions();
 
 		double[][][] r = new double[states.size()][states.size()][defender_actions.size()];
 		/*
@@ -408,10 +421,10 @@ public class NormsLTS extends LTS{
 					}
 				}
 
-				r[src-1][dest-1][this.defender_actions.get(action_name)]= reward.doubleValue();
+				r[src-1][dest-1][this.defender_actions.get(action_name).getId()]= reward.doubleValue();
 			}
 		}
-		/*
+		
 		Iterator<Integer> itx = this.not_applicable.keySet().iterator();
 		while(itx.hasNext()) {
 			Integer src = itx.next();
@@ -420,15 +433,15 @@ public class NormsLTS extends LTS{
 			while(ity.hasNext()){
 				String action_name = ity.next();
 				if(defender_actions.containsKey(action_name)){
-					r[src-1][src-1][this.defender_actions.get(action_name)] = -1;
+					r[src-1][src-1][this.defender_actions.get(action_name).getId()] = -100000;
 				}
 			}
-		}*/
+		}
 		return r;
 	}
 
 	public double[][][] getTradeOffRewardMatrixDefender(double[] value_attacker, double[] value_defender) {
-		if(defender_actions.isEmpty())identifyDefenderActions();
+		//if(defender_actions.isEmpty())identifyDefenderActions();
 
 		double[][][] r = new double[states.size()][states.size()][defender_actions.size()];
 		/*
@@ -456,10 +469,12 @@ public class NormsLTS extends LTS{
 				//double src_vuln = attacker_value[src-1];
 				//double dest_vuln = attacker_value[dest-1];
 				//double vuln_reduction = src_vuln - dest_vuln;
-				//Integer action_cost = this.action_descriptions.get(action_name).getCost();
+				BigDecimal action_cost = this.action_descriptions.get(action_name).getCost();
 
-				double reward = 0;
-				reward = (defender_value_src - attacker_value_dest) - (defender_value_dest - attacker_value_src);
+				BigDecimal reward = new BigDecimal(0);
+				reward = reward.subtract(action_cost);
+				double eq = (defender_value_src - attacker_value_dest) - (defender_value_dest - attacker_value_src);
+				reward = reward.add(BigDecimal.valueOf(eq));
 				//reward = (reward + (int) vuln_reduction);
 
 				//BigDecimal prob = descr.getProbability();
@@ -494,10 +509,10 @@ public class NormsLTS extends LTS{
 				//						}
 				//					}
 				//				}
-				r[src-1][dest-1][this.defender_actions.get(action_name)]= reward;
+				r[src-1][dest-1][this.defender_actions.get(action_name).getId()]= reward.doubleValue();
 			}
 		}
-		/*
+		
 		Iterator<Integer> itx = this.not_applicable.keySet().iterator();
 		while(itx.hasNext()) {
 			Integer src = itx.next();
@@ -506,10 +521,10 @@ public class NormsLTS extends LTS{
 			while(ity.hasNext()){
 				String action_name = ity.next();
 				if(defender_actions.containsKey(action_name)){
-					r[src-1][src-1][this.defender_actions.get(action_name)] = -1;
+					r[src-1][src-1][this.defender_actions.get(action_name).getId()] = -100000;
 				}
 			}
-		}*/
+		}
 		return r;
 	}
 	public void print() {

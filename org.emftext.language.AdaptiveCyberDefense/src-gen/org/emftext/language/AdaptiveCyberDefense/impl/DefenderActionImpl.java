@@ -14,7 +14,7 @@ import org.emftext.language.AdaptiveCyberDefense.DefenderAction;
  *
  * @generated
  */
-public class DefenderActionImpl extends ActionImpl implements DefenderAction {
+public class DefenderActionImpl extends ActionVariableImpl implements DefenderAction {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -34,9 +34,5 @@ public class DefenderActionImpl extends ActionImpl implements DefenderAction {
 		return AdaptiveCyberDefensePackage.Literals.DEFENDER_ACTION;
 	}
 
-	@Override
-	public String getType() {
-		return "defender";
-	}
 
 } //DefenderActionImpl

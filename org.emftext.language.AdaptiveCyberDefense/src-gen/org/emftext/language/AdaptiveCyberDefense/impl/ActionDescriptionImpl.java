@@ -21,6 +21,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
 
 import org.emftext.language.AdaptiveCyberDefense.Action;
 import org.emftext.language.AdaptiveCyberDefense.ActionDescription;
+import org.emftext.language.AdaptiveCyberDefense.ActionVariable;
 import org.emftext.language.AdaptiveCyberDefense.AdaptiveCyberDefensePackage;
 import org.emftext.language.AdaptiveCyberDefense.ConditionExpression;
 import org.emftext.language.AdaptiveCyberDefense.ProbabilisticEffect;
@@ -37,6 +38,7 @@ import org.emftext.language.AdaptiveCyberDefense.ProbabilisticEffect;
  *   <li>{@link org.emftext.language.AdaptiveCyberDefense.impl.ActionDescriptionImpl#getPreconditions <em>Preconditions</em>}</li>
  *   <li>{@link org.emftext.language.AdaptiveCyberDefense.impl.ActionDescriptionImpl#getAction <em>Action</em>}</li>
  *   <li>{@link org.emftext.language.AdaptiveCyberDefense.impl.ActionDescriptionImpl#getCost <em>Cost</em>}</li>
+ *   <li>{@link org.emftext.language.AdaptiveCyberDefense.impl.ActionDescriptionImpl#getValue <em>Value</em>}</li>
  * </ul>
  *
  * @generated
@@ -70,7 +72,7 @@ public class ActionDescriptionImpl extends EObjectImpl implements ActionDescript
 	 * @generated
 	 * @ordered
 	 */
-	protected Action action;
+	protected ActionVariable action;
 
 	/**
 	 * The default value of the '{@link #getCost() <em>Cost</em>}' attribute.
@@ -91,6 +93,26 @@ public class ActionDescriptionImpl extends EObjectImpl implements ActionDescript
 	 * @ordered
 	 */
 	protected BigDecimal cost = COST_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getValue() <em>Value</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getValue()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String VALUE_EDEFAULT = "tt";
+
+	/**
+	 * The cached value of the '{@link #getValue() <em>Value</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getValue()
+	 * @generated
+	 * @ordered
+	 */
+	protected String value = VALUE_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -140,10 +162,10 @@ public class ActionDescriptionImpl extends EObjectImpl implements ActionDescript
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Action getAction() {
+	public ActionVariable getAction() {
 		if (action != null && action.eIsProxy()) {
 			InternalEObject oldAction = (InternalEObject)action;
-			action = (Action)eResolveProxy(oldAction);
+			action = (ActionVariable)eResolveProxy(oldAction);
 			if (action != oldAction) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, AdaptiveCyberDefensePackage.ACTION_DESCRIPTION__ACTION, oldAction, action));
@@ -157,7 +179,7 @@ public class ActionDescriptionImpl extends EObjectImpl implements ActionDescript
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Action basicGetAction() {
+	public ActionVariable basicGetAction() {
 		return action;
 	}
 
@@ -166,8 +188,8 @@ public class ActionDescriptionImpl extends EObjectImpl implements ActionDescript
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setAction(Action newAction) {
-		Action oldAction = action;
+	public void setAction(ActionVariable newAction) {
+		ActionVariable oldAction = action;
 		action = newAction;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, AdaptiveCyberDefensePackage.ACTION_DESCRIPTION__ACTION, oldAction, action));
@@ -192,6 +214,27 @@ public class ActionDescriptionImpl extends EObjectImpl implements ActionDescript
 		cost = newCost;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, AdaptiveCyberDefensePackage.ACTION_DESCRIPTION__COST, oldCost, cost));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getValue() {
+		return value;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setValue(String newValue) {
+		String oldValue = value;
+		value = newValue;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, AdaptiveCyberDefensePackage.ACTION_DESCRIPTION__VALUE, oldValue, value));
 	}
 
 	/**
@@ -227,6 +270,8 @@ public class ActionDescriptionImpl extends EObjectImpl implements ActionDescript
 				return basicGetAction();
 			case AdaptiveCyberDefensePackage.ACTION_DESCRIPTION__COST:
 				return getCost();
+			case AdaptiveCyberDefensePackage.ACTION_DESCRIPTION__VALUE:
+				return getValue();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -249,10 +294,13 @@ public class ActionDescriptionImpl extends EObjectImpl implements ActionDescript
 				getPreconditions().addAll((Collection<? extends ConditionExpression>)newValue);
 				return;
 			case AdaptiveCyberDefensePackage.ACTION_DESCRIPTION__ACTION:
-				setAction((Action)newValue);
+				setAction((ActionVariable)newValue);
 				return;
 			case AdaptiveCyberDefensePackage.ACTION_DESCRIPTION__COST:
 				setCost((BigDecimal)newValue);
+				return;
+			case AdaptiveCyberDefensePackage.ACTION_DESCRIPTION__VALUE:
+				setValue((String)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -273,10 +321,13 @@ public class ActionDescriptionImpl extends EObjectImpl implements ActionDescript
 				getPreconditions().clear();
 				return;
 			case AdaptiveCyberDefensePackage.ACTION_DESCRIPTION__ACTION:
-				setAction((Action)null);
+				setAction((ActionVariable)null);
 				return;
 			case AdaptiveCyberDefensePackage.ACTION_DESCRIPTION__COST:
 				setCost(COST_EDEFAULT);
+				return;
+			case AdaptiveCyberDefensePackage.ACTION_DESCRIPTION__VALUE:
+				setValue(VALUE_EDEFAULT);
 				return;
 		}
 		super.eUnset(featureID);
@@ -298,6 +349,8 @@ public class ActionDescriptionImpl extends EObjectImpl implements ActionDescript
 				return action != null;
 			case AdaptiveCyberDefensePackage.ACTION_DESCRIPTION__COST:
 				return COST_EDEFAULT == null ? cost != null : !COST_EDEFAULT.equals(cost);
+			case AdaptiveCyberDefensePackage.ACTION_DESCRIPTION__VALUE:
+				return VALUE_EDEFAULT == null ? value != null : !VALUE_EDEFAULT.equals(value);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -314,6 +367,8 @@ public class ActionDescriptionImpl extends EObjectImpl implements ActionDescript
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (cost: ");
 		result.append(cost);
+		result.append(", value: ");
+		result.append(value);
 		result.append(')');
 		return result.toString();
 	}

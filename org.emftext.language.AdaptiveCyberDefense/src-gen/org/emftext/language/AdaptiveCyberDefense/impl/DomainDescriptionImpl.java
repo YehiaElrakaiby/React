@@ -44,7 +44,8 @@ import org.emftext.language.AdaptiveCyberDefense.StateVariable;
  *   <li>{@link org.emftext.language.AdaptiveCyberDefense.impl.DomainDescriptionImpl#getActiondescription <em>Actiondescription</em>}</li>
  *   <li>{@link org.emftext.language.AdaptiveCyberDefense.impl.DomainDescriptionImpl#getInit <em>Init</em>}</li>
  *   <li>{@link org.emftext.language.AdaptiveCyberDefense.impl.DomainDescriptionImpl#getRequirements <em>Requirements</em>}</li>
- *   <li>{@link org.emftext.language.AdaptiveCyberDefense.impl.DomainDescriptionImpl#getActions <em>Actions</em>}</li>
+ *   <li>{@link org.emftext.language.AdaptiveCyberDefense.impl.DomainDescriptionImpl#getDefender_actions <em>Defender actions</em>}</li>
+ *   <li>{@link org.emftext.language.AdaptiveCyberDefense.impl.DomainDescriptionImpl#getAttacker_actions <em>Attacker actions</em>}</li>
  * </ul>
  *
  * @generated
@@ -91,14 +92,24 @@ public class DomainDescriptionImpl extends EObjectImpl implements DomainDescript
 	protected EList<Requirement> requirements;
 
 	/**
-	 * The cached value of the '{@link #getActions() <em>Actions</em>}' containment reference list.
+	 * The cached value of the '{@link #getDefender_actions() <em>Defender actions</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getActions()
+	 * @see #getDefender_actions()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<Action> actions;
+	protected EList<DefenderAction> defender_actions;
+
+	/**
+	 * The cached value of the '{@link #getAttacker_actions() <em>Attacker actions</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getAttacker_actions()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<AttackerAction> attacker_actions;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -203,11 +214,23 @@ public class DomainDescriptionImpl extends EObjectImpl implements DomainDescript
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<Action> getActions() {
-		if (actions == null) {
-			actions = new EObjectContainmentEList<Action>(Action.class, this, AdaptiveCyberDefensePackage.DOMAIN_DESCRIPTION__ACTIONS);
+	public EList<DefenderAction> getDefender_actions() {
+		if (defender_actions == null) {
+			defender_actions = new EObjectContainmentEList<DefenderAction>(DefenderAction.class, this, AdaptiveCyberDefensePackage.DOMAIN_DESCRIPTION__DEFENDER_ACTIONS);
 		}
-		return actions;
+		return defender_actions;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<AttackerAction> getAttacker_actions() {
+		if (attacker_actions == null) {
+			attacker_actions = new EObjectContainmentEList<AttackerAction>(AttackerAction.class, this, AdaptiveCyberDefensePackage.DOMAIN_DESCRIPTION__ATTACKER_ACTIONS);
+		}
+		return attacker_actions;
 	}
 
 	/**
@@ -226,8 +249,10 @@ public class DomainDescriptionImpl extends EObjectImpl implements DomainDescript
 				return basicSetInit(null, msgs);
 			case AdaptiveCyberDefensePackage.DOMAIN_DESCRIPTION__REQUIREMENTS:
 				return ((InternalEList<?>)getRequirements()).basicRemove(otherEnd, msgs);
-			case AdaptiveCyberDefensePackage.DOMAIN_DESCRIPTION__ACTIONS:
-				return ((InternalEList<?>)getActions()).basicRemove(otherEnd, msgs);
+			case AdaptiveCyberDefensePackage.DOMAIN_DESCRIPTION__DEFENDER_ACTIONS:
+				return ((InternalEList<?>)getDefender_actions()).basicRemove(otherEnd, msgs);
+			case AdaptiveCyberDefensePackage.DOMAIN_DESCRIPTION__ATTACKER_ACTIONS:
+				return ((InternalEList<?>)getAttacker_actions()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -248,8 +273,10 @@ public class DomainDescriptionImpl extends EObjectImpl implements DomainDescript
 				return getInit();
 			case AdaptiveCyberDefensePackage.DOMAIN_DESCRIPTION__REQUIREMENTS:
 				return getRequirements();
-			case AdaptiveCyberDefensePackage.DOMAIN_DESCRIPTION__ACTIONS:
-				return getActions();
+			case AdaptiveCyberDefensePackage.DOMAIN_DESCRIPTION__DEFENDER_ACTIONS:
+				return getDefender_actions();
+			case AdaptiveCyberDefensePackage.DOMAIN_DESCRIPTION__ATTACKER_ACTIONS:
+				return getAttacker_actions();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -278,9 +305,13 @@ public class DomainDescriptionImpl extends EObjectImpl implements DomainDescript
 				getRequirements().clear();
 				getRequirements().addAll((Collection<? extends Requirement>)newValue);
 				return;
-			case AdaptiveCyberDefensePackage.DOMAIN_DESCRIPTION__ACTIONS:
-				getActions().clear();
-				getActions().addAll((Collection<? extends Action>)newValue);
+			case AdaptiveCyberDefensePackage.DOMAIN_DESCRIPTION__DEFENDER_ACTIONS:
+				getDefender_actions().clear();
+				getDefender_actions().addAll((Collection<? extends DefenderAction>)newValue);
+				return;
+			case AdaptiveCyberDefensePackage.DOMAIN_DESCRIPTION__ATTACKER_ACTIONS:
+				getAttacker_actions().clear();
+				getAttacker_actions().addAll((Collection<? extends AttackerAction>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -306,8 +337,11 @@ public class DomainDescriptionImpl extends EObjectImpl implements DomainDescript
 			case AdaptiveCyberDefensePackage.DOMAIN_DESCRIPTION__REQUIREMENTS:
 				getRequirements().clear();
 				return;
-			case AdaptiveCyberDefensePackage.DOMAIN_DESCRIPTION__ACTIONS:
-				getActions().clear();
+			case AdaptiveCyberDefensePackage.DOMAIN_DESCRIPTION__DEFENDER_ACTIONS:
+				getDefender_actions().clear();
+				return;
+			case AdaptiveCyberDefensePackage.DOMAIN_DESCRIPTION__ATTACKER_ACTIONS:
+				getAttacker_actions().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -329,8 +363,10 @@ public class DomainDescriptionImpl extends EObjectImpl implements DomainDescript
 				return init != null;
 			case AdaptiveCyberDefensePackage.DOMAIN_DESCRIPTION__REQUIREMENTS:
 				return requirements != null && !requirements.isEmpty();
-			case AdaptiveCyberDefensePackage.DOMAIN_DESCRIPTION__ACTIONS:
-				return actions != null && !actions.isEmpty();
+			case AdaptiveCyberDefensePackage.DOMAIN_DESCRIPTION__DEFENDER_ACTIONS:
+				return defender_actions != null && !defender_actions.isEmpty();
+			case AdaptiveCyberDefensePackage.DOMAIN_DESCRIPTION__ATTACKER_ACTIONS:
+				return attacker_actions != null && !attacker_actions.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

@@ -59,7 +59,7 @@ public interface StateLiteral extends ConditionExpression {
 	 * @return the value of the '<em>Value</em>' attribute.
 	 * @see #setValue(String)
 	 * @see org.emftext.language.AdaptiveCyberDefense.AdaptiveCyberDefensePackage#getStateLiteral_Value()
-	 * @model required="true"
+	 * @model
 	 * @generated
 	 */
 	String getValue();

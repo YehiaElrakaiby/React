@@ -19,7 +19,8 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link org.emftext.language.AdaptiveCyberDefense.DomainDescription#getActiondescription <em>Actiondescription</em>}</li>
  *   <li>{@link org.emftext.language.AdaptiveCyberDefense.DomainDescription#getInit <em>Init</em>}</li>
  *   <li>{@link org.emftext.language.AdaptiveCyberDefense.DomainDescription#getRequirements <em>Requirements</em>}</li>
- *   <li>{@link org.emftext.language.AdaptiveCyberDefense.DomainDescription#getActions <em>Actions</em>}</li>
+ *   <li>{@link org.emftext.language.AdaptiveCyberDefense.DomainDescription#getDefender_actions <em>Defender actions</em>}</li>
+ *   <li>{@link org.emftext.language.AdaptiveCyberDefense.DomainDescription#getAttacker_actions <em>Attacker actions</em>}</li>
  * </ul>
  *
  * @see org.emftext.language.AdaptiveCyberDefense.AdaptiveCyberDefensePackage#getDomainDescription()
@@ -104,19 +105,35 @@ public interface DomainDescription extends EObject {
 	EList<Requirement> getRequirements();
 
 	/**
-	 * Returns the value of the '<em><b>Actions</b></em>' containment reference list.
-	 * The list contents are of type {@link org.emftext.language.AdaptiveCyberDefense.Action}.
+	 * Returns the value of the '<em><b>Defender actions</b></em>' containment reference list.
+	 * The list contents are of type {@link org.emftext.language.AdaptiveCyberDefense.DefenderAction}.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Actions</em>' containment reference list isn't clear,
+	 * If the meaning of the '<em>Defender actions</em>' containment reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Actions</em>' containment reference list.
-	 * @see org.emftext.language.AdaptiveCyberDefense.AdaptiveCyberDefensePackage#getDomainDescription_Actions()
+	 * @return the value of the '<em>Defender actions</em>' containment reference list.
+	 * @see org.emftext.language.AdaptiveCyberDefense.AdaptiveCyberDefensePackage#getDomainDescription_Defender_actions()
 	 * @model containment="true"
 	 * @generated
 	 */
-	EList<Action> getActions();
+	EList<DefenderAction> getDefender_actions();
+
+	/**
+	 * Returns the value of the '<em><b>Attacker actions</b></em>' containment reference list.
+	 * The list contents are of type {@link org.emftext.language.AdaptiveCyberDefense.AttackerAction}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Attacker actions</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Attacker actions</em>' containment reference list.
+	 * @see org.emftext.language.AdaptiveCyberDefense.AdaptiveCyberDefensePackage#getDomainDescription_Attacker_actions()
+	 * @model containment="true"
+	 * @generated
+	 */
+	EList<AttackerAction> getAttacker_actions();
 
 } // DomainDescription

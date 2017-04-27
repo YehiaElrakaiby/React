@@ -2,25 +2,27 @@
  */
 package org.emftext.language.AdaptiveCyberDefense.impl;
 
+import java.util.HashMap;
+
 import org.eclipse.emf.ecore.EClass;
 
 import org.emftext.language.AdaptiveCyberDefense.AdaptiveCyberDefensePackage;
-import org.emftext.language.AdaptiveCyberDefense.AttackerAction;
+import org.emftext.language.AdaptiveCyberDefense.False;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Attacker Action</b></em>'.
+ * An implementation of the model object '<em><b>False</b></em>'.
  * <!-- end-user-doc -->
  *
  * @generated
  */
-public class AttackerActionImpl extends ActionVariableImpl implements AttackerAction {
+public class FalseImpl extends ConditionExpressionImpl implements False {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected AttackerActionImpl() {
+	protected FalseImpl() {
 		super();
 	}
 
@@ -31,8 +33,12 @@ public class AttackerActionImpl extends ActionVariableImpl implements AttackerAc
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return AdaptiveCyberDefensePackage.Literals.ATTACKER_ACTION;
+		return AdaptiveCyberDefensePackage.Literals.FALSE;
 	}
 
+	@Override
+	public void getConditions(HashMap<String, String> preconditions) {
+		preconditions.put("xxx_3980", "htf");
+	}
 
-} //AttackerActionImpl
+} //FalseImpl

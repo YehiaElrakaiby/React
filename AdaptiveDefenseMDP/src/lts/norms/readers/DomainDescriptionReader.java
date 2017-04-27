@@ -8,15 +8,12 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
-import org.emftext.language.AdaptiveCyberDefense.Action;
 import org.emftext.language.AdaptiveCyberDefense.ActionDescription;
 import org.emftext.language.AdaptiveCyberDefense.AttackerAction;
 import org.emftext.language.AdaptiveCyberDefense.ConditionExpression;
 import org.emftext.language.AdaptiveCyberDefense.DefenderAction;
 import org.emftext.language.AdaptiveCyberDefense.DomainDescription;
-import org.emftext.language.AdaptiveCyberDefense.OperationalRequirement;
 import org.emftext.language.AdaptiveCyberDefense.Requirement;
-import org.emftext.language.AdaptiveCyberDefense.SecurityRequirement;
 import org.emftext.language.AdaptiveCyberDefense.StateVariable;
 import org.emftext.language.AdaptiveCyberDefense.resource.AdaptiveCyberDefense.mopp.AdaptiveCyberDefenseMetaInformation;
 
@@ -27,8 +24,9 @@ public class DomainDescriptionReader {
 	private EList<ActionDescription> action_descriptions;
 	private ConditionExpression initial;
 	private EList<Requirement> requirements;
-	private EList<Action> actions;
-	
+	private EList<AttackerAction> attacker_actions;
+	private EList<DefenderAction> defender_actions;
+
 	public DomainDescriptionReader(){
 		
 	}
@@ -42,7 +40,9 @@ public class DomainDescriptionReader {
 		action_descriptions = description.getActiondescription();
 		initial = description.getInit();
 		requirements = description.getRequirements();
-		actions = description.getActions();
+		attacker_actions = description.getAttacker_actions();
+		defender_actions = description.getDefender_actions();
+
 	}
 
 
@@ -121,14 +121,26 @@ public class DomainDescriptionReader {
 	}
 
 
-	public EList<Action> getActions() {
-		return actions;
+	public EList<AttackerAction> getAttacker_actions() {
+		return attacker_actions;
 	}
 
 
-	public void setActions(EList<Action> actions) {
-		this.actions = actions;
+	public void setAttacker_actions(EList<AttackerAction> attacker_actions) {
+		this.attacker_actions = attacker_actions;
 	}
+
+
+	public EList<DefenderAction> getDefender_actions() {
+		return defender_actions;
+	}
+
+
+	public void setDefender_actions(EList<DefenderAction> defender_actions) {
+		this.defender_actions = defender_actions;
+	}
+
+
 	
 	
 	

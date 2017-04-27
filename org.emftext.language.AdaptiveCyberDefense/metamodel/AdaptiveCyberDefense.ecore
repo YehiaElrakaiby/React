@@ -19,8 +19,10 @@
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="requirements" upperBound="-1"
         eType="#//Requirement" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="actions" upperBound="-1"
-        eType="#//Action" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="defender_actions" upperBound="-1"
+        eType="#//DefenderAction" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="attacker_actions" upperBound="-1"
+        eType="#//AttackerAction" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ActionDescription">
     <eStructuralFeatures xsi:type="ecore:EReference" name="probabilisticeffect" lowerBound="1"
@@ -36,8 +38,10 @@
       </eAnnotations>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="action" lowerBound="1"
-        eType="#//Action"/>
+        eType="#//ActionVariable"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="cost" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBigDecimal"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//String"
+        defaultValueLiteral="tt"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="StateVariable">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
@@ -48,7 +52,7 @@
   <eClassifiers xsi:type="ecore:EClass" name="StateLiteral" eSuperTypes="#//ConditionExpression">
     <eStructuralFeatures xsi:type="ecore:EReference" name="statevariable" lowerBound="1"
         eType="#//StateVariable"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ProbabilisticEffect">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="probability" lowerBound="1"
@@ -59,9 +63,10 @@
   <eClassifiers xsi:type="ecore:EClass" name="Value">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ActionName" eSuperTypes="#//ConditionExpression">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="action" lowerBound="1"
-        eType="#//Action"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ActionLiteral" eSuperTypes="#//ConditionExpression">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="actionvariable" lowerBound="1"
+        eType="#//ActionVariable"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Requirement" abstract="true">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
@@ -93,21 +98,21 @@
       </eAnnotations>
     </eStructuralFeatures>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Action" abstract="true">
+  <eClassifiers xsi:type="ecore:EClass" name="ActionVariable" abstract="true">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
         iD="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="values" lowerBound="1"
+        upperBound="-1" eType="#//Value" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="True" eSuperTypes="#//ConditionExpression">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="True" eSuperTypes="#//ConditionExpression"/>
   <eClassifiers xsi:type="ecore:EClass" name="SecurityRequirement" eSuperTypes="#//Requirement">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" lowerBound="1" eType="#//SecurityRequirementType"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="OperationalRequirement" eSuperTypes="#//Requirement">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" lowerBound="1" eType="#//OperationalRequirementType"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="AttackerAction" eSuperTypes="#//Action"/>
-  <eClassifiers xsi:type="ecore:EClass" name="DefenderAction" eSuperTypes="#//Action"/>
+  <eClassifiers xsi:type="ecore:EClass" name="AttackerAction" eSuperTypes="#//ActionVariable"/>
+  <eClassifiers xsi:type="ecore:EClass" name="DefenderAction" eSuperTypes="#//ActionVariable"/>
   <eClassifiers xsi:type="ecore:EEnum" name="SecurityRequirementType">
     <eLiterals name="prevent" value="1"/>
     <eLiterals name="avoid" value="2"/>
@@ -116,4 +121,5 @@
     <eLiterals name="achieve" value="1"/>
     <eLiterals name="maintain" value="2"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="False" eSuperTypes="#//ConditionExpression"/>
 </ecore:EPackage>

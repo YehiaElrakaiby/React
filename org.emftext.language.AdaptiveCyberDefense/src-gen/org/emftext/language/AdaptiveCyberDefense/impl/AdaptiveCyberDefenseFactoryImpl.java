@@ -63,13 +63,14 @@ public class AdaptiveCyberDefenseFactoryImpl extends EFactoryImpl implements Ada
 			case AdaptiveCyberDefensePackage.STATE_LITERAL: return createStateLiteral();
 			case AdaptiveCyberDefensePackage.PROBABILISTIC_EFFECT: return createProbabilisticEffect();
 			case AdaptiveCyberDefensePackage.VALUE: return createValue();
-			case AdaptiveCyberDefensePackage.ACTION_NAME: return createActionName();
+			case AdaptiveCyberDefensePackage.ACTION_LITERAL: return createActionLiteral();
 			case AdaptiveCyberDefensePackage.CONJUNCTION: return createConjunction();
 			case AdaptiveCyberDefensePackage.TRUE: return createTrue();
 			case AdaptiveCyberDefensePackage.SECURITY_REQUIREMENT: return createSecurityRequirement();
 			case AdaptiveCyberDefensePackage.OPERATIONAL_REQUIREMENT: return createOperationalRequirement();
 			case AdaptiveCyberDefensePackage.ATTACKER_ACTION: return createAttackerAction();
 			case AdaptiveCyberDefensePackage.DEFENDER_ACTION: return createDefenderAction();
+			case AdaptiveCyberDefensePackage.FALSE: return createFalse();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -174,9 +175,9 @@ public class AdaptiveCyberDefenseFactoryImpl extends EFactoryImpl implements Ada
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ActionName createActionName() {
-		ActionNameImpl actionName = new ActionNameImpl();
-		return actionName;
+	public ActionLiteral createActionLiteral() {
+		ActionLiteralImpl actionLiteral = new ActionLiteralImpl();
+		return actionLiteral;
 	}
 
 	/**
@@ -237,6 +238,16 @@ public class AdaptiveCyberDefenseFactoryImpl extends EFactoryImpl implements Ada
 	public DefenderAction createDefenderAction() {
 		DefenderActionImpl defenderAction = new DefenderActionImpl();
 		return defenderAction;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public False createFalse() {
+		FalseImpl false_ = new FalseImpl();
+		return false_;
 	}
 
 	/**
