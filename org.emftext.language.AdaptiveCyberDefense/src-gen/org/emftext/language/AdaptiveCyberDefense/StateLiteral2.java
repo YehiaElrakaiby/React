@@ -58,7 +58,7 @@ public interface StateLiteral2 extends LiteralConjunction {
 	 * @return the value of the '<em>Statevariable</em>' reference.
 	 * @see #setStatevariable(StateVariable)
 	 * @see org.emftext.language.AdaptiveCyberDefense.AdaptiveCyberDefensePackage#getStateLiteral2_Statevariable()
-	 * @model required="true"
+	 * @model
 	 * @generated
 	 */
 	StateVariable getStatevariable();
