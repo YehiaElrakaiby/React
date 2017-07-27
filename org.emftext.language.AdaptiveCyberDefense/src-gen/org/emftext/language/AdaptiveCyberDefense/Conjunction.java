@@ -20,7 +20,7 @@ package org.emftext.language.AdaptiveCyberDefense;
  * @model
  * @generated
  */
-public interface Conjunction extends ConditionExpression {
+public interface Conjunction extends Formula {
 	/**
 	 * Returns the value of the '<em><b>Rhs</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
@@ -30,13 +30,12 @@ public interface Conjunction extends ConditionExpression {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Rhs</em>' containment reference.
-	 * @see #setRhs(ConditionExpression)
+	 * @see #setRhs(Formula)
 	 * @see org.emftext.language.AdaptiveCyberDefense.AdaptiveCyberDefensePackage#getConjunction_Rhs()
 	 * @model containment="true" required="true"
-	 *        extendedMetaData="name='lhs'"
 	 * @generated
 	 */
-	ConditionExpression getRhs();
+	Formula getRhs();
 
 	/**
 	 * Sets the value of the '{@link org.emftext.language.AdaptiveCyberDefense.Conjunction#getRhs <em>Rhs</em>}' containment reference.
@@ -46,7 +45,7 @@ public interface Conjunction extends ConditionExpression {
 	 * @see #getRhs()
 	 * @generated
 	 */
-	void setRhs(ConditionExpression value);
+	void setRhs(Formula value);
 
 	/**
 	 * Returns the value of the '<em><b>Lhs</b></em>' containment reference.
@@ -57,13 +56,12 @@ public interface Conjunction extends ConditionExpression {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Lhs</em>' containment reference.
-	 * @see #setLhs(ConditionExpression)
+	 * @see #setLhs(Formula)
 	 * @see org.emftext.language.AdaptiveCyberDefense.AdaptiveCyberDefensePackage#getConjunction_Lhs()
 	 * @model containment="true" required="true"
-	 *        extendedMetaData="name='lhs'"
 	 * @generated
 	 */
-	ConditionExpression getLhs();
+	Formula getLhs();
 
 	/**
 	 * Sets the value of the '{@link org.emftext.language.AdaptiveCyberDefense.Conjunction#getLhs <em>Lhs</em>}' containment reference.
@@ -73,6 +71,6 @@ public interface Conjunction extends ConditionExpression {
 	 * @see #getLhs()
 	 * @generated
 	 */
-	void setLhs(ConditionExpression value);
+	void setLhs(Formula value);
 
 } // Conjunction

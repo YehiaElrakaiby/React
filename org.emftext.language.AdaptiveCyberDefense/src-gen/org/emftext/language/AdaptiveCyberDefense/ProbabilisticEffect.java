@@ -18,7 +18,7 @@ import org.eclipse.emf.ecore.EObject;
  * </p>
  * <ul>
  *   <li>{@link org.emftext.language.AdaptiveCyberDefense.ProbabilisticEffect#getProbability <em>Probability</em>}</li>
- *   <li>{@link org.emftext.language.AdaptiveCyberDefense.ProbabilisticEffect#getEffect <em>Effect</em>}</li>
+ *   <li>{@link org.emftext.language.AdaptiveCyberDefense.ProbabilisticEffect#getStateatoms <em>Stateatoms</em>}</li>
  * </ul>
  *
  * @see org.emftext.language.AdaptiveCyberDefense.AdaptiveCyberDefensePackage#getProbabilisticEffect()
@@ -28,6 +28,7 @@ import org.eclipse.emf.ecore.EObject;
 public interface ProbabilisticEffect extends EObject {
 	/**
 	 * Returns the value of the '<em><b>Probability</b></em>' attribute.
+	 * The default value is <code>"1.0"</code>.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Probability</em>' attribute isn't clear,
@@ -37,7 +38,7 @@ public interface ProbabilisticEffect extends EObject {
 	 * @return the value of the '<em>Probability</em>' attribute.
 	 * @see #setProbability(BigDecimal)
 	 * @see org.emftext.language.AdaptiveCyberDefense.AdaptiveCyberDefensePackage#getProbabilisticEffect_Probability()
-	 * @model required="true"
+	 * @model default="1.0"
 	 * @generated
 	 */
 	BigDecimal getProbability();
@@ -53,29 +54,19 @@ public interface ProbabilisticEffect extends EObject {
 	void setProbability(BigDecimal value);
 
 	/**
-	 * Returns the value of the '<em><b>Effect</b></em>' containment reference.
+	 * Returns the value of the '<em><b>Stateatoms</b></em>' containment reference list.
+	 * The list contents are of type {@link org.emftext.language.AdaptiveCyberDefense.StateAtom}.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Effect</em>' containment reference isn't clear,
+	 * If the meaning of the '<em>Stateatoms</em>' containment reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Effect</em>' containment reference.
-	 * @see #setEffect(ConditionExpression)
-	 * @see org.emftext.language.AdaptiveCyberDefense.AdaptiveCyberDefensePackage#getProbabilisticEffect_Effect()
-	 * @model containment="true" required="true"
+	 * @return the value of the '<em>Stateatoms</em>' containment reference list.
+	 * @see org.emftext.language.AdaptiveCyberDefense.AdaptiveCyberDefensePackage#getProbabilisticEffect_Stateatoms()
+	 * @model containment="true"
 	 * @generated
 	 */
-	ConditionExpression getEffect();
-
-	/**
-	 * Sets the value of the '{@link org.emftext.language.AdaptiveCyberDefense.ProbabilisticEffect#getEffect <em>Effect</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Effect</em>' containment reference.
-	 * @see #getEffect()
-	 * @generated
-	 */
-	void setEffect(ConditionExpression value);
+	EList<StateAtom> getStateatoms();
 
 } // ProbabilisticEffect

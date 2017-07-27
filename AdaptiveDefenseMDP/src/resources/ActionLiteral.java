@@ -1,4 +1,4 @@
-package lts;
+package resources;
 
 public class ActionLiteral {
 	String name;

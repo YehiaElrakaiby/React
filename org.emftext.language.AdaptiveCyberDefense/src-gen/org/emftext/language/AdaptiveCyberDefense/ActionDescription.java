@@ -3,6 +3,7 @@
 package org.emftext.language.AdaptiveCyberDefense;
 
 import java.math.BigDecimal;
+
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EObject;
@@ -17,10 +18,9 @@ import org.eclipse.emf.ecore.EObject;
  * </p>
  * <ul>
  *   <li>{@link org.emftext.language.AdaptiveCyberDefense.ActionDescription#getProbabilisticeffect <em>Probabilisticeffect</em>}</li>
- *   <li>{@link org.emftext.language.AdaptiveCyberDefense.ActionDescription#getPreconditions <em>Preconditions</em>}</li>
- *   <li>{@link org.emftext.language.AdaptiveCyberDefense.ActionDescription#getAction <em>Action</em>}</li>
  *   <li>{@link org.emftext.language.AdaptiveCyberDefense.ActionDescription#getCost <em>Cost</em>}</li>
- *   <li>{@link org.emftext.language.AdaptiveCyberDefense.ActionDescription#getValue <em>Value</em>}</li>
+ *   <li>{@link org.emftext.language.AdaptiveCyberDefense.ActionDescription#getFormula <em>Formula</em>}</li>
+ *   <li>{@link org.emftext.language.AdaptiveCyberDefense.ActionDescription#getActionatom <em>Actionatom</em>}</li>
  * </ul>
  *
  * @see org.emftext.language.AdaptiveCyberDefense.AdaptiveCyberDefensePackage#getActionDescription()
@@ -39,54 +39,11 @@ public interface ActionDescription extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Probabilisticeffect</em>' containment reference list.
 	 * @see org.emftext.language.AdaptiveCyberDefense.AdaptiveCyberDefensePackage#getActionDescription_Probabilisticeffect()
-	 * @model containment="true" required="true"
+	 * @model containment="true"
 	 *        extendedMetaData="name='probabilisticeffects'"
 	 * @generated
 	 */
 	EList<ProbabilisticEffect> getProbabilisticeffect();
-
-	/**
-	 * Returns the value of the '<em><b>Preconditions</b></em>' containment reference list.
-	 * The list contents are of type {@link org.emftext.language.AdaptiveCyberDefense.ConditionExpression}.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Preconditions</em>' containment reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Preconditions</em>' containment reference list.
-	 * @see org.emftext.language.AdaptiveCyberDefense.AdaptiveCyberDefensePackage#getActionDescription_Preconditions()
-	 * @model containment="true" required="true"
-	 *        extendedMetaData="name='precondition'"
-	 * @generated
-	 */
-	EList<ConditionExpression> getPreconditions();
-
-	/**
-	 * Returns the value of the '<em><b>Action</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Action</em>' reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Action</em>' reference.
-	 * @see #setAction(ActionVariable)
-	 * @see org.emftext.language.AdaptiveCyberDefense.AdaptiveCyberDefensePackage#getActionDescription_Action()
-	 * @model required="true"
-	 * @generated
-	 */
-	ActionVariable getAction();
-
-	/**
-	 * Sets the value of the '{@link org.emftext.language.AdaptiveCyberDefense.ActionDescription#getAction <em>Action</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Action</em>' reference.
-	 * @see #getAction()
-	 * @generated
-	 */
-	void setAction(ActionVariable value);
 
 	/**
 	 * Returns the value of the '<em><b>Cost</b></em>' attribute.
@@ -116,30 +73,55 @@ public interface ActionDescription extends EObject {
 	void setCost(BigDecimal value);
 
 	/**
-	 * Returns the value of the '<em><b>Value</b></em>' attribute.
-	 * The default value is <code>"tt"</code>.
+	 * Returns the value of the '<em><b>Formula</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Value</em>' attribute isn't clear,
+	 * If the meaning of the '<em>Formula</em>' containment reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Value</em>' attribute.
-	 * @see #setValue(String)
-	 * @see org.emftext.language.AdaptiveCyberDefense.AdaptiveCyberDefensePackage#getActionDescription_Value()
-	 * @model default="tt" dataType="org.eclipse.emf.ecore.xml.type.String"
+	 * @return the value of the '<em>Formula</em>' containment reference.
+	 * @see #setFormula(Formula)
+	 * @see org.emftext.language.AdaptiveCyberDefense.AdaptiveCyberDefensePackage#getActionDescription_Formula()
+	 * @model containment="true"
 	 * @generated
 	 */
-	String getValue();
+	Formula getFormula();
 
 	/**
-	 * Sets the value of the '{@link org.emftext.language.AdaptiveCyberDefense.ActionDescription#getValue <em>Value</em>}' attribute.
+	 * Sets the value of the '{@link org.emftext.language.AdaptiveCyberDefense.ActionDescription#getFormula <em>Formula</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Value</em>' attribute.
-	 * @see #getValue()
+	 * @param value the new value of the '<em>Formula</em>' containment reference.
+	 * @see #getFormula()
 	 * @generated
 	 */
-	void setValue(String value);
+	void setFormula(Formula value);
+
+	/**
+	 * Returns the value of the '<em><b>Actionatom</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Actionatom</em>' containment reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Actionatom</em>' containment reference.
+	 * @see #setActionatom(ActionAtom)
+	 * @see org.emftext.language.AdaptiveCyberDefense.AdaptiveCyberDefensePackage#getActionDescription_Actionatom()
+	 * @model containment="true" required="true"
+	 * @generated
+	 */
+	ActionAtom getActionatom();
+
+	/**
+	 * Sets the value of the '{@link org.emftext.language.AdaptiveCyberDefense.ActionDescription#getActionatom <em>Actionatom</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Actionatom</em>' containment reference.
+	 * @see #getActionatom()
+	 * @generated
+	 */
+	void setActionatom(ActionAtom value);
 
 } // ActionDescription

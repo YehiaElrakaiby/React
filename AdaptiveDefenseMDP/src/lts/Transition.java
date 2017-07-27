@@ -2,6 +2,8 @@ package lts;
 
 import java.math.BigDecimal;
 
+import resources.Event;
+
 public class Transition {
 	private String name;
 	private Integer src;

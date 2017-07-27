@@ -11,23 +11,15 @@ import java.util.Set;
 import org.apache.commons.collections4.iterators.ArrayListIterator;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
-import org.emftext.language.AdaptiveCyberDefense.Action;
-import org.emftext.language.AdaptiveCyberDefense.ActionVariable;
-import org.emftext.language.AdaptiveCyberDefense.AttackerAction;
-import org.emftext.language.AdaptiveCyberDefense.ConditionExpression;
-import org.emftext.language.AdaptiveCyberDefense.DefenderAction;
-import org.emftext.language.AdaptiveCyberDefense.Requirement;
-import org.emftext.language.AdaptiveCyberDefense.Value;
-
-import lts.ActionDescr;
-import lts.DescriptionAction;
-import lts.FluentDescription;
 
 //import org.apache.commons.collections4.bidimap.HashMap;
 
 import lts.LTS;
 import lts.Transition;
 import lts.norms.readers.DomainDescriptionReader;
+import resources.EffectLaw;
+import resources.ActionVariableDescription;
+import resources.StateVariableDescription;
 
 public class NormsLTS extends LTS{
 
@@ -41,17 +33,18 @@ public class NormsLTS extends LTS{
 	public static final String SHOW_AP_REQ = "ap req";
 	public static final String SHOW_ALL = "utility ap req";
 
+	
+
 	/**
-	 * Requirements:
-	 * Mapping requirement id to requirement description
+	 * This enables the LTS class to access elements of the metamodel of a domain description
 	 */
-	HashMap<String,RequirementDescription> requirements;
+	DomainDescriptionReader reader;
 
 	/**
 	 * Requirements:
 	 * Mapping requirement id to requirement description
 	 */
-	DomainDescriptionReader reader;
+	HashMap<String,RequirementDescription> requirements;
 
 	/**
 	 * Security Requirements:
@@ -77,8 +70,8 @@ public class NormsLTS extends LTS{
 	}
 
 
-	public void addRequirements(EList<Requirement> requirements2) {
-		for(Requirement req : requirements2){
+	/*private void addRequirements(EList<OperationalRequirement> requirements2) {
+		for(OperationalRequirement req : requirements2){
 			EList<ConditionExpression> activations = req.getActivations();
 			EList<ConditionExpression> deadlines = req.getDeadlines();
 			EList<ConditionExpression> requirments = req.getRequirements();
@@ -125,35 +118,36 @@ public class NormsLTS extends LTS{
 
 	}
 
-
-	protected HashMap<String, String> calculateDestinationState(String action_name, HashMap<String, String> state,
+*/
+	
+	/*protected HashMap<String, String> calculateDestinationState(String action_name, HashMap<String, String> state,
 			HashMap<String, String> eff) {
-		/*
+		
 		 * clone the current state to make changes to a copy 
-		 */
+		 
 		HashMap<String,String> temp = (HashMap<String, String>) state.clone();
-		/*
+		
 		 * update the state according to the action effects
-		 */
+		 
 		Iterator<String> it = eff.keySet().iterator();
 		while(it.hasNext()){
 			String fluent_name = it.next();
 			String value = eff.get(fluent_name);
 			temp.put(fluent_name, value);
 		}
-		/*
+		
 		 * add the action to the state to enable evaluation of requirements conditions on the transition + the current state
-		 */
+		 
 		temp.put(action_name, "tt");
-		/*
+		
 		 * iterate over requirements and update their state according to their current status and the transition
-		 */
+		 
 		it = requirements.keySet().iterator();
 		while(it.hasNext()){
 			String req_id = it.next();
 			RequirementDescription req_descr = requirements.get(req_id);
 			String status = state.get(req_id);
-			/*if(status.equals("act")){
+			if(status.equals("act")){
 				if(satisfied(temp,req_descr.getCancellation()) || 
 						satisfied(temp,req_descr.getCondition())) {
 					temp.put(req_id, "inact");
@@ -162,7 +156,7 @@ public class NormsLTS extends LTS{
 				if(satisfied(temp,req_descr.getActivation())) {
 					temp.put(req_id, "act");
 				}
-			}*/
+			}
 
 			if(req_descr.getType().equals("achieve")||req_descr.getType().equals("prevent")) {
 				if(status.equals("act")){
@@ -199,16 +193,16 @@ public class NormsLTS extends LTS{
 				}
 			}
 		}
-		/*
+		
 		 * remove the action literal from the state
-		 */
+		 
 		temp.remove(action_name);		
-		/*
+		
 		 * return the new state
-		 */
+		 
 		return temp;
-	}
-
+	//}
+*/
 	//	protected boolean satisfied(Set<HashMap<String, String>> preconditions, HashMap<String, String> state,
 	//			String action_name) {
 	//		Iterator<HashMap<String, String>> it2 = preconditions.iterator();
@@ -244,7 +238,7 @@ public class NormsLTS extends LTS{
 	//	}
 
 
-	public void readDomainDescription(Path domain_description_location) {
+	/*public void readDomainDescription(Path domain_description_location) {
 		DomainDescriptionReader reader = new DomainDescriptionReader(domain_description_location);
 
 		readStateVariables(reader.getState_variables());
@@ -292,11 +286,11 @@ public class NormsLTS extends LTS{
 		//if(attack_actions.isEmpty())identifyAttackActions();
 
 		double[][][] r = new double[states.size()][states.size()][attacker_actions.size()];
-		/*
+		
 		 * iterate over transitions and fill the transition matrix accordingly
 		 * the transition matrix is of the form (src,dest,action)
 		 * a -1 is used since indexing in matrices starts at 0 whereas identifiers of states and actions start at 1
-		 */
+		 
 		Iterator<String> it = this.getTransitions().keySet().iterator();
 		while(it.hasNext()) {
 			BigDecimal reward = new BigDecimal(0);
@@ -309,15 +303,15 @@ public class NormsLTS extends LTS{
 				Integer src = descr.getSrc();
 				Integer dest = descr.getDest();
 				//BigDecimal prob = descr.getProbability();
-				/*
+				
 				 * get the source and destination states
-				 */
+				 
 				HashMap<String, String> dest_state = states.get(dest);
 				HashMap<String, String> src_state = states.get(src);
 
-				/* 
+				 
 				 * iterate over the security requirements, if the requirement is satisfied in the destination state but not in the source state, then reward the transition
-				 */
+				 
 				Iterator<String> it2 = security_requirements.keySet().iterator();
 				while(it2.hasNext()){
 					String req_id = it2.next();
@@ -327,16 +321,16 @@ public class NormsLTS extends LTS{
 					//Set<HashMap<String, String>> sec_condition = sec_descr.getCondition();
 
 					if(req_type.equals("prevent")) {
-						/*
+						
 						 * for prevent requirements, only the transition is rewarded
-						 */
+						 
 						if(satisfied(req_id,"sat",dest_state) && !satisfied(req_id,"sat",src_state)){
 							reward = reward.add(BigDecimal.valueOf(sec_descr.getCost_reward()));
 						}
 					} else if(req_type.equals("avoid")) {
-						/*
+						
 						 * for avoid requirements, every state where the requirement is satisfied is rewarded
-						 */
+						 
 						if(satisfied(req_id,"sat",dest_state) && !satisfied(req_id,"sat",src_state)){
 							reward = reward.add(BigDecimal.valueOf(sec_descr.getCost_reward()));
 						} 
@@ -373,11 +367,11 @@ public class NormsLTS extends LTS{
 		//if(defender_actions.isEmpty())identifyDefenderActions();
 
 		double[][][] r = new double[states.size()][states.size()][defender_actions.size()];
-		/*
+		
 		 * iterate over transitions and fill the transition matrix accordingly
 		 * the transition matrix is of the form (src,dest,action)
 		 * a -1 is used since indexing in matrices starts at 0 whereas identifiers of states and actions start at 1
-		 */
+		 
 		Iterator<String> it = this.getTransitions().keySet().iterator();
 		while(it.hasNext()) {
 			String trans_id = it.next();
@@ -396,15 +390,15 @@ public class NormsLTS extends LTS{
 				//reward = (reward + (int) vuln_reduction);
 
 				//BigDecimal prob = descr.getProbability();
-				/*
+				
 				 * get the source and destination states
-				 */
+				 
 				HashMap<String, String> dest_state = states.get(dest);
 				HashMap<String, String> src_state = states.get(src);
 
-				/* 
+				 
 				 * iterate over the security requirements, if the requirement is satisfied in the destination state but not in the source state, then reward the transition
-				 */
+				 
 				Iterator<String> it2 = operational_requirements.keySet().iterator();
 				while(it2.hasNext()){
 
@@ -470,7 +464,7 @@ public class NormsLTS extends LTS{
 		}
 		return r;
 	}
-
+*/
 	public double[][][] getTradeOffRewardMatrixDefender(double[] value_attacker, double[] value_defender) {
 		//if(defender_actions.isEmpty())identifyDefenderActions();
 

@@ -49,15 +49,6 @@ public interface AdaptiveCyberDefenseFactory extends EFactory {
 	StateVariable createStateVariable();
 
 	/**
-	 * Returns a new object of class '<em>State Literal</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>State Literal</em>'.
-	 * @generated
-	 */
-	StateLiteral createStateLiteral();
-
-	/**
 	 * Returns a new object of class '<em>Probabilistic Effect</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -67,13 +58,40 @@ public interface AdaptiveCyberDefenseFactory extends EFactory {
 	ProbabilisticEffect createProbabilisticEffect();
 
 	/**
-	 * Returns a new object of class '<em>Value</em>'.
+	 * Returns a new object of class '<em>Action Variable</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Value</em>'.
+	 * @return a new object of class '<em>Action Variable</em>'.
 	 * @generated
 	 */
-	Value createValue();
+	ActionVariable createActionVariable();
+
+	/**
+	 * Returns a new object of class '<em>Requirement Atom</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Requirement Atom</em>'.
+	 * @generated
+	 */
+	RequirementAtom createRequirementAtom();
+
+	/**
+	 * Returns a new object of class '<em>State Atom</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>State Atom</em>'.
+	 * @generated
+	 */
+	StateAtom createStateAtom();
+
+	/**
+	 * Returns a new object of class '<em>Action Atom</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Action Atom</em>'.
+	 * @generated
+	 */
+	ActionAtom createActionAtom();
 
 	/**
 	 * Returns a new object of class '<em>Conjunction</em>'.
@@ -85,6 +103,51 @@ public interface AdaptiveCyberDefenseFactory extends EFactory {
 	Conjunction createConjunction();
 
 	/**
+	 * Returns a new object of class '<em>Disjunction</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Disjunction</em>'.
+	 * @generated
+	 */
+	Disjunction createDisjunction();
+
+	/**
+	 * Returns a new object of class '<em>Negation</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Negation</em>'.
+	 * @generated
+	 */
+	Negation createNegation();
+
+	/**
+	 * Returns a new object of class '<em>Parentheses</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Parentheses</em>'.
+	 * @generated
+	 */
+	Parentheses createParentheses();
+
+	/**
+	 * Returns a new object of class '<em>Achieve</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Achieve</em>'.
+	 * @generated
+	 */
+	Achieve createAchieve();
+
+	/**
+	 * Returns a new object of class '<em>Maintain</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Maintain</em>'.
+	 * @generated
+	 */
+	Maintain createMaintain();
+
+	/**
 	 * Returns a new object of class '<em>True</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -94,40 +157,31 @@ public interface AdaptiveCyberDefenseFactory extends EFactory {
 	True createTrue();
 
 	/**
-	 * Returns a new object of class '<em>Security Requirement</em>'.
+	 * Returns a new object of class '<em>Atom</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Security Requirement</em>'.
+	 * @return a new object of class '<em>Atom</em>'.
 	 * @generated
 	 */
-	SecurityRequirement createSecurityRequirement();
+	Atom createAtom();
 
 	/**
-	 * Returns a new object of class '<em>Operational Requirement</em>'.
+	 * Returns a new object of class '<em>Maintain RS</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Operational Requirement</em>'.
+	 * @return a new object of class '<em>Maintain RS</em>'.
 	 * @generated
 	 */
-	OperationalRequirement createOperationalRequirement();
+	MaintainRS createMaintainRS();
 
 	/**
-	 * Returns a new object of class '<em>Attacker Action</em>'.
+	 * Returns a new object of class '<em>Achieve RS</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Attacker Action</em>'.
+	 * @return a new object of class '<em>Achieve RS</em>'.
 	 * @generated
 	 */
-	AttackerAction createAttackerAction();
-
-	/**
-	 * Returns a new object of class '<em>Defender Action</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Defender Action</em>'.
-	 * @generated
-	 */
-	DefenderAction createDefenderAction();
+	AchieveRS createAchieveRS();
 
 	/**
 	 * Returns a new object of class '<em>False</em>'.
@@ -137,42 +191,6 @@ public interface AdaptiveCyberDefenseFactory extends EFactory {
 	 * @generated
 	 */
 	False createFalse();
-
-	/**
-	 * Returns a new object of class '<em>Requirement Literal</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Requirement Literal</em>'.
-	 * @generated
-	 */
-	RequirementLiteral createRequirementLiteral();
-
-	/**
-	 * Returns a new object of class '<em>Initial State</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Initial State</em>'.
-	 * @generated
-	 */
-	InitialState createInitialState();
-
-	/**
-	 * Returns a new object of class '<em>Action Literal</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Action Literal</em>'.
-	 * @generated
-	 */
-	ActionLiteral createActionLiteral();
-
-	/**
-	 * Returns a new object of class '<em>State Literal2</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>State Literal2</em>'.
-	 * @generated
-	 */
-	StateLiteral2 createStateLiteral2();
 
 	/**
 	 * Returns the package supported by this factory.

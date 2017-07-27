@@ -7,6 +7,8 @@ public class RequirementDescription {
 	private Set<HashMap<String,String>> activation;
 	private Set<HashMap<String,String>> cancellation;
 	private Set<HashMap<String,String>> condition;
+	private int deadline;
+	private int duration;
 	private int cost_reward;
 	private String type;
 	private String name;
@@ -80,6 +82,22 @@ public class RequirementDescription {
 	public String toString() {
 		return "req [" + name + ", " + type + ", "
 				+ condition + ", " + activation + ", " + cancellation + ", " + cost_reward + "]\n";
+	}
+
+	public int getDeadline() {
+		return deadline;
+	}
+
+	public void setDeadline(int deadline) {
+		this.deadline = deadline;
+	}
+
+	public int getDuration() {
+		return duration;
+	}
+
+	public void setDuration(int duration) {
+		this.duration = duration;
 	}
 	
 	

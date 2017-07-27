@@ -1,4 +1,4 @@
-package lts;
+package resources;
 
 import java.math.BigDecimal;
 import java.util.HashMap;
@@ -6,13 +6,13 @@ import java.util.HashSet;
 import java.util.Set;
 
 
-public class ActionDescr {
+public class EffectLaw {
 	private Set<HashMap<String, String>> precondition;
 	private HashSet<Effect> effects;
 	private BigDecimal cost;
 	private String type;
 
-	public ActionDescr() {
+	public EffectLaw() {
 		this.precondition = new HashSet<HashMap<String, String>>();
 		this.effects = new HashSet<Effect>();
 	}

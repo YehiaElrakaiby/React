@@ -81,13 +81,7 @@ public class AdaptiveCyberDefenseSwitch<T> extends Switch<T> {
 			case AdaptiveCyberDefensePackage.STATE_VARIABLE: {
 				StateVariable stateVariable = (StateVariable)theEObject;
 				T result = caseStateVariable(stateVariable);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case AdaptiveCyberDefensePackage.STATE_LITERAL: {
-				StateLiteral stateLiteral = (StateLiteral)theEObject;
-				T result = caseStateLiteral(stateLiteral);
-				if (result == null) result = caseConditionExpression(stateLiteral);
+				if (result == null) result = caseVariable(stateVariable);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -97,109 +91,129 @@ public class AdaptiveCyberDefenseSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case AdaptiveCyberDefensePackage.VALUE: {
-				Value value = (Value)theEObject;
-				T result = caseValue(value);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case AdaptiveCyberDefensePackage.REQUIREMENT: {
-				Requirement requirement = (Requirement)theEObject;
-				T result = caseRequirement(requirement);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case AdaptiveCyberDefensePackage.CONDITION_EXPRESSION: {
-				ConditionExpression conditionExpression = (ConditionExpression)theEObject;
-				T result = caseConditionExpression(conditionExpression);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case AdaptiveCyberDefensePackage.CONJUNCTION: {
-				Conjunction conjunction = (Conjunction)theEObject;
-				T result = caseConjunction(conjunction);
-				if (result == null) result = caseConditionExpression(conjunction);
+			case AdaptiveCyberDefensePackage.OPERATIONAL_REQUIREMENT: {
+				OperationalRequirement operationalRequirement = (OperationalRequirement)theEObject;
+				T result = caseOperationalRequirement(operationalRequirement);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
 			case AdaptiveCyberDefensePackage.ACTION_VARIABLE: {
 				ActionVariable actionVariable = (ActionVariable)theEObject;
 				T result = caseActionVariable(actionVariable);
+				if (result == null) result = caseVariable(actionVariable);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case AdaptiveCyberDefensePackage.REQUIREMENT_ATOM: {
+				RequirementAtom requirementAtom = (RequirementAtom)theEObject;
+				T result = caseRequirementAtom(requirementAtom);
+				if (result == null) result = caseInitialStateAtom(requirementAtom);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case AdaptiveCyberDefensePackage.INITIAL_STATE_ATOM: {
+				InitialStateAtom initialStateAtom = (InitialStateAtom)theEObject;
+				T result = caseInitialStateAtom(initialStateAtom);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case AdaptiveCyberDefensePackage.VARIABLE: {
+				Variable variable = (Variable)theEObject;
+				T result = caseVariable(variable);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case AdaptiveCyberDefensePackage.STATE_ATOM: {
+				StateAtom stateAtom = (StateAtom)theEObject;
+				T result = caseStateAtom(stateAtom);
+				if (result == null) result = caseInitialStateAtom(stateAtom);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case AdaptiveCyberDefensePackage.ACTION_ATOM: {
+				ActionAtom actionAtom = (ActionAtom)theEObject;
+				T result = caseActionAtom(actionAtom);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case AdaptiveCyberDefensePackage.FORMULA: {
+				Formula formula = (Formula)theEObject;
+				T result = caseFormula(formula);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case AdaptiveCyberDefensePackage.CONJUNCTION: {
+				Conjunction conjunction = (Conjunction)theEObject;
+				T result = caseConjunction(conjunction);
+				if (result == null) result = caseFormula(conjunction);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case AdaptiveCyberDefensePackage.DISJUNCTION: {
+				Disjunction disjunction = (Disjunction)theEObject;
+				T result = caseDisjunction(disjunction);
+				if (result == null) result = caseFormula(disjunction);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case AdaptiveCyberDefensePackage.NEGATION: {
+				Negation negation = (Negation)theEObject;
+				T result = caseNegation(negation);
+				if (result == null) result = caseFormula(negation);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case AdaptiveCyberDefensePackage.PARENTHESES: {
+				Parentheses parentheses = (Parentheses)theEObject;
+				T result = caseParentheses(parentheses);
+				if (result == null) result = caseFormula(parentheses);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case AdaptiveCyberDefensePackage.ACHIEVE: {
+				Achieve achieve = (Achieve)theEObject;
+				T result = caseAchieve(achieve);
+				if (result == null) result = caseOperationalRequirement(achieve);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case AdaptiveCyberDefensePackage.MAINTAIN: {
+				Maintain maintain = (Maintain)theEObject;
+				T result = caseMaintain(maintain);
+				if (result == null) result = caseOperationalRequirement(maintain);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
 			case AdaptiveCyberDefensePackage.TRUE: {
 				True true_ = (True)theEObject;
 				T result = caseTrue(true_);
-				if (result == null) result = caseConditionExpression(true_);
+				if (result == null) result = caseFormula(true_);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case AdaptiveCyberDefensePackage.SECURITY_REQUIREMENT: {
-				SecurityRequirement securityRequirement = (SecurityRequirement)theEObject;
-				T result = caseSecurityRequirement(securityRequirement);
-				if (result == null) result = caseRequirement(securityRequirement);
+			case AdaptiveCyberDefensePackage.ATOM: {
+				Atom atom = (Atom)theEObject;
+				T result = caseAtom(atom);
+				if (result == null) result = caseFormula(atom);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case AdaptiveCyberDefensePackage.OPERATIONAL_REQUIREMENT: {
-				OperationalRequirement operationalRequirement = (OperationalRequirement)theEObject;
-				T result = caseOperationalRequirement(operationalRequirement);
-				if (result == null) result = caseRequirement(operationalRequirement);
+			case AdaptiveCyberDefensePackage.MAINTAIN_RS: {
+				MaintainRS maintainRS = (MaintainRS)theEObject;
+				T result = caseMaintainRS(maintainRS);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case AdaptiveCyberDefensePackage.ATTACKER_ACTION: {
-				AttackerAction attackerAction = (AttackerAction)theEObject;
-				T result = caseAttackerAction(attackerAction);
-				if (result == null) result = caseActionVariable(attackerAction);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case AdaptiveCyberDefensePackage.DEFENDER_ACTION: {
-				DefenderAction defenderAction = (DefenderAction)theEObject;
-				T result = caseDefenderAction(defenderAction);
-				if (result == null) result = caseActionVariable(defenderAction);
+			case AdaptiveCyberDefensePackage.ACHIEVE_RS: {
+				AchieveRS achieveRS = (AchieveRS)theEObject;
+				T result = caseAchieveRS(achieveRS);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
 			case AdaptiveCyberDefensePackage.FALSE: {
 				False false_ = (False)theEObject;
 				T result = caseFalse(false_);
-				if (result == null) result = caseConditionExpression(false_);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case AdaptiveCyberDefensePackage.REQUIREMENT_LITERAL: {
-				RequirementLiteral requirementLiteral = (RequirementLiteral)theEObject;
-				T result = caseRequirementLiteral(requirementLiteral);
-				if (result == null) result = caseLiteralConjunction(requirementLiteral);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case AdaptiveCyberDefensePackage.INITIAL_STATE: {
-				InitialState initialState = (InitialState)theEObject;
-				T result = caseInitialState(initialState);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case AdaptiveCyberDefensePackage.LITERAL_CONJUNCTION: {
-				LiteralConjunction literalConjunction = (LiteralConjunction)theEObject;
-				T result = caseLiteralConjunction(literalConjunction);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case AdaptiveCyberDefensePackage.ACTION_LITERAL: {
-				ActionLiteral actionLiteral = (ActionLiteral)theEObject;
-				T result = caseActionLiteral(actionLiteral);
-				if (result == null) result = caseConditionExpression(actionLiteral);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case AdaptiveCyberDefensePackage.STATE_LITERAL2: {
-				StateLiteral2 stateLiteral2 = (StateLiteral2)theEObject;
-				T result = caseStateLiteral2(stateLiteral2);
-				if (result == null) result = caseLiteralConjunction(stateLiteral2);
+				if (result == null) result = caseFormula(false_);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -253,21 +267,6 @@ public class AdaptiveCyberDefenseSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>State Literal</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>State Literal</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseStateLiteral(StateLiteral object) {
-		return null;
-	}
-
-	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Probabilistic Effect</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -279,141 +278,6 @@ public class AdaptiveCyberDefenseSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseProbabilisticEffect(ProbabilisticEffect object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Value</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Value</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseValue(Value object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Action Literal</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Action Literal</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseActionLiteral(ActionLiteral object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>State Literal2</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>State Literal2</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseStateLiteral2(StateLiteral2 object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Requirement</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Requirement</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseRequirement(Requirement object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Condition Expression</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Condition Expression</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseConditionExpression(ConditionExpression object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Conjunction</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Conjunction</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseConjunction(Conjunction object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Action Variable</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Action Variable</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseActionVariable(ActionVariable object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>True</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>True</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseTrue(True object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Security Requirement</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Security Requirement</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseSecurityRequirement(SecurityRequirement object) {
 		return null;
 	}
 
@@ -433,32 +297,257 @@ public class AdaptiveCyberDefenseSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Attacker Action</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Action Variable</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Attacker Action</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Action Variable</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseAttackerAction(AttackerAction object) {
+	public T caseActionVariable(ActionVariable object) {
 		return null;
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Defender Action</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Requirement Atom</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Defender Action</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Requirement Atom</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseDefenderAction(DefenderAction object) {
+	public T caseRequirementAtom(RequirementAtom object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Initial State Atom</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Initial State Atom</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseInitialStateAtom(InitialStateAtom object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Variable</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Variable</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseVariable(Variable object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>State Atom</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>State Atom</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseStateAtom(StateAtom object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Action Atom</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Action Atom</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseActionAtom(ActionAtom object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Formula</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Formula</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseFormula(Formula object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Conjunction</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Conjunction</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseConjunction(Conjunction object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Disjunction</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Disjunction</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseDisjunction(Disjunction object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Negation</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Negation</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseNegation(Negation object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Parentheses</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Parentheses</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseParentheses(Parentheses object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Achieve</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Achieve</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseAchieve(Achieve object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Maintain</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Maintain</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseMaintain(Maintain object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>True</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>True</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseTrue(True object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Atom</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Atom</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseAtom(Atom object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Maintain RS</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Maintain RS</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseMaintainRS(MaintainRS object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Achieve RS</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Achieve RS</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseAchieveRS(AchieveRS object) {
 		return null;
 	}
 
@@ -474,51 +563,6 @@ public class AdaptiveCyberDefenseSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseFalse(False object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Requirement Literal</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Requirement Literal</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseRequirementLiteral(RequirementLiteral object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Initial State</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Initial State</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseInitialState(InitialState object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Literal Conjunction</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Literal Conjunction</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseLiteralConjunction(LiteralConjunction object) {
 		return null;
 	}
 

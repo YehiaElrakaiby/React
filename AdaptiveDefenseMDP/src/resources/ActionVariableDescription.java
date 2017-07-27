@@ -1,39 +1,41 @@
-package lts;
+package resources;
 
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
 
 import org.eclipse.emf.common.util.EList;
-import org.emftext.language.AdaptiveCyberDefense.Value;
 
-public class DescriptionAction {
+public class ActionVariableDescription {
 	String name;
 	HashSet<String> domain;
 	String type;
 	Integer id;
-	public DescriptionAction(String n, HashSet<String> values) {
-		this.name=n;
-		this.domain=values;
-	}
-	public DescriptionAction(String n) {
-		this.name=n;
-		this.domain=new HashSet<String>();
-	}
-	public DescriptionAction() {
-		name="";
-		domain = new HashSet<String>();
-	}
-	public DescriptionAction(String name, EList<Value> values, String tp, int i) {
+	
+	public ActionVariableDescription(String name, EList<String> values, String tp, int i) {
 		this.name=name;
 		this.domain=new HashSet<String>();
-		for(Value v: values) {
-			domain.add(v.getValue());
+		for(String v: values) {
+			domain.add(v);
 		}
 		this.id = i;
 		this.type = tp;
 	}
-	public DescriptionAction(String name, HashSet<String> domain2, String tp, int i) {
+	
+	public ActionVariableDescription(String n, HashSet<String> values) {
+		this.name=n;
+		this.domain=values;
+	}
+	public ActionVariableDescription(String n) {
+		this.name=n;
+		this.domain=new HashSet<String>();
+	}
+	public ActionVariableDescription() {
+		name="";
+		domain = new HashSet<String>();
+	}
+	
+	public ActionVariableDescription(String name, HashSet<String> domain2, String tp, int i) {
 		this.name=name;
 		this.domain=domain2;
 		this.id = i;

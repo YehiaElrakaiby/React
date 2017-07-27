@@ -1,12 +1,13 @@
-package lts;
+package resources;
 
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
 
 public class Event {
-	String name;
+	public String name;
 	Set<ActionLiteral> actions;
+	
 	public Event(){
 		actions=null;
 	}

@@ -1,21 +1,21 @@
-package lts;
+package resources;
 
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
 
-public class FluentDescription {
+public class StateVariableDescription {
 	String name;
 	Set<String> domain;
-	public FluentDescription(String n, Set<String> values) {
+	public StateVariableDescription(String n, Set<String> values) {
 		this.name=n;
 		this.domain=values;
 	}
-	public FluentDescription(String n) {
+	public StateVariableDescription(String n) {
 		this.name=n;
 		this.domain=new HashSet<String>();
 	}
-	public FluentDescription() {
+	public StateVariableDescription() {
 		name="";
 		domain = new HashSet<String>();
 	}

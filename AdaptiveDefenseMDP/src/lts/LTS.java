@@ -12,12 +12,13 @@ import java.util.Set;
 import org.apache.commons.lang.mutable.MutableInt;
 import org.eclipse.emf.common.util.EList;
 import org.emftext.language.AdaptiveCyberDefense.ActionDescription;
-import org.emftext.language.AdaptiveCyberDefense.ConditionExpression;
-import org.emftext.language.AdaptiveCyberDefense.InitialState;
-import org.emftext.language.AdaptiveCyberDefense.LiteralConjunction;
 import org.emftext.language.AdaptiveCyberDefense.ProbabilisticEffect;
 import org.emftext.language.AdaptiveCyberDefense.StateVariable;
-import org.emftext.language.AdaptiveCyberDefense.Value;
+
+import resources.EffectLaw;
+import resources.ActionVariableDescription;
+import resources.Effect;
+import resources.StateVariableDescription;
 import visualizer.DOT_Writer;
 
 public class LTS {
@@ -30,8 +31,7 @@ public class LTS {
 	 * Actions:
 	 *  Mapping action_name --> Domain(action)
 	 */
-	protected HashMap<String, DescriptionAction> defender_actions;
-	protected HashMap<String, DescriptionAction> attacker_actions;
+	protected HashMap<String, ActionVariableDescription> defender_actions;
 
 	/**
 	 *  Actions:
@@ -52,7 +52,7 @@ public class LTS {
 	 * Action Description
 	 * Mapping action_name --> precondition, {effect1,...,effectn}
 	 */
-	protected HashMap<String, ActionDescr> action_descriptions;
+	protected HashMap<String, EffectLaw> action_descriptions;
 	//Set<ActionLiteral> actionLiterals;
 	//Set<FluentLiteral> fluentLiterals;
 	/**
@@ -88,6 +88,8 @@ public class LTS {
 	 */
 	protected HashMap<String,String> initial_state;
 	
+	private HashMap<String, ActionVariableDescription> attacker_actions;
+	
 	
 	//protected Set<Event> events;
 
@@ -115,24 +117,24 @@ public class LTS {
 		//this.actionLiterals = new HashSet<ActionLiteral>();
 		//this.fluentLiterals = new HashSet<FluentLiteral>();
 		this.fluent_descriptions = new HashMap<String,HashSet<String>>();
-		this.action_descriptions = new HashMap<String,ActionDescr>();
+		this.action_descriptions = new HashMap<String,EffectLaw>();
 		this.initial_state = new HashMap<String,String>();
 		this.applicable = new HashMap<Integer,HashSet<String>>();
 		this.not_applicable = new HashMap<Integer,HashSet<String>>();
 		//this.action_type = new HashMap<String,String>();
-		this.attacker_actions = new HashMap<String,DescriptionAction>();
-		this.defender_actions = new HashMap<String,DescriptionAction>();
+		this.attacker_actions = new HashMap<String,ActionVariableDescription>();
+		this.defender_actions = new HashMap<String,ActionVariableDescription>();
 		//this.actions = new HashMap<String,Integer>();
 
 	}
 
-	private void addActionDescription(String name, ActionDescr desc){
+	private void addActionDescription(String name, EffectLaw desc){
 		action_descriptions.put(name,desc);
 	}
 
 
-	protected void addFluentDescription(FluentDescription desc){
-		fluent_descriptions.put(desc.name, (HashSet<String>) desc.domain);
+	protected void addFluentDescription(StateVariableDescription desc){
+		fluent_descriptions.put(desc.getName(), (HashSet<String>) desc.getDomain());
 	}
 	/*
 	public void addState(String name, HashMap<String,String> desc){
@@ -164,11 +166,11 @@ public class LTS {
 		Set<String> keys = fluent_descriptions.keySet();
 		Iterator<String> it = keys.iterator();
 		//Iterator<FluentDescription> it = fluents.iterator();
-		ArrayList<FluentDescription> fluents_array = new ArrayList<FluentDescription>();
+		ArrayList<StateVariableDescription> fluents_array = new ArrayList<StateVariableDescription>();
 		while(it.hasNext()){
 			String name = it.next();
 			HashSet<String> domain = fluent_descriptions.get(name);
-			FluentDescription fluent_description = new FluentDescription(name,domain);
+			StateVariableDescription fluent_description = new StateVariableDescription(name,domain);
 			fluents_array.add(fluent_description);
 		}
 
@@ -185,7 +187,7 @@ public class LTS {
 		System.out.println("\nnumber of states="+states.size()+"\n");
 	}
 
-	private void add(HashMap<String, String> state, FluentDescription fluentDescription, ArrayList<FluentDescription> fluents_array, 
+	private void add(HashMap<String, String> state, StateVariableDescription fluentDescription, ArrayList<StateVariableDescription> fluents_array, 
 			MutableInt index,
 			int total, MutableInt state_nb) {
 		//int total_values = fluentDescription.domain.size();
@@ -229,19 +231,19 @@ public class LTS {
 	}
 
 
-	public void readStateVariables(EList<StateVariable> state_variables) {
+	protected void readStateVariables(EList<StateVariable> state_variables) {
 		for(StateVariable state_variable : state_variables) {
 
-			FluentDescription fluent_description = new FluentDescription();
+			StateVariableDescription fluent_description = new StateVariableDescription();
 			String name = state_variable.getName();
 			fluent_description.setName(name);
 			//System.out.println(name);
 
-			EList<Value> values = state_variable.getValues();
-			Iterator<Value> it = values.iterator();
+			EList<String> values = state_variable.getValues();
+			Iterator<String> it = values.iterator();
 			while(it.hasNext()){
-				Value value = it.next();
-				fluent_description.addToDomain(value.getValue());
+				String value = it.next();
+				fluent_description.addToDomain(value);
 				//System.out.println(value.getValue());
 			}
 
@@ -249,7 +251,7 @@ public class LTS {
 		}		
 	}
 	
-
+/*
 	protected Set<HashMap<String,String>> getConditions(EList<ConditionExpression> preconditions) {
 
 		Set<HashMap<String,String>> preconds = new HashSet<HashMap<String,String>>();
@@ -261,7 +263,7 @@ public class LTS {
 		return preconds;
 	}
 
-	public void readActionDescriptions(EList<ActionDescription> action_descriptions) {
+	protected void readActionDescriptions(EList<ActionDescription> action_descriptions) {
 		for(ActionDescription action_description:action_descriptions){
 			String action_name = action_description.getAction().getName();
 			EList<ConditionExpression> preconditions = action_description.getPreconditions();
@@ -401,7 +403,7 @@ public class LTS {
 		generateAllTransitionsFromActionDescriptions();
 
 	}
-
+*/
 
 	public void generateLTSFromInitialState() {
 		/*
@@ -440,16 +442,16 @@ public class LTS {
 			Iterator<String> it = action_descriptions.keySet().iterator();
 			while(it.hasNext()){
 				String action_name = it.next();
-				ActionDescr action_description = action_descriptions.get(action_name);
+				EffectLaw action_description = action_descriptions.get(action_name);
 				Set<HashMap<String, String>> precondition = action_description.getPrecondition();
 				Integer src = states_id.get(state);
 				/* 
 				 * check if the action is applicable
 				 */
-				if(satisfied(precondition,state)){
-					/*
+				/*if(satisfied(precondition,state)){
+					
 					 * 1) Add (state,action) to applicable HashMap
-					 */
+					 
 					if(this.applicable.containsKey(src)){
 						HashSet<String> set_of_actions = applicable.get(src);
 						set_of_actions.add(action_name);
@@ -458,16 +460,16 @@ public class LTS {
 						set_of_actions.add(action_name);
 						this.applicable.put(src, set_of_actions);
 					}
-					/*
+					
 					 * 2) Explore outgoing transitions from src state by iterating over and applying the probabilistic effects of applicable actions
-					 */
+					 
 					HashSet<Effect> effects = action_description.getEffects();
 					for(Effect effect : effects){
 						HashMap<String, String> eff = effect.getEffect();
 						BigDecimal prob = effect.getProb();
-						/*
+						
 						 * 2a) calculate the destination state, add it to the the states
-						 */
+						 
 						HashMap<String, String> dest_state = calculateDestinationState(action_name,state,eff);
 						Integer dest;
 						if(!states_id.containsKey(dest_state)) {
@@ -479,9 +481,9 @@ public class LTS {
 						} else {
 							dest = states_id.get(dest_state);
 						}
-						/*
+						
 						 * 2b) add the transition to transitions
-						 */
+						 
 						Transition trans = new Transition(action_name,src,dest,prob);
 						transitions.put(transition_nb.toString(), trans);
 						transition_nb.add(1);;
@@ -495,7 +497,7 @@ public class LTS {
 						set_of_actions.add(action_name);
 						this.not_applicable.put(src, set_of_actions);
 					}
-				}
+				}*/
 			}
 		}
 
@@ -709,7 +711,7 @@ public class LTS {
 	//		}
 	//	}
 
-	public void setInitialState(EList<InitialState> eList) {
+/*	public void setInitialState(EList<InitialState> eList) {
 		initial_state = new HashMap<String,String>();
 		for(InitialState i : eList) {
 			EList<LiteralConjunction> literals = i.getLiteral();
@@ -717,27 +719,27 @@ public class LTS {
 				initial_state.put(literal.getName(), literal.getValue());
 			}
 		}
-	}
+	}*/
 
 
 
 
-	public HashMap<String, HashSet<String>> getFluent_descriptions() {
+	protected HashMap<String, HashSet<String>> getFluent_descriptions() {
 		return fluent_descriptions;
 	}
 
 
-	public void setFluent_descriptions(HashMap<String, HashSet<String>> fluent_descriptions) {
+	protected void setFluent_descriptions(HashMap<String, HashSet<String>> fluent_descriptions) {
 		this.fluent_descriptions = fluent_descriptions;
 	}
 
 
-	public HashMap<String, ActionDescr> getAction_descriptions() {
+	protected HashMap<String, EffectLaw> getAction_descriptions() {
 		return action_descriptions;
 	}
 
 
-	public void setAction_descriptions(HashMap<String, ActionDescr> action_descriptions) {
+	protected void setAction_descriptions(HashMap<String, EffectLaw> action_descriptions) {
 		this.action_descriptions = action_descriptions;
 	}
 
@@ -747,27 +749,27 @@ public class LTS {
 	}
 
 
-	public void setStates(HashMap<Integer, HashMap<String, String>> states) {
+	protected void setStates(HashMap<Integer, HashMap<String, String>> states) {
 		this.states = states;
 	}
 
 
-	public HashMap<Integer, HashSet<String>> getApplicable() {
+	protected HashMap<Integer, HashSet<String>> getApplicable() {
 		return applicable;
 	}
 
 
-	public void setApplicable(HashMap<Integer, HashSet<String>> applicable) {
+	protected void setApplicable(HashMap<Integer, HashSet<String>> applicable) {
 		this.applicable = applicable;
 	}
 
 
-	public HashMap<HashMap<String, String>, Integer> getStates_id() {
+	protected HashMap<HashMap<String, String>, Integer> getStates_id() {
 		return states_id;
 	}
 
 
-	public void setStates_id(HashMap<HashMap<String, String>, Integer> states_id) {
+	protected void setStates_id(HashMap<HashMap<String, String>, Integer> states_id) {
 		this.states_id = states_id;
 	}
 
@@ -777,43 +779,43 @@ public class LTS {
 	}
 
 
-	public void setTransitions(HashMap<String, Transition> transitions) {
+	protected void setTransitions(HashMap<String, Transition> transitions) {
 		this.transitions = transitions;
 	}
 
 
-	public HashMap<String, String> getInitial_state() {
+	protected HashMap<String, String> getInitial_state() {
 		return initial_state;
 	}
 
 
-	public void setInitial_state(HashMap<String, String> initial_state) {
+	protected void setInitial_state(HashMap<String, String> initial_state) {
 		this.initial_state = initial_state;
 	}
 
-	public HashMap<String, DescriptionAction> getDefender_actions() {
+	protected HashMap<String, ActionVariableDescription> getDefender_actions() {
 		return defender_actions;
 	}
 
-	public void setDefender_actions(HashMap<String, DescriptionAction> defender_actions) {
+	protected void setDefender_actions(HashMap<String, ActionVariableDescription> defender_actions) {
 		this.defender_actions = defender_actions;
 	}
 
-	public HashMap<String, DescriptionAction> getAttacker_actions() {
+	protected HashMap<String, ActionVariableDescription> getAttacker_actions() {
 		return attacker_actions;
 	}
 
-	public void setAttacker_actions(HashMap<String, DescriptionAction> attacker_actions) {
+	protected void setAttacker_actions(HashMap<String, ActionVariableDescription> attacker_actions) {
 		this.attacker_actions = attacker_actions;
 	}
 
 
 
-	public HashMap<Integer, HashSet<String>> getNot_applicable() {
+	protected HashMap<Integer, HashSet<String>> getNot_applicable() {
 		return not_applicable;
 	}
 
-	public void setNot_applicable(HashMap<Integer, HashSet<String>> not_applicable) {
+	protected void setNot_applicable(HashMap<Integer, HashSet<String>> not_applicable) {
 		this.not_applicable = not_applicable;
 	}
 

@@ -15,12 +15,13 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.emftext.language.AdaptiveCyberDefense.DomainDescription#getStatevariable <em>Statevariable</em>}</li>
- *   <li>{@link org.emftext.language.AdaptiveCyberDefense.DomainDescription#getActiondescription <em>Actiondescription</em>}</li>
+ *   <li>{@link org.emftext.language.AdaptiveCyberDefense.DomainDescription#getState_variables <em>State variables</em>}</li>
+ *   <li>{@link org.emftext.language.AdaptiveCyberDefense.DomainDescription#getAction_descriptions <em>Action descriptions</em>}</li>
  *   <li>{@link org.emftext.language.AdaptiveCyberDefense.DomainDescription#getRequirements <em>Requirements</em>}</li>
- *   <li>{@link org.emftext.language.AdaptiveCyberDefense.DomainDescription#getDefender_actions <em>Defender actions</em>}</li>
- *   <li>{@link org.emftext.language.AdaptiveCyberDefense.DomainDescription#getAttacker_actions <em>Attacker actions</em>}</li>
- *   <li>{@link org.emftext.language.AdaptiveCyberDefense.DomainDescription#getInitialstate <em>Initialstate</em>}</li>
+ *   <li>{@link org.emftext.language.AdaptiveCyberDefense.DomainDescription#getActions <em>Actions</em>}</li>
+ *   <li>{@link org.emftext.language.AdaptiveCyberDefense.DomainDescription#getInitial_atoms <em>Initial atoms</em>}</li>
+ *   <li>{@link org.emftext.language.AdaptiveCyberDefense.DomainDescription#getAchievers <em>Achievers</em>}</li>
+ *   <li>{@link org.emftext.language.AdaptiveCyberDefense.DomainDescription#getMaintainrs <em>Maintainrs</em>}</li>
  * </ul>
  *
  * @see org.emftext.language.AdaptiveCyberDefense.AdaptiveCyberDefensePackage#getDomainDescription()
@@ -29,42 +30,42 @@ import org.eclipse.emf.ecore.EObject;
  */
 public interface DomainDescription extends EObject {
 	/**
-	 * Returns the value of the '<em><b>Statevariable</b></em>' containment reference list.
+	 * Returns the value of the '<em><b>State variables</b></em>' containment reference list.
 	 * The list contents are of type {@link org.emftext.language.AdaptiveCyberDefense.StateVariable}.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Statevariable</em>' containment reference list isn't clear,
+	 * If the meaning of the '<em>State variables</em>' containment reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Statevariable</em>' containment reference list.
-	 * @see org.emftext.language.AdaptiveCyberDefense.AdaptiveCyberDefensePackage#getDomainDescription_Statevariable()
+	 * @return the value of the '<em>State variables</em>' containment reference list.
+	 * @see org.emftext.language.AdaptiveCyberDefense.AdaptiveCyberDefensePackage#getDomainDescription_State_variables()
 	 * @model containment="true"
 	 *        extendedMetaData="name='statevariables'"
 	 * @generated
 	 */
-	EList<StateVariable> getStatevariable();
+	EList<StateVariable> getState_variables();
 
 	/**
-	 * Returns the value of the '<em><b>Actiondescription</b></em>' containment reference list.
+	 * Returns the value of the '<em><b>Action descriptions</b></em>' containment reference list.
 	 * The list contents are of type {@link org.emftext.language.AdaptiveCyberDefense.ActionDescription}.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Actiondescription</em>' containment reference list isn't clear,
+	 * If the meaning of the '<em>Action descriptions</em>' containment reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Actiondescription</em>' containment reference list.
-	 * @see org.emftext.language.AdaptiveCyberDefense.AdaptiveCyberDefensePackage#getDomainDescription_Actiondescription()
+	 * @return the value of the '<em>Action descriptions</em>' containment reference list.
+	 * @see org.emftext.language.AdaptiveCyberDefense.AdaptiveCyberDefensePackage#getDomainDescription_Action_descriptions()
 	 * @model containment="true"
 	 *        extendedMetaData="name='actiondescriptions'"
 	 * @generated
 	 */
-	EList<ActionDescription> getActiondescription();
+	EList<ActionDescription> getAction_descriptions();
 
 	/**
 	 * Returns the value of the '<em><b>Requirements</b></em>' containment reference list.
-	 * The list contents are of type {@link org.emftext.language.AdaptiveCyberDefense.Requirement}.
+	 * The list contents are of type {@link org.emftext.language.AdaptiveCyberDefense.OperationalRequirement}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Requirements</em>' containment reference list isn't clear,
@@ -76,54 +77,90 @@ public interface DomainDescription extends EObject {
 	 * @model containment="true"
 	 * @generated
 	 */
-	EList<Requirement> getRequirements();
+	EList<OperationalRequirement> getRequirements();
 
 	/**
-	 * Returns the value of the '<em><b>Defender actions</b></em>' containment reference list.
-	 * The list contents are of type {@link org.emftext.language.AdaptiveCyberDefense.DefenderAction}.
+	 * Returns the value of the '<em><b>Actions</b></em>' containment reference list.
+	 * The list contents are of type {@link org.emftext.language.AdaptiveCyberDefense.ActionVariable}.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Defender actions</em>' containment reference list isn't clear,
+	 * If the meaning of the '<em>Actions</em>' containment reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Defender actions</em>' containment reference list.
-	 * @see org.emftext.language.AdaptiveCyberDefense.AdaptiveCyberDefensePackage#getDomainDescription_Defender_actions()
+	 * @return the value of the '<em>Actions</em>' containment reference list.
+	 * @see org.emftext.language.AdaptiveCyberDefense.AdaptiveCyberDefensePackage#getDomainDescription_Actions()
 	 * @model containment="true"
 	 * @generated
 	 */
-	EList<DefenderAction> getDefender_actions();
+	EList<ActionVariable> getActions();
 
 	/**
-	 * Returns the value of the '<em><b>Attacker actions</b></em>' containment reference list.
-	 * The list contents are of type {@link org.emftext.language.AdaptiveCyberDefense.AttackerAction}.
+	 * Returns the value of the '<em><b>Initial atoms</b></em>' containment reference list.
+	 * The list contents are of type {@link org.emftext.language.AdaptiveCyberDefense.InitialStateAtom}.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Attacker actions</em>' containment reference list isn't clear,
+	 * If the meaning of the '<em>Initial atoms</em>' containment reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Attacker actions</em>' containment reference list.
-	 * @see org.emftext.language.AdaptiveCyberDefense.AdaptiveCyberDefensePackage#getDomainDescription_Attacker_actions()
-	 * @model containment="true"
+	 * @return the value of the '<em>Initial atoms</em>' containment reference list.
+	 * @see org.emftext.language.AdaptiveCyberDefense.AdaptiveCyberDefensePackage#getDomainDescription_Initial_atoms()
+	 * @model containment="true" required="true"
 	 * @generated
 	 */
-	EList<AttackerAction> getAttacker_actions();
+	EList<InitialStateAtom> getInitial_atoms();
 
 	/**
-	 * Returns the value of the '<em><b>Initialstate</b></em>' containment reference list.
-	 * The list contents are of type {@link org.emftext.language.AdaptiveCyberDefense.InitialState}.
+	 * Returns the value of the '<em><b>Achievers</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Initialstate</em>' containment reference list isn't clear,
+	 * If the meaning of the '<em>Achievers</em>' containment reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Initialstate</em>' containment reference list.
-	 * @see org.emftext.language.AdaptiveCyberDefense.AdaptiveCyberDefensePackage#getDomainDescription_Initialstate()
-	 * @model containment="true"
+	 * @return the value of the '<em>Achievers</em>' containment reference.
+	 * @see #setAchievers(AchieveRS)
+	 * @see org.emftext.language.AdaptiveCyberDefense.AdaptiveCyberDefensePackage#getDomainDescription_Achievers()
+	 * @model containment="true" required="true"
 	 * @generated
 	 */
-	EList<InitialState> getInitialstate();
+	AchieveRS getAchievers();
+
+	/**
+	 * Sets the value of the '{@link org.emftext.language.AdaptiveCyberDefense.DomainDescription#getAchievers <em>Achievers</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Achievers</em>' containment reference.
+	 * @see #getAchievers()
+	 * @generated
+	 */
+	void setAchievers(AchieveRS value);
+
+	/**
+	 * Returns the value of the '<em><b>Maintainrs</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Maintainrs</em>' containment reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Maintainrs</em>' containment reference.
+	 * @see #setMaintainrs(MaintainRS)
+	 * @see org.emftext.language.AdaptiveCyberDefense.AdaptiveCyberDefensePackage#getDomainDescription_Maintainrs()
+	 * @model containment="true" required="true"
+	 * @generated
+	 */
+	MaintainRS getMaintainrs();
+
+	/**
+	 * Sets the value of the '{@link org.emftext.language.AdaptiveCyberDefense.DomainDescription#getMaintainrs <em>Maintainrs</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Maintainrs</em>' containment reference.
+	 * @see #getMaintainrs()
+	 * @generated
+	 */
+	void setMaintainrs(MaintainRS value);
 
 } // DomainDescription
