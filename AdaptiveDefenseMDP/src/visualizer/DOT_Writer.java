@@ -36,6 +36,28 @@ public class DOT_Writer {
 	private String option = "ap utility req";
 
 	public DOT_Writer(String pathTographivFile,
+			HashMap<Integer, HashMap<String, String>> states,
+			HashMap<String, Transition> transitions) {
+		this.states = states;
+		this.transitions = transitions;
+		this.outputFileName=pathTographivFile;
+		this.show_action_names=true;
+		this.show_void_transition=true;
+		//this.show_only_states_in_transition=only_show_states_in_transition;
+		this.show_negated=false;
+		//this.remove_similar_states = remove_similar_states2;
+		this.show_state_name_in_node = true;
+		//this.remove_policy_component = remove_policy_component;
+		//this.fluentsToHide=fluentsToHide2;
+		//this.fluentsStartingWithToHide=fluentsStartingWithToHide2;
+		//this.states_to_show = states_to_show;
+		//this.policyFluents = policyFluents;
+		//this.policyTransitions = policyTransitions;
+		//findVoidTransition();
+		file=null;
+	}
+	
+	public DOT_Writer(String pathTographivFile,
 			LTS lts,
 			boolean show_action_names2, 
 			boolean only_show_states_in_transition,
@@ -49,7 +71,8 @@ public class DOT_Writer {
 			Set<String> states_to_show,
 			Set<String> policyFluents, 
 			Set<String> policyTransitions) {
-		this.lts=lts;
+		states = lts.getStates();
+		transitions=lts.getTransitions();
 		this.outputFileName=pathTographivFile;
 		this.show_action_names=show_action_names2;
 		this.show_void_transition=show_void_transition2;
@@ -68,7 +91,8 @@ public class DOT_Writer {
 
 	public DOT_Writer(String pathTographivFile,
 			LTS lts) {
-		this.lts=lts;
+		states = lts.getStates();
+		transitions=lts.getTransitions();
 		this.outputFileName=pathTographivFile;
 		this.show_action_names=true;
 		this.show_void_transition=true;
@@ -86,8 +110,11 @@ public class DOT_Writer {
 		file=null;
 	}
 
+	
+	
 	public DOT_Writer(String pathTographivFile, LTS lts, String option) {
-		this.lts=lts;
+		states = lts.getStates();
+		transitions=lts.getTransitions();
 		this.outputFileName=pathTographivFile;
 		this.show_action_names=true;
 		this.show_void_transition=true;
@@ -164,9 +191,8 @@ public class DOT_Writer {
 		}
 	}
 
-
+	HashMap<Integer, HashMap<String, String>> states;
 	private void writeNodes() {
-		HashMap<Integer, HashMap<String, String>> states = lts.getStates();
 		Iterator<Integer> it = states.keySet().iterator();
 		while(it.hasNext()){
 			Integer stateName = it.next();
@@ -240,9 +266,8 @@ public class DOT_Writer {
 		} 
 		return true;
 	}
-
+	HashMap<String, Transition> transitions; 
 	private void writeTransitions() {
-		HashMap<String, Transition> transitions = lts.getTransitions();
 		Iterator<String> it = transitions.keySet().iterator();
 		while(it.hasNext()){
 			String transition_id = it.next();

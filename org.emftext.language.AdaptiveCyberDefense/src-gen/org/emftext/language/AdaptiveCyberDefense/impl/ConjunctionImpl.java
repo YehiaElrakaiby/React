@@ -2,6 +2,8 @@
  */
 package org.emftext.language.AdaptiveCyberDefense.impl;
 
+import java.util.HashMap;
+
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 
@@ -236,6 +238,11 @@ public class ConjunctionImpl extends FormulaImpl implements Conjunction {
 				return lhs != null;
 		}
 		return super.eIsSet(featureID);
+	}
+
+	@Override
+	public boolean verify(HashMap<String, String> state) {
+		return (lhs.verify(state)&&rhs.verify(state));
 	}
 
 } //ConjunctionImpl

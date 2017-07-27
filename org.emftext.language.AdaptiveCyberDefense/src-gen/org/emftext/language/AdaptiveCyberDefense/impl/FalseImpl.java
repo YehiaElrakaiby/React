@@ -2,6 +2,8 @@
  */
 package org.emftext.language.AdaptiveCyberDefense.impl;
 
+import java.util.HashMap;
+
 import org.eclipse.emf.ecore.EClass;
 
 import org.emftext.language.AdaptiveCyberDefense.AdaptiveCyberDefensePackage;
@@ -32,6 +34,11 @@ public class FalseImpl extends FormulaImpl implements False {
 	@Override
 	protected EClass eStaticClass() {
 		return AdaptiveCyberDefensePackage.Literals.FALSE;
+	}
+
+	@Override
+	public boolean verify(HashMap<String, String> state) {
+		return false;
 	}
 
 } //FalseImpl

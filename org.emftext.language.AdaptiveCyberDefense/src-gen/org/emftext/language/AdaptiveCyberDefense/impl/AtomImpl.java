@@ -2,6 +2,8 @@
  */
 package org.emftext.language.AdaptiveCyberDefense.impl;
 
+import java.util.HashMap;
+
 import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.ecore.EClass;
@@ -219,6 +221,16 @@ public class AtomImpl extends FormulaImpl implements Atom {
 		result.append(value);
 		result.append(')');
 		return result.toString();
+	}
+
+	@Override
+	public boolean verify(HashMap<String, String> state) {
+		if(!state.containsKey(this.variable.getName())){
+			System.out.println(variable.getName());
+		} else if(state.get(this.variable.getName()).equals(value)){
+			return true;
+		} 
+		return false;
 	}
 
 } //AtomImpl

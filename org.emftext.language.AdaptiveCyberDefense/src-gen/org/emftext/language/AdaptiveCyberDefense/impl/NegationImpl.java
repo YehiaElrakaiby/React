@@ -2,6 +2,8 @@
  */
 package org.emftext.language.AdaptiveCyberDefense.impl;
 
+import java.util.HashMap;
+
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 
@@ -170,6 +172,11 @@ public class NegationImpl extends FormulaImpl implements Negation {
 				return formula != null;
 		}
 		return super.eIsSet(featureID);
+	}
+
+	@Override
+	public boolean verify(HashMap<String, String> state) {
+		return !formula.verify(state);
 	}
 
 } //NegationImpl

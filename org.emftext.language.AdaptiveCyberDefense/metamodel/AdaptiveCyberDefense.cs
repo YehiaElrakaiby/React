@@ -33,7 +33,7 @@ RULES {
 		"StateVariables" "=" "<" (state_variables ";")* ">" 
 		"ActionVariables" "=" "<"  (actions ";")* ">"
 		"OperationalRequirements" "=" "<" (requirements ";")* ">" 		
-		"ActionDescriptions" "=" "<" (action_descriptions ";")* ">" 
+		"EventDescriptions" "=" "<" (action_descriptions ";")* ">" 
 		
 		"CurrentState" "=" "<"  initial_atoms ("," initial_atoms)*   ">"
 		"MaintainRS" "=" "<"  maintainrs   ">"
@@ -42,9 +42,9 @@ RULES {
 		"}"
 		;
 
-	MaintainRS ::= "<" "activate" activate[INTEGER] "," "deactivate" deactivate[INTEGER] "," "satisfy" satisfied[INTEGER] "," "violate"violated[INTEGER]">";
+	MaintainRS ::=  "activate" activate[INTEGER] "," "deactivate" deactivate[INTEGER] "," "satisfy" satisfied[INTEGER] "," "violate"violated[INTEGER];
 	
-	AchieveRS ::= "<" "activate" activate[INTEGER] "," "deactivate" deactivate[INTEGER] "," "satisfy" satisfy[INTEGER] "," "violate"violate[INTEGER]">";
+	AchieveRS ::=  "activate" activate[INTEGER] "," "deactivate" deactivate[INTEGER] "," "satisfy" satisfy[INTEGER] "," "violate"violate[INTEGER];
 	
 	
 		
@@ -52,7 +52,7 @@ RULES {
 	StateVariable ::=  "Variable" name[] 
 						"domain" "{" values[] ("," values[])* "}";
 	
-	ActionVariable ::= "Action "name[] 
+	ActionVariable ::= "Action" name[] 
 						"domain" "{" values[] ("," values[])* "}"
 						"type" (type[control:"control", exogenous:"exogenous", exploit:"exploit"])?
 		;
@@ -64,15 +64,17 @@ RULES {
 		("cost" cost[FLOAT])?
 		;	
 	
-	Achieve ::= name[] ":" 
-		"Achieve" condition
+	Achieve ::= 
+		"ReqID" name[]  
+		"achieve" condition
 		("within"  deadline[INTEGER])?
 		("if"  activation)?
 		("unless"  cancellation)?
 		"cost" cost[INTEGER];
 		
-	Maintain ::= name[] ":" 
-		"Maintain" condition
+	Maintain ::= 
+		"ReqID" name[] 
+		"maintain" condition
 		("within"  deadline[INTEGER])?
 		("for"  duration[INTEGER])?
 		("after"  activation)?
@@ -80,7 +82,7 @@ RULES {
 		"cost" cost[INTEGER];
 	
 	
-	ProbabilisticEffect ::= "<" (probability[FLOAT])? (","  stateatoms+)? ">";
+	ProbabilisticEffect ::= "<"  (stateatoms+)? ("prob" probability[FLOAT])? ">";
 		
 
 	@Operator(type="binary_left_associative",weight="1",superclass="Formula")

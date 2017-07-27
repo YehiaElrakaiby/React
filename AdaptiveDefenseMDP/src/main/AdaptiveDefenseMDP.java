@@ -15,6 +15,7 @@ import lts.norms.NormsLTS;
 import lts.norms.readers.DomainDescriptionReader;
 import lts.operational.LTSG;
 import mdp.MDPSolver;
+import visualizer.DOT_Writer;
 
 
 public class AdaptiveDefenseMDP {
@@ -48,6 +49,8 @@ public class AdaptiveDefenseMDP {
 			"runtime-EclipseApplication","AdaptiveCyberDefenseSpecifications",
 			"domain_description.AdaptiveCyberDefense");
 	
+	static String graphiz_file = "/Users/yehia/Documents/lts.dot";
+	
 	static DomainDescription description;
 	
 	static LTSG lts;
@@ -72,6 +75,8 @@ public class AdaptiveDefenseMDP {
 		lts = new LTSG(description);
 		
 		lts.print();
+		
+		showInGraphiv(graphiz_file, lts);
 		//solver = new MDPSolver();
 		//lts.readDomainDescription(domain_description_location);
 		//lts.generateLTSFromInitialState();
@@ -100,6 +105,11 @@ public class AdaptiveDefenseMDP {
 		//lts3.showInGraphiv("/Users/yehia/Documents/lts_tradeoff_policy.dot",NormsLTS.SHOW_ALL);
 	
 		
+	}
+	
+	private static void showInGraphiv(String path, LTSG lts) {
+		DOT_Writer visualizer = new DOT_Writer(path, lts.getStates(),lts.getTransitions());
+		visualizer.openFromDesktop();		
 	}
 	
 	private static void solveMDP(double[][][] p, double[][][] r, double discount) {

@@ -1,35 +1,31 @@
 package lts.operational;
 
 
-import java.math.BigDecimal;
-import java.nio.file.Path;
+
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
 
-import org.apache.commons.collections4.iterators.ArrayListIterator;
 import org.apache.commons.lang.mutable.MutableInt;
-import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
-import org.emftext.language.AdaptiveCyberDefense.True;
 import org.emftext.language.AdaptiveCyberDefense.ActionDescription;
-import org.emftext.language.AdaptiveCyberDefense.ActionVariable;
 import org.emftext.language.AdaptiveCyberDefense.DomainDescription;
 import org.emftext.language.AdaptiveCyberDefense.Formula;
 import org.emftext.language.AdaptiveCyberDefense.Maintain;
 import org.emftext.language.AdaptiveCyberDefense.OperationalRequirement;
+import org.emftext.language.AdaptiveCyberDefense.ProbabilisticEffect;
+import org.emftext.language.AdaptiveCyberDefense.StateAtom;
 import org.emftext.language.AdaptiveCyberDefense.StateVariable;
+import org.emftext.language.AdaptiveCyberDefense.impl.AchieveImpl;
 import org.emftext.language.AdaptiveCyberDefense.impl.FalseImpl;
+import org.emftext.language.AdaptiveCyberDefense.impl.MaintainImpl;
 import org.emftext.language.AdaptiveCyberDefense.impl.TrueImpl;
 
 //import org.apache.commons.collections4.bidimap.HashMap;
 
-import lts.LTS;
 import lts.Transition;
-import lts.norms.readers.DomainDescriptionReader;
 import resources.EffectLaw;
 import resources.ActionVariableDescription;
 import resources.StateVariableDescription;
@@ -41,11 +37,6 @@ import resources.RequirementDescription;
  *
  */
 public class LTSG {
-
-	/**
-	 * Values of requirements' status
-	 */
-	Set<String> requirement_statuses = new HashSet<>(Arrays.asList("inact", "act", "viol", "sat"));
 
 	/**
 	 * Fluent Description:
@@ -98,6 +89,9 @@ public class LTSG {
 	 *  Mapping transition_id --> Transition(name,src,dest,prob)
 	 */
 	protected HashMap<String,Transition> transitions = new HashMap<String,Transition>();
+	protected HashMap<String,Transition> control_transitions = new HashMap<String,Transition>();
+	protected HashMap<String,Transition> exogenous_transitions = new HashMap<String,Transition>();
+	protected HashMap<String,Transition> exploit_transitions = new HashMap<String,Transition>();
 
 	/**
 	 * Initial State
@@ -111,7 +105,7 @@ public class LTSG {
 	protected HashMap<Integer,String> id_exploit_events = new HashMap<Integer,String>();
 
 	protected HashMap<Integer,String> id_exogenous_events = new HashMap<Integer,String>();
-	
+
 	/*
 	 * event_description:
 	 * Map between an event (the toString() of the action described in an action description) and the action description itself
@@ -122,7 +116,7 @@ public class LTSG {
 	private Integer nb_of_control_events=0;
 	private Integer nb_of_exploit_events=0;
 	private Integer nb_of_exogenous_events=0;
-
+	private MutableInt nb_of_transitions = new MutableInt(0);
 
 	/**
 	 * Requirements:
@@ -157,8 +151,8 @@ public class LTSG {
 		//readActions(description.getActions());
 		readActionDescriptions(description.getAction_descriptions());
 		createDRewardAndTransitionMatrices(this.nb_of_states,this.nb_of_control_events,this.nb_of_exploit_events);
-		
-		generateTransitions();
+		//readRequirements(description.getRequirements());
+		generateTransitions(this.requirements_description);
 	}
 
 
@@ -177,7 +171,7 @@ public class LTSG {
 
 
 	private void readActionDescriptions(EList<ActionDescription> action_descriptions) {
-		
+
 		for(ActionDescription action : action_descriptions) {
 			//action.getCost();
 			String event = action.getActionatom().getActionvariable().getName() + "-" + action.getActionatom().getValue();
@@ -187,158 +181,255 @@ public class LTSG {
 				this.event_description.put(event, action);
 				this.nb_of_exploit_events++;
 
-				System.out.println(event);
-				
+				//System.out.println(event);
+
 			} else if(action.getActionatom().getActionvariable().getType().getLiteral().equals("exogenous")) {
 				this.id_exogenous_events.put(nb_of_exogenous_events, event);
 				this.event_description.put(event, action);
 				this.nb_of_exogenous_events++;
-				System.out.println(event);
-			
+				//System.out.println(event);
+
 			} else {
-				this.id_exploit_events.put(nb_of_control_events, action.getActionatom().toString());
+				this.id_control_events.put(nb_of_control_events, event);
 				this.event_description.put(event, action);
 				this.nb_of_control_events++;
-				System.out.println(event);
-			
+				//System.out.println(event);
+
 			};
-			//Formula preconditions = action.getFormula();
-			//action.getProbabilisticeffect();
 		}
 
 	}
 
 
-
-	/*private void readActions(EList<ActionVariable> eList) {
-		for(ActionVariable action : eList) {
-			String name = action.getName();
-			if(action.getType().equals("exploit")) {
-				this.action_type.put(name, "exploit");
-			} else if (action.getType().equals("control")){
-				this.action_type.put(name, "control");
-
-			} else {
-				this.action_type.put(name, "exogenous");
-			};
-		}
-	}*/
-
-
-
-	private void generateTransitions() {
+	private void generateTransitions(HashMap<String, RequirementDescription> requirements_description) {
 		/*
 		 * (1) Iterate Over All States
-		 * (2) Iterate over all control, exogenous and exploit events 
-		 * (2.1) If the effect law of an event is applicable, then apply it and add the transition to the set of transitions
+		 * (2) Iterate over all control, exogenous and exploit events and update the transition and reward matrix accordingly
+		 * (*) Notice that when the event is a control event then only the dreward and dtransition are updated
+		 * (2.1) If there is an effect law of an event that is applicable, then apply it
+		 * (2.2) If there is an effect law that is not applicable, then it is a self transition in the transition matrix
 		 */
+
 		Iterator<Integer> it = states.keySet().iterator();
 		while(it.hasNext()){
 			Integer state_id = it.next();
 			HashMap<String, String> state = states.get(state_id);
-			Iterator<String> it2 = action_effect_laws.keySet().iterator();
-			while(it2.hasNext()){
-				String action_name = it2.next();
-				EffectLaw action_description = action_effect_laws.get(action_name);
-				Set<HashMap<String, String>> preconditions = action_description.getPrecondition();
 
-				if(satisfied(preconditions,state)){
-					if(this.applicable.containsKey(state_id)){
-						HashSet<String> set_of_actions = applicable.get(state_id);
-						set_of_actions.add(action_name);
-					} else {
-						HashSet<String> set_of_actions = new HashSet<String>();
-						set_of_actions.add(action_name);
-						this.applicable.put(state_id, set_of_actions);
-					}
-					//addTransitions(action_name, state,action_description.getEffects());
-				} else {
-					if(this.not_applicable.containsKey(state_id)){
-						HashSet<String> set_of_actions = not_applicable.get(state_id);
-						set_of_actions.add(action_name);
-					} else {
-						HashSet<String> set_of_actions = new HashSet<String>();
-						set_of_actions.add(action_name);
-						this.not_applicable.put(state_id, set_of_actions);
-					}
+			Iterator<Integer> it_control = this.id_control_events.keySet().iterator();
+			while(it_control.hasNext()) {
+				Integer event_id = it_control.next();
+				String event = id_control_events.get(event_id);
+				ActionDescription descr = this.event_description.get(event);
+				if(applicable(descr,state)) {
+					createTransitionsOf(event,descr,state,requirements_description);
 				}
 			}
-		}
-		System.out.println("\nnumber of transitions="+transitions.size());
-		System.out.println(transitions.toString());
 
-	}
-
-
-
-	//	private void addTransitions(String action_name, HashMap<String, String> state, HashSet<Effect> effects) {
-	//		for(Effect effect : effects){
-	//			HashMap<String, String> eff = effect.getEffect();
-	//			BigDecimal prob = effect.getProb();
-	//			Integer src = states_id.get(state);
-	//			Integer dest = getDestinationState(action_name,state,eff);
-	//			Transition trans = new Transition(action_name,src,dest,prob);
-	//			transitions.put(src+"_"+action_name+"_"+dest, trans);
-	//		}
-
-	//	}
-
-
-	private Integer getDestinationState(String action_name,HashMap<String, String> state, HashMap<String, String> eff) {
-		HashMap<String,String> temp = (HashMap<String, String>) state.clone();
-		Iterator<String> it = eff.keySet().iterator();
-		while(it.hasNext()){
-			String fluent_name = it.next();
-			String value = eff.get(fluent_name);
-			temp.put(fluent_name, value);
-		}
-
-		return states_id.get(temp);
-	}
-
-
-	protected boolean satisfied(Set<HashMap<String, String>> preconditions, HashMap<String, String> state) {
-		Iterator<HashMap<String, String>> it2 = preconditions.iterator();
-		Boolean res = false;
-		while(it2.hasNext() && res == false){
-			res = true;
-			HashMap<String, String> precondition = it2.next();
-			Iterator<String> it = precondition.keySet().iterator();
-			while(it.hasNext()){
-				String fluent_name = it.next();
-				String fluent_value = precondition.get(fluent_name);
-				if(state.containsKey(fluent_name)) {
-					if(state.get(fluent_name).equals(fluent_value)) {
-					} else {
-						res = false;
-						break;
-					}
-				} else {
-					res = false;
-					break;
+			Iterator<Integer> it_exploit = this.id_exploit_events.keySet().iterator();
+			while(it_exploit.hasNext()) {
+				Integer event_id = it_exploit.next();
+				String event = id_exploit_events.get(event_id);
+				ActionDescription descr = this.event_description.get(event);
+				if(applicable(descr,state)) {
+					createTransitionsOf(event,descr,state,requirements_description);
 				}
-			} 
-		} 
-		return res;
+			}
+
+
+			Iterator<Integer> it_exogenous = this.id_exogenous_events.keySet().iterator();
+			while(it_exogenous.hasNext()) {
+				Integer event_id = it_exogenous.next();
+				String event = id_exogenous_events.get(event_id);
+				ActionDescription descr = this.event_description.get(event);
+				if(applicable(descr,state)) {
+					createTransitionsOf(event,descr,state,requirements_description);
+				}
+			}
+			 
+
+		}
+
 	}
-	//private void initialize() {
-	//this.states = new HashMap<Integer,HashMap<String,String>>();
-	//this.states_id = new HashMap<HashMap<String,String>,Integer>();
-	//this.transitions = new HashMap<String,Transition>();
-	//this.actionLiterals = new HashSet<ActionLiteral>();
-	//this.fluentLiterals = new HashSet<FluentLiteral>();
-	//this.variables_domain = new HashMap<String,HashSet<String>>();
-	//this.action_descriptions = new HashMap<String,ActionDescr>();
-	//this.initial_state = new HashMap<String,String>();
-	//this.applicable = new HashMap<Integer,HashSet<String>>();
-	//this.not_applicable = new HashMap<Integer,HashSet<String>>();
-	//this.action_type = new HashMap<String,String>();
-	//this.aactions_domain = new HashMap<String,DescriptionAction>();
-	//this.eactions_domain = new HashMap<String,DescriptionAction>();
-	//this.dactions_domain = new HashMap<String,DescriptionAction>();
-	//this.req_type = new HashMap<String,String>();
-	//this.actions = new HashMap<String,Integer>();		
-	//}
+
+	private void createTransitionsOf(String event, ActionDescription descr, HashMap<String, String> state, HashMap<String, RequirementDescription> requirements_description2) {
+		EList<ProbabilisticEffect> effects = descr.getProbabilisticeffect();
+		for(ProbabilisticEffect effect : effects) {
+			identifyTransition(event,state,effect,descr,requirements_description2);
+		}
+
+	}
+
+
+	private void identifyTransition(String event, HashMap<String, String> state, ProbabilisticEffect effect, ActionDescription descr, HashMap<String, RequirementDescription> requirements_description2) {
+		HashMap<String, String> dest_state = (HashMap<String, String>) state.clone();
+
+		updateStateVariables(dest_state,effect);
+		updateReqVariables(dest_state, descr, requirements_description2);
+
+		addTransition(state,dest_state,event,effect);
+
+	}
+
+
+
+	private void addTransition(HashMap<String, String> state, HashMap<String, String> dest_state,
+			String event, ProbabilisticEffect effect) {
+		Transition trans = new Transition(event,states_id.get(state),states_id.get(dest_state),effect.getProbability());
+		transitions.put(this.nb_of_transitions.toString(), trans);
+		nb_of_transitions.add(1);	
+	}
+
+
+
+	private void updateReqVariables(HashMap<String, String> temp,  ActionDescription descr, HashMap<String, RequirementDescription> requirements_description2) {
+		temp.put(descr.getActionatom().getActionvariable().getName(), descr.getActionatom().getValue());
+		Iterator<String> it = requirements_description2.keySet().iterator();
+		RequirementDescription req;
+		while(it.hasNext()) {
+			String reqID = it.next();
+			req = requirements_description2.get(reqID);
+			if(req.getType().equals("maintain")) {
+				updateMaintainReqAtomInState(temp,req,descr);
+			} else {
+				updateAchieveReqAtomInState(temp,req,descr);
+			}
+		}
+		temp.remove(descr.getActionatom().getActionvariable().getName());
+	}
+
+
+
+	private void updateAchieveReqAtomInState(HashMap<String, String> state, RequirementDescription req, ActionDescription descr) {
+		String req_id = req.getName();
+		String status = state.get(req_id);
+		/*
+		 * For an achieve requirement, its status is updated according to activation, cancellation, condition and control actions (time) as follows:
+		 * (1) if status is inact: if activation is true, then act-D where D is the deadline
+		 * 
+		 * (2) if status is act-X:
+		 * (2.1) if cancellation holds then inact
+		 * (2.2) if condition holds then inact
+		 * (2.3) if control action 
+		 * (2.3.1) act-0 then inact
+		 * (2.3.2) else control action, then act-(X-1)
+		 * 
+		 */
+		if(status.equals("inact")) {
+			if(req.getActivation().verify(state)) {
+				Integer deadline = req.getDeadline();
+				state.put(req_id, "act-"+deadline);
+			}
+		}
+
+		if(status.startsWith("act-")){
+			if(req.getCancellation().verify(state)) {
+				state.put(req_id, "inact");
+			} else if(req.getCondition().verify(state)) {
+				state.put(req_id, "inact");
+			} else if (descr.getActionatom().getActionvariable().getType().getLiteral().equals("control")) {
+				if (status.equals("act-0")){
+					state.put(req_id, "inact");
+				} else {
+					Integer remainingTime = new Integer(status.substring(4));
+					state.put(req_id, "act-"+(remainingTime-1));
+				}
+			}
+
+		} 
+
+		if(status.startsWith("req-")){
+			if(req.getCancellation().verify(state)) {
+				state.put(req_id, "inact");
+			} else if (descr.getActionatom().getActionvariable().getType().getLiteral().equals("control")) {
+				if (status.equals("req-0")){
+					state.put(req_id, "inact");
+				} else if (descr.getActionatom().getActionvariable().getType().getLiteral().equals("control")) {
+					Integer remainingTime = new Integer(status.substring(4));
+					state.put(req_id, "req-"+(remainingTime-1));
+				}
+			}
+
+		} 
+
+	}
+
+
+
+	private void updateMaintainReqAtomInState(HashMap<String, String> state, RequirementDescription req, ActionDescription descr) {
+		String req_id = req.getName();
+		String status = state.get(req_id);
+		/*
+		 * For a maintain requirement, its status is updated according to activation, cancellation and control actions as follows:
+		 * Notice that condition does not affect the update of status
+		 * (1) if status is inact: if activation is true, then act-D where D is the deadline
+		 * 
+		 * (2) if status is act-X:
+		 * (2.1) if cancellation holds then inact
+		 * (2.2) else if act-0 then req-D where D is duration
+		 * (2.3) else control action, then act-(X-1)
+		 * 
+		 * (3) if status is req-X
+		 * (3.1) if cancellation then inact
+		 * (3.2) else if req-0 then inact
+		 * (3.3) else control action, then req-(X-1)
+		 */
+		if(status.equals("inact")) {
+			if(req.getActivation().verify(state)) {
+				Integer deadline = req.getDeadline();
+				state.put(req_id, "act-"+(deadline-1));
+			}
+		}
+
+		if(status.startsWith("act-")){
+			if(req.getCancellation().verify(state)) {
+				state.put(req_id, "inact");
+			} else if (descr.getActionatom().getActionvariable().getType().getLiteral().equals("control")) {
+				if (status.equals("act-0")){
+					state.put(req_id, "req-"+(req.getDuration()-1));
+				} else if (descr.getActionatom().getActionvariable().getType().getLiteral().equals("control")) {
+					Integer remainingTime = new Integer(status.substring(4));
+					state.put(req_id, "act-"+(remainingTime-1));
+				}
+			}
+
+		} 
+
+		if(status.startsWith("req-")){
+			if(req.getCancellation().verify(state)) {
+				state.put(req_id, "inact");
+			} else if (descr.getActionatom().getActionvariable().getType().getLiteral().equals("control")) {
+				if (status.equals("req-0")){
+					state.put(req_id, "inact");
+				} else if (descr.getActionatom().getActionvariable().getType().getLiteral().equals("control")) {
+					Integer remainingTime = new Integer(status.substring(4));
+					state.put(req_id, "req-"+(remainingTime-1));
+				}
+			}
+
+		} 
+
+	}
+
+
+
+	private void updateStateVariables(HashMap<String, String> temp, ProbabilisticEffect effect) {
+		EList<StateAtom> atoms = effect.getStateatoms();
+
+		for(StateAtom atom : atoms) {
+			String var = atom.getStatevariable().getName();
+			temp.put(var, atom.getValue());
+		}		
+	}
+
+
+
+	private boolean applicable(ActionDescription descr, HashMap<String, String> state) {
+		Formula precondition = descr.getFormula();
+		if(precondition.verify(state)) {
+			return true;
+		}
+		return false;
+	}
 
 
 
@@ -418,8 +509,6 @@ public class LTSG {
 		}		
 
 	}
-
-
 
 	private void generateStatesFromFluentDescriptions() {
 		/*
@@ -525,6 +614,30 @@ public class LTSG {
 		return nb_of_control_events + nb_of_exploit_events + nb_of_exogenous_events;
 	}
 
+	public MutableInt getNb_of_transitions() {
+		return nb_of_transitions;
+	}
+
+
+
+	public void setNb_of_transitions(MutableInt nb_of_transitions) {
+		this.nb_of_transitions = nb_of_transitions;
+	}
+
+
+
+	public HashMap<Integer, HashMap<String, String>> getStates() {
+		return states;
+	}
+
+
+
+	public HashMap<String, Transition> getTransitions() {
+		return transitions;
+	}
+
+
+
 	public void print() {
 		System.out.println("\n\n\n\t\t*********  Printing LTS  ***************\n\n");
 		System.out.println("Nb of fluent Descriptions: "+this.variables_domain.size()+"\n");
@@ -533,8 +646,8 @@ public class LTSG {
 
 		System.out.println("Total Number of States:\n "+this.nb_of_states+"\n");
 
-		System.out.println("Nb of Action Descriptions: "+this.action_effect_laws.size()+"\n");
-		System.out.println("Action Descriptions:\n "+this.action_effect_laws.toString()+"\n");
+		System.out.println("Nb of Action Descriptions: "+this.event_description.size()+"\n");
+		System.out.println("Action Descriptions:\n "+this.event_description.toString()+"\n");
 
 		System.out.println("Nb of States: "+this.states.size()+"\n");
 		System.out.println("States:\n "+this.states.toString()+"\n");

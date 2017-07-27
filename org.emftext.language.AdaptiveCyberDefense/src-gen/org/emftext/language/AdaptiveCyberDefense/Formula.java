@@ -2,6 +2,8 @@
  */
 package org.emftext.language.AdaptiveCyberDefense;
 
+import java.util.HashMap;
+
 import org.eclipse.emf.ecore.EObject;
 
 /**
@@ -15,4 +17,6 @@ import org.eclipse.emf.ecore.EObject;
  * @generated
  */
 public interface Formula extends EObject {
+
+	boolean verify(HashMap<String, String> state);
 } // Formula
