@@ -13,19 +13,19 @@ import org.eclipse.emf.common.util.EList;
 import org.emftext.language.AdaptiveCyberDefense.ActionDescription;
 import org.emftext.language.AdaptiveCyberDefense.DomainDescription;
 import org.emftext.language.AdaptiveCyberDefense.Formula;
+import org.emftext.language.AdaptiveCyberDefense.InitialStateAtom;
 import org.emftext.language.AdaptiveCyberDefense.Maintain;
 import org.emftext.language.AdaptiveCyberDefense.OperationalRequirement;
 import org.emftext.language.AdaptiveCyberDefense.ProbabilisticEffect;
+import org.emftext.language.AdaptiveCyberDefense.RequirementAtom;
 import org.emftext.language.AdaptiveCyberDefense.StateAtom;
 import org.emftext.language.AdaptiveCyberDefense.StateVariable;
 import org.emftext.language.AdaptiveCyberDefense.impl.FalseImpl;
 import org.emftext.language.AdaptiveCyberDefense.impl.TrueImpl;
 
-import resources.EffectLaw;
-import resources.ActionVariableDescription;
 import resources.StateVariableDescription;
-import resources.Transition;
 import resources.RequirementDescription;
+import resources.Transition;
 
 /**
  * 
@@ -44,19 +44,7 @@ public class LTSG {
 	 * req_type:
 	 *  Mapping requirement_name --> Type(requirement) 
 	 */
-	protected HashMap<String,String> req_type = new HashMap<String, String>() ;
-
-	/**
-	 * actions_declarations:
-	 *  Mapping action_name --> Domain(action)
-	 */
-	protected HashMap<String, ActionVariableDescription> actions_declarations = new  HashMap<String, ActionVariableDescription>();
-
-	/**
-	 * Action Description
-	 * Mapping action_name --> precondition, {effect1,...,effectn}
-	 */
-	protected HashMap<String, EffectLaw> action_effect_laws = new  HashMap<String, EffectLaw>();
+	//protected HashMap<String,String> req_type = new HashMap<String, String>() ;
 
 	/** LTS States:
 	 *  Mapping state_id --> set of literals
@@ -67,12 +55,12 @@ public class LTSG {
 	 * Applicable actions:
 	 *  Mapping state_id --> set of action_names
 	 */
-	protected HashMap<Integer,HashSet<String>> applicable = new HashMap<Integer,HashSet<String>>();
+	//protected HashMap<Integer,HashSet<String>> applicable = new HashMap<Integer,HashSet<String>>();
 	/**
 	 * NotApplicable actions:
 	 *  Mapping state_id --> action_name
 	 */
-	protected HashMap<Integer,HashSet<String>> not_applicable = new HashMap<Integer,HashSet<String>>();
+	//protected HashMap<Integer,HashSet<String>> not_applicable = new HashMap<Integer,HashSet<String>>();
 
 	/**
 	 * LTS States:
@@ -94,8 +82,6 @@ public class LTSG {
 	 */
 	protected HashMap<String,String> initial_state = new HashMap<String,String>();
 
-	//protected HashMap<String,String> action_type = new HashMap<String,String>();
-
 	protected HashMap<Integer,String> id_control_events = new HashMap<Integer,String>();
 
 	protected HashMap<Integer,String> id_exploit_events = new HashMap<Integer,String>();
@@ -114,6 +100,12 @@ public class LTSG {
 	private Integer nb_of_exogenous_events=0;
 	private MutableInt nb_of_transitions = new MutableInt(0);
 
+
+
+	double[][][] dreward_matrix,areward_matrix;
+	double[][][] dtransition_matrix,atransition_matrix;
+
+
 	/**
 	 * Requirements:
 	 * Mapping requirement id to requirement description
@@ -124,36 +116,65 @@ public class LTSG {
 
 	public LTSG(DomainDescription description) {
 		/*
-		 *  Initialize/create the class's data structures
+		 *  Initialize
 		 */
-		//initialize();
+		initialize(description);
+		/*
+		 * (1) Read state variables 
+		 * (2) Read requirements 
+		 * (3) Read event descriptions
+		 * (4) Generate the state space
+		 * (5) Generate Transitions
+		 */
+		generateStatesFromFluentDescriptions();
+
+		createDRewardAndTransitionMatrices(this.nb_of_states,this.nb_of_control_events,this.nb_of_exploit_events);
+
+		generateTransitions(this.requirements_description);
+	}
+
+	public LTSG(DomainDescription description, String option) {
+		/*
+		 *  Initialize
+		 */
+		initialize(description);
+		
+		setInitialState(description);
 		/*
 		 * (1) Read state variables and their domain
 		 * (2) Read requirements and associate them to the domain of requirement statutes
 		 * (3) Generate the state space
 		 */
-		generateStatesFromDescription(description);
+		createDRewardAndTransitionMatrices(this.nb_of_states,this.nb_of_control_events,this.nb_of_exploit_events);
+
 		/*
 		 * (4) Read Actions
 		 * (5) Read Action Descriptions
-		 * ()
 		 */
-		generateTransitionsFromDescription(description);
-	}
-
-
-
-	private void generateTransitionsFromDescription(DomainDescription description) {
-		//readActions(description.getActions());
-		readActionDescriptions(description.getAction_descriptions());
-		createDRewardAndTransitionMatrices(this.nb_of_states,this.nb_of_control_events,this.nb_of_exploit_events);
-		//readRequirements(description.getRequirements());
 		generateTransitions(this.requirements_description);
 	}
 
 
-	double[][][] dreward_matrix,areward_matrix;
-	double[][][] dtransition_matrix,atransition_matrix;
+	private void setInitialState(DomainDescription description) {
+		for(InitialStateAtom atom : description.getInitial_atoms()) {
+			if(atom.getClass().toString().endsWith("StateAtom")) {
+				StateAtom satom = (StateAtom) atom;
+				this.initial_state.put(satom.getStatevariable().getName(), satom.getValue());
+			} else if(atom.getClass().toString().endsWith("RequirementAtom")) {
+				RequirementAtom ratom = (RequirementAtom) atom;
+				this.initial_state.put(ratom.getRequirement().getName(), ratom.getStatus().getLiteral());
+			}
+		}
+	}
+
+	private void initialize(DomainDescription description) {
+		readStateVariables(description.getState_variables());
+		readRequirements(description.getRequirements());	
+		readActionDescriptions(description.getAction_descriptions());
+	}
+
+
+
 
 	private void createDRewardAndTransitionMatrices(Integer nb_of_states, Integer nb_of_control_events, Integer nb_of_exploit_events) {
 		dreward_matrix = new double[states.size()][states.size()][nb_of_control_events];
@@ -161,7 +182,6 @@ public class LTSG {
 
 		dtransition_matrix = new double[states.size()][states.size()][nb_of_control_events];
 		atransition_matrix = new double[states.size()][states.size()][nb_of_exploit_events];
-
 	}
 
 
@@ -170,27 +190,23 @@ public class LTSG {
 
 		for(ActionDescription action : action_descriptions) {
 			//action.getCost();
-			String event = action.getActionatom().getActionvariable().getName() + "-" + action.getActionatom().getValue();
+			String event = action.getActionatom().getActionvariable().getName() + "=" + action.getActionatom().getValue();
 
 			if(action.getActionatom().getActionvariable().getType().getLiteral().equals("exploit")){
 				this.id_exploit_events.put(nb_of_exploit_events, event);
 				this.event_description.put(event, action);
 				this.nb_of_exploit_events++;
-
 				//System.out.println(event);
-
 			} else if(action.getActionatom().getActionvariable().getType().getLiteral().equals("exogenous")) {
 				this.id_exogenous_events.put(nb_of_exogenous_events, event);
 				this.event_description.put(event, action);
 				this.nb_of_exogenous_events++;
 				//System.out.println(event);
-
 			} else {
 				this.id_control_events.put(nb_of_control_events, event);
 				this.event_description.put(event, action);
 				this.nb_of_control_events++;
 				//System.out.println(event);
-
 			};
 		}
 
@@ -231,7 +247,6 @@ public class LTSG {
 				}
 			}
 
-
 			Iterator<Integer> it_exogenous = this.id_exogenous_events.keySet().iterator();
 			while(it_exogenous.hasNext()) {
 				Integer event_id = it_exogenous.next();
@@ -241,7 +256,7 @@ public class LTSG {
 					createTransitionsOf(event,descr,state,requirements_description);
 				}
 			}
-			 
+
 
 		}
 
@@ -298,7 +313,7 @@ public class LTSG {
 	private void updateAchieveReqAtomInState(HashMap<String, String> state, RequirementDescription req, ActionDescription descr) {
 		String req_id = req.getName();
 		String status = state.get(req_id);
-		/*
+		/**
 		 * For an achieve requirement, its status is updated according to activation, cancellation, condition and control actions (time) as follows:
 		 * (1) if status is inact: if activation is true, then act-D where D is the deadline
 		 * 
@@ -354,7 +369,7 @@ public class LTSG {
 	private void updateMaintainReqAtomInState(HashMap<String, String> state, RequirementDescription req, ActionDescription descr) {
 		String req_id = req.getName();
 		String status = state.get(req_id);
-		/*
+		/**
 		 * For a maintain requirement, its status is updated according to activation, cancellation and control actions as follows:
 		 * Notice that condition does not affect the update of status
 		 * (1) if status is inact: if activation is true, then act-D where D is the deadline
@@ -428,14 +443,6 @@ public class LTSG {
 	}
 
 
-
-	private void generateStatesFromDescription(DomainDescription description) {
-		readStateVariables(description.getState_variables());
-		readRequirements(description.getRequirements());
-		generateStatesFromFluentDescriptions();
-
-	}
-
 	private void readRequirements(EList<OperationalRequirement> requirements) {
 		for(OperationalRequirement requirement : requirements) {
 			String name = requirement.getName();
@@ -447,7 +454,7 @@ public class LTSG {
 			descr.setCondition(requirement.getCondition());
 			descr.setCost_reward(requirement.getCost());
 			descr.setDeadline(requirement.getDeadline());
-			/*
+			/**
 			 * Notice that if there is no deadline, i.e., deadline =0, then the requirement has to be fulfilled immediately
 			 */
 			for(int i=0; i< requirement.getDeadline(); i++) {
@@ -458,7 +465,7 @@ public class LTSG {
 				descr.setActivation(requirement.getActivation());
 				domain.add("inact");
 			} else {
-				/*
+				/**
 				 * if no activation then the requirement is unconditional and should be always active hence true is used as activation condition
 				 */
 				descr.setActivation(new TrueImpl());
@@ -467,7 +474,7 @@ public class LTSG {
 			if(requirement.getCancellation() != null) {
 				descr.setCancellation(requirement.getCancellation());
 			} else {
-				/*
+				/**
 				 * if no cancellation then the requirement cannot be cancelled and false is used as cancellation condition
 				 */
 				descr.setCancellation(new FalseImpl());
@@ -475,12 +482,12 @@ public class LTSG {
 
 
 			if(requirement.getClass().getName().equals("org.emftext.language.AdaptiveCyberDefense.impl.MaintainImpl")){
-				this.req_type.put(name, "maintain");
+				//this.req_type.put(name, "maintain");
 				//System.out.println(requirement.getClass().getName());
 				Maintain req = (Maintain) requirement;
 				descr.setDuration(req.getDuration());
 				descr.setType("maintain");
-				/*
+				/**
 				 * Notice that if there is no deadline, i.e., deadline =0, then the requirement has to be fulfilled immediately
 				 */
 				for(int i=0; i< req.getDuration(); i++) {
@@ -488,15 +495,16 @@ public class LTSG {
 				}
 
 			} else {
-				req_type.put(name, "achieve");
+				descr.setType("achieve");
+				//req_type.put(name, "achieve");
 			} 
 
-			/*
+			/**
 			 * add the requirement to the HashMap requirements_description
 			 */
 			this.requirements_description.put(name, descr);
 
-			/*
+			/**
 			 * add requirements and their domains to domain variables
 			 */
 			variables_domain.put(name,domain);
@@ -604,23 +612,6 @@ public class LTSG {
 		}		
 
 	}
-
-
-	public int getTotalNbOfActions() {
-		return nb_of_control_events + nb_of_exploit_events + nb_of_exogenous_events;
-	}
-
-	public MutableInt getNb_of_transitions() {
-		return nb_of_transitions;
-	}
-
-
-
-	public void setNb_of_transitions(MutableInt nb_of_transitions) {
-		this.nb_of_transitions = nb_of_transitions;
-	}
-
-
 
 	public HashMap<Integer, HashMap<String, String>> getStates() {
 		return states;

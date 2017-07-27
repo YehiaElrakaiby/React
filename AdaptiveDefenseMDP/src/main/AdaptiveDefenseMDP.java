@@ -9,10 +9,6 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.emftext.language.AdaptiveCyberDefense.DomainDescription;
 import org.emftext.language.AdaptiveCyberDefense.resource.AdaptiveCyberDefense.mopp.AdaptiveCyberDefenseMetaInformation;
-
-import lts.LTS;
-import lts.norms.NormsLTS;
-import lts.norms.readers.DomainDescriptionReader;
 import lts.operational.LTSG;
 import mdp.MDPSolver;
 import visualizer.DOT_Writer;

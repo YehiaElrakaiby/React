@@ -6,22 +6,13 @@ public class Transition {
 	private String name;
 	private Integer src;
 	private Integer dest;
-	private Event event;
 	private BigDecimal probability;
 	
-	public Transition(String n,Integer src, Integer dest, Event e, BigDecimal prob) {
-		this.name =n;
-		this.src =src;
-		this.dest= dest;
-		this.event=e;
-		this.probability = prob;
-	}
 	
 	public Transition(String n, Integer src, Integer dest, BigDecimal prob) {
 		this.name =n;
 		this.src =src;
 		this.dest= dest;
-		this.event=null;
 		this.probability = prob;
 	}
 	
@@ -54,17 +45,6 @@ public class Transition {
 		this.dest = dest;
 	}
 
-
-	public Event getEvent() {
-		return event;
-	}
-
-
-	public void setEvent(Event event) {
-		this.event = event;
-	}
-
-	
 	
 	public BigDecimal getProbability() {
 		return probability;
@@ -78,9 +58,7 @@ public class Transition {
 
 	@Override
 	public String toString(){
-		String s;
-		if(event!=null) s = name + " : (" + probability + ") [" + src +" --" +event.name + "--> " + dest+ "] ";
-		else  s =  "(" + probability + ") [" + src +" --" +name + "--> " + dest+ "] ";
+		String  s =  "("+src +"<" +name +"(" + probability + ")"+ ">" + dest+")";
 		return s;
 
 	}

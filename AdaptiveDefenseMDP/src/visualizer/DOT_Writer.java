@@ -8,9 +8,6 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Set;
-
-import lts.LTS;
-import lts.norms.NormsLTS;
 import resources.Transition;
 
 
@@ -29,8 +26,6 @@ public class DOT_Writer {
 	Boolean remove_policy_component;
 	//String void_transition;
 
-
-	LTS lts;
 	BufferedWriter bw;
 	File file;
 	private String option = "ap utility req";
@@ -57,81 +52,6 @@ public class DOT_Writer {
 		file=null;
 	}
 	
-	public DOT_Writer(String pathTographivFile,
-			LTS lts,
-			boolean show_action_names2, 
-			boolean only_show_states_in_transition,
-			boolean show_negated_fluents_and_actions,
-			boolean show_void_transition2,
-			boolean remove_similar_states2,
-			boolean show_state_name_in_node,
-			boolean remove_policy_component,
-			Set<String> fluentsToHide2, 
-			Set<String> fluentsStartingWithToHide2, 
-			Set<String> states_to_show,
-			Set<String> policyFluents, 
-			Set<String> policyTransitions) {
-		states = lts.getStates();
-		transitions=lts.getTransitions();
-		this.outputFileName=pathTographivFile;
-		this.show_action_names=show_action_names2;
-		this.show_void_transition=show_void_transition2;
-		//this.show_only_states_in_transition=only_show_states_in_transition;
-		this.show_negated=show_negated_fluents_and_actions;
-		//this.remove_similar_states = remove_similar_states2;
-		this.show_state_name_in_node = show_state_name_in_node;
-		this.remove_policy_component = remove_policy_component;
-		this.fluentsToHide=fluentsToHide2;
-		this.fluentsStartingWithToHide=fluentsStartingWithToHide2;
-		this.states_to_show = states_to_show;
-		this.policyFluents = policyFluents;
-		//this.policyTransitions = policyTransitions;
-		//findVoidTransition();
-	}
-
-	public DOT_Writer(String pathTographivFile,
-			LTS lts) {
-		states = lts.getStates();
-		transitions=lts.getTransitions();
-		this.outputFileName=pathTographivFile;
-		this.show_action_names=true;
-		this.show_void_transition=true;
-		//this.show_only_states_in_transition=only_show_states_in_transition;
-		this.show_negated=false;
-		//this.remove_similar_states = remove_similar_states2;
-		this.show_state_name_in_node = true;
-		//this.remove_policy_component = remove_policy_component;
-		//this.fluentsToHide=fluentsToHide2;
-		//this.fluentsStartingWithToHide=fluentsStartingWithToHide2;
-		//this.states_to_show = states_to_show;
-		//this.policyFluents = policyFluents;
-		//this.policyTransitions = policyTransitions;
-		//findVoidTransition();
-		file=null;
-	}
-
-	
-	
-	public DOT_Writer(String pathTographivFile, LTS lts, String option) {
-		states = lts.getStates();
-		transitions=lts.getTransitions();
-		this.outputFileName=pathTographivFile;
-		this.show_action_names=true;
-		this.show_void_transition=true;
-		this.option = option;
-		//this.show_only_states_in_transition=only_show_states_in_transition;
-		this.show_negated=false;
-		//this.remove_similar_states = remove_similar_states2;
-		this.show_state_name_in_node = true;
-		//this.remove_policy_component = remove_policy_component;
-		//this.fluentsToHide=fluentsToHide2;
-		//this.fluentsStartingWithToHide=fluentsStartingWithToHide2;
-		//this.states_to_show = states_to_show;
-		//this.policyFluents = policyFluents;
-		//this.policyTransitions = policyTransitions;
-		//findVoidTransition();
-		file=null;	}
-
 	public File writeToFile() {
 
 		file = new File(outputFileName);
