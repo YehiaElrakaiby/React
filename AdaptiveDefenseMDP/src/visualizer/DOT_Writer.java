@@ -10,8 +10,8 @@ import java.util.Iterator;
 import java.util.Set;
 
 import lts.LTS;
-import lts.Transition;
 import lts.norms.NormsLTS;
+import resources.Transition;
 
 
 public class DOT_Writer {

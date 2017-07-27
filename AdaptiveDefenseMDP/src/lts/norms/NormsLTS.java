@@ -15,11 +15,11 @@ import org.eclipse.emf.common.util.EList;
 //import org.apache.commons.collections4.bidimap.HashMap;
 
 import lts.LTS;
-import lts.Transition;
 import lts.norms.readers.DomainDescriptionReader;
 import resources.EffectLaw;
 import resources.ActionVariableDescription;
 import resources.StateVariableDescription;
+import resources.Transition;
 
 public class NormsLTS extends LTS{
 

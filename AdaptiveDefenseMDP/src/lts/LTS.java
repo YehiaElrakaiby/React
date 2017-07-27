@@ -19,6 +19,7 @@ import resources.EffectLaw;
 import resources.ActionVariableDescription;
 import resources.Effect;
 import resources.StateVariableDescription;
+import resources.Transition;
 import visualizer.DOT_Writer;
 
 public class LTS {

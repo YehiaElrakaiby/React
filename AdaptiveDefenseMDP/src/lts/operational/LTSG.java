@@ -18,17 +18,13 @@ import org.emftext.language.AdaptiveCyberDefense.OperationalRequirement;
 import org.emftext.language.AdaptiveCyberDefense.ProbabilisticEffect;
 import org.emftext.language.AdaptiveCyberDefense.StateAtom;
 import org.emftext.language.AdaptiveCyberDefense.StateVariable;
-import org.emftext.language.AdaptiveCyberDefense.impl.AchieveImpl;
 import org.emftext.language.AdaptiveCyberDefense.impl.FalseImpl;
-import org.emftext.language.AdaptiveCyberDefense.impl.MaintainImpl;
 import org.emftext.language.AdaptiveCyberDefense.impl.TrueImpl;
 
-//import org.apache.commons.collections4.bidimap.HashMap;
-
-import lts.Transition;
 import resources.EffectLaw;
 import resources.ActionVariableDescription;
 import resources.StateVariableDescription;
+import resources.Transition;
 import resources.RequirementDescription;
 
 /**
