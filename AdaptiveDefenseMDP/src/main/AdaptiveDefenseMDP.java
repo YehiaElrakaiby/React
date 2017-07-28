@@ -68,7 +68,7 @@ public class AdaptiveDefenseMDP {
 		/*
 		 * 2. Build the LTS using State and Action Variables, Action Descriptions and Requirements
 		 */
-		lts = new LTSG(description);
+		lts = new LTSG(description,LTSG.INITIAL);
 		
 		lts.print();
 		
