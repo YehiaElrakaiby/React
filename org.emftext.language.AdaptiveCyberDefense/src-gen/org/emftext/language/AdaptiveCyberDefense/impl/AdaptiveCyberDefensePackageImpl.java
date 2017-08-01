@@ -503,6 +503,15 @@ public class AdaptiveCyberDefensePackageImpl extends EPackageImpl implements Ada
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getOperationalRequirement_Description() {
+		return (EAttribute)operationalRequirementEClass.getEStructuralFeatures().get(6);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getActionVariable() {
 		return actionVariableEClass;
 	}
@@ -968,6 +977,7 @@ public class AdaptiveCyberDefensePackageImpl extends EPackageImpl implements Ada
 		createEReference(operationalRequirementEClass, OPERATIONAL_REQUIREMENT__ACTIVATION);
 		createEReference(operationalRequirementEClass, OPERATIONAL_REQUIREMENT__CANCELLATION);
 		createEReference(operationalRequirementEClass, OPERATIONAL_REQUIREMENT__CONDITION);
+		createEAttribute(operationalRequirementEClass, OPERATIONAL_REQUIREMENT__DESCRIPTION);
 
 		actionVariableEClass = createEClass(ACTION_VARIABLE);
 		createEAttribute(actionVariableEClass, ACTION_VARIABLE__TYPE);
@@ -1107,6 +1117,7 @@ public class AdaptiveCyberDefensePackageImpl extends EPackageImpl implements Ada
 		initEReference(getOperationalRequirement_Activation(), this.getFormula(), null, "activation", null, 0, 1, OperationalRequirement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getOperationalRequirement_Cancellation(), this.getFormula(), null, "cancellation", null, 0, 1, OperationalRequirement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getOperationalRequirement_Condition(), this.getFormula(), null, "condition", null, 1, 1, OperationalRequirement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getOperationalRequirement_Description(), ecorePackage.getEString(), "description", null, 0, 1, OperationalRequirement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(actionVariableEClass, ActionVariable.class, "ActionVariable", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getActionVariable_Type(), this.getActionType(), "type", null, 0, 1, ActionVariable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

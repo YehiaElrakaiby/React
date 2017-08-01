@@ -226,7 +226,7 @@ public class AtomImpl extends FormulaImpl implements Atom {
 	@Override
 	public boolean verify(HashMap<String, String> state) {
 		if(!state.containsKey(this.variable.getName())){
-			System.out.println(variable.getName());
+			//System.out.println(variable.getName());
 		} else if(state.get(this.variable.getName()).equals(value)){
 			return true;
 		} 

@@ -44,6 +44,7 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference AdaptiveCyberDefense.ecore#//OperationalRequirement/activation"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference AdaptiveCyberDefense.ecore#//OperationalRequirement/cancellation"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference AdaptiveCyberDefense.ecore#//OperationalRequirement/condition"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute AdaptiveCyberDefense.ecore#//OperationalRequirement/description"/>
     </genClasses>
     <genClasses ecoreClass="AdaptiveCyberDefense.ecore#//ActionVariable">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute AdaptiveCyberDefense.ecore#//ActionVariable/type"/>

@@ -64,7 +64,7 @@ public class ActionAtomImpl extends EObjectImpl implements ActionAtom {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected ActionAtomImpl() {
+	public ActionAtomImpl() {
 		super();
 	}
 

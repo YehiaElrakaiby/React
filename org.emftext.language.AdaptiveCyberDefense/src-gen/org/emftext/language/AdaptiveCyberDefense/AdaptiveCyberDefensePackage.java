@@ -369,13 +369,22 @@ public interface AdaptiveCyberDefensePackage extends EPackage {
 	int OPERATIONAL_REQUIREMENT__CONDITION = 5;
 
 	/**
+	 * The feature id for the '<em><b>Description</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATIONAL_REQUIREMENT__DESCRIPTION = 6;
+
+	/**
 	 * The number of structural features of the '<em>Operational Requirement</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATIONAL_REQUIREMENT_FEATURE_COUNT = 6;
+	int OPERATIONAL_REQUIREMENT_FEATURE_COUNT = 7;
 
 	/**
 	 * The meta object id for the '{@link org.emftext.language.AdaptiveCyberDefense.impl.ActionVariableImpl <em>Action Variable</em>}' class.
@@ -767,6 +776,15 @@ public interface AdaptiveCyberDefensePackage extends EPackage {
 	int ACHIEVE__CONDITION = OPERATIONAL_REQUIREMENT__CONDITION;
 
 	/**
+	 * The feature id for the '<em><b>Description</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ACHIEVE__DESCRIPTION = OPERATIONAL_REQUIREMENT__DESCRIPTION;
+
+	/**
 	 * The number of structural features of the '<em>Achieve</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -838,6 +856,15 @@ public interface AdaptiveCyberDefensePackage extends EPackage {
 	 * @ordered
 	 */
 	int MAINTAIN__CONDITION = OPERATIONAL_REQUIREMENT__CONDITION;
+
+	/**
+	 * The feature id for the '<em><b>Description</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAINTAIN__DESCRIPTION = OPERATIONAL_REQUIREMENT__DESCRIPTION;
 
 	/**
 	 * The feature id for the '<em><b>Duration</b></em>' attribute.
@@ -1322,6 +1349,17 @@ public interface AdaptiveCyberDefensePackage extends EPackage {
 	 * @generated
 	 */
 	EReference getOperationalRequirement_Condition();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.emftext.language.AdaptiveCyberDefense.OperationalRequirement#getDescription <em>Description</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Description</em>'.
+	 * @see org.emftext.language.AdaptiveCyberDefense.OperationalRequirement#getDescription()
+	 * @see #getOperationalRequirement()
+	 * @generated
+	 */
+	EAttribute getOperationalRequirement_Description();
 
 	/**
 	 * Returns the meta object for class '{@link org.emftext.language.AdaptiveCyberDefense.ActionVariable <em>Action Variable</em>}'.
@@ -2032,6 +2070,14 @@ public interface AdaptiveCyberDefensePackage extends EPackage {
 		 * @generated
 		 */
 		EReference OPERATIONAL_REQUIREMENT__CONDITION = eINSTANCE.getOperationalRequirement_Condition();
+
+		/**
+		 * The meta object literal for the '<em><b>Description</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute OPERATIONAL_REQUIREMENT__DESCRIPTION = eINSTANCE.getOperationalRequirement_Description();
 
 		/**
 		 * The meta object literal for the '{@link org.emftext.language.AdaptiveCyberDefense.impl.ActionVariableImpl <em>Action Variable</em>}' class.

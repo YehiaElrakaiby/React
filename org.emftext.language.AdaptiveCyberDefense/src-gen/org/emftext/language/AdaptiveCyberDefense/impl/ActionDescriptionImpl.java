@@ -98,7 +98,7 @@ public class ActionDescriptionImpl extends EObjectImpl implements ActionDescript
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected ActionDescriptionImpl() {
+	public ActionDescriptionImpl() {
 		super();
 	}
 

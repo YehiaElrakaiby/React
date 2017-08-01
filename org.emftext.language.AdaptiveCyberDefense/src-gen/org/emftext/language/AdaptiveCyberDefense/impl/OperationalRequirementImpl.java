@@ -29,6 +29,7 @@ import org.emftext.language.AdaptiveCyberDefense.OperationalRequirement;
  *   <li>{@link org.emftext.language.AdaptiveCyberDefense.impl.OperationalRequirementImpl#getActivation <em>Activation</em>}</li>
  *   <li>{@link org.emftext.language.AdaptiveCyberDefense.impl.OperationalRequirementImpl#getCancellation <em>Cancellation</em>}</li>
  *   <li>{@link org.emftext.language.AdaptiveCyberDefense.impl.OperationalRequirementImpl#getCondition <em>Condition</em>}</li>
+ *   <li>{@link org.emftext.language.AdaptiveCyberDefense.impl.OperationalRequirementImpl#getDescription <em>Description</em>}</li>
  * </ul>
  *
  * @generated
@@ -123,6 +124,26 @@ public abstract class OperationalRequirementImpl extends EObjectImpl implements 
 	 * @ordered
 	 */
 	protected Formula condition;
+
+	/**
+	 * The default value of the '{@link #getDescription() <em>Description</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getDescription()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String DESCRIPTION_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getDescription() <em>Description</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getDescription()
+	 * @generated
+	 * @ordered
+	 */
+	protected String description = DESCRIPTION_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -340,6 +361,27 @@ public abstract class OperationalRequirementImpl extends EObjectImpl implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public String getDescription() {
+		return description;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setDescription(String newDescription) {
+		String oldDescription = description;
+		description = newDescription;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, AdaptiveCyberDefensePackage.OPERATIONAL_REQUIREMENT__DESCRIPTION, oldDescription, description));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -373,6 +415,8 @@ public abstract class OperationalRequirementImpl extends EObjectImpl implements 
 				return getCancellation();
 			case AdaptiveCyberDefensePackage.OPERATIONAL_REQUIREMENT__CONDITION:
 				return getCondition();
+			case AdaptiveCyberDefensePackage.OPERATIONAL_REQUIREMENT__DESCRIPTION:
+				return getDescription();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -402,6 +446,9 @@ public abstract class OperationalRequirementImpl extends EObjectImpl implements 
 				return;
 			case AdaptiveCyberDefensePackage.OPERATIONAL_REQUIREMENT__CONDITION:
 				setCondition((Formula)newValue);
+				return;
+			case AdaptiveCyberDefensePackage.OPERATIONAL_REQUIREMENT__DESCRIPTION:
+				setDescription((String)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -433,6 +480,9 @@ public abstract class OperationalRequirementImpl extends EObjectImpl implements 
 			case AdaptiveCyberDefensePackage.OPERATIONAL_REQUIREMENT__CONDITION:
 				setCondition((Formula)null);
 				return;
+			case AdaptiveCyberDefensePackage.OPERATIONAL_REQUIREMENT__DESCRIPTION:
+				setDescription(DESCRIPTION_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -457,6 +507,8 @@ public abstract class OperationalRequirementImpl extends EObjectImpl implements 
 				return cancellation != null;
 			case AdaptiveCyberDefensePackage.OPERATIONAL_REQUIREMENT__CONDITION:
 				return condition != null;
+			case AdaptiveCyberDefensePackage.OPERATIONAL_REQUIREMENT__DESCRIPTION:
+				return DESCRIPTION_EDEFAULT == null ? description != null : !DESCRIPTION_EDEFAULT.equals(description);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -477,6 +529,8 @@ public abstract class OperationalRequirementImpl extends EObjectImpl implements 
 		result.append(cost);
 		result.append(", deadline: ");
 		result.append(deadline);
+		result.append(", description: ");
+		result.append(description);
 		result.append(')');
 		return result.toString();
 	}

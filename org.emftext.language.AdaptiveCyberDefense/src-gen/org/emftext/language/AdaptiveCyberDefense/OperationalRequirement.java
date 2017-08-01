@@ -19,6 +19,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link org.emftext.language.AdaptiveCyberDefense.OperationalRequirement#getActivation <em>Activation</em>}</li>
  *   <li>{@link org.emftext.language.AdaptiveCyberDefense.OperationalRequirement#getCancellation <em>Cancellation</em>}</li>
  *   <li>{@link org.emftext.language.AdaptiveCyberDefense.OperationalRequirement#getCondition <em>Condition</em>}</li>
+ *   <li>{@link org.emftext.language.AdaptiveCyberDefense.OperationalRequirement#getDescription <em>Description</em>}</li>
  * </ul>
  *
  * @see org.emftext.language.AdaptiveCyberDefense.AdaptiveCyberDefensePackage#getOperationalRequirement()
@@ -182,5 +183,31 @@ public interface OperationalRequirement extends EObject {
 	 * @generated
 	 */
 	void setCondition(Formula value);
+
+	/**
+	 * Returns the value of the '<em><b>Description</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Description</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Description</em>' attribute.
+	 * @see #setDescription(String)
+	 * @see org.emftext.language.AdaptiveCyberDefense.AdaptiveCyberDefensePackage#getOperationalRequirement_Description()
+	 * @model
+	 * @generated
+	 */
+	String getDescription();
+
+	/**
+	 * Sets the value of the '{@link org.emftext.language.AdaptiveCyberDefense.OperationalRequirement#getDescription <em>Description</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Description</em>' attribute.
+	 * @see #getDescription()
+	 * @generated
+	 */
+	void setDescription(String value);
 
 } // OperationalRequirement

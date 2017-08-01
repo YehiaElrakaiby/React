@@ -6,6 +6,7 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
 import resources.Transition;
@@ -25,6 +26,7 @@ public class DOT_Writer {
 	//Boolean remove_similar_states;
 	Boolean remove_policy_component;
 	//String void_transition;
+	HashMap<Integer, HashMap<String, String>> states;
 
 	BufferedWriter bw;
 	File file;
@@ -32,7 +34,7 @@ public class DOT_Writer {
 
 	public DOT_Writer(String pathTographivFile,
 			HashMap<Integer, HashMap<String, String>> states,
-			HashMap<String, Transition> transitions) {
+			HashSet<Transition> transitions) {
 		this.states = states;
 		this.transitions = transitions;
 		this.outputFileName=pathTographivFile;
@@ -111,7 +113,6 @@ public class DOT_Writer {
 		}
 	}
 
-	HashMap<Integer, HashMap<String, String>> states;
 	private void writeNodes() {
 		Iterator<Integer> it = states.keySet().iterator();
 		while(it.hasNext()){
@@ -186,12 +187,9 @@ public class DOT_Writer {
 		} 
 		return true;
 	}
-	HashMap<String, Transition> transitions; 
+	HashSet<Transition> transitions; 
 	private void writeTransitions() {
-		Iterator<String> it = transitions.keySet().iterator();
-		while(it.hasNext()){
-			String transition_id = it.next();
-			Transition transition_description = transitions.get(transition_id);
+		for(Transition transition_description : transitions){
 			Integer src = transition_description.getSrc();
 			Integer dst = transition_description.getDest();
 			try {

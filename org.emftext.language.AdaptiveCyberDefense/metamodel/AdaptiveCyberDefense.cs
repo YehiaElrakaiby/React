@@ -70,7 +70,8 @@ RULES {
 		("within"  deadline[INTEGER])?
 		("if"  activation)?
 		("unless"  cancellation)?
-		"cost" cost[INTEGER];
+		"cost" cost[INTEGER]
+		("description" description['"','"'])?;
 		
 	Maintain ::= 
 		"ReqID" name[] 
@@ -79,7 +80,9 @@ RULES {
 		("for"  duration[INTEGER])?
 		("after"  activation)?
 		("unless"  cancellation)?
-		"cost" cost[INTEGER];
+		"cost" cost[INTEGER]
+		("description" description['"','"'])?;
+		
 	
 	
 	ProbabilisticEffect ::= "<"  (stateatoms+)? ("prob" probability[FLOAT])? ">";

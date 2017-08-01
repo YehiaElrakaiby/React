@@ -3,6 +3,8 @@ package main;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.HashMap;
+import java.util.HashSet;
 
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
@@ -11,6 +13,8 @@ import org.emftext.language.AdaptiveCyberDefense.DomainDescription;
 import org.emftext.language.AdaptiveCyberDefense.resource.AdaptiveCyberDefense.mopp.AdaptiveCyberDefenseMetaInformation;
 import lts.operational.LTSG;
 import mdp.MDPSolver;
+import resources.RewardAndTransitionMatrixComputer;
+import resources.Transition;
 import visualizer.DOT_Writer;
 
 
@@ -23,10 +27,10 @@ public class AdaptiveDefenseMDP {
 	 * 				2) the transition matrix and the reward matrix are calculated
 	 * 				3) MDPToolBox is used to solve the MDP problem 
 	 */
-	
-	
-	
-	
+
+
+
+
 	/**
 	 * Based on the contents of a description:
 	 * (1) State Variables,
@@ -40,21 +44,21 @@ public class AdaptiveDefenseMDP {
 	 * Step 3: Construct a MDP = <Transition Matrix, Reward Matrix> and solve the MDP
 	 * @param args
 	 */
-	
+
 	static Path domain_description_location = Paths.get( "Users","yehia","Documents",
 			"runtime-EclipseApplication","AdaptiveCyberDefenseSpecifications",
 			"domain_description.AdaptiveCyberDefense");
-	
+
 	static String graphiz_file = "/Users/yehia/Documents/lts.dot";
-	
+
 	static DomainDescription description;
-	
+
 	static LTSG lts;
-	
-	static MDPSolver solver;
-	
+
+	static MDPSolver solver=new MDPSolver();
+
 	public static void main(String[] args) {
-		
+
 		/*
 		 * 1. Read the Domain Description 
 		 */		
@@ -64,50 +68,67 @@ public class AdaptiveDefenseMDP {
 			e1.printStackTrace();
 		}
 
-		
+
 		/*
 		 * 2. Build the LTS using State and Action Variables, Action Descriptions and Requirements
 		 */
 		lts = new LTSG(description,LTSG.INITIAL);
-		
+
 		lts.print();
-		
-		showInGraphiv(graphiz_file, lts);
-		//solver = new MDPSolver();
+
+		showInGraphiv(graphiz_file, lts.getStates(), lts.getTransitions());
+
+		double[][][] TM = RewardAndTransitionMatrixComputer.getTransitionMatrix(lts.getStates(),lts.getTransitions(),lts.getId_control_events());
+		double[][][] RM = RewardAndTransitionMatrixComputer.getRewardMatrix(lts.getStates(),lts.getTransitions(),lts.getId_control_events());
 		//lts.readDomainDescription(domain_description_location);
 		//lts.generateLTSFromInitialState();
 		//lts.showInGraphiv("/Users/yehia/Documents/lts.dot",NormsLTS.SHOW_ALL);
 		//lts.print();
-		
-		//solveMDP(lts.getTransitionMatrixAttacker(), lts.getRewardMatrixAttacker(),0.96);
-		//double[] policy_attacker = solver.getPolicy();
-		//double[] value_attacker = solver.getValue();
 
-		//LTS lts1 = lts.generateLTSFromPolicy(policy_attacker,value_attacker,"attack");
-		//lts1.showInGraphiv("/Users/yehia/Documents/lts_attack_policy.dot",NormsLTS.SHOW_ALL);
-		
+		solveMDP(TM, RM, 0.96);
+		double[] policy = solver.getPolicy();
+		double[] value = solver.getValue();
+
+		HashMap<Integer, HashMap<String, String>> states_value = RewardAndTransitionMatrixComputer.updateStatesUsingValue(lts.getStates(), value);
+		HashSet<Transition> filtered_transitions = RewardAndTransitionMatrixComputer.updateTransitionsUsingPolicy(lts.getTransitions(), lts.getId_control_events(), policy);
+		showInGraphiv("/Users/yehia/Documents/lts_attack_policy.dot",states_value,filtered_transitions,"");
+
 		//solveMDP(lts.getTransitionMatrixDefender(), lts.getRewardMatrixDefender(),0.96);
 		//double[] policy_defender = solver.getPolicy();
 		//double[] value_defender = solver.getValue();
 
 		//LTS lts2 = lts.generateLTSFromPolicy(policy_defender,value_defender,"defense");
 		//lts2.showInGraphiv("/Users/yehia/Documents/lts_service_policy.dot",NormsLTS.SHOW_ALL);
-		
+
 		//solveMDP(lts.getTransitionMatrixDefender(), lts.getTradeOffRewardMatrixDefender(value_attacker,value_defender),0.96);
 		//double[] policy = solver.getPolicy();
 		//double[] value= solver.getValue();
 
 		//LTS lts3 = lts.generateLTSFromPolicy(policy,value,"defense");
 		//lts3.showInGraphiv("/Users/yehia/Documents/lts_tradeoff_policy.dot",NormsLTS.SHOW_ALL);
-	
-		
+
+
 	}
-	
+
+	private static void showInGraphiv(String string, HashMap<Integer, HashMap<String, String>> states,
+			HashSet<Transition> transitions, String option) {
+		//DOT_Writer visualizer = new DOT_Writer(graphiz_file,states,transitions,option);
+		//visualizer.openFromDesktop();			
+	}
+
+	private static void showInGraphiv(String graphiz_file, HashMap<Integer, HashMap<String, String>> states,
+			HashSet<Transition> transitions) {
+		DOT_Writer visualizer = new DOT_Writer(graphiz_file,states,transitions);
+		visualizer.openFromDesktop();			
+	}
+	/*
 	private static void showInGraphiv(String path, LTSG lts) {
 		DOT_Writer visualizer = new DOT_Writer(path, lts.getStates(),lts.getTransitions());
 		visualizer.openFromDesktop();		
-	}
-	
+	}*/
+
+
+
 	private static void solveMDP(double[][][] p, double[][][] r, double discount) {
 
 		solver.setP(p);
