@@ -34,7 +34,7 @@ import org.emftext.language.AdaptiveCyberDefense.OperationalRequirement;
  *
  * @generated
  */
-public abstract class OperationalRequirementImpl extends EObjectImpl implements OperationalRequirement {
+public abstract class OperationalRequirementImpl extends InitialVariableImpl implements OperationalRequirement {
 	/**
 	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->

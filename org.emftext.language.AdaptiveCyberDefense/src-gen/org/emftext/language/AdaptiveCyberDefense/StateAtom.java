@@ -20,7 +20,7 @@ package org.emftext.language.AdaptiveCyberDefense;
  * @model
  * @generated
  */
-public interface StateAtom extends InitialStateAtom {
+public interface StateAtom extends InitialVariable {
 	/**
 	 * Returns the value of the '<em><b>Statevariable</b></em>' reference.
 	 * <!-- begin-user-doc -->

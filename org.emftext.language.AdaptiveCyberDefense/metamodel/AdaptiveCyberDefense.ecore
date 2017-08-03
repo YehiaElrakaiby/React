@@ -20,7 +20,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="actions" upperBound="-1"
         eType="#//ActionVariable" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="initial_atoms" lowerBound="1"
-        upperBound="-1" eType="#//InitialStateAtom" containment="true"/>
+        upperBound="-1" eType="#//InitialAtom" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="achievers" lowerBound="1"
         eType="#//AchieveRS" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="maintainrs" lowerBound="1"
@@ -34,20 +34,21 @@
       </eAnnotations>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="cost" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBigDecimal"
-        defaultValueLiteral="0.00001"/>
+        defaultValueLiteral="-0.00001"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="formula" eType="#//Formula"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="actionatom" lowerBound="1"
         eType="#//ActionAtom" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="StateVariable" eSuperTypes="#//Variable"/>
+  <eClassifiers xsi:type="ecore:EClass" name="StateVariable" eSuperTypes="#//Variable #//InitialVariable"/>
   <eClassifiers xsi:type="ecore:EClass" name="ProbabilisticEffect">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="probability" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBigDecimal"
         defaultValueLiteral="1.0"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="stateatoms" upperBound="-1"
         eType="#//StateAtom" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="OperationalRequirement" abstract="true">
+  <eClassifiers xsi:type="ecore:EClass" name="OperationalRequirement" abstract="true"
+      eSuperTypes="#//InitialVariable">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
         iD="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="cost" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EIntegerObject"/>
@@ -64,23 +65,23 @@
   <eClassifiers xsi:type="ecore:EClass" name="ActionVariable" eSuperTypes="#//Variable">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" eType="#//ActionType"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="RequirementAtom" eSuperTypes="#//InitialStateAtom">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="requirement" lowerBound="1"
-        eType="#//OperationalRequirement"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="status" lowerBound="1"
-        eType="#//RequirementStatus">
+  <eClassifiers xsi:type="ecore:EClass" name="InitialAtom">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
       <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
         <details key="name" value="status"/>
       </eAnnotations>
     </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="initialvariable" lowerBound="1"
+        eType="#//InitialVariable"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="RequirementStatus">
     <eLiterals name="inact" value="1"/>
     <eLiterals name="act" value="2"/>
     <eLiterals name="viol" value="3"/>
     <eLiterals name="sat" value="4"/>
+    <eLiterals name="req" value="4"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="InitialStateAtom" abstract="true">
+  <eClassifiers xsi:type="ecore:EClass" name="InitialVariable" abstract="true">
     <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
       <details key="name" value="InitialState"/>
     </eAnnotations>
@@ -91,7 +92,7 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="values" lowerBound="1"
         upperBound="-1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="StateAtom" eSuperTypes="#//InitialStateAtom">
+  <eClassifiers xsi:type="ecore:EClass" name="StateAtom" eSuperTypes="#//InitialVariable">
     <eStructuralFeatures xsi:type="ecore:EReference" name="statevariable" lowerBound="1"
         eType="#//StateVariable"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"

@@ -94,10 +94,10 @@ public class MDPSolver {
 		try {
 			check(this.p);
 			//check(this.r);
-			ml.eval("P");
-			ml.eval("R");
-			ml.eval("discount");
-		} catch (CancellationException | InterruptedException | ExecutionException e) {
+			//ml.eval("P");
+			//ml.eval("R");
+			//ml.eval("discount");
+		} catch (CancellationException e){// | InterruptedException | ExecutionException e) {
 			e.printStackTrace();
 		}
 	}

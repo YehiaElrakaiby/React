@@ -25,6 +25,7 @@ import org.emftext.language.AdaptiveCyberDefense.ActionVariable;
 import org.emftext.language.AdaptiveCyberDefense.AdaptiveCyberDefensePackage;
 
 import org.emftext.language.AdaptiveCyberDefense.DomainDescription;
+import org.emftext.language.AdaptiveCyberDefense.InitialAtom;
 import org.emftext.language.AdaptiveCyberDefense.InitialStateAtom;
 import org.emftext.language.AdaptiveCyberDefense.MaintainRS;
 import org.emftext.language.AdaptiveCyberDefense.OperationalRequirement;
@@ -98,7 +99,7 @@ public class DomainDescriptionImpl extends EObjectImpl implements DomainDescript
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<InitialStateAtom> initial_atoms;
+	protected EList<InitialAtom> initial_atoms;
 
 	/**
 	 * The cached value of the '{@link #getAchievers() <em>Achievers</em>}' containment reference.
@@ -192,9 +193,9 @@ public class DomainDescriptionImpl extends EObjectImpl implements DomainDescript
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<InitialStateAtom> getInitial_atoms() {
+	public EList<InitialAtom> getInitial_atoms() {
 		if (initial_atoms == null) {
-			initial_atoms = new EObjectContainmentEList<InitialStateAtom>(InitialStateAtom.class, this, AdaptiveCyberDefensePackage.DOMAIN_DESCRIPTION__INITIAL_ATOMS);
+			initial_atoms = new EObjectContainmentEList<InitialAtom>(InitialAtom.class, this, AdaptiveCyberDefensePackage.DOMAIN_DESCRIPTION__INITIAL_ATOMS);
 		}
 		return initial_atoms;
 	}
@@ -364,7 +365,7 @@ public class DomainDescriptionImpl extends EObjectImpl implements DomainDescript
 				return;
 			case AdaptiveCyberDefensePackage.DOMAIN_DESCRIPTION__INITIAL_ATOMS:
 				getInitial_atoms().clear();
-				getInitial_atoms().addAll((Collection<? extends InitialStateAtom>)newValue);
+				getInitial_atoms().addAll((Collection<? extends InitialAtom>)newValue);
 				return;
 			case AdaptiveCyberDefensePackage.DOMAIN_DESCRIPTION__ACHIEVERS:
 				setAchievers((AchieveRS)newValue);

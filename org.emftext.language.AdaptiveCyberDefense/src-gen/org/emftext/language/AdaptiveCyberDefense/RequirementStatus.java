@@ -56,7 +56,15 @@ public enum RequirementStatus implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	SAT(4, "sat", "sat");
+	SAT(4, "sat", "sat"), /**
+	 * The '<em><b>Req</b></em>' literal object.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #REQ_VALUE
+	 * @generated
+	 * @ordered
+	 */
+	REQ(4, "req", "req");
 
 	/**
 	 * The '<em><b>Inact</b></em>' literal value.
@@ -119,6 +127,21 @@ public enum RequirementStatus implements Enumerator {
 	public static final int SAT_VALUE = 4;
 
 	/**
+	 * The '<em><b>Req</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>Req</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #REQ
+	 * @model name="req"
+	 * @generated
+	 * @ordered
+	 */
+	public static final int REQ_VALUE = 4;
+
+	/**
 	 * An array of all the '<em><b>Requirement Status</b></em>' enumerators.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -130,6 +153,7 @@ public enum RequirementStatus implements Enumerator {
 			ACT,
 			VIOL,
 			SAT,
+			REQ,
 		};
 
 	/**

@@ -5,9 +5,12 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Set;
 import resources.Transition;
 
@@ -32,6 +35,41 @@ public class DOT_Writer {
 	File file;
 	private String option = "ap utility req";
 
+	public static final String SHOW_UTIL = "utility";
+	public static final String SHOW_AP = "ap";
+	public static final String SHOW_REQ = "req";
+
+	public static final String SHOW_UTIL_AP = "utility ap";
+	public static final String SHOW_UTIL_REQ = "utility req";
+	public static final String SHOW_AP_REQ = "ap req";
+	public static final String SHOW_ALL = "utility ap req";
+
+
+	public DOT_Writer(String pathTographivFile,
+			HashMap<Integer, HashMap<String, String>> states,
+			HashSet<Transition> transitions,
+			String option) {
+		this.states = states;
+		this.transitions = transitions;
+		this.outputFileName=pathTographivFile;
+		this.show_action_names=true;
+		this.show_void_transition=true;
+		//this.show_only_states_in_transition=only_show_states_in_transition;
+		this.show_negated=false;
+		//this.remove_similar_states = remove_similar_states2;
+		this.show_state_name_in_node = true;
+		//this.remove_policy_component = remove_policy_component;
+		//this.fluentsToHide=fluentsToHide2;
+		//this.fluentsStartingWithToHide=fluentsStartingWithToHide2;
+		//this.states_to_show = states_to_show;
+		//this.policyFluents = policyFluents;
+		//this.policyTransitions = policyTransitions;
+		//findVoidTransition();
+		this.option=option;
+		file=null;
+	}
+
+
 	public DOT_Writer(String pathTographivFile,
 			HashMap<Integer, HashMap<String, String>> states,
 			HashSet<Transition> transitions) {
@@ -53,7 +91,7 @@ public class DOT_Writer {
 		//findVoidTransition();
 		file=null;
 	}
-	
+
 	public File writeToFile() {
 
 		file = new File(outputFileName);
@@ -105,7 +143,7 @@ public class DOT_Writer {
 			if(file!=null)dt.open(file);
 			else {
 				this.writeToFile();
-				dt.open(file);
+				//dt.open(file);
 			}
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
@@ -126,9 +164,9 @@ public class DOT_Writer {
 				}
 
 				HashMap<String, String> literals = states.get(stateName);
-				Iterator<String> it2 = literals.keySet().iterator();
-				while(it2.hasNext()) {
-					String fluent_name = it2.next();
+				Set<String> set = literals.keySet();
+			    List<String> list=asSortedList(set);
+				for(String fluent_name : list) {
 					String value = literals.get(fluent_name);
 					if(!filter(fluent_name)) {
 						if(value.equals("tt")) {
@@ -176,7 +214,12 @@ public class DOT_Writer {
 		//			}
 		//		}
 	}
-
+	public static
+	<T extends Comparable<? super T>> List<T> asSortedList(Collection<T> c) {
+	  List<T> list = new ArrayList<T>(c);
+	  java.util.Collections.sort(list);
+	  return list;
+	}
 	private boolean filter(String fluent_name) {
 		if(this.option.contains("utility") && fluent_name.startsWith("utility")) {
 			return false;
@@ -188,25 +231,31 @@ public class DOT_Writer {
 		return true;
 	}
 	HashSet<Transition> transitions; 
+
 	private void writeTransitions() {
 		for(Transition transition_description : transitions){
-			Integer src = transition_description.getSrc();
-			Integer dst = transition_description.getDest();
-			try {
-				bw.write(src+" -> "+dst);
+			if(transition_description.getApplicability()) {
+				Integer src = transition_description.getSrc();
+				Integer dst = transition_description.getDest();
+				try {
+					bw.write(src+" -> "+dst);
 
-				bw.write(" [label=\"");
+					bw.write(" [label=\"");
 
-				bw.write(transition_description.getProbability()+":"+
-						transition_description.getName()+" "+"\\n");
+					bw.write(
+							transition_description.getName() +" "
+							+ transition_description.getProbability() +" "
+							+ transition_description.getReward() +" "
+							+"\\n");
 
-				bw.write("\"]\n");
+					bw.write("\"]\n");
 
-				bw.write("\n");
+					bw.write("\n");
 
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
 		}
 

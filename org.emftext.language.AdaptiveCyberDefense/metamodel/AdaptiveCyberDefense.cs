@@ -32,6 +32,7 @@ RULES {
 	DomainDescription ::= "DomainDescription" "{" 
 		"StateVariables" "=" "<" (state_variables ";")* ">" 
 		"ActionVariables" "=" "<"  (actions ";")* ">"
+		
 		"OperationalRequirements" "=" "<" (requirements ";")* ">" 		
 		"EventDescriptions" "=" "<" (action_descriptions ";")* ">" 
 		
@@ -115,7 +116,7 @@ RULES {
 	@Operator(type="primitive",weight="3",superclass="Formula")
 	False ::=  "false" ;
 
-	RequirementAtom ::= requirement[] "=" status[act:"act", inact:"inact", viol:"viol", sat:"sat"];
+	InitialAtom ::= initialvariable[] "=" value[];
 		
 
 }

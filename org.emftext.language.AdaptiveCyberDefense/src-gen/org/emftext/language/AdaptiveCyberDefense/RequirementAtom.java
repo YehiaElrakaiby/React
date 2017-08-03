@@ -49,7 +49,6 @@ public interface RequirementAtom extends InitialStateAtom {
 
 	/**
 	 * Returns the value of the '<em><b>Status</b></em>' attribute.
-	 * The literals are from the enumeration {@link org.emftext.language.AdaptiveCyberDefense.RequirementStatus}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Status</em>' attribute isn't clear,
@@ -57,24 +56,22 @@ public interface RequirementAtom extends InitialStateAtom {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Status</em>' attribute.
-	 * @see org.emftext.language.AdaptiveCyberDefense.RequirementStatus
-	 * @see #setStatus(RequirementStatus)
+	 * @see #setStatus(String)
 	 * @see org.emftext.language.AdaptiveCyberDefense.AdaptiveCyberDefensePackage#getRequirementAtom_Status()
 	 * @model required="true"
 	 *        extendedMetaData="name='status'"
 	 * @generated
 	 */
-	RequirementStatus getStatus();
+	String getStatus();
 
 	/**
 	 * Sets the value of the '{@link org.emftext.language.AdaptiveCyberDefense.RequirementAtom#getStatus <em>Status</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Status</em>' attribute.
-	 * @see org.emftext.language.AdaptiveCyberDefense.RequirementStatus
 	 * @see #getStatus()
 	 * @generated
 	 */
-	void setStatus(RequirementStatus value);
+	void setStatus(String value);
 
 } // RequirementAtom

@@ -13,7 +13,7 @@ import org.emftext.language.AdaptiveCyberDefense.DomainDescription;
 import org.emftext.language.AdaptiveCyberDefense.resource.AdaptiveCyberDefense.mopp.AdaptiveCyberDefenseMetaInformation;
 import lts.operational.LTSG;
 import mdp.MDPSolver;
-import resources.RewardAndTransitionMatrixComputer;
+import resources.MDP_Computer;
 import resources.Transition;
 import visualizer.DOT_Writer;
 
@@ -49,7 +49,7 @@ public class AdaptiveDefenseMDP {
 			"runtime-EclipseApplication","AdaptiveCyberDefenseSpecifications",
 			"domain_description.AdaptiveCyberDefense");
 
-	static String graphiz_file = "/Users/yehia/Documents/lts.dot";
+	static String graphiz_file_location = "/Users/yehia/Documents/GraphivFilesReact/";
 
 	static DomainDescription description;
 
@@ -76,10 +76,12 @@ public class AdaptiveDefenseMDP {
 
 		lts.print();
 
-		showInGraphiv(graphiz_file, lts.getStates(), lts.getTransitions());
+		//showInGraphiv(graphiz_file, lts.getStates(), lts.getTransitions(), DOT_Writer.SHOW_ALL);
+		//showInGraphiv(graphiz_file, lts.getStates(), lts.getTransitions(), DOT_Writer.SHOW_REQ);
+		showInGraphiv(graphiz_file_location+"lts.dot", lts.getStates(), lts.getTransitions(), DOT_Writer.SHOW_ALL);
 
-		double[][][] TM = RewardAndTransitionMatrixComputer.getTransitionMatrix(lts.getStates(),lts.getTransitions(),lts.getId_control_events());
-		double[][][] RM = RewardAndTransitionMatrixComputer.getRewardMatrix(lts.getStates(),lts.getTransitions(),lts.getId_control_events());
+		double[][][] TM = MDP_Computer.getTransitionMatrix(lts.getStates(),lts.getTransitions(),lts.getControl_events_id());
+		double[][][] RM = MDP_Computer.getRewardMatrix(lts.getStates(),lts.getTransitions(),lts.getControl_events_id());
 		//lts.readDomainDescription(domain_description_location);
 		//lts.generateLTSFromInitialState();
 		//lts.showInGraphiv("/Users/yehia/Documents/lts.dot",NormsLTS.SHOW_ALL);
@@ -89,9 +91,18 @@ public class AdaptiveDefenseMDP {
 		double[] policy = solver.getPolicy();
 		double[] value = solver.getValue();
 
-		HashMap<Integer, HashMap<String, String>> states_value = RewardAndTransitionMatrixComputer.updateStatesUsingValue(lts.getStates(), value);
-		HashSet<Transition> filtered_transitions = RewardAndTransitionMatrixComputer.updateTransitionsUsingPolicy(lts.getTransitions(), lts.getId_control_events(), policy);
-		showInGraphiv("/Users/yehia/Documents/lts_attack_policy.dot",states_value,filtered_transitions,"");
+		//solver.printRewardMatrix();
+		//solver.printTransitionMatrix();
+		
+		HashSet<Transition> filtered_transitions = MDP_Computer.updateTransitionsUsingPolicy(lts.getTransitions(), lts.getControl_events_id(), policy,MDP_Computer.SHOW_NOOP);
+		HashMap<Integer, HashMap<String, String>> states_value = MDP_Computer.updateStatesUsingValue(lts.getStates(), value, filtered_transitions, MDP_Computer.SHOW_ALL_STATES);
+
+		showInGraphiv(graphiz_file_location+"controlstrategy.dot",states_value,filtered_transitions,DOT_Writer.SHOW_ALL);
+
+		HashSet<Transition> plan_transitions = MDP_Computer.findPlanTransitionsUsingPolicy(lts.getTransitions2(), lts.getTransitions3(), lts.getId_control_events(), policy);
+		HashMap<Integer, HashMap<String, String>> states_val = MDP_Computer.updateStatesUsingValue(lts.getStates(), value, plan_transitions, MDP_Computer.SHOW_STATE_TRANSITIONS_ONLY);
+
+		showInGraphiv(graphiz_file_location+"controlplan.dot",states_val,plan_transitions,DOT_Writer.SHOW_ALL);
 
 		//solveMDP(lts.getTransitionMatrixDefender(), lts.getRewardMatrixDefender(),0.96);
 		//double[] policy_defender = solver.getPolicy();
@@ -110,17 +121,22 @@ public class AdaptiveDefenseMDP {
 
 	}
 
-	private static void showInGraphiv(String string, HashMap<Integer, HashMap<String, String>> states,
+	
+
+	private static void showInGraphiv(String file_path, HashMap<Integer, HashMap<String, String>> states,
 			HashSet<Transition> transitions, String option) {
-		//DOT_Writer visualizer = new DOT_Writer(graphiz_file,states,transitions,option);
-		//visualizer.openFromDesktop();			
+		DOT_Writer visualizer = new DOT_Writer(file_path,states,transitions,option);
+		visualizer.openFromDesktop();			
 	}
 
-	private static void showInGraphiv(String graphiz_file, HashMap<Integer, HashMap<String, String>> states,
+	/*
+	private static void showInGraphiv(String graphiz_file, 
+			HashMap<Integer, 
+			HashMap<String, String>> states,
 			HashSet<Transition> transitions) {
 		DOT_Writer visualizer = new DOT_Writer(graphiz_file,states,transitions);
 		visualizer.openFromDesktop();			
-	}
+	}*/
 	/*
 	private static void showInGraphiv(String path, LTSG lts) {
 		DOT_Writer visualizer = new DOT_Writer(path, lts.getStates(),lts.getTransitions());

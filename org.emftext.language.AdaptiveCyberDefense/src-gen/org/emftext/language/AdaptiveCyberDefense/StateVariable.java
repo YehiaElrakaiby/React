@@ -13,5 +13,5 @@ package org.emftext.language.AdaptiveCyberDefense;
  * @model
  * @generated
  */
-public interface StateVariable extends Variable {
+public interface StateVariable extends Variable, InitialVariable {
 } // StateVariable

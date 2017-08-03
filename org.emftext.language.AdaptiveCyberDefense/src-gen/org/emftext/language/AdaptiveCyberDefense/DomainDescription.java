@@ -97,7 +97,7 @@ public interface DomainDescription extends EObject {
 
 	/**
 	 * Returns the value of the '<em><b>Initial atoms</b></em>' containment reference list.
-	 * The list contents are of type {@link org.emftext.language.AdaptiveCyberDefense.InitialStateAtom}.
+	 * The list contents are of type {@link org.emftext.language.AdaptiveCyberDefense.InitialAtom}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Initial atoms</em>' containment reference list isn't clear,
@@ -109,7 +109,7 @@ public interface DomainDescription extends EObject {
 	 * @model containment="true" required="true"
 	 * @generated
 	 */
-	EList<InitialStateAtom> getInitial_atoms();
+	EList<InitialAtom> getInitial_atoms();
 
 	/**
 	 * Returns the value of the '<em><b>Achievers</b></em>' containment reference.

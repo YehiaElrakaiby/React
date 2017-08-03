@@ -62,7 +62,7 @@ public class AdaptiveCyberDefenseFactoryImpl extends EFactoryImpl implements Ada
 			case AdaptiveCyberDefensePackage.STATE_VARIABLE: return createStateVariable();
 			case AdaptiveCyberDefensePackage.PROBABILISTIC_EFFECT: return createProbabilisticEffect();
 			case AdaptiveCyberDefensePackage.ACTION_VARIABLE: return createActionVariable();
-			case AdaptiveCyberDefensePackage.REQUIREMENT_ATOM: return createRequirementAtom();
+			case AdaptiveCyberDefensePackage.INITIAL_ATOM: return createInitialAtom();
 			case AdaptiveCyberDefensePackage.STATE_ATOM: return createStateAtom();
 			case AdaptiveCyberDefensePackage.ACTION_ATOM: return createActionAtom();
 			case AdaptiveCyberDefensePackage.CONJUNCTION: return createConjunction();
@@ -170,9 +170,9 @@ public class AdaptiveCyberDefenseFactoryImpl extends EFactoryImpl implements Ada
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public RequirementAtom createRequirementAtom() {
-		RequirementAtomImpl requirementAtom = new RequirementAtomImpl();
-		return requirementAtom;
+	public InitialAtom createInitialAtom() {
+		InitialAtomImpl initialAtom = new InitialAtomImpl();
+		return initialAtom;
 	}
 
 	/**

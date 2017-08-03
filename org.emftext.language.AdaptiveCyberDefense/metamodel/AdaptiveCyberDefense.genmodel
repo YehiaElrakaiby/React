@@ -11,6 +11,7 @@
       <genEnumLiterals ecoreEnumLiteral="AdaptiveCyberDefense.ecore#//RequirementStatus/act"/>
       <genEnumLiterals ecoreEnumLiteral="AdaptiveCyberDefense.ecore#//RequirementStatus/viol"/>
       <genEnumLiterals ecoreEnumLiteral="AdaptiveCyberDefense.ecore#//RequirementStatus/sat"/>
+      <genEnumLiterals ecoreEnumLiteral="AdaptiveCyberDefense.ecore#//RequirementStatus/req"/>
     </genEnums>
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="AdaptiveCyberDefense.ecore#//ActionType">
       <genEnumLiterals ecoreEnumLiteral="AdaptiveCyberDefense.ecore#//ActionType/control"/>
@@ -49,11 +50,11 @@
     <genClasses ecoreClass="AdaptiveCyberDefense.ecore#//ActionVariable">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute AdaptiveCyberDefense.ecore#//ActionVariable/type"/>
     </genClasses>
-    <genClasses ecoreClass="AdaptiveCyberDefense.ecore#//RequirementAtom">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference AdaptiveCyberDefense.ecore#//RequirementAtom/requirement"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute AdaptiveCyberDefense.ecore#//RequirementAtom/status"/>
+    <genClasses ecoreClass="AdaptiveCyberDefense.ecore#//InitialAtom">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute AdaptiveCyberDefense.ecore#//InitialAtom/value"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference AdaptiveCyberDefense.ecore#//InitialAtom/initialvariable"/>
     </genClasses>
-    <genClasses ecoreClass="AdaptiveCyberDefense.ecore#//InitialStateAtom"/>
+    <genClasses ecoreClass="AdaptiveCyberDefense.ecore#//InitialVariable"/>
     <genClasses ecoreClass="AdaptiveCyberDefense.ecore#//Variable">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute AdaptiveCyberDefense.ecore#//Variable/name"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute AdaptiveCyberDefense.ecore#//Variable/values"/>

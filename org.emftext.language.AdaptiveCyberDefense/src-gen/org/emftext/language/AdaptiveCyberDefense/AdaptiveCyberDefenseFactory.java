@@ -67,13 +67,13 @@ public interface AdaptiveCyberDefenseFactory extends EFactory {
 	ActionVariable createActionVariable();
 
 	/**
-	 * Returns a new object of class '<em>Requirement Atom</em>'.
+	 * Returns a new object of class '<em>Initial Atom</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Requirement Atom</em>'.
+	 * @return a new object of class '<em>Initial Atom</em>'.
 	 * @generated
 	 */
-	RequirementAtom createRequirementAtom();
+	InitialAtom createInitialAtom();
 
 	/**
 	 * Returns a new object of class '<em>State Atom</em>'.

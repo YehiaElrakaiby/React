@@ -92,12 +92,12 @@ public class AdaptiveCyberDefenseAdapterFactory extends AdapterFactoryImpl {
 				return createActionVariableAdapter();
 			}
 			@Override
-			public Adapter caseRequirementAtom(RequirementAtom object) {
-				return createRequirementAtomAdapter();
+			public Adapter caseInitialAtom(InitialAtom object) {
+				return createInitialAtomAdapter();
 			}
 			@Override
-			public Adapter caseInitialStateAtom(InitialStateAtom object) {
-				return createInitialStateAtomAdapter();
+			public Adapter caseInitialVariable(InitialVariable object) {
+				return createInitialVariableAdapter();
 			}
 			@Override
 			public Adapter caseVariable(Variable object) {
@@ -264,30 +264,30 @@ public class AdaptiveCyberDefenseAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.emftext.language.AdaptiveCyberDefense.RequirementAtom <em>Requirement Atom</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.emftext.language.AdaptiveCyberDefense.InitialAtom <em>Initial Atom</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.emftext.language.AdaptiveCyberDefense.RequirementAtom
+	 * @see org.emftext.language.AdaptiveCyberDefense.InitialAtom
 	 * @generated
 	 */
-	public Adapter createRequirementAtomAdapter() {
+	public Adapter createInitialAtomAdapter() {
 		return null;
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.emftext.language.AdaptiveCyberDefense.InitialStateAtom <em>Initial State Atom</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.emftext.language.AdaptiveCyberDefense.InitialVariable <em>Initial Variable</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.emftext.language.AdaptiveCyberDefense.InitialStateAtom
+	 * @see org.emftext.language.AdaptiveCyberDefense.InitialVariable
 	 * @generated
 	 */
-	public Adapter createInitialStateAtomAdapter() {
+	public Adapter createInitialVariableAdapter() {
 		return null;
 	}
 

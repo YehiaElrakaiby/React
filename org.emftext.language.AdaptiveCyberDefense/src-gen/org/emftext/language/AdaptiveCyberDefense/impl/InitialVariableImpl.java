@@ -7,22 +7,22 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 
 import org.emftext.language.AdaptiveCyberDefense.AdaptiveCyberDefensePackage;
-import org.emftext.language.AdaptiveCyberDefense.InitialStateAtom;
+import org.emftext.language.AdaptiveCyberDefense.InitialVariable;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Initial State Atom</b></em>'.
+ * An implementation of the model object '<em><b>Initial Variable</b></em>'.
  * <!-- end-user-doc -->
  *
  * @generated
  */
-public abstract class InitialStateAtomImpl extends EObjectImpl implements InitialStateAtom {
+public abstract class InitialVariableImpl extends EObjectImpl implements InitialVariable {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected InitialStateAtomImpl() {
+	protected InitialVariableImpl() {
 		super();
 	}
 
@@ -33,7 +33,7 @@ public abstract class InitialStateAtomImpl extends EObjectImpl implements Initia
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return AdaptiveCyberDefensePackage.Literals.INITIAL_STATE_ATOM;
+		return AdaptiveCyberDefensePackage.Literals.INITIAL_VARIABLE;
 	}
 
-} //InitialStateAtomImpl
+} //InitialVariableImpl

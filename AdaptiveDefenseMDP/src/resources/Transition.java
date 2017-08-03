@@ -3,13 +3,15 @@ package resources;
 import java.math.BigDecimal;
 
 public class Transition {
-	private String name;
-	private Integer src;
-	private Integer dest;
-	private BigDecimal probability;
-	private Boolean applicable;
+	private String name="";
+	private Integer src=-1;
+	private Integer dest=-1;
+	private BigDecimal probability=new BigDecimal(-1);
+	private Boolean applicable=false;
 	private Integer reward=0;
-
+	private Integer id=0;
+	private Boolean applicability=false;
+	
 	static public final Boolean APPLICABLE = true;
 	static public final Boolean NOTAPPLICABLE = false;
 
@@ -70,14 +72,6 @@ public class Transition {
 		this.probability = probability;
 	}
 
-	public Boolean getApplicable() {
-		return applicable;
-	}
-
-	public void setApplicable(Boolean applicable) {
-		this.applicable = applicable;
-	}
-
 	public Integer getReward() {
 		return reward;
 	}
@@ -96,6 +90,44 @@ public class Transition {
 		return result;
 	}
 
+	static public int hashCode(Integer src, String name, Integer dest) {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((dest == null) ? 0 : dest.hashCode());
+		result = prime * result + ((name == null) ? 0 : name.hashCode());
+		result = prime * result + ((src == null) ? 0 : src.hashCode());
+		return result;
+	}
+	
+	static public int hashCode(Integer src, String name) {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((name == null) ? 0 : name.hashCode());
+		result = prime * result + ((src == null) ? 0 : src.hashCode());
+		return result;
+	}
+	
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public void updateReward(int cost_reward) {
+		this.reward+=cost_reward;
+		
+	}
+
+	public Boolean getApplicability() {
+		return applicability;
+	}
+
+	public void setApplicability(Boolean applicability) {
+		this.applicability = applicability;
+	}
+	
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -125,13 +157,16 @@ public class Transition {
 
 	@Override
 	public String toString(){
-		String  s =  "("+src +"<" +name +"(" + probability + ")"+ ">" + dest+")";
+		
+		String  s; 
+		if(this.applicable) {
+			s =  this.applicable+"("+src +"<" +name +"(" + probability + ")"+ ">" + dest+")";
+		} else {
+			s =  this.applicable + "(" + src +"<" +name +"(" + probability + ")";
+		}
 		return s;
 
 	}
 
-	public void updateReward(int cost_reward) {
-		this.reward+=cost_reward;
-		
-	}
+	
 }

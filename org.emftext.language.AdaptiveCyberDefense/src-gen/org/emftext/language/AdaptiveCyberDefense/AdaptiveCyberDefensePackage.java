@@ -305,6 +305,25 @@ public interface AdaptiveCyberDefensePackage extends EPackage {
 	int PROBABILISTIC_EFFECT_FEATURE_COUNT = 2;
 
 	/**
+	 * The meta object id for the '{@link org.emftext.language.AdaptiveCyberDefense.impl.InitialVariableImpl <em>Initial Variable</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.emftext.language.AdaptiveCyberDefense.impl.InitialVariableImpl
+	 * @see org.emftext.language.AdaptiveCyberDefense.impl.AdaptiveCyberDefensePackageImpl#getInitialVariable()
+	 * @generated
+	 */
+	int INITIAL_VARIABLE = 7;
+
+	/**
+	 * The number of structural features of the '<em>Initial Variable</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INITIAL_VARIABLE_FEATURE_COUNT = 0;
+
+	/**
 	 * The meta object id for the '{@link org.emftext.language.AdaptiveCyberDefense.impl.OperationalRequirementImpl <em>Operational Requirement</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -321,7 +340,7 @@ public interface AdaptiveCyberDefensePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATIONAL_REQUIREMENT__NAME = 0;
+	int OPERATIONAL_REQUIREMENT__NAME = INITIAL_VARIABLE_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Cost</b></em>' attribute.
@@ -330,7 +349,7 @@ public interface AdaptiveCyberDefensePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATIONAL_REQUIREMENT__COST = 1;
+	int OPERATIONAL_REQUIREMENT__COST = INITIAL_VARIABLE_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Deadline</b></em>' attribute.
@@ -339,7 +358,7 @@ public interface AdaptiveCyberDefensePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATIONAL_REQUIREMENT__DEADLINE = 2;
+	int OPERATIONAL_REQUIREMENT__DEADLINE = INITIAL_VARIABLE_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Activation</b></em>' containment reference.
@@ -348,7 +367,7 @@ public interface AdaptiveCyberDefensePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATIONAL_REQUIREMENT__ACTIVATION = 3;
+	int OPERATIONAL_REQUIREMENT__ACTIVATION = INITIAL_VARIABLE_FEATURE_COUNT + 3;
 
 	/**
 	 * The feature id for the '<em><b>Cancellation</b></em>' containment reference.
@@ -357,7 +376,7 @@ public interface AdaptiveCyberDefensePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATIONAL_REQUIREMENT__CANCELLATION = 4;
+	int OPERATIONAL_REQUIREMENT__CANCELLATION = INITIAL_VARIABLE_FEATURE_COUNT + 4;
 
 	/**
 	 * The feature id for the '<em><b>Condition</b></em>' containment reference.
@@ -366,7 +385,7 @@ public interface AdaptiveCyberDefensePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATIONAL_REQUIREMENT__CONDITION = 5;
+	int OPERATIONAL_REQUIREMENT__CONDITION = INITIAL_VARIABLE_FEATURE_COUNT + 5;
 
 	/**
 	 * The feature id for the '<em><b>Description</b></em>' attribute.
@@ -375,7 +394,7 @@ public interface AdaptiveCyberDefensePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATIONAL_REQUIREMENT__DESCRIPTION = 6;
+	int OPERATIONAL_REQUIREMENT__DESCRIPTION = INITIAL_VARIABLE_FEATURE_COUNT + 6;
 
 	/**
 	 * The number of structural features of the '<em>Operational Requirement</em>' class.
@@ -384,7 +403,7 @@ public interface AdaptiveCyberDefensePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATIONAL_REQUIREMENT_FEATURE_COUNT = 7;
+	int OPERATIONAL_REQUIREMENT_FEATURE_COUNT = INITIAL_VARIABLE_FEATURE_COUNT + 7;
 
 	/**
 	 * The meta object id for the '{@link org.emftext.language.AdaptiveCyberDefense.impl.ActionVariableImpl <em>Action Variable</em>}' class.
@@ -433,60 +452,41 @@ public interface AdaptiveCyberDefensePackage extends EPackage {
 	int ACTION_VARIABLE_FEATURE_COUNT = VARIABLE_FEATURE_COUNT + 1;
 
 	/**
-	 * The meta object id for the '{@link org.emftext.language.AdaptiveCyberDefense.impl.InitialStateAtomImpl <em>Initial State Atom</em>}' class.
+	 * The meta object id for the '{@link org.emftext.language.AdaptiveCyberDefense.impl.InitialAtomImpl <em>Initial Atom</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.emftext.language.AdaptiveCyberDefense.impl.InitialStateAtomImpl
-	 * @see org.emftext.language.AdaptiveCyberDefense.impl.AdaptiveCyberDefensePackageImpl#getInitialStateAtom()
+	 * @see org.emftext.language.AdaptiveCyberDefense.impl.InitialAtomImpl
+	 * @see org.emftext.language.AdaptiveCyberDefense.impl.AdaptiveCyberDefensePackageImpl#getInitialAtom()
 	 * @generated
 	 */
-	int INITIAL_STATE_ATOM = 7;
+	int INITIAL_ATOM = 6;
 
 	/**
-	 * The number of structural features of the '<em>Initial State Atom</em>' class.
+	 * The feature id for the '<em><b>Value</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int INITIAL_STATE_ATOM_FEATURE_COUNT = 0;
+	int INITIAL_ATOM__VALUE = 0;
 
 	/**
-	 * The meta object id for the '{@link org.emftext.language.AdaptiveCyberDefense.impl.RequirementAtomImpl <em>Requirement Atom</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.emftext.language.AdaptiveCyberDefense.impl.RequirementAtomImpl
-	 * @see org.emftext.language.AdaptiveCyberDefense.impl.AdaptiveCyberDefensePackageImpl#getRequirementAtom()
-	 * @generated
-	 */
-	int REQUIREMENT_ATOM = 6;
-
-	/**
-	 * The feature id for the '<em><b>Requirement</b></em>' reference.
+	 * The feature id for the '<em><b>Initialvariable</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int REQUIREMENT_ATOM__REQUIREMENT = INITIAL_STATE_ATOM_FEATURE_COUNT + 0;
+	int INITIAL_ATOM__INITIALVARIABLE = 1;
 
 	/**
-	 * The feature id for the '<em><b>Status</b></em>' attribute.
+	 * The number of structural features of the '<em>Initial Atom</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int REQUIREMENT_ATOM__STATUS = INITIAL_STATE_ATOM_FEATURE_COUNT + 1;
-
-	/**
-	 * The number of structural features of the '<em>Requirement Atom</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int REQUIREMENT_ATOM_FEATURE_COUNT = INITIAL_STATE_ATOM_FEATURE_COUNT + 2;
+	int INITIAL_ATOM_FEATURE_COUNT = 2;
 
 	/**
 	 * The meta object id for the '{@link org.emftext.language.AdaptiveCyberDefense.impl.StateAtomImpl <em>State Atom</em>}' class.
@@ -505,7 +505,7 @@ public interface AdaptiveCyberDefensePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int STATE_ATOM__STATEVARIABLE = INITIAL_STATE_ATOM_FEATURE_COUNT + 0;
+	int STATE_ATOM__STATEVARIABLE = INITIAL_VARIABLE_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -514,7 +514,7 @@ public interface AdaptiveCyberDefensePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int STATE_ATOM__VALUE = INITIAL_STATE_ATOM_FEATURE_COUNT + 1;
+	int STATE_ATOM__VALUE = INITIAL_VARIABLE_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>State Atom</em>' class.
@@ -523,7 +523,7 @@ public interface AdaptiveCyberDefensePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int STATE_ATOM_FEATURE_COUNT = INITIAL_STATE_ATOM_FEATURE_COUNT + 2;
+	int STATE_ATOM_FEATURE_COUNT = INITIAL_VARIABLE_FEATURE_COUNT + 2;
 
 	/**
 	 * The meta object id for the '{@link org.emftext.language.AdaptiveCyberDefense.impl.ActionAtomImpl <em>Action Atom</em>}' class.
@@ -1383,46 +1383,46 @@ public interface AdaptiveCyberDefensePackage extends EPackage {
 	EAttribute getActionVariable_Type();
 
 	/**
-	 * Returns the meta object for class '{@link org.emftext.language.AdaptiveCyberDefense.RequirementAtom <em>Requirement Atom</em>}'.
+	 * Returns the meta object for class '{@link org.emftext.language.AdaptiveCyberDefense.InitialAtom <em>Initial Atom</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Requirement Atom</em>'.
-	 * @see org.emftext.language.AdaptiveCyberDefense.RequirementAtom
+	 * @return the meta object for class '<em>Initial Atom</em>'.
+	 * @see org.emftext.language.AdaptiveCyberDefense.InitialAtom
 	 * @generated
 	 */
-	EClass getRequirementAtom();
+	EClass getInitialAtom();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.emftext.language.AdaptiveCyberDefense.RequirementAtom#getRequirement <em>Requirement</em>}'.
+	 * Returns the meta object for the attribute '{@link org.emftext.language.AdaptiveCyberDefense.InitialAtom#getValue <em>Value</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Requirement</em>'.
-	 * @see org.emftext.language.AdaptiveCyberDefense.RequirementAtom#getRequirement()
-	 * @see #getRequirementAtom()
+	 * @return the meta object for the attribute '<em>Value</em>'.
+	 * @see org.emftext.language.AdaptiveCyberDefense.InitialAtom#getValue()
+	 * @see #getInitialAtom()
 	 * @generated
 	 */
-	EReference getRequirementAtom_Requirement();
+	EAttribute getInitialAtom_Value();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.emftext.language.AdaptiveCyberDefense.RequirementAtom#getStatus <em>Status</em>}'.
+	 * Returns the meta object for the reference '{@link org.emftext.language.AdaptiveCyberDefense.InitialAtom#getInitialvariable <em>Initialvariable</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Status</em>'.
-	 * @see org.emftext.language.AdaptiveCyberDefense.RequirementAtom#getStatus()
-	 * @see #getRequirementAtom()
+	 * @return the meta object for the reference '<em>Initialvariable</em>'.
+	 * @see org.emftext.language.AdaptiveCyberDefense.InitialAtom#getInitialvariable()
+	 * @see #getInitialAtom()
 	 * @generated
 	 */
-	EAttribute getRequirementAtom_Status();
+	EReference getInitialAtom_Initialvariable();
 
 	/**
-	 * Returns the meta object for class '{@link org.emftext.language.AdaptiveCyberDefense.InitialStateAtom <em>Initial State Atom</em>}'.
+	 * Returns the meta object for class '{@link org.emftext.language.AdaptiveCyberDefense.InitialVariable <em>Initial Variable</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Initial State Atom</em>'.
-	 * @see org.emftext.language.AdaptiveCyberDefense.InitialStateAtom
+	 * @return the meta object for class '<em>Initial Variable</em>'.
+	 * @see org.emftext.language.AdaptiveCyberDefense.InitialVariable
 	 * @generated
 	 */
-	EClass getInitialStateAtom();
+	EClass getInitialVariable();
 
 	/**
 	 * Returns the meta object for class '{@link org.emftext.language.AdaptiveCyberDefense.Variable <em>Variable</em>}'.
@@ -2098,40 +2098,40 @@ public interface AdaptiveCyberDefensePackage extends EPackage {
 		EAttribute ACTION_VARIABLE__TYPE = eINSTANCE.getActionVariable_Type();
 
 		/**
-		 * The meta object literal for the '{@link org.emftext.language.AdaptiveCyberDefense.impl.RequirementAtomImpl <em>Requirement Atom</em>}' class.
+		 * The meta object literal for the '{@link org.emftext.language.AdaptiveCyberDefense.impl.InitialAtomImpl <em>Initial Atom</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.emftext.language.AdaptiveCyberDefense.impl.RequirementAtomImpl
-		 * @see org.emftext.language.AdaptiveCyberDefense.impl.AdaptiveCyberDefensePackageImpl#getRequirementAtom()
+		 * @see org.emftext.language.AdaptiveCyberDefense.impl.InitialAtomImpl
+		 * @see org.emftext.language.AdaptiveCyberDefense.impl.AdaptiveCyberDefensePackageImpl#getInitialAtom()
 		 * @generated
 		 */
-		EClass REQUIREMENT_ATOM = eINSTANCE.getRequirementAtom();
+		EClass INITIAL_ATOM = eINSTANCE.getInitialAtom();
 
 		/**
-		 * The meta object literal for the '<em><b>Requirement</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Value</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference REQUIREMENT_ATOM__REQUIREMENT = eINSTANCE.getRequirementAtom_Requirement();
+		EAttribute INITIAL_ATOM__VALUE = eINSTANCE.getInitialAtom_Value();
 
 		/**
-		 * The meta object literal for the '<em><b>Status</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Initialvariable</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute REQUIREMENT_ATOM__STATUS = eINSTANCE.getRequirementAtom_Status();
+		EReference INITIAL_ATOM__INITIALVARIABLE = eINSTANCE.getInitialAtom_Initialvariable();
 
 		/**
-		 * The meta object literal for the '{@link org.emftext.language.AdaptiveCyberDefense.impl.InitialStateAtomImpl <em>Initial State Atom</em>}' class.
+		 * The meta object literal for the '{@link org.emftext.language.AdaptiveCyberDefense.impl.InitialVariableImpl <em>Initial Variable</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.emftext.language.AdaptiveCyberDefense.impl.InitialStateAtomImpl
-		 * @see org.emftext.language.AdaptiveCyberDefense.impl.AdaptiveCyberDefensePackageImpl#getInitialStateAtom()
+		 * @see org.emftext.language.AdaptiveCyberDefense.impl.InitialVariableImpl
+		 * @see org.emftext.language.AdaptiveCyberDefense.impl.AdaptiveCyberDefensePackageImpl#getInitialVariable()
 		 * @generated
 		 */
-		EClass INITIAL_STATE_ATOM = eINSTANCE.getInitialStateAtom();
+		EClass INITIAL_VARIABLE = eINSTANCE.getInitialVariable();
 
 		/**
 		 * The meta object literal for the '{@link org.emftext.language.AdaptiveCyberDefense.impl.VariableImpl <em>Variable</em>}' class.

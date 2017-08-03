@@ -27,7 +27,7 @@ import org.emftext.language.AdaptiveCyberDefense.StateVariable;
  *
  * @generated
  */
-public class StateAtomImpl extends InitialStateAtomImpl implements StateAtom {
+public class StateAtomImpl extends InitialVariableImpl implements StateAtom {
 	/**
 	 * The cached value of the '{@link #getStatevariable() <em>Statevariable</em>}' reference.
 	 * <!-- begin-user-doc -->
