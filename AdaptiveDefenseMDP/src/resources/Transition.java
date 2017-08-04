@@ -9,6 +9,8 @@ public class Transition {
 	private BigDecimal probability=new BigDecimal(-1);
 	private Boolean applicable=false;
 	private Integer reward=0;
+	private Integer cost=0;
+
 	private Integer id=0;
 	private Boolean applicability=false;
 	
@@ -119,6 +121,11 @@ public class Transition {
 		this.reward+=cost_reward;
 		
 	}
+	
+	public void updateCost(int cost_reward) {
+		this.cost+=cost_reward;
+		
+	}
 
 	public Boolean getApplicability() {
 		return applicability;
@@ -166,6 +173,14 @@ public class Transition {
 		}
 		return s;
 
+	}
+
+	public Integer getCost() {
+		return cost;
+	}
+
+	public void setCost(Integer cost) {
+		this.cost = cost;
 	}
 
 	

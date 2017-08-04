@@ -125,8 +125,8 @@ public class LTSG {
 	 * Requirements:
 	 * Mapping requirement id to requirement description
 	 */
-	HashMap<String,RequirementDescription> operational_requirements_description = new HashMap<String,RequirementDescription>();
-	HashMap<String,RequirementDescription> security_requirements_description = new HashMap<String,RequirementDescription>();
+	HashMap<String,RequirementDescription> requirements_description = new HashMap<String,RequirementDescription>();
+	//HashMap<String,RequirementDescription> security_requirements_description = new HashMap<String,RequirementDescription>();
 
 	public LTSG(DomainDescription description, String option) {
 		/*
@@ -147,7 +147,7 @@ public class LTSG {
 
 			//createDRewardAndTransitionMatrices(this.nb_of_states,this.nb_of_control_events,this.nb_of_exploit_events);
 
-			generateTransitions(this.operational_requirements_description);
+			generateTransitions(this.requirements_description);
 		}
 
 		else if(option.equals(INITIAL)) {
@@ -220,7 +220,7 @@ public class LTSG {
 				trans.setSrc(src);
 				for(ProbabilisticEffect effect : effects) {
 					trans.setProbability(effect.getProbability());
-					HashMap<String, String> dest_state = getDestinationState(event,state,effect,descr,operational_requirements_description,trans);
+					HashMap<String, String> dest_state = getDestinationState(event,state,effect,descr,requirements_description,trans);
 					Integer dest_id = updateStates(to_explore,dest_state,state_nb);
 					trans.setDest(dest_id);
 					trans.setApplicability(Transition.APPLICABLE);
@@ -236,7 +236,7 @@ public class LTSG {
 				 * if the total probability is less than one, then add a self transition with 1 - total_prob
 				 */
 				if(total_prob.compareTo(one)==-1) {
-					HashMap<String, String> dest_state = getDestinationState(event,state,null,descr,operational_requirements_description,trans);
+					HashMap<String, String> dest_state = getDestinationState(event,state,null,descr,requirements_description,trans);
 					Integer dest_id = updateStates(to_explore,dest_state,state_nb);
 					trans.setDest(dest_id);
 					trans.setApplicability(Transition.APPLICABLE);
@@ -265,7 +265,7 @@ public class LTSG {
 		}		
 	}
 
-	
+
 
 	private void updateTransitions3(int hashCode, Integer dest_id) {
 		if(src_label_nextStates_map.containsKey(hashCode)) {
@@ -292,11 +292,11 @@ public class LTSG {
 		return dest;
 	}
 
-	
+
 
 	private void setInitialState(DomainDescription description) {
 		for( InitialAtom atom : description.getInitial_atoms()) {
-			
+
 			InitialVariable var = atom.getInitialvariable();
 			if(var.getClass().toString().endsWith("StateVariableImpl")) {
 				StateVariable satom = (StateVariable) var;
@@ -306,7 +306,7 @@ public class LTSG {
 				this.initial_state.put(ratom.getName(), atom.getValue());
 			}
 		}
-		Iterator<String> it = operational_requirements_description.keySet().iterator();
+		Iterator<String> it = requirements_description.keySet().iterator();
 		while(it.hasNext()){
 			String reqID = it.next();
 			if(!initial_state.containsKey(reqID)){
@@ -325,13 +325,13 @@ public class LTSG {
 
 	private void readSecurityRequirements(EList<SecurityRequirement> requirements) {
 		for(SecurityRequirement req : requirements) {
-			
+
 			RequirementDescription descr = new RequirementDescription();
 			descr.setName(req.getName());
 			descr.setType(req.getType().getLiteral());
 			descr.setCondition(req.getCondition());
 			descr.setCost_reward(req.getCost());
-			this.security_requirements_description.put(req.getName(),descr);
+			this.requirements_description.put(req.getName(),descr);
 		}
 	}
 
@@ -387,13 +387,13 @@ public class LTSG {
 
 		this.exploit_events_id.put(ev,nb_of_exploit_events);
 		this.id_exploit_events.put(nb_of_exploit_events,ev);
-		
+
 		this.event_description.put(ev, descr_e);
 		this.nb_of_exploit_events++;	
 	}
 
 
-	
+
 
 	private void readActionDescriptions(EList<ActionDescription> action_descriptions) {
 		for(ActionDescription action : action_descriptions) {
@@ -474,7 +474,7 @@ public class LTSG {
 					trans.setSrc(src);
 					trans.setProbability(effect.getProbability());
 					trans.setApplicability(Transition.APPLICABLE);
-					HashMap<String, String> dest_state = getDestinationState(event,state,effect,descr,operational_requirements_description,trans);
+					HashMap<String, String> dest_state = getDestinationState(event,state,effect,descr,requirements_description,trans);
 					total_prob.add(effect.getProbability());
 					Integer dest_id= states_id.get(dest_state);
 					trans.setDest(dest_id);
@@ -495,15 +495,15 @@ public class LTSG {
 					trans.setSrc(src);
 					trans.setProbability(one.subtract(total_prob));
 					trans.setApplicability(Transition.APPLICABLE);
-					
-					HashMap<String, String> dest_state = getDestinationState(event,state,null,descr,operational_requirements_description,trans);
+
+					HashMap<String, String> dest_state = getDestinationState(event,state,null,descr,requirements_description,trans);
 					Integer dest_id = states_id.get(dest_state);
 					trans.setId(id_events.get(event));
 					transitions.add(trans);
 					src_label_dest_transitions_map.put(trans.hashCode(), trans);
 					updateTransitions3(Transition.hashCode(src, event),dest_id);
 
-				
+
 					nb_of_transitions.add(1);
 				}
 			}
@@ -548,11 +548,73 @@ public class LTSG {
 			req = requirements_description.get(reqID);
 			if(req.getType().equals("maintain")) {
 				updateMaintainReqAtomInState(temp,req,descr,trans);
-			} else {
+			} else if(req.getType().equals("achieve")){
 				updateAchieveReqAtomInState(temp,req,descr,trans);
+			} else if(req.getType().equals("prevent")){
+				updatePreventReqAtomInState(temp,req,descr,trans);
+			} else if(req.getType().equals("avoid")){
+				updateAvoidReqAtomInState(temp,req,descr,trans);
 			}
 		}
 		temp.remove(descr.getActionatom().getActionvariable().getName());
+	}
+
+	private void updateAvoidReqAtomInState(
+			HashMap<String, String> state, 
+			RequirementDescription req,
+			ActionDescription descr, 
+			Transition trans) {
+		String req_id = req.getName();
+		String status = state.get(req_id);
+		/**
+		 * For an avoid requirement, its status is updated according to condition
+		 * everytime condition is true, a cost is added to the transition
+		 */
+		if(status.equals("inact")) {
+			if(req.getCondition().verify(state)) {
+				state.put(req_id, "act");
+			}
+		} else if(status.equals("act")) {
+			if(!req.getCondition().verify(state)) {
+				state.put(req_id, "inact");
+			}
+		}
+		if(req.getCondition().verify(state)) {
+			/*
+			 * Satisfaction and reward update
+			 */
+			trans.updateCost(req.getCost_reward());
+		}
+
+	}
+
+	private void updatePreventReqAtomInState(
+			HashMap<String, String> state, 
+			RequirementDescription req,
+			ActionDescription descr, 
+			Transition trans) {
+		String req_id = req.getName();
+		String status = state.get(req_id);
+		/**
+		 * For an avoid requirement, its status is updated according to condition
+		 * everytime condition is true, a cost is added to the transition
+		 */
+		if(status.equals("inact")) {
+			if(req.getCondition().verify(state)) {
+				state.put(req_id, "act");
+				if(req.getCondition().verify(state)) {
+					/*
+					 * Satisfaction and reward update
+					 */
+					trans.updateCost(req.getCost_reward());
+				}
+			}
+		} else if(status.equals("act")) {
+			if(!req.getCondition().verify(state)) {
+				state.put(req_id, "inact");
+			}
+		}
+
 	}
 
 	private void updateAchieveReqAtomInState(HashMap<String, String> state, 
@@ -752,7 +814,7 @@ public class LTSG {
 			/**
 			 * add the requirement to the HashMap requirements_description
 			 */
-			this.operational_requirements_description.put(name, descr);
+			this.requirements_description.put(name, descr);
 
 			/**
 			 * add requirements and their domains to domain variables
@@ -869,7 +931,7 @@ public class LTSG {
 	}
 
 	public HashMap<String, RequirementDescription> getRequirements_description() {
-		return operational_requirements_description;
+		return requirements_description;
 	}
 
 	public HashMap<Integer, Transition> getTransitions2() {
@@ -880,13 +942,13 @@ public class LTSG {
 		return src_label_nextStates_map;
 	}
 
-	
-	
+
+
 	public void print() {
 		System.out.println("\n\n\n\t\t*********  Printing LTS  ***************\n\n");
 		System.out.println("Nb of fluent Descriptions: "+this.variables_domain.size()+"\n");
 		System.out.println("Fluent Descriptions:\n "+this.variables_domain.toString()+"\n");
-		System.out.println("Requirement Descriptions:\n "+this.operational_requirements_description.toString()+"\n");
+		System.out.println("Requirement Descriptions:\n "+this.requirements_description.toString()+"\n");
 
 		System.out.println("Total Number of States:\n "+this.nb_of_states+"\n");
 
