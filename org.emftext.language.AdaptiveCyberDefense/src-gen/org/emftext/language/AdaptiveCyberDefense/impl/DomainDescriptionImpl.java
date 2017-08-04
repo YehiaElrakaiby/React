@@ -29,6 +29,7 @@ import org.emftext.language.AdaptiveCyberDefense.InitialAtom;
 import org.emftext.language.AdaptiveCyberDefense.InitialStateAtom;
 import org.emftext.language.AdaptiveCyberDefense.MaintainRS;
 import org.emftext.language.AdaptiveCyberDefense.OperationalRequirement;
+import org.emftext.language.AdaptiveCyberDefense.SecurityRequirement;
 import org.emftext.language.AdaptiveCyberDefense.StateVariable;
 
 /**
@@ -46,6 +47,7 @@ import org.emftext.language.AdaptiveCyberDefense.StateVariable;
  *   <li>{@link org.emftext.language.AdaptiveCyberDefense.impl.DomainDescriptionImpl#getInitial_atoms <em>Initial atoms</em>}</li>
  *   <li>{@link org.emftext.language.AdaptiveCyberDefense.impl.DomainDescriptionImpl#getAchievers <em>Achievers</em>}</li>
  *   <li>{@link org.emftext.language.AdaptiveCyberDefense.impl.DomainDescriptionImpl#getMaintainrs <em>Maintainrs</em>}</li>
+ *   <li>{@link org.emftext.language.AdaptiveCyberDefense.impl.DomainDescriptionImpl#getSecurityrequirements <em>Securityrequirements</em>}</li>
  * </ul>
  *
  * @generated
@@ -120,6 +122,16 @@ public class DomainDescriptionImpl extends EObjectImpl implements DomainDescript
 	 * @ordered
 	 */
 	protected MaintainRS maintainrs;
+
+	/**
+	 * The cached value of the '{@link #getSecurityrequirements() <em>Securityrequirements</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getSecurityrequirements()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<SecurityRequirement> securityrequirements;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -291,6 +303,18 @@ public class DomainDescriptionImpl extends EObjectImpl implements DomainDescript
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EList<SecurityRequirement> getSecurityrequirements() {
+		if (securityrequirements == null) {
+			securityrequirements = new EObjectContainmentEList<SecurityRequirement>(SecurityRequirement.class, this, AdaptiveCyberDefensePackage.DOMAIN_DESCRIPTION__SECURITYREQUIREMENTS);
+		}
+		return securityrequirements;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -308,6 +332,8 @@ public class DomainDescriptionImpl extends EObjectImpl implements DomainDescript
 				return basicSetAchievers(null, msgs);
 			case AdaptiveCyberDefensePackage.DOMAIN_DESCRIPTION__MAINTAINRS:
 				return basicSetMaintainrs(null, msgs);
+			case AdaptiveCyberDefensePackage.DOMAIN_DESCRIPTION__SECURITYREQUIREMENTS:
+				return ((InternalEList<?>)getSecurityrequirements()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -334,6 +360,8 @@ public class DomainDescriptionImpl extends EObjectImpl implements DomainDescript
 				return getAchievers();
 			case AdaptiveCyberDefensePackage.DOMAIN_DESCRIPTION__MAINTAINRS:
 				return getMaintainrs();
+			case AdaptiveCyberDefensePackage.DOMAIN_DESCRIPTION__SECURITYREQUIREMENTS:
+				return getSecurityrequirements();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -373,6 +401,10 @@ public class DomainDescriptionImpl extends EObjectImpl implements DomainDescript
 			case AdaptiveCyberDefensePackage.DOMAIN_DESCRIPTION__MAINTAINRS:
 				setMaintainrs((MaintainRS)newValue);
 				return;
+			case AdaptiveCyberDefensePackage.DOMAIN_DESCRIPTION__SECURITYREQUIREMENTS:
+				getSecurityrequirements().clear();
+				getSecurityrequirements().addAll((Collection<? extends SecurityRequirement>)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -406,6 +438,9 @@ public class DomainDescriptionImpl extends EObjectImpl implements DomainDescript
 			case AdaptiveCyberDefensePackage.DOMAIN_DESCRIPTION__MAINTAINRS:
 				setMaintainrs((MaintainRS)null);
 				return;
+			case AdaptiveCyberDefensePackage.DOMAIN_DESCRIPTION__SECURITYREQUIREMENTS:
+				getSecurityrequirements().clear();
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -432,6 +467,8 @@ public class DomainDescriptionImpl extends EObjectImpl implements DomainDescript
 				return achievers != null;
 			case AdaptiveCyberDefensePackage.DOMAIN_DESCRIPTION__MAINTAINRS:
 				return maintainrs != null;
+			case AdaptiveCyberDefensePackage.DOMAIN_DESCRIPTION__SECURITYREQUIREMENTS:
+				return securityrequirements != null && !securityrequirements.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

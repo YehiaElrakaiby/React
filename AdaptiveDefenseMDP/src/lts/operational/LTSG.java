@@ -30,6 +30,7 @@ import org.emftext.language.AdaptiveCyberDefense.impl.ActionDescriptionImpl;
 import org.emftext.language.AdaptiveCyberDefense.impl.ActionVariableImpl;
 import org.emftext.language.AdaptiveCyberDefense.impl.FalseImpl;
 import org.emftext.language.AdaptiveCyberDefense.impl.TrueImpl;
+import org.emftext.language.AdaptiveCyberDefense.resource.AdaptiveCyberDefense.mopp.AdaptiveCyberDefenseResourceFactory;
 
 import resources.StateVariableDescription;
 import resources.RequirementDescription;

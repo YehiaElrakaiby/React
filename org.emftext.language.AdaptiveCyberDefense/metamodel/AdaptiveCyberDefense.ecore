@@ -25,6 +25,8 @@
         eType="#//AchieveRS" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="maintainrs" lowerBound="1"
         eType="#//MaintainRS" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="securityrequirements" upperBound="-1"
+        eType="#//SecurityRequirement" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ActionDescription">
     <eStructuralFeatures xsi:type="ecore:EReference" name="probabilisticeffect" upperBound="-1"
@@ -163,4 +165,17 @@
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EIntegerObject"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="False" eSuperTypes="#//Formula"/>
+  <eClassifiers xsi:type="ecore:EClass" name="SecurityRequirement">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        iD="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="cost" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EIntegerObject"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="description" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" lowerBound="1" eType="#//SRType"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="condition" lowerBound="1"
+        eType="#//Formula" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="SRType">
+    <eLiterals name="avoid" value="1"/>
+    <eLiterals name="prevent" value="2"/>
+  </eClassifiers>
 </ecore:EPackage>

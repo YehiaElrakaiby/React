@@ -76,6 +76,7 @@ public class AdaptiveCyberDefenseFactoryImpl extends EFactoryImpl implements Ada
 			case AdaptiveCyberDefensePackage.MAINTAIN_RS: return createMaintainRS();
 			case AdaptiveCyberDefensePackage.ACHIEVE_RS: return createAchieveRS();
 			case AdaptiveCyberDefensePackage.FALSE: return createFalse();
+			case AdaptiveCyberDefensePackage.SECURITY_REQUIREMENT: return createSecurityRequirement();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -93,6 +94,8 @@ public class AdaptiveCyberDefenseFactoryImpl extends EFactoryImpl implements Ada
 				return createRequirementStatusFromString(eDataType, initialValue);
 			case AdaptiveCyberDefensePackage.ACTION_TYPE:
 				return createActionTypeFromString(eDataType, initialValue);
+			case AdaptiveCyberDefensePackage.SR_TYPE:
+				return createSRTypeFromString(eDataType, initialValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
@@ -110,6 +113,8 @@ public class AdaptiveCyberDefenseFactoryImpl extends EFactoryImpl implements Ada
 				return convertRequirementStatusToString(eDataType, instanceValue);
 			case AdaptiveCyberDefensePackage.ACTION_TYPE:
 				return convertActionTypeToString(eDataType, instanceValue);
+			case AdaptiveCyberDefensePackage.SR_TYPE:
+				return convertSRTypeToString(eDataType, instanceValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
@@ -310,6 +315,16 @@ public class AdaptiveCyberDefenseFactoryImpl extends EFactoryImpl implements Ada
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public SecurityRequirement createSecurityRequirement() {
+		SecurityRequirementImpl securityRequirement = new SecurityRequirementImpl();
+		return securityRequirement;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public RequirementStatus createRequirementStatusFromString(EDataType eDataType, String initialValue) {
 		RequirementStatus result = RequirementStatus.get(initialValue);
 		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
@@ -342,6 +357,26 @@ public class AdaptiveCyberDefenseFactoryImpl extends EFactoryImpl implements Ada
 	 * @generated
 	 */
 	public String convertActionTypeToString(EDataType eDataType, Object instanceValue) {
+		return instanceValue == null ? null : instanceValue.toString();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public SRType createSRTypeFromString(EDataType eDataType, String initialValue) {
+		SRType result = SRType.get(initialValue);
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertSRTypeToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 

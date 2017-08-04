@@ -11,6 +11,8 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.emftext.language.AdaptiveCyberDefense.DomainDescription;
 import org.emftext.language.AdaptiveCyberDefense.resource.AdaptiveCyberDefense.mopp.AdaptiveCyberDefenseMetaInformation;
+import org.emftext.language.AdaptiveCyberDefense.resource.AdaptiveCyberDefense.mopp.AdaptiveCyberDefenseResourceFactory;
+
 import lts.operational.LTSG;
 import mdp.MDPSolver;
 import resources.MDP_Computer;
@@ -166,6 +168,10 @@ public class AdaptiveDefenseMDP {
 		System.out.println(temp);
 		Resource resource = resourceSet.getResource(org.eclipse.emf.common.util.URI.createFileURI(temp), true);
 		DomainDescription description = (DomainDescription) resource.getContents().get(0);
+		
+		//AdaptiveCyberDefenseResourceFactory factory = new AdaptiveCyberDefenseResourceFactory();
+		//Resource res = factory.createResource(org.eclipse.emf.common.util.URI.createURI("http://www.emftext.org/language/AdaptiveCyberDefense/True"));
+		
 		return description;
 	}
 }

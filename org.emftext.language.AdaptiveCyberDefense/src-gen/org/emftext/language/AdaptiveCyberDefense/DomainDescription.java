@@ -22,6 +22,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link org.emftext.language.AdaptiveCyberDefense.DomainDescription#getInitial_atoms <em>Initial atoms</em>}</li>
  *   <li>{@link org.emftext.language.AdaptiveCyberDefense.DomainDescription#getAchievers <em>Achievers</em>}</li>
  *   <li>{@link org.emftext.language.AdaptiveCyberDefense.DomainDescription#getMaintainrs <em>Maintainrs</em>}</li>
+ *   <li>{@link org.emftext.language.AdaptiveCyberDefense.DomainDescription#getSecurityrequirements <em>Securityrequirements</em>}</li>
  * </ul>
  *
  * @see org.emftext.language.AdaptiveCyberDefense.AdaptiveCyberDefensePackage#getDomainDescription()
@@ -162,5 +163,21 @@ public interface DomainDescription extends EObject {
 	 * @generated
 	 */
 	void setMaintainrs(MaintainRS value);
+
+	/**
+	 * Returns the value of the '<em><b>Securityrequirements</b></em>' containment reference list.
+	 * The list contents are of type {@link org.emftext.language.AdaptiveCyberDefense.SecurityRequirement}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Securityrequirements</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Securityrequirements</em>' containment reference list.
+	 * @see org.emftext.language.AdaptiveCyberDefense.AdaptiveCyberDefensePackage#getDomainDescription_Securityrequirements()
+	 * @model containment="true"
+	 * @generated
+	 */
+	EList<SecurityRequirement> getSecurityrequirements();
 
 } // DomainDescription

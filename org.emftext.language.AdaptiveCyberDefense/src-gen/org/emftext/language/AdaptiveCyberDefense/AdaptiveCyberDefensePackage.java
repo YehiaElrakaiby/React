@@ -130,13 +130,22 @@ public interface AdaptiveCyberDefensePackage extends EPackage {
 	int DOMAIN_DESCRIPTION__MAINTAINRS = 6;
 
 	/**
+	 * The feature id for the '<em><b>Securityrequirements</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DOMAIN_DESCRIPTION__SECURITYREQUIREMENTS = 7;
+
+	/**
 	 * The number of structural features of the '<em>Domain Description</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DOMAIN_DESCRIPTION_FEATURE_COUNT = 7;
+	int DOMAIN_DESCRIPTION_FEATURE_COUNT = 8;
 
 	/**
 	 * The meta object id for the '{@link org.emftext.language.AdaptiveCyberDefense.impl.ActionDescriptionImpl <em>Action Description</em>}' class.
@@ -1070,6 +1079,70 @@ public interface AdaptiveCyberDefensePackage extends EPackage {
 	int FALSE_FEATURE_COUNT = FORMULA_FEATURE_COUNT + 0;
 
 	/**
+	 * The meta object id for the '{@link org.emftext.language.AdaptiveCyberDefense.impl.SecurityRequirementImpl <em>Security Requirement</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.emftext.language.AdaptiveCyberDefense.impl.SecurityRequirementImpl
+	 * @see org.emftext.language.AdaptiveCyberDefense.impl.AdaptiveCyberDefensePackageImpl#getSecurityRequirement()
+	 * @generated
+	 */
+	int SECURITY_REQUIREMENT = 23;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SECURITY_REQUIREMENT__NAME = 0;
+
+	/**
+	 * The feature id for the '<em><b>Cost</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SECURITY_REQUIREMENT__COST = 1;
+
+	/**
+	 * The feature id for the '<em><b>Description</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SECURITY_REQUIREMENT__DESCRIPTION = 2;
+
+	/**
+	 * The feature id for the '<em><b>Type</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SECURITY_REQUIREMENT__TYPE = 3;
+
+	/**
+	 * The feature id for the '<em><b>Condition</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SECURITY_REQUIREMENT__CONDITION = 4;
+
+	/**
+	 * The number of structural features of the '<em>Security Requirement</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SECURITY_REQUIREMENT_FEATURE_COUNT = 5;
+
+	/**
 	 * The meta object id for the '{@link org.emftext.language.AdaptiveCyberDefense.RequirementStatus <em>Requirement Status</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1077,7 +1150,7 @@ public interface AdaptiveCyberDefensePackage extends EPackage {
 	 * @see org.emftext.language.AdaptiveCyberDefense.impl.AdaptiveCyberDefensePackageImpl#getRequirementStatus()
 	 * @generated
 	 */
-	int REQUIREMENT_STATUS = 23;
+	int REQUIREMENT_STATUS = 24;
 
 
 	/**
@@ -1088,7 +1161,18 @@ public interface AdaptiveCyberDefensePackage extends EPackage {
 	 * @see org.emftext.language.AdaptiveCyberDefense.impl.AdaptiveCyberDefensePackageImpl#getActionType()
 	 * @generated
 	 */
-	int ACTION_TYPE = 24;
+	int ACTION_TYPE = 25;
+
+
+	/**
+	 * The meta object id for the '{@link org.emftext.language.AdaptiveCyberDefense.SRType <em>SR Type</em>}' enum.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.emftext.language.AdaptiveCyberDefense.SRType
+	 * @see org.emftext.language.AdaptiveCyberDefense.impl.AdaptiveCyberDefensePackageImpl#getSRType()
+	 * @generated
+	 */
+	int SR_TYPE = 26;
 
 
 	/**
@@ -1177,6 +1261,17 @@ public interface AdaptiveCyberDefensePackage extends EPackage {
 	 * @generated
 	 */
 	EReference getDomainDescription_Maintainrs();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link org.emftext.language.AdaptiveCyberDefense.DomainDescription#getSecurityrequirements <em>Securityrequirements</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Securityrequirements</em>'.
+	 * @see org.emftext.language.AdaptiveCyberDefense.DomainDescription#getSecurityrequirements()
+	 * @see #getDomainDescription()
+	 * @generated
+	 */
+	EReference getDomainDescription_Securityrequirements();
 
 	/**
 	 * Returns the meta object for class '{@link org.emftext.language.AdaptiveCyberDefense.ActionDescription <em>Action Description</em>}'.
@@ -1828,6 +1923,71 @@ public interface AdaptiveCyberDefensePackage extends EPackage {
 	EClass getFalse();
 
 	/**
+	 * Returns the meta object for class '{@link org.emftext.language.AdaptiveCyberDefense.SecurityRequirement <em>Security Requirement</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Security Requirement</em>'.
+	 * @see org.emftext.language.AdaptiveCyberDefense.SecurityRequirement
+	 * @generated
+	 */
+	EClass getSecurityRequirement();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.emftext.language.AdaptiveCyberDefense.SecurityRequirement#getName <em>Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Name</em>'.
+	 * @see org.emftext.language.AdaptiveCyberDefense.SecurityRequirement#getName()
+	 * @see #getSecurityRequirement()
+	 * @generated
+	 */
+	EAttribute getSecurityRequirement_Name();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.emftext.language.AdaptiveCyberDefense.SecurityRequirement#getCost <em>Cost</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Cost</em>'.
+	 * @see org.emftext.language.AdaptiveCyberDefense.SecurityRequirement#getCost()
+	 * @see #getSecurityRequirement()
+	 * @generated
+	 */
+	EAttribute getSecurityRequirement_Cost();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.emftext.language.AdaptiveCyberDefense.SecurityRequirement#getDescription <em>Description</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Description</em>'.
+	 * @see org.emftext.language.AdaptiveCyberDefense.SecurityRequirement#getDescription()
+	 * @see #getSecurityRequirement()
+	 * @generated
+	 */
+	EAttribute getSecurityRequirement_Description();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.emftext.language.AdaptiveCyberDefense.SecurityRequirement#getType <em>Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Type</em>'.
+	 * @see org.emftext.language.AdaptiveCyberDefense.SecurityRequirement#getType()
+	 * @see #getSecurityRequirement()
+	 * @generated
+	 */
+	EAttribute getSecurityRequirement_Type();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link org.emftext.language.AdaptiveCyberDefense.SecurityRequirement#getCondition <em>Condition</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Condition</em>'.
+	 * @see org.emftext.language.AdaptiveCyberDefense.SecurityRequirement#getCondition()
+	 * @see #getSecurityRequirement()
+	 * @generated
+	 */
+	EReference getSecurityRequirement_Condition();
+
+	/**
 	 * Returns the meta object for enum '{@link org.emftext.language.AdaptiveCyberDefense.RequirementStatus <em>Requirement Status</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1846,6 +2006,16 @@ public interface AdaptiveCyberDefensePackage extends EPackage {
 	 * @generated
 	 */
 	EEnum getActionType();
+
+	/**
+	 * Returns the meta object for enum '{@link org.emftext.language.AdaptiveCyberDefense.SRType <em>SR Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for enum '<em>SR Type</em>'.
+	 * @see org.emftext.language.AdaptiveCyberDefense.SRType
+	 * @generated
+	 */
+	EEnum getSRType();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -1934,6 +2104,14 @@ public interface AdaptiveCyberDefensePackage extends EPackage {
 		 * @generated
 		 */
 		EReference DOMAIN_DESCRIPTION__MAINTAINRS = eINSTANCE.getDomainDescription_Maintainrs();
+
+		/**
+		 * The meta object literal for the '<em><b>Securityrequirements</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference DOMAIN_DESCRIPTION__SECURITYREQUIREMENTS = eINSTANCE.getDomainDescription_Securityrequirements();
 
 		/**
 		 * The meta object literal for the '{@link org.emftext.language.AdaptiveCyberDefense.impl.ActionDescriptionImpl <em>Action Description</em>}' class.
@@ -2468,6 +2646,56 @@ public interface AdaptiveCyberDefensePackage extends EPackage {
 		EClass FALSE = eINSTANCE.getFalse();
 
 		/**
+		 * The meta object literal for the '{@link org.emftext.language.AdaptiveCyberDefense.impl.SecurityRequirementImpl <em>Security Requirement</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.emftext.language.AdaptiveCyberDefense.impl.SecurityRequirementImpl
+		 * @see org.emftext.language.AdaptiveCyberDefense.impl.AdaptiveCyberDefensePackageImpl#getSecurityRequirement()
+		 * @generated
+		 */
+		EClass SECURITY_REQUIREMENT = eINSTANCE.getSecurityRequirement();
+
+		/**
+		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SECURITY_REQUIREMENT__NAME = eINSTANCE.getSecurityRequirement_Name();
+
+		/**
+		 * The meta object literal for the '<em><b>Cost</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SECURITY_REQUIREMENT__COST = eINSTANCE.getSecurityRequirement_Cost();
+
+		/**
+		 * The meta object literal for the '<em><b>Description</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SECURITY_REQUIREMENT__DESCRIPTION = eINSTANCE.getSecurityRequirement_Description();
+
+		/**
+		 * The meta object literal for the '<em><b>Type</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SECURITY_REQUIREMENT__TYPE = eINSTANCE.getSecurityRequirement_Type();
+
+		/**
+		 * The meta object literal for the '<em><b>Condition</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference SECURITY_REQUIREMENT__CONDITION = eINSTANCE.getSecurityRequirement_Condition();
+
+		/**
 		 * The meta object literal for the '{@link org.emftext.language.AdaptiveCyberDefense.RequirementStatus <em>Requirement Status</em>}' enum.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -2486,6 +2714,16 @@ public interface AdaptiveCyberDefensePackage extends EPackage {
 		 * @generated
 		 */
 		EEnum ACTION_TYPE = eINSTANCE.getActionType();
+
+		/**
+		 * The meta object literal for the '{@link org.emftext.language.AdaptiveCyberDefense.SRType <em>SR Type</em>}' enum.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.emftext.language.AdaptiveCyberDefense.SRType
+		 * @see org.emftext.language.AdaptiveCyberDefense.impl.AdaptiveCyberDefensePackageImpl#getSRType()
+		 * @generated
+		 */
+		EEnum SR_TYPE = eINSTANCE.getSRType();
 
 	}
 

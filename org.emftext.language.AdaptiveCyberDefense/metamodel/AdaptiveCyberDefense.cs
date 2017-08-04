@@ -33,7 +33,9 @@ RULES {
 		"StateVariables" "=" "<" (state_variables ";")* ">" 
 		"ActionVariables" "=" "<"  (actions ";")* ">"
 		
-		"OperationalRequirements" "=" "<" (requirements ";")* ">" 		
+		"OperationalRequirements" "=" "<" (requirements ";")* ">" 	
+		"SecurityRequirements" "=" "<" (securityrequirements ";")* ">" 	
+			
 		"EventDescriptions" "=" "<" (action_descriptions ";")* ">" 
 		
 		"CurrentState" "=" "<"  initial_atoms ("," initial_atoms)*   ">"
@@ -84,7 +86,12 @@ RULES {
 		"cost" cost[INTEGER]
 		("description" description['"','"'])?;
 		
-	
+	SecurityRequirement ::= 
+		"ReqID" name[] 
+		type[avoid:"avoid", prevent:"prevent"]
+		condition
+		"cost" cost[INTEGER]
+		("description" description['"','"'])?;
 	
 	ProbabilisticEffect ::= "<"  (stateatoms+)? ("prob" probability[FLOAT])? ">";
 		
