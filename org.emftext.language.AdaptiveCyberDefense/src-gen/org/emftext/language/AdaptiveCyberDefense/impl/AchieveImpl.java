@@ -14,7 +14,7 @@ import org.emftext.language.AdaptiveCyberDefense.AdaptiveCyberDefensePackage;
  *
  * @generated
  */
-public class AchieveImpl extends OperationalRequirementImpl implements Achieve {
+public class AchieveImpl extends DeadlineRequirementImpl implements Achieve {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

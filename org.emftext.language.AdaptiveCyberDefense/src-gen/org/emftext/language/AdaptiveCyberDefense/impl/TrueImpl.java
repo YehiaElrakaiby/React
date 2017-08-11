@@ -22,7 +22,7 @@ public class TrueImpl extends FormulaImpl implements True {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public TrueImpl() {
+	protected TrueImpl() {
 		super();
 	}
 

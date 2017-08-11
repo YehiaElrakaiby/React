@@ -13,5 +13,5 @@ package org.emftext.language.AdaptiveCyberDefense;
  * @model
  * @generated
  */
-public interface Achieve extends OperationalRequirement {
+public interface Achieve extends DeadlineRequirement {
 } // Achieve

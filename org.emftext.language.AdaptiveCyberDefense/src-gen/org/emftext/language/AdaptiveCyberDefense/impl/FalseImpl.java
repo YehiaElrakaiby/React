@@ -22,7 +22,7 @@ public class FalseImpl extends FormulaImpl implements False {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public FalseImpl() {
+	protected FalseImpl() {
 		super();
 	}
 

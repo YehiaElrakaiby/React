@@ -10,9 +10,7 @@ import org.eclipse.emf.ecore.EReference;
 
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
-
 import org.emftext.language.AdaptiveCyberDefense.Achieve;
-import org.emftext.language.AdaptiveCyberDefense.AchieveRS;
 import org.emftext.language.AdaptiveCyberDefense.ActionAtom;
 import org.emftext.language.AdaptiveCyberDefense.ActionDescription;
 import org.emftext.language.AdaptiveCyberDefense.ActionType;
@@ -21,24 +19,23 @@ import org.emftext.language.AdaptiveCyberDefense.AdaptiveCyberDefenseFactory;
 import org.emftext.language.AdaptiveCyberDefense.AdaptiveCyberDefensePackage;
 import org.emftext.language.AdaptiveCyberDefense.Atom;
 import org.emftext.language.AdaptiveCyberDefense.Conjunction;
+import org.emftext.language.AdaptiveCyberDefense.DeadlineRequirement;
 import org.emftext.language.AdaptiveCyberDefense.Disjunction;
 import org.emftext.language.AdaptiveCyberDefense.DomainDescription;
 import org.emftext.language.AdaptiveCyberDefense.False;
 import org.emftext.language.AdaptiveCyberDefense.Formula;
 import org.emftext.language.AdaptiveCyberDefense.InitialAtom;
-import org.emftext.language.AdaptiveCyberDefense.InitialStateAtom;
 import org.emftext.language.AdaptiveCyberDefense.InitialVariable;
 import org.emftext.language.AdaptiveCyberDefense.Maintain;
-import org.emftext.language.AdaptiveCyberDefense.MaintainRS;
 import org.emftext.language.AdaptiveCyberDefense.Negation;
 import org.emftext.language.AdaptiveCyberDefense.OperationalRequirement;
 import org.emftext.language.AdaptiveCyberDefense.Parentheses;
 import org.emftext.language.AdaptiveCyberDefense.ProbabilisticEffect;
-import org.emftext.language.AdaptiveCyberDefense.RequirementAtom;
 import org.emftext.language.AdaptiveCyberDefense.RequirementStatus;
 import org.emftext.language.AdaptiveCyberDefense.StateAtom;
 import org.emftext.language.AdaptiveCyberDefense.StateVariable;
 import org.emftext.language.AdaptiveCyberDefense.True;
+import org.emftext.language.AdaptiveCyberDefense.UnconditionalMaintain;
 import org.emftext.language.AdaptiveCyberDefense.Variable;
 
 /**
@@ -193,21 +190,21 @@ public class AdaptiveCyberDefensePackageImpl extends EPackageImpl implements Ada
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass maintainRSEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass achieveRSEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	private EClass falseEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass deadlineRequirementEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass unconditionalMaintainEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -343,24 +340,6 @@ public class AdaptiveCyberDefensePackageImpl extends EPackageImpl implements Ada
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getDomainDescription_Achievers() {
-		return (EReference)domainDescriptionEClass.getEStructuralFeatures().get(5);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getDomainDescription_Maintainrs() {
-		return (EReference)domainDescriptionEClass.getEStructuralFeatures().get(6);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EClass getActionDescription() {
 		return actionDescriptionEClass;
 	}
@@ -469,35 +448,8 @@ public class AdaptiveCyberDefensePackageImpl extends EPackageImpl implements Ada
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getOperationalRequirement_Deadline() {
-		return (EAttribute)operationalRequirementEClass.getEStructuralFeatures().get(2);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getOperationalRequirement_Activation() {
-		return (EReference)operationalRequirementEClass.getEStructuralFeatures().get(3);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getOperationalRequirement_Cancellation() {
-		return (EReference)operationalRequirementEClass.getEStructuralFeatures().get(4);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EReference getOperationalRequirement_Condition() {
-		return (EReference)operationalRequirementEClass.getEStructuralFeatures().get(5);
+		return (EReference)operationalRequirementEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -506,7 +458,7 @@ public class AdaptiveCyberDefensePackageImpl extends EPackageImpl implements Ada
 	 * @generated
 	 */
 	public EAttribute getOperationalRequirement_Description() {
-		return (EAttribute)operationalRequirementEClass.getEStructuralFeatures().get(6);
+		return (EAttribute)operationalRequirementEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -775,6 +727,15 @@ public class AdaptiveCyberDefensePackageImpl extends EPackageImpl implements Ada
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getMaintain_PerUnitCost() {
+		return (EAttribute)maintainEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getTrue() {
 		return trueEClass;
 	}
@@ -811,98 +772,53 @@ public class AdaptiveCyberDefensePackageImpl extends EPackageImpl implements Ada
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getMaintainRS() {
-		return maintainRSEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getMaintainRS_Deactivate() {
-		return (EAttribute)maintainRSEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getMaintainRS_Violated() {
-		return (EAttribute)maintainRSEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getMaintainRS_Activate() {
-		return (EAttribute)maintainRSEClass.getEStructuralFeatures().get(2);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getMaintainRS_Satisfied() {
-		return (EAttribute)maintainRSEClass.getEStructuralFeatures().get(3);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getAchieveRS() {
-		return achieveRSEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getAchieveRS_Violate() {
-		return (EAttribute)achieveRSEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getAchieveRS_Satisfy() {
-		return (EAttribute)achieveRSEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getAchieveRS_Deactivate() {
-		return (EAttribute)achieveRSEClass.getEStructuralFeatures().get(2);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getAchieveRS_Activate() {
-		return (EAttribute)achieveRSEClass.getEStructuralFeatures().get(3);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EClass getFalse() {
 		return falseEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getDeadlineRequirement() {
+		return deadlineRequirementEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getDeadlineRequirement_Cancellation() {
+		return (EReference)deadlineRequirementEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getDeadlineRequirement_Activation() {
+		return (EReference)deadlineRequirementEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getDeadlineRequirement_Deadline() {
+		return (EAttribute)deadlineRequirementEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getUnconditionalMaintain() {
+		return unconditionalMaintainEClass;
 	}
 
 	/**
@@ -957,8 +873,6 @@ public class AdaptiveCyberDefensePackageImpl extends EPackageImpl implements Ada
 		createEReference(domainDescriptionEClass, DOMAIN_DESCRIPTION__REQUIREMENTS);
 		createEReference(domainDescriptionEClass, DOMAIN_DESCRIPTION__ACTIONS);
 		createEReference(domainDescriptionEClass, DOMAIN_DESCRIPTION__INITIAL_ATOMS);
-		createEReference(domainDescriptionEClass, DOMAIN_DESCRIPTION__ACHIEVERS);
-		createEReference(domainDescriptionEClass, DOMAIN_DESCRIPTION__MAINTAINRS);
 
 		actionDescriptionEClass = createEClass(ACTION_DESCRIPTION);
 		createEReference(actionDescriptionEClass, ACTION_DESCRIPTION__PROBABILISTICEFFECT);
@@ -975,9 +889,6 @@ public class AdaptiveCyberDefensePackageImpl extends EPackageImpl implements Ada
 		operationalRequirementEClass = createEClass(OPERATIONAL_REQUIREMENT);
 		createEAttribute(operationalRequirementEClass, OPERATIONAL_REQUIREMENT__NAME);
 		createEAttribute(operationalRequirementEClass, OPERATIONAL_REQUIREMENT__COST);
-		createEAttribute(operationalRequirementEClass, OPERATIONAL_REQUIREMENT__DEADLINE);
-		createEReference(operationalRequirementEClass, OPERATIONAL_REQUIREMENT__ACTIVATION);
-		createEReference(operationalRequirementEClass, OPERATIONAL_REQUIREMENT__CANCELLATION);
 		createEReference(operationalRequirementEClass, OPERATIONAL_REQUIREMENT__CONDITION);
 		createEAttribute(operationalRequirementEClass, OPERATIONAL_REQUIREMENT__DESCRIPTION);
 
@@ -1022,6 +933,7 @@ public class AdaptiveCyberDefensePackageImpl extends EPackageImpl implements Ada
 
 		maintainEClass = createEClass(MAINTAIN);
 		createEAttribute(maintainEClass, MAINTAIN__DURATION);
+		createEAttribute(maintainEClass, MAINTAIN__PER_UNIT_COST);
 
 		trueEClass = createEClass(TRUE);
 
@@ -1029,19 +941,14 @@ public class AdaptiveCyberDefensePackageImpl extends EPackageImpl implements Ada
 		createEReference(atomEClass, ATOM__VARIABLE);
 		createEAttribute(atomEClass, ATOM__VALUE);
 
-		maintainRSEClass = createEClass(MAINTAIN_RS);
-		createEAttribute(maintainRSEClass, MAINTAIN_RS__DEACTIVATE);
-		createEAttribute(maintainRSEClass, MAINTAIN_RS__VIOLATED);
-		createEAttribute(maintainRSEClass, MAINTAIN_RS__ACTIVATE);
-		createEAttribute(maintainRSEClass, MAINTAIN_RS__SATISFIED);
-
-		achieveRSEClass = createEClass(ACHIEVE_RS);
-		createEAttribute(achieveRSEClass, ACHIEVE_RS__VIOLATE);
-		createEAttribute(achieveRSEClass, ACHIEVE_RS__SATISFY);
-		createEAttribute(achieveRSEClass, ACHIEVE_RS__DEACTIVATE);
-		createEAttribute(achieveRSEClass, ACHIEVE_RS__ACTIVATE);
-
 		falseEClass = createEClass(FALSE);
+
+		deadlineRequirementEClass = createEClass(DEADLINE_REQUIREMENT);
+		createEReference(deadlineRequirementEClass, DEADLINE_REQUIREMENT__CANCELLATION);
+		createEReference(deadlineRequirementEClass, DEADLINE_REQUIREMENT__ACTIVATION);
+		createEAttribute(deadlineRequirementEClass, DEADLINE_REQUIREMENT__DEADLINE);
+
+		unconditionalMaintainEClass = createEClass(UNCONDITIONAL_MAINTAIN);
 
 		// Create enums
 		requirementStatusEEnum = createEEnum(REQUIREMENT_STATUS);
@@ -1085,11 +992,13 @@ public class AdaptiveCyberDefensePackageImpl extends EPackageImpl implements Ada
 		disjunctionEClass.getESuperTypes().add(this.getFormula());
 		negationEClass.getESuperTypes().add(this.getFormula());
 		parenthesesEClass.getESuperTypes().add(this.getFormula());
-		achieveEClass.getESuperTypes().add(this.getOperationalRequirement());
-		maintainEClass.getESuperTypes().add(this.getOperationalRequirement());
+		achieveEClass.getESuperTypes().add(this.getDeadlineRequirement());
+		maintainEClass.getESuperTypes().add(this.getDeadlineRequirement());
 		trueEClass.getESuperTypes().add(this.getFormula());
 		atomEClass.getESuperTypes().add(this.getFormula());
 		falseEClass.getESuperTypes().add(this.getFormula());
+		deadlineRequirementEClass.getESuperTypes().add(this.getOperationalRequirement());
+		unconditionalMaintainEClass.getESuperTypes().add(this.getOperationalRequirement());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(domainDescriptionEClass, DomainDescription.class, "DomainDescription", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -1098,8 +1007,6 @@ public class AdaptiveCyberDefensePackageImpl extends EPackageImpl implements Ada
 		initEReference(getDomainDescription_Requirements(), this.getOperationalRequirement(), null, "requirements", null, 0, -1, DomainDescription.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getDomainDescription_Actions(), this.getActionVariable(), null, "actions", null, 0, -1, DomainDescription.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getDomainDescription_Initial_atoms(), this.getInitialAtom(), null, "initial_atoms", null, 1, -1, DomainDescription.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getDomainDescription_Achievers(), this.getAchieveRS(), null, "achievers", null, 1, 1, DomainDescription.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getDomainDescription_Maintainrs(), this.getMaintainRS(), null, "maintainrs", null, 1, 1, DomainDescription.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(actionDescriptionEClass, ActionDescription.class, "ActionDescription", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getActionDescription_Probabilisticeffect(), this.getProbabilisticEffect(), null, "probabilisticeffect", null, 0, -1, ActionDescription.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1116,9 +1023,6 @@ public class AdaptiveCyberDefensePackageImpl extends EPackageImpl implements Ada
 		initEClass(operationalRequirementEClass, OperationalRequirement.class, "OperationalRequirement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getOperationalRequirement_Name(), ecorePackage.getEString(), "name", null, 1, 1, OperationalRequirement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getOperationalRequirement_Cost(), ecorePackage.getEIntegerObject(), "cost", null, 1, 1, OperationalRequirement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getOperationalRequirement_Deadline(), ecorePackage.getEIntegerObject(), "deadline", "1", 0, 1, OperationalRequirement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getOperationalRequirement_Activation(), this.getFormula(), null, "activation", null, 0, 1, OperationalRequirement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getOperationalRequirement_Cancellation(), this.getFormula(), null, "cancellation", null, 0, 1, OperationalRequirement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getOperationalRequirement_Condition(), this.getFormula(), null, "condition", null, 1, 1, OperationalRequirement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getOperationalRequirement_Description(), ecorePackage.getEString(), "description", null, 0, 1, OperationalRequirement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
@@ -1162,7 +1066,8 @@ public class AdaptiveCyberDefensePackageImpl extends EPackageImpl implements Ada
 		initEClass(achieveEClass, Achieve.class, "Achieve", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(maintainEClass, Maintain.class, "Maintain", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getMaintain_Duration(), ecorePackage.getEIntegerObject(), "duration", "1", 0, 1, Maintain.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getMaintain_Duration(), ecorePackage.getEIntegerObject(), "duration", "1", 1, 1, Maintain.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getMaintain_PerUnitCost(), ecorePackage.getEBooleanObject(), "perUnitCost", null, 0, 1, Maintain.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(trueEClass, True.class, "True", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
@@ -1170,19 +1075,14 @@ public class AdaptiveCyberDefensePackageImpl extends EPackageImpl implements Ada
 		initEReference(getAtom_Variable(), this.getVariable(), null, "variable", null, 1, 1, Atom.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getAtom_Value(), ecorePackage.getEString(), "value", "tt", 0, 1, Atom.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(maintainRSEClass, MaintainRS.class, "MaintainRS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getMaintainRS_Deactivate(), ecorePackage.getEIntegerObject(), "deactivate", null, 1, 1, MaintainRS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getMaintainRS_Violated(), ecorePackage.getEIntegerObject(), "violated", null, 1, 1, MaintainRS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getMaintainRS_Activate(), ecorePackage.getEIntegerObject(), "activate", null, 1, 1, MaintainRS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getMaintainRS_Satisfied(), ecorePackage.getEIntegerObject(), "satisfied", null, 1, 1, MaintainRS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(achieveRSEClass, AchieveRS.class, "AchieveRS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getAchieveRS_Violate(), ecorePackage.getEIntegerObject(), "violate", null, 1, 1, AchieveRS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getAchieveRS_Satisfy(), ecorePackage.getEIntegerObject(), "satisfy", null, 1, 1, AchieveRS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getAchieveRS_Deactivate(), ecorePackage.getEIntegerObject(), "deactivate", null, 1, 1, AchieveRS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getAchieveRS_Activate(), ecorePackage.getEIntegerObject(), "activate", null, 1, 1, AchieveRS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
 		initEClass(falseEClass, False.class, "False", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(deadlineRequirementEClass, DeadlineRequirement.class, "DeadlineRequirement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getDeadlineRequirement_Cancellation(), this.getFormula(), null, "cancellation", null, 0, 1, DeadlineRequirement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getDeadlineRequirement_Activation(), this.getFormula(), null, "activation", null, 1, 1, DeadlineRequirement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getDeadlineRequirement_Deadline(), ecorePackage.getEIntegerObject(), "deadline", "1", 1, 1, DeadlineRequirement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(unconditionalMaintainEClass, UnconditionalMaintain.class, "UnconditionalMaintain", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		// Initialize enums and add enum literals
 		initEEnum(requirementStatusEEnum, RequirementStatus.class, "RequirementStatus");

@@ -174,6 +174,7 @@ public class AdaptiveCyberDefenseSwitch<T> extends Switch<T> {
 			case AdaptiveCyberDefensePackage.ACHIEVE: {
 				Achieve achieve = (Achieve)theEObject;
 				T result = caseAchieve(achieve);
+				if (result == null) result = caseDeadlineRequirement(achieve);
 				if (result == null) result = caseOperationalRequirement(achieve);
 				if (result == null) result = caseInitialVariable(achieve);
 				if (result == null) result = defaultCase(theEObject);
@@ -182,6 +183,7 @@ public class AdaptiveCyberDefenseSwitch<T> extends Switch<T> {
 			case AdaptiveCyberDefensePackage.MAINTAIN: {
 				Maintain maintain = (Maintain)theEObject;
 				T result = caseMaintain(maintain);
+				if (result == null) result = caseDeadlineRequirement(maintain);
 				if (result == null) result = caseOperationalRequirement(maintain);
 				if (result == null) result = caseInitialVariable(maintain);
 				if (result == null) result = defaultCase(theEObject);
@@ -201,22 +203,26 @@ public class AdaptiveCyberDefenseSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case AdaptiveCyberDefensePackage.MAINTAIN_RS: {
-				MaintainRS maintainRS = (MaintainRS)theEObject;
-				T result = caseMaintainRS(maintainRS);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case AdaptiveCyberDefensePackage.ACHIEVE_RS: {
-				AchieveRS achieveRS = (AchieveRS)theEObject;
-				T result = caseAchieveRS(achieveRS);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
 			case AdaptiveCyberDefensePackage.FALSE: {
 				False false_ = (False)theEObject;
 				T result = caseFalse(false_);
 				if (result == null) result = caseFormula(false_);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case AdaptiveCyberDefensePackage.DEADLINE_REQUIREMENT: {
+				DeadlineRequirement deadlineRequirement = (DeadlineRequirement)theEObject;
+				T result = caseDeadlineRequirement(deadlineRequirement);
+				if (result == null) result = caseOperationalRequirement(deadlineRequirement);
+				if (result == null) result = caseInitialVariable(deadlineRequirement);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case AdaptiveCyberDefensePackage.UNCONDITIONAL_MAINTAIN: {
+				UnconditionalMaintain unconditionalMaintain = (UnconditionalMaintain)theEObject;
+				T result = caseUnconditionalMaintain(unconditionalMaintain);
+				if (result == null) result = caseOperationalRequirement(unconditionalMaintain);
+				if (result == null) result = caseInitialVariable(unconditionalMaintain);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -525,36 +531,6 @@ public class AdaptiveCyberDefenseSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Maintain RS</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Maintain RS</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseMaintainRS(MaintainRS object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Achieve RS</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Achieve RS</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseAchieveRS(AchieveRS object) {
-		return null;
-	}
-
-	/**
 	 * Returns the result of interpreting the object as an instance of '<em>False</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -566,6 +542,36 @@ public class AdaptiveCyberDefenseSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseFalse(False object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Deadline Requirement</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Deadline Requirement</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseDeadlineRequirement(DeadlineRequirement object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Unconditional Maintain</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Unconditional Maintain</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseUnconditionalMaintain(UnconditionalMaintain object) {
 		return null;
 	}
 

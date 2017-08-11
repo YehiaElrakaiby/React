@@ -9,7 +9,6 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.EObjectImpl;
 
 import org.emftext.language.AdaptiveCyberDefense.AdaptiveCyberDefensePackage;
 import org.emftext.language.AdaptiveCyberDefense.Formula;
@@ -25,9 +24,6 @@ import org.emftext.language.AdaptiveCyberDefense.OperationalRequirement;
  * <ul>
  *   <li>{@link org.emftext.language.AdaptiveCyberDefense.impl.OperationalRequirementImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.emftext.language.AdaptiveCyberDefense.impl.OperationalRequirementImpl#getCost <em>Cost</em>}</li>
- *   <li>{@link org.emftext.language.AdaptiveCyberDefense.impl.OperationalRequirementImpl#getDeadline <em>Deadline</em>}</li>
- *   <li>{@link org.emftext.language.AdaptiveCyberDefense.impl.OperationalRequirementImpl#getActivation <em>Activation</em>}</li>
- *   <li>{@link org.emftext.language.AdaptiveCyberDefense.impl.OperationalRequirementImpl#getCancellation <em>Cancellation</em>}</li>
  *   <li>{@link org.emftext.language.AdaptiveCyberDefense.impl.OperationalRequirementImpl#getCondition <em>Condition</em>}</li>
  *   <li>{@link org.emftext.language.AdaptiveCyberDefense.impl.OperationalRequirementImpl#getDescription <em>Description</em>}</li>
  * </ul>
@@ -74,46 +70,6 @@ public abstract class OperationalRequirementImpl extends InitialVariableImpl imp
 	 * @ordered
 	 */
 	protected Integer cost = COST_EDEFAULT;
-
-	/**
-	 * The default value of the '{@link #getDeadline() <em>Deadline</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getDeadline()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final Integer DEADLINE_EDEFAULT = new Integer(1);
-
-	/**
-	 * The cached value of the '{@link #getDeadline() <em>Deadline</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getDeadline()
-	 * @generated
-	 * @ordered
-	 */
-	protected Integer deadline = DEADLINE_EDEFAULT;
-
-	/**
-	 * The cached value of the '{@link #getActivation() <em>Activation</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getActivation()
-	 * @generated
-	 * @ordered
-	 */
-	protected Formula activation;
-
-	/**
-	 * The cached value of the '{@link #getCancellation() <em>Cancellation</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getCancellation()
-	 * @generated
-	 * @ordered
-	 */
-	protected Formula cancellation;
 
 	/**
 	 * The cached value of the '{@link #getCondition() <em>Condition</em>}' containment reference.
@@ -211,113 +167,6 @@ public abstract class OperationalRequirementImpl extends InitialVariableImpl imp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Integer getDeadline() {
-		return deadline;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setDeadline(Integer newDeadline) {
-		Integer oldDeadline = deadline;
-		deadline = newDeadline;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, AdaptiveCyberDefensePackage.OPERATIONAL_REQUIREMENT__DEADLINE, oldDeadline, deadline));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Formula getActivation() {
-		return activation;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetActivation(Formula newActivation, NotificationChain msgs) {
-		Formula oldActivation = activation;
-		activation = newActivation;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, AdaptiveCyberDefensePackage.OPERATIONAL_REQUIREMENT__ACTIVATION, oldActivation, newActivation);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setActivation(Formula newActivation) {
-		if (newActivation != activation) {
-			NotificationChain msgs = null;
-			if (activation != null)
-				msgs = ((InternalEObject)activation).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - AdaptiveCyberDefensePackage.OPERATIONAL_REQUIREMENT__ACTIVATION, null, msgs);
-			if (newActivation != null)
-				msgs = ((InternalEObject)newActivation).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - AdaptiveCyberDefensePackage.OPERATIONAL_REQUIREMENT__ACTIVATION, null, msgs);
-			msgs = basicSetActivation(newActivation, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, AdaptiveCyberDefensePackage.OPERATIONAL_REQUIREMENT__ACTIVATION, newActivation, newActivation));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Formula getCancellation() {
-		return cancellation;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetCancellation(Formula newCancellation, NotificationChain msgs) {
-		Formula oldCancellation = cancellation;
-		cancellation = newCancellation;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, AdaptiveCyberDefensePackage.OPERATIONAL_REQUIREMENT__CANCELLATION, oldCancellation, newCancellation);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setCancellation(Formula newCancellation) {
-		if (newCancellation != cancellation) {
-			NotificationChain msgs = null;
-			if (cancellation != null)
-				msgs = ((InternalEObject)cancellation).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - AdaptiveCyberDefensePackage.OPERATIONAL_REQUIREMENT__CANCELLATION, null, msgs);
-			if (newCancellation != null)
-				msgs = ((InternalEObject)newCancellation).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - AdaptiveCyberDefensePackage.OPERATIONAL_REQUIREMENT__CANCELLATION, null, msgs);
-			msgs = basicSetCancellation(newCancellation, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, AdaptiveCyberDefensePackage.OPERATIONAL_REQUIREMENT__CANCELLATION, newCancellation, newCancellation));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public Formula getCondition() {
 		return condition;
 	}
@@ -385,10 +234,6 @@ public abstract class OperationalRequirementImpl extends InitialVariableImpl imp
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case AdaptiveCyberDefensePackage.OPERATIONAL_REQUIREMENT__ACTIVATION:
-				return basicSetActivation(null, msgs);
-			case AdaptiveCyberDefensePackage.OPERATIONAL_REQUIREMENT__CANCELLATION:
-				return basicSetCancellation(null, msgs);
 			case AdaptiveCyberDefensePackage.OPERATIONAL_REQUIREMENT__CONDITION:
 				return basicSetCondition(null, msgs);
 		}
@@ -407,12 +252,6 @@ public abstract class OperationalRequirementImpl extends InitialVariableImpl imp
 				return getName();
 			case AdaptiveCyberDefensePackage.OPERATIONAL_REQUIREMENT__COST:
 				return getCost();
-			case AdaptiveCyberDefensePackage.OPERATIONAL_REQUIREMENT__DEADLINE:
-				return getDeadline();
-			case AdaptiveCyberDefensePackage.OPERATIONAL_REQUIREMENT__ACTIVATION:
-				return getActivation();
-			case AdaptiveCyberDefensePackage.OPERATIONAL_REQUIREMENT__CANCELLATION:
-				return getCancellation();
 			case AdaptiveCyberDefensePackage.OPERATIONAL_REQUIREMENT__CONDITION:
 				return getCondition();
 			case AdaptiveCyberDefensePackage.OPERATIONAL_REQUIREMENT__DESCRIPTION:
@@ -434,15 +273,6 @@ public abstract class OperationalRequirementImpl extends InitialVariableImpl imp
 				return;
 			case AdaptiveCyberDefensePackage.OPERATIONAL_REQUIREMENT__COST:
 				setCost((Integer)newValue);
-				return;
-			case AdaptiveCyberDefensePackage.OPERATIONAL_REQUIREMENT__DEADLINE:
-				setDeadline((Integer)newValue);
-				return;
-			case AdaptiveCyberDefensePackage.OPERATIONAL_REQUIREMENT__ACTIVATION:
-				setActivation((Formula)newValue);
-				return;
-			case AdaptiveCyberDefensePackage.OPERATIONAL_REQUIREMENT__CANCELLATION:
-				setCancellation((Formula)newValue);
 				return;
 			case AdaptiveCyberDefensePackage.OPERATIONAL_REQUIREMENT__CONDITION:
 				setCondition((Formula)newValue);
@@ -468,15 +298,6 @@ public abstract class OperationalRequirementImpl extends InitialVariableImpl imp
 			case AdaptiveCyberDefensePackage.OPERATIONAL_REQUIREMENT__COST:
 				setCost(COST_EDEFAULT);
 				return;
-			case AdaptiveCyberDefensePackage.OPERATIONAL_REQUIREMENT__DEADLINE:
-				setDeadline(DEADLINE_EDEFAULT);
-				return;
-			case AdaptiveCyberDefensePackage.OPERATIONAL_REQUIREMENT__ACTIVATION:
-				setActivation((Formula)null);
-				return;
-			case AdaptiveCyberDefensePackage.OPERATIONAL_REQUIREMENT__CANCELLATION:
-				setCancellation((Formula)null);
-				return;
 			case AdaptiveCyberDefensePackage.OPERATIONAL_REQUIREMENT__CONDITION:
 				setCondition((Formula)null);
 				return;
@@ -499,12 +320,6 @@ public abstract class OperationalRequirementImpl extends InitialVariableImpl imp
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case AdaptiveCyberDefensePackage.OPERATIONAL_REQUIREMENT__COST:
 				return COST_EDEFAULT == null ? cost != null : !COST_EDEFAULT.equals(cost);
-			case AdaptiveCyberDefensePackage.OPERATIONAL_REQUIREMENT__DEADLINE:
-				return DEADLINE_EDEFAULT == null ? deadline != null : !DEADLINE_EDEFAULT.equals(deadline);
-			case AdaptiveCyberDefensePackage.OPERATIONAL_REQUIREMENT__ACTIVATION:
-				return activation != null;
-			case AdaptiveCyberDefensePackage.OPERATIONAL_REQUIREMENT__CANCELLATION:
-				return cancellation != null;
 			case AdaptiveCyberDefensePackage.OPERATIONAL_REQUIREMENT__CONDITION:
 				return condition != null;
 			case AdaptiveCyberDefensePackage.OPERATIONAL_REQUIREMENT__DESCRIPTION:
@@ -527,8 +342,6 @@ public abstract class OperationalRequirementImpl extends InitialVariableImpl imp
 		result.append(name);
 		result.append(", cost: ");
 		result.append(cost);
-		result.append(", deadline: ");
-		result.append(deadline);
 		result.append(", description: ");
 		result.append(description);
 		result.append(')');

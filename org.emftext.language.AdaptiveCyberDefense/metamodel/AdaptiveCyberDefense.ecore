@@ -21,10 +21,6 @@
         eType="#//ActionVariable" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="initial_atoms" lowerBound="1"
         upperBound="-1" eType="#//InitialAtom" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="achievers" lowerBound="1"
-        eType="#//AchieveRS" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="maintainrs" lowerBound="1"
-        eType="#//MaintainRS" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ActionDescription">
     <eStructuralFeatures xsi:type="ecore:EReference" name="probabilisticeffect" upperBound="-1"
@@ -35,8 +31,8 @@
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="cost" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBigDecimal"
         defaultValueLiteral="-0.00001"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="formula" eType="#//Formula"
-        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="formula" lowerBound="1"
+        eType="#//Formula" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="actionatom" lowerBound="1"
         eType="#//ActionAtom" containment="true"/>
   </eClassifiers>
@@ -52,12 +48,6 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
         iD="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="cost" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EIntegerObject"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="deadline" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EIntegerObject"
-        defaultValueLiteral="1"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="activation" eType="#//Formula"
-        containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="cancellation" eType="#//Formula"
-        containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="condition" lowerBound="1"
         eType="#//Formula" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="description" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -125,10 +115,12 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="formula" lowerBound="1"
         eType="#//Formula" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Achieve" eSuperTypes="#//OperationalRequirement"/>
-  <eClassifiers xsi:type="ecore:EClass" name="Maintain" eSuperTypes="#//OperationalRequirement">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="duration" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EIntegerObject"
+  <eClassifiers xsi:type="ecore:EClass" name="Achieve" eSuperTypes="#//DeadlineRequirement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Maintain" eSuperTypes="#//DeadlineRequirement">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="duration" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EIntegerObject"
         defaultValueLiteral="1"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="perUnitCost" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBooleanObject"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="True" eSuperTypes="#//Formula"/>
   <eClassifiers xsi:type="ecore:EClass" name="Atom" eSuperTypes="#//Formula">
@@ -142,25 +134,16 @@
     <eLiterals name="exogenous" value="2"/>
     <eLiterals name="exploit" value="2"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="MaintainRS">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="deactivate" lowerBound="1"
-        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EIntegerObject"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="violated" lowerBound="1"
-        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EIntegerObject"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="activate" lowerBound="1"
-        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EIntegerObject"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="satisfied" lowerBound="1"
-        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EIntegerObject"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="AchieveRS">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="violate" lowerBound="1"
-        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EIntegerObject"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="satisfy" lowerBound="1"
-        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EIntegerObject"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="deactivate" lowerBound="1"
-        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EIntegerObject"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="activate" lowerBound="1"
-        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EIntegerObject"/>
-  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="False" eSuperTypes="#//Formula"/>
+  <eClassifiers xsi:type="ecore:EClass" name="DeadlineRequirement" abstract="true"
+      eSuperTypes="#//OperationalRequirement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="cancellation" eType="#//Formula"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="activation" lowerBound="1"
+        eType="#//Formula" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="deadline" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EIntegerObject"
+        defaultValueLiteral="-1"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="UnconditionalMaintain" eSuperTypes="#//OperationalRequirement"/>
 </ecore:EPackage>

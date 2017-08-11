@@ -148,16 +148,16 @@ public class AdaptiveCyberDefenseAdapterFactory extends AdapterFactoryImpl {
 				return createAtomAdapter();
 			}
 			@Override
-			public Adapter caseMaintainRS(MaintainRS object) {
-				return createMaintainRSAdapter();
-			}
-			@Override
-			public Adapter caseAchieveRS(AchieveRS object) {
-				return createAchieveRSAdapter();
-			}
-			@Override
 			public Adapter caseFalse(False object) {
 				return createFalseAdapter();
+			}
+			@Override
+			public Adapter caseDeadlineRequirement(DeadlineRequirement object) {
+				return createDeadlineRequirementAdapter();
+			}
+			@Override
+			public Adapter caseUnconditionalMaintain(UnconditionalMaintain object) {
+				return createUnconditionalMaintainAdapter();
 			}
 			@Override
 			public Adapter defaultCase(EObject object) {
@@ -460,34 +460,6 @@ public class AdaptiveCyberDefenseAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.emftext.language.AdaptiveCyberDefense.MaintainRS <em>Maintain RS</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.emftext.language.AdaptiveCyberDefense.MaintainRS
-	 * @generated
-	 */
-	public Adapter createMaintainRSAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.emftext.language.AdaptiveCyberDefense.AchieveRS <em>Achieve RS</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.emftext.language.AdaptiveCyberDefense.AchieveRS
-	 * @generated
-	 */
-	public Adapter createAchieveRSAdapter() {
-		return null;
-	}
-
-	/**
 	 * Creates a new adapter for an object of class '{@link org.emftext.language.AdaptiveCyberDefense.False <em>False</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -498,6 +470,34 @@ public class AdaptiveCyberDefenseAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createFalseAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.emftext.language.AdaptiveCyberDefense.DeadlineRequirement <em>Deadline Requirement</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.emftext.language.AdaptiveCyberDefense.DeadlineRequirement
+	 * @generated
+	 */
+	public Adapter createDeadlineRequirementAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.emftext.language.AdaptiveCyberDefense.UnconditionalMaintain <em>Unconditional Maintain</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.emftext.language.AdaptiveCyberDefense.UnconditionalMaintain
+	 * @generated
+	 */
+	public Adapter createUnconditionalMaintainAdapter() {
 		return null;
 	}
 

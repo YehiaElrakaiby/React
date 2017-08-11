@@ -20,8 +20,6 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link org.emftext.language.AdaptiveCyberDefense.DomainDescription#getRequirements <em>Requirements</em>}</li>
  *   <li>{@link org.emftext.language.AdaptiveCyberDefense.DomainDescription#getActions <em>Actions</em>}</li>
  *   <li>{@link org.emftext.language.AdaptiveCyberDefense.DomainDescription#getInitial_atoms <em>Initial atoms</em>}</li>
- *   <li>{@link org.emftext.language.AdaptiveCyberDefense.DomainDescription#getAchievers <em>Achievers</em>}</li>
- *   <li>{@link org.emftext.language.AdaptiveCyberDefense.DomainDescription#getMaintainrs <em>Maintainrs</em>}</li>
  * </ul>
  *
  * @see org.emftext.language.AdaptiveCyberDefense.AdaptiveCyberDefensePackage#getDomainDescription()
@@ -111,56 +109,6 @@ public interface DomainDescription extends EObject {
 	 */
 	EList<InitialAtom> getInitial_atoms();
 
-	/**
-	 * Returns the value of the '<em><b>Achievers</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Achievers</em>' containment reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Achievers</em>' containment reference.
-	 * @see #setAchievers(AchieveRS)
-	 * @see org.emftext.language.AdaptiveCyberDefense.AdaptiveCyberDefensePackage#getDomainDescription_Achievers()
-	 * @model containment="true" required="true"
-	 * @generated
-	 */
-	AchieveRS getAchievers();
-
-	/**
-	 * Sets the value of the '{@link org.emftext.language.AdaptiveCyberDefense.DomainDescription#getAchievers <em>Achievers</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Achievers</em>' containment reference.
-	 * @see #getAchievers()
-	 * @generated
-	 */
-	void setAchievers(AchieveRS value);
-
-	/**
-	 * Returns the value of the '<em><b>Maintainrs</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Maintainrs</em>' containment reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Maintainrs</em>' containment reference.
-	 * @see #setMaintainrs(MaintainRS)
-	 * @see org.emftext.language.AdaptiveCyberDefense.AdaptiveCyberDefensePackage#getDomainDescription_Maintainrs()
-	 * @model containment="true" required="true"
-	 * @generated
-	 */
-	MaintainRS getMaintainrs();
-
-	/**
-	 * Sets the value of the '{@link org.emftext.language.AdaptiveCyberDefense.DomainDescription#getMaintainrs <em>Maintainrs</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Maintainrs</em>' containment reference.
-	 * @see #getMaintainrs()
-	 * @generated
-	 */
-	void setMaintainrs(MaintainRS value);
+	
 
 } // DomainDescription

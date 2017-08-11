@@ -12,10 +12,12 @@ import java.util.Set;
 
 import org.apache.commons.lang.mutable.MutableInt;
 import org.eclipse.emf.common.util.EList;
+import org.emftext.language.AdaptiveCyberDefense.Achieve;
 import org.emftext.language.AdaptiveCyberDefense.ActionAtom;
 import org.emftext.language.AdaptiveCyberDefense.ActionDescription;
 import org.emftext.language.AdaptiveCyberDefense.ActionType;
 import org.emftext.language.AdaptiveCyberDefense.ActionVariable;
+import org.emftext.language.AdaptiveCyberDefense.AdaptiveCyberDefenseFactory;
 import org.emftext.language.AdaptiveCyberDefense.DomainDescription;
 import org.emftext.language.AdaptiveCyberDefense.Formula;
 import org.emftext.language.AdaptiveCyberDefense.InitialAtom;
@@ -25,12 +27,7 @@ import org.emftext.language.AdaptiveCyberDefense.OperationalRequirement;
 import org.emftext.language.AdaptiveCyberDefense.ProbabilisticEffect;
 import org.emftext.language.AdaptiveCyberDefense.StateAtom;
 import org.emftext.language.AdaptiveCyberDefense.StateVariable;
-import org.emftext.language.AdaptiveCyberDefense.impl.ActionAtomImpl;
-import org.emftext.language.AdaptiveCyberDefense.impl.ActionDescriptionImpl;
-import org.emftext.language.AdaptiveCyberDefense.impl.ActionVariableImpl;
-import org.emftext.language.AdaptiveCyberDefense.impl.FalseImpl;
-import org.emftext.language.AdaptiveCyberDefense.impl.TrueImpl;
-
+import org.emftext.language.AdaptiveCyberDefense.UnconditionalMaintain;
 import resources.StateVariableDescription;
 import resources.RequirementDescription;
 import resources.Transition;
@@ -63,17 +60,6 @@ public class LTSG {
 	protected HashMap<Integer,HashMap<String,String>> states = new HashMap<Integer,HashMap<String,String>> ();
 
 	/**
-	 * Applicable actions:
-	 *  Mapping state_id --> set of action_names
-	 */
-	//protected HashMap<Integer,HashSet<String>> applicable = new HashMap<Integer,HashSet<String>>();
-	/**
-	 * NotApplicable actions:
-	 *  Mapping state_id --> action_name
-	 */
-	//protected HashMap<Integer,HashSet<String>> not_applicable = new HashMap<Integer,HashSet<String>>();
-
-	/**
 	 * LTS States:
 	 *  Mapping state_id --> set of literals
 	 */
@@ -87,10 +73,6 @@ public class LTSG {
 	protected HashMap<Integer,Transition> src_label_dest_transitions_map = new HashMap<Integer,Transition>();
 	protected HashMap<Integer,HashSet<Integer>> src_label_nextStates_map = new HashMap<Integer,HashSet<Integer>>();
 
-	//protected HashSet<Transition> control_transitions = new HashSet<Transition>();
-	//protected HashSet<Transition> exogenous_transitions = new HashSet<Transition>();
-	//protected HashSet<Transition> exploit_transitions = new HashSet<Transition>();
-
 	/**
 	 * Initial State
 	 */
@@ -98,9 +80,6 @@ public class LTSG {
 
 	protected HashMap<String, Integer> control_events_id = new HashMap<String,Integer>();
 	protected HashMap<Integer, String> id_control_events = new HashMap<Integer, String>();
-
-	protected HashMap<String, Integer> exploit_events_id = new HashMap<String,Integer>();
-	protected HashMap<Integer, String> id_exploit_events = new HashMap<Integer, String>();
 
 	protected HashMap<String, Integer> exogenous_events_id = new HashMap<String,Integer>();
 	protected HashMap<Integer, String> id_exogenous_events = new HashMap<Integer, String>();
@@ -113,12 +92,8 @@ public class LTSG {
 
 	private Integer nb_of_states=1;
 	private Integer nb_of_control_events=0;
-	private Integer nb_of_exploit_events=0;
 	private Integer nb_of_exogenous_events=0;
 	private MutableInt nb_of_transitions = new MutableInt(0);
-
-	//double[][][] dreward_matrix,areward_matrix;
-	//double[][][] dtransition_matrix,atransition_matrix;
 
 	/**
 	 * Requirements:
@@ -142,8 +117,6 @@ public class LTSG {
 		if(option.equals(FULL)) {
 
 			generateStatesFromFluentDescriptions();
-
-			//createDRewardAndTransitionMatrices(this.nb_of_states,this.nb_of_control_events,this.nb_of_exploit_events);
 
 			generateTransitions(this.requirements_description);
 		}
@@ -190,7 +163,6 @@ public class LTSG {
 			 * Also add this state to the maps states and id_states
 			 */
 			updateTransitions(control_events_id,to_explore,state,state_nb);
-			updateTransitions(exploit_events_id,to_explore,state,state_nb);
 			updateTransitions(exogenous_events_id,to_explore,state,state_nb);
 
 		}
@@ -332,7 +304,7 @@ public class LTSG {
 				StateVariable satom = (StateVariable) var;
 				this.initial_state.put(satom.getName(), atom.getValue());
 			} else if(var.getClass().toString().endsWith("MaintainImpl") ||var.getClass().toString().endsWith("AchieveImpl")) {
-				OperationalRequirement ratom = (OperationalRequirement) var;
+				Maintain ratom = (Maintain) var;
 				this.initial_state.put(ratom.getName(), atom.getValue());
 			}
 		}
@@ -354,16 +326,17 @@ public class LTSG {
 	}
 
 	private void addNoOpActions() {
+
 		/*
 		 * Create a noop action description
 		 */
-		ActionDescription descr = new ActionDescriptionImpl();
-		ActionAtom event = new ActionAtomImpl();
-		ActionVariable var = new ActionVariableImpl();
+		ActionDescription descr = AdaptiveCyberDefenseFactory.eINSTANCE.createActionDescription();
+		ActionAtom event = AdaptiveCyberDefenseFactory.eINSTANCE.createActionAtom();
+		ActionVariable var = AdaptiveCyberDefenseFactory.eINSTANCE.createActionVariable();
 		/*
 		 * set preconditions
 		 */
-		descr.setFormula(new TrueImpl());
+		descr.setFormula(AdaptiveCyberDefenseFactory.eINSTANCE.createTrue());
 		/*
 		 * set cost
 		 */
@@ -381,57 +354,14 @@ public class LTSG {
 
 		this.event_description.put(ev, descr);
 		this.nb_of_control_events++;	
-
-		/*
-		 * Create a noop action description
-		 */
-		ActionDescription descr_e = new ActionDescriptionImpl();
-		ActionAtom event_e = new ActionAtomImpl();
-		ActionVariable var_e = new ActionVariableImpl();
-		/*
-		 * set preconditions
-		 */
-		descr_e.setFormula(new TrueImpl());
-		/*
-		 * set cost
-		 */		
-		descr_e.setCost(new BigDecimal(0));
-		var_e.setName("anoop");		
-		var_e.setType(ActionType.EXPLOIT);
-		event_e.setActionvariable(var_e);
-		event_e.setValue("tt");
-		descr_e.setActionatom(event_e);
-		ev = descr_e.getActionatom().getActionvariable().getName() + "=" + descr_e.getActionatom().getValue();
-
-		this.exploit_events_id.put(ev,nb_of_exploit_events);
-		this.id_exploit_events.put(nb_of_exploit_events,ev);
-		
-		this.event_description.put(ev, descr_e);
-		this.nb_of_exploit_events++;	
 	}
-
-
-	/*private void createDRewardAndTransitionMatrices(Integer nb_of_states, Integer nb_of_control_events, Integer nb_of_exploit_events) {
-		dreward_matrix = new double[states.size()][states.size()][nb_of_control_events];
-		areward_matrix = new double[states.size()][states.size()][nb_of_exploit_events];
-
-		dtransition_matrix = new double[states.size()][states.size()][nb_of_control_events];
-		atransition_matrix = new double[states.size()][states.size()][nb_of_exploit_events];
-	}*/
 
 	private void readActionDescriptions(EList<ActionDescription> action_descriptions) {
 		for(ActionDescription action : action_descriptions) {
 			//action.getCost();
 			String event = action.getActionatom().getActionvariable().getName() + "=" + action.getActionatom().getValue();
 
-			if(action.getActionatom().getActionvariable().getType().getLiteral().equals("exploit")){
-				this.exploit_events_id.put(event,nb_of_exploit_events);
-				this.id_exploit_events.put(nb_of_control_events,event);
-
-				this.event_description.put(event, action);
-				this.nb_of_exploit_events++;
-				//System.out.println(event);
-			} else if(action.getActionatom().getActionvariable().getType().getLiteral().equals("exogenous")) {
+			if(action.getActionatom().getActionvariable().getType().getLiteral().equals("exogenous")) {
 				this.exogenous_events_id.put(event,nb_of_exogenous_events);
 				this.id_exogenous_events.put(nb_of_control_events,event);
 
@@ -465,7 +395,6 @@ public class LTSG {
 			HashMap<String, String> state = states.get(state_id);
 
 			addTransitions(control_events_id,state);
-			addTransitions(exploit_events_id,state);
 			addTransitions(exogenous_events_id,state);
 
 		}
@@ -519,7 +448,7 @@ public class LTSG {
 					trans.setSrc(src);
 					trans.setProbability(one.subtract(total_prob));
 					trans.setApplicability(Transition.APPLICABLE);
-					
+
 					HashMap<String, String> dest_state = getDestinationState(event,state,null,descr,requirements_description,trans);
 					Integer dest_id = states_id.get(dest_state);
 					trans.setId(id_events.get(event));
@@ -527,7 +456,7 @@ public class LTSG {
 					src_label_dest_transitions_map.put(trans.hashCode(), trans);
 					updateTransitions3(Transition.hashCode(src, event),dest_id);
 
-				
+
 					nb_of_transitions.add(1);
 				}
 			}
@@ -572,11 +501,29 @@ public class LTSG {
 			req = requirements_description.get(reqID);
 			if(req.getType().equals("maintain")) {
 				updateMaintainReqAtomInState(temp,req,descr,trans);
-			} else {
+			} else if(req.getType().equals("achieve")){
 				updateAchieveReqAtomInState(temp,req,descr,trans);
+			} else if(req.getType().equals("unconditional")){
+				updateUnconditionalReqAtomInState(temp,req,descr,trans);
 			}
 		}
 		temp.remove(descr.getActionatom().getActionvariable().getName());
+	}
+
+	private void updateUnconditionalReqAtomInState(HashMap<String, String> state, 
+			RequirementDescription req,
+			ActionDescription descr, Transition trans) {
+		if(req.getCondition().verify(state)) {
+			/*
+			 * Satisfaction and reward update
+			 */
+			trans.updateReward(req.getCost_reward());
+		} else if(!req.getCondition().verify(state)) {
+			/*
+			 * Satisfaction and reward update
+			 */
+			trans.updateReward(-req.getCost_reward());
+		}
 	}
 
 	private void updateAchieveReqAtomInState(HashMap<String, String> state, 
@@ -719,60 +666,21 @@ public class LTSG {
 
 	private void readRequirements(EList<OperationalRequirement> requirements) {
 		for(OperationalRequirement requirement : requirements) {
-			String name = requirement.getName();
 			HashSet<String> domain = new HashSet<String>();
-
+			String name = requirement.getName();
 			//System.out.println(name);
 			RequirementDescription descr = new RequirementDescription();
-			descr.setName(name);
-			descr.setCondition(requirement.getCondition());
-			descr.setCost_reward(requirement.getCost());
-			descr.setDeadline(requirement.getDeadline());
-			/**
-			 * Notice that if there is no deadline, i.e., deadline =0, then the requirement has to be fulfilled immediately
-			 */
-			for(int i=0; i< requirement.getDeadline(); i++) {
-				domain.add("act-"+i);
-			}
 
-			if( requirement.getActivation() != null) {
-				descr.setActivation(requirement.getActivation());
-				domain.add("inact");
-			} else {
-				/**
-				 * if no activation then the requirement is unconditional and should be always active hence true is used as activation condition
-				 */
-				descr.setActivation(new TrueImpl());
-			}
-
-			if(requirement.getCancellation() != null) {
-				descr.setCancellation(requirement.getCancellation());
-			} else {
-				/**
-				 * if no cancellation then the requirement cannot be cancelled and false is used as cancellation condition
-				 */
-				descr.setCancellation(new FalseImpl());
-			}
-
-
-			if(requirement.getClass().getName().equals("org.emftext.language.AdaptiveCyberDefense.impl.MaintainImpl")){
-				//this.req_type.put(name, "maintain");
-				//System.out.println(requirement.getClass().getName());
+			if(requirement.getClass().getName().endsWith("MaintainImpl")){
 				Maintain req = (Maintain) requirement;
-				descr.setDuration(req.getDuration());
-				descr.setType("maintain");
-				/**
-				 * Notice that if there is no deadline, i.e., deadline =0, then the requirement has to be fulfilled immediately
-				 */
-				for(int i=0; i< req.getDuration(); i++) {
-					domain.add("req-"+i);
-				}
-
-			} else {
-				descr.setType("achieve");
-				//req_type.put(name, "achieve");
-			} 
-
+				fillMaintainRequirementDescription(req,descr,domain);
+			} else 	if(requirement.getClass().getName().endsWith("AchieveImpl")){
+				Achieve req = (Achieve) requirement;
+				fillAchieveRequirementDescription(req,descr,domain);
+			} else 	if(requirement.getClass().getName().endsWith("UnconditionalMaintainImpl")){
+				UnconditionalMaintain req = (UnconditionalMaintain) requirement;
+				fillUnconditionalMaintainRequirementDescription(req,descr,domain);
+			}
 			/**
 			 * add the requirement to the HashMap requirements_description
 			 */
@@ -784,7 +692,108 @@ public class LTSG {
 			variables_domain.put(name,domain);
 
 			nb_of_states = nb_of_states * domain.size();
-		}		
+		}
+	}
+
+	private void fillUnconditionalMaintainRequirementDescription(
+			UnconditionalMaintain req,
+			RequirementDescription descr,
+			HashSet<String> domain) {
+		String name = req.getName();
+
+		descr.setType("unconditional");
+
+		descr.setName(name);
+
+		descr.setCondition(req.getCondition());
+
+		descr.setCost_reward(req.getCost());
+
+		domain.add("act");
+	}
+
+	private void fillAchieveRequirementDescription(
+			Achieve req, 
+			RequirementDescription descr, 
+			HashSet<String> domain) {
+		String name = req.getName();
+
+		descr.setType("achieve");
+
+		descr.setName(name);
+
+		descr.setCondition(req.getCondition());
+
+		descr.setActivation(req.getActivation());
+		descr.setDeadline(req.getDeadline());
+
+		if(req.getCancellation() != null) {
+			descr.setCancellation(req.getCancellation());
+		} else {
+			/**
+			 * if no cancellation then the requirement cannot be cancelled and false is used as cancellation condition
+			 */
+			descr.setCancellation(AdaptiveCyberDefenseFactory.eINSTANCE.createFalse());
+		}
+
+		descr.setCost_reward(req.getCost());
+
+		domain.add("inact");
+		if(req.getDeadline()==-1) {
+			domain.add("act-0");
+		} else {
+			for(int i=0; i< req.getDeadline(); i++) {
+				domain.add("act-"+i);
+			}
+		}
+
+	}
+
+
+
+	private void fillMaintainRequirementDescription(
+			Maintain req, 
+			RequirementDescription descr, 
+			HashSet<String> domain) {
+		String name = req.getName();
+
+		descr.setType("maintain");
+
+		descr.setName(name);
+
+		descr.setCondition(req.getCondition());
+		descr.setDuration(req.getDuration());
+
+		descr.setActivation(req.getActivation());
+		descr.setDeadline(req.getDeadline());
+
+		if(req.getCancellation() != null) {
+			descr.setCancellation(req.getCancellation());
+		} else {
+			/**
+			 * if no cancellation then the requirement cannot be cancelled and false is used as cancellation condition
+			 */
+			descr.setCancellation(AdaptiveCyberDefenseFactory.eINSTANCE.createFalse());
+		}
+
+		descr.setCost_reward(req.getCost());
+		descr.setPerUnitCost(req.getPerUnitCost());
+
+
+		domain.add("inact");
+		if(req.getDeadline()==-1) {
+			domain.add("act-0");
+		} else {
+			for(int i=0; i< req.getDeadline(); i++) {
+				domain.add("act-"+i);
+			}
+		}
+		/**
+		 * Notice that if there is no deadline, i.e., deadline =0, then the requirement has to be fulfilled immediately
+		 */
+		for(int i=0; i< req.getDuration(); i++) {
+			domain.add("req-"+i);
+		}
 
 	}
 
@@ -904,8 +913,8 @@ public class LTSG {
 		return src_label_nextStates_map;
 	}
 
-	
-	
+
+
 	public void print() {
 		System.out.println("\n\n\n\t\t*********  Printing LTS  ***************\n\n");
 		System.out.println("Nb of fluent Descriptions: "+this.variables_domain.size()+"\n");
@@ -929,9 +938,6 @@ public class LTSG {
 		System.out.println("Nb of Exogenous Events: "+this.exogenous_events_id.size()+"\n");
 		System.out.println("Exogenous Events:\n "+this.exogenous_events_id.toString()+"\n");
 
-		System.out.println("Nb of Exploit Events: "+this.exploit_events_id.size()+"\n");
-		System.out.println("Exploit Events:\n "+this.exploit_events_id.toString()+"\n");
-
 
 		//System.out.println("Nb of Requirements: "+this.requirements.size()+"\n");
 		//System.out.println("Requirements:\n "+this.requirements.toString()+"\n");
@@ -947,14 +953,6 @@ public class LTSG {
 
 	public HashMap<Integer, String> getId_control_events() {
 		return id_control_events;
-	}
-
-	public HashMap<String, Integer> getExploit_events_id() {
-		return exploit_events_id;
-	}
-
-	public HashMap<Integer, String> getId_exploit_events() {
-		return id_exploit_events;
 	}
 
 	public HashMap<String, Integer> getExogenous_events_id() {

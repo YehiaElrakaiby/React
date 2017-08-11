@@ -18,16 +18,12 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
-
-import org.emftext.language.AdaptiveCyberDefense.AchieveRS;
 import org.emftext.language.AdaptiveCyberDefense.ActionDescription;
 import org.emftext.language.AdaptiveCyberDefense.ActionVariable;
 import org.emftext.language.AdaptiveCyberDefense.AdaptiveCyberDefensePackage;
-
 import org.emftext.language.AdaptiveCyberDefense.DomainDescription;
 import org.emftext.language.AdaptiveCyberDefense.InitialAtom;
-import org.emftext.language.AdaptiveCyberDefense.InitialStateAtom;
-import org.emftext.language.AdaptiveCyberDefense.MaintainRS;
+
 import org.emftext.language.AdaptiveCyberDefense.OperationalRequirement;
 import org.emftext.language.AdaptiveCyberDefense.StateVariable;
 
@@ -44,8 +40,6 @@ import org.emftext.language.AdaptiveCyberDefense.StateVariable;
  *   <li>{@link org.emftext.language.AdaptiveCyberDefense.impl.DomainDescriptionImpl#getRequirements <em>Requirements</em>}</li>
  *   <li>{@link org.emftext.language.AdaptiveCyberDefense.impl.DomainDescriptionImpl#getActions <em>Actions</em>}</li>
  *   <li>{@link org.emftext.language.AdaptiveCyberDefense.impl.DomainDescriptionImpl#getInitial_atoms <em>Initial atoms</em>}</li>
- *   <li>{@link org.emftext.language.AdaptiveCyberDefense.impl.DomainDescriptionImpl#getAchievers <em>Achievers</em>}</li>
- *   <li>{@link org.emftext.language.AdaptiveCyberDefense.impl.DomainDescriptionImpl#getMaintainrs <em>Maintainrs</em>}</li>
  * </ul>
  *
  * @generated
@@ -100,26 +94,6 @@ public class DomainDescriptionImpl extends EObjectImpl implements DomainDescript
 	 * @ordered
 	 */
 	protected EList<InitialAtom> initial_atoms;
-
-	/**
-	 * The cached value of the '{@link #getAchievers() <em>Achievers</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getAchievers()
-	 * @generated
-	 * @ordered
-	 */
-	protected AchieveRS achievers;
-
-	/**
-	 * The cached value of the '{@link #getMaintainrs() <em>Maintainrs</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getMaintainrs()
-	 * @generated
-	 * @ordered
-	 */
-	protected MaintainRS maintainrs;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -205,92 +179,6 @@ public class DomainDescriptionImpl extends EObjectImpl implements DomainDescript
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public AchieveRS getAchievers() {
-		return achievers;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetAchievers(AchieveRS newAchievers, NotificationChain msgs) {
-		AchieveRS oldAchievers = achievers;
-		achievers = newAchievers;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, AdaptiveCyberDefensePackage.DOMAIN_DESCRIPTION__ACHIEVERS, oldAchievers, newAchievers);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setAchievers(AchieveRS newAchievers) {
-		if (newAchievers != achievers) {
-			NotificationChain msgs = null;
-			if (achievers != null)
-				msgs = ((InternalEObject)achievers).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - AdaptiveCyberDefensePackage.DOMAIN_DESCRIPTION__ACHIEVERS, null, msgs);
-			if (newAchievers != null)
-				msgs = ((InternalEObject)newAchievers).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - AdaptiveCyberDefensePackage.DOMAIN_DESCRIPTION__ACHIEVERS, null, msgs);
-			msgs = basicSetAchievers(newAchievers, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, AdaptiveCyberDefensePackage.DOMAIN_DESCRIPTION__ACHIEVERS, newAchievers, newAchievers));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public MaintainRS getMaintainrs() {
-		return maintainrs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetMaintainrs(MaintainRS newMaintainrs, NotificationChain msgs) {
-		MaintainRS oldMaintainrs = maintainrs;
-		maintainrs = newMaintainrs;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, AdaptiveCyberDefensePackage.DOMAIN_DESCRIPTION__MAINTAINRS, oldMaintainrs, newMaintainrs);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setMaintainrs(MaintainRS newMaintainrs) {
-		if (newMaintainrs != maintainrs) {
-			NotificationChain msgs = null;
-			if (maintainrs != null)
-				msgs = ((InternalEObject)maintainrs).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - AdaptiveCyberDefensePackage.DOMAIN_DESCRIPTION__MAINTAINRS, null, msgs);
-			if (newMaintainrs != null)
-				msgs = ((InternalEObject)newMaintainrs).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - AdaptiveCyberDefensePackage.DOMAIN_DESCRIPTION__MAINTAINRS, null, msgs);
-			msgs = basicSetMaintainrs(newMaintainrs, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, AdaptiveCyberDefensePackage.DOMAIN_DESCRIPTION__MAINTAINRS, newMaintainrs, newMaintainrs));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -304,10 +192,6 @@ public class DomainDescriptionImpl extends EObjectImpl implements DomainDescript
 				return ((InternalEList<?>)getActions()).basicRemove(otherEnd, msgs);
 			case AdaptiveCyberDefensePackage.DOMAIN_DESCRIPTION__INITIAL_ATOMS:
 				return ((InternalEList<?>)getInitial_atoms()).basicRemove(otherEnd, msgs);
-			case AdaptiveCyberDefensePackage.DOMAIN_DESCRIPTION__ACHIEVERS:
-				return basicSetAchievers(null, msgs);
-			case AdaptiveCyberDefensePackage.DOMAIN_DESCRIPTION__MAINTAINRS:
-				return basicSetMaintainrs(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -330,10 +214,6 @@ public class DomainDescriptionImpl extends EObjectImpl implements DomainDescript
 				return getActions();
 			case AdaptiveCyberDefensePackage.DOMAIN_DESCRIPTION__INITIAL_ATOMS:
 				return getInitial_atoms();
-			case AdaptiveCyberDefensePackage.DOMAIN_DESCRIPTION__ACHIEVERS:
-				return getAchievers();
-			case AdaptiveCyberDefensePackage.DOMAIN_DESCRIPTION__MAINTAINRS:
-				return getMaintainrs();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -367,12 +247,6 @@ public class DomainDescriptionImpl extends EObjectImpl implements DomainDescript
 				getInitial_atoms().clear();
 				getInitial_atoms().addAll((Collection<? extends InitialAtom>)newValue);
 				return;
-			case AdaptiveCyberDefensePackage.DOMAIN_DESCRIPTION__ACHIEVERS:
-				setAchievers((AchieveRS)newValue);
-				return;
-			case AdaptiveCyberDefensePackage.DOMAIN_DESCRIPTION__MAINTAINRS:
-				setMaintainrs((MaintainRS)newValue);
-				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -400,12 +274,6 @@ public class DomainDescriptionImpl extends EObjectImpl implements DomainDescript
 			case AdaptiveCyberDefensePackage.DOMAIN_DESCRIPTION__INITIAL_ATOMS:
 				getInitial_atoms().clear();
 				return;
-			case AdaptiveCyberDefensePackage.DOMAIN_DESCRIPTION__ACHIEVERS:
-				setAchievers((AchieveRS)null);
-				return;
-			case AdaptiveCyberDefensePackage.DOMAIN_DESCRIPTION__MAINTAINRS:
-				setMaintainrs((MaintainRS)null);
-				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -428,10 +296,6 @@ public class DomainDescriptionImpl extends EObjectImpl implements DomainDescript
 				return actions != null && !actions.isEmpty();
 			case AdaptiveCyberDefensePackage.DOMAIN_DESCRIPTION__INITIAL_ATOMS:
 				return initial_atoms != null && !initial_atoms.isEmpty();
-			case AdaptiveCyberDefensePackage.DOMAIN_DESCRIPTION__ACHIEVERS:
-				return achievers != null;
-			case AdaptiveCyberDefensePackage.DOMAIN_DESCRIPTION__MAINTAINRS:
-				return maintainrs != null;
 		}
 		return super.eIsSet(featureID);
 	}

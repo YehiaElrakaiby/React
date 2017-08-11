@@ -1,8 +1,6 @@
 package resources;
 
-import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Set;
 
 import org.emftext.language.AdaptiveCyberDefense.Formula;
 
@@ -13,6 +11,8 @@ public class RequirementDescription {
 	private int deadline;
 	private int duration;
 	private int cost_reward;
+	private Boolean perUnitCost;
+
 	private String type;
 	private String name;
 	private HashSet<String> statuses = new HashSet<String>();
@@ -106,6 +106,14 @@ public class RequirementDescription {
 
 	public void setStatuses(HashSet<String> statuses) {
 		this.statuses = statuses;
+	}
+
+	public Boolean isPerUnitCost() {
+		return perUnitCost;
+	}
+
+	public void setPerUnitCost(Boolean perUnitCost) {
+		this.perUnitCost = perUnitCost;
 	}
 
 

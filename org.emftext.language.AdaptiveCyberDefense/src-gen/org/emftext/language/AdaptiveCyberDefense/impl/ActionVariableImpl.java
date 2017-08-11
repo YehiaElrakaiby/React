@@ -51,7 +51,7 @@ public class ActionVariableImpl extends VariableImpl implements ActionVariable {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ActionVariableImpl() {
+	protected ActionVariableImpl() {
 		super();
 	}
 

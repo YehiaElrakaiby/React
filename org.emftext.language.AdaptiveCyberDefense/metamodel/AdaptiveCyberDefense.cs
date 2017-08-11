@@ -37,18 +37,9 @@ RULES {
 		"EventDescriptions" "=" "<" (action_descriptions ";")* ">" 
 		
 		"CurrentState" "=" "<"  initial_atoms ("," initial_atoms)*   ">"
-		"MaintainRS" "=" "<"  maintainrs   ">"
-		"AchieveRS" "=" "<"  achievers   ">"
 		
 		"}"
-		;
-
-	MaintainRS ::=  "activate" activate[INTEGER] "," "deactivate" deactivate[INTEGER] "," "satisfy" satisfied[INTEGER] "," "violate"violated[INTEGER];
-	
-	AchieveRS ::=  "activate" activate[INTEGER] "," "deactivate" deactivate[INTEGER] "," "satisfy" satisfy[INTEGER] "," "violate"violate[INTEGER];
-	
-	
-		
+		;		
 		
 	StateVariable ::=  "Variable" name[] 
 						"domain" "{" values[] ("," values[])* "}";
@@ -65,11 +56,17 @@ RULES {
 		("cost" cost[FLOAT])?
 		;	
 	
+	UnconditionalMaintain ::= 
+		"ReqID" name[]  
+		"maitain" condition
+		"cost" cost[INTEGER]
+		("description" description['"','"'])?;
+		
 	Achieve ::= 
 		"ReqID" name[]  
 		"achieve" condition
-		("within"  deadline[INTEGER])?
-		("if"  activation)?
+		"within"  deadline[INTEGER]
+		"after"  activation
 		("unless"  cancellation)?
 		"cost" cost[INTEGER]
 		("description" description['"','"'])?;
@@ -77,11 +74,11 @@ RULES {
 	Maintain ::= 
 		"ReqID" name[] 
 		"maintain" condition
-		("within"  deadline[INTEGER])?
-		("for"  duration[INTEGER])?
-		("after"  activation)?
+		"within"  deadline[INTEGER]
+		"for"  duration[INTEGER]
+		"after"  activation
 		("unless"  cancellation)?
-		"cost" cost[INTEGER]
+		"cost" cost[INTEGER] ("perUnit" perUnitCost[])?
 		("description" description['"','"'])?;
 		
 	

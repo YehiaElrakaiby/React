@@ -73,9 +73,8 @@ public class AdaptiveCyberDefenseFactoryImpl extends EFactoryImpl implements Ada
 			case AdaptiveCyberDefensePackage.MAINTAIN: return createMaintain();
 			case AdaptiveCyberDefensePackage.TRUE: return createTrue();
 			case AdaptiveCyberDefensePackage.ATOM: return createAtom();
-			case AdaptiveCyberDefensePackage.MAINTAIN_RS: return createMaintainRS();
-			case AdaptiveCyberDefensePackage.ACHIEVE_RS: return createAchieveRS();
 			case AdaptiveCyberDefensePackage.FALSE: return createFalse();
+			case AdaptiveCyberDefensePackage.UNCONDITIONAL_MAINTAIN: return createUnconditionalMaintain();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -280,29 +279,19 @@ public class AdaptiveCyberDefenseFactoryImpl extends EFactoryImpl implements Ada
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public MaintainRS createMaintainRS() {
-		MaintainRSImpl maintainRS = new MaintainRSImpl();
-		return maintainRS;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public AchieveRS createAchieveRS() {
-		AchieveRSImpl achieveRS = new AchieveRSImpl();
-		return achieveRS;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public False createFalse() {
 		FalseImpl false_ = new FalseImpl();
 		return false_;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public UnconditionalMaintain createUnconditionalMaintain() {
+		UnconditionalMaintainImpl unconditionalMaintain = new UnconditionalMaintainImpl();
+		return unconditionalMaintain;
 	}
 
 	/**

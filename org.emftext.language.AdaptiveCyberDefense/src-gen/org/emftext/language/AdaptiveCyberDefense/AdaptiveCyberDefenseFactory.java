@@ -166,24 +166,6 @@ public interface AdaptiveCyberDefenseFactory extends EFactory {
 	Atom createAtom();
 
 	/**
-	 * Returns a new object of class '<em>Maintain RS</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Maintain RS</em>'.
-	 * @generated
-	 */
-	MaintainRS createMaintainRS();
-
-	/**
-	 * Returns a new object of class '<em>Achieve RS</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Achieve RS</em>'.
-	 * @generated
-	 */
-	AchieveRS createAchieveRS();
-
-	/**
 	 * Returns a new object of class '<em>False</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -191,6 +173,15 @@ public interface AdaptiveCyberDefenseFactory extends EFactory {
 	 * @generated
 	 */
 	False createFalse();
+
+	/**
+	 * Returns a new object of class '<em>Unconditional Maintain</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Unconditional Maintain</em>'.
+	 * @generated
+	 */
+	UnconditionalMaintain createUnconditionalMaintain();
 
 	/**
 	 * Returns the package supported by this factory.
