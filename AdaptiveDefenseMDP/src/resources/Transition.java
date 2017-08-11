@@ -3,31 +3,31 @@ package resources;
 import java.math.BigDecimal;
 
 public class Transition {
-	private String name="";
+	private String event="";
 	private Integer src=-1;
 	private Integer dest=-1;
 	private BigDecimal probability=new BigDecimal(-1);
-	private Boolean applicable=false;
-	private Integer reward=0;
+	private Integer orReward=0;
+	private Integer actionCost=0;
 	private Integer id=0;
+	
 	private Boolean applicability=false;
 	
 	static public final Boolean APPLICABLE = true;
 	static public final Boolean NOTAPPLICABLE = false;
 
 	public Transition(String n, Integer src, Integer dest, BigDecimal prob) {
-		this.name =n;
+		this.event =n;
 		this.src =src;
 		this.dest= dest;
 		this.probability = prob;
 	}
 	
 	public Transition(String n, Integer src, Integer dest, BigDecimal prob, Boolean applicable) {
-		this.name =n;
+		this.event =n;
 		this.src =src;
 		this.dest= dest;
 		this.probability = prob;
-		this.applicable = applicable;
 	}
 	
 	public Transition() {
@@ -35,12 +35,12 @@ public class Transition {
 	}
 
 	public String getName() {
-		return name;
+		return event;
 	}
 
 
 	public void setName(String name) {
-		this.name = name;
+		this.event = name;
 	}
 
 
@@ -72,12 +72,12 @@ public class Transition {
 		this.probability = probability;
 	}
 
-	public Integer getReward() {
-		return reward;
+	public Integer getOrReward() {
+		return orReward;
 	}
 
-	public void setReward(Integer reward) {
-		this.reward = reward;
+	public void setOrReward(Integer reward) {
+		this.orReward = reward;
 	}
 	
 	@Override
@@ -85,7 +85,7 @@ public class Transition {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((dest == null) ? 0 : dest.hashCode());
-		result = prime * result + ((name == null) ? 0 : name.hashCode());
+		result = prime * result + ((event == null) ? 0 : event.hashCode());
 		result = prime * result + ((src == null) ? 0 : src.hashCode());
 		return result;
 	}
@@ -115,8 +115,8 @@ public class Transition {
 		this.id = id;
 	}
 
-	public void updateReward(int cost_reward) {
-		this.reward+=cost_reward;
+	public void updateOrReward(int reward) {
+		this.orReward+=reward;
 		
 	}
 
@@ -142,10 +142,10 @@ public class Transition {
 				return false;
 		} else if (!dest.equals(other.dest))
 			return false;
-		if (name == null) {
-			if (other.name != null)
+		if (event == null) {
+			if (other.event != null)
 				return false;
-		} else if (!name.equals(other.name))
+		} else if (!event.equals(other.event))
 			return false;
 		if (src == null) {
 			if (other.src != null)
@@ -159,13 +159,21 @@ public class Transition {
 	public String toString(){
 		
 		String  s; 
-		if(this.applicable) {
-			s =  this.applicable+"("+src +"<" +name +"(" + probability + ")"+ ">" + dest+")";
+		if(this.applicability) {
+			s =  "\n"+this.applicability+"("+src +"<" +event +"(" + probability + ")"+ ">" + dest+")";
 		} else {
-			s =  this.applicable + "(" + src +"<" +name +"(" + probability + ")";
+			s =  "\n"+this.applicability + "(" + src +"<" +event +"(" + probability + ")";
 		}
 		return s;
 
+	}
+
+	public Integer getActionCost() {
+		return actionCost;
+	}
+
+	public void setActionCost(Integer actionCost) {
+		this.actionCost = actionCost;
 	}
 
 	

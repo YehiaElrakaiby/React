@@ -77,8 +77,8 @@ public class RequirementDescription {
 		str.append("req [" + name + " = " + type + " "+ condition); 
 		if(duration!=0) str.append(" for " + duration);
 		if(deadline!=0) str.append(" within " + deadline);
-		str.append(" after " + activation.toString());
-		str.append(" unless " + cancellation.toString());
+		if(activation!=null)str.append(" after " + activation.toString());
+		if(cancellation!=null)str.append(" unless " + cancellation.toString());
 		str.append(" cost " + cost_reward);
 		str.append("]\n");
 		return str.toString();

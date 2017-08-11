@@ -12,6 +12,9 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
+import java.util.logging.Logger;
+
+import main.AdaptiveDefenseMDP;
 import resources.Transition;
 
 
@@ -43,6 +46,8 @@ public class DOT_Writer {
 	public static final String SHOW_UTIL_REQ = "utility req";
 	public static final String SHOW_AP_REQ = "ap req";
 	public static final String SHOW_ALL = "utility ap req";
+
+	private final static Logger LOGGER = Logger.getLogger(AdaptiveDefenseMDP.class.getName());
 
 
 	public DOT_Writer(String pathTographivFile,
@@ -138,17 +143,17 @@ public class DOT_Writer {
 		/*
 		 * Open file from desktop
 		 */
-		Desktop dt = Desktop.getDesktop();
-		try {
-			if(file!=null)dt.open(file);
-			else {
+		//Desktop dt = Desktop.getDesktop();
+		//try {
+			//if(file!=null)dt.open(file);
+			//else {
 				this.writeToFile();
 				//dt.open(file);
-			}
-		} catch (IOException e) {
+			//}
+		//} catch (IOException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+			//e.printStackTrace();
+		//}
 	}
 
 	private void writeNodes() {
@@ -242,10 +247,17 @@ public class DOT_Writer {
 
 					bw.write(" [label=\"");
 
+					String trans_name=transition_description.getName();
+					if(trans_name.endsWith("=tt")){
+						trans_name=trans_name.substring(0,trans_name.indexOf("=tt"));
+					}
+
 					bw.write(
-							transition_description.getName() +" "
+							trans_name +" "
 							+ transition_description.getProbability() +" "
-							+ transition_description.getReward() +" "
+							+ transition_description.getActionCost() +" "
+							+ transition_description.getOrReward() +" "
+							//+ transition_description.getSrCost() +" "
 							+"\\n");
 
 					bw.write("\"]\n");

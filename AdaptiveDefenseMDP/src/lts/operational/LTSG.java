@@ -184,7 +184,7 @@ public class LTSG {
 				EList<ProbabilisticEffect> effects = descr.getProbabilisticeffect();
 				BigDecimal total_prob = new BigDecimal(0);
 				Transition trans = new Transition();
-				trans.updateReward(-descr.getCost().intValue());
+				trans.updateOrReward(-descr.getCost().intValue());
 				trans.setName(event);
 				Integer src = states_id.get(state);
 				trans.setSrc(src);
@@ -517,12 +517,12 @@ public class LTSG {
 			/*
 			 * Satisfaction and reward update
 			 */
-			trans.updateReward(req.getCost_reward());
+			trans.updateOrReward(req.getCost_reward());
 		} else if(!req.getCondition().verify(state)) {
 			/*
 			 * Satisfaction and reward update
 			 */
-			trans.updateReward(-req.getCost_reward());
+			trans.updateOrReward(-req.getCost_reward());
 		}
 	}
 
@@ -559,14 +559,14 @@ public class LTSG {
 				/*
 				 * Satisfaction and reward update
 				 */
-				trans.updateReward(req.getCost_reward());
+				trans.updateOrReward(req.getCost_reward());
 			} else if (descr.getActionatom().getActionvariable().getType().getLiteral().equals("control")) {
 				if (status.equals("act-0")){
 					state.put(req_id, "inact");
 					/*
 					 * Violation and reward update
 					 */
-					trans.updateReward(-req.getCost_reward());
+					trans.updateOrReward(-req.getCost_reward());
 				} else {
 					Integer remainingTime = new Integer(status.substring(4));
 					state.put(req_id, "act-"+(remainingTime-1));
@@ -615,7 +615,7 @@ public class LTSG {
 					/*
 					 * Violation and reward update
 					 */
-					trans.updateReward(-req.getCost_reward());
+					trans.updateOrReward(-req.getCost_reward());
 				} else  {
 					Integer remainingTime = new Integer(status.substring(4));
 					state.put(req_id, "act-"+(remainingTime-1));
@@ -631,14 +631,14 @@ public class LTSG {
 				/*
 				 * Violation and reward update
 				 */
-				trans.updateReward(-req.getCost_reward());
+				trans.updateOrReward(-req.getCost_reward());
 			} else if (descr.getActionatom().getActionvariable().getType().getLiteral().equals("control")) {
 				if (status.equals("req-0")){
 					state.put(req_id, "inact");
 					/*
 					 * Satisfaction and reward update
 					 */
-					trans.updateReward(req.getCost_reward());
+					trans.updateOrReward(req.getCost_reward());
 				} else {
 					Integer remainingTime = new Integer(status.substring(4));
 					state.put(req_id, "req-"+(remainingTime-1));
