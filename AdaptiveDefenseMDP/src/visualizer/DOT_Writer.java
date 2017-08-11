@@ -259,7 +259,6 @@ public class DOT_Writer {
 							+ transition_description.getProbability() +" "
 							+ transition_description.getActionCost() +" "
 							+ transition_description.getOrReward() +" "
-							//+ transition_description.getSrCost() +" "
 							+"\\n");
 
 					bw.write("\"]\n");

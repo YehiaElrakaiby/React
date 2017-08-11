@@ -106,12 +106,10 @@ public class MDP_Computer {
 			Boolean option) {
 		Integer id_noop=0;
 
-		if(events.containsKey(AdaptiveDefenseMDP.noop_event_identifier_1)) {
-			id_noop = events.get(AdaptiveDefenseMDP.noop_event_identifier_1+"=tt");
-			
-		} else if(events.containsKey(AdaptiveDefenseMDP.noop_event_identifier_2)){
-			id_noop = events.get(AdaptiveDefenseMDP.noop_event_identifier_2+"=tt");			
-		} else {
+		if(events.containsKey(AdaptiveDefenseMDP.noop_event_identifier+"=tt")) {
+			id_noop = events.get(AdaptiveDefenseMDP.noop_event_identifier+"=tt");
+		}
+		else	{
 			LOGGER.error("Problem: could not find the noop identifier");
 		}
 		HashSet<Transition> temp_trans = new HashSet<Transition>();

@@ -1,0 +1,32 @@
+2017-08-11 23:01:00.395 INFO  [main.AdaptiveDefenseMDP loadTextual:293] main.AdaptiveDefenseMDP - Domain Description File Name : /Users/yehia/Documents/runtime-EclipseApplication/AdaptiveCyberDefenseSpecifications/domain_description.AdaptiveCyberDefense
+2017-08-11 23:01:00.726 INFO  [main.AdaptiveDefenseMDP main:87] main.AdaptiveDefenseMDP - domain description loaded
+2017-08-11 23:01:00.778 INFO  [main.AdaptiveDefenseMDP main:98] main.AdaptiveDefenseMDP - The labeled transition system LTSG created
+2017-08-11 23:01:00.779 INFO  [lts.operational.LTSG print:932]  - Nb of fluent Descriptions: 10
+
+2017-08-11 23:01:00.780 INFO  [lts.operational.LTSG print:935]  - Total Number of States:
+ 8960
+
+2017-08-11 23:01:00.780 INFO  [lts.operational.LTSG print:937]  - Nb of Action Descriptions: 11
+
+2017-08-11 23:01:00.781 INFO  [lts.operational.LTSG print:940]  - Nb of States to Explore: 212
+
+2017-08-11 23:01:00.783 INFO  [lts.operational.LTSG print:943]  - Nb of Transitions: 2332
+
+2017-08-11 23:01:00.788 INFO  [lts.operational.LTSG print:946]  - Nb of Control Events: 9
+
+2017-08-11 23:01:00.789 INFO  [lts.operational.LTSG print:949]  - Nb of Exogenous Events: 2
+
+2017-08-11 23:01:00.789 INFO  [lts.operational.LTSG print:953]  - Nb of Requirements: 2
+
+2017-08-11 23:01:00.800 INFO  [main.AdaptiveDefenseMDP main:106] main.AdaptiveDefenseMDP - The labeled transition system .dot file is created
+2017-08-11 23:01:00.806 INFO  [main.AdaptiveDefenseMDP computeOperationalStrategyAndPlan:126] main.AdaptiveDefenseMDP - The transition matrix based on operational goals and control events is computed
+2017-08-11 23:01:00.808 INFO  [main.AdaptiveDefenseMDP computeOperationalStrategyAndPlan:129] main.AdaptiveDefenseMDP - The reward matrix based on operational goals and control events is computed
+2017-08-11 23:01:01.644 INFO  [main.AdaptiveDefenseMDP computeOperationalStrategyAndPlan:139] main.AdaptiveDefenseMDP - The policy and value vectors based on the MDP that includes reward and transition matrices based on operational are computed
+2017-08-11 23:01:01.645 ERROR [resources.MDP_Computer updateTransitionsUsingPolicy:115]  - Problem: could not find the noop identifier
+2017-08-11 23:01:01.646 INFO  [main.AdaptiveDefenseMDP computeOperationalStrategyAndPlan:145] main.AdaptiveDefenseMDP - The transitions are filtered based on the computed policy
+2017-08-11 23:01:01.648 INFO  [main.AdaptiveDefenseMDP computeOperationalStrategyAndPlan:147] main.AdaptiveDefenseMDP - A copie of the LTS states are created using the computed state values
+2017-08-11 23:01:01.653 INFO  [main.AdaptiveDefenseMDP computeOperationalStrategyAndPlan:150] main.AdaptiveDefenseMDP - A graph is created using the computed policy transitions and the states updated with their values
+2017-08-11 23:01:01.654 INFO  [main.AdaptiveDefenseMDP computeOperationalStrategyAndPlan:153] main.AdaptiveDefenseMDP - Transitions are reduced to those which are reachable from the initial state to create a plan rather than a strategy
+2017-08-11 23:01:01.654 INFO  [main.AdaptiveDefenseMDP computeOperationalStrategyAndPlan:156] main.AdaptiveDefenseMDP - States are filtered based on plan transitions
+2017-08-11 23:01:01.655 INFO  [main.AdaptiveDefenseMDP computeOperationalStrategyAndPlan:159] main.AdaptiveDefenseMDP - A Graph is created showing the computed operatio plan
+2017-08-11 23:01:01.655 INFO  [main.AdaptiveDefenseMDP main:110] main.AdaptiveDefenseMDP - The value vector based on operational goals is computed

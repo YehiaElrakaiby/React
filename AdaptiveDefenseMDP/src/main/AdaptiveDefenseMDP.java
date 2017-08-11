@@ -55,17 +55,8 @@ public class AdaptiveDefenseMDP {
 	static String files_location = "/Users/yehia/Documents/GraphivFilesReact/";
 	static String controlStrategyFileName = "controlStrategy.dot";
 	static String controlPlanFileName = "controlPlan.dot";
-	static String attackStrategyFileName = "attackStrategy.dot";
-	static String attackPlanFileName = "attackPlan.dot";
-	static String tradeOffStrategyFileName = "tradeOffStrategy.dot";
-	static String tradeOffPlanFileName = "tradeOffPlan.dot";
 	static String ltsFileName = "lts.dot";
-	static String logFileName = "logger.log";
-	static String infoLogFileName = "infoLogger.log";
-	static String severeLogFileName = "severeLogger.log";
-	static String finestLogFileName = "finestLogger.log";
-	static public String noop_event_identifier_1 = "dnoop";
-	static public String noop_event_identifier_2 = "anoop";
+	static public String noop_event_identifier = "noop";
 
 	static DomainDescription description;
 
