@@ -12,7 +12,9 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
-import java.util.logging.Logger;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.core.Logger;
 
 import main.AdaptiveDefenseMDP;
 import resources.Transition;
@@ -47,7 +49,7 @@ public class DOT_Writer {
 	public static final String SHOW_AP_REQ = "ap req";
 	public static final String SHOW_ALL = "utility ap req";
 
-	private final static Logger LOGGER = Logger.getLogger(AdaptiveDefenseMDP.class.getName());
+	private final static org.apache.logging.log4j.Logger LOGGER = LogManager.getRootLogger();
 
 
 	public DOT_Writer(String pathTographivFile,

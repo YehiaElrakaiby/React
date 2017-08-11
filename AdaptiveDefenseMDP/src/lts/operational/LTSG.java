@@ -11,6 +11,8 @@ import java.util.LinkedList;
 import java.util.Set;
 
 import org.apache.commons.lang.mutable.MutableInt;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.eclipse.emf.common.util.EList;
 import org.emftext.language.AdaptiveCyberDefense.Achieve;
 import org.emftext.language.AdaptiveCyberDefense.ActionAtom;
@@ -28,6 +30,7 @@ import org.emftext.language.AdaptiveCyberDefense.ProbabilisticEffect;
 import org.emftext.language.AdaptiveCyberDefense.StateAtom;
 import org.emftext.language.AdaptiveCyberDefense.StateVariable;
 import org.emftext.language.AdaptiveCyberDefense.UnconditionalMaintain;
+
 import resources.StateVariableDescription;
 import resources.RequirementDescription;
 import resources.Transition;
@@ -101,6 +104,8 @@ public class LTSG {
 	 */
 	HashMap<String,RequirementDescription> requirements_description = new HashMap<String,RequirementDescription>();
 
+	private final static Logger LOGGER = LogManager.getRootLogger();
+	
 	public LTSG(DomainDescription description, String option) {
 		/*
 		 *  Initialize
@@ -229,7 +234,7 @@ public class LTSG {
 					try {
 						throw new Exception("problem");
 					} catch (Exception e) {
-						System.out.println("ERROR");
+						LOGGER.error("ERROR");
 						e.printStackTrace();
 					}
 				}
@@ -916,34 +921,29 @@ public class LTSG {
 
 
 	public void print() {
-		System.out.println("\n\n\n\t\t*********  Printing LTS  ***************\n\n");
-		System.out.println("Nb of fluent Descriptions: "+this.variables_domain.size()+"\n");
-		System.out.println("Fluent Descriptions:\n "+this.variables_domain.toString()+"\n");
-		System.out.println("Requirement Descriptions:\n "+this.requirements_description.toString()+"\n");
+		LOGGER.info("Nb of fluent Descriptions: "+this.variables_domain.size()+"\n");
+		LOGGER.trace("Fluent Descriptions:\n "+this.variables_domain.toString()+"\n");
 
-		System.out.println("Total Number of States:\n "+this.nb_of_states+"\n");
+		LOGGER.info("Total Number of States:\n "+this.nb_of_states+"\n");
 
-		System.out.println("Nb of Action Descriptions: "+this.event_description.size()+"\n");
-		System.out.println("Action Descriptions:\n "+this.event_description.toString()+"\n");
+		LOGGER.info("Nb of Action Descriptions: "+this.event_description.size()+"\n");
+		LOGGER.trace("Action Descriptions:\n "+this.event_description.toString()+"\n");
 
-		System.out.println("Nb of States to Explore: "+this.states.size()+"\n");
-		System.out.println("States:\n "+this.states.toString()+"\n");
+		LOGGER.info("Nb of States to Explore: "+this.states.size()+"\n");
+		LOGGER.trace("States:\n "+this.states.toString()+"\n");
 
-		System.out.println("Nb of Transitions: "+this.transitions.size()+"\n");
-		//System.out.println("Transitions:\n "+this.transitions.toString()+"\n");
+		LOGGER.info("Nb of Transitions: "+this.transitions.size()+"\n");
+		LOGGER.trace("Transitions:\n "+this.transitions.toString()+"\n");
 
-		System.out.println("Nb of Control Events: "+this.control_events_id.size()+"\n");
-		System.out.println("Controlled Events:\n "+this.control_events_id.toString()+"\n");
+		LOGGER.info("Nb of Control Events: "+this.control_events_id.size()+"\n");
+		LOGGER.trace("Controlled Events:\n "+this.control_events_id.toString()+"\n");
 
-		System.out.println("Nb of Exogenous Events: "+this.exogenous_events_id.size()+"\n");
-		System.out.println("Exogenous Events:\n "+this.exogenous_events_id.toString()+"\n");
+		LOGGER.info("Nb of Exogenous Events: "+this.exogenous_events_id.size()+"\n");
+		LOGGER.trace("Exogenous Events:\n "+this.exogenous_events_id.toString()+"\n");
 
 
-		//System.out.println("Nb of Requirements: "+this.requirements.size()+"\n");
-		//System.out.println("Requirements:\n "+this.requirements.toString()+"\n");
-
-
-		System.out.println("\n\n\t\t*********  End Printing LTS  ***************\n\n\n");
+		LOGGER.info("Nb of Requirements: "+this.requirements_description.size()+"\n");
+		LOGGER.trace("Requirements:\n "+this.requirements_description.toString()+"\n");
 
 	}
 
