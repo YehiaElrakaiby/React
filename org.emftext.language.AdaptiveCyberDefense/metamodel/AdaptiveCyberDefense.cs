@@ -58,7 +58,7 @@ RULES {
 	
 	UnconditionalMaintain ::= 
 		"ReqID" name[]  
-		"maitain" condition
+		"keep" condition
 		"cost" cost[INTEGER]
 		("description" description['"','"'])?;
 		

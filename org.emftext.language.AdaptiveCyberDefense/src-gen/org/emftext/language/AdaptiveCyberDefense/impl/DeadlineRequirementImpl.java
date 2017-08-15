@@ -58,7 +58,7 @@ public abstract class DeadlineRequirementImpl extends OperationalRequirementImpl
 	 * @generated
 	 * @ordered
 	 */
-	protected static final Integer DEADLINE_EDEFAULT = new Integer(1);
+	protected static final Integer DEADLINE_EDEFAULT = new Integer(-1);
 
 	/**
 	 * The cached value of the '{@link #getDeadline() <em>Deadline</em>}' attribute.

@@ -1,6 +1,6 @@
 package visualizer;
 
-import java.awt.Desktop;
+//import java.awt.Desktop;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
@@ -14,9 +14,6 @@ import java.util.List;
 import java.util.Set;
 
 import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.core.Logger;
-
-import main.AdaptiveDefenseMDP;
 import resources.Transition;
 
 
@@ -228,9 +225,9 @@ public class DOT_Writer {
 	  return list;
 	}
 	private boolean filter(String fluent_name) {
-		if(this.option.contains("utility") && fluent_name.startsWith("utility")) {
+		if(this.option.contains("utility") && fluent_name.startsWith("util")) {
 			return false;
-		} else if(this.option.contains("ap") && !fluent_name.startsWith("utility") && !fluent_name.startsWith("req")) {
+		} else if(this.option.contains("ap") && !fluent_name.startsWith("util") && !fluent_name.startsWith("req")) {
 			return false;
 		}  else if(this.option.contains("req") && fluent_name.startsWith("req")) {
 			return false;
@@ -266,7 +263,6 @@ public class DOT_Writer {
 					bw.write("\n");
 
 				} catch (IOException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}

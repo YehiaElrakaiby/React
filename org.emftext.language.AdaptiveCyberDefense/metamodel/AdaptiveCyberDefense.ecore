@@ -31,8 +31,8 @@
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="cost" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBigDecimal"
         defaultValueLiteral="-0.00001"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="formula" lowerBound="1"
-        eType="#//Formula" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="formula" eType="#//Formula"
+        containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="actionatom" lowerBound="1"
         eType="#//ActionAtom" containment="true"/>
   </eClassifiers>

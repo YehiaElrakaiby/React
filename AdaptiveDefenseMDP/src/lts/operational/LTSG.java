@@ -324,8 +324,8 @@ public class LTSG {
 		Iterator<String> it = requirements_description.keySet().iterator();
 		while(it.hasNext()){
 			String reqID = it.next();
-			//RequirementDescription descr = requirements_description.get(reqID);
-			if(!initial_state.containsKey(reqID)){
+			RequirementDescription descr = requirements_description.get(reqID);
+			if(!initial_state.containsKey(reqID) && descr.getType()!="unconditional"){
 				initial_state.put(reqID, "inact");
 			}
 		}
@@ -685,13 +685,13 @@ public class LTSG {
 			//System.out.println(name);
 			RequirementDescription descr = new RequirementDescription();
 
-			if(requirement.getClass().getName().endsWith("MaintainImpl")){
+			if(requirement.getClass().getName().endsWith(".MaintainImpl")){
 				Maintain req = (Maintain) requirement;
 				fillMaintainRequirementDescription(req,descr,domain);
-			} else 	if(requirement.getClass().getName().endsWith("AchieveImpl")){
+			} else 	if(requirement.getClass().getName().endsWith(".AchieveImpl")){
 				Achieve req = (Achieve) requirement;
 				fillAchieveRequirementDescription(req,descr,domain);
-			} else 	if(requirement.getClass().getName().endsWith("UnconditionalMaintainImpl")){
+			} else 	if(requirement.getClass().getName().endsWith(".UnconditionalMaintainImpl")){
 				UnconditionalMaintain req = (UnconditionalMaintain) requirement;
 				fillUnconditionalMaintainRequirementDescription(req,descr,domain);
 			}

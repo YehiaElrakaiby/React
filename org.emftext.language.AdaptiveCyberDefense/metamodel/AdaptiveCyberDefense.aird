@@ -181,7 +181,7 @@
             <styles xmi:type="notation:FilteringStyle" xmi:id="_wr_OFitEEee6nZDvlAJtQA"/>
           </children>
           <styles xmi:type="notation:ShapeStyle" xmi:id="_wr_OEStEEee6nZDvlAJtQA" fontName=".SF NS Text" fontHeight="8"/>
-          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_wr_OEitEEee6nZDvlAJtQA" x="24" y="343" width="123" height="101"/>
+          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_wr_OEitEEee6nZDvlAJtQA" x="24" y="320" width="147" height="124"/>
         </children>
         <children xmi:type="notation:Node" xmi:id="_12byUCtHEee6nZDvlAJtQA" type="2003" element="_12SBUCtHEee6nZDvlAJtQA">
           <children xmi:type="notation:Node" xmi:id="_12cZYCtHEee6nZDvlAJtQA" type="5007"/>
@@ -1661,14 +1661,12 @@
       </ownedStyle>
       <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@edgeMappings[name='EC%20ESupertypes']"/>
     </ownedDiagramElements>
-    <ownedDiagramElements xmi:type="diagram:DEdge" xmi:id="_dKiTAGfREeeiFOJwaaN8nA" name="[1..1] formula" sourceNode="_q5McoBt4Eeeobc1oZnWsww" targetNode="_KOHjwGe6EeeiFOJwaaN8nA">
+    <ownedDiagramElements xmi:type="diagram:DEdge" xmi:id="_dKiTAGfREeeiFOJwaaN8nA" name="[0..1] formula" sourceNode="_q5McoBt4Eeeobc1oZnWsww" targetNode="_KOHjwGe6EeeiFOJwaaN8nA">
       <target xmi:type="ecore:EReference" href="AdaptiveCyberDefense.ecore#//ActionDescription/formula"/>
       <semanticElements xmi:type="ecore:EReference" href="AdaptiveCyberDefense.ecore#//ActionDescription/formula"/>
-      <ownedStyle xmi:type="diagram:EdgeStyle" xmi:id="_5cEGgH6cEee8GcM0Y_Ddiw" description="_pnwikBt7Eeeobc1oZnWsww" sourceArrow="FillDiamond" routingStyle="manhattan" strokeColor="0,0,0">
-        <centerLabelStyle xmi:type="diagram:CenterLabelStyle" xmi:id="_5cEGgX6cEee8GcM0Y_Ddiw" showIcon="false">
-          <labelFormat>bold</labelFormat>
-        </centerLabelStyle>
-        <endLabelStyle xmi:type="diagram:EndLabelStyle" xmi:id="_5cEGgn6cEee8GcM0Y_Ddiw" labelSize="6" showIcon="false" labelColor="39,76,114"/>
+      <ownedStyle xmi:type="diagram:EdgeStyle" xmi:id="_iowwoIDHEeemxpy07uVVjA" description="_zishsBt7Eeeobc1oZnWsww" sourceArrow="FillDiamond" routingStyle="manhattan" strokeColor="0,0,0">
+        <centerLabelStyle xmi:type="diagram:CenterLabelStyle" xmi:id="_iowwoYDHEeemxpy07uVVjA" showIcon="false"/>
+        <endLabelStyle xmi:type="diagram:EndLabelStyle" xmi:id="_iowwooDHEeemxpy07uVVjA" labelSize="6" showIcon="false" labelColor="39,76,114"/>
       </ownedStyle>
       <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@edgeMappings[name='EC_EReference']"/>
     </ownedDiagramElements>
@@ -1833,7 +1831,7 @@
       </ownedStyle>
       <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@edgeMappings[name='EC_EReference']"/>
     </ownedDiagramElements>
-    <ownedDiagramElements xmi:type="diagram:DNodeList" xmi:id="_SNCxAH6WEee8GcM0Y_Ddiw" name="DeadlineRequirement" tooltipText="" outgoingEdges="_UQsq0H6WEee8GcM0Y_Ddiw _lAxBsGfMEeeiFOJwaaN8nA _cZXHAGfMEeeiFOJwaaN8nA" incomingEdges="_YEL5sGfQEeeiFOJwaaN8nA _XAJp0GfQEeeiFOJwaaN8nA" width="12" height="10">
+    <ownedDiagramElements xmi:type="diagram:DNodeList" xmi:id="_SNCxAH6WEee8GcM0Y_Ddiw" name="DeadlineRequirement" tooltipText="" outgoingEdges="_UQsq0H6WEee8GcM0Y_Ddiw _cZXHAGfMEeeiFOJwaaN8nA _lAxBsGfMEeeiFOJwaaN8nA" incomingEdges="_XAJp0GfQEeeiFOJwaaN8nA _YEL5sGfQEeeiFOJwaaN8nA" width="12" height="10">
       <target xmi:type="ecore:EClass" href="AdaptiveCyberDefense.ecore#//DeadlineRequirement"/>
       <semanticElements xmi:type="ecore:EClass" href="AdaptiveCyberDefense.ecore#//DeadlineRequirement"/>
       <ownedStyle xmi:type="diagram:FlatContainerStyle" xmi:id="_7ux-wH6WEee8GcM0Y_Ddiw" iconPath="/org.eclipse.emf.ecoretools.design/icons/full/obj16/EClass_abstract.gif" borderSize="1" borderSizeComputationExpression="1" borderColor="125,125,125" backgroundStyle="Liquid" foregroundColor="228,228,228">

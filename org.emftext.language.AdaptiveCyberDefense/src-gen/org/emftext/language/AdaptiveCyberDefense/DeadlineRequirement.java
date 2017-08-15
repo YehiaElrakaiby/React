@@ -76,7 +76,7 @@ public interface DeadlineRequirement extends OperationalRequirement {
 
 	/**
 	 * Returns the value of the '<em><b>Deadline</b></em>' attribute.
-	 * The default value is <code>"1"</code>.
+	 * The default value is <code>"-1"</code>.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Deadline</em>' attribute isn't clear,
@@ -86,7 +86,7 @@ public interface DeadlineRequirement extends OperationalRequirement {
 	 * @return the value of the '<em>Deadline</em>' attribute.
 	 * @see #setDeadline(Integer)
 	 * @see org.emftext.language.AdaptiveCyberDefense.AdaptiveCyberDefensePackage#getDeadlineRequirement_Deadline()
-	 * @model default="1" required="true"
+	 * @model default="-1" required="true"
 	 * @generated
 	 */
 	Integer getDeadline();
