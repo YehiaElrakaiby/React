@@ -3,6 +3,7 @@
 package org.emftext.language.AdaptiveCyberDefense.impl;
 
 import java.util.Collection;
+import java.util.HashMap;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -31,12 +32,12 @@ import org.emftext.language.AdaptiveCyberDefense.ProbabilisticContextualEffect;
  * </p>
  * <ul>
  *   <li>{@link org.emftext.language.AdaptiveCyberDefense.impl.EventDescriptionImpl#getProbabilistic_contextual_effects <em>Probabilistic contextual effects</em>}</li>
- *   <li>{@link org.emftext.language.AdaptiveCyberDefense.impl.EventDescriptionImpl#getName <em>Name</em>}</li>
+ *   <li>{@link org.emftext.language.AdaptiveCyberDefense.impl.EventDescriptionImpl#getValue <em>Value</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class EventDescriptionImpl extends EObjectImpl implements EventDescription {
+public class EventDescriptionImpl extends DescriptionEntityImpl implements EventDescription {
 	/**
 	 * The cached value of the '{@link #getProbabilistic_contextual_effects() <em>Probabilistic contextual effects</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
@@ -48,24 +49,24 @@ public class EventDescriptionImpl extends EObjectImpl implements EventDescriptio
 	protected EList<ProbabilisticContextualEffect> probabilistic_contextual_effects;
 
 	/**
-	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
+	 * The default value of the '{@link #getValue() <em>Value</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getName()
+	 * @see #getValue()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final String NAME_EDEFAULT = null;
+	protected static final String VALUE_EDEFAULT = "tt";
 
 	/**
-	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
+	 * The cached value of the '{@link #getValue() <em>Value</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getName()
+	 * @see #getValue()
 	 * @generated
 	 * @ordered
 	 */
-	protected String name = NAME_EDEFAULT;
+	protected String value = VALUE_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -103,8 +104,8 @@ public class EventDescriptionImpl extends EObjectImpl implements EventDescriptio
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getName() {
-		return name;
+	public String getValue() {
+		return value;
 	}
 
 	/**
@@ -112,11 +113,11 @@ public class EventDescriptionImpl extends EObjectImpl implements EventDescriptio
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setName(String newName) {
-		String oldName = name;
-		name = newName;
+	public void setValue(String newValue) {
+		String oldValue = value;
+		value = newValue;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, AdaptiveCyberDefensePackage.EVENT_DESCRIPTION__NAME, oldName, name));
+			eNotify(new ENotificationImpl(this, Notification.SET, AdaptiveCyberDefensePackage.EVENT_DESCRIPTION__VALUE, oldValue, value));
 	}
 
 	/**
@@ -143,8 +144,8 @@ public class EventDescriptionImpl extends EObjectImpl implements EventDescriptio
 		switch (featureID) {
 			case AdaptiveCyberDefensePackage.EVENT_DESCRIPTION__PROBABILISTIC_CONTEXTUAL_EFFECTS:
 				return getProbabilistic_contextual_effects();
-			case AdaptiveCyberDefensePackage.EVENT_DESCRIPTION__NAME:
-				return getName();
+			case AdaptiveCyberDefensePackage.EVENT_DESCRIPTION__VALUE:
+				return getValue();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -162,8 +163,8 @@ public class EventDescriptionImpl extends EObjectImpl implements EventDescriptio
 				getProbabilistic_contextual_effects().clear();
 				getProbabilistic_contextual_effects().addAll((Collection<? extends ProbabilisticContextualEffect>)newValue);
 				return;
-			case AdaptiveCyberDefensePackage.EVENT_DESCRIPTION__NAME:
-				setName((String)newValue);
+			case AdaptiveCyberDefensePackage.EVENT_DESCRIPTION__VALUE:
+				setValue((String)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -180,8 +181,8 @@ public class EventDescriptionImpl extends EObjectImpl implements EventDescriptio
 			case AdaptiveCyberDefensePackage.EVENT_DESCRIPTION__PROBABILISTIC_CONTEXTUAL_EFFECTS:
 				getProbabilistic_contextual_effects().clear();
 				return;
-			case AdaptiveCyberDefensePackage.EVENT_DESCRIPTION__NAME:
-				setName(NAME_EDEFAULT);
+			case AdaptiveCyberDefensePackage.EVENT_DESCRIPTION__VALUE:
+				setValue(VALUE_EDEFAULT);
 				return;
 		}
 		super.eUnset(featureID);
@@ -197,8 +198,8 @@ public class EventDescriptionImpl extends EObjectImpl implements EventDescriptio
 		switch (featureID) {
 			case AdaptiveCyberDefensePackage.EVENT_DESCRIPTION__PROBABILISTIC_CONTEXTUAL_EFFECTS:
 				return probabilistic_contextual_effects != null && !probabilistic_contextual_effects.isEmpty();
-			case AdaptiveCyberDefensePackage.EVENT_DESCRIPTION__NAME:
-				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+			case AdaptiveCyberDefensePackage.EVENT_DESCRIPTION__VALUE:
+				return VALUE_EDEFAULT == null ? value != null : !VALUE_EDEFAULT.equals(value);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -213,10 +214,12 @@ public class EventDescriptionImpl extends EObjectImpl implements EventDescriptio
 		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (name: ");
-		result.append(name);
+		result.append(" (value: ");
+		result.append(value);
 		result.append(')');
 		return result.toString();
 	}
+
+
 
 } //EventDescriptionImpl

@@ -10,6 +10,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
 import org.emftext.language.AdaptiveCyberDefense.AdaptiveCyberDefensePackage;
+import org.emftext.language.AdaptiveCyberDefense.DescriptionEntity;
 import org.emftext.language.AdaptiveCyberDefense.StateVariable;
 
 /**
@@ -20,22 +21,13 @@ import org.emftext.language.AdaptiveCyberDefense.StateVariable;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.emftext.language.AdaptiveCyberDefense.impl.StateVariableImpl#getValues <em>Values</em>}</li>
  *   <li>{@link org.emftext.language.AdaptiveCyberDefense.impl.StateVariableImpl#getName <em>Name</em>}</li>
+ *   <li>{@link org.emftext.language.AdaptiveCyberDefense.impl.StateVariableImpl#getValues <em>Values</em>}</li>
  * </ul>
  *
  * @generated
  */
 public class StateVariableImpl extends InitialVariableImpl implements StateVariable {
-	/**
-	 * The cached value of the '{@link #getValues() <em>Values</em>}' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getValues()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<String> values;
 	/**
 	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -54,6 +46,15 @@ public class StateVariableImpl extends InitialVariableImpl implements StateVaria
 	 * @ordered
 	 */
 	protected String name = NAME_EDEFAULT;
+	/**
+	 * The cached value of the '{@link #getValues() <em>Values</em>}' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getValues()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<String> values;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -115,10 +116,10 @@ public class StateVariableImpl extends InitialVariableImpl implements StateVaria
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case AdaptiveCyberDefensePackage.STATE_VARIABLE__VALUES:
-				return getValues();
 			case AdaptiveCyberDefensePackage.STATE_VARIABLE__NAME:
 				return getName();
+			case AdaptiveCyberDefensePackage.STATE_VARIABLE__VALUES:
+				return getValues();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -132,12 +133,12 @@ public class StateVariableImpl extends InitialVariableImpl implements StateVaria
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
+			case AdaptiveCyberDefensePackage.STATE_VARIABLE__NAME:
+				setName((String)newValue);
+				return;
 			case AdaptiveCyberDefensePackage.STATE_VARIABLE__VALUES:
 				getValues().clear();
 				getValues().addAll((Collection<? extends String>)newValue);
-				return;
-			case AdaptiveCyberDefensePackage.STATE_VARIABLE__NAME:
-				setName((String)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -151,11 +152,11 @@ public class StateVariableImpl extends InitialVariableImpl implements StateVaria
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case AdaptiveCyberDefensePackage.STATE_VARIABLE__VALUES:
-				getValues().clear();
-				return;
 			case AdaptiveCyberDefensePackage.STATE_VARIABLE__NAME:
 				setName(NAME_EDEFAULT);
+				return;
+			case AdaptiveCyberDefensePackage.STATE_VARIABLE__VALUES:
+				getValues().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -169,12 +170,44 @@ public class StateVariableImpl extends InitialVariableImpl implements StateVaria
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case AdaptiveCyberDefensePackage.STATE_VARIABLE__VALUES:
-				return values != null && !values.isEmpty();
 			case AdaptiveCyberDefensePackage.STATE_VARIABLE__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+			case AdaptiveCyberDefensePackage.STATE_VARIABLE__VALUES:
+				return values != null && !values.isEmpty();
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
+		if (baseClass == DescriptionEntity.class) {
+			switch (derivedFeatureID) {
+				case AdaptiveCyberDefensePackage.STATE_VARIABLE__NAME: return AdaptiveCyberDefensePackage.DESCRIPTION_ENTITY__NAME;
+				default: return -1;
+			}
+		}
+		return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
+		if (baseClass == DescriptionEntity.class) {
+			switch (baseFeatureID) {
+				case AdaptiveCyberDefensePackage.DESCRIPTION_ENTITY__NAME: return AdaptiveCyberDefensePackage.STATE_VARIABLE__NAME;
+				default: return -1;
+			}
+		}
+		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
 	}
 
 	/**
@@ -187,10 +220,10 @@ public class StateVariableImpl extends InitialVariableImpl implements StateVaria
 		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (values: ");
-		result.append(values);
-		result.append(", name: ");
+		result.append(" (name: ");
 		result.append(name);
+		result.append(", values: ");
+		result.append(values);
 		result.append(')');
 		return result.toString();
 	}

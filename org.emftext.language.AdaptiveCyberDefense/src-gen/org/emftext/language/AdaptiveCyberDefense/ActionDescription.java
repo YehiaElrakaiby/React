@@ -19,14 +19,14 @@ import org.eclipse.emf.ecore.EObject;
  * <ul>
  *   <li>{@link org.emftext.language.AdaptiveCyberDefense.ActionDescription#getCost <em>Cost</em>}</li>
  *   <li>{@link org.emftext.language.AdaptiveCyberDefense.ActionDescription#getContextual_effects <em>Contextual effects</em>}</li>
- *   <li>{@link org.emftext.language.AdaptiveCyberDefense.ActionDescription#getName <em>Name</em>}</li>
+ *   <li>{@link org.emftext.language.AdaptiveCyberDefense.ActionDescription#getValue <em>Value</em>}</li>
  * </ul>
  *
  * @see org.emftext.language.AdaptiveCyberDefense.AdaptiveCyberDefensePackage#getActionDescription()
  * @model
  * @generated
  */
-public interface ActionDescription extends EObject {
+public interface ActionDescription extends DescriptionEntity {
 	/**
 	 * Returns the value of the '<em><b>Cost</b></em>' attribute.
 	 * The default value is <code>"-0.00001"</code>.
@@ -71,29 +71,30 @@ public interface ActionDescription extends EObject {
 	EList<ContextualEffect> getContextual_effects();
 
 	/**
-	 * Returns the value of the '<em><b>Name</b></em>' attribute.
+	 * Returns the value of the '<em><b>Value</b></em>' attribute.
+	 * The default value is <code>"tt"</code>.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Name</em>' attribute isn't clear,
+	 * If the meaning of the '<em>Value</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Name</em>' attribute.
-	 * @see #setName(String)
-	 * @see org.emftext.language.AdaptiveCyberDefense.AdaptiveCyberDefensePackage#getActionDescription_Name()
-	 * @model id="true" required="true"
+	 * @return the value of the '<em>Value</em>' attribute.
+	 * @see #setValue(String)
+	 * @see org.emftext.language.AdaptiveCyberDefense.AdaptiveCyberDefensePackage#getActionDescription_Value()
+	 * @model default="tt"
 	 * @generated
 	 */
-	String getName();
+	String getValue();
 
 	/**
-	 * Sets the value of the '{@link org.emftext.language.AdaptiveCyberDefense.ActionDescription#getName <em>Name</em>}' attribute.
+	 * Sets the value of the '{@link org.emftext.language.AdaptiveCyberDefense.ActionDescription#getValue <em>Value</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Name</em>' attribute.
-	 * @see #getName()
+	 * @param value the new value of the '<em>Value</em>' attribute.
+	 * @see #getValue()
 	 * @generated
 	 */
-	void setName(String value);
+	void setValue(String value);
 
 } // ActionDescription

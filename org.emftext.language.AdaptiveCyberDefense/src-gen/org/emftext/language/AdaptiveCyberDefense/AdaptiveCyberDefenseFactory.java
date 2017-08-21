@@ -67,6 +67,15 @@ public interface AdaptiveCyberDefenseFactory extends EFactory {
 	InitialAtom createInitialAtom();
 
 	/**
+	 * Returns a new object of class '<em>State Atom</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>State Atom</em>'.
+	 * @generated
+	 */
+	StateAtom createStateAtom();
+
+	/**
 	 * Returns a new object of class '<em>Conjunction</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -130,15 +139,6 @@ public interface AdaptiveCyberDefenseFactory extends EFactory {
 	True createTrue();
 
 	/**
-	 * Returns a new object of class '<em>Atom</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Atom</em>'.
-	 * @generated
-	 */
-	Atom createAtom();
-
-	/**
 	 * Returns a new object of class '<em>False</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -182,6 +182,15 @@ public interface AdaptiveCyberDefenseFactory extends EFactory {
 	 * @generated
 	 */
 	ProbabilisticContextualEffect createProbabilisticContextualEffect();
+
+	/**
+	 * Returns a new object of class '<em>Formula Atom</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Formula Atom</em>'.
+	 * @generated
+	 */
+	FormulaAtom createFormulaAtom();
 
 	/**
 	 * Returns the package supported by this factory.

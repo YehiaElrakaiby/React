@@ -33,8 +33,7 @@ public interface InitialAtom extends EObject {
 	 * @return the value of the '<em>Value</em>' attribute.
 	 * @see #setValue(String)
 	 * @see org.emftext.language.AdaptiveCyberDefense.AdaptiveCyberDefensePackage#getInitialAtom_Value()
-	 * @model required="true"
-	 *        extendedMetaData="name='status'"
+	 * @model extendedMetaData="name='status'"
 	 * @generated
 	 */
 	String getValue();

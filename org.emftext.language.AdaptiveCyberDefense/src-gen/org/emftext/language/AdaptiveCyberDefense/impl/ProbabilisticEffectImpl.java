@@ -21,8 +21,8 @@ import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 import org.emftext.language.AdaptiveCyberDefense.AdaptiveCyberDefensePackage;
-import org.emftext.language.AdaptiveCyberDefense.Atom;
 import org.emftext.language.AdaptiveCyberDefense.ProbabilisticEffect;
+import org.emftext.language.AdaptiveCyberDefense.StateAtom;
 
 /**
  * <!-- begin-user-doc -->
@@ -33,7 +33,7 @@ import org.emftext.language.AdaptiveCyberDefense.ProbabilisticEffect;
  * </p>
  * <ul>
  *   <li>{@link org.emftext.language.AdaptiveCyberDefense.impl.ProbabilisticEffectImpl#getProbability <em>Probability</em>}</li>
- *   <li>{@link org.emftext.language.AdaptiveCyberDefense.impl.ProbabilisticEffectImpl#getStateatoms <em>Stateatoms</em>}</li>
+ *   <li>{@link org.emftext.language.AdaptiveCyberDefense.impl.ProbabilisticEffectImpl#getState_atoms <em>State atoms</em>}</li>
  * </ul>
  *
  * @generated
@@ -60,14 +60,14 @@ public class ProbabilisticEffectImpl extends EObjectImpl implements Probabilisti
 	protected BigDecimal probability = PROBABILITY_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getStateatoms() <em>Stateatoms</em>}' containment reference list.
+	 * The cached value of the '{@link #getState_atoms() <em>State atoms</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getStateatoms()
+	 * @see #getState_atoms()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<Atom> stateatoms;
+	protected EList<StateAtom> state_atoms;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -114,11 +114,11 @@ public class ProbabilisticEffectImpl extends EObjectImpl implements Probabilisti
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<Atom> getStateatoms() {
-		if (stateatoms == null) {
-			stateatoms = new EObjectContainmentEList<Atom>(Atom.class, this, AdaptiveCyberDefensePackage.PROBABILISTIC_EFFECT__STATEATOMS);
+	public EList<StateAtom> getState_atoms() {
+		if (state_atoms == null) {
+			state_atoms = new EObjectContainmentEList<StateAtom>(StateAtom.class, this, AdaptiveCyberDefensePackage.PROBABILISTIC_EFFECT__STATE_ATOMS);
 		}
-		return stateatoms;
+		return state_atoms;
 	}
 
 	/**
@@ -129,8 +129,8 @@ public class ProbabilisticEffectImpl extends EObjectImpl implements Probabilisti
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case AdaptiveCyberDefensePackage.PROBABILISTIC_EFFECT__STATEATOMS:
-				return ((InternalEList<?>)getStateatoms()).basicRemove(otherEnd, msgs);
+			case AdaptiveCyberDefensePackage.PROBABILISTIC_EFFECT__STATE_ATOMS:
+				return ((InternalEList<?>)getState_atoms()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -145,8 +145,8 @@ public class ProbabilisticEffectImpl extends EObjectImpl implements Probabilisti
 		switch (featureID) {
 			case AdaptiveCyberDefensePackage.PROBABILISTIC_EFFECT__PROBABILITY:
 				return getProbability();
-			case AdaptiveCyberDefensePackage.PROBABILISTIC_EFFECT__STATEATOMS:
-				return getStateatoms();
+			case AdaptiveCyberDefensePackage.PROBABILISTIC_EFFECT__STATE_ATOMS:
+				return getState_atoms();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -163,9 +163,9 @@ public class ProbabilisticEffectImpl extends EObjectImpl implements Probabilisti
 			case AdaptiveCyberDefensePackage.PROBABILISTIC_EFFECT__PROBABILITY:
 				setProbability((BigDecimal)newValue);
 				return;
-			case AdaptiveCyberDefensePackage.PROBABILISTIC_EFFECT__STATEATOMS:
-				getStateatoms().clear();
-				getStateatoms().addAll((Collection<? extends Atom>)newValue);
+			case AdaptiveCyberDefensePackage.PROBABILISTIC_EFFECT__STATE_ATOMS:
+				getState_atoms().clear();
+				getState_atoms().addAll((Collection<? extends StateAtom>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -182,8 +182,8 @@ public class ProbabilisticEffectImpl extends EObjectImpl implements Probabilisti
 			case AdaptiveCyberDefensePackage.PROBABILISTIC_EFFECT__PROBABILITY:
 				setProbability(PROBABILITY_EDEFAULT);
 				return;
-			case AdaptiveCyberDefensePackage.PROBABILISTIC_EFFECT__STATEATOMS:
-				getStateatoms().clear();
+			case AdaptiveCyberDefensePackage.PROBABILISTIC_EFFECT__STATE_ATOMS:
+				getState_atoms().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -199,8 +199,8 @@ public class ProbabilisticEffectImpl extends EObjectImpl implements Probabilisti
 		switch (featureID) {
 			case AdaptiveCyberDefensePackage.PROBABILISTIC_EFFECT__PROBABILITY:
 				return PROBABILITY_EDEFAULT == null ? probability != null : !PROBABILITY_EDEFAULT.equals(probability);
-			case AdaptiveCyberDefensePackage.PROBABILISTIC_EFFECT__STATEATOMS:
-				return stateatoms != null && !stateatoms.isEmpty();
+			case AdaptiveCyberDefensePackage.PROBABILISTIC_EFFECT__STATE_ATOMS:
+				return state_atoms != null && !state_atoms.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

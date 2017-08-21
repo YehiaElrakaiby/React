@@ -75,6 +75,7 @@ public class AdaptiveCyberDefenseSwitch<T> extends Switch<T> {
 			case AdaptiveCyberDefensePackage.ACTION_DESCRIPTION: {
 				ActionDescription actionDescription = (ActionDescription)theEObject;
 				T result = caseActionDescription(actionDescription);
+				if (result == null) result = caseDescriptionEntity(actionDescription);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -82,6 +83,7 @@ public class AdaptiveCyberDefenseSwitch<T> extends Switch<T> {
 				StateVariable stateVariable = (StateVariable)theEObject;
 				T result = caseStateVariable(stateVariable);
 				if (result == null) result = caseInitialVariable(stateVariable);
+				if (result == null) result = caseDescriptionEntity(stateVariable);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -110,10 +112,9 @@ public class AdaptiveCyberDefenseSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case AdaptiveCyberDefensePackage.ATOM: {
-				Atom atom = (Atom)theEObject;
-				T result = caseAtom(atom);
-				if (result == null) result = caseFormula(atom);
+			case AdaptiveCyberDefensePackage.STATE_ATOM: {
+				StateAtom stateAtom = (StateAtom)theEObject;
+				T result = caseStateAtom(stateAtom);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -208,6 +209,7 @@ public class AdaptiveCyberDefenseSwitch<T> extends Switch<T> {
 			case AdaptiveCyberDefensePackage.EVENT_DESCRIPTION: {
 				EventDescription eventDescription = (EventDescription)theEObject;
 				T result = caseEventDescription(eventDescription);
+				if (result == null) result = caseDescriptionEntity(eventDescription);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -215,6 +217,19 @@ public class AdaptiveCyberDefenseSwitch<T> extends Switch<T> {
 				ProbabilisticContextualEffect probabilisticContextualEffect = (ProbabilisticContextualEffect)theEObject;
 				T result = caseProbabilisticContextualEffect(probabilisticContextualEffect);
 				if (result == null) result = caseContextualEffect(probabilisticContextualEffect);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case AdaptiveCyberDefensePackage.DESCRIPTION_ENTITY: {
+				DescriptionEntity descriptionEntity = (DescriptionEntity)theEObject;
+				T result = caseDescriptionEntity(descriptionEntity);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case AdaptiveCyberDefensePackage.FORMULA_ATOM: {
+				FormulaAtom formulaAtom = (FormulaAtom)theEObject;
+				T result = caseFormulaAtom(formulaAtom);
+				if (result == null) result = caseFormula(formulaAtom);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -324,6 +339,21 @@ public class AdaptiveCyberDefenseSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseInitialVariable(InitialVariable object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>State Atom</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>State Atom</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseStateAtom(StateAtom object) {
 		return null;
 	}
 
@@ -448,21 +478,6 @@ public class AdaptiveCyberDefenseSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Atom</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Atom</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseAtom(Atom object) {
-		return null;
-	}
-
-	/**
 	 * Returns the result of interpreting the object as an instance of '<em>False</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -549,6 +564,36 @@ public class AdaptiveCyberDefenseSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseProbabilisticContextualEffect(ProbabilisticContextualEffect object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Description Entity</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Description Entity</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseDescriptionEntity(DescriptionEntity object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Formula Atom</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Formula Atom</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseFormulaAtom(FormulaAtom object) {
 		return null;
 	}
 

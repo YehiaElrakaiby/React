@@ -16,14 +16,14 @@ import org.eclipse.emf.ecore.EObject;
  * </p>
  * <ul>
  *   <li>{@link org.emftext.language.AdaptiveCyberDefense.EventDescription#getProbabilistic_contextual_effects <em>Probabilistic contextual effects</em>}</li>
- *   <li>{@link org.emftext.language.AdaptiveCyberDefense.EventDescription#getName <em>Name</em>}</li>
+ *   <li>{@link org.emftext.language.AdaptiveCyberDefense.EventDescription#getValue <em>Value</em>}</li>
  * </ul>
  *
  * @see org.emftext.language.AdaptiveCyberDefense.AdaptiveCyberDefensePackage#getEventDescription()
  * @model
  * @generated
  */
-public interface EventDescription extends EObject {
+public interface EventDescription extends DescriptionEntity {
 	/**
 	 * Returns the value of the '<em><b>Probabilistic contextual effects</b></em>' containment reference list.
 	 * The list contents are of type {@link org.emftext.language.AdaptiveCyberDefense.ProbabilisticContextualEffect}.
@@ -41,29 +41,30 @@ public interface EventDescription extends EObject {
 	EList<ProbabilisticContextualEffect> getProbabilistic_contextual_effects();
 
 	/**
-	 * Returns the value of the '<em><b>Name</b></em>' attribute.
+	 * Returns the value of the '<em><b>Value</b></em>' attribute.
+	 * The default value is <code>"tt"</code>.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Name</em>' attribute isn't clear,
+	 * If the meaning of the '<em>Value</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Name</em>' attribute.
-	 * @see #setName(String)
-	 * @see org.emftext.language.AdaptiveCyberDefense.AdaptiveCyberDefensePackage#getEventDescription_Name()
-	 * @model id="true" required="true"
+	 * @return the value of the '<em>Value</em>' attribute.
+	 * @see #setValue(String)
+	 * @see org.emftext.language.AdaptiveCyberDefense.AdaptiveCyberDefensePackage#getEventDescription_Value()
+	 * @model default="tt"
 	 * @generated
 	 */
-	String getName();
+	String getValue();
 
 	/**
-	 * Sets the value of the '{@link org.emftext.language.AdaptiveCyberDefense.EventDescription#getName <em>Name</em>}' attribute.
+	 * Sets the value of the '{@link org.emftext.language.AdaptiveCyberDefense.EventDescription#getValue <em>Value</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Name</em>' attribute.
-	 * @see #getName()
+	 * @param value the new value of the '<em>Value</em>' attribute.
+	 * @see #getValue()
 	 * @generated
 	 */
-	void setName(String value);
+	void setValue(String value);
 
 } // EventDescription

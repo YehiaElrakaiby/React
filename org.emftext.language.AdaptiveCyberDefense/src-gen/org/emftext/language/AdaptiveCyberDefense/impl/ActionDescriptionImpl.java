@@ -36,12 +36,12 @@ import org.emftext.language.AdaptiveCyberDefense.ProbabilisticEffect;
  * <ul>
  *   <li>{@link org.emftext.language.AdaptiveCyberDefense.impl.ActionDescriptionImpl#getCost <em>Cost</em>}</li>
  *   <li>{@link org.emftext.language.AdaptiveCyberDefense.impl.ActionDescriptionImpl#getContextual_effects <em>Contextual effects</em>}</li>
- *   <li>{@link org.emftext.language.AdaptiveCyberDefense.impl.ActionDescriptionImpl#getName <em>Name</em>}</li>
+ *   <li>{@link org.emftext.language.AdaptiveCyberDefense.impl.ActionDescriptionImpl#getValue <em>Value</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class ActionDescriptionImpl extends EObjectImpl implements ActionDescription {
+public class ActionDescriptionImpl extends DescriptionEntityImpl implements ActionDescription {
 	/**
 	 * The default value of the '{@link #getCost() <em>Cost</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -73,24 +73,24 @@ public class ActionDescriptionImpl extends EObjectImpl implements ActionDescript
 	protected EList<ContextualEffect> contextual_effects;
 
 	/**
-	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
+	 * The default value of the '{@link #getValue() <em>Value</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getName()
+	 * @see #getValue()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final String NAME_EDEFAULT = null;
+	protected static final String VALUE_EDEFAULT = "tt";
 
 	/**
-	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
+	 * The cached value of the '{@link #getValue() <em>Value</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getName()
+	 * @see #getValue()
 	 * @generated
 	 * @ordered
 	 */
-	protected String name = NAME_EDEFAULT;
+	protected String value = VALUE_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -149,8 +149,8 @@ public class ActionDescriptionImpl extends EObjectImpl implements ActionDescript
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getName() {
-		return name;
+	public String getValue() {
+		return value;
 	}
 
 	/**
@@ -158,11 +158,11 @@ public class ActionDescriptionImpl extends EObjectImpl implements ActionDescript
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setName(String newName) {
-		String oldName = name;
-		name = newName;
+	public void setValue(String newValue) {
+		String oldValue = value;
+		value = newValue;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, AdaptiveCyberDefensePackage.ACTION_DESCRIPTION__NAME, oldName, name));
+			eNotify(new ENotificationImpl(this, Notification.SET, AdaptiveCyberDefensePackage.ACTION_DESCRIPTION__VALUE, oldValue, value));
 	}
 
 	/**
@@ -191,8 +191,8 @@ public class ActionDescriptionImpl extends EObjectImpl implements ActionDescript
 				return getCost();
 			case AdaptiveCyberDefensePackage.ACTION_DESCRIPTION__CONTEXTUAL_EFFECTS:
 				return getContextual_effects();
-			case AdaptiveCyberDefensePackage.ACTION_DESCRIPTION__NAME:
-				return getName();
+			case AdaptiveCyberDefensePackage.ACTION_DESCRIPTION__VALUE:
+				return getValue();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -213,8 +213,8 @@ public class ActionDescriptionImpl extends EObjectImpl implements ActionDescript
 				getContextual_effects().clear();
 				getContextual_effects().addAll((Collection<? extends ContextualEffect>)newValue);
 				return;
-			case AdaptiveCyberDefensePackage.ACTION_DESCRIPTION__NAME:
-				setName((String)newValue);
+			case AdaptiveCyberDefensePackage.ACTION_DESCRIPTION__VALUE:
+				setValue((String)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -234,8 +234,8 @@ public class ActionDescriptionImpl extends EObjectImpl implements ActionDescript
 			case AdaptiveCyberDefensePackage.ACTION_DESCRIPTION__CONTEXTUAL_EFFECTS:
 				getContextual_effects().clear();
 				return;
-			case AdaptiveCyberDefensePackage.ACTION_DESCRIPTION__NAME:
-				setName(NAME_EDEFAULT);
+			case AdaptiveCyberDefensePackage.ACTION_DESCRIPTION__VALUE:
+				setValue(VALUE_EDEFAULT);
 				return;
 		}
 		super.eUnset(featureID);
@@ -253,8 +253,8 @@ public class ActionDescriptionImpl extends EObjectImpl implements ActionDescript
 				return COST_EDEFAULT == null ? cost != null : !COST_EDEFAULT.equals(cost);
 			case AdaptiveCyberDefensePackage.ACTION_DESCRIPTION__CONTEXTUAL_EFFECTS:
 				return contextual_effects != null && !contextual_effects.isEmpty();
-			case AdaptiveCyberDefensePackage.ACTION_DESCRIPTION__NAME:
-				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+			case AdaptiveCyberDefensePackage.ACTION_DESCRIPTION__VALUE:
+				return VALUE_EDEFAULT == null ? value != null : !VALUE_EDEFAULT.equals(value);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -271,8 +271,8 @@ public class ActionDescriptionImpl extends EObjectImpl implements ActionDescript
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (cost: ");
 		result.append(cost);
-		result.append(", name: ");
-		result.append(name);
+		result.append(", value: ");
+		result.append(value);
 		result.append(')');
 		return result.toString();
 	}

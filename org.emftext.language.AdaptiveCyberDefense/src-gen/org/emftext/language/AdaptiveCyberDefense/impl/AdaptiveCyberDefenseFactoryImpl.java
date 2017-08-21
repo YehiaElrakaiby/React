@@ -62,7 +62,7 @@ public class AdaptiveCyberDefenseFactoryImpl extends EFactoryImpl implements Ada
 			case AdaptiveCyberDefensePackage.STATE_VARIABLE: return createStateVariable();
 			case AdaptiveCyberDefensePackage.PROBABILISTIC_EFFECT: return createProbabilisticEffect();
 			case AdaptiveCyberDefensePackage.INITIAL_ATOM: return createInitialAtom();
-			case AdaptiveCyberDefensePackage.ATOM: return createAtom();
+			case AdaptiveCyberDefensePackage.STATE_ATOM: return createStateAtom();
 			case AdaptiveCyberDefensePackage.CONJUNCTION: return createConjunction();
 			case AdaptiveCyberDefensePackage.DISJUNCTION: return createDisjunction();
 			case AdaptiveCyberDefensePackage.NEGATION: return createNegation();
@@ -75,6 +75,7 @@ public class AdaptiveCyberDefenseFactoryImpl extends EFactoryImpl implements Ada
 			case AdaptiveCyberDefensePackage.CONTEXTUAL_EFFECT: return createContextualEffect();
 			case AdaptiveCyberDefensePackage.EVENT_DESCRIPTION: return createEventDescription();
 			case AdaptiveCyberDefensePackage.PROBABILISTIC_CONTEXTUAL_EFFECT: return createProbabilisticContextualEffect();
+			case AdaptiveCyberDefensePackage.FORMULA_ATOM: return createFormulaAtom();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -169,6 +170,16 @@ public class AdaptiveCyberDefenseFactoryImpl extends EFactoryImpl implements Ada
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public StateAtom createStateAtom() {
+		StateAtomImpl stateAtom = new StateAtomImpl();
+		return stateAtom;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public Conjunction createConjunction() {
 		ConjunctionImpl conjunction = new ConjunctionImpl();
 		return conjunction;
@@ -239,16 +250,6 @@ public class AdaptiveCyberDefenseFactoryImpl extends EFactoryImpl implements Ada
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Atom createAtom() {
-		AtomImpl atom = new AtomImpl();
-		return atom;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public False createFalse() {
 		FalseImpl false_ = new FalseImpl();
 		return false_;
@@ -292,6 +293,16 @@ public class AdaptiveCyberDefenseFactoryImpl extends EFactoryImpl implements Ada
 	public ProbabilisticContextualEffect createProbabilisticContextualEffect() {
 		ProbabilisticContextualEffectImpl probabilisticContextualEffect = new ProbabilisticContextualEffectImpl();
 		return probabilisticContextualEffect;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public FormulaAtom createFormulaAtom() {
+		FormulaAtomImpl formulaAtom = new FormulaAtomImpl();
+		return formulaAtom;
 	}
 
 	/**

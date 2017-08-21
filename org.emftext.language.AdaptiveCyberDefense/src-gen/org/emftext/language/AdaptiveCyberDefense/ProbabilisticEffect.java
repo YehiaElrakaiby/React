@@ -18,7 +18,7 @@ import org.eclipse.emf.ecore.EObject;
  * </p>
  * <ul>
  *   <li>{@link org.emftext.language.AdaptiveCyberDefense.ProbabilisticEffect#getProbability <em>Probability</em>}</li>
- *   <li>{@link org.emftext.language.AdaptiveCyberDefense.ProbabilisticEffect#getStateatoms <em>Stateatoms</em>}</li>
+ *   <li>{@link org.emftext.language.AdaptiveCyberDefense.ProbabilisticEffect#getState_atoms <em>State atoms</em>}</li>
  * </ul>
  *
  * @see org.emftext.language.AdaptiveCyberDefense.AdaptiveCyberDefensePackage#getProbabilisticEffect()
@@ -54,19 +54,19 @@ public interface ProbabilisticEffect extends EObject {
 	void setProbability(BigDecimal value);
 
 	/**
-	 * Returns the value of the '<em><b>Stateatoms</b></em>' containment reference list.
-	 * The list contents are of type {@link org.emftext.language.AdaptiveCyberDefense.Atom}.
+	 * Returns the value of the '<em><b>State atoms</b></em>' containment reference list.
+	 * The list contents are of type {@link org.emftext.language.AdaptiveCyberDefense.StateAtom}.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Stateatoms</em>' containment reference list isn't clear,
+	 * If the meaning of the '<em>State atoms</em>' containment reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Stateatoms</em>' containment reference list.
-	 * @see org.emftext.language.AdaptiveCyberDefense.AdaptiveCyberDefensePackage#getProbabilisticEffect_Stateatoms()
+	 * @return the value of the '<em>State atoms</em>' containment reference list.
+	 * @see org.emftext.language.AdaptiveCyberDefense.AdaptiveCyberDefensePackage#getProbabilisticEffect_State_atoms()
 	 * @model containment="true"
 	 * @generated
 	 */
-	EList<Atom> getStateatoms();
+	EList<StateAtom> getState_atoms();
 
 } // ProbabilisticEffect

@@ -43,13 +43,13 @@ RULES {
 	
 	
 	ActionDescription ::= 
-		"Action" name[]  
+		"Action" name[]  ("=" value[])?
 		(contextual_effects+)? 
 		("cost" cost[FLOAT])?
 		;
-		
+	
 	EventDescription ::= 
-		"Event" name[]  
+		"Event" name[] ("=" value[])?
 		(probabilistic_contextual_effects+)? 
 		;		
 
@@ -89,7 +89,7 @@ RULES {
 		
 	
 	
-	ProbabilisticEffect ::= "<"  (stateatoms+)? ("prob" probability[FLOAT])? ">";
+	ProbabilisticEffect ::= "<"  (state_atoms+)? ("prob" probability[FLOAT])? ">";
 		
 
 	@Operator(type="binary_left_associative",weight="1",superclass="Formula")
@@ -107,7 +107,7 @@ RULES {
 	Parentheses ::= "(" formula ")";
 	
 	@Operator(type="primitive",weight="3",superclass="Formula")
-	Atom ::=  state_variable[]  ("=" value[])? ;
+	FormulaAtom ::=  description_entity[]  ("=" value[])? ;
 		
 	@Operator(type="primitive",weight="3",superclass="Formula")
 	True ::=  "true" ;
@@ -115,7 +115,9 @@ RULES {
 	@Operator(type="primitive",weight="3",superclass="Formula")
 	False ::=  "false" ;
 
-	InitialAtom ::= initialvariable[] "=" value[];
+	StateAtom ::= state_variable[] ("=" value[])?;
+
+	InitialAtom ::= initialvariable[] ("=" value[])?;
 		
 
 }

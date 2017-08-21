@@ -96,8 +96,8 @@ public class AdaptiveCyberDefenseAdapterFactory extends AdapterFactoryImpl {
 				return createInitialVariableAdapter();
 			}
 			@Override
-			public Adapter caseAtom(Atom object) {
-				return createAtomAdapter();
+			public Adapter caseStateAtom(StateAtom object) {
+				return createStateAtomAdapter();
 			}
 			@Override
 			public Adapter caseFormula(Formula object) {
@@ -154,6 +154,14 @@ public class AdaptiveCyberDefenseAdapterFactory extends AdapterFactoryImpl {
 			@Override
 			public Adapter caseProbabilisticContextualEffect(ProbabilisticContextualEffect object) {
 				return createProbabilisticContextualEffectAdapter();
+			}
+			@Override
+			public Adapter caseDescriptionEntity(DescriptionEntity object) {
+				return createDescriptionEntityAdapter();
+			}
+			@Override
+			public Adapter caseFormulaAtom(FormulaAtom object) {
+				return createFormulaAtomAdapter();
 			}
 			@Override
 			public Adapter defaultCase(EObject object) {
@@ -274,6 +282,20 @@ public class AdaptiveCyberDefenseAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
+	 * Creates a new adapter for an object of class '{@link org.emftext.language.AdaptiveCyberDefense.StateAtom <em>State Atom</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.emftext.language.AdaptiveCyberDefense.StateAtom
+	 * @generated
+	 */
+	public Adapter createStateAtomAdapter() {
+		return null;
+	}
+
+	/**
 	 * Creates a new adapter for an object of class '{@link org.emftext.language.AdaptiveCyberDefense.Formula <em>Formula</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -386,20 +408,6 @@ public class AdaptiveCyberDefenseAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.emftext.language.AdaptiveCyberDefense.Atom <em>Atom</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.emftext.language.AdaptiveCyberDefense.Atom
-	 * @generated
-	 */
-	public Adapter createAtomAdapter() {
-		return null;
-	}
-
-	/**
 	 * Creates a new adapter for an object of class '{@link org.emftext.language.AdaptiveCyberDefense.False <em>False</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -480,6 +488,34 @@ public class AdaptiveCyberDefenseAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createProbabilisticContextualEffectAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.emftext.language.AdaptiveCyberDefense.DescriptionEntity <em>Description Entity</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.emftext.language.AdaptiveCyberDefense.DescriptionEntity
+	 * @generated
+	 */
+	public Adapter createDescriptionEntityAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.emftext.language.AdaptiveCyberDefense.FormulaAtom <em>Formula Atom</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.emftext.language.AdaptiveCyberDefense.FormulaAtom
+	 * @generated
+	 */
+	public Adapter createFormulaAtomAdapter() {
 		return null;
 	}
 
