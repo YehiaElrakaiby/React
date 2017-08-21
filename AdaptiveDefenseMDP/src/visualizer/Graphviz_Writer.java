@@ -17,25 +17,25 @@ import org.apache.logging.log4j.LogManager;
 import resources.Transition;
 
 
-public class DOT_Writer {
+public class Graphviz_Writer {
 	String outputFileName;
 	Set<String> fluentsToHide;
 	Set<String> fluentsStartingWithToHide;
 	Set<String> states_to_show;
-	Set<String> policyFluents;
-	Boolean show_negated;
+	static Boolean show_negated;
 	//Boolean show_only_states_in_transition;
-	Boolean show_void_transition;
-	Boolean show_action_names;
-	Boolean show_state_name_in_node;
+	static Boolean show_void_transition;
+	static Boolean show_action_names;
+	static Boolean show_state_name_in_node;
 	//Boolean remove_similar_states;
-	Boolean remove_policy_component;
+	static Boolean remove_policy_component;
 	//String void_transition;
 	HashMap<Integer, HashMap<String, String>> states;
 
-	BufferedWriter bw;
-	File file;
-	private String option = "ap utility req";
+	static private BufferedWriter bw=null;
+	static private FileWriter fw =null;
+	static private File file=null;
+	static private String option = "ap utility req";
 
 	public static final String SHOW_UTIL = "utility";
 	public static final String SHOW_AP = "ap";
@@ -51,32 +51,104 @@ public class DOT_Writer {
 	private final static org.apache.logging.log4j.Logger LOGGER = LogManager.getRootLogger();
 
 
-	public DOT_Writer(String pathTographivFile,
+
+	static public void write_dot_file(
+			String pathTographivFile,
 			HashMap<Integer, HashMap<String, String>> states,
 			HashSet<Transition> transitions,
-			String option) {
-		this.states = states;
-		this.transitions = transitions;
-		this.outputFileName=pathTographivFile;
-		this.show_action_names=true;
-		this.show_void_transition=true;
+			HashSet<Transition> transitions2,
+			String op) {
+		file = createFile(pathTographivFile);
+
+		setOptions();
+
+		option=op;
+
+		try {
+			fw = new FileWriter(file);
+			bw = new BufferedWriter(fw);
+			bw.write("digraph R {\n");
+
+			writeNodes(states);
+			writeTransitions(transitions);
+			writeRedTransitions(transitions2);
+
+			bw.write("}");
+			bw.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+
+	} 
+
+
+
+	static private void writeRedTransitions(HashSet<Transition> transitions2) {
+		for(Transition transition_description : transitions2){
+			if(transition_description.getApplicability()) {
+				Integer src = transition_description.getSrc();
+				Integer dst = transition_description.getDest();
+				try {
+					bw.write(src+" -> "+dst);
+					bw.write(" [color=red]");
+					bw.write(" [label=\"");
+
+					String trans_name=transition_description.getName();
+					if(trans_name.endsWith("=tt")){
+						trans_name=trans_name.substring(0,trans_name.indexOf("=tt"));
+					}
+
+					bw.write(
+							trans_name +" "
+									+ transition_description.getProbability() +" "
+									+ transition_description.getActionCost() +" "
+									+ transition_description.getOrReward() +" "
+									+"\\n");
+
+					bw.write("\"]\n");
+
+					bw.write("\n");
+
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+		}		
+	}
+
+	private static void setOptions() {
+		show_action_names=true;
+		show_void_transition=true;
 		//this.show_only_states_in_transition=only_show_states_in_transition;
-		this.show_negated=false;
+		show_negated=false;
 		//this.remove_similar_states = remove_similar_states2;
-		this.show_state_name_in_node = true;
+		show_state_name_in_node = true;
 		//this.remove_policy_component = remove_policy_component;
 		//this.fluentsToHide=fluentsToHide2;
 		//this.fluentsStartingWithToHide=fluentsStartingWithToHide2;
 		//this.states_to_show = states_to_show;
 		//this.policyFluents = policyFluents;
 		//this.policyTransitions = policyTransitions;
-		//findVoidTransition();
-		this.option=option;
-		file=null;
 	}
 
+	private static File createFile(String pathTographivFile) {
+		file = new File(pathTographivFile);
 
-	public DOT_Writer(String pathTographivFile,
+		if(!file.exists()){
+			try {
+				file.createNewFile();
+			} catch (IOException e) {
+				LOGGER.error("ERROR creating graphviz file: file name "+file.getName()+" path "+file.getAbsolutePath()
+				+"\n Exception "+e.getLocalizedMessage());
+				e.printStackTrace();
+			}
+		}
+		return file;
+	}
+
+	public Graphviz_Writer(String pathTographivFile,
 			HashMap<Integer, HashMap<String, String>> states,
 			HashSet<Transition> transitions) {
 		this.states = states;
@@ -127,8 +199,8 @@ public class DOT_Writer {
 			bw = new BufferedWriter(fw);
 			bw.write("digraph R {\n");
 
-			writeNodes();
-			writeTransitions();
+			writeNodes(states);
+			writeTransitions(transitions);
 
 			bw.write("}");
 			bw.close();
@@ -146,18 +218,18 @@ public class DOT_Writer {
 		 */
 		//Desktop dt = Desktop.getDesktop();
 		//try {
-			//if(file!=null)dt.open(file);
-			//else {
-				this.writeToFile();
-				//dt.open(file);
-			//}
+		//if(file!=null)dt.open(file);
+		//else {
+		this.writeToFile();
+		//dt.open(file);
+		//}
 		//} catch (IOException e) {
-			// TODO Auto-generated catch block
-			//e.printStackTrace();
+		// TODO Auto-generated catch block
+		//e.printStackTrace();
 		//}
 	}
 
-	private void writeNodes() {
+	private static void writeNodes(HashMap<Integer, HashMap<String, String>> states) {
 		Iterator<Integer> it = states.keySet().iterator();
 		while(it.hasNext()){
 			Integer stateName = it.next();
@@ -171,7 +243,7 @@ public class DOT_Writer {
 
 				HashMap<String, String> literals = states.get(stateName);
 				Set<String> set = literals.keySet();
-			    List<String> list=asSortedList(set);
+				List<String> list=asSortedList(set);
 				for(String fluent_name : list) {
 					String value = literals.get(fluent_name);
 					if(!filter(fluent_name)) {
@@ -222,23 +294,23 @@ public class DOT_Writer {
 	}
 	public static
 	<T extends Comparable<? super T>> List<T> asSortedList(Collection<T> c) {
-	  List<T> list = new ArrayList<T>(c);
-	  java.util.Collections.sort(list);
-	  return list;
+		List<T> list = new ArrayList<T>(c);
+		java.util.Collections.sort(list);
+		return list;
 	}
-	private boolean filter(String fluent_name) {
-		if(this.option.contains("utility") && fluent_name.startsWith("util")) {
+	private static boolean filter(String fluent_name) {
+		if(option.contains("utility") && fluent_name.startsWith("util")) {
 			return false;
-		} else if(this.option.contains("ap") && !fluent_name.startsWith("util") && !fluent_name.startsWith("req")) {
+		} else if(option.contains("ap") && !fluent_name.startsWith("util") && !fluent_name.startsWith("req")) {
 			return false;
-		}  else if(this.option.contains("req") && fluent_name.startsWith("req")) {
+		}  else if(option.contains("req") && fluent_name.startsWith("req")) {
 			return false;
 		} 
 		return true;
 	}
 	HashSet<Transition> transitions; 
 
-	private void writeTransitions() {
+	private static void writeTransitions(HashSet<Transition> transitions) {
 		for(Transition transition_description : transitions){
 			if(transition_description.getApplicability()) {
 				Integer src = transition_description.getSrc();
@@ -255,10 +327,10 @@ public class DOT_Writer {
 
 					bw.write(
 							trans_name +" "
-							+ transition_description.getProbability() +" "
-							+ transition_description.getActionCost() +" "
-							+ transition_description.getOrReward() +" "
-							+"\\n");
+									+ transition_description.getProbability() +" "
+									+ transition_description.getActionCost() +" "
+									+ transition_description.getOrReward() +" "
+									+"\\n");
 
 					bw.write("\"]\n");
 

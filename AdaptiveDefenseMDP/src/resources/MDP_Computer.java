@@ -244,6 +244,17 @@ public class MDP_Computer {
 		return states;
 	}
 
+	public static HashSet<Transition> getTransitionsUsingEventsId(HashSet<Transition> transitions,
+			HashMap<String, Integer> exogenous_events_id) {
+		HashSet<Transition> set = new HashSet<Transition> ();
+		for(Transition transition : transitions) {
+			if(exogenous_events_id.containsKey(transition.getName())) {
+				set.add(transition);
+			}
+		}
+		return set;
+	}
+
 
 
 }

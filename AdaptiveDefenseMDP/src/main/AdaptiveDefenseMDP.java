@@ -19,6 +19,7 @@ import mdp.MDPSolver;
 import resources.MDP_Computer;
 import resources.Transition;
 import visualizer.DOT_Writer;
+import visualizer.Graphviz_Writer;
 
 
 public class AdaptiveDefenseMDP {
@@ -138,16 +139,24 @@ public class AdaptiveDefenseMDP {
 		HashMap<Integer, HashMap<String, String>> states_value = MDP_Computer.updateStatesUsingValue(lts.getStates(), value);
 		LOGGER.info("A copie of the LTS states are created using the computed state values");
 
-		showInGraphiv(files_location+controlStrategyFileName,states_value,filtered_transitions,DOT_Writer.SHOW_AP);
+		showInGraphiv(files_location+controlStrategyFileName,states_value,filtered_transitions,DOT_Writer.SHOW_NONE);
 		LOGGER.info("A graph is created using the computed policy transitions and the states updated with their values");
 
+		///////////// NEW PART
+		HashSet<Transition> exogenous_transitions = MDP_Computer.getTransitionsUsingEventsId(lts.getTransitions(), lts.getExogenous_events_id());
+		LOGGER.info("The transitions caused by exogenous actions are udentified");
+		
+		Graphviz_Writer.write_dot_file(files_location+controlStrategyFileName,states_value,filtered_transitions,exogenous_transitions,DOT_Writer.SHOW_ALL);
+		LOGGER.info("A graph is created using the computed policy transitions, exogenous transitions and the states updated with their values");
+
+		//////// END NEW PART
 		HashSet<Transition> plan_transitions = MDP_Computer.findPlanTransitionsUsingPolicy(lts.getTransitions2(), lts.getTransitions3(), lts.getId_control_events(), policy);
 		LOGGER.info("Transitions are reduced to those which are reachable from the initial state to create a plan rather than a strategy");
 
 		HashMap<Integer, HashMap<String, String>> plan_states = MDP_Computer.filterStatesUsingTransitions(states_value, plan_transitions);
 		LOGGER.info("States are filtered based on plan transitions");
 
-		showInGraphiv(files_location+controlPlanFileName,plan_states,plan_transitions,DOT_Writer.SHOW_AP);
+		showInGraphiv(files_location+controlPlanFileName,plan_states,plan_transitions,DOT_Writer.SHOW_NONE);
 		LOGGER.info("A Graph is created showing the computed operatio plan");
 
 		return value;
@@ -241,6 +250,7 @@ public class AdaptiveDefenseMDP {
 
 	}
 */
+
 
 
 	private static void showInGraphiv(String file_path, HashMap<Integer, HashMap<String, String>> states,
