@@ -127,7 +127,6 @@
   <eClassifiers xsi:type="ecore:EEnum" name="ActionType">
     <eLiterals name="control" value="1"/>
     <eLiterals name="exogenous" value="2"/>
-    <eLiterals name="exploit" value="2"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="False" eSuperTypes="#//Formula"/>
   <eClassifiers xsi:type="ecore:EClass" name="DeadlineRequirement" abstract="true"

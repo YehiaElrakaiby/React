@@ -76,6 +76,8 @@ public class AdaptiveCyberDefenseFactoryImpl extends EFactoryImpl implements Ada
 			case AdaptiveCyberDefensePackage.FALSE: return createFalse();
 			case AdaptiveCyberDefensePackage.UNCONDITIONAL_MAINTAIN: return createUnconditionalMaintain();
 			case AdaptiveCyberDefensePackage.CONTEXTUAL_EFFECT: return createContextualEffect();
+			case AdaptiveCyberDefensePackage.EVENT_DESCRIPTION: return createEventDescription();
+			case AdaptiveCyberDefensePackage.PROBABILISTIC_CONTEXTUAL_EFFECT: return createProbabilisticContextualEffect();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -303,6 +305,26 @@ public class AdaptiveCyberDefenseFactoryImpl extends EFactoryImpl implements Ada
 	public ContextualEffect createContextualEffect() {
 		ContextualEffectImpl contextualEffect = new ContextualEffectImpl();
 		return contextualEffect;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EventDescription createEventDescription() {
+		EventDescriptionImpl eventDescription = new EventDescriptionImpl();
+		return eventDescription;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ProbabilisticContextualEffect createProbabilisticContextualEffect() {
+		ProbabilisticContextualEffectImpl probabilisticContextualEffect = new ProbabilisticContextualEffectImpl();
+		return probabilisticContextualEffect;
 	}
 
 	/**

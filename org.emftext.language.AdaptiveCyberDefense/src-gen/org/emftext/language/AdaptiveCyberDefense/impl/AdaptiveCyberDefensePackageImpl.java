@@ -23,6 +23,7 @@ import org.emftext.language.AdaptiveCyberDefense.ContextualEffect;
 import org.emftext.language.AdaptiveCyberDefense.DeadlineRequirement;
 import org.emftext.language.AdaptiveCyberDefense.Disjunction;
 import org.emftext.language.AdaptiveCyberDefense.DomainDescription;
+import org.emftext.language.AdaptiveCyberDefense.EventDescription;
 import org.emftext.language.AdaptiveCyberDefense.False;
 import org.emftext.language.AdaptiveCyberDefense.Formula;
 import org.emftext.language.AdaptiveCyberDefense.InitialAtom;
@@ -30,6 +31,7 @@ import org.emftext.language.AdaptiveCyberDefense.InitialVariable;
 import org.emftext.language.AdaptiveCyberDefense.Maintain;
 import org.emftext.language.AdaptiveCyberDefense.Negation;
 import org.emftext.language.AdaptiveCyberDefense.Parentheses;
+import org.emftext.language.AdaptiveCyberDefense.ProbabilisticContextualEffect;
 import org.emftext.language.AdaptiveCyberDefense.ProbabilisticEffect;
 import org.emftext.language.AdaptiveCyberDefense.Requirement;
 import org.emftext.language.AdaptiveCyberDefense.RequirementStatus;
@@ -219,6 +221,20 @@ public class AdaptiveCyberDefensePackageImpl extends EPackageImpl implements Ada
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	private EClass eventDescriptionEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass probabilisticContextualEffectEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	private EEnum requirementStatusEEnum = null;
 
 	/**
@@ -341,6 +357,15 @@ public class AdaptiveCyberDefensePackageImpl extends EPackageImpl implements Ada
 	 */
 	public EReference getDomainDescription_Initial_atoms() {
 		return (EReference)domainDescriptionEClass.getEStructuralFeatures().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getDomainDescription_Eventdescriptions() {
+		return (EReference)domainDescriptionEClass.getEStructuralFeatures().get(5);
 	}
 
 	/**
@@ -852,6 +877,51 @@ public class AdaptiveCyberDefensePackageImpl extends EPackageImpl implements Ada
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getEventDescription() {
+		return eventDescriptionEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getEventDescription_Actionatom() {
+		return (EReference)eventDescriptionEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getEventDescription_Probabilisticcontextualeffect() {
+		return (EReference)eventDescriptionEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getProbabilisticContextualEffect() {
+		return probabilisticContextualEffectEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getProbabilisticContextualEffect_Occurrence_probability() {
+		return (EAttribute)probabilisticContextualEffectEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EEnum getRequirementStatus() {
 		return requirementStatusEEnum;
 	}
@@ -899,6 +969,7 @@ public class AdaptiveCyberDefensePackageImpl extends EPackageImpl implements Ada
 		createEReference(domainDescriptionEClass, DOMAIN_DESCRIPTION__REQUIREMENTS);
 		createEReference(domainDescriptionEClass, DOMAIN_DESCRIPTION__ACTIONS);
 		createEReference(domainDescriptionEClass, DOMAIN_DESCRIPTION__INITIAL_ATOMS);
+		createEReference(domainDescriptionEClass, DOMAIN_DESCRIPTION__EVENTDESCRIPTIONS);
 
 		actionDescriptionEClass = createEClass(ACTION_DESCRIPTION);
 		createEAttribute(actionDescriptionEClass, ACTION_DESCRIPTION__COST);
@@ -979,6 +1050,13 @@ public class AdaptiveCyberDefensePackageImpl extends EPackageImpl implements Ada
 		createEReference(contextualEffectEClass, CONTEXTUAL_EFFECT__CONTEXT);
 		createEReference(contextualEffectEClass, CONTEXTUAL_EFFECT__CHANGE_SETS);
 
+		eventDescriptionEClass = createEClass(EVENT_DESCRIPTION);
+		createEReference(eventDescriptionEClass, EVENT_DESCRIPTION__ACTIONATOM);
+		createEReference(eventDescriptionEClass, EVENT_DESCRIPTION__PROBABILISTICCONTEXTUALEFFECT);
+
+		probabilisticContextualEffectEClass = createEClass(PROBABILISTIC_CONTEXTUAL_EFFECT);
+		createEAttribute(probabilisticContextualEffectEClass, PROBABILISTIC_CONTEXTUAL_EFFECT__OCCURRENCE_PROBABILITY);
+
 		// Create enums
 		requirementStatusEEnum = createEEnum(REQUIREMENT_STATUS);
 		actionTypeEEnum = createEEnum(ACTION_TYPE);
@@ -1028,6 +1106,7 @@ public class AdaptiveCyberDefensePackageImpl extends EPackageImpl implements Ada
 		falseEClass.getESuperTypes().add(this.getFormula());
 		deadlineRequirementEClass.getESuperTypes().add(this.getRequirement());
 		unconditionalMaintainEClass.getESuperTypes().add(this.getRequirement());
+		probabilisticContextualEffectEClass.getESuperTypes().add(this.getContextualEffect());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(domainDescriptionEClass, DomainDescription.class, "DomainDescription", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -1036,6 +1115,7 @@ public class AdaptiveCyberDefensePackageImpl extends EPackageImpl implements Ada
 		initEReference(getDomainDescription_Requirements(), this.getRequirement(), null, "requirements", null, 0, -1, DomainDescription.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getDomainDescription_Actions(), this.getActionVariable(), null, "actions", null, 0, -1, DomainDescription.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getDomainDescription_Initial_atoms(), this.getInitialAtom(), null, "initial_atoms", null, 1, -1, DomainDescription.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getDomainDescription_Eventdescriptions(), this.getEventDescription(), null, "eventdescriptions", null, 0, -1, DomainDescription.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(actionDescriptionEClass, ActionDescription.class, "ActionDescription", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getActionDescription_Cost(), ecorePackage.getEBigDecimal(), "cost", "-0.00001", 0, 1, ActionDescription.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1116,6 +1196,13 @@ public class AdaptiveCyberDefensePackageImpl extends EPackageImpl implements Ada
 		initEReference(getContextualEffect_Context(), this.getFormula(), null, "context", null, 0, 1, ContextualEffect.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getContextualEffect_Change_sets(), this.getProbabilisticEffect(), null, "change_sets", null, 0, -1, ContextualEffect.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
+		initEClass(eventDescriptionEClass, EventDescription.class, "EventDescription", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getEventDescription_Actionatom(), this.getActionAtom(), null, "actionatom", null, 1, 1, EventDescription.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getEventDescription_Probabilisticcontextualeffect(), this.getProbabilisticContextualEffect(), null, "probabilisticcontextualeffect", null, 0, -1, EventDescription.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(probabilisticContextualEffectEClass, ProbabilisticContextualEffect.class, "ProbabilisticContextualEffect", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getProbabilisticContextualEffect_Occurrence_probability(), ecorePackage.getEBigDecimal(), "occurrence_probability", "1", 0, 1, ProbabilisticContextualEffect.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
 		// Initialize enums and add enum literals
 		initEEnum(requirementStatusEEnum, RequirementStatus.class, "RequirementStatus");
 		addEEnumLiteral(requirementStatusEEnum, RequirementStatus.INACT);
@@ -1127,7 +1214,6 @@ public class AdaptiveCyberDefensePackageImpl extends EPackageImpl implements Ada
 		initEEnum(actionTypeEEnum, ActionType.class, "ActionType");
 		addEEnumLiteral(actionTypeEEnum, ActionType.CONTROL);
 		addEEnumLiteral(actionTypeEEnum, ActionType.EXOGENOUS);
-		addEEnumLiteral(actionTypeEEnum, ActionType.EXPLOIT);
 
 		// Create resource
 		createResource(eNS_URI);

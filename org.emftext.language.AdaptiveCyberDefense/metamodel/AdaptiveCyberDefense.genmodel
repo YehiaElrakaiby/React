@@ -16,7 +16,6 @@
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="AdaptiveCyberDefense.ecore#//ActionType">
       <genEnumLiterals ecoreEnumLiteral="AdaptiveCyberDefense.ecore#//ActionType/control"/>
       <genEnumLiterals ecoreEnumLiteral="AdaptiveCyberDefense.ecore#//ActionType/exogenous"/>
-      <genEnumLiterals ecoreEnumLiteral="AdaptiveCyberDefense.ecore#//ActionType/exploit"/>
     </genEnums>
     <genClasses ecoreClass="AdaptiveCyberDefense.ecore#//DomainDescription">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference AdaptiveCyberDefense.ecore#//DomainDescription/state_variables"/>

@@ -36,15 +36,7 @@ public enum ActionType implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	EXOGENOUS(2, "exogenous", "exogenous"), /**
-	 * The '<em><b>Exploit</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #EXPLOIT_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	EXPLOIT(2, "exploit", "exploit");
+	EXOGENOUS(2, "exogenous", "exogenous");
 
 	/**
 	 * The '<em><b>Control</b></em>' literal value.
@@ -77,21 +69,6 @@ public enum ActionType implements Enumerator {
 	public static final int EXOGENOUS_VALUE = 2;
 
 	/**
-	 * The '<em><b>Exploit</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>Exploit</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #EXPLOIT
-	 * @model name="exploit"
-	 * @generated
-	 * @ordered
-	 */
-	public static final int EXPLOIT_VALUE = 2;
-
-	/**
 	 * An array of all the '<em><b>Action Type</b></em>' enumerators.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -101,7 +78,6 @@ public enum ActionType implements Enumerator {
 		new ActionType[] {
 			CONTROL,
 			EXOGENOUS,
-			EXPLOIT,
 		};
 
 	/**

@@ -34,7 +34,9 @@ RULES {
 		"ActionVariables" "=" "<"  (actions ";")* ">"
 		
 		"Requirements" "=" "<" (requirements ";")* ">" 		
-		"EventDescriptions" "=" "<" (action_descriptions ";")* ">" 
+		"ActionDescriptions" "=" "<" (action_descriptions ";")* ">" 
+		
+		"EventDescriptions" "=" "<" (eventdescriptions ";")* ">" 
 		
 		"CurrentState" "=" "<"  initial_atoms ("," initial_atoms)*   ">"
 		
@@ -46,15 +48,25 @@ RULES {
 	
 	ActionVariable ::= "Action" name[] 
 						"domain" "{" values[] ("," values[])* "}"
-						"type" (type[control:"control", exogenous:"exogenous", exploit:"exploit"])?
+						"type" (type[control:"control", exogenous:"exogenous"])?
 		;
 	
 	ActionDescription ::= 
-		"Event" actionatom  
+		"Action" actionatom  
 		(contextual_effects+)? 
 		("cost" cost[FLOAT])?
-		;	
-	
+		;
+		
+	EventDescription ::= 
+		"Event" actionatom  
+		(probabilisticcontextualeffect+)? 
+		;		
+
+	ProbabilisticContextualEffect ::=
+		("Occurrence Probability" occurrence_probability[FLOAT])?
+		("if" context)?
+		"effects" change_sets*;
+		
 	ContextualEffect ::=
 		("if" context)?
 		"effects" change_sets*;

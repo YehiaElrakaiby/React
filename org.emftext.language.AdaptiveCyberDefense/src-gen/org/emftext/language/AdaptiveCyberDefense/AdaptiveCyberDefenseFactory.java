@@ -193,6 +193,24 @@ public interface AdaptiveCyberDefenseFactory extends EFactory {
 	ContextualEffect createContextualEffect();
 
 	/**
+	 * Returns a new object of class '<em>Event Description</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Event Description</em>'.
+	 * @generated
+	 */
+	EventDescription createEventDescription();
+
+	/**
+	 * Returns a new object of class '<em>Probabilistic Contextual Effect</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Probabilistic Contextual Effect</em>'.
+	 * @generated
+	 */
+	ProbabilisticContextualEffect createProbabilisticContextualEffect();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

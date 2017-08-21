@@ -339,15 +339,11 @@
               <styles xmi:type="notation:FontStyle" xmi:id="_rIgOAWrXEee0xdnPj5DZ8g" fontName=".SF NS Text" fontHeight="8"/>
               <layoutConstraint xmi:type="notation:Location" xmi:id="_rIgOAmrXEee0xdnPj5DZ8g"/>
             </children>
-            <children xmi:type="notation:Node" xmi:id="_gmxhAHHwEeedMetepvg9og" type="3010" element="_gmdX8HHwEeedMetepvg9og">
-              <styles xmi:type="notation:FontStyle" xmi:id="_gmxhAXHwEeedMetepvg9og" fontName=".SF NS Text" fontHeight="8"/>
-              <layoutConstraint xmi:type="notation:Location" xmi:id="_gmxhAnHwEeedMetepvg9og"/>
-            </children>
             <styles xmi:type="notation:SortingStyle" xmi:id="_niZqAmrXEee0xdnPj5DZ8g"/>
             <styles xmi:type="notation:FilteringStyle" xmi:id="_niZqA2rXEee0xdnPj5DZ8g"/>
           </children>
           <styles xmi:type="notation:ShapeStyle" xmi:id="_niZC8WrXEee0xdnPj5DZ8g" fontName=".SF NS Text" fontHeight="8"/>
-          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_niZC8mrXEee0xdnPj5DZ8g" x="32" y="468" width="120" height="79"/>
+          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_niZC8mrXEee0xdnPj5DZ8g" x="32" y="468" width="120" height="69"/>
         </children>
         <children xmi:type="notation:Node" xmi:id="_HQ_CoHHeEeedMetepvg9og" type="2003" element="_HQwZIHHeEeedMetepvg9og">
           <children xmi:type="notation:Node" xmi:id="_HQ_Co3HeEeedMetepvg9og" type="5007"/>
@@ -1882,14 +1878,6 @@
         <target xmi:type="ecore:EEnumLiteral" href="AdaptiveCyberDefense.ecore#//ActionType/exogenous"/>
         <semanticElements xmi:type="ecore:EEnumLiteral" href="AdaptiveCyberDefense.ecore#//ActionType/exogenous"/>
         <ownedStyle xmi:type="diagram:BundledImage" xmi:id="_rIV18WrXEee0xdnPj5DZ8g" labelAlignment="LEFT">
-          <description xmi:type="style:BundledImageDescription" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EEnum']/@subNodeMappings[name='EC%20EEnumLiteral']/@style"/>
-        </ownedStyle>
-        <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EEnum']/@subNodeMappings[name='EC%20EEnumLiteral']"/>
-      </ownedElements>
-      <ownedElements xmi:type="diagram:DNodeListElement" xmi:id="_gmdX8HHwEeedMetepvg9og" name="exploit" tooltipText="">
-        <target xmi:type="ecore:EEnumLiteral" href="AdaptiveCyberDefense.ecore#//ActionType/exploit"/>
-        <semanticElements xmi:type="ecore:EEnumLiteral" href="AdaptiveCyberDefense.ecore#//ActionType/exploit"/>
-        <ownedStyle xmi:type="diagram:BundledImage" xmi:id="_gmd_AHHwEeedMetepvg9og" labelAlignment="LEFT">
           <description xmi:type="style:BundledImageDescription" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EEnum']/@subNodeMappings[name='EC%20EEnumLiteral']/@style"/>
         </ownedStyle>
         <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EEnum']/@subNodeMappings[name='EC%20EEnumLiteral']"/>

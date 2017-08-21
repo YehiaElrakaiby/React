@@ -112,13 +112,22 @@ public interface AdaptiveCyberDefensePackage extends EPackage {
 	int DOMAIN_DESCRIPTION__INITIAL_ATOMS = 4;
 
 	/**
+	 * The feature id for the '<em><b>Eventdescriptions</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DOMAIN_DESCRIPTION__EVENTDESCRIPTIONS = 5;
+
+	/**
 	 * The number of structural features of the '<em>Domain Description</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DOMAIN_DESCRIPTION_FEATURE_COUNT = 5;
+	int DOMAIN_DESCRIPTION_FEATURE_COUNT = 6;
 
 	/**
 	 * The meta object id for the '{@link org.emftext.language.AdaptiveCyberDefense.impl.ActionDescriptionImpl <em>Action Description</em>}' class.
@@ -1089,6 +1098,89 @@ public interface AdaptiveCyberDefensePackage extends EPackage {
 	int CONTEXTUAL_EFFECT_FEATURE_COUNT = 2;
 
 	/**
+	 * The meta object id for the '{@link org.emftext.language.AdaptiveCyberDefense.impl.EventDescriptionImpl <em>Event Description</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.emftext.language.AdaptiveCyberDefense.impl.EventDescriptionImpl
+	 * @see org.emftext.language.AdaptiveCyberDefense.impl.AdaptiveCyberDefensePackageImpl#getEventDescription()
+	 * @generated
+	 */
+	int EVENT_DESCRIPTION = 24;
+
+	/**
+	 * The feature id for the '<em><b>Actionatom</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EVENT_DESCRIPTION__ACTIONATOM = 0;
+
+	/**
+	 * The feature id for the '<em><b>Probabilisticcontextualeffect</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EVENT_DESCRIPTION__PROBABILISTICCONTEXTUALEFFECT = 1;
+
+	/**
+	 * The number of structural features of the '<em>Event Description</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EVENT_DESCRIPTION_FEATURE_COUNT = 2;
+
+	/**
+	 * The meta object id for the '{@link org.emftext.language.AdaptiveCyberDefense.impl.ProbabilisticContextualEffectImpl <em>Probabilistic Contextual Effect</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.emftext.language.AdaptiveCyberDefense.impl.ProbabilisticContextualEffectImpl
+	 * @see org.emftext.language.AdaptiveCyberDefense.impl.AdaptiveCyberDefensePackageImpl#getProbabilisticContextualEffect()
+	 * @generated
+	 */
+	int PROBABILISTIC_CONTEXTUAL_EFFECT = 25;
+
+	/**
+	 * The feature id for the '<em><b>Context</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROBABILISTIC_CONTEXTUAL_EFFECT__CONTEXT = CONTEXTUAL_EFFECT__CONTEXT;
+
+	/**
+	 * The feature id for the '<em><b>Change sets</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROBABILISTIC_CONTEXTUAL_EFFECT__CHANGE_SETS = CONTEXTUAL_EFFECT__CHANGE_SETS;
+
+	/**
+	 * The feature id for the '<em><b>Occurrence probability</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROBABILISTIC_CONTEXTUAL_EFFECT__OCCURRENCE_PROBABILITY = CONTEXTUAL_EFFECT_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Probabilistic Contextual Effect</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROBABILISTIC_CONTEXTUAL_EFFECT_FEATURE_COUNT = CONTEXTUAL_EFFECT_FEATURE_COUNT + 1;
+
+	/**
 	 * The meta object id for the '{@link org.emftext.language.AdaptiveCyberDefense.RequirementStatus <em>Requirement Status</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1096,7 +1188,7 @@ public interface AdaptiveCyberDefensePackage extends EPackage {
 	 * @see org.emftext.language.AdaptiveCyberDefense.impl.AdaptiveCyberDefensePackageImpl#getRequirementStatus()
 	 * @generated
 	 */
-	int REQUIREMENT_STATUS = 24;
+	int REQUIREMENT_STATUS = 26;
 
 
 	/**
@@ -1107,7 +1199,7 @@ public interface AdaptiveCyberDefensePackage extends EPackage {
 	 * @see org.emftext.language.AdaptiveCyberDefense.impl.AdaptiveCyberDefensePackageImpl#getActionType()
 	 * @generated
 	 */
-	int ACTION_TYPE = 25;
+	int ACTION_TYPE = 27;
 
 
 	/**
@@ -1174,6 +1266,17 @@ public interface AdaptiveCyberDefensePackage extends EPackage {
 	 * @generated
 	 */
 	EReference getDomainDescription_Initial_atoms();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link org.emftext.language.AdaptiveCyberDefense.DomainDescription#getEventdescriptions <em>Eventdescriptions</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Eventdescriptions</em>'.
+	 * @see org.emftext.language.AdaptiveCyberDefense.DomainDescription#getEventdescriptions()
+	 * @see #getDomainDescription()
+	 * @generated
+	 */
+	EReference getDomainDescription_Eventdescriptions();
 
 	/**
 	 * Returns the meta object for class '{@link org.emftext.language.AdaptiveCyberDefense.ActionDescription <em>Action Description</em>}'.
@@ -1769,6 +1872,59 @@ public interface AdaptiveCyberDefensePackage extends EPackage {
 	EReference getContextualEffect_Change_sets();
 
 	/**
+	 * Returns the meta object for class '{@link org.emftext.language.AdaptiveCyberDefense.EventDescription <em>Event Description</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Event Description</em>'.
+	 * @see org.emftext.language.AdaptiveCyberDefense.EventDescription
+	 * @generated
+	 */
+	EClass getEventDescription();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link org.emftext.language.AdaptiveCyberDefense.EventDescription#getActionatom <em>Actionatom</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Actionatom</em>'.
+	 * @see org.emftext.language.AdaptiveCyberDefense.EventDescription#getActionatom()
+	 * @see #getEventDescription()
+	 * @generated
+	 */
+	EReference getEventDescription_Actionatom();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link org.emftext.language.AdaptiveCyberDefense.EventDescription#getProbabilisticcontextualeffect <em>Probabilisticcontextualeffect</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Probabilisticcontextualeffect</em>'.
+	 * @see org.emftext.language.AdaptiveCyberDefense.EventDescription#getProbabilisticcontextualeffect()
+	 * @see #getEventDescription()
+	 * @generated
+	 */
+	EReference getEventDescription_Probabilisticcontextualeffect();
+
+	/**
+	 * Returns the meta object for class '{@link org.emftext.language.AdaptiveCyberDefense.ProbabilisticContextualEffect <em>Probabilistic Contextual Effect</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Probabilistic Contextual Effect</em>'.
+	 * @see org.emftext.language.AdaptiveCyberDefense.ProbabilisticContextualEffect
+	 * @generated
+	 */
+	EClass getProbabilisticContextualEffect();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.emftext.language.AdaptiveCyberDefense.ProbabilisticContextualEffect#getOccurrence_probability <em>Occurrence probability</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Occurrence probability</em>'.
+	 * @see org.emftext.language.AdaptiveCyberDefense.ProbabilisticContextualEffect#getOccurrence_probability()
+	 * @see #getProbabilisticContextualEffect()
+	 * @generated
+	 */
+	EAttribute getProbabilisticContextualEffect_Occurrence_probability();
+
+	/**
 	 * Returns the meta object for enum '{@link org.emftext.language.AdaptiveCyberDefense.RequirementStatus <em>Requirement Status</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1859,6 +2015,14 @@ public interface AdaptiveCyberDefensePackage extends EPackage {
 		 * @generated
 		 */
 		EReference DOMAIN_DESCRIPTION__INITIAL_ATOMS = eINSTANCE.getDomainDescription_Initial_atoms();
+
+		/**
+		 * The meta object literal for the '<em><b>Eventdescriptions</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference DOMAIN_DESCRIPTION__EVENTDESCRIPTIONS = eINSTANCE.getDomainDescription_Eventdescriptions();
 
 		/**
 		 * The meta object literal for the '{@link org.emftext.language.AdaptiveCyberDefense.impl.ActionDescriptionImpl <em>Action Description</em>}' class.
@@ -2353,6 +2517,50 @@ public interface AdaptiveCyberDefensePackage extends EPackage {
 		 * @generated
 		 */
 		EReference CONTEXTUAL_EFFECT__CHANGE_SETS = eINSTANCE.getContextualEffect_Change_sets();
+
+		/**
+		 * The meta object literal for the '{@link org.emftext.language.AdaptiveCyberDefense.impl.EventDescriptionImpl <em>Event Description</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.emftext.language.AdaptiveCyberDefense.impl.EventDescriptionImpl
+		 * @see org.emftext.language.AdaptiveCyberDefense.impl.AdaptiveCyberDefensePackageImpl#getEventDescription()
+		 * @generated
+		 */
+		EClass EVENT_DESCRIPTION = eINSTANCE.getEventDescription();
+
+		/**
+		 * The meta object literal for the '<em><b>Actionatom</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference EVENT_DESCRIPTION__ACTIONATOM = eINSTANCE.getEventDescription_Actionatom();
+
+		/**
+		 * The meta object literal for the '<em><b>Probabilisticcontextualeffect</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference EVENT_DESCRIPTION__PROBABILISTICCONTEXTUALEFFECT = eINSTANCE.getEventDescription_Probabilisticcontextualeffect();
+
+		/**
+		 * The meta object literal for the '{@link org.emftext.language.AdaptiveCyberDefense.impl.ProbabilisticContextualEffectImpl <em>Probabilistic Contextual Effect</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.emftext.language.AdaptiveCyberDefense.impl.ProbabilisticContextualEffectImpl
+		 * @see org.emftext.language.AdaptiveCyberDefense.impl.AdaptiveCyberDefensePackageImpl#getProbabilisticContextualEffect()
+		 * @generated
+		 */
+		EClass PROBABILISTIC_CONTEXTUAL_EFFECT = eINSTANCE.getProbabilisticContextualEffect();
+
+		/**
+		 * The meta object literal for the '<em><b>Occurrence probability</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PROBABILISTIC_CONTEXTUAL_EFFECT__OCCURRENCE_PROBABILITY = eINSTANCE.getProbabilisticContextualEffect_Occurrence_probability();
 
 		/**
 		 * The meta object literal for the '{@link org.emftext.language.AdaptiveCyberDefense.RequirementStatus <em>Requirement Status</em>}' enum.

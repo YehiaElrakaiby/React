@@ -20,6 +20,7 @@ import org.emftext.language.AdaptiveCyberDefense.ActionDescription;
 import org.emftext.language.AdaptiveCyberDefense.ActionVariable;
 import org.emftext.language.AdaptiveCyberDefense.AdaptiveCyberDefensePackage;
 import org.emftext.language.AdaptiveCyberDefense.DomainDescription;
+import org.emftext.language.AdaptiveCyberDefense.EventDescription;
 import org.emftext.language.AdaptiveCyberDefense.InitialAtom;
 
 import org.emftext.language.AdaptiveCyberDefense.Requirement;
@@ -38,6 +39,7 @@ import org.emftext.language.AdaptiveCyberDefense.StateVariable;
  *   <li>{@link org.emftext.language.AdaptiveCyberDefense.impl.DomainDescriptionImpl#getRequirements <em>Requirements</em>}</li>
  *   <li>{@link org.emftext.language.AdaptiveCyberDefense.impl.DomainDescriptionImpl#getActions <em>Actions</em>}</li>
  *   <li>{@link org.emftext.language.AdaptiveCyberDefense.impl.DomainDescriptionImpl#getInitial_atoms <em>Initial atoms</em>}</li>
+ *   <li>{@link org.emftext.language.AdaptiveCyberDefense.impl.DomainDescriptionImpl#getEventdescriptions <em>Eventdescriptions</em>}</li>
  * </ul>
  *
  * @generated
@@ -92,6 +94,16 @@ public class DomainDescriptionImpl extends EObjectImpl implements DomainDescript
 	 * @ordered
 	 */
 	protected EList<InitialAtom> initial_atoms;
+
+	/**
+	 * The cached value of the '{@link #getEventdescriptions() <em>Eventdescriptions</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getEventdescriptions()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<EventDescription> eventdescriptions;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -177,6 +189,18 @@ public class DomainDescriptionImpl extends EObjectImpl implements DomainDescript
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EList<EventDescription> getEventdescriptions() {
+		if (eventdescriptions == null) {
+			eventdescriptions = new EObjectContainmentEList<EventDescription>(EventDescription.class, this, AdaptiveCyberDefensePackage.DOMAIN_DESCRIPTION__EVENTDESCRIPTIONS);
+		}
+		return eventdescriptions;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -190,6 +214,8 @@ public class DomainDescriptionImpl extends EObjectImpl implements DomainDescript
 				return ((InternalEList<?>)getActions()).basicRemove(otherEnd, msgs);
 			case AdaptiveCyberDefensePackage.DOMAIN_DESCRIPTION__INITIAL_ATOMS:
 				return ((InternalEList<?>)getInitial_atoms()).basicRemove(otherEnd, msgs);
+			case AdaptiveCyberDefensePackage.DOMAIN_DESCRIPTION__EVENTDESCRIPTIONS:
+				return ((InternalEList<?>)getEventdescriptions()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -212,6 +238,8 @@ public class DomainDescriptionImpl extends EObjectImpl implements DomainDescript
 				return getActions();
 			case AdaptiveCyberDefensePackage.DOMAIN_DESCRIPTION__INITIAL_ATOMS:
 				return getInitial_atoms();
+			case AdaptiveCyberDefensePackage.DOMAIN_DESCRIPTION__EVENTDESCRIPTIONS:
+				return getEventdescriptions();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -245,6 +273,10 @@ public class DomainDescriptionImpl extends EObjectImpl implements DomainDescript
 				getInitial_atoms().clear();
 				getInitial_atoms().addAll((Collection<? extends InitialAtom>)newValue);
 				return;
+			case AdaptiveCyberDefensePackage.DOMAIN_DESCRIPTION__EVENTDESCRIPTIONS:
+				getEventdescriptions().clear();
+				getEventdescriptions().addAll((Collection<? extends EventDescription>)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -272,6 +304,9 @@ public class DomainDescriptionImpl extends EObjectImpl implements DomainDescript
 			case AdaptiveCyberDefensePackage.DOMAIN_DESCRIPTION__INITIAL_ATOMS:
 				getInitial_atoms().clear();
 				return;
+			case AdaptiveCyberDefensePackage.DOMAIN_DESCRIPTION__EVENTDESCRIPTIONS:
+				getEventdescriptions().clear();
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -294,6 +329,8 @@ public class DomainDescriptionImpl extends EObjectImpl implements DomainDescript
 				return actions != null && !actions.isEmpty();
 			case AdaptiveCyberDefensePackage.DOMAIN_DESCRIPTION__INITIAL_ATOMS:
 				return initial_atoms != null && !initial_atoms.isEmpty();
+			case AdaptiveCyberDefensePackage.DOMAIN_DESCRIPTION__EVENTDESCRIPTIONS:
+				return eventdescriptions != null && !eventdescriptions.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
