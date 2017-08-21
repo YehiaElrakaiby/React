@@ -72,7 +72,7 @@
     </eAnnotations>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Atom" eSuperTypes="#//Formula">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="statevariable" lowerBound="1"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="state_variable" lowerBound="1"
         eType="#//StateVariable"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
         defaultValueLiteral="tt"/>

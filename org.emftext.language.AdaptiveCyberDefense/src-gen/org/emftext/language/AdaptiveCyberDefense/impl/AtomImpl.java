@@ -13,7 +13,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import org.emftext.language.AdaptiveCyberDefense.AdaptiveCyberDefensePackage;
 import org.emftext.language.AdaptiveCyberDefense.Atom;
-import org.emftext.language.AdaptiveCyberDefense.Variable;
+import org.emftext.language.AdaptiveCyberDefense.StateVariable;
 
 /**
  * <!-- begin-user-doc -->
@@ -23,7 +23,7 @@ import org.emftext.language.AdaptiveCyberDefense.Variable;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.emftext.language.AdaptiveCyberDefense.impl.AtomImpl#getVariable <em>Variable</em>}</li>
+ *   <li>{@link org.emftext.language.AdaptiveCyberDefense.impl.AtomImpl#getState_variable <em>State variable</em>}</li>
  *   <li>{@link org.emftext.language.AdaptiveCyberDefense.impl.AtomImpl#getValue <em>Value</em>}</li>
  * </ul>
  *
@@ -31,14 +31,14 @@ import org.emftext.language.AdaptiveCyberDefense.Variable;
  */
 public class AtomImpl extends FormulaImpl implements Atom {
 	/**
-	 * The cached value of the '{@link #getVariable() <em>Variable</em>}' reference.
+	 * The cached value of the '{@link #getState_variable() <em>State variable</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getVariable()
+	 * @see #getState_variable()
 	 * @generated
 	 * @ordered
 	 */
-	protected Variable variable;
+	protected StateVariable state_variable;
 
 	/**
 	 * The default value of the '{@link #getValue() <em>Value</em>}' attribute.
@@ -84,16 +84,16 @@ public class AtomImpl extends FormulaImpl implements Atom {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Variable getVariable() {
-		if (variable != null && variable.eIsProxy()) {
-			InternalEObject oldVariable = (InternalEObject)variable;
-			variable = (Variable)eResolveProxy(oldVariable);
-			if (variable != oldVariable) {
+	public StateVariable getState_variable() {
+		if (state_variable != null && state_variable.eIsProxy()) {
+			InternalEObject oldState_variable = (InternalEObject)state_variable;
+			state_variable = (StateVariable)eResolveProxy(oldState_variable);
+			if (state_variable != oldState_variable) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, AdaptiveCyberDefensePackage.ATOM__VARIABLE, oldVariable, variable));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, AdaptiveCyberDefensePackage.ATOM__STATE_VARIABLE, oldState_variable, state_variable));
 			}
 		}
-		return variable;
+		return state_variable;
 	}
 
 	/**
@@ -101,8 +101,8 @@ public class AtomImpl extends FormulaImpl implements Atom {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Variable basicGetVariable() {
-		return variable;
+	public StateVariable basicGetState_variable() {
+		return state_variable;
 	}
 
 	/**
@@ -110,11 +110,11 @@ public class AtomImpl extends FormulaImpl implements Atom {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setVariable(Variable newVariable) {
-		Variable oldVariable = variable;
-		variable = newVariable;
+	public void setState_variable(StateVariable newState_variable) {
+		StateVariable oldState_variable = state_variable;
+		state_variable = newState_variable;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, AdaptiveCyberDefensePackage.ATOM__VARIABLE, oldVariable, variable));
+			eNotify(new ENotificationImpl(this, Notification.SET, AdaptiveCyberDefensePackage.ATOM__STATE_VARIABLE, oldState_variable, state_variable));
 	}
 
 	/**
@@ -146,9 +146,9 @@ public class AtomImpl extends FormulaImpl implements Atom {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case AdaptiveCyberDefensePackage.ATOM__VARIABLE:
-				if (resolve) return getVariable();
-				return basicGetVariable();
+			case AdaptiveCyberDefensePackage.ATOM__STATE_VARIABLE:
+				if (resolve) return getState_variable();
+				return basicGetState_variable();
 			case AdaptiveCyberDefensePackage.ATOM__VALUE:
 				return getValue();
 		}
@@ -163,8 +163,8 @@ public class AtomImpl extends FormulaImpl implements Atom {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case AdaptiveCyberDefensePackage.ATOM__VARIABLE:
-				setVariable((Variable)newValue);
+			case AdaptiveCyberDefensePackage.ATOM__STATE_VARIABLE:
+				setState_variable((StateVariable)newValue);
 				return;
 			case AdaptiveCyberDefensePackage.ATOM__VALUE:
 				setValue((String)newValue);
@@ -181,8 +181,8 @@ public class AtomImpl extends FormulaImpl implements Atom {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case AdaptiveCyberDefensePackage.ATOM__VARIABLE:
-				setVariable((Variable)null);
+			case AdaptiveCyberDefensePackage.ATOM__STATE_VARIABLE:
+				setState_variable((StateVariable)null);
 				return;
 			case AdaptiveCyberDefensePackage.ATOM__VALUE:
 				setValue(VALUE_EDEFAULT);
@@ -199,8 +199,8 @@ public class AtomImpl extends FormulaImpl implements Atom {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case AdaptiveCyberDefensePackage.ATOM__VARIABLE:
-				return variable != null;
+			case AdaptiveCyberDefensePackage.ATOM__STATE_VARIABLE:
+				return state_variable != null;
 			case AdaptiveCyberDefensePackage.ATOM__VALUE:
 				return VALUE_EDEFAULT == null ? value != null : !VALUE_EDEFAULT.equals(value);
 		}
@@ -225,9 +225,9 @@ public class AtomImpl extends FormulaImpl implements Atom {
 
 	@Override
 	public boolean verify(HashMap<String, String> state) {
-		if(!state.containsKey(this.variable.getName())){
+		if(!state.containsKey(this.state_variable.getName())){
 			//System.out.println(variable.getName());
-		} else if(state.get(this.variable.getName()).equals(value)){
+		} else if(state.get(this.state_variable.getName()).equals(value)){
 			return true;
 		} 
 		return false;

@@ -55,7 +55,7 @@ public interface ProbabilisticEffect extends EObject {
 
 	/**
 	 * Returns the value of the '<em><b>Stateatoms</b></em>' containment reference list.
-	 * The list contents are of type {@link org.emftext.language.AdaptiveCyberDefense.StateAtom}.
+	 * The list contents are of type {@link org.emftext.language.AdaptiveCyberDefense.Atom}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Stateatoms</em>' containment reference list isn't clear,
@@ -67,6 +67,6 @@ public interface ProbabilisticEffect extends EObject {
 	 * @model containment="true"
 	 * @generated
 	 */
-	EList<StateAtom> getStateatoms();
+	EList<Atom> getStateatoms();
 
 } // ProbabilisticEffect

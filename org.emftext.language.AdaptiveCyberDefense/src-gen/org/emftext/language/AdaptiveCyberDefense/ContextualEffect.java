@@ -16,7 +16,7 @@ import org.eclipse.emf.ecore.EObject;
  * </p>
  * <ul>
  *   <li>{@link org.emftext.language.AdaptiveCyberDefense.ContextualEffect#getContext <em>Context</em>}</li>
- *   <li>{@link org.emftext.language.AdaptiveCyberDefense.ContextualEffect#getChange_sets <em>Change sets</em>}</li>
+ *   <li>{@link org.emftext.language.AdaptiveCyberDefense.ContextualEffect#getEffects <em>Effects</em>}</li>
  * </ul>
  *
  * @see org.emftext.language.AdaptiveCyberDefense.AdaptiveCyberDefensePackage#getContextualEffect()
@@ -51,20 +51,20 @@ public interface ContextualEffect extends EObject {
 	void setContext(Formula value);
 
 	/**
-	 * Returns the value of the '<em><b>Change sets</b></em>' containment reference list.
+	 * Returns the value of the '<em><b>Effects</b></em>' containment reference list.
 	 * The list contents are of type {@link org.emftext.language.AdaptiveCyberDefense.ProbabilisticEffect}.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Change sets</em>' containment reference list isn't clear,
+	 * If the meaning of the '<em>Effects</em>' containment reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Change sets</em>' containment reference list.
-	 * @see org.emftext.language.AdaptiveCyberDefense.AdaptiveCyberDefensePackage#getContextualEffect_Change_sets()
+	 * @return the value of the '<em>Effects</em>' containment reference list.
+	 * @see org.emftext.language.AdaptiveCyberDefense.AdaptiveCyberDefensePackage#getContextualEffect_Effects()
 	 * @model containment="true"
 	 *        extendedMetaData="name='probabilisticeffects'"
 	 * @generated
 	 */
-	EList<ProbabilisticEffect> getChange_sets();
+	EList<ProbabilisticEffect> getEffects();
 
 } // ContextualEffect

@@ -81,7 +81,6 @@ public class AdaptiveCyberDefenseSwitch<T> extends Switch<T> {
 			case AdaptiveCyberDefensePackage.STATE_VARIABLE: {
 				StateVariable stateVariable = (StateVariable)theEObject;
 				T result = caseStateVariable(stateVariable);
-				if (result == null) result = caseVariable(stateVariable);
 				if (result == null) result = caseInitialVariable(stateVariable);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -99,13 +98,6 @@ public class AdaptiveCyberDefenseSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case AdaptiveCyberDefensePackage.ACTION_VARIABLE: {
-				ActionVariable actionVariable = (ActionVariable)theEObject;
-				T result = caseActionVariable(actionVariable);
-				if (result == null) result = caseVariable(actionVariable);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
 			case AdaptiveCyberDefensePackage.INITIAL_ATOM: {
 				InitialAtom initialAtom = (InitialAtom)theEObject;
 				T result = caseInitialAtom(initialAtom);
@@ -118,22 +110,10 @@ public class AdaptiveCyberDefenseSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case AdaptiveCyberDefensePackage.VARIABLE: {
-				Variable variable = (Variable)theEObject;
-				T result = caseVariable(variable);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case AdaptiveCyberDefensePackage.STATE_ATOM: {
-				StateAtom stateAtom = (StateAtom)theEObject;
-				T result = caseStateAtom(stateAtom);
-				if (result == null) result = caseInitialVariable(stateAtom);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case AdaptiveCyberDefensePackage.ACTION_ATOM: {
-				ActionAtom actionAtom = (ActionAtom)theEObject;
-				T result = caseActionAtom(actionAtom);
+			case AdaptiveCyberDefensePackage.ATOM: {
+				Atom atom = (Atom)theEObject;
+				T result = caseAtom(atom);
+				if (result == null) result = caseFormula(atom);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -193,13 +173,6 @@ public class AdaptiveCyberDefenseSwitch<T> extends Switch<T> {
 				True true_ = (True)theEObject;
 				T result = caseTrue(true_);
 				if (result == null) result = caseFormula(true_);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case AdaptiveCyberDefensePackage.ATOM: {
-				Atom atom = (Atom)theEObject;
-				T result = caseAtom(atom);
-				if (result == null) result = caseFormula(atom);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -325,21 +298,6 @@ public class AdaptiveCyberDefenseSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Action Variable</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Action Variable</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseActionVariable(ActionVariable object) {
-		return null;
-	}
-
-	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Initial Atom</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -366,51 +324,6 @@ public class AdaptiveCyberDefenseSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseInitialVariable(InitialVariable object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Variable</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Variable</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseVariable(Variable object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>State Atom</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>State Atom</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseStateAtom(StateAtom object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Action Atom</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Action Atom</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseActionAtom(ActionAtom object) {
 		return null;
 	}
 

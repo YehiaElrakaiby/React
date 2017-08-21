@@ -32,7 +32,7 @@ import org.emftext.language.AdaptiveCyberDefense.ProbabilisticEffect;
  * </p>
  * <ul>
  *   <li>{@link org.emftext.language.AdaptiveCyberDefense.impl.ContextualEffectImpl#getContext <em>Context</em>}</li>
- *   <li>{@link org.emftext.language.AdaptiveCyberDefense.impl.ContextualEffectImpl#getChange_sets <em>Change sets</em>}</li>
+ *   <li>{@link org.emftext.language.AdaptiveCyberDefense.impl.ContextualEffectImpl#getEffects <em>Effects</em>}</li>
  * </ul>
  *
  * @generated
@@ -49,14 +49,14 @@ public class ContextualEffectImpl extends EObjectImpl implements ContextualEffec
 	protected Formula context;
 
 	/**
-	 * The cached value of the '{@link #getChange_sets() <em>Change sets</em>}' containment reference list.
+	 * The cached value of the '{@link #getEffects() <em>Effects</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getChange_sets()
+	 * @see #getEffects()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<ProbabilisticEffect> change_sets;
+	protected EList<ProbabilisticEffect> effects;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -125,11 +125,11 @@ public class ContextualEffectImpl extends EObjectImpl implements ContextualEffec
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<ProbabilisticEffect> getChange_sets() {
-		if (change_sets == null) {
-			change_sets = new EObjectContainmentEList<ProbabilisticEffect>(ProbabilisticEffect.class, this, AdaptiveCyberDefensePackage.CONTEXTUAL_EFFECT__CHANGE_SETS);
+	public EList<ProbabilisticEffect> getEffects() {
+		if (effects == null) {
+			effects = new EObjectContainmentEList<ProbabilisticEffect>(ProbabilisticEffect.class, this, AdaptiveCyberDefensePackage.CONTEXTUAL_EFFECT__EFFECTS);
 		}
-		return change_sets;
+		return effects;
 	}
 
 	/**
@@ -142,8 +142,8 @@ public class ContextualEffectImpl extends EObjectImpl implements ContextualEffec
 		switch (featureID) {
 			case AdaptiveCyberDefensePackage.CONTEXTUAL_EFFECT__CONTEXT:
 				return basicSetContext(null, msgs);
-			case AdaptiveCyberDefensePackage.CONTEXTUAL_EFFECT__CHANGE_SETS:
-				return ((InternalEList<?>)getChange_sets()).basicRemove(otherEnd, msgs);
+			case AdaptiveCyberDefensePackage.CONTEXTUAL_EFFECT__EFFECTS:
+				return ((InternalEList<?>)getEffects()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -158,8 +158,8 @@ public class ContextualEffectImpl extends EObjectImpl implements ContextualEffec
 		switch (featureID) {
 			case AdaptiveCyberDefensePackage.CONTEXTUAL_EFFECT__CONTEXT:
 				return getContext();
-			case AdaptiveCyberDefensePackage.CONTEXTUAL_EFFECT__CHANGE_SETS:
-				return getChange_sets();
+			case AdaptiveCyberDefensePackage.CONTEXTUAL_EFFECT__EFFECTS:
+				return getEffects();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -176,9 +176,9 @@ public class ContextualEffectImpl extends EObjectImpl implements ContextualEffec
 			case AdaptiveCyberDefensePackage.CONTEXTUAL_EFFECT__CONTEXT:
 				setContext((Formula)newValue);
 				return;
-			case AdaptiveCyberDefensePackage.CONTEXTUAL_EFFECT__CHANGE_SETS:
-				getChange_sets().clear();
-				getChange_sets().addAll((Collection<? extends ProbabilisticEffect>)newValue);
+			case AdaptiveCyberDefensePackage.CONTEXTUAL_EFFECT__EFFECTS:
+				getEffects().clear();
+				getEffects().addAll((Collection<? extends ProbabilisticEffect>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -195,8 +195,8 @@ public class ContextualEffectImpl extends EObjectImpl implements ContextualEffec
 			case AdaptiveCyberDefensePackage.CONTEXTUAL_EFFECT__CONTEXT:
 				setContext((Formula)null);
 				return;
-			case AdaptiveCyberDefensePackage.CONTEXTUAL_EFFECT__CHANGE_SETS:
-				getChange_sets().clear();
+			case AdaptiveCyberDefensePackage.CONTEXTUAL_EFFECT__EFFECTS:
+				getEffects().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -212,8 +212,8 @@ public class ContextualEffectImpl extends EObjectImpl implements ContextualEffec
 		switch (featureID) {
 			case AdaptiveCyberDefensePackage.CONTEXTUAL_EFFECT__CONTEXT:
 				return context != null;
-			case AdaptiveCyberDefensePackage.CONTEXTUAL_EFFECT__CHANGE_SETS:
-				return change_sets != null && !change_sets.isEmpty();
+			case AdaptiveCyberDefensePackage.CONTEXTUAL_EFFECT__EFFECTS:
+				return effects != null && !effects.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

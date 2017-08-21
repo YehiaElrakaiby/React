@@ -20,7 +20,6 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
-import org.emftext.language.AdaptiveCyberDefense.ActionAtom;
 import org.emftext.language.AdaptiveCyberDefense.ActionDescription;
 import org.emftext.language.AdaptiveCyberDefense.AdaptiveCyberDefensePackage;
 import org.emftext.language.AdaptiveCyberDefense.ContextualEffect;
@@ -36,8 +35,8 @@ import org.emftext.language.AdaptiveCyberDefense.ProbabilisticEffect;
  * </p>
  * <ul>
  *   <li>{@link org.emftext.language.AdaptiveCyberDefense.impl.ActionDescriptionImpl#getCost <em>Cost</em>}</li>
- *   <li>{@link org.emftext.language.AdaptiveCyberDefense.impl.ActionDescriptionImpl#getActionatom <em>Actionatom</em>}</li>
  *   <li>{@link org.emftext.language.AdaptiveCyberDefense.impl.ActionDescriptionImpl#getContextual_effects <em>Contextual effects</em>}</li>
+ *   <li>{@link org.emftext.language.AdaptiveCyberDefense.impl.ActionDescriptionImpl#getName <em>Name</em>}</li>
  * </ul>
  *
  * @generated
@@ -64,16 +63,6 @@ public class ActionDescriptionImpl extends EObjectImpl implements ActionDescript
 	protected BigDecimal cost = COST_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getActionatom() <em>Actionatom</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getActionatom()
-	 * @generated
-	 * @ordered
-	 */
-	protected ActionAtom actionatom;
-
-	/**
 	 * The cached value of the '{@link #getContextual_effects() <em>Contextual effects</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -82,6 +71,26 @@ public class ActionDescriptionImpl extends EObjectImpl implements ActionDescript
 	 * @ordered
 	 */
 	protected EList<ContextualEffect> contextual_effects;
+
+	/**
+	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getName()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String NAME_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getName()
+	 * @generated
+	 * @ordered
+	 */
+	protected String name = NAME_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -128,49 +137,6 @@ public class ActionDescriptionImpl extends EObjectImpl implements ActionDescript
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ActionAtom getActionatom() {
-		return actionatom;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetActionatom(ActionAtom newActionatom, NotificationChain msgs) {
-		ActionAtom oldActionatom = actionatom;
-		actionatom = newActionatom;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, AdaptiveCyberDefensePackage.ACTION_DESCRIPTION__ACTIONATOM, oldActionatom, newActionatom);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setActionatom(ActionAtom newActionatom) {
-		if (newActionatom != actionatom) {
-			NotificationChain msgs = null;
-			if (actionatom != null)
-				msgs = ((InternalEObject)actionatom).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - AdaptiveCyberDefensePackage.ACTION_DESCRIPTION__ACTIONATOM, null, msgs);
-			if (newActionatom != null)
-				msgs = ((InternalEObject)newActionatom).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - AdaptiveCyberDefensePackage.ACTION_DESCRIPTION__ACTIONATOM, null, msgs);
-			msgs = basicSetActionatom(newActionatom, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, AdaptiveCyberDefensePackage.ACTION_DESCRIPTION__ACTIONATOM, newActionatom, newActionatom));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EList<ContextualEffect> getContextual_effects() {
 		if (contextual_effects == null) {
 			contextual_effects = new EObjectContainmentEList<ContextualEffect>(ContextualEffect.class, this, AdaptiveCyberDefensePackage.ACTION_DESCRIPTION__CONTEXTUAL_EFFECTS);
@@ -183,11 +149,30 @@ public class ActionDescriptionImpl extends EObjectImpl implements ActionDescript
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public String getName() {
+		return name;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setName(String newName) {
+		String oldName = name;
+		name = newName;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, AdaptiveCyberDefensePackage.ACTION_DESCRIPTION__NAME, oldName, name));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case AdaptiveCyberDefensePackage.ACTION_DESCRIPTION__ACTIONATOM:
-				return basicSetActionatom(null, msgs);
 			case AdaptiveCyberDefensePackage.ACTION_DESCRIPTION__CONTEXTUAL_EFFECTS:
 				return ((InternalEList<?>)getContextual_effects()).basicRemove(otherEnd, msgs);
 		}
@@ -204,10 +189,10 @@ public class ActionDescriptionImpl extends EObjectImpl implements ActionDescript
 		switch (featureID) {
 			case AdaptiveCyberDefensePackage.ACTION_DESCRIPTION__COST:
 				return getCost();
-			case AdaptiveCyberDefensePackage.ACTION_DESCRIPTION__ACTIONATOM:
-				return getActionatom();
 			case AdaptiveCyberDefensePackage.ACTION_DESCRIPTION__CONTEXTUAL_EFFECTS:
 				return getContextual_effects();
+			case AdaptiveCyberDefensePackage.ACTION_DESCRIPTION__NAME:
+				return getName();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -224,12 +209,12 @@ public class ActionDescriptionImpl extends EObjectImpl implements ActionDescript
 			case AdaptiveCyberDefensePackage.ACTION_DESCRIPTION__COST:
 				setCost((BigDecimal)newValue);
 				return;
-			case AdaptiveCyberDefensePackage.ACTION_DESCRIPTION__ACTIONATOM:
-				setActionatom((ActionAtom)newValue);
-				return;
 			case AdaptiveCyberDefensePackage.ACTION_DESCRIPTION__CONTEXTUAL_EFFECTS:
 				getContextual_effects().clear();
 				getContextual_effects().addAll((Collection<? extends ContextualEffect>)newValue);
+				return;
+			case AdaptiveCyberDefensePackage.ACTION_DESCRIPTION__NAME:
+				setName((String)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -246,11 +231,11 @@ public class ActionDescriptionImpl extends EObjectImpl implements ActionDescript
 			case AdaptiveCyberDefensePackage.ACTION_DESCRIPTION__COST:
 				setCost(COST_EDEFAULT);
 				return;
-			case AdaptiveCyberDefensePackage.ACTION_DESCRIPTION__ACTIONATOM:
-				setActionatom((ActionAtom)null);
-				return;
 			case AdaptiveCyberDefensePackage.ACTION_DESCRIPTION__CONTEXTUAL_EFFECTS:
 				getContextual_effects().clear();
+				return;
+			case AdaptiveCyberDefensePackage.ACTION_DESCRIPTION__NAME:
+				setName(NAME_EDEFAULT);
 				return;
 		}
 		super.eUnset(featureID);
@@ -266,10 +251,10 @@ public class ActionDescriptionImpl extends EObjectImpl implements ActionDescript
 		switch (featureID) {
 			case AdaptiveCyberDefensePackage.ACTION_DESCRIPTION__COST:
 				return COST_EDEFAULT == null ? cost != null : !COST_EDEFAULT.equals(cost);
-			case AdaptiveCyberDefensePackage.ACTION_DESCRIPTION__ACTIONATOM:
-				return actionatom != null;
 			case AdaptiveCyberDefensePackage.ACTION_DESCRIPTION__CONTEXTUAL_EFFECTS:
 				return contextual_effects != null && !contextual_effects.isEmpty();
+			case AdaptiveCyberDefensePackage.ACTION_DESCRIPTION__NAME:
+				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -286,6 +271,8 @@ public class ActionDescriptionImpl extends EObjectImpl implements ActionDescript
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (cost: ");
 		result.append(cost);
+		result.append(", name: ");
+		result.append(name);
 		result.append(')');
 		return result.toString();
 	}

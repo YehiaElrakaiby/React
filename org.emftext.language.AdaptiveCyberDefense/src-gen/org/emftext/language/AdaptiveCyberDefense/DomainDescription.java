@@ -18,9 +18,8 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link org.emftext.language.AdaptiveCyberDefense.DomainDescription#getState_variables <em>State variables</em>}</li>
  *   <li>{@link org.emftext.language.AdaptiveCyberDefense.DomainDescription#getAction_descriptions <em>Action descriptions</em>}</li>
  *   <li>{@link org.emftext.language.AdaptiveCyberDefense.DomainDescription#getRequirements <em>Requirements</em>}</li>
- *   <li>{@link org.emftext.language.AdaptiveCyberDefense.DomainDescription#getActions <em>Actions</em>}</li>
  *   <li>{@link org.emftext.language.AdaptiveCyberDefense.DomainDescription#getInitial_atoms <em>Initial atoms</em>}</li>
- *   <li>{@link org.emftext.language.AdaptiveCyberDefense.DomainDescription#getEventdescriptions <em>Eventdescriptions</em>}</li>
+ *   <li>{@link org.emftext.language.AdaptiveCyberDefense.DomainDescription#getEvent_descriptions <em>Event descriptions</em>}</li>
  * </ul>
  *
  * @see org.emftext.language.AdaptiveCyberDefense.AdaptiveCyberDefensePackage#getDomainDescription()
@@ -79,22 +78,6 @@ public interface DomainDescription extends EObject {
 	EList<Requirement> getRequirements();
 
 	/**
-	 * Returns the value of the '<em><b>Actions</b></em>' containment reference list.
-	 * The list contents are of type {@link org.emftext.language.AdaptiveCyberDefense.ActionVariable}.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Actions</em>' containment reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Actions</em>' containment reference list.
-	 * @see org.emftext.language.AdaptiveCyberDefense.AdaptiveCyberDefensePackage#getDomainDescription_Actions()
-	 * @model containment="true"
-	 * @generated
-	 */
-	EList<ActionVariable> getActions();
-
-	/**
 	 * Returns the value of the '<em><b>Initial atoms</b></em>' containment reference list.
 	 * The list contents are of type {@link org.emftext.language.AdaptiveCyberDefense.InitialAtom}.
 	 * <!-- begin-user-doc -->
@@ -111,20 +94,20 @@ public interface DomainDescription extends EObject {
 	EList<InitialAtom> getInitial_atoms();
 
 	/**
-	 * Returns the value of the '<em><b>Eventdescriptions</b></em>' containment reference list.
+	 * Returns the value of the '<em><b>Event descriptions</b></em>' containment reference list.
 	 * The list contents are of type {@link org.emftext.language.AdaptiveCyberDefense.EventDescription}.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Eventdescriptions</em>' containment reference list isn't clear,
+	 * If the meaning of the '<em>Event descriptions</em>' containment reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Eventdescriptions</em>' containment reference list.
-	 * @see org.emftext.language.AdaptiveCyberDefense.AdaptiveCyberDefensePackage#getDomainDescription_Eventdescriptions()
+	 * @return the value of the '<em>Event descriptions</em>' containment reference list.
+	 * @see org.emftext.language.AdaptiveCyberDefense.AdaptiveCyberDefensePackage#getDomainDescription_Event_descriptions()
 	 * @model containment="true"
 	 * @generated
 	 */
-	EList<EventDescription> getEventdescriptions();
+	EList<EventDescription> getEvent_descriptions();
 
 	
 

@@ -21,9 +21,9 @@ TOKENS {
 TOKENSTYLES {
 	"DomainDescription" COLOR #7F0055, BOLD;
 	"ActionDescriptions" COLOR #7F0055, BOLD;
-	"ActionVariables" COLOR #7F0055, BOLD;	
+	"EventDescriptions" COLOR #7F0055, BOLD;
 	"StateVariables" COLOR #7F0055, BOLD;	
-	"OperationalRequirements" COLOR #7F0055, BOLD;
+	"Requirements" COLOR #7F0055, BOLD;
 	"CurrentState" COLOR #7F0055, BOLD;	
 }
 
@@ -31,45 +31,36 @@ TOKENSTYLES {
 RULES {
 	DomainDescription ::= "DomainDescription" "{" 
 		"StateVariables" "=" "<" (state_variables ";")* ">" 
-		"ActionVariables" "=" "<"  (actions ";")* ">"
-		
-		"Requirements" "=" "<" (requirements ";")* ">" 		
 		"ActionDescriptions" "=" "<" (action_descriptions ";")* ">" 
-		
-		"EventDescriptions" "=" "<" (eventdescriptions ";")* ">" 
-		
+		"EventDescriptions" "=" "<" (event_descriptions ";")* ">" 
+		"Requirements" "=" "<" (requirements ";")* ">" 		
 		"CurrentState" "=" "<"  initial_atoms ("," initial_atoms)*   ">"
-		
 		"}"
 		;		
 		
 	StateVariable ::=  "Variable" name[] 
 						"domain" "{" values[] ("," values[])* "}";
 	
-	ActionVariable ::= "Action" name[] 
-						"domain" "{" values[] ("," values[])* "}"
-						"type" (type[control:"control", exogenous:"exogenous"])?
-		;
 	
 	ActionDescription ::= 
-		"Action" actionatom  
+		"Action" name[]  
 		(contextual_effects+)? 
 		("cost" cost[FLOAT])?
 		;
 		
 	EventDescription ::= 
-		"Event" actionatom  
-		(probabilisticcontextualeffect+)? 
+		"Event" name[]  
+		(probabilistic_contextual_effects+)? 
 		;		
 
 	ProbabilisticContextualEffect ::=
 		("Occurrence Probability" occurrence_probability[FLOAT])?
 		("if" context)?
-		"effects" change_sets*;
+		"effects" effects*;
 		
 	ContextualEffect ::=
 		("if" context)?
-		"effects" change_sets*;
+		"effects" effects*;
 		
 	UnconditionalMaintain ::= 
 		"ReqID" name[]  
@@ -116,12 +107,8 @@ RULES {
 	Parentheses ::= "(" formula ")";
 	
 	@Operator(type="primitive",weight="3",superclass="Formula")
-	Atom ::=  variable[]  ("=" value[])? ;
-	
-	ActionAtom ::=  actionvariable[]  ("=" value[])? ;
-				
-	StateAtom ::=  statevariable[] ("=" value[])? ;
-	
+	Atom ::=  state_variable[]  ("=" value[])? ;
+		
 	@Operator(type="primitive",weight="3",superclass="Formula")
 	True ::=  "true" ;
 	

@@ -88,10 +88,6 @@ public class AdaptiveCyberDefenseAdapterFactory extends AdapterFactoryImpl {
 				return createRequirementAdapter();
 			}
 			@Override
-			public Adapter caseActionVariable(ActionVariable object) {
-				return createActionVariableAdapter();
-			}
-			@Override
 			public Adapter caseInitialAtom(InitialAtom object) {
 				return createInitialAtomAdapter();
 			}
@@ -100,16 +96,8 @@ public class AdaptiveCyberDefenseAdapterFactory extends AdapterFactoryImpl {
 				return createInitialVariableAdapter();
 			}
 			@Override
-			public Adapter caseVariable(Variable object) {
-				return createVariableAdapter();
-			}
-			@Override
-			public Adapter caseStateAtom(StateAtom object) {
-				return createStateAtomAdapter();
-			}
-			@Override
-			public Adapter caseActionAtom(ActionAtom object) {
-				return createActionAtomAdapter();
+			public Adapter caseAtom(Atom object) {
+				return createAtomAdapter();
 			}
 			@Override
 			public Adapter caseFormula(Formula object) {
@@ -142,10 +130,6 @@ public class AdaptiveCyberDefenseAdapterFactory extends AdapterFactoryImpl {
 			@Override
 			public Adapter caseTrue(True object) {
 				return createTrueAdapter();
-			}
-			@Override
-			public Adapter caseAtom(Atom object) {
-				return createAtomAdapter();
 			}
 			@Override
 			public Adapter caseFalse(False object) {
@@ -262,20 +246,6 @@ public class AdaptiveCyberDefenseAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.emftext.language.AdaptiveCyberDefense.ActionVariable <em>Action Variable</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.emftext.language.AdaptiveCyberDefense.ActionVariable
-	 * @generated
-	 */
-	public Adapter createActionVariableAdapter() {
-		return null;
-	}
-
-	/**
 	 * Creates a new adapter for an object of class '{@link org.emftext.language.AdaptiveCyberDefense.InitialAtom <em>Initial Atom</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -300,48 +270,6 @@ public class AdaptiveCyberDefenseAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createInitialVariableAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.emftext.language.AdaptiveCyberDefense.Variable <em>Variable</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.emftext.language.AdaptiveCyberDefense.Variable
-	 * @generated
-	 */
-	public Adapter createVariableAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.emftext.language.AdaptiveCyberDefense.StateAtom <em>State Atom</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.emftext.language.AdaptiveCyberDefense.StateAtom
-	 * @generated
-	 */
-	public Adapter createStateAtomAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.emftext.language.AdaptiveCyberDefense.ActionAtom <em>Action Atom</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.emftext.language.AdaptiveCyberDefense.ActionAtom
-	 * @generated
-	 */
-	public Adapter createActionAtomAdapter() {
 		return null;
 	}
 

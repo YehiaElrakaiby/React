@@ -1211,9 +1211,9 @@
         <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@subNodeMappings[name='EC%20EAttribute']"/>
       </ownedElements>
     </ownedDiagramElements>
-    <ownedDiagramElements xmi:type="diagram:DEdge" xmi:id="_QMyXEGe5EeeiFOJwaaN8nA" name="[1..1] statevariable" sourceNode="_ORiyYGe5EeeiFOJwaaN8nA" targetNode="_vgCE4Bt4Eeeobc1oZnWsww">
-      <target xmi:type="ecore:EReference" href="AdaptiveCyberDefense.ecore#//Atom/statevariable"/>
-      <semanticElements xmi:type="ecore:EReference" href="AdaptiveCyberDefense.ecore#//Atom/statevariable"/>
+    <ownedDiagramElements xmi:type="diagram:DEdge" xmi:id="_QMyXEGe5EeeiFOJwaaN8nA" name="[1..1] state_variable" sourceNode="_ORiyYGe5EeeiFOJwaaN8nA" targetNode="_vgCE4Bt4Eeeobc1oZnWsww">
+      <target xmi:type="ecore:EReference" href="AdaptiveCyberDefense.ecore#//Atom/state_variable"/>
+      <semanticElements xmi:type="ecore:EReference" href="AdaptiveCyberDefense.ecore#//Atom/state_variable"/>
       <ownedStyle xmi:type="diagram:EdgeStyle" xmi:id="_QzFiEGe5EeeiFOJwaaN8nA" description="_m_oCsBt7Eeeobc1oZnWsww" routingStyle="manhattan" strokeColor="0,0,0">
         <centerLabelStyle xmi:type="diagram:CenterLabelStyle" xmi:id="_QzFiEWe5EeeiFOJwaaN8nA" showIcon="false">
           <labelFormat>bold</labelFormat>

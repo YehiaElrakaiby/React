@@ -61,10 +61,8 @@ public class AdaptiveCyberDefenseFactoryImpl extends EFactoryImpl implements Ada
 			case AdaptiveCyberDefensePackage.ACTION_DESCRIPTION: return createActionDescription();
 			case AdaptiveCyberDefensePackage.STATE_VARIABLE: return createStateVariable();
 			case AdaptiveCyberDefensePackage.PROBABILISTIC_EFFECT: return createProbabilisticEffect();
-			case AdaptiveCyberDefensePackage.ACTION_VARIABLE: return createActionVariable();
 			case AdaptiveCyberDefensePackage.INITIAL_ATOM: return createInitialAtom();
-			case AdaptiveCyberDefensePackage.STATE_ATOM: return createStateAtom();
-			case AdaptiveCyberDefensePackage.ACTION_ATOM: return createActionAtom();
+			case AdaptiveCyberDefensePackage.ATOM: return createAtom();
 			case AdaptiveCyberDefensePackage.CONJUNCTION: return createConjunction();
 			case AdaptiveCyberDefensePackage.DISJUNCTION: return createDisjunction();
 			case AdaptiveCyberDefensePackage.NEGATION: return createNegation();
@@ -72,7 +70,6 @@ public class AdaptiveCyberDefenseFactoryImpl extends EFactoryImpl implements Ada
 			case AdaptiveCyberDefensePackage.ACHIEVE: return createAchieve();
 			case AdaptiveCyberDefensePackage.MAINTAIN: return createMaintain();
 			case AdaptiveCyberDefensePackage.TRUE: return createTrue();
-			case AdaptiveCyberDefensePackage.ATOM: return createAtom();
 			case AdaptiveCyberDefensePackage.FALSE: return createFalse();
 			case AdaptiveCyberDefensePackage.UNCONDITIONAL_MAINTAIN: return createUnconditionalMaintain();
 			case AdaptiveCyberDefensePackage.CONTEXTUAL_EFFECT: return createContextualEffect();
@@ -162,39 +159,9 @@ public class AdaptiveCyberDefenseFactoryImpl extends EFactoryImpl implements Ada
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ActionVariable createActionVariable() {
-		ActionVariableImpl actionVariable = new ActionVariableImpl();
-		return actionVariable;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public InitialAtom createInitialAtom() {
 		InitialAtomImpl initialAtom = new InitialAtomImpl();
 		return initialAtom;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public StateAtom createStateAtom() {
-		StateAtomImpl stateAtom = new StateAtomImpl();
-		return stateAtom;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public ActionAtom createActionAtom() {
-		ActionAtomImpl actionAtom = new ActionAtomImpl();
-		return actionAtom;
 	}
 
 	/**

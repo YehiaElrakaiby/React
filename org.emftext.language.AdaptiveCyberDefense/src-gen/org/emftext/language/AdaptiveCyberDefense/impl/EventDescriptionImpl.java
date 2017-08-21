@@ -18,7 +18,6 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
-import org.emftext.language.AdaptiveCyberDefense.ActionAtom;
 import org.emftext.language.AdaptiveCyberDefense.AdaptiveCyberDefensePackage;
 import org.emftext.language.AdaptiveCyberDefense.EventDescription;
 import org.emftext.language.AdaptiveCyberDefense.ProbabilisticContextualEffect;
@@ -31,32 +30,42 @@ import org.emftext.language.AdaptiveCyberDefense.ProbabilisticContextualEffect;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.emftext.language.AdaptiveCyberDefense.impl.EventDescriptionImpl#getActionatom <em>Actionatom</em>}</li>
- *   <li>{@link org.emftext.language.AdaptiveCyberDefense.impl.EventDescriptionImpl#getProbabilisticcontextualeffect <em>Probabilisticcontextualeffect</em>}</li>
+ *   <li>{@link org.emftext.language.AdaptiveCyberDefense.impl.EventDescriptionImpl#getProbabilistic_contextual_effects <em>Probabilistic contextual effects</em>}</li>
+ *   <li>{@link org.emftext.language.AdaptiveCyberDefense.impl.EventDescriptionImpl#getName <em>Name</em>}</li>
  * </ul>
  *
  * @generated
  */
 public class EventDescriptionImpl extends EObjectImpl implements EventDescription {
 	/**
-	 * The cached value of the '{@link #getActionatom() <em>Actionatom</em>}' containment reference.
+	 * The cached value of the '{@link #getProbabilistic_contextual_effects() <em>Probabilistic contextual effects</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getActionatom()
+	 * @see #getProbabilistic_contextual_effects()
 	 * @generated
 	 * @ordered
 	 */
-	protected ActionAtom actionatom;
+	protected EList<ProbabilisticContextualEffect> probabilistic_contextual_effects;
 
 	/**
-	 * The cached value of the '{@link #getProbabilisticcontextualeffect() <em>Probabilisticcontextualeffect</em>}' containment reference list.
+	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getProbabilisticcontextualeffect()
+	 * @see #getName()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<ProbabilisticContextualEffect> probabilisticcontextualeffect;
+	protected static final String NAME_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getName()
+	 * @generated
+	 * @ordered
+	 */
+	protected String name = NAME_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -82,8 +91,11 @@ public class EventDescriptionImpl extends EObjectImpl implements EventDescriptio
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ActionAtom getActionatom() {
-		return actionatom;
+	public EList<ProbabilisticContextualEffect> getProbabilistic_contextual_effects() {
+		if (probabilistic_contextual_effects == null) {
+			probabilistic_contextual_effects = new EObjectContainmentEList<ProbabilisticContextualEffect>(ProbabilisticContextualEffect.class, this, AdaptiveCyberDefensePackage.EVENT_DESCRIPTION__PROBABILISTIC_CONTEXTUAL_EFFECTS);
+		}
+		return probabilistic_contextual_effects;
 	}
 
 	/**
@@ -91,14 +103,8 @@ public class EventDescriptionImpl extends EObjectImpl implements EventDescriptio
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetActionatom(ActionAtom newActionatom, NotificationChain msgs) {
-		ActionAtom oldActionatom = actionatom;
-		actionatom = newActionatom;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, AdaptiveCyberDefensePackage.EVENT_DESCRIPTION__ACTIONATOM, oldActionatom, newActionatom);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
+	public String getName() {
+		return name;
 	}
 
 	/**
@@ -106,30 +112,11 @@ public class EventDescriptionImpl extends EObjectImpl implements EventDescriptio
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setActionatom(ActionAtom newActionatom) {
-		if (newActionatom != actionatom) {
-			NotificationChain msgs = null;
-			if (actionatom != null)
-				msgs = ((InternalEObject)actionatom).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - AdaptiveCyberDefensePackage.EVENT_DESCRIPTION__ACTIONATOM, null, msgs);
-			if (newActionatom != null)
-				msgs = ((InternalEObject)newActionatom).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - AdaptiveCyberDefensePackage.EVENT_DESCRIPTION__ACTIONATOM, null, msgs);
-			msgs = basicSetActionatom(newActionatom, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, AdaptiveCyberDefensePackage.EVENT_DESCRIPTION__ACTIONATOM, newActionatom, newActionatom));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EList<ProbabilisticContextualEffect> getProbabilisticcontextualeffect() {
-		if (probabilisticcontextualeffect == null) {
-			probabilisticcontextualeffect = new EObjectContainmentEList<ProbabilisticContextualEffect>(ProbabilisticContextualEffect.class, this, AdaptiveCyberDefensePackage.EVENT_DESCRIPTION__PROBABILISTICCONTEXTUALEFFECT);
-		}
-		return probabilisticcontextualeffect;
+	public void setName(String newName) {
+		String oldName = name;
+		name = newName;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, AdaptiveCyberDefensePackage.EVENT_DESCRIPTION__NAME, oldName, name));
 	}
 
 	/**
@@ -140,10 +127,8 @@ public class EventDescriptionImpl extends EObjectImpl implements EventDescriptio
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case AdaptiveCyberDefensePackage.EVENT_DESCRIPTION__ACTIONATOM:
-				return basicSetActionatom(null, msgs);
-			case AdaptiveCyberDefensePackage.EVENT_DESCRIPTION__PROBABILISTICCONTEXTUALEFFECT:
-				return ((InternalEList<?>)getProbabilisticcontextualeffect()).basicRemove(otherEnd, msgs);
+			case AdaptiveCyberDefensePackage.EVENT_DESCRIPTION__PROBABILISTIC_CONTEXTUAL_EFFECTS:
+				return ((InternalEList<?>)getProbabilistic_contextual_effects()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -156,10 +141,10 @@ public class EventDescriptionImpl extends EObjectImpl implements EventDescriptio
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case AdaptiveCyberDefensePackage.EVENT_DESCRIPTION__ACTIONATOM:
-				return getActionatom();
-			case AdaptiveCyberDefensePackage.EVENT_DESCRIPTION__PROBABILISTICCONTEXTUALEFFECT:
-				return getProbabilisticcontextualeffect();
+			case AdaptiveCyberDefensePackage.EVENT_DESCRIPTION__PROBABILISTIC_CONTEXTUAL_EFFECTS:
+				return getProbabilistic_contextual_effects();
+			case AdaptiveCyberDefensePackage.EVENT_DESCRIPTION__NAME:
+				return getName();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -173,12 +158,12 @@ public class EventDescriptionImpl extends EObjectImpl implements EventDescriptio
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case AdaptiveCyberDefensePackage.EVENT_DESCRIPTION__ACTIONATOM:
-				setActionatom((ActionAtom)newValue);
+			case AdaptiveCyberDefensePackage.EVENT_DESCRIPTION__PROBABILISTIC_CONTEXTUAL_EFFECTS:
+				getProbabilistic_contextual_effects().clear();
+				getProbabilistic_contextual_effects().addAll((Collection<? extends ProbabilisticContextualEffect>)newValue);
 				return;
-			case AdaptiveCyberDefensePackage.EVENT_DESCRIPTION__PROBABILISTICCONTEXTUALEFFECT:
-				getProbabilisticcontextualeffect().clear();
-				getProbabilisticcontextualeffect().addAll((Collection<? extends ProbabilisticContextualEffect>)newValue);
+			case AdaptiveCyberDefensePackage.EVENT_DESCRIPTION__NAME:
+				setName((String)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -192,11 +177,11 @@ public class EventDescriptionImpl extends EObjectImpl implements EventDescriptio
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case AdaptiveCyberDefensePackage.EVENT_DESCRIPTION__ACTIONATOM:
-				setActionatom((ActionAtom)null);
+			case AdaptiveCyberDefensePackage.EVENT_DESCRIPTION__PROBABILISTIC_CONTEXTUAL_EFFECTS:
+				getProbabilistic_contextual_effects().clear();
 				return;
-			case AdaptiveCyberDefensePackage.EVENT_DESCRIPTION__PROBABILISTICCONTEXTUALEFFECT:
-				getProbabilisticcontextualeffect().clear();
+			case AdaptiveCyberDefensePackage.EVENT_DESCRIPTION__NAME:
+				setName(NAME_EDEFAULT);
 				return;
 		}
 		super.eUnset(featureID);
@@ -210,12 +195,28 @@ public class EventDescriptionImpl extends EObjectImpl implements EventDescriptio
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case AdaptiveCyberDefensePackage.EVENT_DESCRIPTION__ACTIONATOM:
-				return actionatom != null;
-			case AdaptiveCyberDefensePackage.EVENT_DESCRIPTION__PROBABILISTICCONTEXTUALEFFECT:
-				return probabilisticcontextualeffect != null && !probabilisticcontextualeffect.isEmpty();
+			case AdaptiveCyberDefensePackage.EVENT_DESCRIPTION__PROBABILISTIC_CONTEXTUAL_EFFECTS:
+				return probabilistic_contextual_effects != null && !probabilistic_contextual_effects.isEmpty();
+			case AdaptiveCyberDefensePackage.EVENT_DESCRIPTION__NAME:
+				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String toString() {
+		if (eIsProxy()) return super.toString();
+
+		StringBuffer result = new StringBuffer(super.toString());
+		result.append(" (name: ");
+		result.append(name);
+		result.append(')');
+		return result.toString();
 	}
 
 } //EventDescriptionImpl

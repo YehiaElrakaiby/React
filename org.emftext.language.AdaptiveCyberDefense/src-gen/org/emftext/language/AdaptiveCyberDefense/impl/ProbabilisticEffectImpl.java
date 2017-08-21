@@ -21,8 +21,8 @@ import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 import org.emftext.language.AdaptiveCyberDefense.AdaptiveCyberDefensePackage;
+import org.emftext.language.AdaptiveCyberDefense.Atom;
 import org.emftext.language.AdaptiveCyberDefense.ProbabilisticEffect;
-import org.emftext.language.AdaptiveCyberDefense.StateAtom;
 
 /**
  * <!-- begin-user-doc -->
@@ -67,7 +67,7 @@ public class ProbabilisticEffectImpl extends EObjectImpl implements Probabilisti
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<StateAtom> stateatoms;
+	protected EList<Atom> stateatoms;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -114,9 +114,9 @@ public class ProbabilisticEffectImpl extends EObjectImpl implements Probabilisti
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<StateAtom> getStateatoms() {
+	public EList<Atom> getStateatoms() {
 		if (stateatoms == null) {
-			stateatoms = new EObjectContainmentEList<StateAtom>(StateAtom.class, this, AdaptiveCyberDefensePackage.PROBABILISTIC_EFFECT__STATEATOMS);
+			stateatoms = new EObjectContainmentEList<Atom>(Atom.class, this, AdaptiveCyberDefensePackage.PROBABILISTIC_EFFECT__STATEATOMS);
 		}
 		return stateatoms;
 	}
@@ -165,7 +165,7 @@ public class ProbabilisticEffectImpl extends EObjectImpl implements Probabilisti
 				return;
 			case AdaptiveCyberDefensePackage.PROBABILISTIC_EFFECT__STATEATOMS:
 				getStateatoms().clear();
-				getStateatoms().addAll((Collection<? extends StateAtom>)newValue);
+				getStateatoms().addAll((Collection<? extends Atom>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);

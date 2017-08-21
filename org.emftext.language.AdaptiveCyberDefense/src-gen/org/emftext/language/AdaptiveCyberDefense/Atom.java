@@ -12,7 +12,7 @@ package org.emftext.language.AdaptiveCyberDefense;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.emftext.language.AdaptiveCyberDefense.Atom#getVariable <em>Variable</em>}</li>
+ *   <li>{@link org.emftext.language.AdaptiveCyberDefense.Atom#getState_variable <em>State variable</em>}</li>
  *   <li>{@link org.emftext.language.AdaptiveCyberDefense.Atom#getValue <em>Value</em>}</li>
  * </ul>
  *
@@ -22,30 +22,30 @@ package org.emftext.language.AdaptiveCyberDefense;
  */
 public interface Atom extends Formula {
 	/**
-	 * Returns the value of the '<em><b>Variable</b></em>' reference.
+	 * Returns the value of the '<em><b>State variable</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Variable</em>' reference isn't clear,
+	 * If the meaning of the '<em>State variable</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Variable</em>' reference.
-	 * @see #setVariable(Variable)
-	 * @see org.emftext.language.AdaptiveCyberDefense.AdaptiveCyberDefensePackage#getAtom_Variable()
+	 * @return the value of the '<em>State variable</em>' reference.
+	 * @see #setState_variable(StateVariable)
+	 * @see org.emftext.language.AdaptiveCyberDefense.AdaptiveCyberDefensePackage#getAtom_State_variable()
 	 * @model required="true"
 	 * @generated
 	 */
-	Variable getVariable();
+	StateVariable getState_variable();
 
 	/**
-	 * Sets the value of the '{@link org.emftext.language.AdaptiveCyberDefense.Atom#getVariable <em>Variable</em>}' reference.
+	 * Sets the value of the '{@link org.emftext.language.AdaptiveCyberDefense.Atom#getState_variable <em>State variable</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Variable</em>' reference.
-	 * @see #getVariable()
+	 * @param value the new value of the '<em>State variable</em>' reference.
+	 * @see #getState_variable()
 	 * @generated
 	 */
-	void setVariable(Variable value);
+	void setState_variable(StateVariable value);
 
 	/**
 	 * Returns the value of the '<em><b>Value</b></em>' attribute.

@@ -58,15 +58,6 @@ public interface AdaptiveCyberDefenseFactory extends EFactory {
 	ProbabilisticEffect createProbabilisticEffect();
 
 	/**
-	 * Returns a new object of class '<em>Action Variable</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Action Variable</em>'.
-	 * @generated
-	 */
-	ActionVariable createActionVariable();
-
-	/**
 	 * Returns a new object of class '<em>Initial Atom</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -74,24 +65,6 @@ public interface AdaptiveCyberDefenseFactory extends EFactory {
 	 * @generated
 	 */
 	InitialAtom createInitialAtom();
-
-	/**
-	 * Returns a new object of class '<em>State Atom</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>State Atom</em>'.
-	 * @generated
-	 */
-	StateAtom createStateAtom();
-
-	/**
-	 * Returns a new object of class '<em>Action Atom</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Action Atom</em>'.
-	 * @generated
-	 */
-	ActionAtom createActionAtom();
 
 	/**
 	 * Returns a new object of class '<em>Conjunction</em>'.

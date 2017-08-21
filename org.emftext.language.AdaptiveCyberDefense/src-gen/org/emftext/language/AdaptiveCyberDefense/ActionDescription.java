@@ -18,8 +18,8 @@ import org.eclipse.emf.ecore.EObject;
  * </p>
  * <ul>
  *   <li>{@link org.emftext.language.AdaptiveCyberDefense.ActionDescription#getCost <em>Cost</em>}</li>
- *   <li>{@link org.emftext.language.AdaptiveCyberDefense.ActionDescription#getActionatom <em>Actionatom</em>}</li>
  *   <li>{@link org.emftext.language.AdaptiveCyberDefense.ActionDescription#getContextual_effects <em>Contextual effects</em>}</li>
+ *   <li>{@link org.emftext.language.AdaptiveCyberDefense.ActionDescription#getName <em>Name</em>}</li>
  * </ul>
  *
  * @see org.emftext.language.AdaptiveCyberDefense.AdaptiveCyberDefensePackage#getActionDescription()
@@ -55,32 +55,6 @@ public interface ActionDescription extends EObject {
 	void setCost(BigDecimal value);
 
 	/**
-	 * Returns the value of the '<em><b>Actionatom</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Actionatom</em>' containment reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Actionatom</em>' containment reference.
-	 * @see #setActionatom(ActionAtom)
-	 * @see org.emftext.language.AdaptiveCyberDefense.AdaptiveCyberDefensePackage#getActionDescription_Actionatom()
-	 * @model containment="true" required="true"
-	 * @generated
-	 */
-	ActionAtom getActionatom();
-
-	/**
-	 * Sets the value of the '{@link org.emftext.language.AdaptiveCyberDefense.ActionDescription#getActionatom <em>Actionatom</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Actionatom</em>' containment reference.
-	 * @see #getActionatom()
-	 * @generated
-	 */
-	void setActionatom(ActionAtom value);
-
-	/**
 	 * Returns the value of the '<em><b>Contextual effects</b></em>' containment reference list.
 	 * The list contents are of type {@link org.emftext.language.AdaptiveCyberDefense.ContextualEffect}.
 	 * <!-- begin-user-doc -->
@@ -95,5 +69,31 @@ public interface ActionDescription extends EObject {
 	 * @generated
 	 */
 	EList<ContextualEffect> getContextual_effects();
+
+	/**
+	 * Returns the value of the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Name</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Name</em>' attribute.
+	 * @see #setName(String)
+	 * @see org.emftext.language.AdaptiveCyberDefense.AdaptiveCyberDefensePackage#getActionDescription_Name()
+	 * @model id="true" required="true"
+	 * @generated
+	 */
+	String getName();
+
+	/**
+	 * Sets the value of the '{@link org.emftext.language.AdaptiveCyberDefense.ActionDescription#getName <em>Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Name</em>' attribute.
+	 * @see #getName()
+	 * @generated
+	 */
+	void setName(String value);
 
 } // ActionDescription
