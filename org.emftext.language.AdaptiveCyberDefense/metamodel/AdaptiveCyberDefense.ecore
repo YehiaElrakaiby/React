@@ -17,27 +17,30 @@
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="requirements" upperBound="-1"
         eType="#//Requirement" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="actions" upperBound="-1"
-        eType="#//ActionVariable" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="initial_atoms" lowerBound="1"
         upperBound="-1" eType="#//InitialAtom" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="eventdescriptions" upperBound="-1"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="event_descriptions" upperBound="-1"
         eType="#//EventDescription" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ActionDescription">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="cost" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBigDecimal"
         defaultValueLiteral="-0.00001"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="actionatom" lowerBound="1"
-        eType="#//ActionAtom" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="contextual_effects" upperBound="-1"
         eType="#//ContextualEffect" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        iD="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="StateVariable" eSuperTypes="#//Variable #//InitialVariable"/>
+  <eClassifiers xsi:type="ecore:EClass" name="StateVariable" eSuperTypes="#//InitialVariable">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="values" lowerBound="1"
+        upperBound="-1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        iD="true"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ProbabilisticEffect">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="probability" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBigDecimal"
         defaultValueLiteral="1.0"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="stateatoms" upperBound="-1"
-        eType="#//StateAtom" containment="true"/>
+        eType="#//Atom" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Requirement" abstract="true" eSuperTypes="#//InitialVariable">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
@@ -46,9 +49,6 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="condition" lowerBound="1"
         eType="#//Formula" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="description" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ActionVariable" eSuperTypes="#//Variable">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" eType="#//ActionType"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="InitialAtom">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
@@ -71,21 +71,9 @@
       <details key="name" value="InitialState"/>
     </eAnnotations>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Variable" abstract="true">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
-        iD="true"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="values" lowerBound="1"
-        upperBound="-1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="StateAtom" eSuperTypes="#//InitialVariable">
+  <eClassifiers xsi:type="ecore:EClass" name="Atom" eSuperTypes="#//Formula">
     <eStructuralFeatures xsi:type="ecore:EReference" name="statevariable" lowerBound="1"
         eType="#//StateVariable"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
-        defaultValueLiteral="tt"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ActionAtom">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="actionvariable" lowerBound="1"
-        eType="#//ActionVariable"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
         defaultValueLiteral="tt"/>
   </eClassifiers>
@@ -118,12 +106,6 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="perUnitCost" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBooleanObject"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="True" eSuperTypes="#//Formula"/>
-  <eClassifiers xsi:type="ecore:EClass" name="Atom" eSuperTypes="#//Formula">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="variable" lowerBound="1"
-        eType="#//Variable"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
-        defaultValueLiteral="tt"/>
-  </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="ActionType">
     <eLiterals name="control" value="1"/>
     <eLiterals name="exogenous" value="2"/>
@@ -143,7 +125,7 @@
   <eClassifiers xsi:type="ecore:EClass" name="ContextualEffect">
     <eStructuralFeatures xsi:type="ecore:EReference" name="context" eType="#//Formula"
         containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="change_sets" upperBound="-1"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="effects" upperBound="-1"
         eType="#//ProbabilisticEffect" containment="true">
       <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
         <details key="name" value="probabilisticeffects"/>
@@ -151,10 +133,10 @@
     </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="EventDescription">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="actionatom" lowerBound="1"
-        eType="#//ActionAtom" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="probabilisticcontextualeffect"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="probabilistic_contextual_effects"
         upperBound="-1" eType="#//ProbabilisticContextualEffect" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        iD="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ProbabilisticContextualEffect" eSuperTypes="#//ContextualEffect">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="occurrence_probability"

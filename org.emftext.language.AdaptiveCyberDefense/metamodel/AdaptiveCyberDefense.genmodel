@@ -21,16 +21,18 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference AdaptiveCyberDefense.ecore#//DomainDescription/state_variables"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference AdaptiveCyberDefense.ecore#//DomainDescription/action_descriptions"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference AdaptiveCyberDefense.ecore#//DomainDescription/requirements"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference AdaptiveCyberDefense.ecore#//DomainDescription/actions"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference AdaptiveCyberDefense.ecore#//DomainDescription/initial_atoms"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference AdaptiveCyberDefense.ecore#//DomainDescription/eventdescriptions"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference AdaptiveCyberDefense.ecore#//DomainDescription/event_descriptions"/>
     </genClasses>
     <genClasses ecoreClass="AdaptiveCyberDefense.ecore#//ActionDescription">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute AdaptiveCyberDefense.ecore#//ActionDescription/cost"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference AdaptiveCyberDefense.ecore#//ActionDescription/actionatom"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference AdaptiveCyberDefense.ecore#//ActionDescription/contextual_effects"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute AdaptiveCyberDefense.ecore#//ActionDescription/name"/>
     </genClasses>
-    <genClasses ecoreClass="AdaptiveCyberDefense.ecore#//StateVariable"/>
+    <genClasses ecoreClass="AdaptiveCyberDefense.ecore#//StateVariable">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute AdaptiveCyberDefense.ecore#//StateVariable/values"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute AdaptiveCyberDefense.ecore#//StateVariable/name"/>
+    </genClasses>
     <genClasses ecoreClass="AdaptiveCyberDefense.ecore#//ProbabilisticEffect">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute AdaptiveCyberDefense.ecore#//ProbabilisticEffect/probability"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference AdaptiveCyberDefense.ecore#//ProbabilisticEffect/stateatoms"/>
@@ -41,25 +43,14 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference AdaptiveCyberDefense.ecore#//Requirement/condition"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute AdaptiveCyberDefense.ecore#//Requirement/description"/>
     </genClasses>
-    <genClasses ecoreClass="AdaptiveCyberDefense.ecore#//ActionVariable">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute AdaptiveCyberDefense.ecore#//ActionVariable/type"/>
-    </genClasses>
     <genClasses ecoreClass="AdaptiveCyberDefense.ecore#//InitialAtom">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute AdaptiveCyberDefense.ecore#//InitialAtom/value"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference AdaptiveCyberDefense.ecore#//InitialAtom/initialvariable"/>
     </genClasses>
     <genClasses ecoreClass="AdaptiveCyberDefense.ecore#//InitialVariable"/>
-    <genClasses ecoreClass="AdaptiveCyberDefense.ecore#//Variable">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute AdaptiveCyberDefense.ecore#//Variable/name"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute AdaptiveCyberDefense.ecore#//Variable/values"/>
-    </genClasses>
-    <genClasses ecoreClass="AdaptiveCyberDefense.ecore#//StateAtom">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference AdaptiveCyberDefense.ecore#//StateAtom/statevariable"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute AdaptiveCyberDefense.ecore#//StateAtom/value"/>
-    </genClasses>
-    <genClasses ecoreClass="AdaptiveCyberDefense.ecore#//ActionAtom">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference AdaptiveCyberDefense.ecore#//ActionAtom/actionvariable"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute AdaptiveCyberDefense.ecore#//ActionAtom/value"/>
+    <genClasses ecoreClass="AdaptiveCyberDefense.ecore#//Atom">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference AdaptiveCyberDefense.ecore#//Atom/statevariable"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute AdaptiveCyberDefense.ecore#//Atom/value"/>
     </genClasses>
     <genClasses ecoreClass="AdaptiveCyberDefense.ecore#//Formula"/>
     <genClasses ecoreClass="AdaptiveCyberDefense.ecore#//Conjunction">
@@ -82,10 +73,6 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute AdaptiveCyberDefense.ecore#//Maintain/perUnitCost"/>
     </genClasses>
     <genClasses ecoreClass="AdaptiveCyberDefense.ecore#//True"/>
-    <genClasses ecoreClass="AdaptiveCyberDefense.ecore#//Atom">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference AdaptiveCyberDefense.ecore#//Atom/variable"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute AdaptiveCyberDefense.ecore#//Atom/value"/>
-    </genClasses>
     <genClasses ecoreClass="AdaptiveCyberDefense.ecore#//False"/>
     <genClasses ecoreClass="AdaptiveCyberDefense.ecore#//DeadlineRequirement">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference AdaptiveCyberDefense.ecore#//DeadlineRequirement/cancellation"/>
@@ -95,11 +82,11 @@
     <genClasses ecoreClass="AdaptiveCyberDefense.ecore#//UnconditionalMaintain"/>
     <genClasses ecoreClass="AdaptiveCyberDefense.ecore#//ContextualEffect">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference AdaptiveCyberDefense.ecore#//ContextualEffect/context"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference AdaptiveCyberDefense.ecore#//ContextualEffect/change_sets"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference AdaptiveCyberDefense.ecore#//ContextualEffect/effects"/>
     </genClasses>
     <genClasses ecoreClass="AdaptiveCyberDefense.ecore#//EventDescription">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference AdaptiveCyberDefense.ecore#//EventDescription/actionatom"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference AdaptiveCyberDefense.ecore#//EventDescription/probabilisticcontextualeffect"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference AdaptiveCyberDefense.ecore#//EventDescription/probabilistic_contextual_effects"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute AdaptiveCyberDefense.ecore#//EventDescription/name"/>
     </genClasses>
     <genClasses ecoreClass="AdaptiveCyberDefense.ecore#//ProbabilisticContextualEffect">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute AdaptiveCyberDefense.ecore#//ProbabilisticContextualEffect/occurrence_probability"/>
