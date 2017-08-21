@@ -33,7 +33,7 @@ RULES {
 		"StateVariables" "=" "<" (state_variables ";")* ">" 
 		"ActionVariables" "=" "<"  (actions ";")* ">"
 		
-		"OperationalRequirements" "=" "<" (requirements ";")* ">" 		
+		"Requirements" "=" "<" (requirements ";")* ">" 		
 		"EventDescriptions" "=" "<" (action_descriptions ";")* ">" 
 		
 		"CurrentState" "=" "<"  initial_atoms ("," initial_atoms)*   ">"
@@ -51,11 +51,14 @@ RULES {
 	
 	ActionDescription ::= 
 		"Event" actionatom  
-		("precondition" formula)? 
-		("effects" probabilisticeffect+)? 
+		(contextual_effects+)? 
 		("cost" cost[FLOAT])?
 		;	
 	
+	ContextualEffect ::=
+		("if" context)?
+		"effects" change_sets*;
+		
 	UnconditionalMaintain ::= 
 		"ReqID" name[]  
 		"keep" condition

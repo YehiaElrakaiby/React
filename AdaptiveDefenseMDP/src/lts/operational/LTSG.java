@@ -20,6 +20,7 @@ import org.emftext.language.AdaptiveCyberDefense.ActionDescription;
 import org.emftext.language.AdaptiveCyberDefense.ActionType;
 import org.emftext.language.AdaptiveCyberDefense.ActionVariable;
 import org.emftext.language.AdaptiveCyberDefense.AdaptiveCyberDefenseFactory;
+import org.emftext.language.AdaptiveCyberDefense.ContextualEffect;
 import org.emftext.language.AdaptiveCyberDefense.DomainDescription;
 import org.emftext.language.AdaptiveCyberDefense.Formula;
 import org.emftext.language.AdaptiveCyberDefense.InitialAtom;
@@ -106,7 +107,7 @@ public class LTSG {
 	HashMap<String,RequirementDescription> requirements_description = new HashMap<String,RequirementDescription>();
 
 	private final static Logger LOGGER = LogManager.getRootLogger();
-	
+
 	public LTSG(DomainDescription description, String option) {
 		/*
 		 *  Initialize
@@ -120,14 +121,14 @@ public class LTSG {
 		 * (4) Generate the state space
 		 * (5) Generate Transitions
 		 */
-		if(option.equals(FULL)) {
+		//if(option.equals(FULL)) {
 
-			generateStatesFromFluentDescriptions();
+			//generateStatesFromFluentDescriptions();
 
-			generateTransitions(this.requirements_description);
-		}
+			//generateTransitions(this.requirements_description);
+		//}
 
-		else if(option.equals(INITIAL)) {
+		if(option.equals(INITIAL)) {
 			setInitialState(description);
 
 			generateLTSFromInitialState();
@@ -185,11 +186,20 @@ public class LTSG {
 			String event = it.next();
 			//String event = id_control_events2.get(event_id);
 			ActionDescription descr = this.event_description.get(event);
-			if(applicable(descr,state)) {
+			EList<ContextualEffect> contextual_effects = descr.getContextual_effects();
+			EList<ProbabilisticEffect> effects=null;
+			for(ContextualEffect contextual_effect : contextual_effects) {
+				Formula context = contextual_effect.getContext();
+				if(holds(context,state)) {
+					effects = contextual_effect.getChange_sets();
+					break;
+				}
+			}
+			if(effects!=null) {
 				//updateApplicableMap(event,state_nb.toInteger());
-				EList<ProbabilisticEffect> effects = descr.getProbabilisticeffect();
+
 				BigDecimal total_prob = new BigDecimal(0);
-				
+
 				for(ProbabilisticEffect effect : effects) {
 					Transition trans = new Transition();
 					trans.updateOrReward(-descr.getCost().intValue());
@@ -218,7 +228,7 @@ public class LTSG {
 					trans.setName(event);
 					Integer src = states_id.get(state);
 					trans.setSrc(src);
-					
+
 					HashMap<String, String> dest_state = getDestinationState(event,state,null,descr,requirements_description,trans);
 					Integer dest_id = updateStates(to_explore,dest_state,state_nb);
 					trans.setDest(dest_id);
@@ -263,6 +273,14 @@ public class LTSG {
 			this.not_applicable.put(integer, set_of_actions);
 		}		
 	}*/
+
+	private boolean holds(Formula context, HashMap<String, String> state) {
+		if(context.verify(state)) {
+			return true;
+		}
+		return false;
+	}
+
 
 	private void updateTransitions3(int hashCode, Integer dest_id) {
 		if(src_label_nextStates_map.containsKey(hashCode)) {
@@ -344,12 +362,17 @@ public class LTSG {
 		 * Create a noop action description
 		 */
 		ActionDescription descr = AdaptiveCyberDefenseFactory.eINSTANCE.createActionDescription();
+		
 		ActionAtom event = AdaptiveCyberDefenseFactory.eINSTANCE.createActionAtom();
 		ActionVariable var = AdaptiveCyberDefenseFactory.eINSTANCE.createActionVariable();
+
 		/*
 		 * set preconditions
 		 */
-		descr.setFormula(AdaptiveCyberDefenseFactory.eINSTANCE.createTrue());
+		ContextualEffect contextual_effect = AdaptiveCyberDefenseFactory.eINSTANCE.createContextualEffect();
+		contextual_effect.setContext(AdaptiveCyberDefenseFactory.eINSTANCE.createTrue());
+		descr.getContextual_effects().add(contextual_effect);
+		
 		/*
 		 * set cost
 		 */
@@ -392,14 +415,14 @@ public class LTSG {
 
 	}
 
-	private void generateTransitions(HashMap<String, RequirementDescription> requirements_description) {
-		/*
+	/*private void generateTransitions(HashMap<String, RequirementDescription> requirements_description) {
+		
 		 * (1) Iterate Over All States
 		 * (2) Iterate over all control, exogenous and exploit events and update the transition and reward matrix accordingly
 		 * (*) Notice that when the event is a control event then only the dreward and dtransition are updated
 		 * (2.1) If there is an effect law of an event that is applicable, then apply it
 		 * (2.2) If there is an effect law that is not applicable, then it is a self transition in the transition matrix
-		 */
+		 
 
 		Iterator<Integer> it = states.keySet().iterator();
 		while(it.hasNext()){
@@ -410,9 +433,9 @@ public class LTSG {
 			addTransitions(exogenous_events_id,state);
 
 		}
-	}
-
-	private void addTransitions(
+	}*/
+	
+	/*private void addTransitions(
 			HashMap<String, Integer> id_events, 
 			HashMap<String, String> state) {
 		Iterator<String> it_control = id_events.keySet().iterator();
@@ -420,7 +443,7 @@ public class LTSG {
 			String event = it_control.next();
 			//String event = id_control_events2.get(event_id);
 			ActionDescription descr = this.event_description.get(event);
-			/*
+			
 			 * A transition is defined for every two states and event label has 
 			 * (1) a name (event label), 
 			 * (2) a boolean representing the applicability of the event, 
@@ -428,7 +451,7 @@ public class LTSG {
 			 * (4) a destination state,
 			 * (5) a transition probability,
 			 * (6) a reward
-			 */
+			 
 
 			if(applicable(descr,state)) {
 				EList<ProbabilisticEffect> effects = descr.getProbabilisticeffect();
@@ -453,9 +476,9 @@ public class LTSG {
 
 					//addTransition(state,dest_state,event,effect.getProbability(),Transition.APPLICABLE);
 				}
-				/*
+				
 				 * if the total probability is less than one, then add a self transition with 1 - total_prob
-				 */
+				 
 				if(total_prob.compareTo(one)==-1) {
 					Transition trans = new Transition();
 					trans.setName(event);
@@ -475,7 +498,7 @@ public class LTSG {
 				}
 			}
 		}		
-	}
+	}*/
 
 	private HashMap<String, String> getDestinationState(String event, 
 			HashMap<String, String> state, 
@@ -670,13 +693,14 @@ public class LTSG {
 		}		
 	}
 
+	/*
 	private boolean applicable(ActionDescription descr, HashMap<String, String> state) {
 		Formula precondition = descr.getFormula();
 		if(precondition.verify(state)) {
 			return true;
 		}
 		return false;
-	}
+	}*/
 
 	private void readRequirements(EList<Requirement> eList) {
 		for(Requirement requirement : eList) {

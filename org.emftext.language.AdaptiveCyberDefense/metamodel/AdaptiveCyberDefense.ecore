@@ -21,20 +21,16 @@
         eType="#//ActionVariable" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="initial_atoms" lowerBound="1"
         upperBound="-1" eType="#//InitialAtom" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="eventdescriptions" upperBound="-1"
+        eType="#//EventDescription" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ActionDescription">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="probabilisticeffect" upperBound="-1"
-        eType="#//ProbabilisticEffect" containment="true">
-      <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
-        <details key="name" value="probabilisticeffects"/>
-      </eAnnotations>
-    </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="cost" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBigDecimal"
         defaultValueLiteral="-0.00001"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="formula" eType="#//Formula"
-        containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="actionatom" lowerBound="1"
         eType="#//ActionAtom" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="contextual_effects" upperBound="-1"
+        eType="#//ContextualEffect" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="StateVariable" eSuperTypes="#//Variable #//InitialVariable"/>
   <eClassifiers xsi:type="ecore:EClass" name="ProbabilisticEffect">
@@ -145,4 +141,25 @@
         defaultValueLiteral="-1"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="UnconditionalMaintain" eSuperTypes="#//Requirement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ContextualEffect">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="context" eType="#//Formula"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="change_sets" upperBound="-1"
+        eType="#//ProbabilisticEffect" containment="true">
+      <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+        <details key="name" value="probabilisticeffects"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="EventDescription">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="actionatom" lowerBound="1"
+        eType="#//ActionAtom" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="probabilisticcontextualeffect"
+        upperBound="-1" eType="#//ProbabilisticContextualEffect" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ProbabilisticContextualEffect" eSuperTypes="#//ContextualEffect">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="occurrence_probability"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBigDecimal"
+        defaultValueLiteral="1"/>
+  </eClassifiers>
 </ecore:EPackage>

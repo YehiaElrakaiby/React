@@ -75,6 +75,7 @@ public class AdaptiveCyberDefenseFactoryImpl extends EFactoryImpl implements Ada
 			case AdaptiveCyberDefensePackage.ATOM: return createAtom();
 			case AdaptiveCyberDefensePackage.FALSE: return createFalse();
 			case AdaptiveCyberDefensePackage.UNCONDITIONAL_MAINTAIN: return createUnconditionalMaintain();
+			case AdaptiveCyberDefensePackage.CONTEXTUAL_EFFECT: return createContextualEffect();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -292,6 +293,16 @@ public class AdaptiveCyberDefenseFactoryImpl extends EFactoryImpl implements Ada
 	public UnconditionalMaintain createUnconditionalMaintain() {
 		UnconditionalMaintainImpl unconditionalMaintain = new UnconditionalMaintainImpl();
 		return unconditionalMaintain;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ContextualEffect createContextualEffect() {
+		ContextualEffectImpl contextualEffect = new ContextualEffectImpl();
+		return contextualEffect;
 	}
 
 	/**

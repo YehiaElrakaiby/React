@@ -131,31 +131,13 @@ public interface AdaptiveCyberDefensePackage extends EPackage {
 	int ACTION_DESCRIPTION = 1;
 
 	/**
-	 * The feature id for the '<em><b>Probabilisticeffect</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ACTION_DESCRIPTION__PROBABILISTICEFFECT = 0;
-
-	/**
 	 * The feature id for the '<em><b>Cost</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ACTION_DESCRIPTION__COST = 1;
-
-	/**
-	 * The feature id for the '<em><b>Formula</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ACTION_DESCRIPTION__FORMULA = 2;
+	int ACTION_DESCRIPTION__COST = 0;
 
 	/**
 	 * The feature id for the '<em><b>Actionatom</b></em>' containment reference.
@@ -164,7 +146,16 @@ public interface AdaptiveCyberDefensePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ACTION_DESCRIPTION__ACTIONATOM = 3;
+	int ACTION_DESCRIPTION__ACTIONATOM = 1;
+
+	/**
+	 * The feature id for the '<em><b>Contextual effects</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ACTION_DESCRIPTION__CONTEXTUAL_EFFECTS = 2;
 
 	/**
 	 * The number of structural features of the '<em>Action Description</em>' class.
@@ -173,7 +164,7 @@ public interface AdaptiveCyberDefensePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ACTION_DESCRIPTION_FEATURE_COUNT = 4;
+	int ACTION_DESCRIPTION_FEATURE_COUNT = 3;
 
 	/**
 	 * The meta object id for the '{@link org.emftext.language.AdaptiveCyberDefense.impl.VariableImpl <em>Variable</em>}' class.
@@ -1061,6 +1052,43 @@ public interface AdaptiveCyberDefensePackage extends EPackage {
 	int UNCONDITIONAL_MAINTAIN_FEATURE_COUNT = REQUIREMENT_FEATURE_COUNT + 0;
 
 	/**
+	 * The meta object id for the '{@link org.emftext.language.AdaptiveCyberDefense.impl.ContextualEffectImpl <em>Contextual Effect</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.emftext.language.AdaptiveCyberDefense.impl.ContextualEffectImpl
+	 * @see org.emftext.language.AdaptiveCyberDefense.impl.AdaptiveCyberDefensePackageImpl#getContextualEffect()
+	 * @generated
+	 */
+	int CONTEXTUAL_EFFECT = 23;
+
+	/**
+	 * The feature id for the '<em><b>Context</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONTEXTUAL_EFFECT__CONTEXT = 0;
+
+	/**
+	 * The feature id for the '<em><b>Change sets</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONTEXTUAL_EFFECT__CHANGE_SETS = 1;
+
+	/**
+	 * The number of structural features of the '<em>Contextual Effect</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONTEXTUAL_EFFECT_FEATURE_COUNT = 2;
+
+	/**
 	 * The meta object id for the '{@link org.emftext.language.AdaptiveCyberDefense.RequirementStatus <em>Requirement Status</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1068,7 +1096,7 @@ public interface AdaptiveCyberDefensePackage extends EPackage {
 	 * @see org.emftext.language.AdaptiveCyberDefense.impl.AdaptiveCyberDefensePackageImpl#getRequirementStatus()
 	 * @generated
 	 */
-	int REQUIREMENT_STATUS = 23;
+	int REQUIREMENT_STATUS = 24;
 
 
 	/**
@@ -1079,7 +1107,7 @@ public interface AdaptiveCyberDefensePackage extends EPackage {
 	 * @see org.emftext.language.AdaptiveCyberDefense.impl.AdaptiveCyberDefensePackageImpl#getActionType()
 	 * @generated
 	 */
-	int ACTION_TYPE = 24;
+	int ACTION_TYPE = 25;
 
 
 	/**
@@ -1158,17 +1186,6 @@ public interface AdaptiveCyberDefensePackage extends EPackage {
 	EClass getActionDescription();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link org.emftext.language.AdaptiveCyberDefense.ActionDescription#getProbabilisticeffect <em>Probabilisticeffect</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Probabilisticeffect</em>'.
-	 * @see org.emftext.language.AdaptiveCyberDefense.ActionDescription#getProbabilisticeffect()
-	 * @see #getActionDescription()
-	 * @generated
-	 */
-	EReference getActionDescription_Probabilisticeffect();
-
-	/**
 	 * Returns the meta object for the attribute '{@link org.emftext.language.AdaptiveCyberDefense.ActionDescription#getCost <em>Cost</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1180,17 +1197,6 @@ public interface AdaptiveCyberDefensePackage extends EPackage {
 	EAttribute getActionDescription_Cost();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link org.emftext.language.AdaptiveCyberDefense.ActionDescription#getFormula <em>Formula</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Formula</em>'.
-	 * @see org.emftext.language.AdaptiveCyberDefense.ActionDescription#getFormula()
-	 * @see #getActionDescription()
-	 * @generated
-	 */
-	EReference getActionDescription_Formula();
-
-	/**
 	 * Returns the meta object for the containment reference '{@link org.emftext.language.AdaptiveCyberDefense.ActionDescription#getActionatom <em>Actionatom</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1200,6 +1206,17 @@ public interface AdaptiveCyberDefensePackage extends EPackage {
 	 * @generated
 	 */
 	EReference getActionDescription_Actionatom();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link org.emftext.language.AdaptiveCyberDefense.ActionDescription#getContextual_effects <em>Contextual effects</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Contextual effects</em>'.
+	 * @see org.emftext.language.AdaptiveCyberDefense.ActionDescription#getContextual_effects()
+	 * @see #getActionDescription()
+	 * @generated
+	 */
+	EReference getActionDescription_Contextual_effects();
 
 	/**
 	 * Returns the meta object for class '{@link org.emftext.language.AdaptiveCyberDefense.StateVariable <em>State Variable</em>}'.
@@ -1720,6 +1737,38 @@ public interface AdaptiveCyberDefensePackage extends EPackage {
 	EClass getUnconditionalMaintain();
 
 	/**
+	 * Returns the meta object for class '{@link org.emftext.language.AdaptiveCyberDefense.ContextualEffect <em>Contextual Effect</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Contextual Effect</em>'.
+	 * @see org.emftext.language.AdaptiveCyberDefense.ContextualEffect
+	 * @generated
+	 */
+	EClass getContextualEffect();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link org.emftext.language.AdaptiveCyberDefense.ContextualEffect#getContext <em>Context</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Context</em>'.
+	 * @see org.emftext.language.AdaptiveCyberDefense.ContextualEffect#getContext()
+	 * @see #getContextualEffect()
+	 * @generated
+	 */
+	EReference getContextualEffect_Context();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link org.emftext.language.AdaptiveCyberDefense.ContextualEffect#getChange_sets <em>Change sets</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Change sets</em>'.
+	 * @see org.emftext.language.AdaptiveCyberDefense.ContextualEffect#getChange_sets()
+	 * @see #getContextualEffect()
+	 * @generated
+	 */
+	EReference getContextualEffect_Change_sets();
+
+	/**
 	 * Returns the meta object for enum '{@link org.emftext.language.AdaptiveCyberDefense.RequirementStatus <em>Requirement Status</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1822,14 +1871,6 @@ public interface AdaptiveCyberDefensePackage extends EPackage {
 		EClass ACTION_DESCRIPTION = eINSTANCE.getActionDescription();
 
 		/**
-		 * The meta object literal for the '<em><b>Probabilisticeffect</b></em>' containment reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference ACTION_DESCRIPTION__PROBABILISTICEFFECT = eINSTANCE.getActionDescription_Probabilisticeffect();
-
-		/**
 		 * The meta object literal for the '<em><b>Cost</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1838,20 +1879,20 @@ public interface AdaptiveCyberDefensePackage extends EPackage {
 		EAttribute ACTION_DESCRIPTION__COST = eINSTANCE.getActionDescription_Cost();
 
 		/**
-		 * The meta object literal for the '<em><b>Formula</b></em>' containment reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference ACTION_DESCRIPTION__FORMULA = eINSTANCE.getActionDescription_Formula();
-
-		/**
 		 * The meta object literal for the '<em><b>Actionatom</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
 		EReference ACTION_DESCRIPTION__ACTIONATOM = eINSTANCE.getActionDescription_Actionatom();
+
+		/**
+		 * The meta object literal for the '<em><b>Contextual effects</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference ACTION_DESCRIPTION__CONTEXTUAL_EFFECTS = eINSTANCE.getActionDescription_Contextual_effects();
 
 		/**
 		 * The meta object literal for the '{@link org.emftext.language.AdaptiveCyberDefense.impl.StateVariableImpl <em>State Variable</em>}' class.
@@ -2286,6 +2327,32 @@ public interface AdaptiveCyberDefensePackage extends EPackage {
 		 * @generated
 		 */
 		EClass UNCONDITIONAL_MAINTAIN = eINSTANCE.getUnconditionalMaintain();
+
+		/**
+		 * The meta object literal for the '{@link org.emftext.language.AdaptiveCyberDefense.impl.ContextualEffectImpl <em>Contextual Effect</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.emftext.language.AdaptiveCyberDefense.impl.ContextualEffectImpl
+		 * @see org.emftext.language.AdaptiveCyberDefense.impl.AdaptiveCyberDefensePackageImpl#getContextualEffect()
+		 * @generated
+		 */
+		EClass CONTEXTUAL_EFFECT = eINSTANCE.getContextualEffect();
+
+		/**
+		 * The meta object literal for the '<em><b>Context</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference CONTEXTUAL_EFFECT__CONTEXT = eINSTANCE.getContextualEffect_Context();
+
+		/**
+		 * The meta object literal for the '<em><b>Change sets</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference CONTEXTUAL_EFFECT__CHANGE_SETS = eINSTANCE.getContextualEffect_Change_sets();
 
 		/**
 		 * The meta object literal for the '{@link org.emftext.language.AdaptiveCyberDefense.RequirementStatus <em>Requirement Status</em>}' enum.

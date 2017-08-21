@@ -19,6 +19,7 @@ import org.emftext.language.AdaptiveCyberDefense.AdaptiveCyberDefenseFactory;
 import org.emftext.language.AdaptiveCyberDefense.AdaptiveCyberDefensePackage;
 import org.emftext.language.AdaptiveCyberDefense.Atom;
 import org.emftext.language.AdaptiveCyberDefense.Conjunction;
+import org.emftext.language.AdaptiveCyberDefense.ContextualEffect;
 import org.emftext.language.AdaptiveCyberDefense.DeadlineRequirement;
 import org.emftext.language.AdaptiveCyberDefense.Disjunction;
 import org.emftext.language.AdaptiveCyberDefense.DomainDescription;
@@ -211,6 +212,13 @@ public class AdaptiveCyberDefensePackageImpl extends EPackageImpl implements Ada
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	private EClass contextualEffectEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	private EEnum requirementStatusEEnum = null;
 
 	/**
@@ -349,26 +357,8 @@ public class AdaptiveCyberDefensePackageImpl extends EPackageImpl implements Ada
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getActionDescription_Probabilisticeffect() {
-		return (EReference)actionDescriptionEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EAttribute getActionDescription_Cost() {
-		return (EAttribute)actionDescriptionEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getActionDescription_Formula() {
-		return (EReference)actionDescriptionEClass.getEStructuralFeatures().get(2);
+		return (EAttribute)actionDescriptionEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -377,7 +367,16 @@ public class AdaptiveCyberDefensePackageImpl extends EPackageImpl implements Ada
 	 * @generated
 	 */
 	public EReference getActionDescription_Actionatom() {
-		return (EReference)actionDescriptionEClass.getEStructuralFeatures().get(3);
+		return (EReference)actionDescriptionEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getActionDescription_Contextual_effects() {
+		return (EReference)actionDescriptionEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -826,6 +825,33 @@ public class AdaptiveCyberDefensePackageImpl extends EPackageImpl implements Ada
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getContextualEffect() {
+		return contextualEffectEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getContextualEffect_Context() {
+		return (EReference)contextualEffectEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getContextualEffect_Change_sets() {
+		return (EReference)contextualEffectEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EEnum getRequirementStatus() {
 		return requirementStatusEEnum;
 	}
@@ -875,10 +901,9 @@ public class AdaptiveCyberDefensePackageImpl extends EPackageImpl implements Ada
 		createEReference(domainDescriptionEClass, DOMAIN_DESCRIPTION__INITIAL_ATOMS);
 
 		actionDescriptionEClass = createEClass(ACTION_DESCRIPTION);
-		createEReference(actionDescriptionEClass, ACTION_DESCRIPTION__PROBABILISTICEFFECT);
 		createEAttribute(actionDescriptionEClass, ACTION_DESCRIPTION__COST);
-		createEReference(actionDescriptionEClass, ACTION_DESCRIPTION__FORMULA);
 		createEReference(actionDescriptionEClass, ACTION_DESCRIPTION__ACTIONATOM);
+		createEReference(actionDescriptionEClass, ACTION_DESCRIPTION__CONTEXTUAL_EFFECTS);
 
 		stateVariableEClass = createEClass(STATE_VARIABLE);
 
@@ -950,6 +975,10 @@ public class AdaptiveCyberDefensePackageImpl extends EPackageImpl implements Ada
 
 		unconditionalMaintainEClass = createEClass(UNCONDITIONAL_MAINTAIN);
 
+		contextualEffectEClass = createEClass(CONTEXTUAL_EFFECT);
+		createEReference(contextualEffectEClass, CONTEXTUAL_EFFECT__CONTEXT);
+		createEReference(contextualEffectEClass, CONTEXTUAL_EFFECT__CHANGE_SETS);
+
 		// Create enums
 		requirementStatusEEnum = createEEnum(REQUIREMENT_STATUS);
 		actionTypeEEnum = createEEnum(ACTION_TYPE);
@@ -1009,10 +1038,9 @@ public class AdaptiveCyberDefensePackageImpl extends EPackageImpl implements Ada
 		initEReference(getDomainDescription_Initial_atoms(), this.getInitialAtom(), null, "initial_atoms", null, 1, -1, DomainDescription.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(actionDescriptionEClass, ActionDescription.class, "ActionDescription", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getActionDescription_Probabilisticeffect(), this.getProbabilisticEffect(), null, "probabilisticeffect", null, 0, -1, ActionDescription.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getActionDescription_Cost(), ecorePackage.getEBigDecimal(), "cost", "-0.00001", 0, 1, ActionDescription.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getActionDescription_Formula(), this.getFormula(), null, "formula", null, 0, 1, ActionDescription.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getActionDescription_Actionatom(), this.getActionAtom(), null, "actionatom", null, 1, 1, ActionDescription.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getActionDescription_Contextual_effects(), this.getContextualEffect(), null, "contextual_effects", null, 0, -1, ActionDescription.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(stateVariableEClass, StateVariable.class, "StateVariable", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
@@ -1084,6 +1112,10 @@ public class AdaptiveCyberDefensePackageImpl extends EPackageImpl implements Ada
 
 		initEClass(unconditionalMaintainEClass, UnconditionalMaintain.class, "UnconditionalMaintain", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
+		initEClass(contextualEffectEClass, ContextualEffect.class, "ContextualEffect", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getContextualEffect_Context(), this.getFormula(), null, "context", null, 0, 1, ContextualEffect.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getContextualEffect_Change_sets(), this.getProbabilisticEffect(), null, "change_sets", null, 0, -1, ContextualEffect.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
 		// Initialize enums and add enum literals
 		initEEnum(requirementStatusEEnum, RequirementStatus.class, "RequirementStatus");
 		addEEnumLiteral(requirementStatusEEnum, RequirementStatus.INACT);
@@ -1126,12 +1158,6 @@ public class AdaptiveCyberDefensePackageImpl extends EPackageImpl implements Ada
 			 "name", "actiondescriptions"
 		   });	
 		addAnnotation
-		  (getActionDescription_Probabilisticeffect(), 
-		   source, 
-		   new String[] {
-			 "name", "probabilisticeffects"
-		   });	
-		addAnnotation
 		  (getInitialAtom_Value(), 
 		   source, 
 		   new String[] {
@@ -1142,6 +1168,12 @@ public class AdaptiveCyberDefensePackageImpl extends EPackageImpl implements Ada
 		   source, 
 		   new String[] {
 			 "name", "InitialState"
+		   });	
+		addAnnotation
+		  (getContextualEffect_Change_sets(), 
+		   source, 
+		   new String[] {
+			 "name", "probabilisticeffects"
 		   });
 	}
 

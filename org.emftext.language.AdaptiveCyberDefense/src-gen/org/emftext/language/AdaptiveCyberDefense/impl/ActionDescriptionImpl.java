@@ -23,6 +23,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
 import org.emftext.language.AdaptiveCyberDefense.ActionAtom;
 import org.emftext.language.AdaptiveCyberDefense.ActionDescription;
 import org.emftext.language.AdaptiveCyberDefense.AdaptiveCyberDefensePackage;
+import org.emftext.language.AdaptiveCyberDefense.ContextualEffect;
 import org.emftext.language.AdaptiveCyberDefense.Formula;
 import org.emftext.language.AdaptiveCyberDefense.ProbabilisticEffect;
 
@@ -34,25 +35,14 @@ import org.emftext.language.AdaptiveCyberDefense.ProbabilisticEffect;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.emftext.language.AdaptiveCyberDefense.impl.ActionDescriptionImpl#getProbabilisticeffect <em>Probabilisticeffect</em>}</li>
  *   <li>{@link org.emftext.language.AdaptiveCyberDefense.impl.ActionDescriptionImpl#getCost <em>Cost</em>}</li>
- *   <li>{@link org.emftext.language.AdaptiveCyberDefense.impl.ActionDescriptionImpl#getFormula <em>Formula</em>}</li>
  *   <li>{@link org.emftext.language.AdaptiveCyberDefense.impl.ActionDescriptionImpl#getActionatom <em>Actionatom</em>}</li>
+ *   <li>{@link org.emftext.language.AdaptiveCyberDefense.impl.ActionDescriptionImpl#getContextual_effects <em>Contextual effects</em>}</li>
  * </ul>
  *
  * @generated
  */
 public class ActionDescriptionImpl extends EObjectImpl implements ActionDescription {
-	/**
-	 * The cached value of the '{@link #getProbabilisticeffect() <em>Probabilisticeffect</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getProbabilisticeffect()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<ProbabilisticEffect> probabilisticeffect;
-
 	/**
 	 * The default value of the '{@link #getCost() <em>Cost</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -74,16 +64,6 @@ public class ActionDescriptionImpl extends EObjectImpl implements ActionDescript
 	protected BigDecimal cost = COST_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getFormula() <em>Formula</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getFormula()
-	 * @generated
-	 * @ordered
-	 */
-	protected Formula formula;
-
-	/**
 	 * The cached value of the '{@link #getActionatom() <em>Actionatom</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -92,6 +72,16 @@ public class ActionDescriptionImpl extends EObjectImpl implements ActionDescript
 	 * @ordered
 	 */
 	protected ActionAtom actionatom;
+
+	/**
+	 * The cached value of the '{@link #getContextual_effects() <em>Contextual effects</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getContextual_effects()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<ContextualEffect> contextual_effects;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -117,18 +107,6 @@ public class ActionDescriptionImpl extends EObjectImpl implements ActionDescript
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<ProbabilisticEffect> getProbabilisticeffect() {
-		if (probabilisticeffect == null) {
-			probabilisticeffect = new EObjectContainmentEList<ProbabilisticEffect>(ProbabilisticEffect.class, this, AdaptiveCyberDefensePackage.ACTION_DESCRIPTION__PROBABILISTICEFFECT);
-		}
-		return probabilisticeffect;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public BigDecimal getCost() {
 		return cost;
 	}
@@ -143,49 +121,6 @@ public class ActionDescriptionImpl extends EObjectImpl implements ActionDescript
 		cost = newCost;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, AdaptiveCyberDefensePackage.ACTION_DESCRIPTION__COST, oldCost, cost));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Formula getFormula() {
-		return formula;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetFormula(Formula newFormula, NotificationChain msgs) {
-		Formula oldFormula = formula;
-		formula = newFormula;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, AdaptiveCyberDefensePackage.ACTION_DESCRIPTION__FORMULA, oldFormula, newFormula);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setFormula(Formula newFormula) {
-		if (newFormula != formula) {
-			NotificationChain msgs = null;
-			if (formula != null)
-				msgs = ((InternalEObject)formula).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - AdaptiveCyberDefensePackage.ACTION_DESCRIPTION__FORMULA, null, msgs);
-			if (newFormula != null)
-				msgs = ((InternalEObject)newFormula).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - AdaptiveCyberDefensePackage.ACTION_DESCRIPTION__FORMULA, null, msgs);
-			msgs = basicSetFormula(newFormula, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, AdaptiveCyberDefensePackage.ACTION_DESCRIPTION__FORMULA, newFormula, newFormula));
 	}
 
 	/**
@@ -236,15 +171,25 @@ public class ActionDescriptionImpl extends EObjectImpl implements ActionDescript
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EList<ContextualEffect> getContextual_effects() {
+		if (contextual_effects == null) {
+			contextual_effects = new EObjectContainmentEList<ContextualEffect>(ContextualEffect.class, this, AdaptiveCyberDefensePackage.ACTION_DESCRIPTION__CONTEXTUAL_EFFECTS);
+		}
+		return contextual_effects;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case AdaptiveCyberDefensePackage.ACTION_DESCRIPTION__PROBABILISTICEFFECT:
-				return ((InternalEList<?>)getProbabilisticeffect()).basicRemove(otherEnd, msgs);
-			case AdaptiveCyberDefensePackage.ACTION_DESCRIPTION__FORMULA:
-				return basicSetFormula(null, msgs);
 			case AdaptiveCyberDefensePackage.ACTION_DESCRIPTION__ACTIONATOM:
 				return basicSetActionatom(null, msgs);
+			case AdaptiveCyberDefensePackage.ACTION_DESCRIPTION__CONTEXTUAL_EFFECTS:
+				return ((InternalEList<?>)getContextual_effects()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -257,14 +202,12 @@ public class ActionDescriptionImpl extends EObjectImpl implements ActionDescript
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case AdaptiveCyberDefensePackage.ACTION_DESCRIPTION__PROBABILISTICEFFECT:
-				return getProbabilisticeffect();
 			case AdaptiveCyberDefensePackage.ACTION_DESCRIPTION__COST:
 				return getCost();
-			case AdaptiveCyberDefensePackage.ACTION_DESCRIPTION__FORMULA:
-				return getFormula();
 			case AdaptiveCyberDefensePackage.ACTION_DESCRIPTION__ACTIONATOM:
 				return getActionatom();
+			case AdaptiveCyberDefensePackage.ACTION_DESCRIPTION__CONTEXTUAL_EFFECTS:
+				return getContextual_effects();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -278,18 +221,15 @@ public class ActionDescriptionImpl extends EObjectImpl implements ActionDescript
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case AdaptiveCyberDefensePackage.ACTION_DESCRIPTION__PROBABILISTICEFFECT:
-				getProbabilisticeffect().clear();
-				getProbabilisticeffect().addAll((Collection<? extends ProbabilisticEffect>)newValue);
-				return;
 			case AdaptiveCyberDefensePackage.ACTION_DESCRIPTION__COST:
 				setCost((BigDecimal)newValue);
 				return;
-			case AdaptiveCyberDefensePackage.ACTION_DESCRIPTION__FORMULA:
-				setFormula((Formula)newValue);
-				return;
 			case AdaptiveCyberDefensePackage.ACTION_DESCRIPTION__ACTIONATOM:
 				setActionatom((ActionAtom)newValue);
+				return;
+			case AdaptiveCyberDefensePackage.ACTION_DESCRIPTION__CONTEXTUAL_EFFECTS:
+				getContextual_effects().clear();
+				getContextual_effects().addAll((Collection<? extends ContextualEffect>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -303,17 +243,14 @@ public class ActionDescriptionImpl extends EObjectImpl implements ActionDescript
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case AdaptiveCyberDefensePackage.ACTION_DESCRIPTION__PROBABILISTICEFFECT:
-				getProbabilisticeffect().clear();
-				return;
 			case AdaptiveCyberDefensePackage.ACTION_DESCRIPTION__COST:
 				setCost(COST_EDEFAULT);
 				return;
-			case AdaptiveCyberDefensePackage.ACTION_DESCRIPTION__FORMULA:
-				setFormula((Formula)null);
-				return;
 			case AdaptiveCyberDefensePackage.ACTION_DESCRIPTION__ACTIONATOM:
 				setActionatom((ActionAtom)null);
+				return;
+			case AdaptiveCyberDefensePackage.ACTION_DESCRIPTION__CONTEXTUAL_EFFECTS:
+				getContextual_effects().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -327,14 +264,12 @@ public class ActionDescriptionImpl extends EObjectImpl implements ActionDescript
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case AdaptiveCyberDefensePackage.ACTION_DESCRIPTION__PROBABILISTICEFFECT:
-				return probabilisticeffect != null && !probabilisticeffect.isEmpty();
 			case AdaptiveCyberDefensePackage.ACTION_DESCRIPTION__COST:
 				return COST_EDEFAULT == null ? cost != null : !COST_EDEFAULT.equals(cost);
-			case AdaptiveCyberDefensePackage.ACTION_DESCRIPTION__FORMULA:
-				return formula != null;
 			case AdaptiveCyberDefensePackage.ACTION_DESCRIPTION__ACTIONATOM:
 				return actionatom != null;
+			case AdaptiveCyberDefensePackage.ACTION_DESCRIPTION__CONTEXTUAL_EFFECTS:
+				return contextual_effects != null && !contextual_effects.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
