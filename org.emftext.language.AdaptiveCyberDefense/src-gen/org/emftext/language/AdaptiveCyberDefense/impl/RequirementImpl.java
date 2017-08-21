@@ -12,25 +12,25 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import org.emftext.language.AdaptiveCyberDefense.AdaptiveCyberDefensePackage;
 import org.emftext.language.AdaptiveCyberDefense.Formula;
-import org.emftext.language.AdaptiveCyberDefense.OperationalRequirement;
+import org.emftext.language.AdaptiveCyberDefense.Requirement;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Operational Requirement</b></em>'.
+ * An implementation of the model object '<em><b>Requirement</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.emftext.language.AdaptiveCyberDefense.impl.OperationalRequirementImpl#getName <em>Name</em>}</li>
- *   <li>{@link org.emftext.language.AdaptiveCyberDefense.impl.OperationalRequirementImpl#getCost <em>Cost</em>}</li>
- *   <li>{@link org.emftext.language.AdaptiveCyberDefense.impl.OperationalRequirementImpl#getCondition <em>Condition</em>}</li>
- *   <li>{@link org.emftext.language.AdaptiveCyberDefense.impl.OperationalRequirementImpl#getDescription <em>Description</em>}</li>
+ *   <li>{@link org.emftext.language.AdaptiveCyberDefense.impl.RequirementImpl#getName <em>Name</em>}</li>
+ *   <li>{@link org.emftext.language.AdaptiveCyberDefense.impl.RequirementImpl#getCost <em>Cost</em>}</li>
+ *   <li>{@link org.emftext.language.AdaptiveCyberDefense.impl.RequirementImpl#getCondition <em>Condition</em>}</li>
+ *   <li>{@link org.emftext.language.AdaptiveCyberDefense.impl.RequirementImpl#getDescription <em>Description</em>}</li>
  * </ul>
  *
  * @generated
  */
-public abstract class OperationalRequirementImpl extends InitialVariableImpl implements OperationalRequirement {
+public abstract class RequirementImpl extends InitialVariableImpl implements Requirement {
 	/**
 	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -106,7 +106,7 @@ public abstract class OperationalRequirementImpl extends InitialVariableImpl imp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected OperationalRequirementImpl() {
+	protected RequirementImpl() {
 		super();
 	}
 
@@ -117,7 +117,7 @@ public abstract class OperationalRequirementImpl extends InitialVariableImpl imp
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return AdaptiveCyberDefensePackage.Literals.OPERATIONAL_REQUIREMENT;
+		return AdaptiveCyberDefensePackage.Literals.REQUIREMENT;
 	}
 
 	/**
@@ -138,7 +138,7 @@ public abstract class OperationalRequirementImpl extends InitialVariableImpl imp
 		String oldName = name;
 		name = newName;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, AdaptiveCyberDefensePackage.OPERATIONAL_REQUIREMENT__NAME, oldName, name));
+			eNotify(new ENotificationImpl(this, Notification.SET, AdaptiveCyberDefensePackage.REQUIREMENT__NAME, oldName, name));
 	}
 
 	/**
@@ -159,7 +159,7 @@ public abstract class OperationalRequirementImpl extends InitialVariableImpl imp
 		Integer oldCost = cost;
 		cost = newCost;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, AdaptiveCyberDefensePackage.OPERATIONAL_REQUIREMENT__COST, oldCost, cost));
+			eNotify(new ENotificationImpl(this, Notification.SET, AdaptiveCyberDefensePackage.REQUIREMENT__COST, oldCost, cost));
 	}
 
 	/**
@@ -180,7 +180,7 @@ public abstract class OperationalRequirementImpl extends InitialVariableImpl imp
 		Formula oldCondition = condition;
 		condition = newCondition;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, AdaptiveCyberDefensePackage.OPERATIONAL_REQUIREMENT__CONDITION, oldCondition, newCondition);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, AdaptiveCyberDefensePackage.REQUIREMENT__CONDITION, oldCondition, newCondition);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
@@ -195,14 +195,14 @@ public abstract class OperationalRequirementImpl extends InitialVariableImpl imp
 		if (newCondition != condition) {
 			NotificationChain msgs = null;
 			if (condition != null)
-				msgs = ((InternalEObject)condition).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - AdaptiveCyberDefensePackage.OPERATIONAL_REQUIREMENT__CONDITION, null, msgs);
+				msgs = ((InternalEObject)condition).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - AdaptiveCyberDefensePackage.REQUIREMENT__CONDITION, null, msgs);
 			if (newCondition != null)
-				msgs = ((InternalEObject)newCondition).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - AdaptiveCyberDefensePackage.OPERATIONAL_REQUIREMENT__CONDITION, null, msgs);
+				msgs = ((InternalEObject)newCondition).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - AdaptiveCyberDefensePackage.REQUIREMENT__CONDITION, null, msgs);
 			msgs = basicSetCondition(newCondition, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, AdaptiveCyberDefensePackage.OPERATIONAL_REQUIREMENT__CONDITION, newCondition, newCondition));
+			eNotify(new ENotificationImpl(this, Notification.SET, AdaptiveCyberDefensePackage.REQUIREMENT__CONDITION, newCondition, newCondition));
 	}
 
 	/**
@@ -223,7 +223,7 @@ public abstract class OperationalRequirementImpl extends InitialVariableImpl imp
 		String oldDescription = description;
 		description = newDescription;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, AdaptiveCyberDefensePackage.OPERATIONAL_REQUIREMENT__DESCRIPTION, oldDescription, description));
+			eNotify(new ENotificationImpl(this, Notification.SET, AdaptiveCyberDefensePackage.REQUIREMENT__DESCRIPTION, oldDescription, description));
 	}
 
 	/**
@@ -234,7 +234,7 @@ public abstract class OperationalRequirementImpl extends InitialVariableImpl imp
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case AdaptiveCyberDefensePackage.OPERATIONAL_REQUIREMENT__CONDITION:
+			case AdaptiveCyberDefensePackage.REQUIREMENT__CONDITION:
 				return basicSetCondition(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -248,13 +248,13 @@ public abstract class OperationalRequirementImpl extends InitialVariableImpl imp
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case AdaptiveCyberDefensePackage.OPERATIONAL_REQUIREMENT__NAME:
+			case AdaptiveCyberDefensePackage.REQUIREMENT__NAME:
 				return getName();
-			case AdaptiveCyberDefensePackage.OPERATIONAL_REQUIREMENT__COST:
+			case AdaptiveCyberDefensePackage.REQUIREMENT__COST:
 				return getCost();
-			case AdaptiveCyberDefensePackage.OPERATIONAL_REQUIREMENT__CONDITION:
+			case AdaptiveCyberDefensePackage.REQUIREMENT__CONDITION:
 				return getCondition();
-			case AdaptiveCyberDefensePackage.OPERATIONAL_REQUIREMENT__DESCRIPTION:
+			case AdaptiveCyberDefensePackage.REQUIREMENT__DESCRIPTION:
 				return getDescription();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -268,16 +268,16 @@ public abstract class OperationalRequirementImpl extends InitialVariableImpl imp
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case AdaptiveCyberDefensePackage.OPERATIONAL_REQUIREMENT__NAME:
+			case AdaptiveCyberDefensePackage.REQUIREMENT__NAME:
 				setName((String)newValue);
 				return;
-			case AdaptiveCyberDefensePackage.OPERATIONAL_REQUIREMENT__COST:
+			case AdaptiveCyberDefensePackage.REQUIREMENT__COST:
 				setCost((Integer)newValue);
 				return;
-			case AdaptiveCyberDefensePackage.OPERATIONAL_REQUIREMENT__CONDITION:
+			case AdaptiveCyberDefensePackage.REQUIREMENT__CONDITION:
 				setCondition((Formula)newValue);
 				return;
-			case AdaptiveCyberDefensePackage.OPERATIONAL_REQUIREMENT__DESCRIPTION:
+			case AdaptiveCyberDefensePackage.REQUIREMENT__DESCRIPTION:
 				setDescription((String)newValue);
 				return;
 		}
@@ -292,16 +292,16 @@ public abstract class OperationalRequirementImpl extends InitialVariableImpl imp
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case AdaptiveCyberDefensePackage.OPERATIONAL_REQUIREMENT__NAME:
+			case AdaptiveCyberDefensePackage.REQUIREMENT__NAME:
 				setName(NAME_EDEFAULT);
 				return;
-			case AdaptiveCyberDefensePackage.OPERATIONAL_REQUIREMENT__COST:
+			case AdaptiveCyberDefensePackage.REQUIREMENT__COST:
 				setCost(COST_EDEFAULT);
 				return;
-			case AdaptiveCyberDefensePackage.OPERATIONAL_REQUIREMENT__CONDITION:
+			case AdaptiveCyberDefensePackage.REQUIREMENT__CONDITION:
 				setCondition((Formula)null);
 				return;
-			case AdaptiveCyberDefensePackage.OPERATIONAL_REQUIREMENT__DESCRIPTION:
+			case AdaptiveCyberDefensePackage.REQUIREMENT__DESCRIPTION:
 				setDescription(DESCRIPTION_EDEFAULT);
 				return;
 		}
@@ -316,13 +316,13 @@ public abstract class OperationalRequirementImpl extends InitialVariableImpl imp
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case AdaptiveCyberDefensePackage.OPERATIONAL_REQUIREMENT__NAME:
+			case AdaptiveCyberDefensePackage.REQUIREMENT__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-			case AdaptiveCyberDefensePackage.OPERATIONAL_REQUIREMENT__COST:
+			case AdaptiveCyberDefensePackage.REQUIREMENT__COST:
 				return COST_EDEFAULT == null ? cost != null : !COST_EDEFAULT.equals(cost);
-			case AdaptiveCyberDefensePackage.OPERATIONAL_REQUIREMENT__CONDITION:
+			case AdaptiveCyberDefensePackage.REQUIREMENT__CONDITION:
 				return condition != null;
-			case AdaptiveCyberDefensePackage.OPERATIONAL_REQUIREMENT__DESCRIPTION:
+			case AdaptiveCyberDefensePackage.REQUIREMENT__DESCRIPTION:
 				return DESCRIPTION_EDEFAULT == null ? description != null : !DESCRIPTION_EDEFAULT.equals(description);
 		}
 		return super.eIsSet(featureID);
@@ -348,4 +348,4 @@ public abstract class OperationalRequirementImpl extends InitialVariableImpl imp
 		return result.toString();
 	}
 
-} //OperationalRequirementImpl
+} //RequirementImpl

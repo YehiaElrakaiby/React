@@ -21,7 +21,7 @@ package org.emftext.language.AdaptiveCyberDefense;
  * @model abstract="true"
  * @generated
  */
-public interface DeadlineRequirement extends OperationalRequirement {
+public interface DeadlineRequirement extends Requirement {
 	/**
 	 * Returns the value of the '<em><b>Cancellation</b></em>' containment reference.
 	 * <!-- begin-user-doc -->

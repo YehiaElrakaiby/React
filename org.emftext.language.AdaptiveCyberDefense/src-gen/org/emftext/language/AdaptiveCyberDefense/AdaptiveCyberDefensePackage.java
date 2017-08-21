@@ -306,14 +306,14 @@ public interface AdaptiveCyberDefensePackage extends EPackage {
 	int INITIAL_VARIABLE_FEATURE_COUNT = 0;
 
 	/**
-	 * The meta object id for the '{@link org.emftext.language.AdaptiveCyberDefense.impl.OperationalRequirementImpl <em>Operational Requirement</em>}' class.
+	 * The meta object id for the '{@link org.emftext.language.AdaptiveCyberDefense.impl.RequirementImpl <em>Requirement</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.emftext.language.AdaptiveCyberDefense.impl.OperationalRequirementImpl
-	 * @see org.emftext.language.AdaptiveCyberDefense.impl.AdaptiveCyberDefensePackageImpl#getOperationalRequirement()
+	 * @see org.emftext.language.AdaptiveCyberDefense.impl.RequirementImpl
+	 * @see org.emftext.language.AdaptiveCyberDefense.impl.AdaptiveCyberDefensePackageImpl#getRequirement()
 	 * @generated
 	 */
-	int OPERATIONAL_REQUIREMENT = 4;
+	int REQUIREMENT = 4;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -322,7 +322,7 @@ public interface AdaptiveCyberDefensePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATIONAL_REQUIREMENT__NAME = INITIAL_VARIABLE_FEATURE_COUNT + 0;
+	int REQUIREMENT__NAME = INITIAL_VARIABLE_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Cost</b></em>' attribute.
@@ -331,7 +331,7 @@ public interface AdaptiveCyberDefensePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATIONAL_REQUIREMENT__COST = INITIAL_VARIABLE_FEATURE_COUNT + 1;
+	int REQUIREMENT__COST = INITIAL_VARIABLE_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Condition</b></em>' containment reference.
@@ -340,7 +340,7 @@ public interface AdaptiveCyberDefensePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATIONAL_REQUIREMENT__CONDITION = INITIAL_VARIABLE_FEATURE_COUNT + 2;
+	int REQUIREMENT__CONDITION = INITIAL_VARIABLE_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Description</b></em>' attribute.
@@ -349,16 +349,16 @@ public interface AdaptiveCyberDefensePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATIONAL_REQUIREMENT__DESCRIPTION = INITIAL_VARIABLE_FEATURE_COUNT + 3;
+	int REQUIREMENT__DESCRIPTION = INITIAL_VARIABLE_FEATURE_COUNT + 3;
 
 	/**
-	 * The number of structural features of the '<em>Operational Requirement</em>' class.
+	 * The number of structural features of the '<em>Requirement</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATIONAL_REQUIREMENT_FEATURE_COUNT = INITIAL_VARIABLE_FEATURE_COUNT + 4;
+	int REQUIREMENT_FEATURE_COUNT = INITIAL_VARIABLE_FEATURE_COUNT + 4;
 
 	/**
 	 * The meta object id for the '{@link org.emftext.language.AdaptiveCyberDefense.impl.ActionVariableImpl <em>Action Variable</em>}' class.
@@ -683,7 +683,7 @@ public interface AdaptiveCyberDefensePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DEADLINE_REQUIREMENT__NAME = OPERATIONAL_REQUIREMENT__NAME;
+	int DEADLINE_REQUIREMENT__NAME = REQUIREMENT__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Cost</b></em>' attribute.
@@ -692,7 +692,7 @@ public interface AdaptiveCyberDefensePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DEADLINE_REQUIREMENT__COST = OPERATIONAL_REQUIREMENT__COST;
+	int DEADLINE_REQUIREMENT__COST = REQUIREMENT__COST;
 
 	/**
 	 * The feature id for the '<em><b>Condition</b></em>' containment reference.
@@ -701,7 +701,7 @@ public interface AdaptiveCyberDefensePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DEADLINE_REQUIREMENT__CONDITION = OPERATIONAL_REQUIREMENT__CONDITION;
+	int DEADLINE_REQUIREMENT__CONDITION = REQUIREMENT__CONDITION;
 
 	/**
 	 * The feature id for the '<em><b>Description</b></em>' attribute.
@@ -710,7 +710,7 @@ public interface AdaptiveCyberDefensePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DEADLINE_REQUIREMENT__DESCRIPTION = OPERATIONAL_REQUIREMENT__DESCRIPTION;
+	int DEADLINE_REQUIREMENT__DESCRIPTION = REQUIREMENT__DESCRIPTION;
 
 	/**
 	 * The feature id for the '<em><b>Cancellation</b></em>' containment reference.
@@ -719,7 +719,7 @@ public interface AdaptiveCyberDefensePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DEADLINE_REQUIREMENT__CANCELLATION = OPERATIONAL_REQUIREMENT_FEATURE_COUNT + 0;
+	int DEADLINE_REQUIREMENT__CANCELLATION = REQUIREMENT_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Activation</b></em>' containment reference.
@@ -728,7 +728,7 @@ public interface AdaptiveCyberDefensePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DEADLINE_REQUIREMENT__ACTIVATION = OPERATIONAL_REQUIREMENT_FEATURE_COUNT + 1;
+	int DEADLINE_REQUIREMENT__ACTIVATION = REQUIREMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Deadline</b></em>' attribute.
@@ -737,7 +737,7 @@ public interface AdaptiveCyberDefensePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DEADLINE_REQUIREMENT__DEADLINE = OPERATIONAL_REQUIREMENT_FEATURE_COUNT + 2;
+	int DEADLINE_REQUIREMENT__DEADLINE = REQUIREMENT_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of structural features of the '<em>Deadline Requirement</em>' class.
@@ -746,7 +746,7 @@ public interface AdaptiveCyberDefensePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DEADLINE_REQUIREMENT_FEATURE_COUNT = OPERATIONAL_REQUIREMENT_FEATURE_COUNT + 3;
+	int DEADLINE_REQUIREMENT_FEATURE_COUNT = REQUIREMENT_FEATURE_COUNT + 3;
 
 	/**
 	 * The meta object id for the '{@link org.emftext.language.AdaptiveCyberDefense.impl.AchieveImpl <em>Achieve</em>}' class.
@@ -1022,7 +1022,7 @@ public interface AdaptiveCyberDefensePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int UNCONDITIONAL_MAINTAIN__NAME = OPERATIONAL_REQUIREMENT__NAME;
+	int UNCONDITIONAL_MAINTAIN__NAME = REQUIREMENT__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Cost</b></em>' attribute.
@@ -1031,7 +1031,7 @@ public interface AdaptiveCyberDefensePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int UNCONDITIONAL_MAINTAIN__COST = OPERATIONAL_REQUIREMENT__COST;
+	int UNCONDITIONAL_MAINTAIN__COST = REQUIREMENT__COST;
 
 	/**
 	 * The feature id for the '<em><b>Condition</b></em>' containment reference.
@@ -1040,7 +1040,7 @@ public interface AdaptiveCyberDefensePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int UNCONDITIONAL_MAINTAIN__CONDITION = OPERATIONAL_REQUIREMENT__CONDITION;
+	int UNCONDITIONAL_MAINTAIN__CONDITION = REQUIREMENT__CONDITION;
 
 	/**
 	 * The feature id for the '<em><b>Description</b></em>' attribute.
@@ -1049,7 +1049,7 @@ public interface AdaptiveCyberDefensePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int UNCONDITIONAL_MAINTAIN__DESCRIPTION = OPERATIONAL_REQUIREMENT__DESCRIPTION;
+	int UNCONDITIONAL_MAINTAIN__DESCRIPTION = REQUIREMENT__DESCRIPTION;
 
 	/**
 	 * The number of structural features of the '<em>Unconditional Maintain</em>' class.
@@ -1058,7 +1058,7 @@ public interface AdaptiveCyberDefensePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int UNCONDITIONAL_MAINTAIN_FEATURE_COUNT = OPERATIONAL_REQUIREMENT_FEATURE_COUNT + 0;
+	int UNCONDITIONAL_MAINTAIN_FEATURE_COUNT = REQUIREMENT_FEATURE_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link org.emftext.language.AdaptiveCyberDefense.RequirementStatus <em>Requirement Status</em>}' enum.
@@ -1244,58 +1244,58 @@ public interface AdaptiveCyberDefensePackage extends EPackage {
 	EReference getProbabilisticEffect_Stateatoms();
 
 	/**
-	 * Returns the meta object for class '{@link org.emftext.language.AdaptiveCyberDefense.OperationalRequirement <em>Operational Requirement</em>}'.
+	 * Returns the meta object for class '{@link org.emftext.language.AdaptiveCyberDefense.Requirement <em>Requirement</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Operational Requirement</em>'.
-	 * @see org.emftext.language.AdaptiveCyberDefense.OperationalRequirement
+	 * @return the meta object for class '<em>Requirement</em>'.
+	 * @see org.emftext.language.AdaptiveCyberDefense.Requirement
 	 * @generated
 	 */
-	EClass getOperationalRequirement();
+	EClass getRequirement();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.emftext.language.AdaptiveCyberDefense.OperationalRequirement#getName <em>Name</em>}'.
+	 * Returns the meta object for the attribute '{@link org.emftext.language.AdaptiveCyberDefense.Requirement#getName <em>Name</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Name</em>'.
-	 * @see org.emftext.language.AdaptiveCyberDefense.OperationalRequirement#getName()
-	 * @see #getOperationalRequirement()
+	 * @see org.emftext.language.AdaptiveCyberDefense.Requirement#getName()
+	 * @see #getRequirement()
 	 * @generated
 	 */
-	EAttribute getOperationalRequirement_Name();
+	EAttribute getRequirement_Name();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.emftext.language.AdaptiveCyberDefense.OperationalRequirement#getCost <em>Cost</em>}'.
+	 * Returns the meta object for the attribute '{@link org.emftext.language.AdaptiveCyberDefense.Requirement#getCost <em>Cost</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Cost</em>'.
-	 * @see org.emftext.language.AdaptiveCyberDefense.OperationalRequirement#getCost()
-	 * @see #getOperationalRequirement()
+	 * @see org.emftext.language.AdaptiveCyberDefense.Requirement#getCost()
+	 * @see #getRequirement()
 	 * @generated
 	 */
-	EAttribute getOperationalRequirement_Cost();
+	EAttribute getRequirement_Cost();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link org.emftext.language.AdaptiveCyberDefense.OperationalRequirement#getCondition <em>Condition</em>}'.
+	 * Returns the meta object for the containment reference '{@link org.emftext.language.AdaptiveCyberDefense.Requirement#getCondition <em>Condition</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference '<em>Condition</em>'.
-	 * @see org.emftext.language.AdaptiveCyberDefense.OperationalRequirement#getCondition()
-	 * @see #getOperationalRequirement()
+	 * @see org.emftext.language.AdaptiveCyberDefense.Requirement#getCondition()
+	 * @see #getRequirement()
 	 * @generated
 	 */
-	EReference getOperationalRequirement_Condition();
+	EReference getRequirement_Condition();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.emftext.language.AdaptiveCyberDefense.OperationalRequirement#getDescription <em>Description</em>}'.
+	 * Returns the meta object for the attribute '{@link org.emftext.language.AdaptiveCyberDefense.Requirement#getDescription <em>Description</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Description</em>'.
-	 * @see org.emftext.language.AdaptiveCyberDefense.OperationalRequirement#getDescription()
-	 * @see #getOperationalRequirement()
+	 * @see org.emftext.language.AdaptiveCyberDefense.Requirement#getDescription()
+	 * @see #getRequirement()
 	 * @generated
 	 */
-	EAttribute getOperationalRequirement_Description();
+	EAttribute getRequirement_Description();
 
 	/**
 	 * Returns the meta object for class '{@link org.emftext.language.AdaptiveCyberDefense.ActionVariable <em>Action Variable</em>}'.
@@ -1890,14 +1890,14 @@ public interface AdaptiveCyberDefensePackage extends EPackage {
 		EReference PROBABILISTIC_EFFECT__STATEATOMS = eINSTANCE.getProbabilisticEffect_Stateatoms();
 
 		/**
-		 * The meta object literal for the '{@link org.emftext.language.AdaptiveCyberDefense.impl.OperationalRequirementImpl <em>Operational Requirement</em>}' class.
+		 * The meta object literal for the '{@link org.emftext.language.AdaptiveCyberDefense.impl.RequirementImpl <em>Requirement</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.emftext.language.AdaptiveCyberDefense.impl.OperationalRequirementImpl
-		 * @see org.emftext.language.AdaptiveCyberDefense.impl.AdaptiveCyberDefensePackageImpl#getOperationalRequirement()
+		 * @see org.emftext.language.AdaptiveCyberDefense.impl.RequirementImpl
+		 * @see org.emftext.language.AdaptiveCyberDefense.impl.AdaptiveCyberDefensePackageImpl#getRequirement()
 		 * @generated
 		 */
-		EClass OPERATIONAL_REQUIREMENT = eINSTANCE.getOperationalRequirement();
+		EClass REQUIREMENT = eINSTANCE.getRequirement();
 
 		/**
 		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
@@ -1905,7 +1905,7 @@ public interface AdaptiveCyberDefensePackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute OPERATIONAL_REQUIREMENT__NAME = eINSTANCE.getOperationalRequirement_Name();
+		EAttribute REQUIREMENT__NAME = eINSTANCE.getRequirement_Name();
 
 		/**
 		 * The meta object literal for the '<em><b>Cost</b></em>' attribute feature.
@@ -1913,7 +1913,7 @@ public interface AdaptiveCyberDefensePackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute OPERATIONAL_REQUIREMENT__COST = eINSTANCE.getOperationalRequirement_Cost();
+		EAttribute REQUIREMENT__COST = eINSTANCE.getRequirement_Cost();
 
 		/**
 		 * The meta object literal for the '<em><b>Condition</b></em>' containment reference feature.
@@ -1921,7 +1921,7 @@ public interface AdaptiveCyberDefensePackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference OPERATIONAL_REQUIREMENT__CONDITION = eINSTANCE.getOperationalRequirement_Condition();
+		EReference REQUIREMENT__CONDITION = eINSTANCE.getRequirement_Condition();
 
 		/**
 		 * The meta object literal for the '<em><b>Description</b></em>' attribute feature.
@@ -1929,7 +1929,7 @@ public interface AdaptiveCyberDefensePackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute OPERATIONAL_REQUIREMENT__DESCRIPTION = eINSTANCE.getOperationalRequirement_Description();
+		EAttribute REQUIREMENT__DESCRIPTION = eINSTANCE.getRequirement_Description();
 
 		/**
 		 * The meta object literal for the '{@link org.emftext.language.AdaptiveCyberDefense.impl.ActionVariableImpl <em>Action Variable</em>}' class.

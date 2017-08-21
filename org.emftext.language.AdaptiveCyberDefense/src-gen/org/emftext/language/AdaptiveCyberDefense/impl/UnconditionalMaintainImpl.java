@@ -14,7 +14,7 @@ import org.emftext.language.AdaptiveCyberDefense.UnconditionalMaintain;
  *
  * @generated
  */
-public class UnconditionalMaintainImpl extends OperationalRequirementImpl implements UnconditionalMaintain {
+public class UnconditionalMaintainImpl extends RequirementImpl implements UnconditionalMaintain {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

@@ -92,10 +92,10 @@ public class AdaptiveCyberDefenseSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case AdaptiveCyberDefensePackage.OPERATIONAL_REQUIREMENT: {
-				OperationalRequirement operationalRequirement = (OperationalRequirement)theEObject;
-				T result = caseOperationalRequirement(operationalRequirement);
-				if (result == null) result = caseInitialVariable(operationalRequirement);
+			case AdaptiveCyberDefensePackage.REQUIREMENT: {
+				Requirement requirement = (Requirement)theEObject;
+				T result = caseRequirement(requirement);
+				if (result == null) result = caseInitialVariable(requirement);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -175,7 +175,7 @@ public class AdaptiveCyberDefenseSwitch<T> extends Switch<T> {
 				Achieve achieve = (Achieve)theEObject;
 				T result = caseAchieve(achieve);
 				if (result == null) result = caseDeadlineRequirement(achieve);
-				if (result == null) result = caseOperationalRequirement(achieve);
+				if (result == null) result = caseRequirement(achieve);
 				if (result == null) result = caseInitialVariable(achieve);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -184,7 +184,7 @@ public class AdaptiveCyberDefenseSwitch<T> extends Switch<T> {
 				Maintain maintain = (Maintain)theEObject;
 				T result = caseMaintain(maintain);
 				if (result == null) result = caseDeadlineRequirement(maintain);
-				if (result == null) result = caseOperationalRequirement(maintain);
+				if (result == null) result = caseRequirement(maintain);
 				if (result == null) result = caseInitialVariable(maintain);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -213,7 +213,7 @@ public class AdaptiveCyberDefenseSwitch<T> extends Switch<T> {
 			case AdaptiveCyberDefensePackage.DEADLINE_REQUIREMENT: {
 				DeadlineRequirement deadlineRequirement = (DeadlineRequirement)theEObject;
 				T result = caseDeadlineRequirement(deadlineRequirement);
-				if (result == null) result = caseOperationalRequirement(deadlineRequirement);
+				if (result == null) result = caseRequirement(deadlineRequirement);
 				if (result == null) result = caseInitialVariable(deadlineRequirement);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -221,7 +221,7 @@ public class AdaptiveCyberDefenseSwitch<T> extends Switch<T> {
 			case AdaptiveCyberDefensePackage.UNCONDITIONAL_MAINTAIN: {
 				UnconditionalMaintain unconditionalMaintain = (UnconditionalMaintain)theEObject;
 				T result = caseUnconditionalMaintain(unconditionalMaintain);
-				if (result == null) result = caseOperationalRequirement(unconditionalMaintain);
+				if (result == null) result = caseRequirement(unconditionalMaintain);
 				if (result == null) result = caseInitialVariable(unconditionalMaintain);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -291,17 +291,17 @@ public class AdaptiveCyberDefenseSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Operational Requirement</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Requirement</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Operational Requirement</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Requirement</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseOperationalRequirement(OperationalRequirement object) {
+	public T caseRequirement(Requirement object) {
 		return null;
 	}
 

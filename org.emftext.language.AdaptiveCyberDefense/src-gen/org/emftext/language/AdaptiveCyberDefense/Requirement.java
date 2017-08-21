@@ -5,24 +5,24 @@ package org.emftext.language.AdaptiveCyberDefense;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Operational Requirement</b></em>'.
+ * A representation of the model object '<em><b>Requirement</b></em>'.
  * <!-- end-user-doc -->
  *
  * <p>
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.emftext.language.AdaptiveCyberDefense.OperationalRequirement#getName <em>Name</em>}</li>
- *   <li>{@link org.emftext.language.AdaptiveCyberDefense.OperationalRequirement#getCost <em>Cost</em>}</li>
- *   <li>{@link org.emftext.language.AdaptiveCyberDefense.OperationalRequirement#getCondition <em>Condition</em>}</li>
- *   <li>{@link org.emftext.language.AdaptiveCyberDefense.OperationalRequirement#getDescription <em>Description</em>}</li>
+ *   <li>{@link org.emftext.language.AdaptiveCyberDefense.Requirement#getName <em>Name</em>}</li>
+ *   <li>{@link org.emftext.language.AdaptiveCyberDefense.Requirement#getCost <em>Cost</em>}</li>
+ *   <li>{@link org.emftext.language.AdaptiveCyberDefense.Requirement#getCondition <em>Condition</em>}</li>
+ *   <li>{@link org.emftext.language.AdaptiveCyberDefense.Requirement#getDescription <em>Description</em>}</li>
  * </ul>
  *
- * @see org.emftext.language.AdaptiveCyberDefense.AdaptiveCyberDefensePackage#getOperationalRequirement()
+ * @see org.emftext.language.AdaptiveCyberDefense.AdaptiveCyberDefensePackage#getRequirement()
  * @model abstract="true"
  * @generated
  */
-public interface OperationalRequirement extends InitialVariable {
+public interface Requirement extends InitialVariable {
 	/**
 	 * Returns the value of the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
@@ -33,14 +33,14 @@ public interface OperationalRequirement extends InitialVariable {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Name</em>' attribute.
 	 * @see #setName(String)
-	 * @see org.emftext.language.AdaptiveCyberDefense.AdaptiveCyberDefensePackage#getOperationalRequirement_Name()
+	 * @see org.emftext.language.AdaptiveCyberDefense.AdaptiveCyberDefensePackage#getRequirement_Name()
 	 * @model id="true" required="true"
 	 * @generated
 	 */
 	String getName();
 
 	/**
-	 * Sets the value of the '{@link org.emftext.language.AdaptiveCyberDefense.OperationalRequirement#getName <em>Name</em>}' attribute.
+	 * Sets the value of the '{@link org.emftext.language.AdaptiveCyberDefense.Requirement#getName <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Name</em>' attribute.
@@ -59,14 +59,14 @@ public interface OperationalRequirement extends InitialVariable {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Cost</em>' attribute.
 	 * @see #setCost(Integer)
-	 * @see org.emftext.language.AdaptiveCyberDefense.AdaptiveCyberDefensePackage#getOperationalRequirement_Cost()
+	 * @see org.emftext.language.AdaptiveCyberDefense.AdaptiveCyberDefensePackage#getRequirement_Cost()
 	 * @model required="true"
 	 * @generated
 	 */
 	Integer getCost();
 
 	/**
-	 * Sets the value of the '{@link org.emftext.language.AdaptiveCyberDefense.OperationalRequirement#getCost <em>Cost</em>}' attribute.
+	 * Sets the value of the '{@link org.emftext.language.AdaptiveCyberDefense.Requirement#getCost <em>Cost</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Cost</em>' attribute.
@@ -85,14 +85,14 @@ public interface OperationalRequirement extends InitialVariable {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Condition</em>' containment reference.
 	 * @see #setCondition(Formula)
-	 * @see org.emftext.language.AdaptiveCyberDefense.AdaptiveCyberDefensePackage#getOperationalRequirement_Condition()
+	 * @see org.emftext.language.AdaptiveCyberDefense.AdaptiveCyberDefensePackage#getRequirement_Condition()
 	 * @model containment="true" required="true"
 	 * @generated
 	 */
 	Formula getCondition();
 
 	/**
-	 * Sets the value of the '{@link org.emftext.language.AdaptiveCyberDefense.OperationalRequirement#getCondition <em>Condition</em>}' containment reference.
+	 * Sets the value of the '{@link org.emftext.language.AdaptiveCyberDefense.Requirement#getCondition <em>Condition</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Condition</em>' containment reference.
@@ -111,14 +111,14 @@ public interface OperationalRequirement extends InitialVariable {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Description</em>' attribute.
 	 * @see #setDescription(String)
-	 * @see org.emftext.language.AdaptiveCyberDefense.AdaptiveCyberDefensePackage#getOperationalRequirement_Description()
+	 * @see org.emftext.language.AdaptiveCyberDefense.AdaptiveCyberDefensePackage#getRequirement_Description()
 	 * @model
 	 * @generated
 	 */
 	String getDescription();
 
 	/**
-	 * Sets the value of the '{@link org.emftext.language.AdaptiveCyberDefense.OperationalRequirement#getDescription <em>Description</em>}' attribute.
+	 * Sets the value of the '{@link org.emftext.language.AdaptiveCyberDefense.Requirement#getDescription <em>Description</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Description</em>' attribute.
@@ -127,4 +127,4 @@ public interface OperationalRequirement extends InitialVariable {
 	 */
 	void setDescription(String value);
 
-} // OperationalRequirement
+} // Requirement

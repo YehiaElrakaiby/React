@@ -28,9 +28,9 @@ import org.emftext.language.AdaptiveCyberDefense.InitialAtom;
 import org.emftext.language.AdaptiveCyberDefense.InitialVariable;
 import org.emftext.language.AdaptiveCyberDefense.Maintain;
 import org.emftext.language.AdaptiveCyberDefense.Negation;
-import org.emftext.language.AdaptiveCyberDefense.OperationalRequirement;
 import org.emftext.language.AdaptiveCyberDefense.Parentheses;
 import org.emftext.language.AdaptiveCyberDefense.ProbabilisticEffect;
+import org.emftext.language.AdaptiveCyberDefense.Requirement;
 import org.emftext.language.AdaptiveCyberDefense.RequirementStatus;
 import org.emftext.language.AdaptiveCyberDefense.StateAtom;
 import org.emftext.language.AdaptiveCyberDefense.StateVariable;
@@ -78,7 +78,7 @@ public class AdaptiveCyberDefensePackageImpl extends EPackageImpl implements Ada
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass operationalRequirementEClass = null;
+	private EClass requirementEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -421,8 +421,8 @@ public class AdaptiveCyberDefensePackageImpl extends EPackageImpl implements Ada
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getOperationalRequirement() {
-		return operationalRequirementEClass;
+	public EClass getRequirement() {
+		return requirementEClass;
 	}
 
 	/**
@@ -430,8 +430,8 @@ public class AdaptiveCyberDefensePackageImpl extends EPackageImpl implements Ada
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getOperationalRequirement_Name() {
-		return (EAttribute)operationalRequirementEClass.getEStructuralFeatures().get(0);
+	public EAttribute getRequirement_Name() {
+		return (EAttribute)requirementEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -439,8 +439,8 @@ public class AdaptiveCyberDefensePackageImpl extends EPackageImpl implements Ada
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getOperationalRequirement_Cost() {
-		return (EAttribute)operationalRequirementEClass.getEStructuralFeatures().get(1);
+	public EAttribute getRequirement_Cost() {
+		return (EAttribute)requirementEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -448,8 +448,8 @@ public class AdaptiveCyberDefensePackageImpl extends EPackageImpl implements Ada
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getOperationalRequirement_Condition() {
-		return (EReference)operationalRequirementEClass.getEStructuralFeatures().get(2);
+	public EReference getRequirement_Condition() {
+		return (EReference)requirementEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -457,8 +457,8 @@ public class AdaptiveCyberDefensePackageImpl extends EPackageImpl implements Ada
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getOperationalRequirement_Description() {
-		return (EAttribute)operationalRequirementEClass.getEStructuralFeatures().get(3);
+	public EAttribute getRequirement_Description() {
+		return (EAttribute)requirementEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -886,11 +886,11 @@ public class AdaptiveCyberDefensePackageImpl extends EPackageImpl implements Ada
 		createEAttribute(probabilisticEffectEClass, PROBABILISTIC_EFFECT__PROBABILITY);
 		createEReference(probabilisticEffectEClass, PROBABILISTIC_EFFECT__STATEATOMS);
 
-		operationalRequirementEClass = createEClass(OPERATIONAL_REQUIREMENT);
-		createEAttribute(operationalRequirementEClass, OPERATIONAL_REQUIREMENT__NAME);
-		createEAttribute(operationalRequirementEClass, OPERATIONAL_REQUIREMENT__COST);
-		createEReference(operationalRequirementEClass, OPERATIONAL_REQUIREMENT__CONDITION);
-		createEAttribute(operationalRequirementEClass, OPERATIONAL_REQUIREMENT__DESCRIPTION);
+		requirementEClass = createEClass(REQUIREMENT);
+		createEAttribute(requirementEClass, REQUIREMENT__NAME);
+		createEAttribute(requirementEClass, REQUIREMENT__COST);
+		createEReference(requirementEClass, REQUIREMENT__CONDITION);
+		createEAttribute(requirementEClass, REQUIREMENT__DESCRIPTION);
 
 		actionVariableEClass = createEClass(ACTION_VARIABLE);
 		createEAttribute(actionVariableEClass, ACTION_VARIABLE__TYPE);
@@ -985,7 +985,7 @@ public class AdaptiveCyberDefensePackageImpl extends EPackageImpl implements Ada
 		// Add supertypes to classes
 		stateVariableEClass.getESuperTypes().add(this.getVariable());
 		stateVariableEClass.getESuperTypes().add(this.getInitialVariable());
-		operationalRequirementEClass.getESuperTypes().add(this.getInitialVariable());
+		requirementEClass.getESuperTypes().add(this.getInitialVariable());
 		actionVariableEClass.getESuperTypes().add(this.getVariable());
 		stateAtomEClass.getESuperTypes().add(this.getInitialVariable());
 		conjunctionEClass.getESuperTypes().add(this.getFormula());
@@ -997,14 +997,14 @@ public class AdaptiveCyberDefensePackageImpl extends EPackageImpl implements Ada
 		trueEClass.getESuperTypes().add(this.getFormula());
 		atomEClass.getESuperTypes().add(this.getFormula());
 		falseEClass.getESuperTypes().add(this.getFormula());
-		deadlineRequirementEClass.getESuperTypes().add(this.getOperationalRequirement());
-		unconditionalMaintainEClass.getESuperTypes().add(this.getOperationalRequirement());
+		deadlineRequirementEClass.getESuperTypes().add(this.getRequirement());
+		unconditionalMaintainEClass.getESuperTypes().add(this.getRequirement());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(domainDescriptionEClass, DomainDescription.class, "DomainDescription", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getDomainDescription_State_variables(), this.getStateVariable(), null, "state_variables", null, 0, -1, DomainDescription.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getDomainDescription_Action_descriptions(), this.getActionDescription(), null, "action_descriptions", null, 0, -1, DomainDescription.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getDomainDescription_Requirements(), this.getOperationalRequirement(), null, "requirements", null, 0, -1, DomainDescription.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getDomainDescription_Requirements(), this.getRequirement(), null, "requirements", null, 0, -1, DomainDescription.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getDomainDescription_Actions(), this.getActionVariable(), null, "actions", null, 0, -1, DomainDescription.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getDomainDescription_Initial_atoms(), this.getInitialAtom(), null, "initial_atoms", null, 1, -1, DomainDescription.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
@@ -1020,11 +1020,11 @@ public class AdaptiveCyberDefensePackageImpl extends EPackageImpl implements Ada
 		initEAttribute(getProbabilisticEffect_Probability(), ecorePackage.getEBigDecimal(), "probability", "1.0", 0, 1, ProbabilisticEffect.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getProbabilisticEffect_Stateatoms(), this.getStateAtom(), null, "stateatoms", null, 0, -1, ProbabilisticEffect.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(operationalRequirementEClass, OperationalRequirement.class, "OperationalRequirement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getOperationalRequirement_Name(), ecorePackage.getEString(), "name", null, 1, 1, OperationalRequirement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getOperationalRequirement_Cost(), ecorePackage.getEIntegerObject(), "cost", null, 1, 1, OperationalRequirement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getOperationalRequirement_Condition(), this.getFormula(), null, "condition", null, 1, 1, OperationalRequirement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getOperationalRequirement_Description(), ecorePackage.getEString(), "description", null, 0, 1, OperationalRequirement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(requirementEClass, Requirement.class, "Requirement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getRequirement_Name(), ecorePackage.getEString(), "name", null, 1, 1, Requirement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getRequirement_Cost(), ecorePackage.getEIntegerObject(), "cost", null, 1, 1, Requirement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getRequirement_Condition(), this.getFormula(), null, "condition", null, 1, 1, Requirement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getRequirement_Description(), ecorePackage.getEString(), "description", null, 0, 1, Requirement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(actionVariableEClass, ActionVariable.class, "ActionVariable", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getActionVariable_Type(), this.getActionType(), "type", null, 0, 1, ActionVariable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

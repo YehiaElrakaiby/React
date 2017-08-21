@@ -4,7 +4,6 @@ package org.emftext.language.AdaptiveCyberDefense.impl;
 
 import java.util.Collection;
 
-import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.common.util.EList;
@@ -12,7 +11,6 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
-import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
@@ -24,7 +22,7 @@ import org.emftext.language.AdaptiveCyberDefense.AdaptiveCyberDefensePackage;
 import org.emftext.language.AdaptiveCyberDefense.DomainDescription;
 import org.emftext.language.AdaptiveCyberDefense.InitialAtom;
 
-import org.emftext.language.AdaptiveCyberDefense.OperationalRequirement;
+import org.emftext.language.AdaptiveCyberDefense.Requirement;
 import org.emftext.language.AdaptiveCyberDefense.StateVariable;
 
 /**
@@ -73,7 +71,7 @@ public class DomainDescriptionImpl extends EObjectImpl implements DomainDescript
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<OperationalRequirement> requirements;
+	protected EList<Requirement> requirements;
 
 	/**
 	 * The cached value of the '{@link #getActions() <em>Actions</em>}' containment reference list.
@@ -143,9 +141,9 @@ public class DomainDescriptionImpl extends EObjectImpl implements DomainDescript
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<OperationalRequirement> getRequirements() {
+	public EList<Requirement> getRequirements() {
 		if (requirements == null) {
-			requirements = new EObjectContainmentEList<OperationalRequirement>(OperationalRequirement.class, this, AdaptiveCyberDefensePackage.DOMAIN_DESCRIPTION__REQUIREMENTS);
+			requirements = new EObjectContainmentEList<Requirement>(Requirement.class, this, AdaptiveCyberDefensePackage.DOMAIN_DESCRIPTION__REQUIREMENTS);
 		}
 		return requirements;
 	}
@@ -237,7 +235,7 @@ public class DomainDescriptionImpl extends EObjectImpl implements DomainDescript
 				return;
 			case AdaptiveCyberDefensePackage.DOMAIN_DESCRIPTION__REQUIREMENTS:
 				getRequirements().clear();
-				getRequirements().addAll((Collection<? extends OperationalRequirement>)newValue);
+				getRequirements().addAll((Collection<? extends Requirement>)newValue);
 				return;
 			case AdaptiveCyberDefensePackage.DOMAIN_DESCRIPTION__ACTIONS:
 				getActions().clear();

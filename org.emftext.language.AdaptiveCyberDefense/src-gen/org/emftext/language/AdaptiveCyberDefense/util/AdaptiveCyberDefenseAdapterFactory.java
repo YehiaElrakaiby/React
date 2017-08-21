@@ -84,8 +84,8 @@ public class AdaptiveCyberDefenseAdapterFactory extends AdapterFactoryImpl {
 				return createProbabilisticEffectAdapter();
 			}
 			@Override
-			public Adapter caseOperationalRequirement(OperationalRequirement object) {
-				return createOperationalRequirementAdapter();
+			public Adapter caseRequirement(Requirement object) {
+				return createRequirementAdapter();
 			}
 			@Override
 			public Adapter caseActionVariable(ActionVariable object) {
@@ -236,16 +236,16 @@ public class AdaptiveCyberDefenseAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.emftext.language.AdaptiveCyberDefense.OperationalRequirement <em>Operational Requirement</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.emftext.language.AdaptiveCyberDefense.Requirement <em>Requirement</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.emftext.language.AdaptiveCyberDefense.OperationalRequirement
+	 * @see org.emftext.language.AdaptiveCyberDefense.Requirement
 	 * @generated
 	 */
-	public Adapter createOperationalRequirementAdapter() {
+	public Adapter createRequirementAdapter() {
 		return null;
 	}
 

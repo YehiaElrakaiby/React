@@ -29,7 +29,7 @@ import org.emftext.language.AdaptiveCyberDefense.Formula;
  *
  * @generated
  */
-public abstract class DeadlineRequirementImpl extends OperationalRequirementImpl implements DeadlineRequirement {
+public abstract class DeadlineRequirementImpl extends RequirementImpl implements DeadlineRequirement {
 	/**
 	 * The cached value of the '{@link #getCancellation() <em>Cancellation</em>}' containment reference.
 	 * <!-- begin-user-doc -->

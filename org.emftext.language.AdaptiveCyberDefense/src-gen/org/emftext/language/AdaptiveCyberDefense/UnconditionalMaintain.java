@@ -13,5 +13,5 @@ package org.emftext.language.AdaptiveCyberDefense;
  * @model
  * @generated
  */
-public interface UnconditionalMaintain extends OperationalRequirement {
+public interface UnconditionalMaintain extends Requirement {
 } // UnconditionalMaintain

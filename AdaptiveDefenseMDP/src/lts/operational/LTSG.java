@@ -25,8 +25,8 @@ import org.emftext.language.AdaptiveCyberDefense.Formula;
 import org.emftext.language.AdaptiveCyberDefense.InitialAtom;
 import org.emftext.language.AdaptiveCyberDefense.InitialVariable;
 import org.emftext.language.AdaptiveCyberDefense.Maintain;
-import org.emftext.language.AdaptiveCyberDefense.OperationalRequirement;
 import org.emftext.language.AdaptiveCyberDefense.ProbabilisticEffect;
+import org.emftext.language.AdaptiveCyberDefense.Requirement;
 import org.emftext.language.AdaptiveCyberDefense.StateAtom;
 import org.emftext.language.AdaptiveCyberDefense.StateVariable;
 import org.emftext.language.AdaptiveCyberDefense.UnconditionalMaintain;
@@ -678,8 +678,8 @@ public class LTSG {
 		return false;
 	}
 
-	private void readRequirements(EList<OperationalRequirement> requirements) {
-		for(OperationalRequirement requirement : requirements) {
+	private void readRequirements(EList<Requirement> eList) {
+		for(Requirement requirement : eList) {
 			HashSet<String> domain = new HashSet<String>();
 			String name = requirement.getName();
 			//System.out.println(name);

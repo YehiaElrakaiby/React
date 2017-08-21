@@ -16,7 +16,7 @@
       </eAnnotations>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="requirements" upperBound="-1"
-        eType="#//OperationalRequirement" containment="true"/>
+        eType="#//Requirement" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="actions" upperBound="-1"
         eType="#//ActionVariable" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="initial_atoms" lowerBound="1"
@@ -43,8 +43,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="stateatoms" upperBound="-1"
         eType="#//StateAtom" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="OperationalRequirement" abstract="true"
-      eSuperTypes="#//InitialVariable">
+  <eClassifiers xsi:type="ecore:EClass" name="Requirement" abstract="true" eSuperTypes="#//InitialVariable">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
         iD="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="cost" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EIntegerObject"/>
@@ -136,7 +135,7 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="False" eSuperTypes="#//Formula"/>
   <eClassifiers xsi:type="ecore:EClass" name="DeadlineRequirement" abstract="true"
-      eSuperTypes="#//OperationalRequirement">
+      eSuperTypes="#//Requirement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="cancellation" eType="#//Formula"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="activation" lowerBound="1"
@@ -145,5 +144,5 @@
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EIntegerObject"
         defaultValueLiteral="-1"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="UnconditionalMaintain" eSuperTypes="#//OperationalRequirement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="UnconditionalMaintain" eSuperTypes="#//Requirement"/>
 </ecore:EPackage>
