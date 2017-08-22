@@ -112,13 +112,22 @@ public interface AdaptiveCyberDefensePackage extends EPackage {
 	int DOMAIN_DESCRIPTION__EVENT_DESCRIPTIONS = 4;
 
 	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DOMAIN_DESCRIPTION__NAME = 5;
+
+	/**
 	 * The number of structural features of the '<em>Domain Description</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DOMAIN_DESCRIPTION_FEATURE_COUNT = 5;
+	int DOMAIN_DESCRIPTION_FEATURE_COUNT = 6;
 
 	/**
 	 * The meta object id for the '{@link org.emftext.language.AdaptiveCyberDefense.impl.DescriptionEntityImpl <em>Description Entity</em>}' class.
@@ -1185,6 +1194,17 @@ public interface AdaptiveCyberDefensePackage extends EPackage {
 	EReference getDomainDescription_Event_descriptions();
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.emftext.language.AdaptiveCyberDefense.DomainDescription#getName <em>Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Name</em>'.
+	 * @see org.emftext.language.AdaptiveCyberDefense.DomainDescription#getName()
+	 * @see #getDomainDescription()
+	 * @generated
+	 */
+	EAttribute getDomainDescription_Name();
+
+	/**
 	 * Returns the meta object for class '{@link org.emftext.language.AdaptiveCyberDefense.ActionDescription <em>Action Description</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1868,6 +1888,14 @@ public interface AdaptiveCyberDefensePackage extends EPackage {
 		 * @generated
 		 */
 		EReference DOMAIN_DESCRIPTION__EVENT_DESCRIPTIONS = eINSTANCE.getDomainDescription_Event_descriptions();
+
+		/**
+		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute DOMAIN_DESCRIPTION__NAME = eINSTANCE.getDomainDescription_Name();
 
 		/**
 		 * The meta object literal for the '{@link org.emftext.language.AdaptiveCyberDefense.impl.ActionDescriptionImpl <em>Action Description</em>}' class.

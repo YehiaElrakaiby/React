@@ -29,7 +29,7 @@ TOKENSTYLES {
 
 
 RULES {
-	DomainDescription ::= "DomainDescription" "{" 
+	DomainDescription ::= "DomainDescription" name[] "{" 
 		"StateVariables" "=" "<" (state_variables ";")* ">" 
 		"ActionDescriptions" "=" "<" (action_descriptions ";")* ">" 
 		"EventDescriptions" "=" "<" (event_descriptions ";")* ">" 

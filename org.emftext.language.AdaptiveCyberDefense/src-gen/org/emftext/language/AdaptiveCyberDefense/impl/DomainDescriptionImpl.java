@@ -4,6 +4,7 @@ package org.emftext.language.AdaptiveCyberDefense.impl;
 
 import java.util.Collection;
 
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.common.util.EList;
@@ -11,6 +12,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
@@ -38,6 +40,7 @@ import org.emftext.language.AdaptiveCyberDefense.StateVariable;
  *   <li>{@link org.emftext.language.AdaptiveCyberDefense.impl.DomainDescriptionImpl#getRequirements <em>Requirements</em>}</li>
  *   <li>{@link org.emftext.language.AdaptiveCyberDefense.impl.DomainDescriptionImpl#getInitial_atoms <em>Initial atoms</em>}</li>
  *   <li>{@link org.emftext.language.AdaptiveCyberDefense.impl.DomainDescriptionImpl#getEvent_descriptions <em>Event descriptions</em>}</li>
+ *   <li>{@link org.emftext.language.AdaptiveCyberDefense.impl.DomainDescriptionImpl#getName <em>Name</em>}</li>
  * </ul>
  *
  * @generated
@@ -92,6 +95,26 @@ public class DomainDescriptionImpl extends EObjectImpl implements DomainDescript
 	 * @ordered
 	 */
 	protected EList<EventDescription> event_descriptions;
+
+	/**
+	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getName()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String NAME_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getName()
+	 * @generated
+	 * @ordered
+	 */
+	protected String name = NAME_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -177,6 +200,27 @@ public class DomainDescriptionImpl extends EObjectImpl implements DomainDescript
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public String getName() {
+		return name;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setName(String newName) {
+		String oldName = name;
+		name = newName;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, AdaptiveCyberDefensePackage.DOMAIN_DESCRIPTION__NAME, oldName, name));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -212,6 +256,8 @@ public class DomainDescriptionImpl extends EObjectImpl implements DomainDescript
 				return getInitial_atoms();
 			case AdaptiveCyberDefensePackage.DOMAIN_DESCRIPTION__EVENT_DESCRIPTIONS:
 				return getEvent_descriptions();
+			case AdaptiveCyberDefensePackage.DOMAIN_DESCRIPTION__NAME:
+				return getName();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -245,6 +291,9 @@ public class DomainDescriptionImpl extends EObjectImpl implements DomainDescript
 				getEvent_descriptions().clear();
 				getEvent_descriptions().addAll((Collection<? extends EventDescription>)newValue);
 				return;
+			case AdaptiveCyberDefensePackage.DOMAIN_DESCRIPTION__NAME:
+				setName((String)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -272,6 +321,9 @@ public class DomainDescriptionImpl extends EObjectImpl implements DomainDescript
 			case AdaptiveCyberDefensePackage.DOMAIN_DESCRIPTION__EVENT_DESCRIPTIONS:
 				getEvent_descriptions().clear();
 				return;
+			case AdaptiveCyberDefensePackage.DOMAIN_DESCRIPTION__NAME:
+				setName(NAME_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -294,8 +346,26 @@ public class DomainDescriptionImpl extends EObjectImpl implements DomainDescript
 				return initial_atoms != null && !initial_atoms.isEmpty();
 			case AdaptiveCyberDefensePackage.DOMAIN_DESCRIPTION__EVENT_DESCRIPTIONS:
 				return event_descriptions != null && !event_descriptions.isEmpty();
+			case AdaptiveCyberDefensePackage.DOMAIN_DESCRIPTION__NAME:
+				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String toString() {
+		if (eIsProxy()) return super.toString();
+
+		StringBuffer result = new StringBuffer(super.toString());
+		result.append(" (name: ");
+		result.append(name);
+		result.append(')');
+		return result.toString();
 	}
 
 } //DomainDescriptionImpl

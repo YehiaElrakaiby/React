@@ -21,6 +21,8 @@
         upperBound="-1" eType="#//InitialAtom" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="event_descriptions" upperBound="-1"
         eType="#//EventDescription" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        iD="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ActionDescription" eSuperTypes="#//DescriptionEntity">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="cost" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBigDecimal"

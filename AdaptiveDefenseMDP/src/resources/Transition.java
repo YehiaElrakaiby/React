@@ -7,14 +7,14 @@ public class Transition {
 	private Integer src=-1;
 	private Integer dest=-1;
 	private BigDecimal probability=new BigDecimal(-1);
-	private Integer orReward=0;
-	private Integer actionCost=0;
+	//private Integer orReward=0;
+	//private Integer actionCost=0;
 	private Integer id=0;
-	
-	private Boolean applicability=false;
-	
-	static public final Boolean APPLICABLE = true;
-	static public final Boolean NOTAPPLICABLE = false;
+
+	//private Boolean applicability=false;
+
+	//static public final Boolean APPLICABLE = true;
+	//static public final Boolean NOTAPPLICABLE = false;
 
 	public Transition(String n, Integer src, Integer dest, BigDecimal prob) {
 		this.event =n;
@@ -22,14 +22,14 @@ public class Transition {
 		this.dest= dest;
 		this.probability = prob;
 	}
-	
+
 	public Transition(String n, Integer src, Integer dest, BigDecimal prob, Boolean applicable) {
 		this.event =n;
 		this.src =src;
 		this.dest= dest;
 		this.probability = prob;
 	}
-	
+
 	public Transition() {
 		// TODO Auto-generated constructor stub
 	}
@@ -62,7 +62,7 @@ public class Transition {
 		this.dest = dest;
 	}
 
-	
+
 	public BigDecimal getProbability() {
 		return probability;
 	}
@@ -72,14 +72,14 @@ public class Transition {
 		this.probability = probability;
 	}
 
-	public Integer getOrReward() {
+	/*public Integer getOrReward() {
 		return orReward;
 	}
 
 	public void setOrReward(Integer reward) {
 		this.orReward = reward;
-	}
-	
+	}*/
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -98,7 +98,7 @@ public class Transition {
 		result = prime * result + ((src == null) ? 0 : src.hashCode());
 		return result;
 	}
-	
+
 	static public int hashCode(Integer src, String name) {
 		final int prime = 31;
 		int result = 1;
@@ -106,7 +106,7 @@ public class Transition {
 		result = prime * result + ((src == null) ? 0 : src.hashCode());
 		return result;
 	}
-	
+
 	public Integer getId() {
 		return id;
 	}
@@ -115,19 +115,19 @@ public class Transition {
 		this.id = id;
 	}
 
-	public void updateOrReward(int reward) {
+	/*public void updateOrReward(int reward) {
 		this.orReward+=reward;
-		
-	}
 
-	public Boolean getApplicability() {
+	}*/
+
+	/*public Boolean getApplicability() {
 		return applicability;
 	}
 
 	public void setApplicability(Boolean applicability) {
 		this.applicability = applicability;
 	}
-	
+	 */
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -157,24 +157,21 @@ public class Transition {
 
 	@Override
 	public String toString(){
-		
+
 		String  s; 
-		if(this.applicability) {
-			s =  "\n"+this.applicability+"("+src +"<" +event +"(" + probability + ")"+ ">" + dest+")";
-		} else {
-			s =  "\n"+this.applicability + "(" + src +"<" +event +"(" + probability + ")";
-		}
+		s =  "\n"+"("+src +"<" +event +"(" + probability + ")"+ ">" + dest+")";
+
 		return s;
 
 	}
 
-	public Integer getActionCost() {
+	/*public Integer getActionCost() {
 		return actionCost;
 	}
 
 	public void setActionCost(Integer actionCost) {
 		this.actionCost = actionCost;
-	}
+	}*/
 
-	
+
 }
