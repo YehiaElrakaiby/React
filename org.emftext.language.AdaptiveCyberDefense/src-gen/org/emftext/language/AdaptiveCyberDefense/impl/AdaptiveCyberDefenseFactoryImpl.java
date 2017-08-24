@@ -76,6 +76,7 @@ public class AdaptiveCyberDefenseFactoryImpl extends EFactoryImpl implements Ada
 			case AdaptiveCyberDefensePackage.EVENT_DESCRIPTION: return createEventDescription();
 			case AdaptiveCyberDefensePackage.PROBABILISTIC_CONTEXTUAL_EFFECT: return createProbabilisticContextualEffect();
 			case AdaptiveCyberDefensePackage.FORMULA_ATOM: return createFormulaAtom();
+			case AdaptiveCyberDefensePackage.CONDITIONAL_ACHIEVE: return createConditionalAchieve();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -303,6 +304,16 @@ public class AdaptiveCyberDefenseFactoryImpl extends EFactoryImpl implements Ada
 	public FormulaAtom createFormulaAtom() {
 		FormulaAtomImpl formulaAtom = new FormulaAtomImpl();
 		return formulaAtom;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ConditionalAchieve createConditionalAchieve() {
+		ConditionalAchieveImpl conditionalAchieve = new ConditionalAchieveImpl();
+		return conditionalAchieve;
 	}
 
 	/**

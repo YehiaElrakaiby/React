@@ -193,6 +193,15 @@ public interface AdaptiveCyberDefenseFactory extends EFactory {
 	FormulaAtom createFormulaAtom();
 
 	/**
+	 * Returns a new object of class '<em>Conditional Achieve</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Conditional Achieve</em>'.
+	 * @generated
+	 */
+	ConditionalAchieve createConditionalAchieve();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

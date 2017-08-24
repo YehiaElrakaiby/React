@@ -39,7 +39,7 @@
     </genClasses>
     <genClasses ecoreClass="AdaptiveCyberDefense.ecore#//Requirement">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute AdaptiveCyberDefense.ecore#//Requirement/name"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute AdaptiveCyberDefense.ecore#//Requirement/cost"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute AdaptiveCyberDefense.ecore#//Requirement/reward"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference AdaptiveCyberDefense.ecore#//Requirement/condition"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute AdaptiveCyberDefense.ecore#//Requirement/description"/>
     </genClasses>
@@ -75,8 +75,6 @@
     <genClasses ecoreClass="AdaptiveCyberDefense.ecore#//True"/>
     <genClasses ecoreClass="AdaptiveCyberDefense.ecore#//False"/>
     <genClasses ecoreClass="AdaptiveCyberDefense.ecore#//DeadlineRequirement">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference AdaptiveCyberDefense.ecore#//DeadlineRequirement/cancellation"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference AdaptiveCyberDefense.ecore#//DeadlineRequirement/activation"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute AdaptiveCyberDefense.ecore#//DeadlineRequirement/deadline"/>
     </genClasses>
     <genClasses ecoreClass="AdaptiveCyberDefense.ecore#//UnconditionalMaintain"/>
@@ -98,5 +96,10 @@
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference AdaptiveCyberDefense.ecore#//FormulaAtom/description_entity"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute AdaptiveCyberDefense.ecore#//FormulaAtom/value"/>
     </genClasses>
+    <genClasses ecoreClass="AdaptiveCyberDefense.ecore#//ConditionalRequirement">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference AdaptiveCyberDefense.ecore#//ConditionalRequirement/activation"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference AdaptiveCyberDefense.ecore#//ConditionalRequirement/cancellation"/>
+    </genClasses>
+    <genClasses ecoreClass="AdaptiveCyberDefense.ecore#//ConditionalAchieve"/>
   </genPackages>
 </genmodel:GenModel>

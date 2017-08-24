@@ -2,8 +2,7 @@ package lts.operational;
 
 
 
-import java.io.OutputStream;
-import java.io.StringWriter;
+
 import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -30,7 +29,6 @@ import org.emftext.language.AdaptiveCyberDefense.Requirement;
 import org.emftext.language.AdaptiveCyberDefense.StateAtom;
 import org.emftext.language.AdaptiveCyberDefense.StateVariable;
 import org.emftext.language.AdaptiveCyberDefense.UnconditionalMaintain;
-import org.emftext.language.AdaptiveCyberDefense.resource.AdaptiveCyberDefense.mopp.AdaptiveCyberDefensePrinter;
 
 import main.AdaptiveDefenseMDP;
 import resources.RequirementDescription;
@@ -255,6 +253,9 @@ public class LTSG {
 			} else 	if(requirement.getClass().getName().endsWith(".AchieveImpl")){
 				Achieve req = (Achieve) requirement;
 				fillAchieveRequirementDescription(req,descr,domain);
+			} else 	if(requirement.getClass().getName().endsWith(".ConditionalAchieveImpl")){
+				Achieve req = (Achieve) requirement;
+				fillConditionalAchieveRequirementDescription(req,descr,domain);
 			} else 	if(requirement.getClass().getName().endsWith(".UnconditionalMaintainImpl")){
 				UnconditionalMaintain req = (UnconditionalMaintain) requirement;
 				fillUnconditionalMaintainRequirementDescription(req,descr,domain);
@@ -272,6 +273,33 @@ public class LTSG {
 			nb_of_states = nb_of_states * domain.size();
 		}
 	}
+	private void fillConditionalAchieveRequirementDescription(Achieve req, RequirementDescription descr,
+			HashSet<String> domain) {
+		String name = req.getName();
+
+		descr.setType("conditional_achieve");
+
+		descr.setName(name);
+
+		descr.setCondition(req.getCondition());
+
+		descr.setActivation(req.getActivation());
+
+		if(req.getCancellation() != null) {
+			descr.setCancellation(req.getCancellation());
+		} else {
+			/**
+			 * if no cancellation then the requirement cannot be cancelled and false is used as cancellation condition
+			 */
+			descr.setCancellation(AdaptiveCyberDefenseFactory.eINSTANCE.createFalse());
+		}
+
+		descr.setCost_reward(req.getReward());
+
+		domain.add("inact");
+		domain.add("act");
+		
+	}
 	private void fillUnconditionalMaintainRequirementDescription(
 			UnconditionalMaintain req,
 			RequirementDescription descr,
@@ -284,7 +312,7 @@ public class LTSG {
 
 		descr.setCondition(req.getCondition());
 
-		descr.setCost_reward(req.getCost());
+		descr.setCost_reward(req.getReward());
 
 		domain.add("act");
 	}
@@ -312,7 +340,7 @@ public class LTSG {
 			descr.setCancellation(AdaptiveCyberDefenseFactory.eINSTANCE.createFalse());
 		}
 
-		descr.setCost_reward(req.getCost());
+		descr.setCost_reward(req.getReward());
 
 		domain.add("inact");
 		if(req.getDeadline()==-1) {
@@ -349,7 +377,7 @@ public class LTSG {
 			descr.setCancellation(AdaptiveCyberDefenseFactory.eINSTANCE.createFalse());
 		}
 
-		descr.setCost_reward(req.getCost());
+		descr.setCost_reward(req.getReward());
 		descr.setPerUnitCost(req.getPerUnitCost());
 
 
@@ -383,10 +411,13 @@ public class LTSG {
 				this.initial_state.put(ratom.getRequirement().getName(), ratom.getStatus());
 			}*/
 			InitialVariable var = atom.getInitialvariable();
-			if(var.getClass().toString().endsWith("StateVariableImpl")) {
+			if(var.getClass().toString().endsWith(".StateVariableImpl")) {
 				StateVariable satom = (StateVariable) var;
 				this.initial_state.put(satom.getName(), atom.getValue());
-			} else if(var.getClass().toString().endsWith("MaintainImpl") ||var.getClass().toString().endsWith("AchieveImpl")) {
+			} else if(
+					var.getClass().toString().endsWith(".MaintainImpl") ||
+					var.getClass().toString().endsWith(".ConditionalAchieveImpl") ||
+					var.getClass().toString().endsWith(".AchieveImpl")) {
 				Maintain ratom = (Maintain) var;
 				this.initial_state.put(ratom.getName(), atom.getValue());
 			}
@@ -716,12 +747,46 @@ public class LTSG {
 				updateMaintainReqAtomInState(temp,req,rew);
 			} else if(req.getType().equals("achieve")){
 				updateAchieveReqAtomInState(temp,req,rew);
-			} else if(req.getType().equals("unconditional")){
+			} else if(req.getType().equals("conditional_achieve")){
+				updateConditionalAchieveReqAtomInState(temp,req,rew);
+			}else if(req.getType().equals("unconditional")){
 				updateUnconditionalReqAtomInState(temp,req,rew);
 			}
 		}
 	}
 
+	private void updateConditionalAchieveReqAtomInState(
+			HashMap<String, String> state, 
+			RequirementDescription req,
+			Reward rew) {
+		String req_id = req.getName();
+		String status = state.get(req_id);
+		/**
+		 * For a conditional achieve requirement, its status is updated according to activation, cancellation and condition as follows:
+		 * (1) if status is inact: if activation is true, then act 
+		 * (2) if status is act:
+		 * (2.1) if cancellation holds then inact
+		 * (2.2) if condition holds then inact (and update reward of transition)
+		 * 
+		 */
+		if(status.equals("inact")) {
+			if(req.getActivation().verify(state)) {
+				state.put(req_id, "act");
+			}
+		}
+
+		if(status.equals("act")){
+			if(req.getCancellation().verify(state)) {
+				state.put(req_id, "inact");
+			} else if(req.getCondition().verify(state)) {
+				state.put(req_id, "inact");
+				/*
+				 * Satisfaction and reward update
+				 */
+				rew.updateReward(req.getCost_reward());
+			} 
+		} 		
+	}
 	private void updateUnconditionalReqAtomInState(HashMap<String, String> state, 
 			RequirementDescription req,
 			Reward rew) {

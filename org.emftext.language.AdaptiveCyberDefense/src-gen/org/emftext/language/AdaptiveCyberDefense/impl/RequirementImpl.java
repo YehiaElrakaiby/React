@@ -23,7 +23,7 @@ import org.emftext.language.AdaptiveCyberDefense.Requirement;
  * </p>
  * <ul>
  *   <li>{@link org.emftext.language.AdaptiveCyberDefense.impl.RequirementImpl#getName <em>Name</em>}</li>
- *   <li>{@link org.emftext.language.AdaptiveCyberDefense.impl.RequirementImpl#getCost <em>Cost</em>}</li>
+ *   <li>{@link org.emftext.language.AdaptiveCyberDefense.impl.RequirementImpl#getReward <em>Reward</em>}</li>
  *   <li>{@link org.emftext.language.AdaptiveCyberDefense.impl.RequirementImpl#getCondition <em>Condition</em>}</li>
  *   <li>{@link org.emftext.language.AdaptiveCyberDefense.impl.RequirementImpl#getDescription <em>Description</em>}</li>
  * </ul>
@@ -52,24 +52,24 @@ public abstract class RequirementImpl extends InitialVariableImpl implements Req
 	protected String name = NAME_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getCost() <em>Cost</em>}' attribute.
+	 * The default value of the '{@link #getReward() <em>Reward</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getCost()
+	 * @see #getReward()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final Integer COST_EDEFAULT = null;
+	protected static final Integer REWARD_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getCost() <em>Cost</em>}' attribute.
+	 * The cached value of the '{@link #getReward() <em>Reward</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getCost()
+	 * @see #getReward()
 	 * @generated
 	 * @ordered
 	 */
-	protected Integer cost = COST_EDEFAULT;
+	protected Integer reward = REWARD_EDEFAULT;
 
 	/**
 	 * The cached value of the '{@link #getCondition() <em>Condition</em>}' containment reference.
@@ -146,8 +146,8 @@ public abstract class RequirementImpl extends InitialVariableImpl implements Req
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Integer getCost() {
-		return cost;
+	public Integer getReward() {
+		return reward;
 	}
 
 	/**
@@ -155,11 +155,11 @@ public abstract class RequirementImpl extends InitialVariableImpl implements Req
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setCost(Integer newCost) {
-		Integer oldCost = cost;
-		cost = newCost;
+	public void setReward(Integer newReward) {
+		Integer oldReward = reward;
+		reward = newReward;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, AdaptiveCyberDefensePackage.REQUIREMENT__COST, oldCost, cost));
+			eNotify(new ENotificationImpl(this, Notification.SET, AdaptiveCyberDefensePackage.REQUIREMENT__REWARD, oldReward, reward));
 	}
 
 	/**
@@ -250,8 +250,8 @@ public abstract class RequirementImpl extends InitialVariableImpl implements Req
 		switch (featureID) {
 			case AdaptiveCyberDefensePackage.REQUIREMENT__NAME:
 				return getName();
-			case AdaptiveCyberDefensePackage.REQUIREMENT__COST:
-				return getCost();
+			case AdaptiveCyberDefensePackage.REQUIREMENT__REWARD:
+				return getReward();
 			case AdaptiveCyberDefensePackage.REQUIREMENT__CONDITION:
 				return getCondition();
 			case AdaptiveCyberDefensePackage.REQUIREMENT__DESCRIPTION:
@@ -271,8 +271,8 @@ public abstract class RequirementImpl extends InitialVariableImpl implements Req
 			case AdaptiveCyberDefensePackage.REQUIREMENT__NAME:
 				setName((String)newValue);
 				return;
-			case AdaptiveCyberDefensePackage.REQUIREMENT__COST:
-				setCost((Integer)newValue);
+			case AdaptiveCyberDefensePackage.REQUIREMENT__REWARD:
+				setReward((Integer)newValue);
 				return;
 			case AdaptiveCyberDefensePackage.REQUIREMENT__CONDITION:
 				setCondition((Formula)newValue);
@@ -295,8 +295,8 @@ public abstract class RequirementImpl extends InitialVariableImpl implements Req
 			case AdaptiveCyberDefensePackage.REQUIREMENT__NAME:
 				setName(NAME_EDEFAULT);
 				return;
-			case AdaptiveCyberDefensePackage.REQUIREMENT__COST:
-				setCost(COST_EDEFAULT);
+			case AdaptiveCyberDefensePackage.REQUIREMENT__REWARD:
+				setReward(REWARD_EDEFAULT);
 				return;
 			case AdaptiveCyberDefensePackage.REQUIREMENT__CONDITION:
 				setCondition((Formula)null);
@@ -318,8 +318,8 @@ public abstract class RequirementImpl extends InitialVariableImpl implements Req
 		switch (featureID) {
 			case AdaptiveCyberDefensePackage.REQUIREMENT__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-			case AdaptiveCyberDefensePackage.REQUIREMENT__COST:
-				return COST_EDEFAULT == null ? cost != null : !COST_EDEFAULT.equals(cost);
+			case AdaptiveCyberDefensePackage.REQUIREMENT__REWARD:
+				return REWARD_EDEFAULT == null ? reward != null : !REWARD_EDEFAULT.equals(reward);
 			case AdaptiveCyberDefensePackage.REQUIREMENT__CONDITION:
 				return condition != null;
 			case AdaptiveCyberDefensePackage.REQUIREMENT__DESCRIPTION:
@@ -340,8 +340,8 @@ public abstract class RequirementImpl extends InitialVariableImpl implements Req
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (name: ");
 		result.append(name);
-		result.append(", cost: ");
-		result.append(cost);
+		result.append(", reward: ");
+		result.append(reward);
 		result.append(", description: ");
 		result.append(description);
 		result.append(')');

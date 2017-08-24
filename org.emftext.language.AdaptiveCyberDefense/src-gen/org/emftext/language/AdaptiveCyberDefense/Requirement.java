@@ -13,7 +13,7 @@ package org.emftext.language.AdaptiveCyberDefense;
  * </p>
  * <ul>
  *   <li>{@link org.emftext.language.AdaptiveCyberDefense.Requirement#getName <em>Name</em>}</li>
- *   <li>{@link org.emftext.language.AdaptiveCyberDefense.Requirement#getCost <em>Cost</em>}</li>
+ *   <li>{@link org.emftext.language.AdaptiveCyberDefense.Requirement#getReward <em>Reward</em>}</li>
  *   <li>{@link org.emftext.language.AdaptiveCyberDefense.Requirement#getCondition <em>Condition</em>}</li>
  *   <li>{@link org.emftext.language.AdaptiveCyberDefense.Requirement#getDescription <em>Description</em>}</li>
  * </ul>
@@ -50,30 +50,30 @@ public interface Requirement extends InitialVariable {
 	void setName(String value);
 
 	/**
-	 * Returns the value of the '<em><b>Cost</b></em>' attribute.
+	 * Returns the value of the '<em><b>Reward</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Cost</em>' attribute isn't clear,
+	 * If the meaning of the '<em>Reward</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Cost</em>' attribute.
-	 * @see #setCost(Integer)
-	 * @see org.emftext.language.AdaptiveCyberDefense.AdaptiveCyberDefensePackage#getRequirement_Cost()
+	 * @return the value of the '<em>Reward</em>' attribute.
+	 * @see #setReward(Integer)
+	 * @see org.emftext.language.AdaptiveCyberDefense.AdaptiveCyberDefensePackage#getRequirement_Reward()
 	 * @model required="true"
 	 * @generated
 	 */
-	Integer getCost();
+	Integer getReward();
 
 	/**
-	 * Sets the value of the '{@link org.emftext.language.AdaptiveCyberDefense.Requirement#getCost <em>Cost</em>}' attribute.
+	 * Sets the value of the '{@link org.emftext.language.AdaptiveCyberDefense.Requirement#getReward <em>Reward</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Cost</em>' attribute.
-	 * @see #getCost()
+	 * @param value the new value of the '<em>Reward</em>' attribute.
+	 * @see #getReward()
 	 * @generated
 	 */
-	void setCost(Integer value);
+	void setReward(Integer value);
 
 	/**
 	 * Returns the value of the '<em><b>Condition</b></em>' containment reference.

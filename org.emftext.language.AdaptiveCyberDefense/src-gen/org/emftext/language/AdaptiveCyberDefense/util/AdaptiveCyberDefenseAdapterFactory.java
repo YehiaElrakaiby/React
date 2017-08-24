@@ -164,6 +164,14 @@ public class AdaptiveCyberDefenseAdapterFactory extends AdapterFactoryImpl {
 				return createFormulaAtomAdapter();
 			}
 			@Override
+			public Adapter caseConditionalRequirement(ConditionalRequirement object) {
+				return createConditionalRequirementAdapter();
+			}
+			@Override
+			public Adapter caseConditionalAchieve(ConditionalAchieve object) {
+				return createConditionalAchieveAdapter();
+			}
+			@Override
 			public Adapter defaultCase(EObject object) {
 				return createEObjectAdapter();
 			}
@@ -516,6 +524,34 @@ public class AdaptiveCyberDefenseAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createFormulaAtomAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.emftext.language.AdaptiveCyberDefense.ConditionalRequirement <em>Conditional Requirement</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.emftext.language.AdaptiveCyberDefense.ConditionalRequirement
+	 * @generated
+	 */
+	public Adapter createConditionalRequirementAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.emftext.language.AdaptiveCyberDefense.ConditionalAchieve <em>Conditional Achieve</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.emftext.language.AdaptiveCyberDefense.ConditionalAchieve
+	 * @generated
+	 */
+	public Adapter createConditionalAchieveAdapter() {
 		return null;
 	}
 

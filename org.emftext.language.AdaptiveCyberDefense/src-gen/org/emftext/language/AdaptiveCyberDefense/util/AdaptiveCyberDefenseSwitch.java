@@ -156,6 +156,7 @@ public class AdaptiveCyberDefenseSwitch<T> extends Switch<T> {
 				Achieve achieve = (Achieve)theEObject;
 				T result = caseAchieve(achieve);
 				if (result == null) result = caseDeadlineRequirement(achieve);
+				if (result == null) result = caseConditionalRequirement(achieve);
 				if (result == null) result = caseRequirement(achieve);
 				if (result == null) result = caseInitialVariable(achieve);
 				if (result == null) result = defaultCase(theEObject);
@@ -165,6 +166,7 @@ public class AdaptiveCyberDefenseSwitch<T> extends Switch<T> {
 				Maintain maintain = (Maintain)theEObject;
 				T result = caseMaintain(maintain);
 				if (result == null) result = caseDeadlineRequirement(maintain);
+				if (result == null) result = caseConditionalRequirement(maintain);
 				if (result == null) result = caseRequirement(maintain);
 				if (result == null) result = caseInitialVariable(maintain);
 				if (result == null) result = defaultCase(theEObject);
@@ -187,6 +189,7 @@ public class AdaptiveCyberDefenseSwitch<T> extends Switch<T> {
 			case AdaptiveCyberDefensePackage.DEADLINE_REQUIREMENT: {
 				DeadlineRequirement deadlineRequirement = (DeadlineRequirement)theEObject;
 				T result = caseDeadlineRequirement(deadlineRequirement);
+				if (result == null) result = caseConditionalRequirement(deadlineRequirement);
 				if (result == null) result = caseRequirement(deadlineRequirement);
 				if (result == null) result = caseInitialVariable(deadlineRequirement);
 				if (result == null) result = defaultCase(theEObject);
@@ -230,6 +233,23 @@ public class AdaptiveCyberDefenseSwitch<T> extends Switch<T> {
 				FormulaAtom formulaAtom = (FormulaAtom)theEObject;
 				T result = caseFormulaAtom(formulaAtom);
 				if (result == null) result = caseFormula(formulaAtom);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case AdaptiveCyberDefensePackage.CONDITIONAL_REQUIREMENT: {
+				ConditionalRequirement conditionalRequirement = (ConditionalRequirement)theEObject;
+				T result = caseConditionalRequirement(conditionalRequirement);
+				if (result == null) result = caseRequirement(conditionalRequirement);
+				if (result == null) result = caseInitialVariable(conditionalRequirement);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case AdaptiveCyberDefensePackage.CONDITIONAL_ACHIEVE: {
+				ConditionalAchieve conditionalAchieve = (ConditionalAchieve)theEObject;
+				T result = caseConditionalAchieve(conditionalAchieve);
+				if (result == null) result = caseConditionalRequirement(conditionalAchieve);
+				if (result == null) result = caseRequirement(conditionalAchieve);
+				if (result == null) result = caseInitialVariable(conditionalAchieve);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -594,6 +614,36 @@ public class AdaptiveCyberDefenseSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseFormulaAtom(FormulaAtom object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Conditional Requirement</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Conditional Requirement</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseConditionalRequirement(ConditionalRequirement object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Conditional Achieve</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Conditional Achieve</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseConditionalAchieve(ConditionalAchieve object) {
 		return null;
 	}
 

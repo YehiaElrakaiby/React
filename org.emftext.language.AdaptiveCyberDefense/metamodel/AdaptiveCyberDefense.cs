@@ -65,7 +65,15 @@ RULES {
 	UnconditionalMaintain ::= 
 		"ReqID" name[]  
 		"keep" condition
-		"reward" cost[INTEGER]
+		"reward" reward[INTEGER]
+		("description" description['"','"'])?;
+		
+	ConditionalAchieve ::= 
+		"ReqID" name[]  
+		"achieve" condition
+		"after"  activation
+		("unless"  cancellation)?
+		"reward" reward[INTEGER]
 		("description" description['"','"'])?;
 		
 	Achieve ::= 
@@ -74,7 +82,7 @@ RULES {
 		"within"  deadline[INTEGER]
 		"after"  activation
 		("unless"  cancellation)?
-		"reward" cost[INTEGER]
+		"reward" reward[INTEGER]
 		("description" description['"','"'])?;
 		
 	Maintain ::= 
@@ -84,7 +92,7 @@ RULES {
 		"for"  duration[INTEGER]
 		"after"  activation
 		("unless"  cancellation)?
-		"reward" cost[INTEGER] ("perUnit" perUnitCost[])?
+		"reward" reward[INTEGER] ("perUnit" perUnitCost[])?
 		("description" description['"','"'])?;
 		
 	
