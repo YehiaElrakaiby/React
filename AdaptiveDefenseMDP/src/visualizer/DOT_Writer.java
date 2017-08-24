@@ -240,7 +240,6 @@ public class DOT_Writer {
 
 	private void writeTransitions() {
 		for(Transition transition_description : transitions){
-			if(transition_description.getApplicability()) {
 				Integer src = transition_description.getSrc();
 				Integer dst = transition_description.getDest();
 				try {
@@ -256,8 +255,6 @@ public class DOT_Writer {
 					bw.write(
 							trans_name +" "
 							+ transition_description.getProbability() +" "
-							+ transition_description.getActionCost() +" "
-							+ transition_description.getOrReward() +" "
 							+"\\n");
 
 					bw.write("\"]\n");
@@ -316,7 +313,7 @@ public class DOT_Writer {
 		//			}
 		//		}
 
-	}
+	
 
 
 

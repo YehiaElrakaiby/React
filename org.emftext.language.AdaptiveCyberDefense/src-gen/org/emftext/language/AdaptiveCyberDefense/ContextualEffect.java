@@ -35,7 +35,7 @@ public interface ContextualEffect extends EObject {
 	 * @return the value of the '<em>Context</em>' containment reference.
 	 * @see #setContext(Formula)
 	 * @see org.emftext.language.AdaptiveCyberDefense.AdaptiveCyberDefensePackage#getContextualEffect_Context()
-	 * @model containment="true"
+	 * @model containment="true" required="true"
 	 * @generated
 	 */
 	Formula getContext();

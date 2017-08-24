@@ -225,11 +225,17 @@ public class FormulaAtomImpl extends FormulaImpl implements FormulaAtom {
 
 	@Override
 	public boolean verify(HashMap<String, String> state) {
+		//System.out.println("Verify "+this.description_entity.getName()+value+" in "+state.toString());
 		if(state.containsKey(this.description_entity.getName())) {
-			if(state.get(this.description_entity.getName())==value){
+			//System.out.println("Found Verify "+this.description_entity.getName()+value+" in "+state.toString());
+
+			if(state.get(this.description_entity.getName()).equals(value)){
+				//System.out.println("Success Verify "+this.description_entity.getName()+value+" in "+state.toString());
 				return true;
 			}
-		}
+		}			
+		//System.out.println("Fail Verify "+this.description_entity.getName()+value+" in "+state.toString());
+
 		return false;
 	}
 

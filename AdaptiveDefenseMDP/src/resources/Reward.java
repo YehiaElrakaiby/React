@@ -74,6 +74,11 @@ public class Reward {
 			return false;
 		return true;
 	}
+
+	@Override
+	public String toString() {
+		return "Reward [src=" + src + ", dest=" + dest + ", reward=" + reward + "]";
+	}
 	
 
 }

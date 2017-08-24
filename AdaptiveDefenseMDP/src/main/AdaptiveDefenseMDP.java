@@ -1,13 +1,16 @@
 package main;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Properties;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.spi.LoggerContext;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
@@ -16,7 +19,6 @@ import org.emftext.language.AdaptiveCyberDefense.resource.AdaptiveCyberDefense.m
 
 import lts.operational.LTSG;
 import mdp.MDPSolver;
-import resources.MDP_Computer;
 import resources.Transition;
 import visualizer.DOT_Writer;
 import visualizer.Graphviz_Writer;
@@ -33,6 +35,16 @@ public class AdaptiveDefenseMDP {
 	 */
 
 
+	static String descriptionFileName = "description_v2.AdaptiveCyberDefense";
+	
+	static String files_location = "/Users/yehia/Documents/GraphivFilesReact/";
+
+	static Path domain_description_location = Paths.get( "Users","yehia","Documents",
+			"runtime-EclipseApplication","ReactV3",
+			descriptionFileName);
+
+	static public String noop_event_identifier = "noop";
+	static public Double discount_factor = 0.98;
 
 
 	/**
@@ -49,33 +61,32 @@ public class AdaptiveDefenseMDP {
 	 * @param args
 	 */
 
-	static Path domain_description_location = Paths.get( "Users","yehia","Documents",
-			"runtime-EclipseApplication","AdaptiveCyberDefenseSpecifications",
-			"domain_description.AdaptiveCyberDefense");
+	
+	
 
-	static String files_location = "/Users/yehia/Documents/GraphivFilesReact/";
-	static String controlStrategyFileName = "controlStrategy.dot";
-	static String controlPlanFileName = "controlPlan.dot";
-	static String ltsFileName = "lts.dot";
-	static public String noop_event_identifier = "noop";
-
+	static String controlStrategyFileName = "";
+	static String controlPlanFileName = "";
+	static String ltsFileName = "";
+	
 	static DomainDescription description;
 
 	static LTSG lts;
 
-	static MDPSolver solver=new MDPSolver();
+	static MDPSolver solver;
 
-	private final static Logger LOGGER = LogManager.getLogger();
-	;
+	private static Logger LOGGER;
+	
 
+
+	
 	public static void main(String[] args) {
 
-		//Logger logger = LogManager.getLogger(LogManager.ROOT_LOGGER_NAME);
 		/*
 		 * 1. Read the Domain Description 
 		 */		
 		try {
 			description = loadTextual(domain_description_location);
+			initializeFileNames(description.getName());
 			LOGGER.info("domain description loaded");
 		} catch (IOException e1) {
 			LOGGER.error("domain description load failed"+e1.getMessage());
@@ -90,16 +101,46 @@ public class AdaptiveDefenseMDP {
 		LOGGER.info("The labeled transition system LTSG created");
 
 		lts.print();
+		
+		solver = new MDPSolver(lts.getNumberOfStates(),lts.getNbActions());
+		LOGGER.info("The MDP Solver is initialized");
+
+		double[][] ex_tm = solver.buildExogeousEventsMatrix(lts.getExogenous_events_id(), lts.getOccurrence_vectors(),lts.getExo_events_transitions_map());
+		LOGGER.info("The exogenous event matrix PrE = PrE1 x...x PrEn is computed");
+
+		double[][][] tm = solver.buildTransitionMatrix(lts.getCtrl_actions_transitions_map(),ex_tm);
+		LOGGER.info("The Transition Matrix of the MDP is created");
+
+		double[][][] rm = solver.buildRewardMatrix(lts.getRewards(),lts.getActionDescriptions(),lts.getControl_events_id());
+		LOGGER.info("The Reward Matrix of the MDP is created");
+
+		solver.checkInput();
+
+		LOGGER.info("The MDP input is checked");
+
+		Graphviz_Writer.create(files_location+ltsFileName, lts.getStates(), lts.getId_control_events(), tm, rm, DOT_Writer.SHOW_ALL);
+		LOGGER.info("The LTS Graphviz file is created");
+
+		solver.solveMDP();
+		double[] policy = solver.getPolicy();
+		double[] value = solver.getValue();
+		LOGGER.info("The MDP is solved: The policy and value vectors based on the MDP are computed");
+
+		Graphviz_Writer.create(files_location+controlStrategyFileName, lts.getStates(), lts.getId_control_events(), policy, tm, rm, DOT_Writer.SHOW_ALL);
+		LOGGER.info("The Control Strategy Graphviz file is created");
+
+		Graphviz_Writer.createPlan(files_location+controlPlanFileName, lts.getStates(), lts.getId_control_events(), policy, tm, rm, DOT_Writer.SHOW_ALL);
+		LOGGER.info("The Control Plan Graphviz file is created");
 
 		//showInGraphiv(graphiz_file, lts.getStates(), lts.getTransitions(), DOT_Writer.SHOW_ALL);
 		//showInGraphiv(graphiz_file, lts.getStates(), lts.getTransitions(), DOT_Writer.SHOW_REQ);
-		showInGraphiv(files_location+ltsFileName, lts.getStates(), lts.getTransitions(), DOT_Writer.SHOW_ALL);
+		//showInGraphiv(files_location+ltsFileName, lts.getStates(), lts.getTransitions(), DOT_Writer.SHOW_ALL);
 
-		LOGGER.info("The labeled transition system .dot file is created");
+		//LOGGER.info("The labeled transition system .dot file is created");
 
-		double[] valueO = computeOperationalStrategyAndPlan();
+		//double[] valueO = computeOperationalStrategyAndPlan();
 
-		LOGGER.info("The value vector based on operational goals is computed");
+		//LOGGER.info("The value vector based on operational goals is computed");
 
 		//double[] valueA = computeAttackStrategyAndPlan();
 
@@ -110,189 +151,51 @@ public class AdaptiveDefenseMDP {
 
 
 
-	private static double[] computeOperationalStrategyAndPlan() {
-		//LOGGER.info("Nb of Transitions: "+lts.getTransitions().size()+"\n");
-		//LOGGER.info("Transitions:\n "+lts.getTransitions().toString()+"\n");
+	
 
-		double[][][] TM = MDP_Computer.getTransitionMatrix(lts.getStates(),lts.getTransitions(),lts.getControl_events_id());
-		LOGGER.info("The transition matrix based on operational goals and control events is computed");
 
-		double[][][] RM = MDP_Computer.getRewardMatrix(lts.getStates(),lts.getTransitions(),lts.getControl_events_id());
-		LOGGER.info("The reward matrix based on operational goals and control events is computed");
 
-		//lts.readDomainDescription(domain_description_location);
-		//lts.generateLTSFromInitialState();
-		//lts.showInGraphiv("/Users/yehia/Documents/lts.dot",NormsLTS.SHOW_ALL);
-		//lts.print();
+	
+	
 
-		solveMDP(TM, RM, 0.96);
-		double[] policy = solver.getPolicy();
-		double[] value = solver.getValue();
-		LOGGER.info("The policy and value vectors based on the MDP that includes reward and transition matrices based on operational are computed");
 
-		//solver.printRewardMatrix();
-		//solver.printTransitionMatrix();
-
-		HashSet<Transition> filtered_transitions = MDP_Computer.updateTransitionsUsingPolicy(lts.getTransitions(), lts.getControl_events_id(), policy,MDP_Computer.SHOW_NOOP);
-		LOGGER.info("The transitions are filtered based on the computed policy");
-		
-		HashMap<Integer, HashMap<String, String>> states_value = MDP_Computer.updateStatesUsingValue(lts.getStates(), value);
-		LOGGER.info("A copie of the LTS states are created using the computed state values");
-
-		showInGraphiv(files_location+controlStrategyFileName,states_value,filtered_transitions,DOT_Writer.SHOW_NONE);
-		LOGGER.info("A graph is created using the computed policy transitions and the states updated with their values");
-
-		///////////// NEW PART
-		HashSet<Transition> exogenous_transitions = MDP_Computer.getTransitionsUsingEventsId(lts.getTransitions(), lts.getExogenous_events_id());
-		LOGGER.info("The transitions caused by exogenous actions are udentified");
-		
-		Graphviz_Writer.write_dot_file(files_location+controlStrategyFileName,states_value,filtered_transitions,exogenous_transitions,DOT_Writer.SHOW_ALL);
-		LOGGER.info("A graph is created using the computed policy transitions, exogenous transitions and the states updated with their values");
-
-		//////// END NEW PART
-		HashSet<Transition> plan_transitions = MDP_Computer.findPlanTransitionsUsingPolicy(lts.getTransitions2(), lts.getTransitions3(), lts.getId_control_events(), policy);
-		LOGGER.info("Transitions are reduced to those which are reachable from the initial state to create a plan rather than a strategy");
-
-		HashMap<Integer, HashMap<String, String>> plan_states = MDP_Computer.filterStatesUsingTransitions(states_value, plan_transitions);
-		LOGGER.info("States are filtered based on plan transitions");
-
-		showInGraphiv(files_location+controlPlanFileName,plan_states,plan_transitions,DOT_Writer.SHOW_NONE);
-		LOGGER.info("A Graph is created showing the computed operatio plan");
-
-		return value;
+	private static void initializeFileNames(String name) {
+		controlStrategyFileName = name+"_strategy.dot";
+		controlPlanFileName = name+"_plan.dot";
+		ltsFileName = name+"_lts.dot";
+		updateLog4jConfiguration(name);
 	}
 
-	/*
-	private static double[] computeAttackStrategyAndPlan() {
-		double[][][] TM = MDP_Computer.getTransitionMatrix(lts.getStates(),lts.getTransitions(),lts.getExploit_events_id());
-		LOGGER.info("The attack transition matrix is computed");
+	static private void updateLog4jConfiguration(String name) { 
+	   System.setProperty("descriptionName", name);
+       LOGGER = LogManager.getLogger();
 
-		double[][][] RM = MDP_Computer.getCostMatrix(lts.getStates(),lts.getTransitions(),lts.getExploit_events_id());
-		LOGGER.info("The attack reward matrix is computed");
-
-		//lts.readDomainDescription(domain_description_location);
-		//lts.generateLTSFromInitialState();
-		//lts.showInGraphiv("/Users/yehia/Documents/lts.dot",NormsLTS.SHOW_ALL);
-		//lts.print();
-
-		solveMDP(TM, RM, 0.96);
-		double[] policy = solver.getPolicy();
-		double[] value = solver.getValue();
-		LOGGER.info("The policy and value vectors based on attack and reward matrices are computed");
-
-		//solver.printRewardMatrix();
-		//solver.printTransitionMatrix();
-
-		HashSet<Transition> policy_transitions = MDP_Computer.updateTransitionsUsingPolicy(lts.getTransitions(), lts.getExploit_events_id(), policy,MDP_Computer.SHOW_NOOP);
-		LOGGER.info("Transitions are filtered based on the computed attack policy");
-
-		HashMap<Integer, HashMap<String, String>> states_value = MDP_Computer.updateStatesUsingValue(lts.getStates(), value);
-		LOGGER.info("The computed attack value of states are included in a copy of the states of the LTS");
-
-		showInGraphiv(files_location+attackStrategyFileName,states_value,policy_transitions,DOT_Writer.SHOW_ALL);
-		LOGGER.info("The graph .dot file showing the attack strategy is created");
-
-		HashSet<Transition> plan_transitions = MDP_Computer.findPlanTransitionsUsingPolicy(lts.getTransitions2(), lts.getTransitions3(), lts.getId_exploit_events(), policy);
-		LOGGER.info("Transitions are filtered based on the initial state to create an attack plan");
-
-		HashMap<Integer, HashMap<String, String>> plan_states = MDP_Computer.filterStatesUsingTransitions(states_value, plan_transitions);
-		LOGGER.info("States are filtered based on plan transitions");
-
-		showInGraphiv(files_location+attackPlanFileName,plan_states,plan_transitions,DOT_Writer.SHOW_ALL);
-		LOGGER.info("The graph .dot file showing the attack plan is created");
-
-		return value;
 	}
 
 
-	private static void computeTradeOffStrategyAndPlan(double[] valueA, double[] valueO) {
-		LOGGER.trace("Nb of Transitions: "+lts.getTransitions().size()+"\n");
-		LOGGER.trace("Transitions:\n "+lts.getTransitions().toString()+"\n");
-		double[][][] TM = MDP_Computer.getTransitionMatrix(lts.getStates(),lts.getTransitions(),lts.getControl_events_id());
-		LOGGER.info("The transition matrix based on operational goals and control events is computed");
-
-		double[][][] RM = MDP_Computer.getTradeOffRewardMatrix(lts.getStates(),lts.getTransitions(),lts.getControl_events_id(),valueA,valueO);
-		LOGGER.info("The reward trade off matrix is computed based on the operational and vulnerability value of states");
-
-
-		//lts.readDomainDescription(domain_description_location);
-		//lts.generateLTSFromInitialState();
-		//lts.showInGraphiv("/Users/yehia/Documents/lts.dot",NormsLTS.SHOW_ALL);
-		//lts.print();
-
-		solveMDP(TM, RM, 0.96);
-		double[] policy = solver.getPolicy();
-		double[] value = solver.getValue();
-		LOGGER.info("The value and policy are computed based on the trade off MDP");
-
-		//solver.printRewardMatrix();
-		//solver.printTransitionMatrix();
-
-		HashSet<Transition> filtered_transitions = MDP_Computer.updateTransitionsUsingPolicy(lts.getTransitions(), lts.getControl_events_id(), policy,MDP_Computer.SHOW_NOOP);
-		LOGGER.info("Transitions are filtered basd on the computed policy");
-
-		HashMap<Integer, HashMap<String, String>> states_value = MDP_Computer.updateStatesUsingValue(lts.getStates(), value);
-		LOGGER.info("A copy of the states is created using the value verctor: every value is included in the state");
-
-		showInGraphiv(files_location+tradeOffStrategyFileName,states_value,filtered_transitions,DOT_Writer.SHOW_ALL);
-		LOGGER.info("The trade off graph of the trade off strategy is created");
-
-		HashSet<Transition> plan_transitions = MDP_Computer.findPlanTransitionsUsingPolicy(lts.getTransitions2(), lts.getTransitions3(), lts.getId_control_events(), policy);
-		LOGGER.trace("Nb of TradeOff Plan Transitions: "+plan_transitions.size()+"\n");
-		LOGGER.trace("Transitions:\n "+plan_transitions.toString()+"\n");
-		LOGGER.info("The plan transitions of the trade off strategy are identified");
-
-		HashMap<Integer, HashMap<String, String>> plan_states = MDP_Computer.filterStatesUsingTransitions(states_value, plan_transitions);
-		LOGGER.info("States are filtered based on plan transitions");
-
-		showInGraphiv(files_location+tradeOffPlanFileName,plan_states,plan_transitions,DOT_Writer.SHOW_ALL);
-		LOGGER.info("The graph of the tradeoff plan is created");
-
-	}
-*/
 
 
 
-	private static void showInGraphiv(String file_path, HashMap<Integer, HashMap<String, String>> states,
+
+
+
+
+
+	private static void showInGraphiv(
+			String file_path, 
+			HashMap<Integer, HashMap<String, String>> states,
 			HashSet<Transition> transitions, String option) {
 		DOT_Writer visualizer = new DOT_Writer(file_path,states,transitions,option);
 		visualizer.openFromDesktop();			
 	}
 
-	/*
-	private static void showInGraphiv(String graphiz_file, 
-			HashMap<Integer, 
-			HashMap<String, String>> states,
-			HashSet<Transition> transitions) {
-		DOT_Writer visualizer = new DOT_Writer(graphiz_file,states,transitions);
-		visualizer.openFromDesktop();			
-	}*/
-	/*
-	private static void showInGraphiv(String path, LTSG lts) {
-		DOT_Writer visualizer = new DOT_Writer(path, lts.getStates(),lts.getTransitions());
-		visualizer.openFromDesktop();		
-	}*/
+	
 
-
-	private static void solveMDP(double[][][] p, double[][][] r, double discount) {
-
-		solver.setP(p);
-		//solver.printTransitionMatrix();;
-		solver.setR(r);
-		//solver.printRewardMatrix();
-		solver.setDiscount(0.96);
-		solver.checkInput();
-
-		//LOGGER.info(lts.getAttack_actions().toString());
-		solver.checkAllInput();
-		solver.solveMDP();
-	}
-
+	
 	public static DomainDescription loadTextual(Path configPath) throws IOException{
 		new AdaptiveCyberDefenseMetaInformation().registerResourceFactory();
 		ResourceSet resourceSet = new ResourceSetImpl();
 		String temp = "/"+configPath.toString();
-		LOGGER.info("Domain Description File Name : "+temp);
 		Resource resource = resourceSet.getResource(org.eclipse.emf.common.util.URI.createFileURI(temp), true);
 		DomainDescription description = (DomainDescription) resource.getContents().get(0);
 
@@ -302,3 +205,71 @@ public class AdaptiveDefenseMDP {
 		return description;
 	}
 }
+
+/*private static double[] computeOperationalStrategyAndPlan() {
+//LOGGER.info("Nb of Transitions: "+lts.getTransitions().size()+"\n");
+//LOGGER.info("Transitions:\n "+lts.getTransitions().toString()+"\n");
+
+double[][][] TM = MDP_Computer.getTransitionMatrix(lts.getStates(),lts.getTransitions(),lts.getControl_events_id());
+LOGGER.info("The transition matrix based on operational goals and control events is computed");
+
+double[][][] RM = MDP_Computer.getRewardMatrix(lts.getStates(),lts.getTransitions(),lts.getControl_events_id());
+LOGGER.info("The reward matrix based on operational goals and control events is computed");
+
+//lts.readDomainDescription(domain_description_location);
+//lts.generateLTSFromInitialState();
+//lts.showInGraphiv("/Users/yehia/Documents/lts.dot",NormsLTS.SHOW_ALL);
+//lts.print();
+
+solveMDP(TM, RM, 0.96);
+double[] policy = solver.getPolicy();
+double[] value = solver.getValue();
+LOGGER.info("The policy and value vectors based on the MDP that includes reward and transition matrices based on operational are computed");
+
+//solver.printRewardMatrix();
+//solver.printTransitionMatrix();
+
+HashSet<Transition> filtered_transitions = MDP_Computer.updateTransitionsUsingPolicy(lts.getTransitions(), lts.getControl_events_id(), policy,MDP_Computer.SHOW_NOOP);
+LOGGER.info("The transitions are filtered based on the computed policy");
+
+HashMap<Integer, HashMap<String, String>> states_value = MDP_Computer.updateStatesUsingValue(lts.getStates(), value);
+LOGGER.info("A copie of the LTS states are created using the computed state values");
+
+showInGraphiv(files_location+controlStrategyFileName,states_value,filtered_transitions,DOT_Writer.SHOW_NONE);
+LOGGER.info("A graph is created using the computed policy transitions and the states updated with their values");
+
+///////////// NEW PART
+HashSet<Transition> exogenous_transitions = MDP_Computer.getTransitionsUsingEventsId(lts.getTransitions(), lts.getExogenous_events_id());
+LOGGER.info("The transitions caused by exogenous actions are identified");
+
+Graphviz_Writer.write_dot_file(files_location+controlStrategyFileName,states_value,filtered_transitions,exogenous_transitions,DOT_Writer.SHOW_ALL);
+LOGGER.info("A graph is created using the computed policy transitions, exogenous transitions and the states updated with their values");
+
+//////// END NEW PART
+HashSet<Transition> plan_transitions = MDP_Computer.findPlanTransitionsUsingPolicy(lts.getTransitions2(), lts.getTransitions3(), lts.getId_control_events(), policy);
+LOGGER.info("Transitions are reduced to those which are reachable from the initial state to create a plan rather than a strategy");
+
+HashMap<Integer, HashMap<String, String>> plan_states = MDP_Computer.filterStatesUsingTransitions(states_value, plan_transitions);
+LOGGER.info("States are filtered based on plan transitions");
+
+showInGraphiv(files_location+controlPlanFileName,plan_states,plan_transitions,DOT_Writer.SHOW_NONE);
+LOGGER.info("A Graph is created showing the computed operatio plan");
+
+return value;
+}*/
+
+/*private static void solveMDP(double[][][] p, double[][][] r, double discount) {
+
+solver.setP(p);
+//solver.printTransitionMatrix();;
+solver.setR(r);
+//solver.printRewardMatrix();
+solver.setDiscount(0.96);
+solver.checkInput();
+
+//LOGGER.info(lts.getAttack_actions().toString());
+solver.checkAllInput();
+solver.solveMDP();
+}
+*/
+

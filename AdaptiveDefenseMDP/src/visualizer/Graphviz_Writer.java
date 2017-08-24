@@ -10,6 +10,7 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 
@@ -50,7 +51,249 @@ public class Graphviz_Writer {
 
 	private final static org.apache.logging.log4j.Logger LOGGER = LogManager.getRootLogger();
 
+	public static void create(
+			String pathTographivFile, 
+			HashMap<Integer, HashMap<String, String>> lts_states,
+			HashMap<Integer, String> id_control_events, 
+			double[] policy, 
+			double[][][] tm,
+			double[][][] rm, 
+			String op) {
+		file = createFile(pathTographivFile);
+		setOptions();
+		option=op;
+		try {
+			fw = new FileWriter(file);
+			bw = new BufferedWriter(fw);
+			bw.write("digraph R {\n");
 
+			writeNodes(lts_states);
+			writeTransitions(id_control_events,policy,tm,rm);
+
+			bw.write("}");
+			bw.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}		
+	}
+	public static void createPlan(String pathTographivFile, 
+			HashMap<Integer, HashMap<String, String>> lts_states,
+			HashMap<Integer, String> id_control_events, 
+			double[] policy, 
+			double[][][] tm, 
+			double[][][] rm,
+			String op) {
+		file = createFile(pathTographivFile);
+		setOptions();
+		option=op;
+		try {
+			fw = new FileWriter(file);
+			bw = new BufferedWriter(fw);
+			bw.write("digraph R {\n");
+
+			HashSet<Integer> visited = writePlanTransitions(id_control_events,policy,tm,rm);
+			writeNodes(visited, lts_states);
+
+			bw.write("}");
+			bw.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+	}
+	private static void writeNodes(
+			HashSet<Integer> visited, 
+			HashMap<Integer, HashMap<String, String>> lts_states) {
+		Iterator<Integer> it = lts_states.keySet().iterator();
+		while(it.hasNext()){
+			Integer stateName = it.next();
+			if(visited.contains(stateName)){
+				try {
+					bw.write(stateName+" [label=\"");
+
+					if(show_state_name_in_node){
+						bw.write(stateName+"\\n");
+					}
+
+					HashMap<String, String> literals = lts_states.get(stateName);
+					Set<String> set = literals.keySet();
+					List<String> list=asSortedList(set);
+					for(String fluent_name : list) {
+						String value = literals.get(fluent_name);
+						if(!filter(fluent_name)) {
+							if(value.equals("tt")) {
+								bw.write(fluent_name+"\\n");
+							} else if(value.equals("ff")) {
+
+							} else {
+								bw.write(fluent_name+"="+value+"\\n");
+							}
+						}
+					}
+					bw.write("\"]\n");
+
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		}
+
+	}
+	private static HashSet<Integer> writePlanTransitions(
+			HashMap<Integer, String> id_control_events, 
+			double[] policy,
+			double[][][] tm, 
+			double[][][] rm) {
+
+		Integer nbOfStates = policy.length;
+
+		LinkedList<Integer> to_explore = new LinkedList<Integer>();
+		HashSet<Integer> visited = new HashSet<Integer>();
+
+		to_explore.add(0);
+
+		while(!to_explore.isEmpty()) {
+			Integer i = to_explore.remove();
+			visited.add(i);
+			Integer optimal_action = new Double(policy[i]).intValue()-1;
+			String trans_name=id_control_events.get(optimal_action);
+			for(int j = 0; j<nbOfStates;j++) {
+				if(tm[i][j][optimal_action]!=0){
+
+					if(!visited.contains(j)){
+						to_explore.add(j);
+					}
+
+					try {
+						bw.write(i+" -> "+j);
+						bw.write(" [color=red]");
+						bw.write(" [label=\"");
+
+						if(trans_name.endsWith("=tt")){
+							trans_name=trans_name.substring(0,trans_name.indexOf("=tt"));
+						} 
+						bw.write(
+								trans_name +" "
+										+ tm[i][j][optimal_action] +" "
+										+ rm[i][j][optimal_action] +" "		
+										+"\\n");
+
+						bw.write("\"]\n");
+
+						bw.write("\n");
+
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
+				}
+			}
+		}
+		return visited;
+	}
+	private static void writeTransitions(
+			HashMap<Integer, String> id_control_events, 
+			double[] policy, 
+			double[][][] tm,
+			double[][][] rm) {
+		Integer nbOfStates = policy.length;
+		for(int i = 0; i<nbOfStates;i++) {
+			Integer optimal_action = new Double(policy[i]).intValue()-1;
+			String trans_name=id_control_events.get(optimal_action);
+			for(int j = 0; j<nbOfStates;j++) {
+				if(tm[i][j][optimal_action]!=0){
+					try {
+						bw.write(i+" -> "+j);
+						bw.write(" [color=red]");
+						bw.write(" [label=\"");
+
+						if(trans_name.endsWith("=tt")){
+							trans_name=trans_name.substring(0,trans_name.indexOf("=tt"));
+						} 
+						bw.write(
+								trans_name +" "
+										+ tm[i][j][optimal_action] +" "
+										+ rm[i][j][optimal_action] +" "		
+										+"\\n");
+
+						bw.write("\"]\n");
+
+						bw.write("\n");
+
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
+				}
+			}
+		}
+	}			
+
+
+	public static void create(
+			String pathTographivFile, 
+			HashMap<Integer, HashMap<String, String>> lts_states, 
+			HashMap<Integer, String> id_controlEvents, 
+			double[][][] tm,
+			double[][][] rm, 
+			String op) {
+		file = createFile(pathTographivFile);
+		setOptions();
+		option=op;
+		try {
+			fw = new FileWriter(file);
+			bw = new BufferedWriter(fw);
+			bw.write("digraph R {\n");
+
+			writeNodes(lts_states);
+			writeTransitions(id_controlEvents,tm,rm);
+
+			bw.write("}");
+			bw.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	private static void writeTransitions(
+			HashMap<Integer, String> id_controlEvents, 
+			double[][][] tm, 
+			double[][][] rm) {
+		Integer nbOfStates = tm.length;
+		Integer nbOfActions = tm[0][0].length;
+		for(int k = 0; k<nbOfActions;k++) {
+			String trans_name=id_controlEvents.get(k);
+			for(int i = 0; i<nbOfStates;i++) {
+				for(int j = 0; j<nbOfStates;j++) {
+					if(tm[i][j][k]!=0){
+						try {
+							bw.write(i+" -> "+j);
+							bw.write(" [color=red]");
+							bw.write(" [label=\"");
+
+							if(trans_name.endsWith("=tt")){
+								trans_name=trans_name.substring(0,trans_name.indexOf("=tt"));
+							} 
+							bw.write(
+									trans_name +" "
+											+ tm[i][j][k] +" "
+											+ rm[i][j][k] +" "		
+											+"\\n");
+
+							bw.write("\"]\n");
+
+							bw.write("\n");
+
+						} catch (IOException e) {
+							e.printStackTrace();
+						}
+					}
+				}
+			}
+		}	
+	}
 
 	static public void write_dot_file(
 			String pathTographivFile,
@@ -87,36 +330,33 @@ public class Graphviz_Writer {
 
 	static private void writeRedTransitions(HashSet<Transition> transitions2) {
 		for(Transition transition_description : transitions2){
-			if(transition_description.getApplicability()) {
-				Integer src = transition_description.getSrc();
-				Integer dst = transition_description.getDest();
-				try {
-					bw.write(src+" -> "+dst);
-					bw.write(" [color=red]");
-					bw.write(" [label=\"");
+			Integer src = transition_description.getSrc();
+			Integer dst = transition_description.getDest();
+			try {
+				bw.write(src+" -> "+dst);
+				bw.write(" [color=red]");
+				bw.write(" [label=\"");
 
-					String trans_name=transition_description.getName();
-					if(trans_name.endsWith("=tt")){
-						trans_name=trans_name.substring(0,trans_name.indexOf("=tt"));
-					}
-
-					bw.write(
-							trans_name +" "
-									+ transition_description.getProbability() +" "
-									+ transition_description.getActionCost() +" "
-									+ transition_description.getOrReward() +" "
-									+"\\n");
-
-					bw.write("\"]\n");
-
-					bw.write("\n");
-
-				} catch (IOException e) {
-					e.printStackTrace();
+				String trans_name=transition_description.getName();
+				if(trans_name.endsWith("=tt")){
+					trans_name=trans_name.substring(0,trans_name.indexOf("=tt"));
 				}
+
+				bw.write(
+						trans_name +" "
+								+ transition_description.getProbability() +" "
+								+"\\n");
+
+				bw.write("\"]\n");
+
+				bw.write("\n");
+
+			} catch (IOException e) {
+				e.printStackTrace();
 			}
-		}		
-	}
+		}
+	}		
+
 
 	private static void setOptions() {
 		show_action_names=true;
@@ -264,34 +504,34 @@ public class Graphviz_Writer {
 			}
 
 		}
-
-		//		Iterator<State> state = states.iterator();
-		//		while(state.hasNext()){
-		//			State s = state.next();
-		//
-		//			String stateName = s.getName();
-		//			if(states_to_show.isEmpty() || states_to_show.contains(stateName)){
-		//				try {
-		//					bw.write(stateName+" [label=\"");
-		//
-		//					if(show_state_name_in_node){
-		//						bw.write(stateName+"\\n");
-		//					}
-		//
-		//					Iterator<FluentConstant> fluent = s.getFluents().iterator();
-		//					while(fluent.hasNext()){
-		//						FluentConstant f = fluent.next();
-		//						bw.write(f.toString()+"\\n");
-		//					}
-		//					bw.write("\"]\n");
-		//
-		//				} catch (IOException e) {
-		//					// TODO Auto-generated catch block
-		//					e.printStackTrace();
-		//				}
-		//			}
-		//		}
 	}
+	//		Iterator<State> state = states.iterator();
+	//		while(state.hasNext()){
+	//			State s = state.next();
+	//
+	//			String stateName = s.getName();
+	//			if(states_to_show.isEmpty() || states_to_show.contains(stateName)){
+	//				try {
+	//					bw.write(stateName+" [label=\"");
+	//
+	//					if(show_state_name_in_node){
+	//						bw.write(stateName+"\\n");
+	//					}
+	//
+	//					Iterator<FluentConstant> fluent = s.getFluents().iterator();
+	//					while(fluent.hasNext()){
+	//						FluentConstant f = fluent.next();
+	//						bw.write(f.toString()+"\\n");
+	//					}
+	//					bw.write("\"]\n");
+	//
+	//				} catch (IOException e) {
+	//					// TODO Auto-generated catch block
+	//					e.printStackTrace();
+	//				}
+	//			}
+	//		}
+
 	public static
 	<T extends Comparable<? super T>> List<T> asSortedList(Collection<T> c) {
 		List<T> list = new ArrayList<T>(c);
@@ -312,83 +552,78 @@ public class Graphviz_Writer {
 
 	private static void writeTransitions(HashSet<Transition> transitions) {
 		for(Transition transition_description : transitions){
-			if(transition_description.getApplicability()) {
-				Integer src = transition_description.getSrc();
-				Integer dst = transition_description.getDest();
-				try {
-					bw.write(src+" -> "+dst);
+			Integer src = transition_description.getSrc();
+			Integer dst = transition_description.getDest();
+			try {
+				bw.write(src+" -> "+dst);
 
-					bw.write(" [label=\"");
+				bw.write(" [label=\"");
 
-					String trans_name=transition_description.getName();
-					if(trans_name.endsWith("=tt")){
-						trans_name=trans_name.substring(0,trans_name.indexOf("=tt"));
-					}
-
-					bw.write(
-							trans_name +" "
-									+ transition_description.getProbability() +" "
-									+ transition_description.getActionCost() +" "
-									+ transition_description.getOrReward() +" "
-									+"\\n");
-
-					bw.write("\"]\n");
-
-					bw.write("\n");
-
-				} catch (IOException e) {
-					e.printStackTrace();
+				String trans_name=transition_description.getName();
+				if(trans_name.endsWith("=tt")){
+					trans_name=trans_name.substring(0,trans_name.indexOf("=tt"));
 				}
+
+				bw.write(
+						trans_name +" "
+								+ transition_description.getProbability() +" "
+								+"\\n");
+
+				bw.write("\"]\n");
+
+				bw.write("\n");
+
+			} catch (IOException e) {
+				e.printStackTrace();
 			}
 		}
-
-
-
-
-		//		Iterator<Transition> transition = transitions.iterator();
-		//
-		//		while(transition.hasNext()){
-		//			Transition t = transition.next();
-		//			if(this.show_void_transition || !t.getEvent().getName().equals(this.void_transition)){
-		//				String src = t.getSrc();
-		//				String dst = t.getDest();
-		//
-		//				if(states_to_show.isEmpty() || (states_to_show.contains(src) && states_to_show.contains(dst))){
-		//
-		//					try {
-		//						bw.write(t.getSrc()+" -> "+t.getDest());
-		//						if(this.show_action_names==false){
-		//							bw.write("[label="+t.getEvent().getName()+"]");
-		//						}
-		//						else if (this.show_action_names==true){
-		//							bw.write(" [label=\"");
-		//							Iterator<ActionConstant> action = t.getEvent().getActions().iterator();
-		//
-		//							while(action.hasNext()){
-		//								if(this.show_negated==true){
-		//									bw.write(action.next().toString()+"\\n");
-		//								}else 
-		//								{
-		//									ActionConstant a = action.next();
-		//									if(!a.getValue().equals("ff")){
-		//										bw.write(a.toString()+"\\n");
-		//									}
-		//
-		//								}
-		//							}
-		//							bw.write("\"]\n");
-		//						}
-		//						bw.write("\n");
-		//
-		//					} catch (IOException e) {
-		//						// TODO Auto-generated catch block
-		//						e.printStackTrace();
-		//					}
-		//				}
-		//			}
-		//		}
-
 	}
+
+
+
+
+	//		Iterator<Transition> transition = transitions.iterator();
+	//
+	//		while(transition.hasNext()){
+	//			Transition t = transition.next();
+	//			if(this.show_void_transition || !t.getEvent().getName().equals(this.void_transition)){
+	//				String src = t.getSrc();
+	//				String dst = t.getDest();
+	//
+	//				if(states_to_show.isEmpty() || (states_to_show.contains(src) && states_to_show.contains(dst))){
+	//
+	//					try {
+	//						bw.write(t.getSrc()+" -> "+t.getDest());
+	//						if(this.show_action_names==false){
+	//							bw.write("[label="+t.getEvent().getName()+"]");
+	//						}
+	//						else if (this.show_action_names==true){
+	//							bw.write(" [label=\"");
+	//							Iterator<ActionConstant> action = t.getEvent().getActions().iterator();
+	//
+	//							while(action.hasNext()){
+	//								if(this.show_negated==true){
+	//									bw.write(action.next().toString()+"\\n");
+	//								}else 
+	//								{
+	//									ActionConstant a = action.next();
+	//									if(!a.getValue().equals("ff")){
+	//										bw.write(a.toString()+"\\n");
+	//									}
+	//
+	//								}
+	//							}
+	//							bw.write("\"]\n");
+	//						}
+	//						bw.write("\n");
+	//
+	//					} catch (IOException e) {
+	//						// TODO Auto-generated catch block
+	//						e.printStackTrace();
+	//					}
+	//				}
+	//			}
+	//		}
 
 
 
@@ -1040,6 +1275,12 @@ public class Graphviz_Writer {
 	public void setShow_action_names(Boolean show_action_names) {
 		this.show_action_names = show_action_names;
 	}
+
+
+
+
+
+
 
 }
 

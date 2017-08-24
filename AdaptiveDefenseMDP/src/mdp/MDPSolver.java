@@ -1,11 +1,23 @@
 package mdp;
 
+import java.math.BigDecimal;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Iterator;
 import java.util.concurrent.CancellationException;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.emftext.language.AdaptiveCyberDefense.ActionDescription;
+
 import com.mathworks.engine.EngineException;
 import com.mathworks.engine.MatlabEngine;
+
+import main.AdaptiveDefenseMDP;
+import resources.Reward;
+import resources.Transition;
 
 public class MDPSolver {
 
@@ -16,13 +28,14 @@ public class MDPSolver {
 	private Future<MatlabEngine> eng;
 	private double[] value;
 	private double[] policy;
+	private double[][] exogenous_events_TM;
+	private Integer nbOfStates=0;
+	private Integer nbOfActions=0;
+
+	private final static Logger LOGGER = LogManager.getLogger();
+
 
 	public MDPSolver(Integer nb_of_states,Integer nb_of_actions){
-		p = new double[nb_of_states][nb_of_states][nb_of_actions];
-		r = new double[nb_of_states][nb_of_states][nb_of_actions];
-	}
-
-	public MDPSolver() {
 		try {
 			//Start MATLAB asynchronously
 			eng = MatlabEngine.startMatlabAsync();
@@ -30,6 +43,25 @@ public class MDPSolver {
 			// Get engine instance from the future result
 			ml = eng.get();
 		} catch (ExecutionException | InterruptedException e) {
+			e.printStackTrace();
+		}
+
+		nbOfStates=nb_of_states;
+		nbOfActions=nb_of_actions;
+
+		p = new double[nbOfStates][nbOfStates][nbOfActions];
+		r = new double[nbOfStates][nbOfStates][nbOfActions];
+		discount = AdaptiveDefenseMDP.discount_factor;
+		
+		exogenous_events_TM = new double[nbOfStates][nbOfStates];
+		try {
+			ml.putVariableAsync("P", p);
+			ml.putVariableAsync("R", r);
+			ml.putVariableAsync("discount", discount);
+
+			ml.putVariableAsync("EXTM", exogenous_events_TM);
+
+		} catch (EngineException | IllegalStateException | InterruptedException e) {
 			e.printStackTrace();
 		}
 	}
@@ -137,14 +169,14 @@ public class MDPSolver {
 
 			Future<double[]> future_policy = ml.getVariableAsync("policy");
 			policy = future_policy.get();
-			
-//			Future<double[]> future_iter = ml.getVariableAsync("iter");
-//			double[] iter = future_iter.get();
-//			System.out.println("Nb of Iterations is: "+iter[0]);
-//			
-//			Future<double[]> future_cpu_time = ml.getVariableAsync("cpu_time");
-//			double[] cpu_time = future_cpu_time.get();
-//			System.out.println("CPU Time is: "+cpu_time[0]);
+
+			//			Future<double[]> future_iter = ml.getVariableAsync("iter");
+			//			double[] iter = future_iter.get();
+			//			System.out.println("Nb of Iterations is: "+iter[0]);
+			//			
+			//			Future<double[]> future_cpu_time = ml.getVariableAsync("cpu_time");
+			//			double[] cpu_time = future_cpu_time.get();
+			//			System.out.println("CPU Time is: "+cpu_time[0]);
 
 		} catch (CancellationException | InterruptedException | ExecutionException e) {
 			e.printStackTrace();
@@ -160,7 +192,79 @@ public class MDPSolver {
 		}
 	}
 
+	public double[][] buildExogeousEventsMatrix(
+			HashMap<String, Integer> exogenousEvents_IdMap, 
+			HashMap<Integer, HashMap<Integer, Double>> occurrence_vectors,
+			HashMap<Integer, HashSet<Transition>> exo_events_transitions_map) {
+		/*
+		 * Create in Matlab EXTM, the final exogenous event transition matrix
+		 */
+		try {
+			ml.eval("EXTM = eye(" + nbOfStates + ");");
+		} catch (CancellationException | InterruptedException | ExecutionException e1) {
+			LOGGER.error("Problem initializing EXTM in MatLab to store the final exogenous events transition matrix\n"+e1.getMessage());
+			e1.printStackTrace();
+		}
 
+		/*
+		 * Iterate over all exogenous events
+		 */
+		Iterator<String> it = exogenousEvents_IdMap.keySet().iterator();
+		while(it.hasNext()) {
+			/*
+			 *	Get Event Name and Event Id 
+			 */
+			String event_name = it.next();
+			Integer event_id = exogenousEvents_IdMap.get(event_name);
+			/*
+			 * Create a (occurrence) vector and a (transition) matrix
+			 */
+			double[] vector = new double[nbOfStates];
+			double[][] tempTM = new double[nbOfStates][nbOfStates];
+			/*
+			 * Get Event Occurrences and Build Occurrence Vector
+			 */
+			HashMap<Integer, Double> occurrence_vector = occurrence_vectors.get(event_id);
+			Iterator<Integer> it2 = occurrence_vector.keySet().iterator();
+			while(it2.hasNext()) {
+				Integer state_id = it2.next();
+				Double occur_prob = occurrence_vector.get(state_id);
+				vector[state_id] = occur_prob;
+			}
+			/*
+			 * Get Event Transitions and Build Transition Matrix
+			 */
+			HashSet<Transition> transitions = exo_events_transitions_map.get(event_id);
+			for(Transition trans : transitions) {
+				Integer src = trans.getSrc();
+				Integer dst = trans.getDest();
+				BigDecimal prob = trans.getProbability();
+				tempTM[src][dst] = prob.doubleValue();
+			}
+			/*
+			 * 1) Compute the Event's transition matrix
+			 * 2) Multiply the computed matrix with EXTM
+			 */
+			try {
+				ml.putVariableAsync("V", vector);
+				ml.putVariableAsync("TTM", tempTM);
+				ml.eval("TM = (diag(V) * TTM) + diag((1 - V))");
+				ml.eval("EXTM = EXTM*TM");
+			} catch (IllegalStateException | InterruptedException | ExecutionException e) {
+				LOGGER.error("Problem multiplying EXTM and the event's computed TM \n"+e.getMessage());
+				e.printStackTrace();
+			}	
+		}
+		Future<double[][]> future_v;
+		try {
+			future_v = ml.getVariableAsync("EXTM");
+			this.exogenous_events_TM = future_v.get();
+		} catch (IllegalStateException | InterruptedException | ExecutionException e) {
+			LOGGER.error("Problem retrieving EXTM from MatLab \n"+e.getMessage());
+			e.printStackTrace();
+		}
+		return exogenous_events_TM;
+	}
 
 	public double[] getValue() {
 		return value;
@@ -181,11 +285,101 @@ public class MDPSolver {
 
 	public void checkInput() {
 		try {
-			//Disconnect from the MATLAB session
 			ml.eval("mdp_check(P,R)");
 		} catch (ExecutionException | CancellationException | InterruptedException e) {
 			e.printStackTrace();
 		}	
+	}
+
+	public double[][][] buildTransitionMatrix(
+			HashMap<Integer, HashSet<Transition>> ctrl_actions_transitions_map,
+			double[][] ex_tm) {
+		Iterator<Integer> it = ctrl_actions_transitions_map.keySet().iterator();
+		while(it.hasNext()){
+			Integer action_id = it.next();
+			String matrix_id = "TM_"+action_id;
+			HashSet<Transition> transitions = ctrl_actions_transitions_map.get(action_id);
+			double[][] tempTM = new double[nbOfStates][nbOfStates];
+
+			for(Transition trans:transitions) {
+				Integer src = trans.getSrc();
+				Integer dst = trans.getDest();
+				BigDecimal prob = trans.getProbability();
+				tempTM[src][dst] = prob.doubleValue();
+			}
+
+			/*
+			 * 1) Compute the Event's transition matrix
+			 * 2) Multiply the computed matrix with EXTM
+			 */
+			try {
+				ml.putVariableAsync(matrix_id, tempTM);
+				ml.eval("P(:,:,"+(action_id+1)+")" +"=EXTM*"+matrix_id+ ";");
+			} catch (IllegalStateException | InterruptedException | ExecutionException e) {
+				LOGGER.error("Problem multiplying EXTM and the action's computed TM \n"+e.getMessage());
+				e.printStackTrace();
+			}	
+		}
+		
+		Future<double[][][]> future_p;
+		try {
+			future_p = ml.getVariableAsync("P");
+			this.p = future_p.get();
+		} catch (IllegalStateException | InterruptedException | ExecutionException e) {
+			LOGGER.error("Problem retrieving EXTM from MatLab \n"+e.getMessage());
+			e.printStackTrace();
+		}
+		return p;
+
+
+	}
+
+	public double[][][] buildRewardMatrix(
+			HashSet<Reward> rewards, 
+			HashMap<String, ActionDescription> actionDescriptions,
+			HashMap<String, Integer> control_events_id) {
+		/*
+		 * Build the generic reward matrix
+		 */
+		double[][] tempTM = new double[nbOfStates][nbOfStates];
+		String matrix_id = "TRM";
+		for(Reward reward : rewards) {
+			Integer src = reward.getSrc();
+			Integer dst = reward.getDest();
+			Integer rew = reward.getReward();
+			tempTM[src][dst] = rew;
+		}
+
+		/*
+		 * 
+		 */
+		Iterator<String> it = control_events_id.keySet().iterator();
+		while(it.hasNext()) {
+			String action_name = it.next();
+			Integer action_id = control_events_id.get(action_name);
+			BigDecimal action_cost = actionDescriptions.get(action_name).getCost();
+			/*
+			 * 1) Compute the reward matrix
+			 * 2) Perform element wise substraction of the computed matrix with the action cost
+			 */
+			try {
+				ml.putVariableAsync(matrix_id, tempTM);
+				ml.eval("R(:,:,"+(action_id+1)+")" +"="+matrix_id+ " - "+action_cost.doubleValue()+";");
+			} catch (IllegalStateException | InterruptedException | ExecutionException e) {
+				LOGGER.error("Problem creating reward matrix in matlab \n"+e.getMessage());
+				e.printStackTrace();
+			}	
+		}
+		Future<double[][][]> future_r;
+		try {
+			future_r = ml.getVariableAsync("R");
+			this.r = future_r.get();
+		} catch (IllegalStateException | InterruptedException | ExecutionException e) {
+			LOGGER.error("Problem retrieving EXTM from MatLab \n"+e.getMessage());
+			e.printStackTrace();
+		}
+		return r;
+
 	}
 }
 

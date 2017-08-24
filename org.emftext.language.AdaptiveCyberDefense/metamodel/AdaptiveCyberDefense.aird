@@ -1126,13 +1126,9 @@
     <ownedDiagramElements xmi:type="diagram:DEdge" xmi:id="_ml8h8Bt8Eeeobc1oZnWsww" name="[0..*] effects" sourceNode="_nisZIIZbEee_nN6miMzygw" targetNode="_2xUhMBt4Eeeobc1oZnWsww">
       <target xmi:type="ecore:EReference" href="AdaptiveCyberDefense.ecore#//ContextualEffect/effects"/>
       <semanticElements xmi:type="ecore:EReference" href="AdaptiveCyberDefense.ecore#//ContextualEffect/effects"/>
-      <ownedStyle xmi:type="diagram:EdgeStyle" xmi:id="_oV25EHKfEeedMetepvg9og" description="_zishsBt7Eeeobc1oZnWsww" sourceArrow="FillDiamond" routingStyle="manhattan" strokeColor="0,0,0">
-        <centerLabelStyle xmi:type="diagram:CenterLabelStyle" xmi:id="_oV25EXKfEeedMetepvg9og" showIcon="false">
-          <customFeatures>labelSize</customFeatures>
-        </centerLabelStyle>
-        <endLabelStyle xmi:type="diagram:EndLabelStyle" xmi:id="_oV25EnKfEeedMetepvg9og" showIcon="false" labelColor="39,76,114">
-          <customFeatures>labelSize</customFeatures>
-        </endLabelStyle>
+      <ownedStyle xmi:type="diagram:EdgeStyle" xmi:id="_wFvewIdMEeeXzZmqSjNW_A" description="_zishsBt7Eeeobc1oZnWsww" sourceArrow="FillDiamond" routingStyle="manhattan" strokeColor="0,0,0">
+        <centerLabelStyle xmi:type="diagram:CenterLabelStyle" xmi:id="_wFvewYdMEeeXzZmqSjNW_A" showIcon="false"/>
+        <endLabelStyle xmi:type="diagram:EndLabelStyle" xmi:id="_wFvewodMEeeXzZmqSjNW_A" labelSize="6" showIcon="false" labelColor="39,76,114"/>
       </ownedStyle>
       <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@edgeMappings[name='EC_EReference']"/>
     </ownedDiagramElements>
@@ -1591,16 +1587,14 @@
       </ownedStyle>
       <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@edgeMappings[name='EC%20ESupertypes']"/>
     </ownedDiagramElements>
-    <ownedDiagramElements xmi:type="diagram:DEdge" xmi:id="_dKiTAGfREeeiFOJwaaN8nA" name="[0..1] context" sourceNode="_nisZIIZbEee_nN6miMzygw" targetNode="_KOHjwGe6EeeiFOJwaaN8nA">
+    <ownedDiagramElements xmi:type="diagram:DEdge" xmi:id="_dKiTAGfREeeiFOJwaaN8nA" name="[1..1] context" sourceNode="_nisZIIZbEee_nN6miMzygw" targetNode="_KOHjwGe6EeeiFOJwaaN8nA">
       <target xmi:type="ecore:EReference" href="AdaptiveCyberDefense.ecore#//ContextualEffect/context"/>
       <semanticElements xmi:type="ecore:EReference" href="AdaptiveCyberDefense.ecore#//ContextualEffect/context"/>
-      <ownedStyle xmi:type="diagram:EdgeStyle" xmi:id="_iowwoIDHEeemxpy07uVVjA" description="_zishsBt7Eeeobc1oZnWsww" sourceArrow="FillDiamond" routingStyle="manhattan" strokeColor="0,0,0">
-        <centerLabelStyle xmi:type="diagram:CenterLabelStyle" xmi:id="_iowwoYDHEeemxpy07uVVjA" showIcon="false">
-          <customFeatures>labelSize</customFeatures>
+      <ownedStyle xmi:type="diagram:EdgeStyle" xmi:id="_09LAYIdPEeeWbf5GHGS-0Q" description="_pnwikBt7Eeeobc1oZnWsww" sourceArrow="FillDiamond" routingStyle="manhattan" strokeColor="0,0,0">
+        <centerLabelStyle xmi:type="diagram:CenterLabelStyle" xmi:id="_09LAYYdPEeeWbf5GHGS-0Q" showIcon="false">
+          <labelFormat>bold</labelFormat>
         </centerLabelStyle>
-        <endLabelStyle xmi:type="diagram:EndLabelStyle" xmi:id="_iowwooDHEeemxpy07uVVjA" showIcon="false" labelColor="39,76,114">
-          <customFeatures>labelSize</customFeatures>
-        </endLabelStyle>
+        <endLabelStyle xmi:type="diagram:EndLabelStyle" xmi:id="_09LAYodPEeeWbf5GHGS-0Q" labelSize="6" showIcon="false" labelColor="39,76,114"/>
       </ownedStyle>
       <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@edgeMappings[name='EC_EReference']"/>
     </ownedDiagramElements>
@@ -1776,12 +1770,14 @@
       </ownedStyle>
       <actualMapping xmi:type="description_1:ContainerMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']"/>
     </ownedDiagramElements>
-    <ownedDiagramElements xmi:type="diagram:DEdge" xmi:id="_ISZwkIZcEee_nN6miMzygw" name="[0..*] contextual_effects" sourceNode="_q5McoBt4Eeeobc1oZnWsww" targetNode="_nisZIIZbEee_nN6miMzygw">
+    <ownedDiagramElements xmi:type="diagram:DEdge" xmi:id="_ISZwkIZcEee_nN6miMzygw" name="[1..*] contextual_effects" sourceNode="_q5McoBt4Eeeobc1oZnWsww" targetNode="_nisZIIZbEee_nN6miMzygw">
       <target xmi:type="ecore:EReference" href="AdaptiveCyberDefense.ecore#//ActionDescription/contextual_effects"/>
       <semanticElements xmi:type="ecore:EReference" href="AdaptiveCyberDefense.ecore#//ActionDescription/contextual_effects"/>
-      <ownedStyle xmi:type="diagram:EdgeStyle" xmi:id="_NbZQYIZsEee_nN6miMzygw" description="_zishsBt7Eeeobc1oZnWsww" sourceArrow="FillDiamond" routingStyle="manhattan" strokeColor="0,0,0">
-        <centerLabelStyle xmi:type="diagram:CenterLabelStyle" xmi:id="_NbZQYYZsEee_nN6miMzygw" showIcon="false"/>
-        <endLabelStyle xmi:type="diagram:EndLabelStyle" xmi:id="_NbZQYoZsEee_nN6miMzygw" labelSize="6" showIcon="false" labelColor="39,76,114"/>
+      <ownedStyle xmi:type="diagram:EdgeStyle" xmi:id="_wgTzgIdPEeeWbf5GHGS-0Q" description="_pnwikBt7Eeeobc1oZnWsww" sourceArrow="FillDiamond" routingStyle="manhattan" strokeColor="0,0,0">
+        <centerLabelStyle xmi:type="diagram:CenterLabelStyle" xmi:id="_wgTzgYdPEeeWbf5GHGS-0Q" showIcon="false">
+          <labelFormat>bold</labelFormat>
+        </centerLabelStyle>
+        <endLabelStyle xmi:type="diagram:EndLabelStyle" xmi:id="_wgTzgodPEeeWbf5GHGS-0Q" labelSize="6" showIcon="false" labelColor="39,76,114"/>
       </ownedStyle>
       <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@edgeMappings[name='EC_EReference']"/>
     </ownedDiagramElements>
@@ -1817,8 +1813,8 @@
       <ownedElements xmi:type="diagram:DNodeListElement" xmi:id="_-VxVEIZrEee_nN6miMzygw" name="occurrence_probability : EBigDecimal = 1" tooltipText="">
         <target xmi:type="ecore:EAttribute" href="AdaptiveCyberDefense.ecore#//ProbabilisticContextualEffect/occurrence_probability"/>
         <semanticElements xmi:type="ecore:EAttribute" href="AdaptiveCyberDefense.ecore#//ProbabilisticContextualEffect/occurrence_probability"/>
-        <ownedStyle xmi:type="diagram:BundledImage" xmi:id="_-Vx8IIZrEee_nN6miMzygw" labelAlignment="LEFT">
-          <description xmi:type="style:BundledImageDescription" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@subNodeMappings[name='EC%20EAttribute']/@style"/>
+        <ownedStyle xmi:type="diagram:BundledImage" xmi:id="_z_6G4IdPEeeWbf5GHGS-0Q" labelAlignment="LEFT" description="_oiotkBt7Eeeobc1oZnWsww">
+          <labelFormat>bold</labelFormat>
         </ownedStyle>
         <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@subNodeMappings[name='EC%20EAttribute']"/>
       </ownedElements>
@@ -1835,16 +1831,14 @@
       </ownedStyle>
       <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@edgeMappings[name='EC%20ESupertypes']"/>
     </ownedDiagramElements>
-    <ownedDiagramElements xmi:type="diagram:DEdge" xmi:id="_I_Mx4IZsEee_nN6miMzygw" name="[0..*] probabilistic_contextual_effects" sourceNode="_HzNVUIZrEee_nN6miMzygw" targetNode="_xCYzcIZrEee_nN6miMzygw">
+    <ownedDiagramElements xmi:type="diagram:DEdge" xmi:id="_I_Mx4IZsEee_nN6miMzygw" name="[1..*] probabilistic_contextual_effects" sourceNode="_HzNVUIZrEee_nN6miMzygw" targetNode="_xCYzcIZrEee_nN6miMzygw">
       <target xmi:type="ecore:EReference" href="AdaptiveCyberDefense.ecore#//EventDescription/probabilistic_contextual_effects"/>
       <semanticElements xmi:type="ecore:EReference" href="AdaptiveCyberDefense.ecore#//EventDescription/probabilistic_contextual_effects"/>
-      <ownedStyle xmi:type="diagram:EdgeStyle" xmi:id="_I_NY8IZsEee_nN6miMzygw" description="_zishsBt7Eeeobc1oZnWsww" sourceArrow="FillDiamond" routingStyle="manhattan" strokeColor="0,0,0">
-        <centerLabelStyle xmi:type="diagram:CenterLabelStyle" xmi:id="_I_NY8YZsEee_nN6miMzygw" showIcon="false">
-          <customFeatures>labelSize</customFeatures>
+      <ownedStyle xmi:type="diagram:EdgeStyle" xmi:id="_y84joIdPEeeWbf5GHGS-0Q" description="_pnwikBt7Eeeobc1oZnWsww" sourceArrow="FillDiamond" routingStyle="manhattan" strokeColor="0,0,0">
+        <centerLabelStyle xmi:type="diagram:CenterLabelStyle" xmi:id="_y84joYdPEeeWbf5GHGS-0Q" showIcon="false">
+          <labelFormat>bold</labelFormat>
         </centerLabelStyle>
-        <endLabelStyle xmi:type="diagram:EndLabelStyle" xmi:id="_I_NY8oZsEee_nN6miMzygw" showIcon="false" labelColor="39,76,114">
-          <customFeatures>labelSize</customFeatures>
-        </endLabelStyle>
+        <endLabelStyle xmi:type="diagram:EndLabelStyle" xmi:id="_y84joodPEeeWbf5GHGS-0Q" labelSize="6" showIcon="false" labelColor="39,76,114"/>
       </ownedStyle>
       <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@edgeMappings[name='EC_EReference']"/>
     </ownedDiagramElements>

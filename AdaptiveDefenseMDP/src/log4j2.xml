@@ -3,17 +3,17 @@
     "http://logging.apache.org/log4j/1.2/apidocs/org/apache/log4j/xml/doc-files/log4j.dtd">
 <Configuration status="INFO">
     <Properties>
-        <Property name="basePath">/Users/yehia/Documents/GraphivFilesReact</Property>
+        <Property name="basePath">/Users/yehia/Documents/GraphivFilesReact/LogFiles</Property>
     </Properties>
     
     <Appenders>
         <Console name="Console" target="SYSTEM_OUT">
             <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n" />
         </Console>
-        <File name="DebugFile" fileName="${basePath}/logger4j-debug.log " immediateFlush="false" append="false">
+        <File name="DebugFile" fileName="${basePath}/${sys:descriptionName}-debug.log " immediateFlush="false" append="false">
             <PatternLayout pattern="%d{yyy-MM-dd HH:mm:ss.SSS} %-5level [%C{3} %M:%L] %logger{36} - %msg%n"/>
         </File>
-         <File name="TraceFile" fileName="${basePath}/logger4j-trace.log " immediateFlush="false" append="false">
+         <File name="TraceFile" fileName="${basePath}/${sys:descriptionName}-trace.log " immediateFlush="false" append="false">
             <PatternLayout pattern="%d{yyy-MM-dd HH:mm:ss.SSS} [%C{3} %M:%L] %-5level %logger{36} - %msg%n"/>
         </File>
     </Appenders>

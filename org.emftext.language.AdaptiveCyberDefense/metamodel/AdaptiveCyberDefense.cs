@@ -44,22 +44,22 @@ RULES {
 	
 	ActionDescription ::= 
 		"Action" name[]  ("=" value[])?
-		(contextual_effects+)? 
+		contextual_effects+
 		("cost" cost[FLOAT])?
 		;
 	
 	EventDescription ::= 
 		"Event" name[] ("=" value[])?
-		(probabilistic_contextual_effects+)? 
+		probabilistic_contextual_effects+
 		;		
 
 	ProbabilisticContextualEffect ::=
-		("Occurrence Probability" occurrence_probability[FLOAT])?
-		("if" context)?
+		"if" context
+		"occurrence probability" occurrence_probability[FLOAT]
 		"effects" effects*;
 		
 	ContextualEffect ::=
-		("if" context)?
+		"if" context
 		"effects" effects*;
 		
 	UnconditionalMaintain ::= 

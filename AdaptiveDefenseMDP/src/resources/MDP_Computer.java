@@ -52,9 +52,9 @@ public class MDP_Computer {
 			Integer src = descr.getSrc();
 			Integer dest = descr.getDest();
 			String action_name = descr.getName();
-			Integer reward = descr.getOrReward() + descr.getActionCost();
+		//	Integer reward = descr.getOrReward() + descr.getActionCost();
 			if(events_id.containsKey(action_name)) {
-				t[src][dest][events_id.get(action_name)] = reward;
+				//t[src][dest][events_id.get(action_name)] = reward;
 				//	}
 			} /*else if(!descr.getApplicability()){
 				Integer src = descr.getSrc();
@@ -114,7 +114,7 @@ public class MDP_Computer {
 		}
 		HashSet<Transition> temp_trans = new HashSet<Transition>();
 		for(Transition trans_descr : transitions){
-			if(trans_descr.getApplicability()){
+			//if(trans_descr.getApplicability()){
 				String trans_name = trans_descr.getName();
 				Integer trans_src = trans_descr.getSrc();
 				Integer policy_action_id = (int) (policy[trans_src]);			
@@ -128,7 +128,7 @@ public class MDP_Computer {
 						}
 					}
 				}
-			}
+			//}
 		}
 		return temp_trans;
 	}
@@ -154,9 +154,9 @@ public class MDP_Computer {
 			}
 			for(Integer dest : successorStates) {
 				Transition trans = transitions2.get(Transition.hashCode(src, label, dest));
-				if(trans.getApplicability()){
+				//if(trans.getApplicability()){
 					transitions.add(trans);
-				}
+				//}
 				if(!visited.contains(dest)) {
 					to_explore.add(dest);
 				}

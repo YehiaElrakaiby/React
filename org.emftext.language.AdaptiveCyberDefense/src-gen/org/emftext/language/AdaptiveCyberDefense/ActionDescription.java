@@ -65,7 +65,7 @@ public interface ActionDescription extends DescriptionEntity {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Contextual effects</em>' containment reference list.
 	 * @see org.emftext.language.AdaptiveCyberDefense.AdaptiveCyberDefensePackage#getActionDescription_Contextual_effects()
-	 * @model containment="true"
+	 * @model containment="true" required="true"
 	 * @generated
 	 */
 	EList<ContextualEffect> getContextual_effects();

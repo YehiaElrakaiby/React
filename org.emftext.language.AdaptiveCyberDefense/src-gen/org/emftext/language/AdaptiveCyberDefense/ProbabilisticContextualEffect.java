@@ -33,7 +33,7 @@ public interface ProbabilisticContextualEffect extends ContextualEffect {
 	 * @return the value of the '<em>Occurrence probability</em>' attribute.
 	 * @see #setOccurrence_probability(BigDecimal)
 	 * @see org.emftext.language.AdaptiveCyberDefense.AdaptiveCyberDefensePackage#getProbabilisticContextualEffect_Occurrence_probability()
-	 * @model default="1"
+	 * @model default="1" required="true"
 	 * @generated
 	 */
 	BigDecimal getOccurrence_probability();

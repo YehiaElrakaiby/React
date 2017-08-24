@@ -35,7 +35,7 @@ public interface EventDescription extends DescriptionEntity {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Probabilistic contextual effects</em>' containment reference list.
 	 * @see org.emftext.language.AdaptiveCyberDefense.AdaptiveCyberDefensePackage#getEventDescription_Probabilistic_contextual_effects()
-	 * @model containment="true"
+	 * @model containment="true" required="true"
 	 * @generated
 	 */
 	EList<ProbabilisticContextualEffect> getProbabilistic_contextual_effects();
