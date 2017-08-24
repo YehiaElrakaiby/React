@@ -28,7 +28,7 @@ public class AdaptiveDefenseMDP {
 	 */
 
 
-	static String descriptionFileName = "description_v3b.AdaptiveCyberDefense";
+	static String descriptionFileName = "description_v4a.AdaptiveCyberDefense";
 	
 	static String files_location = "/Users/yehia/Documents/GraphivFilesReact/";
 

@@ -23,7 +23,7 @@ import java.math.BigDecimal;
 public interface ProbabilisticContextualEffect extends ContextualEffect {
 	/**
 	 * Returns the value of the '<em><b>Occurrence probability</b></em>' attribute.
-	 * The default value is <code>"1"</code>.
+	 * The default value is <code>"0"</code>.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Occurrence probability</em>' attribute isn't clear,
@@ -33,7 +33,7 @@ public interface ProbabilisticContextualEffect extends ContextualEffect {
 	 * @return the value of the '<em>Occurrence probability</em>' attribute.
 	 * @see #setOccurrence_probability(BigDecimal)
 	 * @see org.emftext.language.AdaptiveCyberDefense.AdaptiveCyberDefensePackage#getProbabilisticContextualEffect_Occurrence_probability()
-	 * @model default="1" required="true"
+	 * @model default="0"
 	 * @generated
 	 */
 	BigDecimal getOccurrence_probability();

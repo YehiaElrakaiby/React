@@ -1158,7 +1158,7 @@ public class AdaptiveCyberDefensePackageImpl extends EPackageImpl implements Ada
 		initEAttribute(getEventDescription_Value(), ecorePackage.getEString(), "value", "tt", 0, 1, EventDescription.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(probabilisticContextualEffectEClass, ProbabilisticContextualEffect.class, "ProbabilisticContextualEffect", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getProbabilisticContextualEffect_Occurrence_probability(), ecorePackage.getEBigDecimal(), "occurrence_probability", "1", 1, 1, ProbabilisticContextualEffect.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getProbabilisticContextualEffect_Occurrence_probability(), ecorePackage.getEBigDecimal(), "occurrence_probability", "0", 0, 1, ProbabilisticContextualEffect.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(descriptionEntityEClass, DescriptionEntity.class, "DescriptionEntity", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getDescriptionEntity_Name(), ecorePackage.getEString(), "name", null, 1, 1, DescriptionEntity.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

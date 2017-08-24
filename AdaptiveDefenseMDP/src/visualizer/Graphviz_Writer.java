@@ -90,7 +90,7 @@ public class Graphviz_Writer {
 
 				if(show_state_name_in_node){
 					bw.write(stateName+"\n");
-					bw.write("("+new Double(valueM[stateName]).intValue()+")\\n");
+					bw.write("("+intFormat(valueM[stateName])+")\\n");
 				}
 
 				HashMap<String, String> literals = lts_states.get(stateName);
@@ -143,6 +143,9 @@ public class Graphviz_Writer {
 			e.printStackTrace();
 		}
 
+	}
+	private static Integer intFormat(Double value) {
+		return new Double(value).intValue();
 	}
 	private static void writeNodes(
 			HashSet<Integer> visited, 
@@ -221,7 +224,7 @@ public class Graphviz_Writer {
 						bw.write(
 								trans_name +" "
 										+ tm[i][j][optimal_action] +" "
-										+ rm[i][j][optimal_action] +" "		
+										+ intFormat(rm[i][j][optimal_action]) +" "		
 										+"\\n");
 
 						bw.write("\"]\n");
@@ -258,7 +261,7 @@ public class Graphviz_Writer {
 						bw.write(
 								trans_name +" "
 										+ tm[i][j][optimal_action] +" "
-										+ rm[i][j][optimal_action] +" "		
+										+ intFormat(rm[i][j][optimal_action]) +" "		
 										+"\\n");
 
 						bw.write("\"]\n");
@@ -322,7 +325,7 @@ public class Graphviz_Writer {
 							bw.write(
 									trans_name +" "
 											+ tm[i][j][k] +" "
-											+ rm[i][j][k] +" "		
+											+ intFormat(rm[i][j][k]) +" "		
 											+"\\n");
 
 							bw.write("\"]\n");

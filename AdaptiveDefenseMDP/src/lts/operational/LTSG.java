@@ -16,6 +16,7 @@ import org.eclipse.emf.common.util.EList;
 import org.emftext.language.AdaptiveCyberDefense.Achieve;
 import org.emftext.language.AdaptiveCyberDefense.ActionDescription;
 import org.emftext.language.AdaptiveCyberDefense.AdaptiveCyberDefenseFactory;
+import org.emftext.language.AdaptiveCyberDefense.ConditionalAchieve;
 import org.emftext.language.AdaptiveCyberDefense.ContextualEffect;
 import org.emftext.language.AdaptiveCyberDefense.DomainDescription;
 import org.emftext.language.AdaptiveCyberDefense.EventDescription;
@@ -254,7 +255,7 @@ public class LTSG {
 				Achieve req = (Achieve) requirement;
 				fillAchieveRequirementDescription(req,descr,domain);
 			} else 	if(requirement.getClass().getName().endsWith(".ConditionalAchieveImpl")){
-				Achieve req = (Achieve) requirement;
+				ConditionalAchieve req = (ConditionalAchieve) requirement;
 				fillConditionalAchieveRequirementDescription(req,descr,domain);
 			} else 	if(requirement.getClass().getName().endsWith(".UnconditionalMaintainImpl")){
 				UnconditionalMaintain req = (UnconditionalMaintain) requirement;
@@ -273,7 +274,7 @@ public class LTSG {
 			nb_of_states = nb_of_states * domain.size();
 		}
 	}
-	private void fillConditionalAchieveRequirementDescription(Achieve req, RequirementDescription descr,
+	private void fillConditionalAchieveRequirementDescription(ConditionalAchieve req, RequirementDescription descr,
 			HashSet<String> domain) {
 		String name = req.getName();
 
@@ -418,8 +419,8 @@ public class LTSG {
 					var.getClass().toString().endsWith(".MaintainImpl") ||
 					var.getClass().toString().endsWith(".ConditionalAchieveImpl") ||
 					var.getClass().toString().endsWith(".AchieveImpl")) {
-				Maintain ratom = (Maintain) var;
-				this.initial_state.put(ratom.getName(), atom.getValue());
+				Requirement req = (Requirement) var;
+				this.initial_state.put(req.getName(), atom.getValue());
 			}
 		}
 		Iterator<String> it = requirements_description.keySet().iterator();

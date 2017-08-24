@@ -137,8 +137,8 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ProbabilisticContextualEffect" eSuperTypes="#//ContextualEffect">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="occurrence_probability"
-        lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBigDecimal"
-        defaultValueLiteral="1"/>
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBigDecimal"
+        defaultValueLiteral="0"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="DescriptionEntity" abstract="true">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"

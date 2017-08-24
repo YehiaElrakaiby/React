@@ -55,7 +55,7 @@ RULES {
 
 	ProbabilisticContextualEffect ::=
 		"if" context
-		"occurrence probability" occurrence_probability[FLOAT]
+		("occurrence probability" occurrence_probability[FLOAT])?
 		"effects" effects*;
 		
 	ContextualEffect ::=
