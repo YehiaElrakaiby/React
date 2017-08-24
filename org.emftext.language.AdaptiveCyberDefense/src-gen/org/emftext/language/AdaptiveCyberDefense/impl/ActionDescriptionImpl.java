@@ -50,7 +50,7 @@ public class ActionDescriptionImpl extends DescriptionEntityImpl implements Acti
 	 * @generated
 	 * @ordered
 	 */
-	protected static final BigDecimal COST_EDEFAULT = new BigDecimal("-0.00001");
+	protected static final BigDecimal COST_EDEFAULT = new BigDecimal("0.00001");
 
 	/**
 	 * The cached value of the '{@link #getCost() <em>Cost</em>}' attribute.

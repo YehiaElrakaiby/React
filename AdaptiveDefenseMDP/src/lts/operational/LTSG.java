@@ -2,6 +2,8 @@ package lts.operational;
 
 
 
+import java.io.OutputStream;
+import java.io.StringWriter;
 import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -28,6 +30,7 @@ import org.emftext.language.AdaptiveCyberDefense.Requirement;
 import org.emftext.language.AdaptiveCyberDefense.StateAtom;
 import org.emftext.language.AdaptiveCyberDefense.StateVariable;
 import org.emftext.language.AdaptiveCyberDefense.UnconditionalMaintain;
+import org.emftext.language.AdaptiveCyberDefense.resource.AdaptiveCyberDefense.mopp.AdaptiveCyberDefensePrinter;
 
 import main.AdaptiveDefenseMDP;
 import resources.RequirementDescription;
@@ -47,7 +50,8 @@ public class LTSG {
 	private Integer nb_of_states=1;
 	private Integer nb_of_control_events=0;
 	private Integer nb_of_exogenous_events=0;
-	
+	private Integer nb_of_transitions=0;
+
 	/**
 	 * Fluent Description:
 	 *  Mapping variable_name --> Domain(variable) 
@@ -66,7 +70,7 @@ public class LTSG {
 	 * Mapping requirement id to requirement description
 	 */
 	HashMap<String,RequirementDescription> requirements_description = new HashMap<String,RequirementDescription>();
-	
+
 	/**
 	 * Initial State
 	 */
@@ -88,12 +92,10 @@ public class LTSG {
 	 *  Mapping transition_id --> Transition(name,src,dest,prob)
 	 */
 	protected HashSet<Transition> transitions = new HashSet<Transition>();
-	//protected HashMap<Integer,Transition> src_label_dest_transitions_map = new HashMap<Integer,Transition>();
-	//protected HashMap<Integer,HashSet<Integer>> src_label_nextStates_map = new HashMap<Integer,HashSet<Integer>>();
 
-	
 
-	
+
+
 	/**
 	 * Control and Exogenous Events 
 	 */
@@ -107,8 +109,8 @@ public class LTSG {
 	protected HashMap<Integer, String> id_exogenous_events = new HashMap<Integer, String>();
 	protected HashMap<Integer, HashSet<Transition>> exo_events_transitions_map = new HashMap<Integer, HashSet<Transition>>();
 	protected HashMap<Integer, HashMap<Integer,Double>> occurrence_vectors = new HashMap<Integer, HashMap<Integer,Double>> ();
-	
-	
+
+
 	/**
 	 *  Rewards
 	 */
@@ -184,7 +186,7 @@ public class LTSG {
 			this.id_exogenous_events.put(nb_of_exogenous_events,event);
 			this.exo_events_transitions_map.put(nb_of_exogenous_events, new HashSet<Transition>());
 			this.occurrence_vectors.put(nb_of_exogenous_events, new HashMap<Integer,Double>());
-			
+
 			this.event_descriptions.put(event, action);
 			this.nb_of_exogenous_events++;
 		}
@@ -214,7 +216,7 @@ public class LTSG {
 		 */
 		ActionDescription descr = AdaptiveCyberDefenseFactory.eINSTANCE.createActionDescription();
 		EList<ContextualEffect> effects = descr.getContextual_effects();
-		
+
 
 		descr.setName(AdaptiveDefenseMDP.noop_event_identifier);
 		/*
@@ -222,7 +224,7 @@ public class LTSG {
 		 */
 		ContextualEffect contextual_effect = AdaptiveCyberDefenseFactory.eINSTANCE.createContextualEffect();
 		contextual_effect.setContext(AdaptiveCyberDefenseFactory.eINSTANCE.createTrue());
-		
+
 		effects.add(contextual_effect);
 
 		/*
@@ -435,8 +437,8 @@ public class LTSG {
 			updateEventTransitionsFromState(state,state_nb,to_explore);
 
 		}
-			
-		
+
+
 	}
 
 	private void updateEventTransitionsFromState(
@@ -467,7 +469,7 @@ public class LTSG {
 			BigDecimal one = new BigDecimal(1);
 			Boolean holds= false;
 			EList<ProbabilisticEffect> effects=null;
-			
+
 			/*
 			 * check if a context applies:
 			 * if yes, 
@@ -481,9 +483,9 @@ public class LTSG {
 					occurrence_vector.put(src_id, contextual_effect.getOccurrence_probability().doubleValue());
 					holds = true;
 					effects = contextual_effect.getEffects();
-					
+
 					BigDecimal total_prob = new BigDecimal(0);
-					
+
 					/*
 					 * apply the effects of the actions one at a time
 					 */
@@ -494,21 +496,21 @@ public class LTSG {
 							updateStateVariables(dst_state,effect);
 						} 
 						Reward rew = new Reward();
-						
+
 						dst_state.put(descr.getName(), descr.getValue());
 						updateReqVariables(dst_state, requirements_description,rew);
 						dst_state.remove(descr.getName());						
-						
+
 						this.rewards.add(rew);
 
 						Integer dest_id = updateStates(to_explore,dst_state,state_nb);
-						
-						
+
+
 						Transition trans = new Transition(event_name,src_id,dest_id,prob);
 						event_transitions.add(trans);
-						
+
 						total_prob = total_prob.add(effect.getProbability());
-						
+
 						//transitions.add(trans);
 						//src_label_dest_transitions_map.put(trans.hashCode(), trans);
 						//updateTransitions3(Transition.hashCode(src_id, action_name),dest_id);
@@ -517,18 +519,18 @@ public class LTSG {
 					if(total_prob.compareTo(one)==-1) {
 						HashMap<String, String> dst_state = new HashMap<String, String>(state);
 						Reward rew = new Reward();
-						
+
 						dst_state.put(descr.getName(), descr.getValue());
 						updateReqVariables(dst_state, requirements_description,rew);
 						dst_state.remove(descr.getName());
-						
+
 						this.rewards.add(rew);
 
 						Integer dest_id = updateStates(to_explore,dst_state,state_nb);
 
 						Transition trans = new Transition(event_name,src_id,dest_id,one.subtract(total_prob));
 						event_transitions.add(trans);
-						
+
 						//transitions.add(trans);
 						//src_label_dest_transitions_map.put(trans.hashCode(), trans);
 						//updateTransitions3(Transition.hashCode(src_id, action_name),dest_id);
@@ -589,9 +591,9 @@ public class LTSG {
 				if(holds(context,state)) {
 					holds = true;
 					effects = contextual_effect.getEffects();
-					
+
 					BigDecimal total_prob = new BigDecimal(0);
-					
+
 					/*
 					 * apply the effects of the actions one at a time
 					 */
@@ -601,7 +603,7 @@ public class LTSG {
 						if(effect!=null) {
 							updateStateVariables(dst_state,effect);
 						} 
-						
+
 						Reward rew = new Reward();
 
 						dst_state.put(descr.getName(), descr.getValue());
@@ -610,17 +612,17 @@ public class LTSG {
 
 
 						Integer dest_id = updateStates(to_explore,dst_state,state_nb);
-						
-						
+
+
 						Transition trans = new Transition(action_name,src_id,dest_id,prob);
 						action_transitions.add(trans);
-						
+
 						rew.setSrc(src_id);
 						rew.setDest(dest_id);
 						rewards.add(rew);
 
 						total_prob = total_prob.add(effect.getProbability());
-						
+
 						//transitions.add(trans);
 						//src_label_dest_transitions_map.put(trans.hashCode(), trans);
 						//updateTransitions3(Transition.hashCode(src_id, action_name),dest_id);
@@ -668,13 +670,13 @@ public class LTSG {
 				rewards.add(rew);
 
 			}
-			
-			
+
+
 		}
 
-	
+
 	}		
-	
+
 	/*
 	 * 				Auxiliary Functions for LTS States and Transitions Identification PART
 	 */
@@ -843,8 +845,8 @@ public class LTSG {
 			temp.put(var, atom.getValue());
 		}		
 	}
-	
-	
+
+
 	/*
 	 * 				Getters and Setters PART
 	 */
@@ -871,7 +873,7 @@ public class LTSG {
 	public HashMap<String, Integer> getControl_events_id() {
 		return control_events_id;
 	}
-	
+
 	public Integer getNumberOfStates() {
 		return states.size();
 	}
@@ -938,23 +940,41 @@ public class LTSG {
 		LOGGER.info("Nb of fluent Descriptions: "+this.variables_domain.size()+"\n");
 		LOGGER.trace("Fluent Descriptions:\n "+this.variables_domain.toString()+"\n");
 
-		LOGGER.info("Total Number of States:\n "+this.nb_of_states+"\n");
+		LOGGER.info("Total Number of States: "+this.nb_of_states+"\n");
 
 		LOGGER.info("Nb of Action Descriptions: "+this.action_descriptions.size()+"\n");
-		LOGGER.trace("Action Descriptions:\n "+this.action_descriptions.toString()+"\n");
-
+		LOGGER.trace("Action Descriptions:\n "+this.action_descriptions.toString()+"\n");		
+		
 		LOGGER.info("Nb of States to Explore: "+this.states.size()+"\n");
 		LOGGER.trace("States:\n "+this.states.toString()+"\n");
 
-		LOGGER.info("Nb of Transitions: "+this.transitions.size()+"\n");
-		LOGGER.trace("Transitions:\n "+this.transitions.toString()+"\n");
-
-		LOGGER.info("Nb of Control Events: "+this.control_events_id.size()+"\n");
+		LOGGER.info("Nb of Control Events: "+this.control_events.size()+"\n");
 		LOGGER.trace("Controlled Events:\n "+this.control_events_id.toString()+"\n");
 
-		LOGGER.info("Nb of Exogenous Events: "+this.exogenous_events_id.size()+"\n");
+		LOGGER.info("Nb of Exogenous Events: "+this.exogenous_events.size()+"\n");
 		LOGGER.trace("Exogenous Events:\n "+this.exogenous_events_id.toString()+"\n");
 
+
+		LOGGER.trace("Transitions:\n "+this.transitions.toString()+"\n");
+		Iterator<Integer> it = this.ctrl_actions_transitions_map.keySet().iterator();
+		while(it.hasNext()) {
+			Integer key = it.next();
+			HashSet<Transition> set = ctrl_actions_transitions_map.get(key);
+			this.nb_of_transitions += set.size();
+			LOGGER.trace("Transitions of "+this.id_control_events.get(key)+"\n");
+			LOGGER.trace(set.toString()+"\n");
+
+		}
+		it = this.exo_events_transitions_map.keySet().iterator();
+		while(it.hasNext()) {
+			Integer key = it.next();
+			HashSet<Transition> set = exo_events_transitions_map.get(key);
+			this.nb_of_transitions += set.size();
+			LOGGER.trace("Transitions of "+this.id_exogenous_events.get(key)+"\n");
+			LOGGER.trace(set.toString()+"\n");
+		}
+
+		LOGGER.info("Nb of Transitions: "+this.nb_of_transitions+"\n");
 
 		LOGGER.info("Nb of Requirements: "+this.requirements_description.size()+"\n");
 		LOGGER.trace("Requirements:\n "+this.requirements_description.toString()+"\n");
@@ -1009,9 +1029,9 @@ private void updateTransitions(HashMap<String, Integer> id_events,
 				total_prob = total_prob.add(effect.getProbability());
 				//System.out.println(total_prob.toString());
 			}
-			
-			 * if the total probability is less than one, then add a self transition with 1 - total_prob
-			 
+
+ * if the total probability is less than one, then add a self transition with 1 - total_prob
+
 			if(total_prob.compareTo(one)==-1) {
 				Transition trans = new Transition();
 				//trans.updateOrReward(-descr.getCost().intValue());
@@ -1052,7 +1072,7 @@ private void updateTransitions(HashMap<String, Integer> id_events,
 		}
 	}		
 }
-*/
+ */
 /*private void updateNotApplicableMap(String event, Integer integer) {
 	if(this.not_applicable.containsKey(integer)){
 		HashSet<String> set_of_actions = not_applicable.get(integer);

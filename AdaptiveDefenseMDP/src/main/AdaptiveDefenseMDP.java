@@ -1,16 +1,11 @@
 package main;
 
 import java.io.IOException;
-import java.io.InputStream;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Properties;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.apache.logging.log4j.spi.LoggerContext;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
@@ -19,7 +14,6 @@ import org.emftext.language.AdaptiveCyberDefense.resource.AdaptiveCyberDefense.m
 
 import lts.operational.LTSG;
 import mdp.MDPSolver;
-import resources.Transition;
 import visualizer.Graphviz_Writer;
 
 
@@ -34,7 +28,7 @@ public class AdaptiveDefenseMDP {
 	 */
 
 
-	static String descriptionFileName = "description_v2.AdaptiveCyberDefense";
+	static String descriptionFileName = "description_v3b.AdaptiveCyberDefense";
 	
 	static String files_location = "/Users/yehia/Documents/GraphivFilesReact/";
 
@@ -125,10 +119,10 @@ public class AdaptiveDefenseMDP {
 		double[] value = solver.getValue();
 		LOGGER.info("The MDP is solved: The policy and value vectors based on the MDP are computed");
 
-		Graphviz_Writer.create(files_location+controlStrategyFileName, lts.getStates(), lts.getId_control_events(), policy, tm, rm, Graphviz_Writer.SHOW_ALL);
+		Graphviz_Writer.create(files_location+controlStrategyFileName, lts.getStates(), lts.getId_control_events(), policy, value, tm, rm, Graphviz_Writer.SHOW_ALL);
 		LOGGER.info("The Control Strategy Graphviz file is created");
 
-		Graphviz_Writer.createPlan(files_location+controlPlanFileName, lts.getStates(), lts.getId_control_events(), policy, tm, rm, Graphviz_Writer.SHOW_ALL);
+		Graphviz_Writer.createPlan(files_location+controlPlanFileName, lts.getStates(), lts.getId_control_events(), policy, value, tm, rm, Graphviz_Writer.SHOW_ALL);
 		LOGGER.info("The Control Plan Graphviz file is created");
 
 		//showInGraphiv(graphiz_file, lts.getStates(), lts.getTransitions(), DOT_Writer.SHOW_ALL);
@@ -197,7 +191,6 @@ public class AdaptiveDefenseMDP {
 		String temp = "/"+configPath.toString();
 		Resource resource = resourceSet.getResource(org.eclipse.emf.common.util.URI.createFileURI(temp), true);
 		DomainDescription description = (DomainDescription) resource.getContents().get(0);
-
 		//AdaptiveCyberDefenseResourceFactory factory = new AdaptiveCyberDefenseResourceFactory();
 		//Resource res = factory.createResource(org.eclipse.emf.common.util.URI.createURI("http://www.emftext.org/language/AdaptiveCyberDefense/True"));
 

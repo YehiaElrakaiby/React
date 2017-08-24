@@ -56,6 +56,7 @@ public class Graphviz_Writer {
 			HashMap<Integer, HashMap<String, String>> lts_states,
 			HashMap<Integer, String> id_control_events, 
 			double[] policy, 
+			double[] value, 
 			double[][][] tm,
 			double[][][] rm, 
 			String op) {
@@ -67,7 +68,7 @@ public class Graphviz_Writer {
 			bw = new BufferedWriter(fw);
 			bw.write("digraph R {\n");
 
-			writeNodes(lts_states);
+			writeNodes(value,lts_states);
 			writeTransitions(id_control_events,policy,tm,rm);
 
 			bw.write("}");
@@ -77,10 +78,50 @@ public class Graphviz_Writer {
 			e.printStackTrace();
 		}		
 	}
+	private static void writeNodes(
+			double[] valueM, 
+			HashMap<Integer, HashMap<String, String>> lts_states) {
+		Iterator<Integer> it = lts_states.keySet().iterator();
+		while(it.hasNext()){
+			Integer stateName = it.next();
+
+			try {
+				bw.write(stateName+" [label=\"");
+
+				if(show_state_name_in_node){
+					bw.write(stateName+"\n");
+					bw.write("("+new Double(valueM[stateName]).intValue()+")\\n");
+				}
+
+				HashMap<String, String> literals = lts_states.get(stateName);
+				Set<String> set = literals.keySet();
+				List<String> list=asSortedList(set);
+				for(String fluent_name : list) {
+					String value = literals.get(fluent_name);
+					if(!filter(fluent_name)) {
+						if(value.equals("tt")) {
+							bw.write(fluent_name+"\\n");
+						} else if(value.equals("ff")) {
+
+						} else {
+							bw.write(fluent_name+"="+value+"\\n");
+						}
+					}
+				}
+				bw.write("\"]\n");
+
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+		}
+	}
 	public static void createPlan(String pathTographivFile, 
 			HashMap<Integer, HashMap<String, String>> lts_states,
 			HashMap<Integer, String> id_control_events, 
 			double[] policy, 
+			double[] value, 
 			double[][][] tm, 
 			double[][][] rm,
 			String op) {
@@ -93,7 +134,7 @@ public class Graphviz_Writer {
 			bw.write("digraph R {\n");
 
 			HashSet<Integer> visited = writePlanTransitions(id_control_events,policy,tm,rm);
-			writeNodes(visited, lts_states);
+			writeNodes(visited, lts_states, value);
 
 			bw.write("}");
 			bw.close();
@@ -105,7 +146,8 @@ public class Graphviz_Writer {
 	}
 	private static void writeNodes(
 			HashSet<Integer> visited, 
-			HashMap<Integer, HashMap<String, String>> lts_states) {
+			HashMap<Integer, HashMap<String, String>> lts_states, 
+			double[] value2) {
 		Iterator<Integer> it = lts_states.keySet().iterator();
 		while(it.hasNext()){
 			Integer stateName = it.next();
@@ -114,7 +156,8 @@ public class Graphviz_Writer {
 					bw.write(stateName+" [label=\"");
 
 					if(show_state_name_in_node){
-						bw.write(stateName+"\\n");
+						bw.write(stateName+"\n");
+						bw.write("("+new Double(value2[stateName]).intValue()+")\\n");
 					}
 
 					HashMap<String, String> literals = lts_states.get(stateName);

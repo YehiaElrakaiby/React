@@ -1046,7 +1046,7 @@
         <description xmi:type="style:FlatContainerStyleDescription" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@style"/>
       </ownedStyle>
       <actualMapping xmi:type="description_1:ContainerMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']"/>
-      <ownedElements xmi:type="diagram:DNodeListElement" xmi:id="_zihwIB3MEeeEYaZRDuvaOQ" name="cost : EBigDecimal = -0.00001" tooltipText="">
+      <ownedElements xmi:type="diagram:DNodeListElement" xmi:id="_zihwIB3MEeeEYaZRDuvaOQ" name="cost : EBigDecimal = 0.00001" tooltipText="">
         <target xmi:type="ecore:EAttribute" href="AdaptiveCyberDefense.ecore#//ActionDescription/cost"/>
         <semanticElements xmi:type="ecore:EAttribute" href="AdaptiveCyberDefense.ecore#//ActionDescription/cost"/>
         <ownedStyle xmi:type="diagram:BundledImage" xmi:id="_q2uekCq6Eee6nZDvlAJtQA" labelAlignment="LEFT">

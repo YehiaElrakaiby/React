@@ -29,7 +29,7 @@ import org.eclipse.emf.ecore.EObject;
 public interface ActionDescription extends DescriptionEntity {
 	/**
 	 * Returns the value of the '<em><b>Cost</b></em>' attribute.
-	 * The default value is <code>"-0.00001"</code>.
+	 * The default value is <code>"0.00001"</code>.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Cost</em>' attribute isn't clear,
@@ -39,7 +39,7 @@ public interface ActionDescription extends DescriptionEntity {
 	 * @return the value of the '<em>Cost</em>' attribute.
 	 * @see #setCost(BigDecimal)
 	 * @see org.emftext.language.AdaptiveCyberDefense.AdaptiveCyberDefensePackage#getActionDescription_Cost()
-	 * @model default="-0.00001"
+	 * @model default="0.00001"
 	 * @generated
 	 */
 	BigDecimal getCost();
