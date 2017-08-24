@@ -20,7 +20,6 @@ import org.emftext.language.AdaptiveCyberDefense.resource.AdaptiveCyberDefense.m
 import lts.operational.LTSG;
 import mdp.MDPSolver;
 import resources.Transition;
-import visualizer.DOT_Writer;
 import visualizer.Graphviz_Writer;
 
 
@@ -118,7 +117,7 @@ public class AdaptiveDefenseMDP {
 
 		LOGGER.info("The MDP input is checked");
 
-		Graphviz_Writer.create(files_location+ltsFileName, lts.getStates(), lts.getId_control_events(), tm, rm, DOT_Writer.SHOW_ALL);
+		Graphviz_Writer.create(files_location+ltsFileName, lts.getStates(), lts.getId_control_events(), tm, rm, Graphviz_Writer.SHOW_ALL);
 		LOGGER.info("The LTS Graphviz file is created");
 
 		solver.solveMDP();
@@ -126,10 +125,10 @@ public class AdaptiveDefenseMDP {
 		double[] value = solver.getValue();
 		LOGGER.info("The MDP is solved: The policy and value vectors based on the MDP are computed");
 
-		Graphviz_Writer.create(files_location+controlStrategyFileName, lts.getStates(), lts.getId_control_events(), policy, tm, rm, DOT_Writer.SHOW_ALL);
+		Graphviz_Writer.create(files_location+controlStrategyFileName, lts.getStates(), lts.getId_control_events(), policy, tm, rm, Graphviz_Writer.SHOW_ALL);
 		LOGGER.info("The Control Strategy Graphviz file is created");
 
-		Graphviz_Writer.createPlan(files_location+controlPlanFileName, lts.getStates(), lts.getId_control_events(), policy, tm, rm, DOT_Writer.SHOW_ALL);
+		Graphviz_Writer.createPlan(files_location+controlPlanFileName, lts.getStates(), lts.getId_control_events(), policy, tm, rm, Graphviz_Writer.SHOW_ALL);
 		LOGGER.info("The Control Plan Graphviz file is created");
 
 		//showInGraphiv(graphiz_file, lts.getStates(), lts.getTransitions(), DOT_Writer.SHOW_ALL);
@@ -180,7 +179,7 @@ public class AdaptiveDefenseMDP {
 
 
 
-
+/*
 	private static void showInGraphiv(
 			String file_path, 
 			HashMap<Integer, HashMap<String, String>> states,
@@ -188,7 +187,7 @@ public class AdaptiveDefenseMDP {
 		DOT_Writer visualizer = new DOT_Writer(file_path,states,transitions,option);
 		visualizer.openFromDesktop();			
 	}
-
+*/
 	
 
 	
