@@ -15,7 +15,7 @@ import org.emftext.language.AdaptiveCyberDefense.ActionDescription;
 import com.mathworks.engine.EngineException;
 import com.mathworks.engine.MatlabEngine;
 
-import main.AdaptiveDefenseMDP;
+import main.REact;
 import resources.Reward;
 import resources.Transition;
 
@@ -51,7 +51,7 @@ public class MDPSolver {
 
 		p = new double[nbOfStates][nbOfStates][nbOfActions];
 		r = new double[nbOfStates][nbOfStates][nbOfActions];
-		discount = AdaptiveDefenseMDP.discount_factor;
+		discount = REact.discount_factor;
 		
 		exogenous_events_TM = new double[nbOfStates][nbOfStates];
 		try {
@@ -162,7 +162,7 @@ public class MDPSolver {
 
 	public void solveMDP() {
 		try {
-			ml.eval("[V,policy,iter,cpu_time]=mdp_policy_iteration(P,R,discount)");
+			ml.eval("[V,policy,iter,cpu_time]=mdp_policy_iteration(P,R,discount);");
 
 			Future<double[]> future_v = ml.getVariableAsync("V");
 			value = future_v.get();
@@ -248,8 +248,8 @@ public class MDPSolver {
 			try {
 				ml.putVariableAsync("V", vector);
 				ml.putVariableAsync("TTM", tempTM);
-				ml.eval("TM = (diag(V) * TTM) + diag((1 - V))");
-				ml.eval("EXTM = EXTM*TM");
+				ml.eval("TM = (diag(V) * TTM) + diag((1 - V));");
+				ml.eval("EXTM = EXTM*TM;");
 			} catch (IllegalStateException | InterruptedException | ExecutionException e) {
 				LOGGER.error("Problem multiplying EXTM and the event's computed TM \n"+e.getMessage());
 				e.printStackTrace();

@@ -17,7 +17,7 @@ import mdp.MDPSolver;
 import visualizer.Graphviz_Writer;
 
 
-public class AdaptiveDefenseMDP {
+public class REact {
 	/** This AdaptiveDefenseMDP class is the main class:
 	 * 			Input: a domain description in the form of the emfText DSL specification file
 	 * 			Output: a MDP solution, that is the optimal action to take in every possible state
@@ -28,7 +28,7 @@ public class AdaptiveDefenseMDP {
 	 */
 
 
-	static String descriptionFileName = "description_v4a.AdaptiveCyberDefense";
+	static String descriptionFileName = "description_v6c.AdaptiveCyberDefense";
 	
 	static String files_location = "/Users/yehia/Documents/GraphivFilesReact/";
 

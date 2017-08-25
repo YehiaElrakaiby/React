@@ -70,7 +70,6 @@
     <genClasses ecoreClass="AdaptiveCyberDefense.ecore#//Achieve"/>
     <genClasses ecoreClass="AdaptiveCyberDefense.ecore#//Maintain">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute AdaptiveCyberDefense.ecore#//Maintain/duration"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute AdaptiveCyberDefense.ecore#//Maintain/perUnitCost"/>
     </genClasses>
     <genClasses ecoreClass="AdaptiveCyberDefense.ecore#//True"/>
     <genClasses ecoreClass="AdaptiveCyberDefense.ecore#//False"/>
@@ -101,5 +100,8 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference AdaptiveCyberDefense.ecore#//ConditionalRequirement/cancellation"/>
     </genClasses>
     <genClasses ecoreClass="AdaptiveCyberDefense.ecore#//ConditionalAchieve"/>
+    <genClasses ecoreClass="AdaptiveCyberDefense.ecore#//ConditionalMaintain"/>
+    <genClasses ecoreClass="AdaptiveCyberDefense.ecore#//DeadlineMaintain"/>
+    <genClasses ecoreClass="AdaptiveCyberDefense.ecore#//RigidMaintain"/>
   </genPackages>
 </genmodel:GenModel>

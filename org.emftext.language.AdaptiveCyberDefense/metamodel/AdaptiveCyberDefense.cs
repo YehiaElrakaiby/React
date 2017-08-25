@@ -64,10 +64,18 @@ RULES {
 		
 	UnconditionalMaintain ::= 
 		"ReqID" name[]  
-		"keep" condition
+		"maintain" condition
 		"reward" reward[INTEGER]
 		("description" description['"','"'])?;
 		
+	ConditionalMaintain ::= 
+		"ReqID" name[]  
+		"maintain" condition
+		"after"  activation
+		("unless"  cancellation)?
+		"reward" reward[INTEGER]
+		("description" description['"','"'])?;
+			
 	ConditionalAchieve ::= 
 		"ReqID" name[]  
 		"achieve" condition
@@ -84,6 +92,15 @@ RULES {
 		("unless"  cancellation)?
 		"reward" reward[INTEGER]
 		("description" description['"','"'])?;
+	
+	DeadlineMaintain ::= 
+		"ReqID" name[] 
+		"maintain" condition
+		"within"  deadline[INTEGER]
+		"after"  activation
+		("unless"  cancellation)?
+		"reward" reward[INTEGER] 
+		("description" description['"','"'])?;
 		
 	Maintain ::= 
 		"ReqID" name[] 
@@ -92,9 +109,18 @@ RULES {
 		"for"  duration[INTEGER]
 		"after"  activation
 		("unless"  cancellation)?
-		"reward" reward[INTEGER] ("perUnit" perUnitCost[])?
+		"reward" reward[INTEGER]
 		("description" description['"','"'])?;
-		
+	
+	RigidMaintain ::= 
+		"ReqID" name[] 
+		"r_maintain" condition
+		"within"  deadline[INTEGER]
+		"for"  duration[INTEGER]
+		"after"  activation
+		("unless"  cancellation)?
+		"reward" reward[INTEGER]
+		("description" description['"','"'])?;
 	
 	
 	ProbabilisticEffect ::= "<"  (state_atoms+)? ("prob" probability[FLOAT])? ">";

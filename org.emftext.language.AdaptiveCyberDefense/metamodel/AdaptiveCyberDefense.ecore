@@ -100,11 +100,10 @@
         eType="#//Formula" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Achieve" eSuperTypes="#//DeadlineRequirement"/>
-  <eClassifiers xsi:type="ecore:EClass" name="Maintain" eSuperTypes="#//DeadlineRequirement">
+  <eClassifiers xsi:type="ecore:EClass" name="Maintain" eSuperTypes="#//DeadlineMaintain">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="duration" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EIntegerObject"
         defaultValueLiteral="1"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="perUnitCost" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBooleanObject"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="True" eSuperTypes="#//Formula"/>
   <eClassifiers xsi:type="ecore:EEnum" name="ActionType">
@@ -158,4 +157,7 @@
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ConditionalAchieve" eSuperTypes="#//ConditionalRequirement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ConditionalMaintain" eSuperTypes="#//ConditionalRequirement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="DeadlineMaintain" eSuperTypes="#//DeadlineRequirement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="RigidMaintain" eSuperTypes="#//Maintain"/>
 </ecore:EPackage>

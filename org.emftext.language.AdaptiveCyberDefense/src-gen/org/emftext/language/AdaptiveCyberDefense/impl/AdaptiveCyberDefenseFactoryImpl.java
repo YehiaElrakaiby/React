@@ -77,6 +77,9 @@ public class AdaptiveCyberDefenseFactoryImpl extends EFactoryImpl implements Ada
 			case AdaptiveCyberDefensePackage.PROBABILISTIC_CONTEXTUAL_EFFECT: return createProbabilisticContextualEffect();
 			case AdaptiveCyberDefensePackage.FORMULA_ATOM: return createFormulaAtom();
 			case AdaptiveCyberDefensePackage.CONDITIONAL_ACHIEVE: return createConditionalAchieve();
+			case AdaptiveCyberDefensePackage.CONDITIONAL_MAINTAIN: return createConditionalMaintain();
+			case AdaptiveCyberDefensePackage.DEADLINE_MAINTAIN: return createDeadlineMaintain();
+			case AdaptiveCyberDefensePackage.RIGID_MAINTAIN: return createRigidMaintain();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -314,6 +317,36 @@ public class AdaptiveCyberDefenseFactoryImpl extends EFactoryImpl implements Ada
 	public ConditionalAchieve createConditionalAchieve() {
 		ConditionalAchieveImpl conditionalAchieve = new ConditionalAchieveImpl();
 		return conditionalAchieve;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ConditionalMaintain createConditionalMaintain() {
+		ConditionalMaintainImpl conditionalMaintain = new ConditionalMaintainImpl();
+		return conditionalMaintain;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public DeadlineMaintain createDeadlineMaintain() {
+		DeadlineMaintainImpl deadlineMaintain = new DeadlineMaintainImpl();
+		return deadlineMaintain;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public RigidMaintain createRigidMaintain() {
+		RigidMaintainImpl rigidMaintain = new RigidMaintainImpl();
+		return rigidMaintain;
 	}
 
 	/**

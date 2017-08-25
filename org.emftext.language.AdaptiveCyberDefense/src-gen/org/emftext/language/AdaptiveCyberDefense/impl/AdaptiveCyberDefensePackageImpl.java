@@ -16,9 +16,12 @@ import org.emftext.language.AdaptiveCyberDefense.ActionType;
 import org.emftext.language.AdaptiveCyberDefense.AdaptiveCyberDefenseFactory;
 import org.emftext.language.AdaptiveCyberDefense.AdaptiveCyberDefensePackage;
 import org.emftext.language.AdaptiveCyberDefense.ConditionalAchieve;
+import org.emftext.language.AdaptiveCyberDefense.ConditionalMaintain;
 import org.emftext.language.AdaptiveCyberDefense.ConditionalRequirement;
 import org.emftext.language.AdaptiveCyberDefense.Conjunction;
 import org.emftext.language.AdaptiveCyberDefense.ContextualEffect;
+import org.emftext.language.AdaptiveCyberDefense.CostUnit;
+import org.emftext.language.AdaptiveCyberDefense.DeadlineMaintain;
 import org.emftext.language.AdaptiveCyberDefense.DeadlineRequirement;
 import org.emftext.language.AdaptiveCyberDefense.DescriptionEntity;
 import org.emftext.language.AdaptiveCyberDefense.Disjunction;
@@ -36,6 +39,7 @@ import org.emftext.language.AdaptiveCyberDefense.ProbabilisticContextualEffect;
 import org.emftext.language.AdaptiveCyberDefense.ProbabilisticEffect;
 import org.emftext.language.AdaptiveCyberDefense.Requirement;
 import org.emftext.language.AdaptiveCyberDefense.RequirementStatus;
+import org.emftext.language.AdaptiveCyberDefense.RigidMaintain;
 import org.emftext.language.AdaptiveCyberDefense.StateAtom;
 import org.emftext.language.AdaptiveCyberDefense.StateVariable;
 import org.emftext.language.AdaptiveCyberDefense.True;
@@ -230,6 +234,27 @@ public class AdaptiveCyberDefensePackageImpl extends EPackageImpl implements Ada
 	 * @generated
 	 */
 	private EClass conditionalAchieveEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass conditionalMaintainEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass deadlineMaintainEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass rigidMaintainEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -689,15 +714,6 @@ public class AdaptiveCyberDefensePackageImpl extends EPackageImpl implements Ada
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getMaintain_PerUnitCost() {
-		return (EAttribute)maintainEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EClass getTrue() {
 		return trueEClass;
 	}
@@ -896,6 +912,33 @@ public class AdaptiveCyberDefensePackageImpl extends EPackageImpl implements Ada
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getConditionalMaintain() {
+		return conditionalMaintainEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getDeadlineMaintain() {
+		return deadlineMaintainEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getRigidMaintain() {
+		return rigidMaintainEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EEnum getRequirementStatus() {
 		return requirementStatusEEnum;
 	}
@@ -993,7 +1036,6 @@ public class AdaptiveCyberDefensePackageImpl extends EPackageImpl implements Ada
 
 		maintainEClass = createEClass(MAINTAIN);
 		createEAttribute(maintainEClass, MAINTAIN__DURATION);
-		createEAttribute(maintainEClass, MAINTAIN__PER_UNIT_COST);
 
 		trueEClass = createEClass(TRUE);
 
@@ -1027,6 +1069,12 @@ public class AdaptiveCyberDefensePackageImpl extends EPackageImpl implements Ada
 		createEReference(conditionalRequirementEClass, CONDITIONAL_REQUIREMENT__CANCELLATION);
 
 		conditionalAchieveEClass = createEClass(CONDITIONAL_ACHIEVE);
+
+		conditionalMaintainEClass = createEClass(CONDITIONAL_MAINTAIN);
+
+		deadlineMaintainEClass = createEClass(DEADLINE_MAINTAIN);
+
+		rigidMaintainEClass = createEClass(RIGID_MAINTAIN);
 
 		// Create enums
 		requirementStatusEEnum = createEEnum(REQUIREMENT_STATUS);
@@ -1070,7 +1118,7 @@ public class AdaptiveCyberDefensePackageImpl extends EPackageImpl implements Ada
 		negationEClass.getESuperTypes().add(this.getFormula());
 		parenthesesEClass.getESuperTypes().add(this.getFormula());
 		achieveEClass.getESuperTypes().add(this.getDeadlineRequirement());
-		maintainEClass.getESuperTypes().add(this.getDeadlineRequirement());
+		maintainEClass.getESuperTypes().add(this.getDeadlineMaintain());
 		trueEClass.getESuperTypes().add(this.getFormula());
 		falseEClass.getESuperTypes().add(this.getFormula());
 		deadlineRequirementEClass.getESuperTypes().add(this.getConditionalRequirement());
@@ -1080,6 +1128,9 @@ public class AdaptiveCyberDefensePackageImpl extends EPackageImpl implements Ada
 		formulaAtomEClass.getESuperTypes().add(this.getFormula());
 		conditionalRequirementEClass.getESuperTypes().add(this.getRequirement());
 		conditionalAchieveEClass.getESuperTypes().add(this.getConditionalRequirement());
+		conditionalMaintainEClass.getESuperTypes().add(this.getConditionalRequirement());
+		deadlineMaintainEClass.getESuperTypes().add(this.getDeadlineRequirement());
+		rigidMaintainEClass.getESuperTypes().add(this.getMaintain());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(domainDescriptionEClass, DomainDescription.class, "DomainDescription", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -1138,7 +1189,6 @@ public class AdaptiveCyberDefensePackageImpl extends EPackageImpl implements Ada
 
 		initEClass(maintainEClass, Maintain.class, "Maintain", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getMaintain_Duration(), ecorePackage.getEIntegerObject(), "duration", "1", 1, 1, Maintain.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getMaintain_PerUnitCost(), ecorePackage.getEBooleanObject(), "perUnitCost", null, 0, 1, Maintain.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(trueEClass, True.class, "True", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
@@ -1172,6 +1222,12 @@ public class AdaptiveCyberDefensePackageImpl extends EPackageImpl implements Ada
 		initEReference(getConditionalRequirement_Cancellation(), this.getFormula(), null, "cancellation", null, 0, 1, ConditionalRequirement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(conditionalAchieveEClass, ConditionalAchieve.class, "ConditionalAchieve", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(conditionalMaintainEClass, ConditionalMaintain.class, "ConditionalMaintain", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(deadlineMaintainEClass, DeadlineMaintain.class, "DeadlineMaintain", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(rigidMaintainEClass, RigidMaintain.class, "RigidMaintain", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		// Initialize enums and add enum literals
 		initEEnum(requirementStatusEEnum, RequirementStatus.class, "RequirementStatus");

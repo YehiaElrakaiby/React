@@ -202,6 +202,33 @@ public interface AdaptiveCyberDefenseFactory extends EFactory {
 	ConditionalAchieve createConditionalAchieve();
 
 	/**
+	 * Returns a new object of class '<em>Conditional Maintain</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Conditional Maintain</em>'.
+	 * @generated
+	 */
+	ConditionalMaintain createConditionalMaintain();
+
+	/**
+	 * Returns a new object of class '<em>Deadline Maintain</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Deadline Maintain</em>'.
+	 * @generated
+	 */
+	DeadlineMaintain createDeadlineMaintain();
+
+	/**
+	 * Returns a new object of class '<em>Rigid Maintain</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Rigid Maintain</em>'.
+	 * @generated
+	 */
+	RigidMaintain createRigidMaintain();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

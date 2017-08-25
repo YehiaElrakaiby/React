@@ -11,7 +11,7 @@ public class RequirementDescription {
 	private int deadline;
 	private int duration;
 	private int cost_reward;
-	private Boolean perUnitCost;
+	private String perUnitCost;
 
 	private String type;
 	private String name;
@@ -79,7 +79,7 @@ public class RequirementDescription {
 		if(deadline!=0) str.append(" within " + deadline);
 		if(activation!=null)str.append(" after " + activation.toString());
 		if(cancellation!=null)str.append(" unless " + cancellation.toString());
-		str.append(" cost " + cost_reward);
+		str.append(" reward " + cost_reward);
 		str.append("]\n");
 		return str.toString();
 	}
@@ -108,12 +108,12 @@ public class RequirementDescription {
 		this.statuses = statuses;
 	}
 
-	public Boolean isPerUnitCost() {
+	public String getPerUnitCost() {
 		return perUnitCost;
 	}
 
-	public void setPerUnitCost(Boolean perUnitCost) {
-		this.perUnitCost = perUnitCost;
+	public void setPerUnitCost(String string) {
+		this.perUnitCost = string;
 	}
 
 

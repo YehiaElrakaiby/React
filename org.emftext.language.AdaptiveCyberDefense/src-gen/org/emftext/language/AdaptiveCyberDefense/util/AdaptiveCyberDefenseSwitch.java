@@ -165,6 +165,7 @@ public class AdaptiveCyberDefenseSwitch<T> extends Switch<T> {
 			case AdaptiveCyberDefensePackage.MAINTAIN: {
 				Maintain maintain = (Maintain)theEObject;
 				T result = caseMaintain(maintain);
+				if (result == null) result = caseDeadlineMaintain(maintain);
 				if (result == null) result = caseDeadlineRequirement(maintain);
 				if (result == null) result = caseConditionalRequirement(maintain);
 				if (result == null) result = caseRequirement(maintain);
@@ -250,6 +251,37 @@ public class AdaptiveCyberDefenseSwitch<T> extends Switch<T> {
 				if (result == null) result = caseConditionalRequirement(conditionalAchieve);
 				if (result == null) result = caseRequirement(conditionalAchieve);
 				if (result == null) result = caseInitialVariable(conditionalAchieve);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case AdaptiveCyberDefensePackage.CONDITIONAL_MAINTAIN: {
+				ConditionalMaintain conditionalMaintain = (ConditionalMaintain)theEObject;
+				T result = caseConditionalMaintain(conditionalMaintain);
+				if (result == null) result = caseConditionalRequirement(conditionalMaintain);
+				if (result == null) result = caseRequirement(conditionalMaintain);
+				if (result == null) result = caseInitialVariable(conditionalMaintain);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case AdaptiveCyberDefensePackage.DEADLINE_MAINTAIN: {
+				DeadlineMaintain deadlineMaintain = (DeadlineMaintain)theEObject;
+				T result = caseDeadlineMaintain(deadlineMaintain);
+				if (result == null) result = caseDeadlineRequirement(deadlineMaintain);
+				if (result == null) result = caseConditionalRequirement(deadlineMaintain);
+				if (result == null) result = caseRequirement(deadlineMaintain);
+				if (result == null) result = caseInitialVariable(deadlineMaintain);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case AdaptiveCyberDefensePackage.RIGID_MAINTAIN: {
+				RigidMaintain rigidMaintain = (RigidMaintain)theEObject;
+				T result = caseRigidMaintain(rigidMaintain);
+				if (result == null) result = caseMaintain(rigidMaintain);
+				if (result == null) result = caseDeadlineMaintain(rigidMaintain);
+				if (result == null) result = caseDeadlineRequirement(rigidMaintain);
+				if (result == null) result = caseConditionalRequirement(rigidMaintain);
+				if (result == null) result = caseRequirement(rigidMaintain);
+				if (result == null) result = caseInitialVariable(rigidMaintain);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -644,6 +676,51 @@ public class AdaptiveCyberDefenseSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseConditionalAchieve(ConditionalAchieve object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Conditional Maintain</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Conditional Maintain</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseConditionalMaintain(ConditionalMaintain object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Deadline Maintain</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Deadline Maintain</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseDeadlineMaintain(DeadlineMaintain object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Rigid Maintain</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Rigid Maintain</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseRigidMaintain(RigidMaintain object) {
 		return null;
 	}
 

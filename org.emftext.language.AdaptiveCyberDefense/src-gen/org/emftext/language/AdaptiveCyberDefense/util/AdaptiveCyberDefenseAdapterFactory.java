@@ -172,6 +172,18 @@ public class AdaptiveCyberDefenseAdapterFactory extends AdapterFactoryImpl {
 				return createConditionalAchieveAdapter();
 			}
 			@Override
+			public Adapter caseConditionalMaintain(ConditionalMaintain object) {
+				return createConditionalMaintainAdapter();
+			}
+			@Override
+			public Adapter caseDeadlineMaintain(DeadlineMaintain object) {
+				return createDeadlineMaintainAdapter();
+			}
+			@Override
+			public Adapter caseRigidMaintain(RigidMaintain object) {
+				return createRigidMaintainAdapter();
+			}
+			@Override
 			public Adapter defaultCase(EObject object) {
 				return createEObjectAdapter();
 			}
@@ -552,6 +564,48 @@ public class AdaptiveCyberDefenseAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createConditionalAchieveAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.emftext.language.AdaptiveCyberDefense.ConditionalMaintain <em>Conditional Maintain</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.emftext.language.AdaptiveCyberDefense.ConditionalMaintain
+	 * @generated
+	 */
+	public Adapter createConditionalMaintainAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.emftext.language.AdaptiveCyberDefense.DeadlineMaintain <em>Deadline Maintain</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.emftext.language.AdaptiveCyberDefense.DeadlineMaintain
+	 * @generated
+	 */
+	public Adapter createDeadlineMaintainAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.emftext.language.AdaptiveCyberDefense.RigidMaintain <em>Rigid Maintain</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.emftext.language.AdaptiveCyberDefense.RigidMaintain
+	 * @generated
+	 */
+	public Adapter createRigidMaintainAdapter() {
 		return null;
 	}
 
