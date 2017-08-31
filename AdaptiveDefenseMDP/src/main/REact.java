@@ -28,8 +28,8 @@ public class REact {
 	 */
 
 
-	static String descriptionFileName = "description_v6c.AdaptiveCyberDefense";
-	
+	static String descriptionFileName = "alica_waiter_v1.AdaptiveCyberDefense";
+
 	static String files_location = "/Users/yehia/Documents/GraphivFilesReact/";
 
 	static Path domain_description_location = Paths.get( "Users","yehia","Documents",
@@ -38,7 +38,6 @@ public class REact {
 
 	static public String noop_event_identifier = "noop";
 	static public Double discount_factor = 0.98;
-
 
 	/**
 	 * Based on the contents of a description:
@@ -54,24 +53,14 @@ public class REact {
 	 * @param args
 	 */
 
-	
-	
-
 	static String controlStrategyFileName = "";
 	static String controlPlanFileName = "";
 	static String ltsFileName = "";
-	
 	static DomainDescription description;
-
 	static LTSG lts;
-
 	static MDPSolver solver;
-
 	private static Logger LOGGER;
-	
 
-
-	
 	public static void main(String[] args) {
 
 		/*
@@ -94,7 +83,7 @@ public class REact {
 		LOGGER.info("The labeled transition system LTSG created");
 
 		lts.print();
-		
+
 		solver = new MDPSolver(lts.getNumberOfStates(),lts.getNbActions());
 		LOGGER.info("The MDP Solver is initialized");
 
@@ -142,16 +131,6 @@ public class REact {
 		//computeTradeOffStrategyAndPlan(valueA,valueO);
 	}
 
-
-
-	
-
-
-
-	
-	
-
-
 	private static void initializeFileNames(String name) {
 		controlStrategyFileName = name+"_strategy.dot";
 		controlPlanFileName = name+"_plan.dot";
@@ -160,20 +139,11 @@ public class REact {
 	}
 
 	static private void updateLog4jConfiguration(String name) { 
-	   System.setProperty("descriptionName", name);
-       LOGGER = LogManager.getLogger();
-
+		System.setProperty("descriptionName", name);
+		LOGGER = LogManager.getLogger();
 	}
 
-
-
-
-
-
-
-
-
-/*
+	/*
 	private static void showInGraphiv(
 			String file_path, 
 			HashMap<Integer, HashMap<String, String>> states,
@@ -181,10 +151,8 @@ public class REact {
 		DOT_Writer visualizer = new DOT_Writer(file_path,states,transitions,option);
 		visualizer.openFromDesktop();			
 	}
-*/
-	
+	 */
 
-	
 	public static DomainDescription loadTextual(Path configPath) throws IOException{
 		new AdaptiveCyberDefenseMetaInformation().registerResourceFactory();
 		ResourceSet resourceSet = new ResourceSetImpl();
@@ -193,7 +161,6 @@ public class REact {
 		DomainDescription description = (DomainDescription) resource.getContents().get(0);
 		//AdaptiveCyberDefenseResourceFactory factory = new AdaptiveCyberDefenseResourceFactory();
 		//Resource res = factory.createResource(org.eclipse.emf.common.util.URI.createURI("http://www.emftext.org/language/AdaptiveCyberDefense/True"));
-
 		return description;
 	}
 }
@@ -263,5 +230,5 @@ solver.checkInput();
 solver.checkAllInput();
 solver.solveMDP();
 }
-*/
+ */
 

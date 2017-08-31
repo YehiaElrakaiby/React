@@ -114,12 +114,12 @@ RULES {
 	
 	RigidMaintain ::= 
 		"ReqID" name[] 
-		"r_maintain" condition
+		"maintain" condition
 		"within"  deadline[INTEGER]
 		"for"  duration[INTEGER]
 		"after"  activation
 		("unless"  cancellation)?
-		"reward" reward[INTEGER]
+		"oneTimeReward" reward[INTEGER]
 		("description" description['"','"'])?;
 	
 	

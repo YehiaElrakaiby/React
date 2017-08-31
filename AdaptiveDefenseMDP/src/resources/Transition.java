@@ -2,7 +2,7 @@ package resources;
 
 import java.math.BigDecimal;
 
-public class Transition {
+public class Transition implements Comparable {
 	private String event="";
 	private Integer src=-1;
 	private Integer dest=-1;
@@ -163,6 +163,12 @@ public class Transition {
 
 		return s;
 
+	}
+
+	@Override
+	public int compareTo(Object o) {
+		Transition obj = (Transition) o;
+		return Integer.compare(src, obj.src);
 	}
 
 	/*public Integer getActionCost() {

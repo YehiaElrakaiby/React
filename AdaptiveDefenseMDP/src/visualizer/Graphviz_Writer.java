@@ -188,6 +188,10 @@ public class Graphviz_Writer {
 		}
 
 	}
+
+	/*
+	 * To draw transitions as having one source state and multiple destinations
+	 */
 	private static HashSet<Integer> writePlanTransitions(
 			HashMap<Integer, String> id_control_events, 
 			double[] policy,
@@ -206,39 +210,47 @@ public class Graphviz_Writer {
 			visited.add(i);
 			Integer optimal_action = new Double(policy[i]).intValue()-1;
 			String trans_name=id_control_events.get(optimal_action);
-			for(int j = 0; j<nbOfStates;j++) {
-				if(tm[i][j][optimal_action]!=0){
 
-					if(!visited.contains(j)){
-						to_explore.add(j);
-					}
+			String temp_node = "n"+ i +"_" + optimal_action;
+			try {
+				bw.write(i+" -> "+temp_node + " [color=blue] ");
 
-					try {
-						bw.write(i+" -> "+j);
-						bw.write(" [color=red]");
-						bw.write(" [label=\"");
+				bw.write("[arrowhead=none fontcolor=blue label=\"");
+				if(trans_name.endsWith("=tt")){
+					trans_name=trans_name.substring(0,trans_name.indexOf("=tt"));
+				} 
+				bw.write(optimal_action +":"+trans_name);
+				bw.write("\"];\n");
+				bw.write(temp_node + "[shape=point,width=0.1,height=0.1,label=\"\"];\n");
 
-						if(trans_name.endsWith("=tt")){
-							trans_name=trans_name.substring(0,trans_name.indexOf("=tt"));
-						} 
-						bw.write(
-								trans_name +" "
-										+ tm[i][j][optimal_action] +" "
-										+ intFormat(rm[i][j][optimal_action]) +" "		
-										+"\\n");
+				for(int j = 0; j<nbOfStates;j++) {
+
+					if(tm[i][j][optimal_action]!=0){
+
+						if(!visited.contains(j)){
+							if(!to_explore.contains(j))to_explore.add(j);
+						}
+						bw.write(temp_node +" -> " + j);
+						bw.write("[color=purple][fontcolor=purple label=\"" +
+								+ tm[i][j][optimal_action] +" "
+								+ intFormat(rm[i][j][optimal_action]) +" "		
+								);
 
 						bw.write("\"]\n");
 
 						bw.write("\n");
-
-					} catch (IOException e) {
-						e.printStackTrace();
-					}
-				}
+					} 
+				} 
+			} catch (IOException e) {
+				e.printStackTrace();
 			}
 		}
 		return visited;
 	}
+
+	/*
+	 * To draw transitions as having one source state and multiple destinations
+	 */
 	private static void writeTransitions(
 			HashMap<Integer, String> id_control_events, 
 			double[] policy, 
@@ -248,35 +260,40 @@ public class Graphviz_Writer {
 		for(int i = 0; i<nbOfStates;i++) {
 			Integer optimal_action = new Double(policy[i]).intValue()-1;
 			String trans_name=id_control_events.get(optimal_action);
-			for(int j = 0; j<nbOfStates;j++) {
-				if(tm[i][j][optimal_action]!=0){
-					try {
-						bw.write(i+" -> "+j);
-						bw.write(" [color=red]");
-						bw.write(" [label=\"");
 
-						if(trans_name.endsWith("=tt")){
-							trans_name=trans_name.substring(0,trans_name.indexOf("=tt"));
-						} 
-						bw.write(
-								trans_name +" "
-										+ tm[i][j][optimal_action] +" "
-										+ intFormat(rm[i][j][optimal_action]) +" "		
-										+"\\n");
+			String temp_node = "n"+ i +"_" + optimal_action;
+			try {
+				bw.write(i+" -> "+temp_node + " [color=blue] ");
+
+				bw.write("[arrowhead=none fontcolor=blue label=\"");
+				if(trans_name.endsWith("=tt")){
+					trans_name=trans_name.substring(0,trans_name.indexOf("=tt"));
+				} 
+				bw.write(optimal_action +":"+trans_name);
+				bw.write("\"];\n");
+				bw.write(temp_node + "[shape=point,width=0.1,height=0.1,label=\"\"];\n");
+
+				for(int j = 0; j<nbOfStates;j++) {
+
+					if(tm[i][j][optimal_action]!=0){
+						bw.write(temp_node +" -> " + j);
+						bw.write("[color=purple][fontcolor=purple label=\"" +
+								+ tm[i][j][optimal_action] +" "
+								+ intFormat(rm[i][j][optimal_action]) +" "		
+								);
 
 						bw.write("\"]\n");
 
 						bw.write("\n");
-
-					} catch (IOException e) {
-						e.printStackTrace();
-					}
-				}
+					} 
+				} 
+			} catch (IOException e) {
+				e.printStackTrace();
 			}
+
+
 		}
-	}			
-
-
+	}		
 	public static void create(
 			String pathTographivFile, 
 			HashMap<Integer, HashMap<String, String>> lts_states, 
@@ -1330,4 +1347,92 @@ public class Graphviz_Writer {
 
 }
 
+
+/*private static HashSet<Integer> writePlanTransitions_original(
+HashMap<Integer, String> id_control_events, 
+double[] policy,
+double[][][] tm, 
+double[][][] rm) {
+
+Integer nbOfStates = policy.length;
+
+LinkedList<Integer> to_explore = new LinkedList<Integer>();
+HashSet<Integer> visited = new HashSet<Integer>();
+
+to_explore.add(0);
+
+while(!to_explore.isEmpty()) {
+Integer i = to_explore.remove();
+visited.add(i);
+Integer optimal_action = new Double(policy[i]).intValue()-1;
+String trans_name=id_control_events.get(optimal_action);
+for(int j = 0; j<nbOfStates;j++) {
+	if(tm[i][j][optimal_action]!=0){
+
+		if(!visited.contains(j)){
+			if(!to_explore.contains(j))to_explore.add(j);
+		}
+
+		try {
+			bw.write(i+" -> "+j);
+			bw.write(" [color=red]");
+			bw.write(" [label=\"");
+
+			if(trans_name.endsWith("=tt")){
+				trans_name=trans_name.substring(0,trans_name.indexOf("=tt"));
+			} 
+			bw.write(
+					trans_name +" "
+							+ tm[i][j][optimal_action] +" "
+							+ intFormat(rm[i][j][optimal_action]) +" "		
+							+"\\n");
+
+			bw.write("\"]\n");
+
+			bw.write("\n");
+
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+}
+}
+return visited;
+}
+private static void writeTransitions_original(
+HashMap<Integer, String> id_control_events, 
+double[] policy, 
+double[][][] tm,
+double[][][] rm) {
+Integer nbOfStates = policy.length;
+for(int i = 0; i<nbOfStates;i++) {
+Integer optimal_action = new Double(policy[i]).intValue()-1;
+String trans_name=id_control_events.get(optimal_action);
+for(int j = 0; j<nbOfStates;j++) {
+	if(tm[i][j][optimal_action]!=0){
+		try {
+			bw.write(i+" -> "+j);
+			bw.write(" [color=red]");
+			bw.write(" [label=\"");
+
+			if(trans_name.endsWith("=tt")){
+				trans_name=trans_name.substring(0,trans_name.indexOf("=tt"));
+			} 
+			bw.write(
+					trans_name +" "
+							+ tm[i][j][optimal_action] +" "
+							+ intFormat(rm[i][j][optimal_action]) +" "		
+							+"\\n");
+
+			bw.write("\"]\n");
+
+			bw.write("\n");
+
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+}
+}
+}			*/
 

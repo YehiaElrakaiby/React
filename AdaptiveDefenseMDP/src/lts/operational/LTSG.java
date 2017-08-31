@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedList;
+import java.util.TreeSet;
 
 import org.apache.commons.lang.mutable.MutableInt;
 import org.apache.logging.log4j.LogManager;
@@ -112,7 +113,9 @@ public class LTSG {
 	protected HashSet<Reward> rewards = new HashSet<Reward>();
 
 	private final static Logger LOGGER = LogManager.getRootLogger();
-
+	/*
+	 * 				MAIN PART
+	 */
 	public LTSG(DomainDescription description, String option) {
 		/*
 		 *  Initialize
@@ -279,7 +282,7 @@ public class LTSG {
 			nb_of_states = nb_of_states * domain.size();
 		}
 	}
-	
+
 	private void fillConditionalAchieveRequirementDescription(
 			ConditionalAchieve req, 
 			RequirementDescription descr,
@@ -515,8 +518,8 @@ public class LTSG {
 		}
 
 	}
-	
-	
+
+
 
 	/*
 	 * 				SET INITIAL STATE PART
@@ -839,7 +842,7 @@ public class LTSG {
 		}
 		return false;
 	}
-	
+
 	private Integer updateStates(
 			LinkedList<Integer> to_explore, 
 			HashMap<String, String> dest_state, 
@@ -865,7 +868,7 @@ public class LTSG {
 			temp.put(var, atom.getValue());
 		}		
 	}
-	
+
 	private void updateReqVariables(HashMap<String, String> temp,  
 			HashMap<String, RequirementDescription> requirements_description, 
 			Reward rew) {
@@ -967,7 +970,7 @@ public class LTSG {
 
 		} 
 	}
-	
+
 	private void updateUnconditionalReqAtomInState(HashMap<String, String> state, 
 			RequirementDescription req,
 			Reward rew) {
@@ -994,21 +997,24 @@ public class LTSG {
 		 */
 		if(status.equals("inact")) {
 			if(req.getActivation().verify(state)) {
-				state.put(req_id, "act");
+				state.put(req_id, "req");
 			}
 		}
 
-		if(status.equals("act")){
+		if(status.equals("req")){
 			if(req.getCancellation().verify(state)) {
 				state.put(req_id, "inact");
-			} else if(req.getCondition().verify(state)) {
+			} 
+			if(req.getCondition().verify(state)) {
 				/*
 				 * Satisfaction and reward update
 				 */
 				rew.updateReward(req.getCost_reward());
 			} 
-		} 				
-	}
+		}
+
+	} 				
+
 	private void updateDeadlineMaintainReqAtomInState(
 			HashMap<String, String> state, 
 			RequirementDescription req,
@@ -1041,7 +1047,7 @@ public class LTSG {
 		if(status.startsWith("act-")){
 			if(req.getCancellation().verify(state)) {
 				state.put(req_id, "inact");
-			} else  if (status.equals("act-0")){
+			} else if (status.equals("act-0")){
 				state.put(req_id, "req");
 			} else  {
 				Integer remainingTime = new Integer(status.substring(4));
@@ -1052,14 +1058,15 @@ public class LTSG {
 		if(status.startsWith("req")){
 			if(req.getCancellation().verify(state)) {
 				state.put(req_id, "inact");
-			} else if(req.getCondition().verify(state)) {
+			} 
+			if(req.getCondition().verify(state)) {
 				/*
 				 * Satisfaction and reward update
 				 */
 				rew.updateReward(req.getCost_reward());
 			} 
 		}
-		
+
 	}
 	private void updateMaintainReqAtomInState(
 			HashMap<String, String> state, 
@@ -1093,10 +1100,8 @@ public class LTSG {
 		if(status.startsWith("act-")){
 			if(req.getCancellation().verify(state)) {
 				state.put(req_id, "inact");
-			} else if (req.getCondition().verify(state)) {
-				state.put(req_id, "req-"+(req.getDuration()-1));
 			} else  if (status.equals("act-0")){
-				state.put(req_id, "inact");
+				state.put(req_id, "req-"+(req.getDuration()-1));
 			} else  {
 				Integer remainingTime = new Integer(status.substring(4));
 				state.put(req_id, "act-"+(remainingTime-1));
@@ -1106,16 +1111,17 @@ public class LTSG {
 		if(status.startsWith("req-")){
 			if(req.getCancellation().verify(state)) {
 				state.put(req_id, "inact");
-			} else if(req.getCondition().verify(state)) {
-				/*
-				 * Satisfaction and reward update
-				 */
-				rew.updateReward(req.getCost_reward());
 			} else if (status.equals("req-0")){
 				state.put(req_id, "inact");
 			} else {
 				Integer remainingTime = new Integer(status.substring(4));
 				state.put(req_id, "req-"+(remainingTime-1));
+			}
+			if(req.getCondition().verify(state)) {
+				/*
+				 * Satisfaction and reward update
+				 */
+				rew.updateReward(req.getCost_reward());
 			}
 		}
 	} 
@@ -1179,9 +1185,9 @@ public class LTSG {
 			}
 		}		
 	}
-	
-	
-	
+
+
+
 	/*
 	 * 				Getters and Setters PART
 	 */
@@ -1281,14 +1287,16 @@ public class LTSG {
 		LOGGER.trace("Exogenous Events:\n "+this.exogenous_events_id.toString()+"\n");
 
 
-		LOGGER.trace("Transitions:\n "+this.transitions.toString()+"\n");
+		//LOGGER.trace("Transitions:\n "+this.transitions.toString()+"\n");
 		Iterator<Integer> it = this.ctrl_actions_transitions_map.keySet().iterator();
 		while(it.hasNext()) {
 			Integer key = it.next();
 			HashSet<Transition> set = ctrl_actions_transitions_map.get(key);
+			TreeSet<Transition> treeSet = new TreeSet<Transition>(set);
+
 			this.nb_of_transitions += set.size();
 			LOGGER.trace("Transitions of "+this.id_control_events.get(key)+"\n");
-			LOGGER.trace(set.toString()+"\n");
+			LOGGER.trace(treeSet.toString()+"\n");
 
 		}
 		it = this.exo_events_transitions_map.keySet().iterator();
@@ -1296,8 +1304,10 @@ public class LTSG {
 			Integer key = it.next();
 			HashSet<Transition> set = exo_events_transitions_map.get(key);
 			this.nb_of_transitions += set.size();
+			TreeSet<Transition> treeSet = new TreeSet<Transition>(set);
+			
 			LOGGER.trace("Transitions of "+this.id_exogenous_events.get(key)+"\n");
-			LOGGER.trace(set.toString()+"\n");
+			LOGGER.trace(treeSet.toString()+"\n");
 		}
 
 		LOGGER.info("Nb of Transitions: "+this.nb_of_transitions+"\n");
