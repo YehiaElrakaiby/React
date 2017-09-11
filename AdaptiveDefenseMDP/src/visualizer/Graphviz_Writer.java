@@ -232,7 +232,7 @@ public class Graphviz_Writer {
 						}
 						bw.write(temp_node +" -> " + j);
 						bw.write("[color=purple][fontcolor=purple label=\"" +
-								+ tm[i][j][optimal_action] +" "
+								+ round(tm[i][j][optimal_action],3) +" "
 								+ intFormat(rm[i][j][optimal_action]) +" "		
 								);
 
@@ -278,7 +278,7 @@ public class Graphviz_Writer {
 					if(tm[i][j][optimal_action]!=0){
 						bw.write(temp_node +" -> " + j);
 						bw.write("[color=purple][fontcolor=purple label=\"" +
-								+ tm[i][j][optimal_action] +" "
+								+ round(tm[i][j][optimal_action],3) +" "
 								+ intFormat(rm[i][j][optimal_action]) +" "		
 								);
 
@@ -643,7 +643,14 @@ public class Graphviz_Writer {
 	}
 
 
+	public static double round(double value, int places) {
+	    if (places < 0) throw new IllegalArgumentException();
 
+	    long factor = (long) Math.pow(10, places);
+	    value = value * factor;
+	    long tmp = Math.round(value);
+	    return (double) tmp / factor;
+	}
 
 	//		Iterator<Transition> transition = transitions.iterator();
 	//

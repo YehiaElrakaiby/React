@@ -1,0 +1,16 @@
+ToDo: Implementation
+
+1) Verify whether the semantics of concurrency is that of control actions are taken first then exogenous events in any order?
+It seems that it is not the case: 
+in description alica_v2f: 
+the robot tries to fetch the order while it is in preparation and there is a transition to a state where order=fetched
+
+Action fetch_order1
+if location=kitchen & order1=ready
+	 effects <order1=fetched>;
+	 
+Event order_ready1
+if order1=in_preparation 
+	occurrence probability 0.3 
+	effects <order1=ready>;
+	 

@@ -36,6 +36,7 @@ public class REact {
 			"runtime-EclipseApplication","ReactV3",
 			descriptionFileName);
 
+	static public String dotOption = Graphviz_Writer.SHOW_REQ;
 	static public String noop_event_identifier = "noop";
 	static public Double discount_factor = 0.98;
 
@@ -100,7 +101,7 @@ public class REact {
 
 		LOGGER.info("The MDP input is checked");
 
-		Graphviz_Writer.create(files_location+ltsFileName, lts.getStates(), lts.getId_control_events(), tm, rm, Graphviz_Writer.SHOW_ALL);
+		Graphviz_Writer.create(files_location+ltsFileName, lts.getStates(), lts.getId_control_events(), tm, rm, dotOption);
 		LOGGER.info("The LTS Graphviz file is created");
 
 		solver.solveMDP();
@@ -108,10 +109,10 @@ public class REact {
 		double[] value = solver.getValue();
 		LOGGER.info("The MDP is solved: The policy and value vectors based on the MDP are computed");
 
-		Graphviz_Writer.create(files_location+controlStrategyFileName, lts.getStates(), lts.getId_control_events(), policy, value, tm, rm, Graphviz_Writer.SHOW_ALL);
+		Graphviz_Writer.create(files_location+controlStrategyFileName, lts.getStates(), lts.getId_control_events(), policy, value, tm, rm, dotOption);
 		LOGGER.info("The Control Strategy Graphviz file is created");
 
-		Graphviz_Writer.createPlan(files_location+controlPlanFileName, lts.getStates(), lts.getId_control_events(), policy, value, tm, rm, Graphviz_Writer.SHOW_ALL);
+		Graphviz_Writer.createPlan(files_location+controlPlanFileName, lts.getStates(), lts.getId_control_events(), policy, value, tm, rm, dotOption);
 		LOGGER.info("The Control Plan Graphviz file is created");
 
 		//showInGraphiv(graphiz_file, lts.getStates(), lts.getTransitions(), DOT_Writer.SHOW_ALL);
