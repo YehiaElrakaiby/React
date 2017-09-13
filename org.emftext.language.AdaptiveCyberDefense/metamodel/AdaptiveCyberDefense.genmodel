@@ -6,13 +6,6 @@
   <foreignModel>AdaptiveCyberDefense.ecore</foreignModel>
   <genPackages prefix="AdaptiveCyberDefense" basePackage="org.emftext.language" disposableProviderFactory="true"
       ecorePackage="AdaptiveCyberDefense.ecore#/">
-    <genEnums typeSafeEnumCompatible="false" ecoreEnum="AdaptiveCyberDefense.ecore#//RequirementStatus">
-      <genEnumLiterals ecoreEnumLiteral="AdaptiveCyberDefense.ecore#//RequirementStatus/inact"/>
-      <genEnumLiterals ecoreEnumLiteral="AdaptiveCyberDefense.ecore#//RequirementStatus/act"/>
-      <genEnumLiterals ecoreEnumLiteral="AdaptiveCyberDefense.ecore#//RequirementStatus/viol"/>
-      <genEnumLiterals ecoreEnumLiteral="AdaptiveCyberDefense.ecore#//RequirementStatus/sat"/>
-      <genEnumLiterals ecoreEnumLiteral="AdaptiveCyberDefense.ecore#//RequirementStatus/req"/>
-    </genEnums>
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="AdaptiveCyberDefense.ecore#//ActionType">
       <genEnumLiterals ecoreEnumLiteral="AdaptiveCyberDefense.ecore#//ActionType/control"/>
       <genEnumLiterals ecoreEnumLiteral="AdaptiveCyberDefense.ecore#//ActionType/exogenous"/>
@@ -103,5 +96,10 @@
     <genClasses ecoreClass="AdaptiveCyberDefense.ecore#//ConditionalMaintain"/>
     <genClasses ecoreClass="AdaptiveCyberDefense.ecore#//DeadlineMaintain"/>
     <genClasses ecoreClass="AdaptiveCyberDefense.ecore#//RigidMaintain"/>
+    <genClasses ecoreClass="AdaptiveCyberDefense.ecore#//RMaintain"/>
+    <genClasses ecoreClass="AdaptiveCyberDefense.ecore#//RRigidMaintain"/>
+    <genClasses ecoreClass="AdaptiveCyberDefense.ecore#//RDeadlineMaintain"/>
+    <genClasses ecoreClass="AdaptiveCyberDefense.ecore#//RAchieve"/>
+    <genClasses ecoreClass="AdaptiveCyberDefense.ecore#//UnconditionalAchieve"/>
   </genPackages>
 </genmodel:GenModel>

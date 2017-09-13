@@ -285,6 +285,61 @@ public class AdaptiveCyberDefenseSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case AdaptiveCyberDefensePackage.RMAINTAIN: {
+				RMaintain rMaintain = (RMaintain)theEObject;
+				T result = caseRMaintain(rMaintain);
+				if (result == null) result = caseMaintain(rMaintain);
+				if (result == null) result = caseDeadlineMaintain(rMaintain);
+				if (result == null) result = caseDeadlineRequirement(rMaintain);
+				if (result == null) result = caseConditionalRequirement(rMaintain);
+				if (result == null) result = caseRequirement(rMaintain);
+				if (result == null) result = caseInitialVariable(rMaintain);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case AdaptiveCyberDefensePackage.RRIGID_MAINTAIN: {
+				RRigidMaintain rRigidMaintain = (RRigidMaintain)theEObject;
+				T result = caseRRigidMaintain(rRigidMaintain);
+				if (result == null) result = caseRigidMaintain(rRigidMaintain);
+				if (result == null) result = caseMaintain(rRigidMaintain);
+				if (result == null) result = caseDeadlineMaintain(rRigidMaintain);
+				if (result == null) result = caseDeadlineRequirement(rRigidMaintain);
+				if (result == null) result = caseConditionalRequirement(rRigidMaintain);
+				if (result == null) result = caseRequirement(rRigidMaintain);
+				if (result == null) result = caseInitialVariable(rRigidMaintain);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case AdaptiveCyberDefensePackage.RDEADLINE_MAINTAIN: {
+				RDeadlineMaintain rDeadlineMaintain = (RDeadlineMaintain)theEObject;
+				T result = caseRDeadlineMaintain(rDeadlineMaintain);
+				if (result == null) result = caseDeadlineMaintain(rDeadlineMaintain);
+				if (result == null) result = caseDeadlineRequirement(rDeadlineMaintain);
+				if (result == null) result = caseConditionalRequirement(rDeadlineMaintain);
+				if (result == null) result = caseRequirement(rDeadlineMaintain);
+				if (result == null) result = caseInitialVariable(rDeadlineMaintain);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case AdaptiveCyberDefensePackage.RACHIEVE: {
+				RAchieve rAchieve = (RAchieve)theEObject;
+				T result = caseRAchieve(rAchieve);
+				if (result == null) result = caseAchieve(rAchieve);
+				if (result == null) result = caseDeadlineRequirement(rAchieve);
+				if (result == null) result = caseConditionalRequirement(rAchieve);
+				if (result == null) result = caseRequirement(rAchieve);
+				if (result == null) result = caseInitialVariable(rAchieve);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case AdaptiveCyberDefensePackage.UNCONDITIONAL_ACHIEVE: {
+				UnconditionalAchieve unconditionalAchieve = (UnconditionalAchieve)theEObject;
+				T result = caseUnconditionalAchieve(unconditionalAchieve);
+				if (result == null) result = caseRequirement(unconditionalAchieve);
+				if (result == null) result = caseInitialVariable(unconditionalAchieve);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			default: return defaultCase(theEObject);
 		}
 	}
@@ -721,6 +776,81 @@ public class AdaptiveCyberDefenseSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseRigidMaintain(RigidMaintain object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>RMaintain</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>RMaintain</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseRMaintain(RMaintain object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>RRigid Maintain</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>RRigid Maintain</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseRRigidMaintain(RRigidMaintain object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>RDeadline Maintain</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>RDeadline Maintain</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseRDeadlineMaintain(RDeadlineMaintain object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>RAchieve</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>RAchieve</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseRAchieve(RAchieve object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Unconditional Achieve</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Unconditional Achieve</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseUnconditionalAchieve(UnconditionalAchieve object) {
 		return null;
 	}
 

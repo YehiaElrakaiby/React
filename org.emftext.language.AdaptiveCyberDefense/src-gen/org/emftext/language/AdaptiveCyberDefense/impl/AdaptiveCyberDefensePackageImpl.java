@@ -37,12 +37,17 @@ import org.emftext.language.AdaptiveCyberDefense.Negation;
 import org.emftext.language.AdaptiveCyberDefense.Parentheses;
 import org.emftext.language.AdaptiveCyberDefense.ProbabilisticContextualEffect;
 import org.emftext.language.AdaptiveCyberDefense.ProbabilisticEffect;
+import org.emftext.language.AdaptiveCyberDefense.RAchieve;
+import org.emftext.language.AdaptiveCyberDefense.RDeadlineMaintain;
+import org.emftext.language.AdaptiveCyberDefense.RMaintain;
+import org.emftext.language.AdaptiveCyberDefense.RRigidMaintain;
 import org.emftext.language.AdaptiveCyberDefense.Requirement;
 import org.emftext.language.AdaptiveCyberDefense.RequirementStatus;
 import org.emftext.language.AdaptiveCyberDefense.RigidMaintain;
 import org.emftext.language.AdaptiveCyberDefense.StateAtom;
 import org.emftext.language.AdaptiveCyberDefense.StateVariable;
 import org.emftext.language.AdaptiveCyberDefense.True;
+import org.emftext.language.AdaptiveCyberDefense.UnconditionalAchieve;
 import org.emftext.language.AdaptiveCyberDefense.UnconditionalMaintain;
 
 
@@ -261,7 +266,35 @@ public class AdaptiveCyberDefensePackageImpl extends EPackageImpl implements Ada
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EEnum requirementStatusEEnum = null;
+	private EClass rMaintainEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass rRigidMaintainEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass rDeadlineMaintainEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass rAchieveEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass unconditionalAchieveEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -939,8 +972,44 @@ public class AdaptiveCyberDefensePackageImpl extends EPackageImpl implements Ada
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EEnum getRequirementStatus() {
-		return requirementStatusEEnum;
+	public EClass getRMaintain() {
+		return rMaintainEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getRRigidMaintain() {
+		return rRigidMaintainEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getRDeadlineMaintain() {
+		return rDeadlineMaintainEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getRAchieve() {
+		return rAchieveEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getUnconditionalAchieve() {
+		return unconditionalAchieveEClass;
 	}
 
 	/**
@@ -1076,8 +1145,17 @@ public class AdaptiveCyberDefensePackageImpl extends EPackageImpl implements Ada
 
 		rigidMaintainEClass = createEClass(RIGID_MAINTAIN);
 
+		rMaintainEClass = createEClass(RMAINTAIN);
+
+		rRigidMaintainEClass = createEClass(RRIGID_MAINTAIN);
+
+		rDeadlineMaintainEClass = createEClass(RDEADLINE_MAINTAIN);
+
+		rAchieveEClass = createEClass(RACHIEVE);
+
+		unconditionalAchieveEClass = createEClass(UNCONDITIONAL_ACHIEVE);
+
 		// Create enums
-		requirementStatusEEnum = createEEnum(REQUIREMENT_STATUS);
 		actionTypeEEnum = createEEnum(ACTION_TYPE);
 	}
 
@@ -1131,6 +1209,11 @@ public class AdaptiveCyberDefensePackageImpl extends EPackageImpl implements Ada
 		conditionalMaintainEClass.getESuperTypes().add(this.getConditionalRequirement());
 		deadlineMaintainEClass.getESuperTypes().add(this.getDeadlineRequirement());
 		rigidMaintainEClass.getESuperTypes().add(this.getMaintain());
+		rMaintainEClass.getESuperTypes().add(this.getMaintain());
+		rRigidMaintainEClass.getESuperTypes().add(this.getRigidMaintain());
+		rDeadlineMaintainEClass.getESuperTypes().add(this.getDeadlineMaintain());
+		rAchieveEClass.getESuperTypes().add(this.getAchieve());
+		unconditionalAchieveEClass.getESuperTypes().add(this.getRequirement());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(domainDescriptionEClass, DomainDescription.class, "DomainDescription", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -1229,14 +1312,17 @@ public class AdaptiveCyberDefensePackageImpl extends EPackageImpl implements Ada
 
 		initEClass(rigidMaintainEClass, RigidMaintain.class, "RigidMaintain", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-		// Initialize enums and add enum literals
-		initEEnum(requirementStatusEEnum, RequirementStatus.class, "RequirementStatus");
-		addEEnumLiteral(requirementStatusEEnum, RequirementStatus.INACT);
-		addEEnumLiteral(requirementStatusEEnum, RequirementStatus.ACT);
-		addEEnumLiteral(requirementStatusEEnum, RequirementStatus.VIOL);
-		addEEnumLiteral(requirementStatusEEnum, RequirementStatus.SAT);
-		addEEnumLiteral(requirementStatusEEnum, RequirementStatus.REQ);
+		initEClass(rMaintainEClass, RMaintain.class, "RMaintain", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
+		initEClass(rRigidMaintainEClass, RRigidMaintain.class, "RRigidMaintain", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(rDeadlineMaintainEClass, RDeadlineMaintain.class, "RDeadlineMaintain", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(rAchieveEClass, RAchieve.class, "RAchieve", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(unconditionalAchieveEClass, UnconditionalAchieve.class, "UnconditionalAchieve", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		// Initialize enums and add enum literals
 		initEEnum(actionTypeEEnum, ActionType.class, "ActionType");
 		addEEnumLiteral(actionTypeEEnum, ActionType.CONTROL);
 		addEEnumLiteral(actionTypeEEnum, ActionType.EXOGENOUS);

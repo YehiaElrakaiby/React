@@ -1490,15 +1490,405 @@ public interface AdaptiveCyberDefensePackage extends EPackage {
 	int RIGID_MAINTAIN_FEATURE_COUNT = MAINTAIN_FEATURE_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link org.emftext.language.AdaptiveCyberDefense.RequirementStatus <em>Requirement Status</em>}' enum.
+	 * The meta object id for the '{@link org.emftext.language.AdaptiveCyberDefense.impl.RMaintainImpl <em>RMaintain</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.emftext.language.AdaptiveCyberDefense.RequirementStatus
-	 * @see org.emftext.language.AdaptiveCyberDefense.impl.AdaptiveCyberDefensePackageImpl#getRequirementStatus()
+	 * @see org.emftext.language.AdaptiveCyberDefense.impl.RMaintainImpl
+	 * @see org.emftext.language.AdaptiveCyberDefense.impl.AdaptiveCyberDefensePackageImpl#getRMaintain()
 	 * @generated
 	 */
-	int REQUIREMENT_STATUS = 29;
+	int RMAINTAIN = 29;
 
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RMAINTAIN__NAME = MAINTAIN__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Reward</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RMAINTAIN__REWARD = MAINTAIN__REWARD;
+
+	/**
+	 * The feature id for the '<em><b>Condition</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RMAINTAIN__CONDITION = MAINTAIN__CONDITION;
+
+	/**
+	 * The feature id for the '<em><b>Description</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RMAINTAIN__DESCRIPTION = MAINTAIN__DESCRIPTION;
+
+	/**
+	 * The feature id for the '<em><b>Activation</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RMAINTAIN__ACTIVATION = MAINTAIN__ACTIVATION;
+
+	/**
+	 * The feature id for the '<em><b>Cancellation</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RMAINTAIN__CANCELLATION = MAINTAIN__CANCELLATION;
+
+	/**
+	 * The feature id for the '<em><b>Deadline</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RMAINTAIN__DEADLINE = MAINTAIN__DEADLINE;
+
+	/**
+	 * The feature id for the '<em><b>Duration</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RMAINTAIN__DURATION = MAINTAIN__DURATION;
+
+	/**
+	 * The number of structural features of the '<em>RMaintain</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RMAINTAIN_FEATURE_COUNT = MAINTAIN_FEATURE_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link org.emftext.language.AdaptiveCyberDefense.impl.RRigidMaintainImpl <em>RRigid Maintain</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.emftext.language.AdaptiveCyberDefense.impl.RRigidMaintainImpl
+	 * @see org.emftext.language.AdaptiveCyberDefense.impl.AdaptiveCyberDefensePackageImpl#getRRigidMaintain()
+	 * @generated
+	 */
+	int RRIGID_MAINTAIN = 30;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RRIGID_MAINTAIN__NAME = RIGID_MAINTAIN__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Reward</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RRIGID_MAINTAIN__REWARD = RIGID_MAINTAIN__REWARD;
+
+	/**
+	 * The feature id for the '<em><b>Condition</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RRIGID_MAINTAIN__CONDITION = RIGID_MAINTAIN__CONDITION;
+
+	/**
+	 * The feature id for the '<em><b>Description</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RRIGID_MAINTAIN__DESCRIPTION = RIGID_MAINTAIN__DESCRIPTION;
+
+	/**
+	 * The feature id for the '<em><b>Activation</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RRIGID_MAINTAIN__ACTIVATION = RIGID_MAINTAIN__ACTIVATION;
+
+	/**
+	 * The feature id for the '<em><b>Cancellation</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RRIGID_MAINTAIN__CANCELLATION = RIGID_MAINTAIN__CANCELLATION;
+
+	/**
+	 * The feature id for the '<em><b>Deadline</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RRIGID_MAINTAIN__DEADLINE = RIGID_MAINTAIN__DEADLINE;
+
+	/**
+	 * The feature id for the '<em><b>Duration</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RRIGID_MAINTAIN__DURATION = RIGID_MAINTAIN__DURATION;
+
+	/**
+	 * The number of structural features of the '<em>RRigid Maintain</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RRIGID_MAINTAIN_FEATURE_COUNT = RIGID_MAINTAIN_FEATURE_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link org.emftext.language.AdaptiveCyberDefense.impl.RDeadlineMaintainImpl <em>RDeadline Maintain</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.emftext.language.AdaptiveCyberDefense.impl.RDeadlineMaintainImpl
+	 * @see org.emftext.language.AdaptiveCyberDefense.impl.AdaptiveCyberDefensePackageImpl#getRDeadlineMaintain()
+	 * @generated
+	 */
+	int RDEADLINE_MAINTAIN = 31;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RDEADLINE_MAINTAIN__NAME = DEADLINE_MAINTAIN__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Reward</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RDEADLINE_MAINTAIN__REWARD = DEADLINE_MAINTAIN__REWARD;
+
+	/**
+	 * The feature id for the '<em><b>Condition</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RDEADLINE_MAINTAIN__CONDITION = DEADLINE_MAINTAIN__CONDITION;
+
+	/**
+	 * The feature id for the '<em><b>Description</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RDEADLINE_MAINTAIN__DESCRIPTION = DEADLINE_MAINTAIN__DESCRIPTION;
+
+	/**
+	 * The feature id for the '<em><b>Activation</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RDEADLINE_MAINTAIN__ACTIVATION = DEADLINE_MAINTAIN__ACTIVATION;
+
+	/**
+	 * The feature id for the '<em><b>Cancellation</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RDEADLINE_MAINTAIN__CANCELLATION = DEADLINE_MAINTAIN__CANCELLATION;
+
+	/**
+	 * The feature id for the '<em><b>Deadline</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RDEADLINE_MAINTAIN__DEADLINE = DEADLINE_MAINTAIN__DEADLINE;
+
+	/**
+	 * The number of structural features of the '<em>RDeadline Maintain</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RDEADLINE_MAINTAIN_FEATURE_COUNT = DEADLINE_MAINTAIN_FEATURE_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link org.emftext.language.AdaptiveCyberDefense.impl.RAchieveImpl <em>RAchieve</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.emftext.language.AdaptiveCyberDefense.impl.RAchieveImpl
+	 * @see org.emftext.language.AdaptiveCyberDefense.impl.AdaptiveCyberDefensePackageImpl#getRAchieve()
+	 * @generated
+	 */
+	int RACHIEVE = 32;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RACHIEVE__NAME = ACHIEVE__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Reward</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RACHIEVE__REWARD = ACHIEVE__REWARD;
+
+	/**
+	 * The feature id for the '<em><b>Condition</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RACHIEVE__CONDITION = ACHIEVE__CONDITION;
+
+	/**
+	 * The feature id for the '<em><b>Description</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RACHIEVE__DESCRIPTION = ACHIEVE__DESCRIPTION;
+
+	/**
+	 * The feature id for the '<em><b>Activation</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RACHIEVE__ACTIVATION = ACHIEVE__ACTIVATION;
+
+	/**
+	 * The feature id for the '<em><b>Cancellation</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RACHIEVE__CANCELLATION = ACHIEVE__CANCELLATION;
+
+	/**
+	 * The feature id for the '<em><b>Deadline</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RACHIEVE__DEADLINE = ACHIEVE__DEADLINE;
+
+	/**
+	 * The number of structural features of the '<em>RAchieve</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RACHIEVE_FEATURE_COUNT = ACHIEVE_FEATURE_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link org.emftext.language.AdaptiveCyberDefense.impl.UnconditionalAchieveImpl <em>Unconditional Achieve</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.emftext.language.AdaptiveCyberDefense.impl.UnconditionalAchieveImpl
+	 * @see org.emftext.language.AdaptiveCyberDefense.impl.AdaptiveCyberDefensePackageImpl#getUnconditionalAchieve()
+	 * @generated
+	 */
+	int UNCONDITIONAL_ACHIEVE = 33;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UNCONDITIONAL_ACHIEVE__NAME = REQUIREMENT__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Reward</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UNCONDITIONAL_ACHIEVE__REWARD = REQUIREMENT__REWARD;
+
+	/**
+	 * The feature id for the '<em><b>Condition</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UNCONDITIONAL_ACHIEVE__CONDITION = REQUIREMENT__CONDITION;
+
+	/**
+	 * The feature id for the '<em><b>Description</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UNCONDITIONAL_ACHIEVE__DESCRIPTION = REQUIREMENT__DESCRIPTION;
+
+	/**
+	 * The number of structural features of the '<em>Unconditional Achieve</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UNCONDITIONAL_ACHIEVE_FEATURE_COUNT = REQUIREMENT_FEATURE_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link org.emftext.language.AdaptiveCyberDefense.ActionType <em>Action Type</em>}' enum.
@@ -1508,7 +1898,7 @@ public interface AdaptiveCyberDefensePackage extends EPackage {
 	 * @see org.emftext.language.AdaptiveCyberDefense.impl.AdaptiveCyberDefensePackageImpl#getActionType()
 	 * @generated
 	 */
-	int ACTION_TYPE = 30;
+	int ACTION_TYPE = 34;
 
 
 	/**
@@ -2220,14 +2610,54 @@ public interface AdaptiveCyberDefensePackage extends EPackage {
 	EClass getRigidMaintain();
 
 	/**
-	 * Returns the meta object for enum '{@link org.emftext.language.AdaptiveCyberDefense.RequirementStatus <em>Requirement Status</em>}'.
+	 * Returns the meta object for class '{@link org.emftext.language.AdaptiveCyberDefense.RMaintain <em>RMaintain</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for enum '<em>Requirement Status</em>'.
-	 * @see org.emftext.language.AdaptiveCyberDefense.RequirementStatus
+	 * @return the meta object for class '<em>RMaintain</em>'.
+	 * @see org.emftext.language.AdaptiveCyberDefense.RMaintain
 	 * @generated
 	 */
-	EEnum getRequirementStatus();
+	EClass getRMaintain();
+
+	/**
+	 * Returns the meta object for class '{@link org.emftext.language.AdaptiveCyberDefense.RRigidMaintain <em>RRigid Maintain</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>RRigid Maintain</em>'.
+	 * @see org.emftext.language.AdaptiveCyberDefense.RRigidMaintain
+	 * @generated
+	 */
+	EClass getRRigidMaintain();
+
+	/**
+	 * Returns the meta object for class '{@link org.emftext.language.AdaptiveCyberDefense.RDeadlineMaintain <em>RDeadline Maintain</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>RDeadline Maintain</em>'.
+	 * @see org.emftext.language.AdaptiveCyberDefense.RDeadlineMaintain
+	 * @generated
+	 */
+	EClass getRDeadlineMaintain();
+
+	/**
+	 * Returns the meta object for class '{@link org.emftext.language.AdaptiveCyberDefense.RAchieve <em>RAchieve</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>RAchieve</em>'.
+	 * @see org.emftext.language.AdaptiveCyberDefense.RAchieve
+	 * @generated
+	 */
+	EClass getRAchieve();
+
+	/**
+	 * Returns the meta object for class '{@link org.emftext.language.AdaptiveCyberDefense.UnconditionalAchieve <em>Unconditional Achieve</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Unconditional Achieve</em>'.
+	 * @see org.emftext.language.AdaptiveCyberDefense.UnconditionalAchieve
+	 * @generated
+	 */
+	EClass getUnconditionalAchieve();
 
 	/**
 	 * Returns the meta object for enum '{@link org.emftext.language.AdaptiveCyberDefense.ActionType <em>Action Type</em>}'.
@@ -2856,14 +3286,54 @@ public interface AdaptiveCyberDefensePackage extends EPackage {
 		EClass RIGID_MAINTAIN = eINSTANCE.getRigidMaintain();
 
 		/**
-		 * The meta object literal for the '{@link org.emftext.language.AdaptiveCyberDefense.RequirementStatus <em>Requirement Status</em>}' enum.
+		 * The meta object literal for the '{@link org.emftext.language.AdaptiveCyberDefense.impl.RMaintainImpl <em>RMaintain</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.emftext.language.AdaptiveCyberDefense.RequirementStatus
-		 * @see org.emftext.language.AdaptiveCyberDefense.impl.AdaptiveCyberDefensePackageImpl#getRequirementStatus()
+		 * @see org.emftext.language.AdaptiveCyberDefense.impl.RMaintainImpl
+		 * @see org.emftext.language.AdaptiveCyberDefense.impl.AdaptiveCyberDefensePackageImpl#getRMaintain()
 		 * @generated
 		 */
-		EEnum REQUIREMENT_STATUS = eINSTANCE.getRequirementStatus();
+		EClass RMAINTAIN = eINSTANCE.getRMaintain();
+
+		/**
+		 * The meta object literal for the '{@link org.emftext.language.AdaptiveCyberDefense.impl.RRigidMaintainImpl <em>RRigid Maintain</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.emftext.language.AdaptiveCyberDefense.impl.RRigidMaintainImpl
+		 * @see org.emftext.language.AdaptiveCyberDefense.impl.AdaptiveCyberDefensePackageImpl#getRRigidMaintain()
+		 * @generated
+		 */
+		EClass RRIGID_MAINTAIN = eINSTANCE.getRRigidMaintain();
+
+		/**
+		 * The meta object literal for the '{@link org.emftext.language.AdaptiveCyberDefense.impl.RDeadlineMaintainImpl <em>RDeadline Maintain</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.emftext.language.AdaptiveCyberDefense.impl.RDeadlineMaintainImpl
+		 * @see org.emftext.language.AdaptiveCyberDefense.impl.AdaptiveCyberDefensePackageImpl#getRDeadlineMaintain()
+		 * @generated
+		 */
+		EClass RDEADLINE_MAINTAIN = eINSTANCE.getRDeadlineMaintain();
+
+		/**
+		 * The meta object literal for the '{@link org.emftext.language.AdaptiveCyberDefense.impl.RAchieveImpl <em>RAchieve</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.emftext.language.AdaptiveCyberDefense.impl.RAchieveImpl
+		 * @see org.emftext.language.AdaptiveCyberDefense.impl.AdaptiveCyberDefensePackageImpl#getRAchieve()
+		 * @generated
+		 */
+		EClass RACHIEVE = eINSTANCE.getRAchieve();
+
+		/**
+		 * The meta object literal for the '{@link org.emftext.language.AdaptiveCyberDefense.impl.UnconditionalAchieveImpl <em>Unconditional Achieve</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.emftext.language.AdaptiveCyberDefense.impl.UnconditionalAchieveImpl
+		 * @see org.emftext.language.AdaptiveCyberDefense.impl.AdaptiveCyberDefensePackageImpl#getUnconditionalAchieve()
+		 * @generated
+		 */
+		EClass UNCONDITIONAL_ACHIEVE = eINSTANCE.getUnconditionalAchieve();
 
 		/**
 		 * The meta object literal for the '{@link org.emftext.language.AdaptiveCyberDefense.ActionType <em>Action Type</em>}' enum.

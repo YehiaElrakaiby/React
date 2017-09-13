@@ -184,6 +184,26 @@ public class AdaptiveCyberDefenseAdapterFactory extends AdapterFactoryImpl {
 				return createRigidMaintainAdapter();
 			}
 			@Override
+			public Adapter caseRMaintain(RMaintain object) {
+				return createRMaintainAdapter();
+			}
+			@Override
+			public Adapter caseRRigidMaintain(RRigidMaintain object) {
+				return createRRigidMaintainAdapter();
+			}
+			@Override
+			public Adapter caseRDeadlineMaintain(RDeadlineMaintain object) {
+				return createRDeadlineMaintainAdapter();
+			}
+			@Override
+			public Adapter caseRAchieve(RAchieve object) {
+				return createRAchieveAdapter();
+			}
+			@Override
+			public Adapter caseUnconditionalAchieve(UnconditionalAchieve object) {
+				return createUnconditionalAchieveAdapter();
+			}
+			@Override
 			public Adapter defaultCase(EObject object) {
 				return createEObjectAdapter();
 			}
@@ -606,6 +626,76 @@ public class AdaptiveCyberDefenseAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createRigidMaintainAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.emftext.language.AdaptiveCyberDefense.RMaintain <em>RMaintain</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.emftext.language.AdaptiveCyberDefense.RMaintain
+	 * @generated
+	 */
+	public Adapter createRMaintainAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.emftext.language.AdaptiveCyberDefense.RRigidMaintain <em>RRigid Maintain</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.emftext.language.AdaptiveCyberDefense.RRigidMaintain
+	 * @generated
+	 */
+	public Adapter createRRigidMaintainAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.emftext.language.AdaptiveCyberDefense.RDeadlineMaintain <em>RDeadline Maintain</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.emftext.language.AdaptiveCyberDefense.RDeadlineMaintain
+	 * @generated
+	 */
+	public Adapter createRDeadlineMaintainAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.emftext.language.AdaptiveCyberDefense.RAchieve <em>RAchieve</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.emftext.language.AdaptiveCyberDefense.RAchieve
+	 * @generated
+	 */
+	public Adapter createRAchieveAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.emftext.language.AdaptiveCyberDefense.UnconditionalAchieve <em>Unconditional Achieve</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.emftext.language.AdaptiveCyberDefense.UnconditionalAchieve
+	 * @generated
+	 */
+	public Adapter createUnconditionalAchieveAdapter() {
 		return null;
 	}
 

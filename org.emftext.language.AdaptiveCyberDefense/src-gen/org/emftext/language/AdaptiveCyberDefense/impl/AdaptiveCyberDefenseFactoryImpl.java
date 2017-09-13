@@ -80,6 +80,11 @@ public class AdaptiveCyberDefenseFactoryImpl extends EFactoryImpl implements Ada
 			case AdaptiveCyberDefensePackage.CONDITIONAL_MAINTAIN: return createConditionalMaintain();
 			case AdaptiveCyberDefensePackage.DEADLINE_MAINTAIN: return createDeadlineMaintain();
 			case AdaptiveCyberDefensePackage.RIGID_MAINTAIN: return createRigidMaintain();
+			case AdaptiveCyberDefensePackage.RMAINTAIN: return createRMaintain();
+			case AdaptiveCyberDefensePackage.RRIGID_MAINTAIN: return createRRigidMaintain();
+			case AdaptiveCyberDefensePackage.RDEADLINE_MAINTAIN: return createRDeadlineMaintain();
+			case AdaptiveCyberDefensePackage.RACHIEVE: return createRAchieve();
+			case AdaptiveCyberDefensePackage.UNCONDITIONAL_ACHIEVE: return createUnconditionalAchieve();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -93,8 +98,6 @@ public class AdaptiveCyberDefenseFactoryImpl extends EFactoryImpl implements Ada
 	@Override
 	public Object createFromString(EDataType eDataType, String initialValue) {
 		switch (eDataType.getClassifierID()) {
-			case AdaptiveCyberDefensePackage.REQUIREMENT_STATUS:
-				return createRequirementStatusFromString(eDataType, initialValue);
 			case AdaptiveCyberDefensePackage.ACTION_TYPE:
 				return createActionTypeFromString(eDataType, initialValue);
 			default:
@@ -110,8 +113,6 @@ public class AdaptiveCyberDefenseFactoryImpl extends EFactoryImpl implements Ada
 	@Override
 	public String convertToString(EDataType eDataType, Object instanceValue) {
 		switch (eDataType.getClassifierID()) {
-			case AdaptiveCyberDefensePackage.REQUIREMENT_STATUS:
-				return convertRequirementStatusToString(eDataType, instanceValue);
 			case AdaptiveCyberDefensePackage.ACTION_TYPE:
 				return convertActionTypeToString(eDataType, instanceValue);
 			default:
@@ -354,10 +355,9 @@ public class AdaptiveCyberDefenseFactoryImpl extends EFactoryImpl implements Ada
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public RequirementStatus createRequirementStatusFromString(EDataType eDataType, String initialValue) {
-		RequirementStatus result = RequirementStatus.get(initialValue);
-		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
-		return result;
+	public RMaintain createRMaintain() {
+		RMaintainImpl rMaintain = new RMaintainImpl();
+		return rMaintain;
 	}
 
 	/**
@@ -365,8 +365,39 @@ public class AdaptiveCyberDefenseFactoryImpl extends EFactoryImpl implements Ada
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertRequirementStatusToString(EDataType eDataType, Object instanceValue) {
-		return instanceValue == null ? null : instanceValue.toString();
+	public RRigidMaintain createRRigidMaintain() {
+		RRigidMaintainImpl rRigidMaintain = new RRigidMaintainImpl();
+		return rRigidMaintain;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public RDeadlineMaintain createRDeadlineMaintain() {
+		RDeadlineMaintainImpl rDeadlineMaintain = new RDeadlineMaintainImpl();
+		return rDeadlineMaintain;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public RAchieve createRAchieve() {
+		RAchieveImpl rAchieve = new RAchieveImpl();
+		return rAchieve;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public UnconditionalAchieve createUnconditionalAchieve() {
+		UnconditionalAchieveImpl unconditionalAchieve = new UnconditionalAchieveImpl();
+		return unconditionalAchieve;
 	}
 
 	/**

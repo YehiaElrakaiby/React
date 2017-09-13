@@ -229,6 +229,51 @@ public interface AdaptiveCyberDefenseFactory extends EFactory {
 	RigidMaintain createRigidMaintain();
 
 	/**
+	 * Returns a new object of class '<em>RMaintain</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>RMaintain</em>'.
+	 * @generated
+	 */
+	RMaintain createRMaintain();
+
+	/**
+	 * Returns a new object of class '<em>RRigid Maintain</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>RRigid Maintain</em>'.
+	 * @generated
+	 */
+	RRigidMaintain createRRigidMaintain();
+
+	/**
+	 * Returns a new object of class '<em>RDeadline Maintain</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>RDeadline Maintain</em>'.
+	 * @generated
+	 */
+	RDeadlineMaintain createRDeadlineMaintain();
+
+	/**
+	 * Returns a new object of class '<em>RAchieve</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>RAchieve</em>'.
+	 * @generated
+	 */
+	RAchieve createRAchieve();
+
+	/**
+	 * Returns a new object of class '<em>Unconditional Achieve</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Unconditional Achieve</em>'.
+	 * @generated
+	 */
+	UnconditionalAchieve createUnconditionalAchieve();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

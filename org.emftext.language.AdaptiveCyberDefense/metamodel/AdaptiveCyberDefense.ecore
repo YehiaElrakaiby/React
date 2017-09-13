@@ -60,13 +60,6 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="initialvariable" lowerBound="1"
         eType="#//InitialVariable"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EEnum" name="RequirementStatus">
-    <eLiterals name="inact" value="1"/>
-    <eLiterals name="act" value="2"/>
-    <eLiterals name="viol" value="3"/>
-    <eLiterals name="sat" value="4"/>
-    <eLiterals name="req" value="4"/>
-  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="InitialVariable" abstract="true">
     <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
       <details key="name" value="InitialState"/>
@@ -160,4 +153,9 @@
   <eClassifiers xsi:type="ecore:EClass" name="ConditionalMaintain" eSuperTypes="#//ConditionalRequirement"/>
   <eClassifiers xsi:type="ecore:EClass" name="DeadlineMaintain" eSuperTypes="#//DeadlineRequirement"/>
   <eClassifiers xsi:type="ecore:EClass" name="RigidMaintain" eSuperTypes="#//Maintain"/>
+  <eClassifiers xsi:type="ecore:EClass" name="RMaintain" eSuperTypes="#//Maintain"/>
+  <eClassifiers xsi:type="ecore:EClass" name="RRigidMaintain" eSuperTypes="#//RigidMaintain"/>
+  <eClassifiers xsi:type="ecore:EClass" name="RDeadlineMaintain" eSuperTypes="#//DeadlineMaintain"/>
+  <eClassifiers xsi:type="ecore:EClass" name="RAchieve" eSuperTypes="#//Achieve"/>
+  <eClassifiers xsi:type="ecore:EClass" name="UnconditionalAchieve" eSuperTypes="#//Requirement"/>
 </ecore:EPackage>

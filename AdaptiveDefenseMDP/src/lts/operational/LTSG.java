@@ -26,10 +26,15 @@ import org.emftext.language.AdaptiveCyberDefense.InitialVariable;
 import org.emftext.language.AdaptiveCyberDefense.Maintain;
 import org.emftext.language.AdaptiveCyberDefense.ProbabilisticContextualEffect;
 import org.emftext.language.AdaptiveCyberDefense.ProbabilisticEffect;
+import org.emftext.language.AdaptiveCyberDefense.RAchieve;
+import org.emftext.language.AdaptiveCyberDefense.RDeadlineMaintain;
+import org.emftext.language.AdaptiveCyberDefense.RMaintain;
+import org.emftext.language.AdaptiveCyberDefense.RRigidMaintain;
 import org.emftext.language.AdaptiveCyberDefense.Requirement;
 import org.emftext.language.AdaptiveCyberDefense.RigidMaintain;
 import org.emftext.language.AdaptiveCyberDefense.StateAtom;
 import org.emftext.language.AdaptiveCyberDefense.StateVariable;
+import org.emftext.language.AdaptiveCyberDefense.UnconditionalAchieve;
 import org.emftext.language.AdaptiveCyberDefense.UnconditionalMaintain;
 
 import main.REact;
@@ -253,6 +258,12 @@ public class LTSG {
 			} else 	if(requirement.getClass().getName().endsWith(".AchieveImpl")){
 				Achieve req = (Achieve) requirement;
 				fillAchieveRequirementDescription(req,descr,domain);
+			} else 	if(requirement.getClass().getName().endsWith(".UnconditionalAchieveImpl")){
+				UnconditionalAchieve req = (UnconditionalAchieve) requirement;
+				fillUnconditionalAchieveRequirementDescription(req,descr,domain);
+			} else if(requirement.getClass().getName().endsWith(".RAchieveImpl")){
+				RAchieve req = (RAchieve) requirement;
+				fillRAchieveRequirementDescription(req,descr,domain);
 			} else 	if(requirement.getClass().getName().endsWith(".ConditionalAchieveImpl")){
 				ConditionalAchieve req = (ConditionalAchieve) requirement;
 				fillConditionalAchieveRequirementDescription(req,descr,domain);
@@ -268,7 +279,16 @@ public class LTSG {
 			} else 	if(requirement.getClass().getName().endsWith(".RigidMaintainImpl")){
 				RigidMaintain req = (RigidMaintain) requirement;
 				fillRigidMaintainRequirementDescription(req,descr,domain);
-			}
+			} else 	if(requirement.getClass().getName().endsWith(".RRigidMaintainImpl")){
+				RRigidMaintain req = (RRigidMaintain) requirement;
+				fillRRigidMaintainRequirementDescription(req,descr,domain);
+			} else 	if(requirement.getClass().getName().endsWith(".RMaintainImpl")){
+				RMaintain req = (RMaintain) requirement;
+				fillRMaintainRequirementDescription(req,descr,domain);
+			} else 	if(requirement.getClass().getName().endsWith(".RDeadlineMaintainImpl")){
+				RDeadlineMaintain req = (RDeadlineMaintain) requirement;
+				fillRDeadlineMaintainRequirementDescription(req,descr,domain);
+			} 
 			/**
 			 * add the requirement to the HashMap requirements_description
 			 */
@@ -283,6 +303,23 @@ public class LTSG {
 		}
 	}
 
+	private void fillUnconditionalAchieveRequirementDescription(
+			UnconditionalAchieve req, 
+			RequirementDescription descr, 
+			HashSet<String> domain) {
+		String name = req.getName();
+
+		descr.setType("unconditional_achieve");
+
+		descr.setName(name);
+
+		descr.setCondition(req.getCondition());
+		
+		descr.setCost_reward(req.getReward());
+
+		//domain.add("req");
+
+	}
 	private void fillConditionalAchieveRequirementDescription(
 			ConditionalAchieve req, 
 			RequirementDescription descr,
@@ -348,6 +385,42 @@ public class LTSG {
 		}
 
 	}
+	private void fillRAchieveRequirementDescription(
+			Achieve req, 
+			RequirementDescription descr, 
+			HashSet<String> domain) {
+		String name = req.getName();
+
+		descr.setType("rachieve");
+
+		descr.setName(name);
+
+		descr.setCondition(req.getCondition());
+
+		descr.setActivation(req.getActivation());
+		descr.setDeadline(req.getDeadline());
+
+		if(req.getCancellation() != null) {
+			descr.setCancellation(req.getCancellation());
+		} else {
+			/**
+			 * if no cancellation then the requirement cannot be cancelled and false is used as cancellation condition
+			 */
+			descr.setCancellation(AdaptiveCyberDefenseFactory.eINSTANCE.createFalse());
+		}
+
+		descr.setCost_reward(req.getReward());
+
+		domain.add("inact");
+		if(req.getDeadline()==-1) {
+			domain.add("act-0");
+		} else {
+			for(int i=0; i< req.getDeadline(); i++) {
+				domain.add("act-"+i);
+			}
+		}
+
+	}
 
 	private void fillUnconditionalMaintainRequirementDescription(
 			UnconditionalMaintain req,
@@ -363,7 +436,7 @@ public class LTSG {
 
 		descr.setCost_reward(req.getReward());
 
-		domain.add("act");
+		//domain.add("req");
 	}
 	private void fillConditionalMaintainRequirementDescription(
 			ConditionalMaintain req, 
@@ -400,7 +473,45 @@ public class LTSG {
 			HashSet<String> domain) {
 		String name = req.getName();
 
-		descr.setType("maintain");
+		descr.setType("deadline_maintain");
+
+		descr.setName(name);
+
+		descr.setCondition(req.getCondition());
+
+		descr.setActivation(req.getActivation());
+		descr.setDeadline(req.getDeadline());
+
+		if(req.getCancellation() != null) {
+			descr.setCancellation(req.getCancellation());
+		} else {
+			/**
+			 * if no cancellation then the requirement cannot be cancelled and false is used as cancellation condition
+			 */
+			descr.setCancellation(AdaptiveCyberDefenseFactory.eINSTANCE.createFalse());
+		}
+
+		descr.setCost_reward(req.getReward());
+
+		domain.add("inact");
+		domain.add("req");
+
+		if(req.getDeadline()==-1) {
+			LOGGER.error("deadline not set for requirement "+req.getName());
+		} else {
+			for(int i=0; i< req.getDeadline(); i++) {
+				domain.add("act-"+i);
+			}
+		}
+
+	}
+	private void fillRDeadlineMaintainRequirementDescription(
+			RDeadlineMaintain req, 
+			RequirementDescription descr,
+			HashSet<String> domain) {
+		String name = req.getName();
+
+		descr.setType("rdeadline_maintain");
 
 		descr.setName(name);
 
@@ -475,8 +586,51 @@ public class LTSG {
 		}
 
 	}
+	private void fillRMaintainRequirementDescription(
+			RMaintain req, 
+			RequirementDescription descr, 
+			HashSet<String> domain) {
+		String name = req.getName();
+
+		descr.setType("rmaintain");
+
+		descr.setName(name);
+
+		descr.setCondition(req.getCondition());
+		descr.setDuration(req.getDuration());
+
+		descr.setActivation(req.getActivation());
+		descr.setDeadline(req.getDeadline());
+
+		if(req.getCancellation() != null) {
+			descr.setCancellation(req.getCancellation());
+		} else {
+			/**
+			 * if no cancellation then the requirement cannot be cancelled and false is used as cancellation condition
+			 */
+			descr.setCancellation(AdaptiveCyberDefenseFactory.eINSTANCE.createFalse());
+		}
+
+		descr.setCost_reward(req.getReward());
+
+		domain.add("inact");
+		if(req.getDeadline()==-1) {
+			domain.add("act-0");
+		} else {
+			for(int i=0; i< req.getDeadline(); i++) {
+				domain.add("act-"+i);
+			}
+		}
+		/**
+		 * Notice that if there is no deadline, i.e., deadline =0, then the requirement has to be fulfilled immediately
+		 */
+		for(int i=0; i< req.getDuration(); i++) {
+			domain.add("req-"+i);
+		}
+
+	}
 	private void fillRigidMaintainRequirementDescription(
-			Maintain req, 
+			RigidMaintain req, 
 			RequirementDescription descr, 
 			HashSet<String> domain) {
 		String name = req.getName();
@@ -517,6 +671,48 @@ public class LTSG {
 			domain.add("req-"+i);
 		}
 
+	}
+	private void fillRRigidMaintainRequirementDescription(
+			RRigidMaintain req, 
+			RequirementDescription descr,
+			HashSet<String> domain) {
+		String name = req.getName();
+
+		descr.setType("rrigid_maintain");
+
+		descr.setName(name);
+
+		descr.setCondition(req.getCondition());
+		descr.setDuration(req.getDuration());
+
+		descr.setActivation(req.getActivation());
+		descr.setDeadline(req.getDeadline());
+
+		if(req.getCancellation() != null) {
+			descr.setCancellation(req.getCancellation());
+		} else {
+			/**
+			 * if no cancellation then the requirement cannot be cancelled and false is used as cancellation condition
+			 */
+			descr.setCancellation(AdaptiveCyberDefenseFactory.eINSTANCE.createFalse());
+		}
+
+		descr.setCost_reward(req.getReward());
+
+		domain.add("inact");
+		if(req.getDeadline()==-1) {
+			domain.add("act-0");
+		} else {
+			for(int i=0; i< req.getDeadline(); i++) {
+				domain.add("act-"+i);
+			}
+		}
+		/**
+		 * Notice that if there is no deadline, i.e., deadline =0, then the requirement has to be fulfilled immediately
+		 */
+		for(int i=0; i< req.getDuration(); i++) {
+			domain.add("req-"+i);
+		}		
 	}
 
 
@@ -881,7 +1077,11 @@ public class LTSG {
 				updateMaintainReqAtomInState(temp,req,rew);
 			} else if(req.getType().equals("achieve")){
 				updateAchieveReqAtomInState(temp,req,rew);
-			} else if(req.getType().equals("conditional_achieve")){
+			} else if(req.getType().equals("unconditional_achieve")){
+				updateUnconditionalAchieveReqAtomInState(temp,req,rew);
+			} else if(req.getType().equals("rachieve")){
+				updateRAchieveReqAtomInState(temp,req,rew);
+			}else if(req.getType().equals("conditional_achieve")){
 				updateConditionalAchieveReqAtomInState(temp,req,rew);
 			}else if(req.getType().equals("unconditional")){
 				updateUnconditionalReqAtomInState(temp,req,rew);
@@ -891,6 +1091,12 @@ public class LTSG {
 				updateDeadlineMaintainReqAtomInState(temp,req,rew);
 			} else if(req.getType().equals("rigid_maintain")){
 				updateRigidMaintainReqAtomInState(temp,req,rew);
+			} else if(req.getType().equals("rrigid_maintain")){
+				updateRRigidMaintainReqAtomInState(temp,req,rew);
+			} else if(req.getType().equals("rmaintain")){
+				updateRMaintainReqAtomInState(temp,req,rew);
+			} else if(req.getType().equals("rdeadline_maintain")){
+				updateRDeadlineMaintainReqAtomInState(temp,req,rew);
 			}
 		}
 	}
@@ -955,6 +1161,49 @@ public class LTSG {
 		if(status.startsWith("act-")){
 			if(req.getCancellation().verify(state)) {
 				state.put(req_id, "inact");
+			} else if(status.equals("act-0") && req.getCondition().verify(state)) {
+				state.put(req_id, "inact");
+				/*
+				 * Satisfaction and reward update
+				 */
+				rew.updateReward(req.getCost_reward());
+			} else if (status.equals("act-0")){
+				state.put(req_id, "inact");
+			} else {
+				Integer remainingTime = new Integer(status.substring(4));
+				state.put(req_id, "act-"+(remainingTime-1));
+			}
+
+		} 
+	}
+	private void updateRAchieveReqAtomInState(
+			HashMap<String, String> state, 
+			RequirementDescription req, 
+			Reward rew) {
+		String req_id = req.getName();
+		String status = state.get(req_id);
+		/**
+		 * For an achieve requirement, its status is updated according to activation, cancellation, condition and control actions (time) as follows:
+		 * (1) if status is inact: if activation is true, then act-D where D is the deadline
+		 * 
+		 * (2) if status is act-X:
+		 * (2.1) if cancellation holds then inact
+		 * (2.2) if condition holds then inact (and update reward of transition)
+		 * (2.3) if control action 
+		 * (2.3.1) act-0 then inact (and update reward of transition)
+		 * (2.3.2) else control action, then act-(X-1)
+		 * 
+		 */
+		if(status.equals("inact")) {
+			if(req.getActivation().verify(state)) {
+				Integer deadline = req.getDeadline();
+				state.put(req_id, "act-"+deadline);
+			}
+		}
+
+		if(status.startsWith("act-")){
+			if(req.getCancellation().verify(state)) {
+				state.put(req_id, "inact");
 			} else if(req.getCondition().verify(state)) {
 				state.put(req_id, "inact");
 				/*
@@ -970,8 +1219,17 @@ public class LTSG {
 
 		} 
 	}
-
 	private void updateUnconditionalReqAtomInState(HashMap<String, String> state, 
+			RequirementDescription req,
+			Reward rew) {
+		if(req.getCondition().verify(state)) {
+			/*
+			 * Satisfaction and reward update
+			 */
+			rew.updateReward(req.getCost_reward());
+		} 
+	}
+	private void updateUnconditionalAchieveReqAtomInState(HashMap<String, String> state, 
 			RequirementDescription req,
 			Reward rew) {
 		if(req.getCondition().verify(state)) {
@@ -1068,6 +1326,65 @@ public class LTSG {
 		}
 
 	}
+	private void updateRDeadlineMaintainReqAtomInState(
+			HashMap<String, String> state, 
+			RequirementDescription req,
+			Reward rew) {
+		String req_id = req.getName();
+		String status = state.get(req_id);
+		/**
+		 * For a maintain requirement, its status is updated according to activation, cancellation and control actions as follows:
+		 * Notice that condition does not affect the update of status
+		 * (1) if status is inact: if activation is true, then act-D where D is the deadline
+		 * 
+		 * (2) if status is act-X:
+		 * (2.1) if cancellation holds then inact
+		 * (2.2) else if act-0 then req-D where D is duration
+		 * (2.3) else if control action, then act-(X-1)
+		 * 
+		 * (3) if status is req-X
+		 * (3.1) if cancellation then inact
+		 * (3.2) if req-X and not condition then inact (and subtract violation cost)
+		 * (3.2) else if req-0 then inact (and add satisfaction reward)
+		 * (3.3) else control action, then req-(X-1) ()
+		 */
+		if(status.equals("inact")) {
+			if(req.getActivation().verify(state)) {
+				Integer deadline = req.getDeadline();
+				state.put(req_id, "act-"+(deadline-1));
+			}
+		}
+
+		if(status.startsWith("act-")){
+			if(req.getCancellation().verify(state)) {
+				state.put(req_id, "inact");
+			} else if (req.getCondition().verify(state)){
+				state.put(req_id, "req");
+				/*
+				 * Satisfaction and reward update: Notice that no reward is given here
+				 * since the system is not actually obliged to maintain the requirement yet
+				 */
+			} else if (status.equals("act-0")){
+				state.put(req_id, "req");
+			} else  {
+				Integer remainingTime = new Integer(status.substring(4));
+				state.put(req_id, "act-"+(remainingTime-1));
+			}
+		}
+
+		if(status.startsWith("req")){
+			if(req.getCancellation().verify(state)) {
+				state.put(req_id, "inact");
+			} 
+			if(req.getCondition().verify(state)) {
+				/*
+				 * Satisfaction and reward update
+				 */
+				rew.updateReward(req.getCost_reward());
+			} 
+		}
+
+	}
 	private void updateMaintainReqAtomInState(
 			HashMap<String, String> state, 
 			RequirementDescription req, 
@@ -1125,7 +1442,127 @@ public class LTSG {
 			}
 		}
 	} 
+	private void updateRMaintainReqAtomInState(
+			HashMap<String, String> state, 
+			RequirementDescription req, 
+			Reward rew) {
+		String req_id = req.getName();
+		String status = state.get(req_id);
+		/**
+		 * For a maintain requirement, its status is updated according to activation, cancellation and control actions as follows:
+		 * Notice that condition does not affect the update of status
+		 * (1) if status is inact: if activation is true, then act-D where D is the deadline
+		 * 
+		 * (2) if status is act-X:
+		 * (2.1) if cancellation holds then inact
+		 * (2.2) else if act-0 then req-D where D is duration
+		 * (2.3) else if control action, then act-(X-1)
+		 * 
+		 * (3) if status is req-X
+		 * (3.1) if cancellation then inact
+		 * (3.2) if req-X and not condition then inact (and subtract violation cost)
+		 * (3.2) else if req-0 then inact (and add satisfaction reward)
+		 * (3.3) else control action, then req-(X-1) ()
+		 */
+		if(status.equals("inact")) {
+			if(req.getActivation().verify(state)) {
+				Integer deadline = req.getDeadline();
+				state.put(req_id, "act-"+(deadline-1));
+			}
+		}
+
+		if(status.startsWith("act-")){
+			if(req.getCancellation().verify(state)) {
+				state.put(req_id, "inact");
+			} else if (req.getCondition().verify(state)){
+				state.put(req_id, "req-"+(req.getDuration()-1));
+				/*
+				 * Satisfaction and reward update: Notice that no reward is given here
+				 * since the system is not actually obliged to maintain the requirement yet
+				 */
+			} else  if (status.equals("act-0")){
+				state.put(req_id, "req-"+(req.getDuration()-1));
+			} else  {
+				Integer remainingTime = new Integer(status.substring(4));
+				state.put(req_id, "act-"+(remainingTime-1));
+			}
+		}
+
+		if(status.startsWith("req-")){
+			if(req.getCancellation().verify(state)) {
+				state.put(req_id, "inact");
+			} else if (status.equals("req-0")){
+				state.put(req_id, "inact");
+			} else {
+				Integer remainingTime = new Integer(status.substring(4));
+				state.put(req_id, "req-"+(remainingTime-1));
+			}
+			if(req.getCondition().verify(state)) {
+				/*
+				 * Satisfaction and reward update
+				 */
+				rew.updateReward(req.getCost_reward());
+			}
+		}
+	}
 	private void updateRigidMaintainReqAtomInState(
+			HashMap<String, String> state, 
+			RequirementDescription req,
+			Reward rew) {
+		String req_id = req.getName();
+		String status = state.get(req_id);
+		/**
+		 * For a maintain requirement, its status is updated according to activation, cancellation and control actions as follows:
+		 * Notice that condition does not affect the update of status
+		 * (1) if status is inact: if activation is true, then act-D where D is the deadline
+		 * 
+		 * (2) if status is act-X:
+		 * (2.1) if cancellation holds then inact
+		 * (2.2) else if act-0 then req-D where D is duration
+		 * (2.3) else if control action, then act-(X-1)
+		 * 
+		 * (3) if status is req-X
+		 * (3.1) if cancellation then inact
+		 * (3.2) if req-X and not condition then inact (and subtract violation cost)
+		 * (3.2) else if req-0 then inact (and add satisfaction reward)
+		 * (3.3) else control action, then req-(X-1) ()
+		 */
+		if(status.equals("inact")) {
+			if(req.getActivation().verify(state)) {
+				Integer deadline = req.getDeadline();
+				state.put(req_id, "act-"+(deadline-1));
+			}
+		}
+
+		if(status.startsWith("act-")){
+			if(req.getCancellation().verify(state)) {
+				state.put(req_id, "inact");
+			} else if (status.equals("act-0")) {
+				state.put(req_id, "req-"+(req.getDuration()-1));
+			} else  {
+				Integer remainingTime = new Integer(status.substring(4));
+				state.put(req_id, "act-"+(remainingTime-1));
+			}
+		}
+
+		if(status.startsWith("req-")){
+			if(req.getCancellation().verify(state)) {
+				state.put(req_id, "inact");
+			} else if(!req.getCondition().verify(state)) {
+				state.put(req_id, "inact");
+			} else if (status.equals("req-0")){
+				state.put(req_id, "inact");
+				/*
+				 * Satisfaction and reward update
+				 */
+				rew.updateReward(req.getCost_reward());
+			} else {
+				Integer remainingTime = new Integer(status.substring(4));
+				state.put(req_id, "req-"+(remainingTime-1));
+			}
+		}		
+	}
+	private void updateRRigidMaintainReqAtomInState(
 			HashMap<String, String> state, 
 			RequirementDescription req,
 			Reward rew) {
@@ -1160,7 +1597,7 @@ public class LTSG {
 			} else if (req.getCondition().verify(state)) {
 				state.put(req_id, "req-"+(req.getDuration()-1));
 			} else  if (status.equals("act-0")){
-				state.put(req_id, "inact");
+				state.put(req_id, "req-"+(req.getDuration()-1));
 			} else  {
 				Integer remainingTime = new Integer(status.substring(4));
 				state.put(req_id, "act-"+(remainingTime-1));
@@ -1185,6 +1622,7 @@ public class LTSG {
 			}
 		}		
 	}
+
 
 
 
@@ -1305,7 +1743,7 @@ public class LTSG {
 			HashSet<Transition> set = exo_events_transitions_map.get(key);
 			this.nb_of_transitions += set.size();
 			TreeSet<Transition> treeSet = new TreeSet<Transition>(set);
-			
+
 			LOGGER.trace("Transitions of "+this.id_exogenous_events.get(key)+"\n");
 			LOGGER.trace(treeSet.toString()+"\n");
 		}
