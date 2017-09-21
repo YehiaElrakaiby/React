@@ -100,7 +100,7 @@ public class REact {
 		double[][][] tm = solver.buildTransitionMatrix(lts.getCtrl_actions_transitions_map(),ex_tm);
 		LOGGER.info("The Transition Matrix of the MDP is created");
 
-		double[][][] rm = solver.buildRewardMatrix(lts.getRewards(),lts.getActionDescriptions(),lts.getControl_events_id());
+		double[][][] rm = solver.buildRewardMatrix(tm, lts.getRequirements_description(),lts.getActionDescriptions(),lts.getId_control_events(),lts.getStates());
 		LOGGER.info("The Reward Matrix of the MDP is created");
 
 		solver.checkInput();

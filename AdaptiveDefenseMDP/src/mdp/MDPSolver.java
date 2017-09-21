@@ -16,6 +16,7 @@ import com.mathworks.engine.EngineException;
 import com.mathworks.engine.MatlabEngine;
 
 import main.REact;
+import resources.RequirementDescription;
 import resources.Reward;
 import resources.Transition;
 
@@ -52,7 +53,7 @@ public class MDPSolver {
 		p = new double[nbOfStates][nbOfStates][nbOfActions];
 		r = new double[nbOfStates][nbOfStates][nbOfActions];
 		discount = REact.discount_factor;
-		
+
 		exogenous_events_TM = new double[nbOfStates][nbOfStates];
 		try {
 			ml.putVariableAsync("P", p);
@@ -314,13 +315,15 @@ public class MDPSolver {
 			 */
 			try {
 				ml.putVariableAsync(matrix_id, tempTM);
-				ml.eval("P(:,:,"+(action_id+1)+")" +"=EXTM*"+matrix_id+ ";");
+				//(original)ml.eval("P(:,:,"+(action_id+1)+")" +"=EXTM*"+matrix_id+ ";");
+				ml.eval("P(:,:,"+(action_id+1)+")" +"="+matrix_id+ "*EXTM;");
+
 			} catch (IllegalStateException | InterruptedException | ExecutionException e) {
 				LOGGER.error("Problem multiplying EXTM and the action's computed TM \n"+e.getMessage());
 				e.printStackTrace();
 			}	
 		}
-		
+
 		Future<double[][][]> future_p;
 		try {
 			future_p = ml.getVariableAsync("P");
@@ -351,7 +354,11 @@ public class MDPSolver {
 		}
 
 		/*
-		 * 
+		 * (1) iterate over all actions
+		 * (1.1) get action id
+		 * (1.2) get action cost
+		 * (1.3) insert TM in matlab
+		 * (1.4) construct the reward matrix R(:,:,a)= TM - cost of a
 		 */
 		Iterator<String> it = control_events_id.keySet().iterator();
 		while(it.hasNext()) {
@@ -370,6 +377,9 @@ public class MDPSolver {
 				e.printStackTrace();
 			}	
 		}
+		/*
+		 * retrieve the reward matrix R from matlab
+		 */
 		Future<double[][][]> future_r;
 		try {
 			future_r = ml.getVariableAsync("R");
@@ -380,6 +390,68 @@ public class MDPSolver {
 		}
 		return r;
 
+	}
+
+	public double[][][] buildRewardMatrix(double[][][] tm,
+			HashMap<String, RequirementDescription> requirements_description,
+			HashMap<String, ActionDescription> actionDescriptions, 
+			HashMap<Integer, String> id_controlEvents,
+			HashMap<Integer,HashMap<String,String>> states) {
+
+		Integer nbOfStates = tm.length;
+		Integer nbOfActions = tm[0][0].length;
+
+		double[][][] RM = new double[nbOfStates][nbOfStates][nbOfActions];
+		
+		String matrix_id = "TRM";
+	
+		for(int k=0; k<nbOfActions; k++) {
+			String action_name=id_controlEvents.get(k);
+			BigDecimal action_cost = actionDescriptions.get(action_name).getCost();
+			for(int i = 0; i<nbOfStates; i++) {
+				for(int j = 0; j<nbOfStates;j++) {
+					if(tm[i][j][k]!=0){
+						
+						BigDecimal rew = new BigDecimal(0);
+						rew.subtract(action_cost);
+						
+						HashMap<String, String> src = states.get(i);
+						HashMap<String, String> dst = states.get(j);
+						
+						Iterator<String> it = requirements_description.keySet().iterator();
+						RequirementDescription req;
+						while(it.hasNext()) {
+							String reqID = it.next();
+							req = requirements_description.get(reqID);
+							if(req.getType().equals("maintain")) {
+								rew.add(reward_maintain(src,dst,action_name));
+							} else if(req.getType().equals("achieve")){
+							} else if(req.getType().equals("unconditional_achieve")){
+							} else if(req.getType().equals("rachieve")){
+							}else if(req.getType().equals("conditional_achieve")){
+							}else if(req.getType().equals("unconditional")){
+							} else if(req.getType().equals("conditional_maintain")){
+							} else if(req.getType().equals("deadline_maintain")){
+							} else if(req.getType().equals("rigid_maintain")){
+							} else if(req.getType().equals("rrigid_maintain")){
+							} else if(req.getType().equals("rmaintain")){
+							} else if(req.getType().equals("rdeadline_maintain")){
+							}
+						}
+
+					}
+				}
+			}
+		}
+		return null;
+	}
+
+	private BigDecimal reward_maintain(HashMap<String, String> src, 
+			HashMap<String, String> dst, 
+			String action_name) {
+		BigDecimal reward = new BigDecimal(0);
+		
+		return reward;
 	}
 }
 

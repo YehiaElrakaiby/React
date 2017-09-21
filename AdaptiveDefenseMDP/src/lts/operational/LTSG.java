@@ -39,7 +39,6 @@ import org.emftext.language.AdaptiveCyberDefense.UnconditionalMaintain;
 
 import main.REact;
 import resources.RequirementDescription;
-import resources.Reward;
 import resources.Transition;
 
 /**
@@ -115,7 +114,7 @@ public class LTSG {
 	/**
 	 *  Rewards
 	 */
-	protected HashSet<Reward> rewards = new HashSet<Reward>();
+	//protected HashSet<Reward> rewards = new HashSet<Reward>();
 
 	private final static Logger LOGGER = LogManager.getRootLogger();
 	/*
@@ -845,10 +844,10 @@ public class LTSG {
 						if(effect!=null) {
 							updateStateVariables(dst_state,effect);
 						} 
-						Reward rew = new Reward();
+						//Reward rew = new Reward();
 
 						dst_state.put(descr.getName(), descr.getValue());
-						updateReqVariables(dst_state, requirements_description,rew);
+						updateReqVariables(dst_state, requirements_description);
 						dst_state.remove(descr.getName());						
 
 
@@ -857,9 +856,9 @@ public class LTSG {
 
 						Transition trans = new Transition(event_name,src_id,dest_id,prob);
 						event_transitions.add(trans);
-						rew.setSrc(src_id);
-						rew.setDest(dest_id);
-						rewards.add(rew);
+						//rew.setSrc(src_id);
+						//rew.setDest(dest_id);
+						//rewards.add(rew);
 
 						total_prob = total_prob.add(effect.getProbability());
 
@@ -870,20 +869,15 @@ public class LTSG {
 					}
 					if(total_prob.compareTo(one)==-1) {
 						HashMap<String, String> dst_state = new HashMap<String, String>(state);
-						Reward rew = new Reward();
 
 						dst_state.put(descr.getName(), descr.getValue());
-						updateReqVariables(dst_state, requirements_description,rew);
+						updateReqVariables(dst_state, requirements_description);
 						dst_state.remove(descr.getName());
 
 						Integer dest_id = updateStates(to_explore,dst_state,state_nb);
 
 						Transition trans = new Transition(event_name,src_id,dest_id,one.subtract(total_prob));
 						event_transitions.add(trans);
-						rew.setSrc(src_id);
-						rew.setDest(dest_id);
-						rewards.add(rew);
-
 						//transitions.add(trans);
 						//src_label_dest_transitions_map.put(trans.hashCode(), trans);
 						//updateTransitions3(Transition.hashCode(src_id, action_name),dest_id);
@@ -896,10 +890,9 @@ public class LTSG {
 				occurrence_vector.put(src_id, new Double(0));
 
 				HashMap<String, String> dst_state = new HashMap<String, String>(state);
-				Reward rew = new Reward();
 
 				dst_state.put(descr.getName(), descr.getValue());
-				updateReqVariables(dst_state, requirements_description,rew);
+				updateReqVariables(dst_state, requirements_description);
 				dst_state.remove(descr.getName());						
 
 
@@ -907,9 +900,7 @@ public class LTSG {
 
 				Transition trans = new Transition(event_name,src_id,dest_id,one);
 				event_transitions.add(trans);
-				rew.setSrc(src_id);
-				rew.setDest(dest_id);
-				rewards.add(rew);
+			
 
 			}
 		}
@@ -960,10 +951,9 @@ public class LTSG {
 							updateStateVariables(dst_state,effect);
 						} 
 
-						Reward rew = new Reward();
 
 						dst_state.put(descr.getName(), descr.getValue());
-						updateReqVariables(dst_state, requirements_description,rew);
+						updateReqVariables(dst_state, requirements_description);
 						dst_state.remove(descr.getName());						
 
 
@@ -973,9 +963,7 @@ public class LTSG {
 						Transition trans = new Transition(action_name,src_id,dest_id,prob);
 						action_transitions.add(trans);
 
-						rew.setSrc(src_id);
-						rew.setDest(dest_id);
-						rewards.add(rew);
+				
 
 						total_prob = total_prob.add(effect.getProbability());
 
@@ -986,10 +974,9 @@ public class LTSG {
 					}
 					if(total_prob.compareTo(one)==-1) {
 						HashMap<String, String> dst_state = new HashMap<String, String>(state);
-						Reward rew = new Reward();
 
 						dst_state.put(descr.getName(), descr.getValue());
-						updateReqVariables(dst_state, requirements_description,rew);
+						updateReqVariables(dst_state, requirements_description);
 						dst_state.remove(descr.getName());						
 
 
@@ -997,9 +984,7 @@ public class LTSG {
 
 						Transition trans = new Transition(action_name,src_id,dest_id,one.subtract(total_prob));
 						action_transitions.add(trans);
-						rew.setSrc(src_id);
-						rew.setDest(dest_id);
-						rewards.add(rew);
+					
 
 						//transitions.add(trans);
 						//src_label_dest_transitions_map.put(trans.hashCode(), trans);
@@ -1011,19 +996,16 @@ public class LTSG {
 			}
 			if(!holds) {
 				HashMap<String, String> dst_state = new HashMap<String, String>(state);
-				Reward rew = new Reward();
 
 				dst_state.put(descr.getName(), descr.getValue());
-				updateReqVariables(dst_state, requirements_description,rew);
+				updateReqVariables(dst_state, requirements_description);
 				dst_state.remove(descr.getName());						
 
 				Integer dest_id = updateStates(to_explore,dst_state,state_nb);
 
 				Transition trans = new Transition(action_name,src_id,dest_id,one);
 				action_transitions.add(trans);
-				rew.setSrc(src_id);
-				rew.setDest(dest_id);
-				rewards.add(rew);
+			
 
 			}
 		}
@@ -1065,46 +1047,44 @@ public class LTSG {
 		}		
 	}
 
-	private void updateReqVariables(HashMap<String, String> temp,  
-			HashMap<String, RequirementDescription> requirements_description, 
-			Reward rew) {
+	private void updateReqVariables(HashMap<String, String> state,  
+			HashMap<String, RequirementDescription> requirements_description) {
 		Iterator<String> it = requirements_description.keySet().iterator();
 		RequirementDescription req;
 		while(it.hasNext()) {
 			String reqID = it.next();
 			req = requirements_description.get(reqID);
 			if(req.getType().equals("maintain")) {
-				updateMaintainReqAtomInState(temp,req,rew);
+				updateMaintainReqAtomInState(state,req);
 			} else if(req.getType().equals("achieve")){
-				updateAchieveReqAtomInState(temp,req,rew);
+				updateAchieveReqAtomInState(state,req);
 			} else if(req.getType().equals("unconditional_achieve")){
-				updateUnconditionalAchieveReqAtomInState(temp,req,rew);
+				updateUnconditionalAchieveReqAtomInState(state,req);
 			} else if(req.getType().equals("rachieve")){
-				updateRAchieveReqAtomInState(temp,req,rew);
+				updateRAchieveReqAtomInState(state,req);
 			}else if(req.getType().equals("conditional_achieve")){
-				updateConditionalAchieveReqAtomInState(temp,req,rew);
+				updateConditionalAchieveReqAtomInState(state,req);
 			}else if(req.getType().equals("unconditional")){
-				updateUnconditionalReqAtomInState(temp,req,rew);
+				updateUnconditionalReqAtomInState(state,req);
 			} else if(req.getType().equals("conditional_maintain")){
-				updateConditionalMaintainReqAtomInState(temp,req,rew);
+				updateConditionalMaintainReqAtomInState(state,req);
 			} else if(req.getType().equals("deadline_maintain")){
-				updateDeadlineMaintainReqAtomInState(temp,req,rew);
+				updateDeadlineMaintainReqAtomInState(state,req);
 			} else if(req.getType().equals("rigid_maintain")){
-				updateRigidMaintainReqAtomInState(temp,req,rew);
+				updateRigidMaintainReqAtomInState(state,req);
 			} else if(req.getType().equals("rrigid_maintain")){
-				updateRRigidMaintainReqAtomInState(temp,req,rew);
+				updateRRigidMaintainReqAtomInState(state,req);
 			} else if(req.getType().equals("rmaintain")){
-				updateRMaintainReqAtomInState(temp,req,rew);
+				updateRMaintainReqAtomInState(state,req);
 			} else if(req.getType().equals("rdeadline_maintain")){
-				updateRDeadlineMaintainReqAtomInState(temp,req,rew);
+				updateRDeadlineMaintainReqAtomInState(state,req);
 			}
 		}
 	}
 
 	private void updateConditionalAchieveReqAtomInState(
 			HashMap<String, String> state, 
-			RequirementDescription req,
-			Reward rew) {
+			RequirementDescription req) {
 		String req_id = req.getName();
 		String status = state.get(req_id);
 		/**
@@ -1126,17 +1106,12 @@ public class LTSG {
 				state.put(req_id, "inact");
 			} else if(req.getCondition().verify(state)) {
 				state.put(req_id, "inact");
-				/*
-				 * Satisfaction and reward update
-				 */
-				rew.updateReward(req.getCost_reward());
 			} 
 		} 		
 	}
 	private void updateAchieveReqAtomInState(
 			HashMap<String, String> state, 
-			RequirementDescription req, 
-			Reward rew) {
+			RequirementDescription req) {
 		String req_id = req.getName();
 		String status = state.get(req_id);
 		/**
@@ -1163,10 +1138,6 @@ public class LTSG {
 				state.put(req_id, "inact");
 			} else if(status.equals("act-0") && req.getCondition().verify(state)) {
 				state.put(req_id, "inact");
-				/*
-				 * Satisfaction and reward update
-				 */
-				rew.updateReward(req.getCost_reward());
 			} else if (status.equals("act-0")){
 				state.put(req_id, "inact");
 			} else {
@@ -1178,8 +1149,7 @@ public class LTSG {
 	}
 	private void updateRAchieveReqAtomInState(
 			HashMap<String, String> state, 
-			RequirementDescription req, 
-			Reward rew) {
+			RequirementDescription req) {
 		String req_id = req.getName();
 		String status = state.get(req_id);
 		/**
@@ -1206,10 +1176,6 @@ public class LTSG {
 				state.put(req_id, "inact");
 			} else if(req.getCondition().verify(state)) {
 				state.put(req_id, "inact");
-				/*
-				 * Satisfaction and reward update
-				 */
-				rew.updateReward(req.getCost_reward());
 			} else if (status.equals("act-0")){
 				state.put(req_id, "inact");
 			} else {
@@ -1220,29 +1186,14 @@ public class LTSG {
 		} 
 	}
 	private void updateUnconditionalReqAtomInState(HashMap<String, String> state, 
-			RequirementDescription req,
-			Reward rew) {
-		if(req.getCondition().verify(state)) {
-			/*
-			 * Satisfaction and reward update
-			 */
-			rew.updateReward(req.getCost_reward());
-		} 
+			RequirementDescription req) {
 	}
 	private void updateUnconditionalAchieveReqAtomInState(HashMap<String, String> state, 
-			RequirementDescription req,
-			Reward rew) {
-		if(req.getCondition().verify(state)) {
-			/*
-			 * Satisfaction and reward update
-			 */
-			rew.updateReward(req.getCost_reward());
-		} 
+			RequirementDescription req) {
 	}
 	private void updateConditionalMaintainReqAtomInState(
 			HashMap<String, String> state, 
-			RequirementDescription req,
-			Reward rew) {
+			RequirementDescription req) {
 		String req_id = req.getName();
 		String status = state.get(req_id);
 		/**
@@ -1263,20 +1214,13 @@ public class LTSG {
 			if(req.getCancellation().verify(state)) {
 				state.put(req_id, "inact");
 			} 
-			if(req.getCondition().verify(state)) {
-				/*
-				 * Satisfaction and reward update
-				 */
-				rew.updateReward(req.getCost_reward());
-			} 
 		}
 
 	} 				
 
 	private void updateDeadlineMaintainReqAtomInState(
 			HashMap<String, String> state, 
-			RequirementDescription req,
-			Reward rew) {
+			RequirementDescription req) {
 		String req_id = req.getName();
 		String status = state.get(req_id);
 		/**
@@ -1316,20 +1260,13 @@ public class LTSG {
 		if(status.startsWith("req")){
 			if(req.getCancellation().verify(state)) {
 				state.put(req_id, "inact");
-			} 
-			if(req.getCondition().verify(state)) {
-				/*
-				 * Satisfaction and reward update
-				 */
-				rew.updateReward(req.getCost_reward());
-			} 
+			} 			
 		}
 
 	}
 	private void updateRDeadlineMaintainReqAtomInState(
 			HashMap<String, String> state, 
-			RequirementDescription req,
-			Reward rew) {
+			RequirementDescription req) {
 		String req_id = req.getName();
 		String status = state.get(req_id);
 		/**
@@ -1375,20 +1312,13 @@ public class LTSG {
 		if(status.startsWith("req")){
 			if(req.getCancellation().verify(state)) {
 				state.put(req_id, "inact");
-			} 
-			if(req.getCondition().verify(state)) {
-				/*
-				 * Satisfaction and reward update
-				 */
-				rew.updateReward(req.getCost_reward());
 			} 
 		}
 
 	}
 	private void updateMaintainReqAtomInState(
 			HashMap<String, String> state, 
-			RequirementDescription req, 
-			Reward rew) {
+			RequirementDescription req) {
 		String req_id = req.getName();
 		String status = state.get(req_id);
 		/**
@@ -1434,18 +1364,11 @@ public class LTSG {
 				Integer remainingTime = new Integer(status.substring(4));
 				state.put(req_id, "req-"+(remainingTime-1));
 			}
-			if(req.getCondition().verify(state)) {
-				/*
-				 * Satisfaction and reward update
-				 */
-				rew.updateReward(req.getCost_reward());
-			}
 		}
 	} 
 	private void updateRMaintainReqAtomInState(
 			HashMap<String, String> state, 
-			RequirementDescription req, 
-			Reward rew) {
+			RequirementDescription req) {
 		String req_id = req.getName();
 		String status = state.get(req_id);
 		/**
@@ -1497,18 +1420,11 @@ public class LTSG {
 				Integer remainingTime = new Integer(status.substring(4));
 				state.put(req_id, "req-"+(remainingTime-1));
 			}
-			if(req.getCondition().verify(state)) {
-				/*
-				 * Satisfaction and reward update
-				 */
-				rew.updateReward(req.getCost_reward());
-			}
 		}
 	}
 	private void updateRigidMaintainReqAtomInState(
 			HashMap<String, String> state, 
-			RequirementDescription req,
-			Reward rew) {
+			RequirementDescription req) {
 		String req_id = req.getName();
 		String status = state.get(req_id);
 		/**
@@ -1552,10 +1468,6 @@ public class LTSG {
 				state.put(req_id, "inact");
 			} else if (status.equals("req-0")){
 				state.put(req_id, "inact");
-				/*
-				 * Satisfaction and reward update
-				 */
-				rew.updateReward(req.getCost_reward());
 			} else {
 				Integer remainingTime = new Integer(status.substring(4));
 				state.put(req_id, "req-"+(remainingTime-1));
@@ -1564,8 +1476,7 @@ public class LTSG {
 	}
 	private void updateRRigidMaintainReqAtomInState(
 			HashMap<String, String> state, 
-			RequirementDescription req,
-			Reward rew) {
+			RequirementDescription req) {
 		String req_id = req.getName();
 		String status = state.get(req_id);
 		/**
@@ -1612,10 +1523,6 @@ public class LTSG {
 
 			} else if (status.equals("req-0")){
 				state.put(req_id, "inact");
-				/*
-				 * Satisfaction and reward update
-				 */
-				rew.updateReward(req.getCost_reward());
 			} else {
 				Integer remainingTime = new Integer(status.substring(4));
 				state.put(req_id, "req-"+(remainingTime-1));
@@ -1669,9 +1576,6 @@ public class LTSG {
 		this.control_events = control_events;
 	}
 
-	public HashSet<Reward> getRewards() {
-		return rewards;
-	}
 	public HashMap<Integer, HashSet<Transition>> getCtrl_actions_transitions_map() {
 		return ctrl_actions_transitions_map;
 	}
