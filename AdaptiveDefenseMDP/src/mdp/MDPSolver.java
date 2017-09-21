@@ -401,56 +401,222 @@ public class MDPSolver {
 		Integer nbOfStates = tm.length;
 		Integer nbOfActions = tm[0][0].length;
 
-		double[][][] RM = new double[nbOfStates][nbOfStates][nbOfActions];
-		
-		String matrix_id = "TRM";
-	
+		double[][][] rm = new double[nbOfStates][nbOfStates][nbOfActions];
+
+		//String matrix_id = "TRM";
+
 		for(int k=0; k<nbOfActions; k++) {
 			String action_name=id_controlEvents.get(k);
 			BigDecimal action_cost = actionDescriptions.get(action_name).getCost();
 			for(int i = 0; i<nbOfStates; i++) {
 				for(int j = 0; j<nbOfStates;j++) {
 					if(tm[i][j][k]!=0){
-						
+
 						BigDecimal rew = new BigDecimal(0);
-						rew.subtract(action_cost);
-						
+						rew=rew.subtract(action_cost);
+
 						HashMap<String, String> src = states.get(i);
 						HashMap<String, String> dst = states.get(j);
-						
+						dst.put(action_name.substring(0,action_name.indexOf("=tt")), "tt");
+
 						Iterator<String> it = requirements_description.keySet().iterator();
 						RequirementDescription req;
 						while(it.hasNext()) {
 							String reqID = it.next();
 							req = requirements_description.get(reqID);
 							if(req.getType().equals("maintain")) {
-								rew.add(reward_maintain(src,dst,action_name));
+								rew=rew.add(reward_maintain(req,src,dst,action_name));
 							} else if(req.getType().equals("achieve")){
+								rew=rew.add(reward_achieve(req,src,dst,action_name));
 							} else if(req.getType().equals("unconditional_achieve")){
 							} else if(req.getType().equals("rachieve")){
+								rew=rew.add(reward_rachieve(req,src,dst,action_name));
 							}else if(req.getType().equals("conditional_achieve")){
+								rew=rew.add(reward_conditional_achieve(req,src,dst,action_name));
 							}else if(req.getType().equals("unconditional")){
+								rew=rew.add(reward_unconditional(req,src,dst,action_name));
 							} else if(req.getType().equals("conditional_maintain")){
+								rew=rew.add(reward_conditional_maintain(req,src,dst,action_name));
 							} else if(req.getType().equals("deadline_maintain")){
+								rew=rew.add(reward_deadline_maintain(req,src,dst,action_name));
 							} else if(req.getType().equals("rigid_maintain")){
+								rew=rew.add(reward_rigid_maintain(req,src,dst,action_name));
 							} else if(req.getType().equals("rrigid_maintain")){
+								rew=rew.add(reward_rrigid_maintain(req,src,dst,action_name));
 							} else if(req.getType().equals("rmaintain")){
+								rew=rew.add(reward_rmaintain(req,src,dst,action_name));
 							} else if(req.getType().equals("rdeadline_maintain")){
+								rew=rew.add(reward_rdeadline_maintain(req,src,dst,action_name));
 							}
 						}
-
+						dst.remove(action_name.substring(0,action_name.indexOf("=tt")));
+						rm[i][j][k]=rew.doubleValue();
 					}
 				}
 			}
 		}
-		return null;
+		return rm;
 	}
 
-	private BigDecimal reward_maintain(HashMap<String, String> src, 
+	private BigDecimal reward_maintain(
+			RequirementDescription req, 
+			HashMap<String, String> src, 
 			HashMap<String, String> dst, 
 			String action_name) {
 		BigDecimal reward = new BigDecimal(0);
-		
+		String req_id = req.getName();
+		String status = src.get(req_id);
+		if(status.startsWith("req-")){
+			if(req.getCondition().verify(dst)) {
+				reward=reward.add(new BigDecimal(req.getCost_reward()));
+			}
+		}
+		return reward;
+	}
+	private BigDecimal reward_achieve(
+			RequirementDescription req, 
+			HashMap<String, String> src, 
+			HashMap<String, String> dst, 
+			String action_name) {
+		BigDecimal reward = new BigDecimal(0);
+		String req_id = req.getName();
+		String status = src.get(req_id);
+		if(status.startsWith("act-")){
+			if(req.getCondition().verify(dst)) {
+				reward=reward.add(new BigDecimal(req.getCost_reward()));
+			}
+		}
+		return reward;
+	}
+	private BigDecimal reward_rachieve(
+			RequirementDescription req, 
+			HashMap<String, String> src, 
+			HashMap<String, String> dst, 
+			String action_name) {
+		BigDecimal reward = new BigDecimal(0);
+		String req_id = req.getName();
+		String status = src.get(req_id);
+		if(status.equals("act-0")) {
+			if(req.getCondition().verify(dst)) {
+				reward=reward.add(new BigDecimal(req.getCost_reward()));
+			}
+		}
+		return reward;
+	}
+	private BigDecimal reward_conditional_achieve(
+			RequirementDescription req, 
+			HashMap<String, String> src, 
+			HashMap<String, String> dst, 
+			String action_name) {
+		BigDecimal reward = new BigDecimal(0);
+		String req_id = req.getName();
+		String status = src.get(req_id);
+		if(status.startsWith("act")){
+			if(req.getCondition().verify(dst)) {
+				reward=reward.add(new BigDecimal(req.getCost_reward()));
+			}
+		}
+		return reward;
+	}
+	private BigDecimal reward_unconditional(
+			RequirementDescription req, 
+			HashMap<String, String> src, 
+			HashMap<String, String> dst, 
+			String action_name) {
+		BigDecimal reward = new BigDecimal(0);
+		if(req.getCondition().verify(dst)) {
+			reward=reward.add(new BigDecimal(req.getCost_reward()));
+		}
+		return reward;
+	}
+	private BigDecimal reward_conditional_maintain(
+			RequirementDescription req, 
+			HashMap<String, String> src, 
+			HashMap<String, String> dst, 
+			String action_name) {
+		BigDecimal reward = new BigDecimal(0);
+		String req_id = req.getName();
+		String status = src.get(req_id);
+		if(status.equals("req")){
+			if(req.getCondition().verify(dst)) {
+				reward=reward.add(new BigDecimal(req.getCost_reward()));
+			}
+		}
+		return reward;
+	}
+	private BigDecimal reward_deadline_maintain(
+			RequirementDescription req, 
+			HashMap<String, String> src, 
+			HashMap<String, String> dst, 
+			String action_name) {
+		BigDecimal reward = new BigDecimal(0);
+		String req_id = req.getName();
+		String status = src.get(req_id);
+		if(status.startsWith("req")){
+			if(req.getCondition().verify(dst)) {
+				reward=reward.add(new BigDecimal(req.getCost_reward()));
+			}
+		}
+		return reward;
+	}
+	private BigDecimal reward_rdeadline_maintain(
+			RequirementDescription req, 
+			HashMap<String, String> src, 
+			HashMap<String, String> dst, 
+			String action_name) {
+		BigDecimal reward = new BigDecimal(0);
+		String req_id = req.getName();
+		String status = src.get(req_id);
+		if(status.startsWith("req")){
+			if(req.getCondition().verify(dst)) {
+				reward=reward.add(new BigDecimal(req.getCost_reward()));
+			}
+		}
+		return reward;
+	}
+	private BigDecimal reward_rmaintain(
+			RequirementDescription req, 
+			HashMap<String, String> src, 
+			HashMap<String, String> dst, 
+			String action_name) {
+		BigDecimal reward = new BigDecimal(0);
+		String req_id = req.getName();
+		String status = src.get(req_id);
+		if(status.startsWith("req-")){
+			if(req.getCondition().verify(dst)) {
+				reward=reward.add(new BigDecimal(req.getCost_reward()));
+			}
+		}
+		return reward;
+	}
+	private BigDecimal reward_rigid_maintain(
+			RequirementDescription req, 
+			HashMap<String, String> src, 
+			HashMap<String, String> dst, 
+			String action_name) {
+		BigDecimal reward = new BigDecimal(0);
+		String req_id = req.getName();
+		String status = src.get(req_id);
+		if(status.equals("req-0")){
+			if(req.getCondition().verify(dst)) {
+				reward=reward.add(new BigDecimal(req.getCost_reward()));
+			}
+		}
+		return reward;
+	}
+	private BigDecimal reward_rrigid_maintain(
+			RequirementDescription req, 
+			HashMap<String, String> src, 
+			HashMap<String, String> dst, 
+			String action_name) {
+		BigDecimal reward = new BigDecimal(0);
+		String req_id = req.getName();
+		String status = src.get(req_id);
+		if(status.equals("req-0")){
+			if(req.getCondition().verify(dst)) {
+				reward=reward.add(new BigDecimal(req.getCost_reward()));
+			}
+		}
 		return reward;
 	}
 }
