@@ -297,7 +297,7 @@ public class Graphviz_Writer {
 	public static void create(
 			String pathTographivFile, 
 			HashMap<Integer, HashMap<String, String>> lts_states, 
-			HashMap<Integer, String> id_controlEvents, 
+			HashMap<Integer, String> events, 
 			double[][][] tm,
 			double[][][] rm, 
 			String op) {
@@ -310,7 +310,7 @@ public class Graphviz_Writer {
 			bw.write("digraph R {\n");
 
 			writeNodes(lts_states);
-			writeTransitions(id_controlEvents,tm,rm);
+			writeTransitions(events,tm,rm);
 
 			bw.write("}");
 			bw.close();
@@ -320,7 +320,7 @@ public class Graphviz_Writer {
 		}
 	}
 
-	private static void writeTransitions(
+	private static void writeTransitions_original(
 			HashMap<Integer, String> id_controlEvents, 
 			double[][][] tm, 
 			double[][][] rm) {
@@ -357,6 +357,50 @@ public class Graphviz_Writer {
 			}
 		}	
 	}
+
+	private static void writeTransitions(
+			HashMap<Integer, String> id_controlEvents, 
+			double[][][] tm, 
+			double[][][] rm) {
+		Integer nbOfStates = tm.length;
+		Integer nbOfActions = tm[0][0].length;
+
+		for(int k = 0; k<nbOfActions; k++) {
+			String trans_name=id_controlEvents.get(k);
+			for(int i = 0; i<nbOfStates; i++) {
+				String temp_node = "n"+ i +"_" + k;
+				try {
+					bw.write(i+" -> "+temp_node + " [color=blue] ");
+
+					bw.write("[arrowhead=none fontcolor=blue label=\"");
+					if(trans_name.endsWith("=tt")){
+						trans_name=trans_name.substring(0,trans_name.indexOf("=tt"));
+					} 
+					bw.write(k +":"+trans_name);
+					bw.write("\"];\n");
+					bw.write(temp_node + "[shape=point,width=0.1,height=0.1,label=\"\"];\n");
+
+					for(int j = 0; j<nbOfStates;j++) {
+						if(tm[i][j][k]!=0){
+							bw.write(temp_node +" -> " + j);
+							bw.write("[color=purple][fontcolor=purple label=\"" +
+									+ round(tm[i][j][k],3) +" "
+									+ intFormat(rm[i][j][k]) +" "		
+									);
+
+							bw.write("\"]\n");
+
+							bw.write("\n");
+
+						} 
+					}
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+	}
+
 
 	static public void write_dot_file(
 			String pathTographivFile,
@@ -644,12 +688,12 @@ public class Graphviz_Writer {
 
 
 	public static double round(double value, int places) {
-	    if (places < 0) throw new IllegalArgumentException();
+		if (places < 0) throw new IllegalArgumentException();
 
-	    long factor = (long) Math.pow(10, places);
-	    value = value * factor;
-	    long tmp = Math.round(value);
-	    return (double) tmp / factor;
+		long factor = (long) Math.pow(10, places);
+		value = value * factor;
+		long tmp = Math.round(value);
+		return (double) tmp / factor;
 	}
 
 	//		Iterator<Transition> transition = transitions.iterator();

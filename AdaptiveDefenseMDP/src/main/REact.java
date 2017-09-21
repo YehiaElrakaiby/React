@@ -27,16 +27,22 @@ public class REact {
 	 * 				3) MDPToolBox is used to solve the MDP problem 
 	 */
 
+	/*
+	 * 			MAIN CONFIGURATION OPTIONS
+	 */
+	static String descriptionFileName = "toy_example.AdaptiveCyberDefense";
 
-	static String descriptionFileName = "alica_waiter_v1.AdaptiveCyberDefense";
+	static public String dotOption = Graphviz_Writer.SHOW_ALL;
 
+	/*
+	 * 			OTHER CONFIGURATION OPTIONS
+	 */
 	static String files_location = "/Users/yehia/Documents/GraphivFilesReact/";
 
 	static Path domain_description_location = Paths.get( "Users","yehia","Documents",
 			"runtime-EclipseApplication","ReactV3",
 			descriptionFileName);
 
-	static public String dotOption = Graphviz_Writer.SHOW_REQ;
 	static public String noop_event_identifier = "noop";
 	static public Double discount_factor = 0.98;
 
