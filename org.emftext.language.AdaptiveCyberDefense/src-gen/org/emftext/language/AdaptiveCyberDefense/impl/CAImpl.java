@@ -5,22 +5,22 @@ package org.emftext.language.AdaptiveCyberDefense.impl;
 import org.eclipse.emf.ecore.EClass;
 
 import org.emftext.language.AdaptiveCyberDefense.AdaptiveCyberDefensePackage;
-import org.emftext.language.AdaptiveCyberDefense.DeadlineMaintain;
+import org.emftext.language.AdaptiveCyberDefense.CA;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Deadline Maintain</b></em>'.
+ * An implementation of the model object '<em><b>CA</b></em>'.
  * <!-- end-user-doc -->
  *
  * @generated
  */
-public class DeadlineMaintainImpl extends DeadlineRequirementImpl implements DeadlineMaintain {
+public class CAImpl extends ConditionalRequirementImpl implements CA {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected DeadlineMaintainImpl() {
+	protected CAImpl() {
 		super();
 	}
 
@@ -31,7 +31,7 @@ public class DeadlineMaintainImpl extends DeadlineRequirementImpl implements Dea
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return AdaptiveCyberDefensePackage.Literals.DEADLINE_MAINTAIN;
+		return AdaptiveCyberDefensePackage.Literals.CA;
 	}
 
-} //DeadlineMaintainImpl
+} //CAImpl

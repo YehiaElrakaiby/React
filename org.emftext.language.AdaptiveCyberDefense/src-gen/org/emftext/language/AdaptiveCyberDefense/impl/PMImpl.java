@@ -4,23 +4,23 @@ package org.emftext.language.AdaptiveCyberDefense.impl;
 
 import org.eclipse.emf.ecore.EClass;
 
-import org.emftext.language.AdaptiveCyberDefense.Achieve;
 import org.emftext.language.AdaptiveCyberDefense.AdaptiveCyberDefensePackage;
+import org.emftext.language.AdaptiveCyberDefense.PM;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Achieve</b></em>'.
+ * An implementation of the model object '<em><b>PM</b></em>'.
  * <!-- end-user-doc -->
  *
  * @generated
  */
-public class AchieveImpl extends DeadlineRequirementImpl implements Achieve {
+public class PMImpl extends DurationRequirementImpl implements PM {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected AchieveImpl() {
+	protected PMImpl() {
 		super();
 	}
 
@@ -31,7 +31,7 @@ public class AchieveImpl extends DeadlineRequirementImpl implements Achieve {
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return AdaptiveCyberDefensePackage.Literals.ACHIEVE;
+		return AdaptiveCyberDefensePackage.Literals.PM;
 	}
 
-} //AchieveImpl
+} //PMImpl

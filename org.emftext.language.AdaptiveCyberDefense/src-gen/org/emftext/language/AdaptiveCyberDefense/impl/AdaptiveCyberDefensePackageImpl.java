@@ -10,45 +10,33 @@ import org.eclipse.emf.ecore.EReference;
 
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
-import org.emftext.language.AdaptiveCyberDefense.Achieve;
 import org.emftext.language.AdaptiveCyberDefense.ActionDescription;
 import org.emftext.language.AdaptiveCyberDefense.ActionType;
 import org.emftext.language.AdaptiveCyberDefense.AdaptiveCyberDefenseFactory;
 import org.emftext.language.AdaptiveCyberDefense.AdaptiveCyberDefensePackage;
-import org.emftext.language.AdaptiveCyberDefense.ConditionalAchieve;
-import org.emftext.language.AdaptiveCyberDefense.ConditionalMaintain;
 import org.emftext.language.AdaptiveCyberDefense.ConditionalRequirement;
 import org.emftext.language.AdaptiveCyberDefense.Conjunction;
 import org.emftext.language.AdaptiveCyberDefense.ContextualEffect;
-import org.emftext.language.AdaptiveCyberDefense.CostUnit;
-import org.emftext.language.AdaptiveCyberDefense.DeadlineMaintain;
+import org.emftext.language.AdaptiveCyberDefense.DeadlineDurationRequirement;
 import org.emftext.language.AdaptiveCyberDefense.DeadlineRequirement;
 import org.emftext.language.AdaptiveCyberDefense.DescriptionEntity;
 import org.emftext.language.AdaptiveCyberDefense.Disjunction;
 import org.emftext.language.AdaptiveCyberDefense.DomainDescription;
+import org.emftext.language.AdaptiveCyberDefense.DurationRequirement;
 import org.emftext.language.AdaptiveCyberDefense.EventDescription;
 import org.emftext.language.AdaptiveCyberDefense.False;
 import org.emftext.language.AdaptiveCyberDefense.Formula;
 import org.emftext.language.AdaptiveCyberDefense.FormulaAtom;
 import org.emftext.language.AdaptiveCyberDefense.InitialAtom;
 import org.emftext.language.AdaptiveCyberDefense.InitialVariable;
-import org.emftext.language.AdaptiveCyberDefense.Maintain;
 import org.emftext.language.AdaptiveCyberDefense.Negation;
 import org.emftext.language.AdaptiveCyberDefense.Parentheses;
 import org.emftext.language.AdaptiveCyberDefense.ProbabilisticContextualEffect;
 import org.emftext.language.AdaptiveCyberDefense.ProbabilisticEffect;
-import org.emftext.language.AdaptiveCyberDefense.RAchieve;
-import org.emftext.language.AdaptiveCyberDefense.RDeadlineMaintain;
-import org.emftext.language.AdaptiveCyberDefense.RMaintain;
-import org.emftext.language.AdaptiveCyberDefense.RRigidMaintain;
 import org.emftext.language.AdaptiveCyberDefense.Requirement;
-import org.emftext.language.AdaptiveCyberDefense.RequirementStatus;
-import org.emftext.language.AdaptiveCyberDefense.RigidMaintain;
 import org.emftext.language.AdaptiveCyberDefense.StateAtom;
 import org.emftext.language.AdaptiveCyberDefense.StateVariable;
 import org.emftext.language.AdaptiveCyberDefense.True;
-import org.emftext.language.AdaptiveCyberDefense.UnconditionalAchieve;
-import org.emftext.language.AdaptiveCyberDefense.UnconditionalMaintain;
 
 
 /**
@@ -154,14 +142,14 @@ public class AdaptiveCyberDefensePackageImpl extends EPackageImpl implements Ada
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass achieveEClass = null;
+	private EClass deaEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass maintainEClass = null;
+	private EClass deadlineDurationRequirementEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -189,7 +177,7 @@ public class AdaptiveCyberDefensePackageImpl extends EPackageImpl implements Ada
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass unconditionalMaintainEClass = null;
+	private EClass umEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -238,63 +226,91 @@ public class AdaptiveCyberDefensePackageImpl extends EPackageImpl implements Ada
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass conditionalAchieveEClass = null;
+	private EClass caEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass conditionalMaintainEClass = null;
+	private EClass cmEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass deadlineMaintainEClass = null;
+	private EClass dfmEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass rigidMaintainEClass = null;
+	private EClass pdemEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass rMaintainEClass = null;
+	private EClass rpdfmEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass rRigidMaintainEClass = null;
+	private EClass rpdemEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass rDeadlineMaintainEClass = null;
+	private EClass demEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass rAchieveEClass = null;
+	private EClass dfaEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass unconditionalAchieveEClass = null;
+	private EClass uaEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass durationRequirementEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass rpmEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass pdfmEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass pmEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -720,8 +736,8 @@ public class AdaptiveCyberDefensePackageImpl extends EPackageImpl implements Ada
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getAchieve() {
-		return achieveEClass;
+	public EClass getDEA() {
+		return deaEClass;
 	}
 
 	/**
@@ -729,8 +745,8 @@ public class AdaptiveCyberDefensePackageImpl extends EPackageImpl implements Ada
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getMaintain() {
-		return maintainEClass;
+	public EClass getDeadlineDurationRequirement() {
+		return deadlineDurationRequirementEClass;
 	}
 
 	/**
@@ -738,8 +754,8 @@ public class AdaptiveCyberDefensePackageImpl extends EPackageImpl implements Ada
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getMaintain_Duration() {
-		return (EAttribute)maintainEClass.getEStructuralFeatures().get(0);
+	public EAttribute getDeadlineDurationRequirement_Duration() {
+		return (EAttribute)deadlineDurationRequirementEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -783,8 +799,8 @@ public class AdaptiveCyberDefensePackageImpl extends EPackageImpl implements Ada
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getUnconditionalMaintain() {
-		return unconditionalMaintainEClass;
+	public EClass getUM() {
+		return umEClass;
 	}
 
 	/**
@@ -936,8 +952,8 @@ public class AdaptiveCyberDefensePackageImpl extends EPackageImpl implements Ada
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getConditionalAchieve() {
-		return conditionalAchieveEClass;
+	public EClass getCA() {
+		return caEClass;
 	}
 
 	/**
@@ -945,8 +961,8 @@ public class AdaptiveCyberDefensePackageImpl extends EPackageImpl implements Ada
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getConditionalMaintain() {
-		return conditionalMaintainEClass;
+	public EClass getCM() {
+		return cmEClass;
 	}
 
 	/**
@@ -954,8 +970,8 @@ public class AdaptiveCyberDefensePackageImpl extends EPackageImpl implements Ada
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getDeadlineMaintain() {
-		return deadlineMaintainEClass;
+	public EClass getDFM() {
+		return dfmEClass;
 	}
 
 	/**
@@ -963,8 +979,8 @@ public class AdaptiveCyberDefensePackageImpl extends EPackageImpl implements Ada
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getRigidMaintain() {
-		return rigidMaintainEClass;
+	public EClass getPDEM() {
+		return pdemEClass;
 	}
 
 	/**
@@ -972,8 +988,8 @@ public class AdaptiveCyberDefensePackageImpl extends EPackageImpl implements Ada
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getRMaintain() {
-		return rMaintainEClass;
+	public EClass getRPDFM() {
+		return rpdfmEClass;
 	}
 
 	/**
@@ -981,8 +997,8 @@ public class AdaptiveCyberDefensePackageImpl extends EPackageImpl implements Ada
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getRRigidMaintain() {
-		return rRigidMaintainEClass;
+	public EClass getRPDEM() {
+		return rpdemEClass;
 	}
 
 	/**
@@ -990,8 +1006,8 @@ public class AdaptiveCyberDefensePackageImpl extends EPackageImpl implements Ada
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getRDeadlineMaintain() {
-		return rDeadlineMaintainEClass;
+	public EClass getDEM() {
+		return demEClass;
 	}
 
 	/**
@@ -999,8 +1015,8 @@ public class AdaptiveCyberDefensePackageImpl extends EPackageImpl implements Ada
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getRAchieve() {
-		return rAchieveEClass;
+	public EClass getDFA() {
+		return dfaEClass;
 	}
 
 	/**
@@ -1008,8 +1024,53 @@ public class AdaptiveCyberDefensePackageImpl extends EPackageImpl implements Ada
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getUnconditionalAchieve() {
-		return unconditionalAchieveEClass;
+	public EClass getUA() {
+		return uaEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getDurationRequirement() {
+		return durationRequirementEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getDurationRequirement_Duration() {
+		return (EAttribute)durationRequirementEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getRPM() {
+		return rpmEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getPDFM() {
+		return pdfmEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getPM() {
+		return pmEClass;
 	}
 
 	/**
@@ -1101,10 +1162,10 @@ public class AdaptiveCyberDefensePackageImpl extends EPackageImpl implements Ada
 		parenthesesEClass = createEClass(PARENTHESES);
 		createEReference(parenthesesEClass, PARENTHESES__FORMULA);
 
-		achieveEClass = createEClass(ACHIEVE);
+		deaEClass = createEClass(DEA);
 
-		maintainEClass = createEClass(MAINTAIN);
-		createEAttribute(maintainEClass, MAINTAIN__DURATION);
+		deadlineDurationRequirementEClass = createEClass(DEADLINE_DURATION_REQUIREMENT);
+		createEAttribute(deadlineDurationRequirementEClass, DEADLINE_DURATION_REQUIREMENT__DURATION);
 
 		trueEClass = createEClass(TRUE);
 
@@ -1113,7 +1174,7 @@ public class AdaptiveCyberDefensePackageImpl extends EPackageImpl implements Ada
 		deadlineRequirementEClass = createEClass(DEADLINE_REQUIREMENT);
 		createEAttribute(deadlineRequirementEClass, DEADLINE_REQUIREMENT__DEADLINE);
 
-		unconditionalMaintainEClass = createEClass(UNCONDITIONAL_MAINTAIN);
+		umEClass = createEClass(UM);
 
 		contextualEffectEClass = createEClass(CONTEXTUAL_EFFECT);
 		createEReference(contextualEffectEClass, CONTEXTUAL_EFFECT__CONTEXT);
@@ -1137,23 +1198,32 @@ public class AdaptiveCyberDefensePackageImpl extends EPackageImpl implements Ada
 		createEReference(conditionalRequirementEClass, CONDITIONAL_REQUIREMENT__ACTIVATION);
 		createEReference(conditionalRequirementEClass, CONDITIONAL_REQUIREMENT__CANCELLATION);
 
-		conditionalAchieveEClass = createEClass(CONDITIONAL_ACHIEVE);
+		caEClass = createEClass(CA);
 
-		conditionalMaintainEClass = createEClass(CONDITIONAL_MAINTAIN);
+		cmEClass = createEClass(CM);
 
-		deadlineMaintainEClass = createEClass(DEADLINE_MAINTAIN);
+		dfmEClass = createEClass(DFM);
 
-		rigidMaintainEClass = createEClass(RIGID_MAINTAIN);
+		pdemEClass = createEClass(PDEM);
 
-		rMaintainEClass = createEClass(RMAINTAIN);
+		rpdfmEClass = createEClass(RPDFM);
 
-		rRigidMaintainEClass = createEClass(RRIGID_MAINTAIN);
+		rpdemEClass = createEClass(RPDEM);
 
-		rDeadlineMaintainEClass = createEClass(RDEADLINE_MAINTAIN);
+		demEClass = createEClass(DEM);
 
-		rAchieveEClass = createEClass(RACHIEVE);
+		dfaEClass = createEClass(DFA);
 
-		unconditionalAchieveEClass = createEClass(UNCONDITIONAL_ACHIEVE);
+		uaEClass = createEClass(UA);
+
+		durationRequirementEClass = createEClass(DURATION_REQUIREMENT);
+		createEAttribute(durationRequirementEClass, DURATION_REQUIREMENT__DURATION);
+
+		rpmEClass = createEClass(RPM);
+
+		pdfmEClass = createEClass(PDFM);
+
+		pmEClass = createEClass(PM);
 
 		// Create enums
 		actionTypeEEnum = createEEnum(ACTION_TYPE);
@@ -1195,25 +1265,29 @@ public class AdaptiveCyberDefensePackageImpl extends EPackageImpl implements Ada
 		disjunctionEClass.getESuperTypes().add(this.getFormula());
 		negationEClass.getESuperTypes().add(this.getFormula());
 		parenthesesEClass.getESuperTypes().add(this.getFormula());
-		achieveEClass.getESuperTypes().add(this.getDeadlineRequirement());
-		maintainEClass.getESuperTypes().add(this.getDeadlineMaintain());
+		deaEClass.getESuperTypes().add(this.getDeadlineRequirement());
+		deadlineDurationRequirementEClass.getESuperTypes().add(this.getDeadlineRequirement());
 		trueEClass.getESuperTypes().add(this.getFormula());
 		falseEClass.getESuperTypes().add(this.getFormula());
 		deadlineRequirementEClass.getESuperTypes().add(this.getConditionalRequirement());
-		unconditionalMaintainEClass.getESuperTypes().add(this.getRequirement());
+		umEClass.getESuperTypes().add(this.getRequirement());
 		eventDescriptionEClass.getESuperTypes().add(this.getDescriptionEntity());
 		probabilisticContextualEffectEClass.getESuperTypes().add(this.getContextualEffect());
 		formulaAtomEClass.getESuperTypes().add(this.getFormula());
 		conditionalRequirementEClass.getESuperTypes().add(this.getRequirement());
-		conditionalAchieveEClass.getESuperTypes().add(this.getConditionalRequirement());
-		conditionalMaintainEClass.getESuperTypes().add(this.getConditionalRequirement());
-		deadlineMaintainEClass.getESuperTypes().add(this.getDeadlineRequirement());
-		rigidMaintainEClass.getESuperTypes().add(this.getMaintain());
-		rMaintainEClass.getESuperTypes().add(this.getMaintain());
-		rRigidMaintainEClass.getESuperTypes().add(this.getRigidMaintain());
-		rDeadlineMaintainEClass.getESuperTypes().add(this.getDeadlineMaintain());
-		rAchieveEClass.getESuperTypes().add(this.getAchieve());
-		unconditionalAchieveEClass.getESuperTypes().add(this.getRequirement());
+		caEClass.getESuperTypes().add(this.getConditionalRequirement());
+		cmEClass.getESuperTypes().add(this.getConditionalRequirement());
+		dfmEClass.getESuperTypes().add(this.getDeadlineRequirement());
+		pdemEClass.getESuperTypes().add(this.getDeadlineDurationRequirement());
+		rpdfmEClass.getESuperTypes().add(this.getDeadlineDurationRequirement());
+		rpdemEClass.getESuperTypes().add(this.getDeadlineDurationRequirement());
+		demEClass.getESuperTypes().add(this.getDeadlineRequirement());
+		dfaEClass.getESuperTypes().add(this.getDeadlineRequirement());
+		uaEClass.getESuperTypes().add(this.getRequirement());
+		durationRequirementEClass.getESuperTypes().add(this.getConditionalRequirement());
+		rpmEClass.getESuperTypes().add(this.getDurationRequirement());
+		pdfmEClass.getESuperTypes().add(this.getDeadlineDurationRequirement());
+		pmEClass.getESuperTypes().add(this.getDurationRequirement());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(domainDescriptionEClass, DomainDescription.class, "DomainDescription", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -1268,10 +1342,10 @@ public class AdaptiveCyberDefensePackageImpl extends EPackageImpl implements Ada
 		initEClass(parenthesesEClass, Parentheses.class, "Parentheses", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getParentheses_Formula(), this.getFormula(), null, "formula", null, 1, 1, Parentheses.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(achieveEClass, Achieve.class, "Achieve", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(deaEClass, org.emftext.language.AdaptiveCyberDefense.DEA.class, "DEA", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-		initEClass(maintainEClass, Maintain.class, "Maintain", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getMaintain_Duration(), ecorePackage.getEIntegerObject(), "duration", "1", 1, 1, Maintain.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(deadlineDurationRequirementEClass, DeadlineDurationRequirement.class, "DeadlineDurationRequirement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getDeadlineDurationRequirement_Duration(), ecorePackage.getEIntegerObject(), "duration", "1", 1, 1, DeadlineDurationRequirement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(trueEClass, True.class, "True", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
@@ -1280,7 +1354,7 @@ public class AdaptiveCyberDefensePackageImpl extends EPackageImpl implements Ada
 		initEClass(deadlineRequirementEClass, DeadlineRequirement.class, "DeadlineRequirement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getDeadlineRequirement_Deadline(), ecorePackage.getEIntegerObject(), "deadline", "-1", 1, 1, DeadlineRequirement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(unconditionalMaintainEClass, UnconditionalMaintain.class, "UnconditionalMaintain", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(umEClass, org.emftext.language.AdaptiveCyberDefense.UM.class, "UM", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(contextualEffectEClass, ContextualEffect.class, "ContextualEffect", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getContextualEffect_Context(), this.getFormula(), null, "context", null, 1, 1, ContextualEffect.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1291,7 +1365,7 @@ public class AdaptiveCyberDefensePackageImpl extends EPackageImpl implements Ada
 		initEAttribute(getEventDescription_Value(), ecorePackage.getEString(), "value", "tt", 0, 1, EventDescription.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(probabilisticContextualEffectEClass, ProbabilisticContextualEffect.class, "ProbabilisticContextualEffect", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getProbabilisticContextualEffect_Occurrence_probability(), ecorePackage.getEBigDecimal(), "occurrence_probability", "0", 0, 1, ProbabilisticContextualEffect.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getProbabilisticContextualEffect_Occurrence_probability(), ecorePackage.getEBigDecimal(), "occurrence_probability", "0.00001", 0, 1, ProbabilisticContextualEffect.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(descriptionEntityEClass, DescriptionEntity.class, "DescriptionEntity", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getDescriptionEntity_Name(), ecorePackage.getEString(), "name", null, 1, 1, DescriptionEntity.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1304,23 +1378,32 @@ public class AdaptiveCyberDefensePackageImpl extends EPackageImpl implements Ada
 		initEReference(getConditionalRequirement_Activation(), this.getFormula(), null, "activation", null, 1, 1, ConditionalRequirement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getConditionalRequirement_Cancellation(), this.getFormula(), null, "cancellation", null, 0, 1, ConditionalRequirement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(conditionalAchieveEClass, ConditionalAchieve.class, "ConditionalAchieve", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(caEClass, org.emftext.language.AdaptiveCyberDefense.CA.class, "CA", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-		initEClass(conditionalMaintainEClass, ConditionalMaintain.class, "ConditionalMaintain", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(cmEClass, org.emftext.language.AdaptiveCyberDefense.CM.class, "CM", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-		initEClass(deadlineMaintainEClass, DeadlineMaintain.class, "DeadlineMaintain", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(dfmEClass, org.emftext.language.AdaptiveCyberDefense.DFM.class, "DFM", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-		initEClass(rigidMaintainEClass, RigidMaintain.class, "RigidMaintain", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(pdemEClass, org.emftext.language.AdaptiveCyberDefense.PDEM.class, "PDEM", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-		initEClass(rMaintainEClass, RMaintain.class, "RMaintain", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(rpdfmEClass, org.emftext.language.AdaptiveCyberDefense.RPDFM.class, "RPDFM", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-		initEClass(rRigidMaintainEClass, RRigidMaintain.class, "RRigidMaintain", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(rpdemEClass, org.emftext.language.AdaptiveCyberDefense.RPDEM.class, "RPDEM", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-		initEClass(rDeadlineMaintainEClass, RDeadlineMaintain.class, "RDeadlineMaintain", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(demEClass, org.emftext.language.AdaptiveCyberDefense.DEM.class, "DEM", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-		initEClass(rAchieveEClass, RAchieve.class, "RAchieve", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(dfaEClass, org.emftext.language.AdaptiveCyberDefense.DFA.class, "DFA", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-		initEClass(unconditionalAchieveEClass, UnconditionalAchieve.class, "UnconditionalAchieve", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(uaEClass, org.emftext.language.AdaptiveCyberDefense.UA.class, "UA", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(durationRequirementEClass, DurationRequirement.class, "DurationRequirement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getDurationRequirement_Duration(), ecorePackage.getEIntegerObject(), "duration", "1", 1, 1, DurationRequirement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(rpmEClass, org.emftext.language.AdaptiveCyberDefense.RPM.class, "RPM", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(pdfmEClass, org.emftext.language.AdaptiveCyberDefense.PDFM.class, "PDFM", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(pmEClass, org.emftext.language.AdaptiveCyberDefense.PM.class, "PM", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		// Initialize enums and add enum literals
 		initEEnum(actionTypeEEnum, ActionType.class, "ActionType");

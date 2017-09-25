@@ -35,7 +35,7 @@ public class ProbabilisticContextualEffectImpl extends ContextualEffectImpl impl
 	 * @generated
 	 * @ordered
 	 */
-	protected static final BigDecimal OCCURRENCE_PROBABILITY_EDEFAULT = new BigDecimal("0");
+	protected static final BigDecimal OCCURRENCE_PROBABILITY_EDEFAULT = new BigDecimal("0.00001");
 
 	/**
 	 * The cached value of the '{@link #getOccurrence_probability() <em>Occurrence probability</em>}' attribute.

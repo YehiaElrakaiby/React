@@ -5,22 +5,22 @@ package org.emftext.language.AdaptiveCyberDefense.impl;
 import org.eclipse.emf.ecore.EClass;
 
 import org.emftext.language.AdaptiveCyberDefense.AdaptiveCyberDefensePackage;
-import org.emftext.language.AdaptiveCyberDefense.ConditionalMaintain;
+import org.emftext.language.AdaptiveCyberDefense.RPDEM;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Conditional Maintain</b></em>'.
+ * An implementation of the model object '<em><b>RPDEM</b></em>'.
  * <!-- end-user-doc -->
  *
  * @generated
  */
-public class ConditionalMaintainImpl extends ConditionalRequirementImpl implements ConditionalMaintain {
+public class RPDEMImpl extends DeadlineDurationRequirementImpl implements RPDEM {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected ConditionalMaintainImpl() {
+	protected RPDEMImpl() {
 		super();
 	}
 
@@ -31,7 +31,7 @@ public class ConditionalMaintainImpl extends ConditionalRequirementImpl implemen
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return AdaptiveCyberDefensePackage.Literals.CONDITIONAL_MAINTAIN;
+		return AdaptiveCyberDefensePackage.Literals.RPDEM;
 	}
 
-} //ConditionalMaintainImpl
+} //RPDEMImpl

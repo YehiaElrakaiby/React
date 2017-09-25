@@ -1,2 +1,1 @@
-When generating graphviz files:
-make a transition with a single source state and multiple destination states
+Check for better concurrency semantics

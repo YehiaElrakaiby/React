@@ -67,24 +67,26 @@ public class AdaptiveCyberDefenseFactoryImpl extends EFactoryImpl implements Ada
 			case AdaptiveCyberDefensePackage.DISJUNCTION: return createDisjunction();
 			case AdaptiveCyberDefensePackage.NEGATION: return createNegation();
 			case AdaptiveCyberDefensePackage.PARENTHESES: return createParentheses();
-			case AdaptiveCyberDefensePackage.ACHIEVE: return createAchieve();
-			case AdaptiveCyberDefensePackage.MAINTAIN: return createMaintain();
+			case AdaptiveCyberDefensePackage.DEA: return createDEA();
 			case AdaptiveCyberDefensePackage.TRUE: return createTrue();
 			case AdaptiveCyberDefensePackage.FALSE: return createFalse();
-			case AdaptiveCyberDefensePackage.UNCONDITIONAL_MAINTAIN: return createUnconditionalMaintain();
+			case AdaptiveCyberDefensePackage.UM: return createUM();
 			case AdaptiveCyberDefensePackage.CONTEXTUAL_EFFECT: return createContextualEffect();
 			case AdaptiveCyberDefensePackage.EVENT_DESCRIPTION: return createEventDescription();
 			case AdaptiveCyberDefensePackage.PROBABILISTIC_CONTEXTUAL_EFFECT: return createProbabilisticContextualEffect();
 			case AdaptiveCyberDefensePackage.FORMULA_ATOM: return createFormulaAtom();
-			case AdaptiveCyberDefensePackage.CONDITIONAL_ACHIEVE: return createConditionalAchieve();
-			case AdaptiveCyberDefensePackage.CONDITIONAL_MAINTAIN: return createConditionalMaintain();
-			case AdaptiveCyberDefensePackage.DEADLINE_MAINTAIN: return createDeadlineMaintain();
-			case AdaptiveCyberDefensePackage.RIGID_MAINTAIN: return createRigidMaintain();
-			case AdaptiveCyberDefensePackage.RMAINTAIN: return createRMaintain();
-			case AdaptiveCyberDefensePackage.RRIGID_MAINTAIN: return createRRigidMaintain();
-			case AdaptiveCyberDefensePackage.RDEADLINE_MAINTAIN: return createRDeadlineMaintain();
-			case AdaptiveCyberDefensePackage.RACHIEVE: return createRAchieve();
-			case AdaptiveCyberDefensePackage.UNCONDITIONAL_ACHIEVE: return createUnconditionalAchieve();
+			case AdaptiveCyberDefensePackage.CA: return createCA();
+			case AdaptiveCyberDefensePackage.CM: return createCM();
+			case AdaptiveCyberDefensePackage.DFM: return createDFM();
+			case AdaptiveCyberDefensePackage.PDEM: return createPDEM();
+			case AdaptiveCyberDefensePackage.RPDFM: return createRPDFM();
+			case AdaptiveCyberDefensePackage.RPDEM: return createRPDEM();
+			case AdaptiveCyberDefensePackage.DEM: return createDEM();
+			case AdaptiveCyberDefensePackage.DFA: return createDFA();
+			case AdaptiveCyberDefensePackage.UA: return createUA();
+			case AdaptiveCyberDefensePackage.RPM: return createRPM();
+			case AdaptiveCyberDefensePackage.PDFM: return createPDFM();
+			case AdaptiveCyberDefensePackage.PM: return createPM();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -225,19 +227,9 @@ public class AdaptiveCyberDefenseFactoryImpl extends EFactoryImpl implements Ada
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Achieve createAchieve() {
-		AchieveImpl achieve = new AchieveImpl();
-		return achieve;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Maintain createMaintain() {
-		MaintainImpl maintain = new MaintainImpl();
-		return maintain;
+	public DEA createDEA() {
+		DEAImpl dea = new DEAImpl();
+		return dea;
 	}
 
 	/**
@@ -265,9 +257,9 @@ public class AdaptiveCyberDefenseFactoryImpl extends EFactoryImpl implements Ada
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public UnconditionalMaintain createUnconditionalMaintain() {
-		UnconditionalMaintainImpl unconditionalMaintain = new UnconditionalMaintainImpl();
-		return unconditionalMaintain;
+	public UM createUM() {
+		UMImpl um = new UMImpl();
+		return um;
 	}
 
 	/**
@@ -315,9 +307,9 @@ public class AdaptiveCyberDefenseFactoryImpl extends EFactoryImpl implements Ada
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ConditionalAchieve createConditionalAchieve() {
-		ConditionalAchieveImpl conditionalAchieve = new ConditionalAchieveImpl();
-		return conditionalAchieve;
+	public CA createCA() {
+		CAImpl ca = new CAImpl();
+		return ca;
 	}
 
 	/**
@@ -325,9 +317,9 @@ public class AdaptiveCyberDefenseFactoryImpl extends EFactoryImpl implements Ada
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ConditionalMaintain createConditionalMaintain() {
-		ConditionalMaintainImpl conditionalMaintain = new ConditionalMaintainImpl();
-		return conditionalMaintain;
+	public CM createCM() {
+		CMImpl cm = new CMImpl();
+		return cm;
 	}
 
 	/**
@@ -335,9 +327,9 @@ public class AdaptiveCyberDefenseFactoryImpl extends EFactoryImpl implements Ada
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public DeadlineMaintain createDeadlineMaintain() {
-		DeadlineMaintainImpl deadlineMaintain = new DeadlineMaintainImpl();
-		return deadlineMaintain;
+	public DFM createDFM() {
+		DFMImpl dfm = new DFMImpl();
+		return dfm;
 	}
 
 	/**
@@ -345,9 +337,9 @@ public class AdaptiveCyberDefenseFactoryImpl extends EFactoryImpl implements Ada
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public RigidMaintain createRigidMaintain() {
-		RigidMaintainImpl rigidMaintain = new RigidMaintainImpl();
-		return rigidMaintain;
+	public PDEM createPDEM() {
+		PDEMImpl pdem = new PDEMImpl();
+		return pdem;
 	}
 
 	/**
@@ -355,9 +347,9 @@ public class AdaptiveCyberDefenseFactoryImpl extends EFactoryImpl implements Ada
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public RMaintain createRMaintain() {
-		RMaintainImpl rMaintain = new RMaintainImpl();
-		return rMaintain;
+	public RPDFM createRPDFM() {
+		RPDFMImpl rpdfm = new RPDFMImpl();
+		return rpdfm;
 	}
 
 	/**
@@ -365,9 +357,9 @@ public class AdaptiveCyberDefenseFactoryImpl extends EFactoryImpl implements Ada
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public RRigidMaintain createRRigidMaintain() {
-		RRigidMaintainImpl rRigidMaintain = new RRigidMaintainImpl();
-		return rRigidMaintain;
+	public RPDEM createRPDEM() {
+		RPDEMImpl rpdem = new RPDEMImpl();
+		return rpdem;
 	}
 
 	/**
@@ -375,9 +367,9 @@ public class AdaptiveCyberDefenseFactoryImpl extends EFactoryImpl implements Ada
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public RDeadlineMaintain createRDeadlineMaintain() {
-		RDeadlineMaintainImpl rDeadlineMaintain = new RDeadlineMaintainImpl();
-		return rDeadlineMaintain;
+	public DEM createDEM() {
+		DEMImpl dem = new DEMImpl();
+		return dem;
 	}
 
 	/**
@@ -385,9 +377,9 @@ public class AdaptiveCyberDefenseFactoryImpl extends EFactoryImpl implements Ada
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public RAchieve createRAchieve() {
-		RAchieveImpl rAchieve = new RAchieveImpl();
-		return rAchieve;
+	public DFA createDFA() {
+		DFAImpl dfa = new DFAImpl();
+		return dfa;
 	}
 
 	/**
@@ -395,9 +387,39 @@ public class AdaptiveCyberDefenseFactoryImpl extends EFactoryImpl implements Ada
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public UnconditionalAchieve createUnconditionalAchieve() {
-		UnconditionalAchieveImpl unconditionalAchieve = new UnconditionalAchieveImpl();
-		return unconditionalAchieve;
+	public UA createUA() {
+		UAImpl ua = new UAImpl();
+		return ua;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public RPM createRPM() {
+		RPMImpl rpm = new RPMImpl();
+		return rpm;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public PDFM createPDFM() {
+		PDFMImpl pdfm = new PDFMImpl();
+		return pdfm;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public PM createPM() {
+		PMImpl pm = new PMImpl();
+		return pm;
 	}
 
 	/**

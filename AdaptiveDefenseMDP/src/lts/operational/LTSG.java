@@ -11,31 +11,33 @@ import org.apache.commons.lang.mutable.MutableInt;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.eclipse.emf.common.util.EList;
-import org.emftext.language.AdaptiveCyberDefense.Achieve;
 import org.emftext.language.AdaptiveCyberDefense.ActionDescription;
 import org.emftext.language.AdaptiveCyberDefense.AdaptiveCyberDefenseFactory;
-import org.emftext.language.AdaptiveCyberDefense.ConditionalAchieve;
-import org.emftext.language.AdaptiveCyberDefense.ConditionalMaintain;
+import org.emftext.language.AdaptiveCyberDefense.CA;
+import org.emftext.language.AdaptiveCyberDefense.CM;
 import org.emftext.language.AdaptiveCyberDefense.ContextualEffect;
-import org.emftext.language.AdaptiveCyberDefense.DeadlineMaintain;
+import org.emftext.language.AdaptiveCyberDefense.DEA;
+import org.emftext.language.AdaptiveCyberDefense.DEM;
+import org.emftext.language.AdaptiveCyberDefense.DFA;
+import org.emftext.language.AdaptiveCyberDefense.DFM;
 import org.emftext.language.AdaptiveCyberDefense.DomainDescription;
 import org.emftext.language.AdaptiveCyberDefense.EventDescription;
 import org.emftext.language.AdaptiveCyberDefense.Formula;
 import org.emftext.language.AdaptiveCyberDefense.InitialAtom;
 import org.emftext.language.AdaptiveCyberDefense.InitialVariable;
-import org.emftext.language.AdaptiveCyberDefense.Maintain;
+import org.emftext.language.AdaptiveCyberDefense.PDEM;
+import org.emftext.language.AdaptiveCyberDefense.PDFM;
+import org.emftext.language.AdaptiveCyberDefense.PM;
 import org.emftext.language.AdaptiveCyberDefense.ProbabilisticContextualEffect;
 import org.emftext.language.AdaptiveCyberDefense.ProbabilisticEffect;
-import org.emftext.language.AdaptiveCyberDefense.RAchieve;
-import org.emftext.language.AdaptiveCyberDefense.RDeadlineMaintain;
-import org.emftext.language.AdaptiveCyberDefense.RMaintain;
-import org.emftext.language.AdaptiveCyberDefense.RRigidMaintain;
+import org.emftext.language.AdaptiveCyberDefense.RPDEM;
+import org.emftext.language.AdaptiveCyberDefense.RPDFM;
+import org.emftext.language.AdaptiveCyberDefense.RPM;
 import org.emftext.language.AdaptiveCyberDefense.Requirement;
-import org.emftext.language.AdaptiveCyberDefense.RigidMaintain;
 import org.emftext.language.AdaptiveCyberDefense.StateAtom;
 import org.emftext.language.AdaptiveCyberDefense.StateVariable;
-import org.emftext.language.AdaptiveCyberDefense.UnconditionalAchieve;
-import org.emftext.language.AdaptiveCyberDefense.UnconditionalMaintain;
+import org.emftext.language.AdaptiveCyberDefense.UA;
+import org.emftext.language.AdaptiveCyberDefense.UM;
 
 import main.REact;
 import resources.RequirementDescription;
@@ -251,43 +253,50 @@ public class LTSG {
 			//System.out.println(name);
 			RequirementDescription descr = new RequirementDescription();
 
-			if(requirement.getClass().getName().endsWith(".MaintainImpl")){
-				Maintain req = (Maintain) requirement;
-				fillMaintainRequirementDescription(req,descr,domain);
-			} else 	if(requirement.getClass().getName().endsWith(".AchieveImpl")){
-				Achieve req = (Achieve) requirement;
-				fillAchieveRequirementDescription(req,descr,domain);
-			} else 	if(requirement.getClass().getName().endsWith(".UnconditionalAchieveImpl")){
-				UnconditionalAchieve req = (UnconditionalAchieve) requirement;
-				fillUnconditionalAchieveRequirementDescription(req,descr,domain);
-			} else if(requirement.getClass().getName().endsWith(".RAchieveImpl")){
-				RAchieve req = (RAchieve) requirement;
-				fillRAchieveRequirementDescription(req,descr,domain);
-			} else 	if(requirement.getClass().getName().endsWith(".ConditionalAchieveImpl")){
-				ConditionalAchieve req = (ConditionalAchieve) requirement;
-				fillConditionalAchieveRequirementDescription(req,descr,domain);
-			} else 	if(requirement.getClass().getName().endsWith(".UnconditionalMaintainImpl")){
-				UnconditionalMaintain req = (UnconditionalMaintain) requirement;
-				fillUnconditionalMaintainRequirementDescription(req,descr,domain);
-			} else 	if(requirement.getClass().getName().endsWith(".ConditionalMaintainImpl")){
-				ConditionalMaintain req = (ConditionalMaintain) requirement;
-				fillConditionalMaintainRequirementDescription(req,descr,domain);
-			} else 	if(requirement.getClass().getName().endsWith(".DeadlineMaintainImpl")){
-				DeadlineMaintain req = (DeadlineMaintain) requirement;
-				fillDeadlineMaintainRequirementDescription(req,descr,domain);
-			} else 	if(requirement.getClass().getName().endsWith(".RigidMaintainImpl")){
-				RigidMaintain req = (RigidMaintain) requirement;
-				fillRigidMaintainRequirementDescription(req,descr,domain);
-			} else 	if(requirement.getClass().getName().endsWith(".RRigidMaintainImpl")){
-				RRigidMaintain req = (RRigidMaintain) requirement;
-				fillRRigidMaintainRequirementDescription(req,descr,domain);
-			} else 	if(requirement.getClass().getName().endsWith(".RMaintainImpl")){
-				RMaintain req = (RMaintain) requirement;
-				fillRMaintainRequirementDescription(req,descr,domain);
-			} else 	if(requirement.getClass().getName().endsWith(".RDeadlineMaintainImpl")){
-				RDeadlineMaintain req = (RDeadlineMaintain) requirement;
-				fillRDeadlineMaintainRequirementDescription(req,descr,domain);
+			if(requirement.getClass().getName().endsWith(".UAImpl")){
+				UA req = (UA) requirement;
+				fillUARequirementDescription(req,descr,domain);
+			} else if(requirement.getClass().getName().endsWith(".CAImpl")){
+					CA req = (CA) requirement;
+					fillCARequirementDescription(req,descr,domain);
+			} else if(requirement.getClass().getName().endsWith(".DEAImpl")){
+				DEA req = (DEA) requirement;
+				fillDEARequirementDescription(req,descr,domain);
+			} else if(requirement.getClass().getName().endsWith(".DFAImpl")){
+				DFA req = (DFA) requirement;
+				fillDFARequirementDescription(req,descr,domain);
+			} else 	if(requirement.getClass().getName().endsWith(".UMImpl")){
+				UM req = (UM) requirement;
+				fillUMRequirementDescription(req,descr,domain);
+			} else 	if(requirement.getClass().getName().endsWith(".CMImpl")){
+				CM req = (CM) requirement;
+				fillCMRequirementDescription(req,descr,domain);
+			} else 	if(requirement.getClass().getName().endsWith(".DEMImpl")){
+				DEM req = (DEM) requirement;
+				fillDEMRequirementDescription(req,descr,domain);
+			} else 	if(requirement.getClass().getName().endsWith(".DFMImpl")){
+				DFM req = (DFM) requirement;
+				fillDFMRequirementDescription(req,descr,domain);
+			} else 	if(requirement.getClass().getName().endsWith(".PMImpl")){
+				PM req = (PM) requirement;
+				fillPMRequirementDescription(req,descr,domain);
+			} else 	if(requirement.getClass().getName().endsWith(".RPMImpl")){
+				RPM req = (RPM) requirement;
+				fillRPMRequirementDescription(req,descr,domain);
+			} else if(requirement.getClass().getName().endsWith(".PDEMImpl")){
+				PDEM req = (PDEM) requirement;
+				fillPDEMRequirementDescription(req,descr,domain);
+			} else 	if(requirement.getClass().getName().endsWith(".RPDEMImpl")){
+				RPDEM req = (RPDEM) requirement;
+				fillRPDEMRequirementDescription(req,descr,domain);
+			} else 	if(requirement.getClass().getName().endsWith(".PDFMImpl")){
+				PDFM req = (PDFM) requirement;
+				fillPDFMRequirementDescription(req,descr,domain);
+			} else if(requirement.getClass().getName().endsWith(".RPDFMImpl")){
+				RPDFM req = (RPDFM) requirement;
+				fillRPDFMRequirementDescription(req,descr,domain);
 			} 
+			
 			/**
 			 * add the requirement to the HashMap requirements_description
 			 */
@@ -302,13 +311,13 @@ public class LTSG {
 		}
 	}
 
-	private void fillUnconditionalAchieveRequirementDescription(
-			UnconditionalAchieve req, 
+	private void fillUARequirementDescription(
+			UA req, 
 			RequirementDescription descr, 
 			HashSet<String> domain) {
 		String name = req.getName();
 
-		descr.setType("unconditional_achieve");
+		descr.setType("ua");
 
 		descr.setName(name);
 
@@ -319,13 +328,13 @@ public class LTSG {
 		//domain.add("req");
 
 	}
-	private void fillConditionalAchieveRequirementDescription(
-			ConditionalAchieve req, 
+	private void fillCARequirementDescription(
+			CA req, 
 			RequirementDescription descr,
 			HashSet<String> domain) {
 		String name = req.getName();
 
-		descr.setType("conditional_achieve");
+		descr.setType("ca");
 
 		descr.setName(name);
 
@@ -344,17 +353,17 @@ public class LTSG {
 
 		descr.setCost_reward(req.getReward());
 
-		domain.add("inact");
-		domain.add("act");
+		domain.add("I");
+		domain.add("R");
 
 	}
-	private void fillAchieveRequirementDescription(
-			Achieve req, 
+	private void fillDFARequirementDescription(
+			DFA req, 
 			RequirementDescription descr, 
 			HashSet<String> domain) {
 		String name = req.getName();
 
-		descr.setType("achieve");
+		descr.setType("dfa");
 
 		descr.setName(name);
 
@@ -374,23 +383,23 @@ public class LTSG {
 
 		descr.setCost_reward(req.getReward());
 
-		domain.add("inact");
+		domain.add("I");
 		if(req.getDeadline()==-1) {
-			domain.add("act-0");
+			domain.add("A-0");
 		} else {
 			for(int i=0; i< req.getDeadline(); i++) {
-				domain.add("act-"+i);
+				domain.add("A-"+i);
 			}
 		}
 
 	}
-	private void fillRAchieveRequirementDescription(
-			Achieve req, 
+	private void fillDEARequirementDescription(
+			DEA req, 
 			RequirementDescription descr, 
 			HashSet<String> domain) {
 		String name = req.getName();
 
-		descr.setType("rachieve");
+		descr.setType("dea");
 
 		descr.setName(name);
 
@@ -410,24 +419,24 @@ public class LTSG {
 
 		descr.setCost_reward(req.getReward());
 
-		domain.add("inact");
+		domain.add("I");
 		if(req.getDeadline()==-1) {
-			domain.add("act-0");
+			domain.add("A-0");
 		} else {
 			for(int i=0; i< req.getDeadline(); i++) {
-				domain.add("act-"+i);
+				domain.add("A-"+i);
 			}
 		}
 
 	}
 
-	private void fillUnconditionalMaintainRequirementDescription(
-			UnconditionalMaintain req,
+	private void fillUMRequirementDescription(
+			UM req,
 			RequirementDescription descr,
 			HashSet<String> domain) {
 		String name = req.getName();
 
-		descr.setType("unconditional");
+		descr.setType("um");
 
 		descr.setName(name);
 
@@ -437,13 +446,13 @@ public class LTSG {
 
 		//domain.add("req");
 	}
-	private void fillConditionalMaintainRequirementDescription(
-			ConditionalMaintain req, 
+	private void fillCMRequirementDescription(
+			CM req, 
 			RequirementDescription descr,
 			HashSet<String> domain) {
 		String name = req.getName();
 
-		descr.setType("conditional_maintain");
+		descr.setType("cm");
 
 		descr.setName(name);
 
@@ -462,17 +471,17 @@ public class LTSG {
 
 		descr.setCost_reward(req.getReward());
 
-		domain.add("inact");
-		domain.add("act");
+		domain.add("I");
+		domain.add("R");
 
 	}
-	private void fillDeadlineMaintainRequirementDescription(
-			DeadlineMaintain req, 
+	private void fillDFMRequirementDescription(
+			DFM req, 
 			RequirementDescription descr,
 			HashSet<String> domain) {
 		String name = req.getName();
 
-		descr.setType("deadline_maintain");
+		descr.setType("dfm");
 
 		descr.setName(name);
 
@@ -492,25 +501,25 @@ public class LTSG {
 
 		descr.setCost_reward(req.getReward());
 
-		domain.add("inact");
-		domain.add("req");
+		domain.add("I");
+		domain.add("R");
 
 		if(req.getDeadline()==-1) {
 			LOGGER.error("deadline not set for requirement "+req.getName());
 		} else {
 			for(int i=0; i< req.getDeadline(); i++) {
-				domain.add("act-"+i);
+				domain.add("A-"+i);
 			}
 		}
 
 	}
-	private void fillRDeadlineMaintainRequirementDescription(
-			RDeadlineMaintain req, 
+	private void fillDEMRequirementDescription(
+			DEM req, 
 			RequirementDescription descr,
 			HashSet<String> domain) {
 		String name = req.getName();
 
-		descr.setType("rdeadline_maintain");
+		descr.setType("dem");
 
 		descr.setName(name);
 
@@ -530,25 +539,99 @@ public class LTSG {
 
 		descr.setCost_reward(req.getReward());
 
-		domain.add("inact");
-		domain.add("req");
+		domain.add("I");
+		domain.add("R");
 
 		if(req.getDeadline()==-1) {
 			LOGGER.error("deadline not set for requirement "+req.getName());
 		} else {
 			for(int i=0; i< req.getDeadline(); i++) {
-				domain.add("act-"+i);
+				domain.add("A-"+i);
 			}
 		}
 
 	}
-	private void fillMaintainRequirementDescription(
-			Maintain req, 
+	private void fillPMRequirementDescription(
+			PM req, 
 			RequirementDescription descr, 
 			HashSet<String> domain) {
 		String name = req.getName();
 
-		descr.setType("maintain");
+		descr.setType("pm");
+
+		descr.setName(name);
+
+		descr.setCondition(req.getCondition());
+		descr.setDuration(req.getDuration());
+
+		descr.setActivation(req.getActivation());
+
+		if(req.getCancellation() != null) {
+			descr.setCancellation(req.getCancellation());
+		} else {
+			/**
+			 * if no cancellation then the requirement cannot be cancelled and false is used as cancellation condition
+			 */
+			descr.setCancellation(AdaptiveCyberDefenseFactory.eINSTANCE.createFalse());
+		}
+
+		descr.setCost_reward(req.getReward());
+
+		domain.add("I");
+		domain.add("A");
+
+		/**
+		 * Notice that if there is no deadline, i.e., deadline =0, then the requirement has to be fulfilled immediately
+		 */
+		for(int i=0; i< req.getDuration(); i++) {
+			domain.add("R-"+i);
+		}
+
+	}
+	private void fillRPMRequirementDescription(
+			RPM req, 
+			RequirementDescription descr, 
+			HashSet<String> domain) {
+		String name = req.getName();
+
+		descr.setType("rpm");
+
+		descr.setName(name);
+
+		descr.setCondition(req.getCondition());
+		descr.setDuration(req.getDuration());
+
+		descr.setActivation(req.getActivation());
+
+		if(req.getCancellation() != null) {
+			descr.setCancellation(req.getCancellation());
+		} else {
+			/**
+			 * if no cancellation then the requirement cannot be cancelled and false is used as cancellation condition
+			 */
+			descr.setCancellation(AdaptiveCyberDefenseFactory.eINSTANCE.createFalse());
+		}
+
+		descr.setCost_reward(req.getReward());
+
+		domain.add("I");
+		domain.add("A");
+
+		/**
+		 * Notice that if there is no deadline, i.e., deadline =0, then the requirement has to be fulfilled immediately
+		 */
+		for(int i=0; i< req.getDuration(); i++) {
+			domain.add("R-"+i);
+		}
+
+	}
+	private void fillPDFMRequirementDescription(
+			PDFM req, 
+			RequirementDescription descr, 
+			HashSet<String> domain) {
+		String name = req.getName();
+
+		descr.setType("pdfm");
 
 		descr.setName(name);
 
@@ -569,29 +652,29 @@ public class LTSG {
 
 		descr.setCost_reward(req.getReward());
 
-		domain.add("inact");
+		domain.add("I");
 		if(req.getDeadline()==-1) {
-			domain.add("act-0");
+			domain.add("A-0");
 		} else {
 			for(int i=0; i< req.getDeadline(); i++) {
-				domain.add("act-"+i);
+				domain.add("A-"+i);
 			}
 		}
 		/**
 		 * Notice that if there is no deadline, i.e., deadline =0, then the requirement has to be fulfilled immediately
 		 */
 		for(int i=0; i< req.getDuration(); i++) {
-			domain.add("req-"+i);
+			domain.add("R-"+i);
 		}
 
 	}
-	private void fillRMaintainRequirementDescription(
-			RMaintain req, 
+	private void fillRPDFMRequirementDescription(
+			RPDFM req, 
 			RequirementDescription descr, 
 			HashSet<String> domain) {
 		String name = req.getName();
 
-		descr.setType("rmaintain");
+		descr.setType("rpdfm");
 
 		descr.setName(name);
 
@@ -612,29 +695,29 @@ public class LTSG {
 
 		descr.setCost_reward(req.getReward());
 
-		domain.add("inact");
+		domain.add("I");
 		if(req.getDeadline()==-1) {
-			domain.add("act-0");
+			domain.add("A-0");
 		} else {
 			for(int i=0; i< req.getDeadline(); i++) {
-				domain.add("act-"+i);
+				domain.add("A-"+i);
 			}
 		}
 		/**
 		 * Notice that if there is no deadline, i.e., deadline =0, then the requirement has to be fulfilled immediately
 		 */
 		for(int i=0; i< req.getDuration(); i++) {
-			domain.add("req-"+i);
+			domain.add("R-"+i);
 		}
 
 	}
-	private void fillRigidMaintainRequirementDescription(
-			RigidMaintain req, 
+	private void fillPDEMRequirementDescription(
+			PDEM req, 
 			RequirementDescription descr, 
 			HashSet<String> domain) {
 		String name = req.getName();
 
-		descr.setType("rigid_maintain");
+		descr.setType("pdem");
 
 		descr.setName(name);
 
@@ -655,29 +738,29 @@ public class LTSG {
 
 		descr.setCost_reward(req.getReward());
 
-		domain.add("inact");
+		domain.add("I");
 		if(req.getDeadline()==-1) {
-			domain.add("act-0");
+			domain.add("A-0");
 		} else {
 			for(int i=0; i< req.getDeadline(); i++) {
-				domain.add("act-"+i);
+				domain.add("A-"+i);
 			}
 		}
 		/**
 		 * Notice that if there is no deadline, i.e., deadline =0, then the requirement has to be fulfilled immediately
 		 */
 		for(int i=0; i< req.getDuration(); i++) {
-			domain.add("req-"+i);
+			domain.add("R-"+i);
 		}
 
 	}
-	private void fillRRigidMaintainRequirementDescription(
-			RRigidMaintain req, 
+	private void fillRPDEMRequirementDescription(
+			RPDEM req, 
 			RequirementDescription descr,
 			HashSet<String> domain) {
 		String name = req.getName();
 
-		descr.setType("rrigid_maintain");
+		descr.setType("rpdem");
 
 		descr.setName(name);
 
@@ -698,19 +781,19 @@ public class LTSG {
 
 		descr.setCost_reward(req.getReward());
 
-		domain.add("inact");
+		domain.add("I");
 		if(req.getDeadline()==-1) {
-			domain.add("act-0");
+			domain.add("A-0");
 		} else {
 			for(int i=0; i< req.getDeadline(); i++) {
-				domain.add("act-"+i);
+				domain.add("A-"+i);
 			}
 		}
 		/**
 		 * Notice that if there is no deadline, i.e., deadline =0, then the requirement has to be fulfilled immediately
 		 */
 		for(int i=0; i< req.getDuration(); i++) {
-			domain.add("req-"+i);
+			domain.add("R-"+i);
 		}		
 	}
 
@@ -732,10 +815,7 @@ public class LTSG {
 			if(var.getClass().toString().endsWith(".StateVariableImpl")) {
 				StateVariable satom = (StateVariable) var;
 				this.initial_state.put(satom.getName(), atom.getValue());
-			} else if(
-					var.getClass().toString().endsWith(".MaintainImpl") ||
-					var.getClass().toString().endsWith(".ConditionalAchieveImpl") ||
-					var.getClass().toString().endsWith(".AchieveImpl")) {
+			} else {
 				Requirement req = (Requirement) var;
 				this.initial_state.put(req.getName(), atom.getValue());
 			}
@@ -744,8 +824,8 @@ public class LTSG {
 		while(it.hasNext()){
 			String reqID = it.next();
 			RequirementDescription descr = requirements_description.get(reqID);
-			if(!initial_state.containsKey(reqID) && descr.getType()!="unconditional"){
-				initial_state.put(reqID, "inact");
+			if(!initial_state.containsKey(reqID) && descr.getType()!="um"  && descr.getType()!="ua"){
+				initial_state.put(reqID, "I");
 			}
 		}
 	}
@@ -1054,35 +1134,39 @@ public class LTSG {
 		while(it.hasNext()) {
 			String reqID = it.next();
 			req = requirements_description.get(reqID);
-			if(req.getType().equals("maintain")) {
-				updateMaintainReqAtomInState(state,req);
-			} else if(req.getType().equals("achieve")){
-				updateAchieveReqAtomInState(state,req);
-			} else if(req.getType().equals("unconditional_achieve")){
-				updateUnconditionalAchieveReqAtomInState(state,req);
-			} else if(req.getType().equals("rachieve")){
-				updateRAchieveReqAtomInState(state,req);
-			}else if(req.getType().equals("conditional_achieve")){
-				updateConditionalAchieveReqAtomInState(state,req);
-			}else if(req.getType().equals("unconditional")){
-				updateUnconditionalReqAtomInState(state,req);
-			} else if(req.getType().equals("conditional_maintain")){
-				updateConditionalMaintainReqAtomInState(state,req);
-			} else if(req.getType().equals("deadline_maintain")){
-				updateDeadlineMaintainReqAtomInState(state,req);
-			} else if(req.getType().equals("rigid_maintain")){
-				updateRigidMaintainReqAtomInState(state,req);
-			} else if(req.getType().equals("rrigid_maintain")){
-				updateRRigidMaintainReqAtomInState(state,req);
-			} else if(req.getType().equals("rmaintain")){
-				updateRMaintainReqAtomInState(state,req);
-			} else if(req.getType().equals("rdeadline_maintain")){
-				updateRDeadlineMaintainReqAtomInState(state,req);
-			}
+			if(req.getType().equals("ua")){
+				updateUAReqAtomInState(state,req);
+			} else if(req.getType().equals("ca")){
+				updateCAReqAtomInState(state,req);
+			} else if(req.getType().equals("dfa")){
+				updateDFAReqAtomInState(state,req);
+			} else if(req.getType().equals("dea")){
+				updateDEAReqAtomInState(state,req);
+			}  else if(req.getType().equals("um")){
+				updateUMReqAtomInState(state,req);
+			} else if(req.getType().equals("cm")){
+				updateCMReqAtomInState(state,req);
+			} else if(req.getType().equals("dfm")){
+				updateDFMReqAtomInState(state,req);
+			} else if(req.getType().equals("dem")){
+				updateDEMReqAtomInState(state,req);
+			} else if(req.getType().equals("pm")){
+				updatePMReqAtomInState(state,req);
+			} else if(req.getType().equals("rpm")){
+				updateRPMReqAtomInState(state,req);
+			} else if(req.getType().equals("pdem")){
+				updatePDEMReqAtomInState(state,req);
+			} else if(req.getType().equals("rpdem")){
+				updateRPDEMReqAtomInState(state,req);
+			} else if(req.getType().equals("pdfm")) {
+				updatePDFMReqAtomInState(state,req);
+			} else if(req.getType().equals("rpdfm")){
+				updateRPDFMReqAtomInState(state,req);
+			} 
 		}
 	}
 
-	private void updateConditionalAchieveReqAtomInState(
+	private void updateCAReqAtomInState(
 			HashMap<String, String> state, 
 			RequirementDescription req) {
 		String req_id = req.getName();
@@ -1095,21 +1179,21 @@ public class LTSG {
 		 * (2.2) if condition holds then inact (and update reward of transition)
 		 * 
 		 */
-		if(status.equals("inact")) {
+		if(status.equals("I")) {
 			if(req.getActivation().verify(state)) {
-				state.put(req_id, "act");
+				state.put(req_id, "A");
 			}
 		}
 
-		if(status.equals("act")){
+		if(status.equals("A")){
 			if(req.getCancellation().verify(state)) {
-				state.put(req_id, "inact");
+				state.put(req_id, "I");
 			} else if(req.getCondition().verify(state)) {
-				state.put(req_id, "inact");
+				state.put(req_id, "I");
 			} 
 		} 		
 	}
-	private void updateAchieveReqAtomInState(
+	private void updateDFAReqAtomInState(
 			HashMap<String, String> state, 
 			RequirementDescription req) {
 		String req_id = req.getName();
@@ -1126,28 +1210,28 @@ public class LTSG {
 		 * (2.3.2) else control action, then act-(X-1)
 		 * 
 		 */
-		if(status.equals("inact")) {
+		if(status.equals("I")) {
 			if(req.getActivation().verify(state)) {
 				Integer deadline = req.getDeadline();
-				state.put(req_id, "act-"+deadline);
+				state.put(req_id, "A-"+deadline);
 			}
 		}
 
-		if(status.startsWith("act-")){
+		if(status.startsWith("A-")){
 			if(req.getCancellation().verify(state)) {
-				state.put(req_id, "inact");
-			} else if(status.equals("act-0") && req.getCondition().verify(state)) {
-				state.put(req_id, "inact");
-			} else if (status.equals("act-0")){
-				state.put(req_id, "inact");
+				state.put(req_id, "I");
+			} else if(status.equals("A-0") && req.getCondition().verify(state)) {
+				state.put(req_id, "I");
+			} else if (status.equals("A-0")){
+				state.put(req_id, "I");
 			} else {
 				Integer remainingTime = new Integer(status.substring(4));
-				state.put(req_id, "act-"+(remainingTime-1));
+				state.put(req_id, "A-"+(remainingTime-1));
 			}
 
 		} 
 	}
-	private void updateRAchieveReqAtomInState(
+	private void updateDEAReqAtomInState(
 			HashMap<String, String> state, 
 			RequirementDescription req) {
 		String req_id = req.getName();
@@ -1164,34 +1248,34 @@ public class LTSG {
 		 * (2.3.2) else control action, then act-(X-1)
 		 * 
 		 */
-		if(status.equals("inact")) {
+		if(status.equals("I")) {
 			if(req.getActivation().verify(state)) {
 				Integer deadline = req.getDeadline();
-				state.put(req_id, "act-"+deadline);
+				state.put(req_id, "A-"+deadline);
 			}
 		}
 
-		if(status.startsWith("act-")){
+		if(status.startsWith("A-")){
 			if(req.getCancellation().verify(state)) {
-				state.put(req_id, "inact");
+				state.put(req_id, "I");
 			} else if(req.getCondition().verify(state)) {
-				state.put(req_id, "inact");
-			} else if (status.equals("act-0")){
-				state.put(req_id, "inact");
+				state.put(req_id, "I");
+			} else if (status.equals("A-0")){
+				state.put(req_id, "I");
 			} else {
 				Integer remainingTime = new Integer(status.substring(4));
-				state.put(req_id, "act-"+(remainingTime-1));
+				state.put(req_id, "A-"+(remainingTime-1));
 			}
 
 		} 
 	}
-	private void updateUnconditionalReqAtomInState(HashMap<String, String> state, 
+	private void updateUMReqAtomInState(HashMap<String, String> state, 
 			RequirementDescription req) {
 	}
-	private void updateUnconditionalAchieveReqAtomInState(HashMap<String, String> state, 
+	private void updateUAReqAtomInState(HashMap<String, String> state, 
 			RequirementDescription req) {
 	}
-	private void updateConditionalMaintainReqAtomInState(
+	private void updateCMReqAtomInState(
 			HashMap<String, String> state, 
 			RequirementDescription req) {
 		String req_id = req.getName();
@@ -1204,21 +1288,21 @@ public class LTSG {
 		 * (2.2) if condition holds then inact (and update reward of transition)
 		 * 
 		 */
-		if(status.equals("inact")) {
+		if(status.equals("I")) {
 			if(req.getActivation().verify(state)) {
-				state.put(req_id, "req");
+				state.put(req_id, "R");
 			}
 		}
 
-		if(status.equals("req")){
+		if(status.equals("R")){
 			if(req.getCancellation().verify(state)) {
-				state.put(req_id, "inact");
+				state.put(req_id, "I");
 			} 
 		}
 
 	} 				
 
-	private void updateDeadlineMaintainReqAtomInState(
+	private void updateDFMReqAtomInState(
 			HashMap<String, String> state, 
 			RequirementDescription req) {
 		String req_id = req.getName();
@@ -1239,32 +1323,32 @@ public class LTSG {
 		 * (3.2) else if req-0 then inact (and add satisfaction reward)
 		 * (3.3) else control action, then req-(X-1) ()
 		 */
-		if(status.equals("inact")) {
+		if(status.equals("I")) {
 			if(req.getActivation().verify(state)) {
 				Integer deadline = req.getDeadline();
-				state.put(req_id, "act-"+(deadline-1));
+				state.put(req_id, "A-"+(deadline-1));
 			}
 		}
 
-		if(status.startsWith("act-")){
+		if(status.startsWith("A-")){
 			if(req.getCancellation().verify(state)) {
-				state.put(req_id, "inact");
-			} else if (status.equals("act-0")){
-				state.put(req_id, "req");
+				state.put(req_id, "I");
+			} else if (status.equals("A-0")){
+				state.put(req_id, "R");
 			} else  {
 				Integer remainingTime = new Integer(status.substring(4));
-				state.put(req_id, "act-"+(remainingTime-1));
+				state.put(req_id, "A-"+(remainingTime-1));
 			}
 		}
 
-		if(status.startsWith("req")){
+		if(status.startsWith("R")){
 			if(req.getCancellation().verify(state)) {
-				state.put(req_id, "inact");
+				state.put(req_id, "I");
 			} 			
 		}
 
 	}
-	private void updateRDeadlineMaintainReqAtomInState(
+	private void updateDEMReqAtomInState(
 			HashMap<String, String> state, 
 			RequirementDescription req) {
 		String req_id = req.getName();
@@ -1285,38 +1369,38 @@ public class LTSG {
 		 * (3.2) else if req-0 then inact (and add satisfaction reward)
 		 * (3.3) else control action, then req-(X-1) ()
 		 */
-		if(status.equals("inact")) {
+		if(status.equals("I")) {
 			if(req.getActivation().verify(state)) {
 				Integer deadline = req.getDeadline();
-				state.put(req_id, "act-"+(deadline-1));
+				state.put(req_id, "A-"+(deadline-1));
 			}
 		}
 
-		if(status.startsWith("act-")){
+		if(status.startsWith("A-")){
 			if(req.getCancellation().verify(state)) {
-				state.put(req_id, "inact");
+				state.put(req_id, "I");
 			} else if (req.getCondition().verify(state)){
-				state.put(req_id, "req");
+				state.put(req_id, "R");
 				/*
 				 * Satisfaction and reward update: Notice that no reward is given here
 				 * since the system is not actually obliged to maintain the requirement yet
 				 */
-			} else if (status.equals("act-0")){
-				state.put(req_id, "req");
+			} else if (status.equals("A-0")){
+				state.put(req_id, "R");
 			} else  {
 				Integer remainingTime = new Integer(status.substring(4));
-				state.put(req_id, "act-"+(remainingTime-1));
+				state.put(req_id, "A-"+(remainingTime-1));
 			}
 		}
 
-		if(status.startsWith("req")){
+		if(status.startsWith("R")){
 			if(req.getCancellation().verify(state)) {
-				state.put(req_id, "inact");
+				state.put(req_id, "I");
 			} 
 		}
 
 	}
-	private void updateMaintainReqAtomInState(
+	private void updatePMReqAtomInState(
 			HashMap<String, String> state, 
 			RequirementDescription req) {
 		String req_id = req.getName();
@@ -1337,36 +1421,130 @@ public class LTSG {
 		 * (3.2) else if req-0 then inact (and add satisfaction reward)
 		 * (3.3) else control action, then req-(X-1) ()
 		 */
-		if(status.equals("inact")) {
+		if(status.equals("I")) {
 			if(req.getActivation().verify(state)) {
-				Integer deadline = req.getDeadline();
-				state.put(req_id, "act-"+(deadline-1));
+				state.put(req_id, "A");
 			}
 		}
 
-		if(status.startsWith("act-")){
+		if(status.startsWith("A")){
 			if(req.getCancellation().verify(state)) {
-				state.put(req_id, "inact");
-			} else  if (status.equals("act-0")){
-				state.put(req_id, "req-"+(req.getDuration()-1));
-			} else  {
-				Integer remainingTime = new Integer(status.substring(4));
-				state.put(req_id, "act-"+(remainingTime-1));
-			}
+				state.put(req_id, "I");
+			} else if (req.getCondition().verify(state)) {
+				state.put(req_id, "R-"+(req.getDuration()-1));
+			} 
 		}
 
-		if(status.startsWith("req-")){
+		if(status.startsWith("R-")){
 			if(req.getCancellation().verify(state)) {
-				state.put(req_id, "inact");
-			} else if (status.equals("req-0")){
-				state.put(req_id, "inact");
+				state.put(req_id, "I");
+			} else if (status.equals("R-0")){
+				state.put(req_id, "I");
 			} else {
 				Integer remainingTime = new Integer(status.substring(4));
-				state.put(req_id, "req-"+(remainingTime-1));
+				state.put(req_id, "R-"+(remainingTime-1));
+			}
+		}		
+	}
+	private void updateRPMReqAtomInState(
+			HashMap<String, String> state, 
+			RequirementDescription req) {
+		String req_id = req.getName();
+		String status = state.get(req_id);
+		/**
+		 * For a maintain requirement, its status is updated according to activation, cancellation and control actions as follows:
+		 * Notice that condition does not affect the update of status
+		 * (1) if status is inact: if activation is true, then act-D where D is the deadline
+		 * 
+		 * (2) if status is act-X:
+		 * (2.1) if cancellation holds then inact
+		 * (2.2) else if act-0 then req-D where D is duration
+		 * (2.3) else if control action, then act-(X-1)
+		 * 
+		 * (3) if status is req-X
+		 * (3.1) if cancellation then inact
+		 * (3.2) if req-X and not condition then inact (and subtract violation cost)
+		 * (3.2) else if req-0 then inact (and add satisfaction reward)
+		 * (3.3) else control action, then req-(X-1) ()
+		 */
+		if(status.equals("I")) {
+			if(req.getActivation().verify(state)) {
+				state.put(req_id, "A");
+			}
+		}
+
+		if(status.startsWith("A")){
+			if(req.getCancellation().verify(state)) {
+				state.put(req_id, "I");
+			} else if (req.getCondition().verify(state)) {
+				state.put(req_id, "R-"+(req.getDuration()-1));
+			} 
+		}
+
+		if(status.startsWith("R-")){
+			if(req.getCancellation().verify(state)) {
+				state.put(req_id, "I");
+			} else if(!req.getCondition().verify(state)) {
+				state.put(req_id, "I");
+			} else if (status.equals("R-0")){
+				state.put(req_id, "I");
+			} else {
+				Integer remainingTime = new Integer(status.substring(4));
+				state.put(req_id, "R-"+(remainingTime-1));
+			}
+		}		
+	}
+	private void updatePDFMReqAtomInState(
+			HashMap<String, String> state, 
+			RequirementDescription req) {
+		String req_id = req.getName();
+		String status = state.get(req_id);
+		/**
+		 * For a maintain requirement, its status is updated according to activation, cancellation and control actions as follows:
+		 * Notice that condition does not affect the update of status
+		 * (1) if status is inact: if activation is true, then act-D where D is the deadline
+		 * 
+		 * (2) if status is act-X:
+		 * (2.1) if cancellation holds then inact
+		 * (2.2) else if act-0 then req-D where D is duration
+		 * (2.3) else if control action, then act-(X-1)
+		 * 
+		 * (3) if status is req-X
+		 * (3.1) if cancellation then inact
+		 * (3.2) if req-X and not condition then inact (and subtract violation cost)
+		 * (3.2) else if req-0 then inact (and add satisfaction reward)
+		 * (3.3) else control action, then req-(X-1) ()
+		 */
+		if(status.equals("I")) {
+			if(req.getActivation().verify(state)) {
+				Integer deadline = req.getDeadline();
+				state.put(req_id, "A-"+(deadline-1));
+			}
+		}
+
+		if(status.startsWith("A-")){
+			if(req.getCancellation().verify(state)) {
+				state.put(req_id, "I");
+			} else  if (status.equals("A-0")){
+				state.put(req_id, "R-"+(req.getDuration()-1));
+			} else  {
+				Integer remainingTime = new Integer(status.substring(4));
+				state.put(req_id, "A-"+(remainingTime-1));
+			}
+		}
+
+		if(status.startsWith("R-")){
+			if(req.getCancellation().verify(state)) {
+				state.put(req_id, "I");
+			} else if (status.equals("R-0")){
+				state.put(req_id, "I");
+			} else {
+				Integer remainingTime = new Integer(status.substring(4));
+				state.put(req_id, "R-"+(remainingTime-1));
 			}
 		}
 	} 
-	private void updateRMaintainReqAtomInState(
+	private void updateRPDFMReqAtomInState(
 			HashMap<String, String> state, 
 			RequirementDescription req) {
 		String req_id = req.getName();
@@ -1387,42 +1565,42 @@ public class LTSG {
 		 * (3.2) else if req-0 then inact (and add satisfaction reward)
 		 * (3.3) else control action, then req-(X-1) ()
 		 */
-		if(status.equals("inact")) {
+		if(status.equals("I")) {
 			if(req.getActivation().verify(state)) {
 				Integer deadline = req.getDeadline();
-				state.put(req_id, "act-"+(deadline-1));
+				state.put(req_id, "A-"+(deadline-1));
 			}
 		}
 
-		if(status.startsWith("act-")){
+		if(status.startsWith("A-")){
 			if(req.getCancellation().verify(state)) {
-				state.put(req_id, "inact");
+				state.put(req_id, "I");
 			} else if (req.getCondition().verify(state)){
-				state.put(req_id, "req-"+(req.getDuration()-1));
+				state.put(req_id, "R-"+(req.getDuration()-1));
 				/*
 				 * Satisfaction and reward update: Notice that no reward is given here
 				 * since the system is not actually obliged to maintain the requirement yet
 				 */
-			} else  if (status.equals("act-0")){
-				state.put(req_id, "req-"+(req.getDuration()-1));
+			} else  if (status.equals("A-0")){
+				state.put(req_id, "R-"+(req.getDuration()-1));
 			} else  {
 				Integer remainingTime = new Integer(status.substring(4));
-				state.put(req_id, "act-"+(remainingTime-1));
+				state.put(req_id, "A-"+(remainingTime-1));
 			}
 		}
 
-		if(status.startsWith("req-")){
+		if(status.startsWith("R-")){
 			if(req.getCancellation().verify(state)) {
-				state.put(req_id, "inact");
-			} else if (status.equals("req-0")){
-				state.put(req_id, "inact");
+				state.put(req_id, "I");
+			} else if (status.equals("R-0")){
+				state.put(req_id, "I");
 			} else {
 				Integer remainingTime = new Integer(status.substring(4));
-				state.put(req_id, "req-"+(remainingTime-1));
+				state.put(req_id, "R-"+(remainingTime-1));
 			}
 		}
 	}
-	private void updateRigidMaintainReqAtomInState(
+	private void updatePDEMReqAtomInState(
 			HashMap<String, String> state, 
 			RequirementDescription req) {
 		String req_id = req.getName();
@@ -1443,38 +1621,38 @@ public class LTSG {
 		 * (3.2) else if req-0 then inact (and add satisfaction reward)
 		 * (3.3) else control action, then req-(X-1) ()
 		 */
-		if(status.equals("inact")) {
+		if(status.equals("I")) {
 			if(req.getActivation().verify(state)) {
 				Integer deadline = req.getDeadline();
-				state.put(req_id, "act-"+(deadline-1));
+				state.put(req_id, "A-"+(deadline-1));
 			}
 		}
 
-		if(status.startsWith("act-")){
+		if(status.startsWith("A-")){
 			if(req.getCancellation().verify(state)) {
-				state.put(req_id, "inact");
-			} else if (status.equals("act-0")) {
-				state.put(req_id, "req-"+(req.getDuration()-1));
+				state.put(req_id, "I");
+			} else if (status.equals("A-0")) {
+				state.put(req_id, "R-"+(req.getDuration()-1));
 			} else  {
 				Integer remainingTime = new Integer(status.substring(4));
-				state.put(req_id, "act-"+(remainingTime-1));
+				state.put(req_id, "A-"+(remainingTime-1));
 			}
 		}
 
-		if(status.startsWith("req-")){
+		if(status.startsWith("R-")){
 			if(req.getCancellation().verify(state)) {
-				state.put(req_id, "inact");
+				state.put(req_id, "I");
 			} else if(!req.getCondition().verify(state)) {
-				state.put(req_id, "inact");
-			} else if (status.equals("req-0")){
-				state.put(req_id, "inact");
+				state.put(req_id, "I");
+			} else if (status.equals("R-0")){
+				state.put(req_id, "I");
 			} else {
 				Integer remainingTime = new Integer(status.substring(4));
-				state.put(req_id, "req-"+(remainingTime-1));
+				state.put(req_id, "R-"+(remainingTime-1));
 			}
 		}		
 	}
-	private void updateRRigidMaintainReqAtomInState(
+	private void updateRPDEMReqAtomInState(
 			HashMap<String, String> state, 
 			RequirementDescription req) {
 		String req_id = req.getName();
@@ -1495,37 +1673,37 @@ public class LTSG {
 		 * (3.2) else if req-0 then inact (and add satisfaction reward)
 		 * (3.3) else control action, then req-(X-1) ()
 		 */
-		if(status.equals("inact")) {
+		if(status.equals("I")) {
 			if(req.getActivation().verify(state)) {
 				Integer deadline = req.getDeadline();
-				state.put(req_id, "act-"+(deadline-1));
+				state.put(req_id, "A-"+(deadline-1));
 			}
 		}
 
-		if(status.startsWith("act-")){
+		if(status.startsWith("A-")){
 			if(req.getCancellation().verify(state)) {
-				state.put(req_id, "inact");
+				state.put(req_id, "I");
 			} else if (req.getCondition().verify(state)) {
-				state.put(req_id, "req-"+(req.getDuration()-1));
-			} else  if (status.equals("act-0")){
-				state.put(req_id, "req-"+(req.getDuration()-1));
+				state.put(req_id, "R-"+(req.getDuration()-1));
+			} else  if (status.equals("A-0")){
+				state.put(req_id, "R-"+(req.getDuration()-1));
 			} else  {
 				Integer remainingTime = new Integer(status.substring(4));
-				state.put(req_id, "act-"+(remainingTime-1));
+				state.put(req_id, "A-"+(remainingTime-1));
 			}
 		}
 
-		if(status.startsWith("req-")){
+		if(status.startsWith("R-")){
 			if(req.getCancellation().verify(state)) {
-				state.put(req_id, "inact");
+				state.put(req_id, "I");
 			} else if(!req.getCondition().verify(state)) {
-				state.put(req_id, "inact");
+				state.put(req_id, "I");
 
-			} else if (status.equals("req-0")){
-				state.put(req_id, "inact");
+			} else if (status.equals("R-0")){
+				state.put(req_id, "I");
 			} else {
 				Integer remainingTime = new Integer(status.substring(4));
-				state.put(req_id, "req-"+(remainingTime-1));
+				state.put(req_id, "R-"+(remainingTime-1));
 			}
 		}		
 	}

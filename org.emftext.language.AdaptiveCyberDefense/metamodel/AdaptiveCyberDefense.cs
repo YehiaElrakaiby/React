@@ -61,29 +61,14 @@ RULES {
 	ContextualEffect ::=
 		"if" context
 		"effects" effects*;
-		
-	UnconditionalMaintain ::= 
-		"ReqID" name[]  
-		"maintain" condition
-		"reward" reward[INTEGER]
-		("description" description['"','"'])?;
 	
-	UnconditionalAchieve ::= 
+	UA ::= 
 		"ReqID" name[]  
 		"achieve" condition
 		"reward" reward[INTEGER]
 		("description" description['"','"'])?;
-		
-		
-	ConditionalMaintain ::= 
-		"ReqID" name[]  
-		"maintain" condition
-		"if"  activation
-		("unless"  cancellation)?
-		"reward" reward[INTEGER]
-		("description" description['"','"'])?;
-			
-	ConditionalAchieve ::= 
+				
+	CA ::= 
 		"ReqID" name[]  
 		"achieve" condition
 		"if"  activation
@@ -91,7 +76,7 @@ RULES {
 		"reward" reward[INTEGER]
 		("description" description['"','"'])?;
 		
-	Achieve ::= 
+	DEA ::= 
 		"ReqID" name[]  
 		"achieve" condition
 		"after"  deadline[INTEGER]
@@ -100,7 +85,7 @@ RULES {
 		"reward" reward[INTEGER]
 		("description" description['"','"'])?;	
 		
-	RAchieve ::= 
+	DFA ::= 
 		"ReqID" name[]  
 		"achieve" condition
 		"within"  deadline[INTEGER]
@@ -108,8 +93,22 @@ RULES {
 		("unless"  cancellation)?
 		"reward" reward[INTEGER]
 		("description" description['"','"'])?;
-	
-	DeadlineMaintain ::= 
+			
+	UM ::= 
+		"ReqID" name[]  
+		"maintain" condition
+		"reward" reward[INTEGER]
+		("description" description['"','"'])?;
+		
+	CM ::= 
+		"ReqID" name[]  
+		"maintain" condition
+		"if"  activation
+		("unless"  cancellation)?
+		"reward" reward[INTEGER]
+		("description" description['"','"'])?;
+		
+	DEM ::= 
 		"ReqID" name[] 
 		"maintain" condition
 		"after"  deadline[INTEGER]
@@ -117,29 +116,8 @@ RULES {
 		("unless"  cancellation)?
 		"reward" reward[INTEGER] 
 		("description" description['"','"'])?;
-		
-	Maintain ::= 
-		"ReqID" name[] 
-		"maintain" condition
-		"after"  deadline[INTEGER]
-		"for"  duration[INTEGER]
-		"if"  activation
-		("unless"  cancellation)?
-		"reward" reward[INTEGER]
-		("description" description['"','"'])?;
 	
-	RigidMaintain ::= 
-		"ReqID" name[] 
-		"maintain" condition
-		"after"  deadline[INTEGER]
-		"for"  duration[INTEGER]
-		"if"  activation
-		("unless"  cancellation)?
-		"oneTimeReward" reward[INTEGER]
-		("description" description['"','"'])?;
-		
-		
-	RDeadlineMaintain ::= 
+	DFM ::= 
 		"ReqID" name[] 
 		"maintain" condition
 		"within"  deadline[INTEGER]
@@ -147,25 +125,66 @@ RULES {
 		("unless"  cancellation)?
 		"reward" reward[INTEGER] 
 		("description" description['"','"'])?;
-		
-	RMaintain ::= 
+	
+	PM ::= 
 		"ReqID" name[] 
 		"maintain" condition
-		"within"  deadline[INTEGER]
 		"for"  duration[INTEGER]
+		"if"  activation
+		("unless"  cancellation)?
+		"reward" reward[INTEGER] 
+		("description" description['"','"'])?;
+	
+	RPM ::= 
+		"ReqID" name[] 
+		"maintain" condition
+		"for"  duration[INTEGER]
+		"if"  activation
+		("unless"  cancellation)?
+		"reward_once" reward[INTEGER] 
+		("description" description['"','"'])?;
+		
+		
+	PDEM ::= 
+		"ReqID" name[] 
+		"maintain" condition
+		"for"  duration[INTEGER]
+		"after"  deadline[INTEGER]
 		"if"  activation
 		("unless"  cancellation)?
 		"reward" reward[INTEGER]
 		("description" description['"','"'])?;
 	
-	RRigidMaintain ::= 
+	RPDEM ::= 
 		"ReqID" name[] 
 		"maintain" condition
-		"within"  deadline[INTEGER]
 		"for"  duration[INTEGER]
+		"after"  deadline[INTEGER]
 		"if"  activation
 		("unless"  cancellation)?
-		"oneTimeReward" reward[INTEGER]
+		"reward_once" reward[INTEGER]
+		("description" description['"','"'])?;
+		
+		
+	PDFM ::= 
+		"ReqID" name[] 
+		"maintain" condition
+		"for"  duration[INTEGER]
+		"within"  deadline[INTEGER]
+		"if"  activation
+		("unless"  cancellation)?
+		"reward" reward[INTEGER] 
+		("description" description['"','"'])?;
+	
+	
+	RPDFM ::= 
+		"ReqID" name[] 
+		"maintain" condition
+		"for"  duration[INTEGER]
+		"within"  deadline[INTEGER]
+		"if"  activation
+		("unless"  cancellation)?
+		"reward_once" reward[INTEGER]
 		("description" description['"','"'])?;	
 	
 	

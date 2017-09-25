@@ -60,16 +60,16 @@
     <genClasses ecoreClass="AdaptiveCyberDefense.ecore#//Parentheses">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference AdaptiveCyberDefense.ecore#//Parentheses/formula"/>
     </genClasses>
-    <genClasses ecoreClass="AdaptiveCyberDefense.ecore#//Achieve"/>
-    <genClasses ecoreClass="AdaptiveCyberDefense.ecore#//Maintain">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute AdaptiveCyberDefense.ecore#//Maintain/duration"/>
+    <genClasses ecoreClass="AdaptiveCyberDefense.ecore#//DEA"/>
+    <genClasses ecoreClass="AdaptiveCyberDefense.ecore#//DeadlineDurationRequirement">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute AdaptiveCyberDefense.ecore#//DeadlineDurationRequirement/duration"/>
     </genClasses>
     <genClasses ecoreClass="AdaptiveCyberDefense.ecore#//True"/>
     <genClasses ecoreClass="AdaptiveCyberDefense.ecore#//False"/>
     <genClasses ecoreClass="AdaptiveCyberDefense.ecore#//DeadlineRequirement">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute AdaptiveCyberDefense.ecore#//DeadlineRequirement/deadline"/>
     </genClasses>
-    <genClasses ecoreClass="AdaptiveCyberDefense.ecore#//UnconditionalMaintain"/>
+    <genClasses ecoreClass="AdaptiveCyberDefense.ecore#//UM"/>
     <genClasses ecoreClass="AdaptiveCyberDefense.ecore#//ContextualEffect">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference AdaptiveCyberDefense.ecore#//ContextualEffect/context"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference AdaptiveCyberDefense.ecore#//ContextualEffect/effects"/>
@@ -92,14 +92,20 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference AdaptiveCyberDefense.ecore#//ConditionalRequirement/activation"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference AdaptiveCyberDefense.ecore#//ConditionalRequirement/cancellation"/>
     </genClasses>
-    <genClasses ecoreClass="AdaptiveCyberDefense.ecore#//ConditionalAchieve"/>
-    <genClasses ecoreClass="AdaptiveCyberDefense.ecore#//ConditionalMaintain"/>
-    <genClasses ecoreClass="AdaptiveCyberDefense.ecore#//DeadlineMaintain"/>
-    <genClasses ecoreClass="AdaptiveCyberDefense.ecore#//RigidMaintain"/>
-    <genClasses ecoreClass="AdaptiveCyberDefense.ecore#//RMaintain"/>
-    <genClasses ecoreClass="AdaptiveCyberDefense.ecore#//RRigidMaintain"/>
-    <genClasses ecoreClass="AdaptiveCyberDefense.ecore#//RDeadlineMaintain"/>
-    <genClasses ecoreClass="AdaptiveCyberDefense.ecore#//RAchieve"/>
-    <genClasses ecoreClass="AdaptiveCyberDefense.ecore#//UnconditionalAchieve"/>
+    <genClasses ecoreClass="AdaptiveCyberDefense.ecore#//CA"/>
+    <genClasses ecoreClass="AdaptiveCyberDefense.ecore#//CM"/>
+    <genClasses ecoreClass="AdaptiveCyberDefense.ecore#//DFM"/>
+    <genClasses ecoreClass="AdaptiveCyberDefense.ecore#//PDEM"/>
+    <genClasses ecoreClass="AdaptiveCyberDefense.ecore#//RPDFM"/>
+    <genClasses ecoreClass="AdaptiveCyberDefense.ecore#//RPDEM"/>
+    <genClasses ecoreClass="AdaptiveCyberDefense.ecore#//DEM"/>
+    <genClasses ecoreClass="AdaptiveCyberDefense.ecore#//DFA"/>
+    <genClasses ecoreClass="AdaptiveCyberDefense.ecore#//UA"/>
+    <genClasses ecoreClass="AdaptiveCyberDefense.ecore#//DurationRequirement">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute AdaptiveCyberDefense.ecore#//DurationRequirement/duration"/>
+    </genClasses>
+    <genClasses ecoreClass="AdaptiveCyberDefense.ecore#//RPM"/>
+    <genClasses ecoreClass="AdaptiveCyberDefense.ecore#//PDFM"/>
+    <genClasses ecoreClass="AdaptiveCyberDefense.ecore#//PM"/>
   </genPackages>
 </genmodel:GenModel>

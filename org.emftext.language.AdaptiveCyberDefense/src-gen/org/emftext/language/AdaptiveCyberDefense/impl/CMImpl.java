@@ -5,22 +5,22 @@ package org.emftext.language.AdaptiveCyberDefense.impl;
 import org.eclipse.emf.ecore.EClass;
 
 import org.emftext.language.AdaptiveCyberDefense.AdaptiveCyberDefensePackage;
-import org.emftext.language.AdaptiveCyberDefense.RMaintain;
+import org.emftext.language.AdaptiveCyberDefense.CM;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>RMaintain</b></em>'.
+ * An implementation of the model object '<em><b>CM</b></em>'.
  * <!-- end-user-doc -->
  *
  * @generated
  */
-public class RMaintainImpl extends MaintainImpl implements RMaintain {
+public class CMImpl extends ConditionalRequirementImpl implements CM {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected RMaintainImpl() {
+	protected CMImpl() {
 		super();
 	}
 
@@ -31,7 +31,7 @@ public class RMaintainImpl extends MaintainImpl implements RMaintain {
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return AdaptiveCyberDefensePackage.Literals.RMAINTAIN;
+		return AdaptiveCyberDefensePackage.Literals.CM;
 	}
 
-} //RMaintainImpl
+} //CMImpl

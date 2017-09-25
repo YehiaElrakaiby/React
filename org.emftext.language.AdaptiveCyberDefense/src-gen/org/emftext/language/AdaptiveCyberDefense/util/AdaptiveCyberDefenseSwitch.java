@@ -152,24 +152,23 @@ public class AdaptiveCyberDefenseSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case AdaptiveCyberDefensePackage.ACHIEVE: {
-				Achieve achieve = (Achieve)theEObject;
-				T result = caseAchieve(achieve);
-				if (result == null) result = caseDeadlineRequirement(achieve);
-				if (result == null) result = caseConditionalRequirement(achieve);
-				if (result == null) result = caseRequirement(achieve);
-				if (result == null) result = caseInitialVariable(achieve);
+			case AdaptiveCyberDefensePackage.DEA: {
+				DEA dea = (DEA)theEObject;
+				T result = caseDEA(dea);
+				if (result == null) result = caseDeadlineRequirement(dea);
+				if (result == null) result = caseConditionalRequirement(dea);
+				if (result == null) result = caseRequirement(dea);
+				if (result == null) result = caseInitialVariable(dea);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case AdaptiveCyberDefensePackage.MAINTAIN: {
-				Maintain maintain = (Maintain)theEObject;
-				T result = caseMaintain(maintain);
-				if (result == null) result = caseDeadlineMaintain(maintain);
-				if (result == null) result = caseDeadlineRequirement(maintain);
-				if (result == null) result = caseConditionalRequirement(maintain);
-				if (result == null) result = caseRequirement(maintain);
-				if (result == null) result = caseInitialVariable(maintain);
+			case AdaptiveCyberDefensePackage.DEADLINE_DURATION_REQUIREMENT: {
+				DeadlineDurationRequirement deadlineDurationRequirement = (DeadlineDurationRequirement)theEObject;
+				T result = caseDeadlineDurationRequirement(deadlineDurationRequirement);
+				if (result == null) result = caseDeadlineRequirement(deadlineDurationRequirement);
+				if (result == null) result = caseConditionalRequirement(deadlineDurationRequirement);
+				if (result == null) result = caseRequirement(deadlineDurationRequirement);
+				if (result == null) result = caseInitialVariable(deadlineDurationRequirement);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -196,11 +195,11 @@ public class AdaptiveCyberDefenseSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case AdaptiveCyberDefensePackage.UNCONDITIONAL_MAINTAIN: {
-				UnconditionalMaintain unconditionalMaintain = (UnconditionalMaintain)theEObject;
-				T result = caseUnconditionalMaintain(unconditionalMaintain);
-				if (result == null) result = caseRequirement(unconditionalMaintain);
-				if (result == null) result = caseInitialVariable(unconditionalMaintain);
+			case AdaptiveCyberDefensePackage.UM: {
+				UM um = (UM)theEObject;
+				T result = caseUM(um);
+				if (result == null) result = caseRequirement(um);
+				if (result == null) result = caseInitialVariable(um);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -245,98 +244,132 @@ public class AdaptiveCyberDefenseSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case AdaptiveCyberDefensePackage.CONDITIONAL_ACHIEVE: {
-				ConditionalAchieve conditionalAchieve = (ConditionalAchieve)theEObject;
-				T result = caseConditionalAchieve(conditionalAchieve);
-				if (result == null) result = caseConditionalRequirement(conditionalAchieve);
-				if (result == null) result = caseRequirement(conditionalAchieve);
-				if (result == null) result = caseInitialVariable(conditionalAchieve);
+			case AdaptiveCyberDefensePackage.CA: {
+				CA ca = (CA)theEObject;
+				T result = caseCA(ca);
+				if (result == null) result = caseConditionalRequirement(ca);
+				if (result == null) result = caseRequirement(ca);
+				if (result == null) result = caseInitialVariable(ca);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case AdaptiveCyberDefensePackage.CONDITIONAL_MAINTAIN: {
-				ConditionalMaintain conditionalMaintain = (ConditionalMaintain)theEObject;
-				T result = caseConditionalMaintain(conditionalMaintain);
-				if (result == null) result = caseConditionalRequirement(conditionalMaintain);
-				if (result == null) result = caseRequirement(conditionalMaintain);
-				if (result == null) result = caseInitialVariable(conditionalMaintain);
+			case AdaptiveCyberDefensePackage.CM: {
+				CM cm = (CM)theEObject;
+				T result = caseCM(cm);
+				if (result == null) result = caseConditionalRequirement(cm);
+				if (result == null) result = caseRequirement(cm);
+				if (result == null) result = caseInitialVariable(cm);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case AdaptiveCyberDefensePackage.DEADLINE_MAINTAIN: {
-				DeadlineMaintain deadlineMaintain = (DeadlineMaintain)theEObject;
-				T result = caseDeadlineMaintain(deadlineMaintain);
-				if (result == null) result = caseDeadlineRequirement(deadlineMaintain);
-				if (result == null) result = caseConditionalRequirement(deadlineMaintain);
-				if (result == null) result = caseRequirement(deadlineMaintain);
-				if (result == null) result = caseInitialVariable(deadlineMaintain);
+			case AdaptiveCyberDefensePackage.DFM: {
+				DFM dfm = (DFM)theEObject;
+				T result = caseDFM(dfm);
+				if (result == null) result = caseDeadlineRequirement(dfm);
+				if (result == null) result = caseConditionalRequirement(dfm);
+				if (result == null) result = caseRequirement(dfm);
+				if (result == null) result = caseInitialVariable(dfm);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case AdaptiveCyberDefensePackage.RIGID_MAINTAIN: {
-				RigidMaintain rigidMaintain = (RigidMaintain)theEObject;
-				T result = caseRigidMaintain(rigidMaintain);
-				if (result == null) result = caseMaintain(rigidMaintain);
-				if (result == null) result = caseDeadlineMaintain(rigidMaintain);
-				if (result == null) result = caseDeadlineRequirement(rigidMaintain);
-				if (result == null) result = caseConditionalRequirement(rigidMaintain);
-				if (result == null) result = caseRequirement(rigidMaintain);
-				if (result == null) result = caseInitialVariable(rigidMaintain);
+			case AdaptiveCyberDefensePackage.PDEM: {
+				PDEM pdem = (PDEM)theEObject;
+				T result = casePDEM(pdem);
+				if (result == null) result = caseDeadlineDurationRequirement(pdem);
+				if (result == null) result = caseDeadlineRequirement(pdem);
+				if (result == null) result = caseConditionalRequirement(pdem);
+				if (result == null) result = caseRequirement(pdem);
+				if (result == null) result = caseInitialVariable(pdem);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case AdaptiveCyberDefensePackage.RMAINTAIN: {
-				RMaintain rMaintain = (RMaintain)theEObject;
-				T result = caseRMaintain(rMaintain);
-				if (result == null) result = caseMaintain(rMaintain);
-				if (result == null) result = caseDeadlineMaintain(rMaintain);
-				if (result == null) result = caseDeadlineRequirement(rMaintain);
-				if (result == null) result = caseConditionalRequirement(rMaintain);
-				if (result == null) result = caseRequirement(rMaintain);
-				if (result == null) result = caseInitialVariable(rMaintain);
+			case AdaptiveCyberDefensePackage.RPDFM: {
+				RPDFM rpdfm = (RPDFM)theEObject;
+				T result = caseRPDFM(rpdfm);
+				if (result == null) result = caseDeadlineDurationRequirement(rpdfm);
+				if (result == null) result = caseDeadlineRequirement(rpdfm);
+				if (result == null) result = caseConditionalRequirement(rpdfm);
+				if (result == null) result = caseRequirement(rpdfm);
+				if (result == null) result = caseInitialVariable(rpdfm);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case AdaptiveCyberDefensePackage.RRIGID_MAINTAIN: {
-				RRigidMaintain rRigidMaintain = (RRigidMaintain)theEObject;
-				T result = caseRRigidMaintain(rRigidMaintain);
-				if (result == null) result = caseRigidMaintain(rRigidMaintain);
-				if (result == null) result = caseMaintain(rRigidMaintain);
-				if (result == null) result = caseDeadlineMaintain(rRigidMaintain);
-				if (result == null) result = caseDeadlineRequirement(rRigidMaintain);
-				if (result == null) result = caseConditionalRequirement(rRigidMaintain);
-				if (result == null) result = caseRequirement(rRigidMaintain);
-				if (result == null) result = caseInitialVariable(rRigidMaintain);
+			case AdaptiveCyberDefensePackage.RPDEM: {
+				RPDEM rpdem = (RPDEM)theEObject;
+				T result = caseRPDEM(rpdem);
+				if (result == null) result = caseDeadlineDurationRequirement(rpdem);
+				if (result == null) result = caseDeadlineRequirement(rpdem);
+				if (result == null) result = caseConditionalRequirement(rpdem);
+				if (result == null) result = caseRequirement(rpdem);
+				if (result == null) result = caseInitialVariable(rpdem);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case AdaptiveCyberDefensePackage.RDEADLINE_MAINTAIN: {
-				RDeadlineMaintain rDeadlineMaintain = (RDeadlineMaintain)theEObject;
-				T result = caseRDeadlineMaintain(rDeadlineMaintain);
-				if (result == null) result = caseDeadlineMaintain(rDeadlineMaintain);
-				if (result == null) result = caseDeadlineRequirement(rDeadlineMaintain);
-				if (result == null) result = caseConditionalRequirement(rDeadlineMaintain);
-				if (result == null) result = caseRequirement(rDeadlineMaintain);
-				if (result == null) result = caseInitialVariable(rDeadlineMaintain);
+			case AdaptiveCyberDefensePackage.DEM: {
+				DEM dem = (DEM)theEObject;
+				T result = caseDEM(dem);
+				if (result == null) result = caseDeadlineRequirement(dem);
+				if (result == null) result = caseConditionalRequirement(dem);
+				if (result == null) result = caseRequirement(dem);
+				if (result == null) result = caseInitialVariable(dem);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case AdaptiveCyberDefensePackage.RACHIEVE: {
-				RAchieve rAchieve = (RAchieve)theEObject;
-				T result = caseRAchieve(rAchieve);
-				if (result == null) result = caseAchieve(rAchieve);
-				if (result == null) result = caseDeadlineRequirement(rAchieve);
-				if (result == null) result = caseConditionalRequirement(rAchieve);
-				if (result == null) result = caseRequirement(rAchieve);
-				if (result == null) result = caseInitialVariable(rAchieve);
+			case AdaptiveCyberDefensePackage.DFA: {
+				DFA dfa = (DFA)theEObject;
+				T result = caseDFA(dfa);
+				if (result == null) result = caseDeadlineRequirement(dfa);
+				if (result == null) result = caseConditionalRequirement(dfa);
+				if (result == null) result = caseRequirement(dfa);
+				if (result == null) result = caseInitialVariable(dfa);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case AdaptiveCyberDefensePackage.UNCONDITIONAL_ACHIEVE: {
-				UnconditionalAchieve unconditionalAchieve = (UnconditionalAchieve)theEObject;
-				T result = caseUnconditionalAchieve(unconditionalAchieve);
-				if (result == null) result = caseRequirement(unconditionalAchieve);
-				if (result == null) result = caseInitialVariable(unconditionalAchieve);
+			case AdaptiveCyberDefensePackage.UA: {
+				UA ua = (UA)theEObject;
+				T result = caseUA(ua);
+				if (result == null) result = caseRequirement(ua);
+				if (result == null) result = caseInitialVariable(ua);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case AdaptiveCyberDefensePackage.DURATION_REQUIREMENT: {
+				DurationRequirement durationRequirement = (DurationRequirement)theEObject;
+				T result = caseDurationRequirement(durationRequirement);
+				if (result == null) result = caseConditionalRequirement(durationRequirement);
+				if (result == null) result = caseRequirement(durationRequirement);
+				if (result == null) result = caseInitialVariable(durationRequirement);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case AdaptiveCyberDefensePackage.RPM: {
+				RPM rpm = (RPM)theEObject;
+				T result = caseRPM(rpm);
+				if (result == null) result = caseDurationRequirement(rpm);
+				if (result == null) result = caseConditionalRequirement(rpm);
+				if (result == null) result = caseRequirement(rpm);
+				if (result == null) result = caseInitialVariable(rpm);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case AdaptiveCyberDefensePackage.PDFM: {
+				PDFM pdfm = (PDFM)theEObject;
+				T result = casePDFM(pdfm);
+				if (result == null) result = caseDeadlineDurationRequirement(pdfm);
+				if (result == null) result = caseDeadlineRequirement(pdfm);
+				if (result == null) result = caseConditionalRequirement(pdfm);
+				if (result == null) result = caseRequirement(pdfm);
+				if (result == null) result = caseInitialVariable(pdfm);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case AdaptiveCyberDefensePackage.PM: {
+				PM pm = (PM)theEObject;
+				T result = casePM(pm);
+				if (result == null) result = caseDurationRequirement(pm);
+				if (result == null) result = caseConditionalRequirement(pm);
+				if (result == null) result = caseRequirement(pm);
+				if (result == null) result = caseInitialVariable(pm);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -540,32 +573,32 @@ public class AdaptiveCyberDefenseSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Achieve</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>DEA</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Achieve</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>DEA</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseAchieve(Achieve object) {
+	public T caseDEA(DEA object) {
 		return null;
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Maintain</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Deadline Duration Requirement</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Maintain</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Deadline Duration Requirement</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseMaintain(Maintain object) {
+	public T caseDeadlineDurationRequirement(DeadlineDurationRequirement object) {
 		return null;
 	}
 
@@ -615,17 +648,17 @@ public class AdaptiveCyberDefenseSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Unconditional Maintain</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>UM</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Unconditional Maintain</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>UM</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseUnconditionalMaintain(UnconditionalMaintain object) {
+	public T caseUM(UM object) {
 		return null;
 	}
 
@@ -720,137 +753,197 @@ public class AdaptiveCyberDefenseSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Conditional Achieve</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>CA</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Conditional Achieve</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>CA</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseConditionalAchieve(ConditionalAchieve object) {
+	public T caseCA(CA object) {
 		return null;
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Conditional Maintain</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>CM</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Conditional Maintain</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>CM</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseConditionalMaintain(ConditionalMaintain object) {
+	public T caseCM(CM object) {
 		return null;
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Deadline Maintain</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>DFM</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Deadline Maintain</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>DFM</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseDeadlineMaintain(DeadlineMaintain object) {
+	public T caseDFM(DFM object) {
 		return null;
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Rigid Maintain</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>PDEM</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Rigid Maintain</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>PDEM</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseRigidMaintain(RigidMaintain object) {
+	public T casePDEM(PDEM object) {
 		return null;
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>RMaintain</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>RPDFM</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>RMaintain</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>RPDFM</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseRMaintain(RMaintain object) {
+	public T caseRPDFM(RPDFM object) {
 		return null;
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>RRigid Maintain</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>RPDEM</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>RRigid Maintain</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>RPDEM</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseRRigidMaintain(RRigidMaintain object) {
+	public T caseRPDEM(RPDEM object) {
 		return null;
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>RDeadline Maintain</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>DEM</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>RDeadline Maintain</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>DEM</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseRDeadlineMaintain(RDeadlineMaintain object) {
+	public T caseDEM(DEM object) {
 		return null;
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>RAchieve</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>DFA</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>RAchieve</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>DFA</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseRAchieve(RAchieve object) {
+	public T caseDFA(DFA object) {
 		return null;
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Unconditional Achieve</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>UA</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Unconditional Achieve</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>UA</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseUnconditionalAchieve(UnconditionalAchieve object) {
+	public T caseUA(UA object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Duration Requirement</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Duration Requirement</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseDurationRequirement(DurationRequirement object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>RPM</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>RPM</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseRPM(RPM object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>PDFM</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>PDFM</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T casePDFM(PDFM object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>PM</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>PM</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T casePM(PM object) {
 		return null;
 	}
 

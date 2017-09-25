@@ -3,27 +3,28 @@
 package org.emftext.language.AdaptiveCyberDefense.impl;
 
 import org.eclipse.emf.common.notify.Notification;
+
 import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+
 import org.emftext.language.AdaptiveCyberDefense.AdaptiveCyberDefensePackage;
-import org.emftext.language.AdaptiveCyberDefense.CostUnit;
-import org.emftext.language.AdaptiveCyberDefense.Maintain;
+import org.emftext.language.AdaptiveCyberDefense.DurationRequirement;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Maintain</b></em>'.
+ * An implementation of the model object '<em><b>Duration Requirement</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.emftext.language.AdaptiveCyberDefense.impl.MaintainImpl#getDuration <em>Duration</em>}</li>
+ *   <li>{@link org.emftext.language.AdaptiveCyberDefense.impl.DurationRequirementImpl#getDuration <em>Duration</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class MaintainImpl extends DeadlineMaintainImpl implements Maintain {
+public abstract class DurationRequirementImpl extends ConditionalRequirementImpl implements DurationRequirement {
 	/**
 	 * The default value of the '{@link #getDuration() <em>Duration</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -33,6 +34,7 @@ public class MaintainImpl extends DeadlineMaintainImpl implements Maintain {
 	 * @ordered
 	 */
 	protected static final Integer DURATION_EDEFAULT = new Integer(1);
+
 	/**
 	 * The cached value of the '{@link #getDuration() <em>Duration</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -48,7 +50,7 @@ public class MaintainImpl extends DeadlineMaintainImpl implements Maintain {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected MaintainImpl() {
+	protected DurationRequirementImpl() {
 		super();
 	}
 
@@ -59,7 +61,7 @@ public class MaintainImpl extends DeadlineMaintainImpl implements Maintain {
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return AdaptiveCyberDefensePackage.Literals.MAINTAIN;
+		return AdaptiveCyberDefensePackage.Literals.DURATION_REQUIREMENT;
 	}
 
 	/**
@@ -80,7 +82,7 @@ public class MaintainImpl extends DeadlineMaintainImpl implements Maintain {
 		Integer oldDuration = duration;
 		duration = newDuration;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, AdaptiveCyberDefensePackage.MAINTAIN__DURATION, oldDuration, duration));
+			eNotify(new ENotificationImpl(this, Notification.SET, AdaptiveCyberDefensePackage.DURATION_REQUIREMENT__DURATION, oldDuration, duration));
 	}
 
 	/**
@@ -91,7 +93,7 @@ public class MaintainImpl extends DeadlineMaintainImpl implements Maintain {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case AdaptiveCyberDefensePackage.MAINTAIN__DURATION:
+			case AdaptiveCyberDefensePackage.DURATION_REQUIREMENT__DURATION:
 				return getDuration();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -105,7 +107,7 @@ public class MaintainImpl extends DeadlineMaintainImpl implements Maintain {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case AdaptiveCyberDefensePackage.MAINTAIN__DURATION:
+			case AdaptiveCyberDefensePackage.DURATION_REQUIREMENT__DURATION:
 				setDuration((Integer)newValue);
 				return;
 		}
@@ -120,7 +122,7 @@ public class MaintainImpl extends DeadlineMaintainImpl implements Maintain {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case AdaptiveCyberDefensePackage.MAINTAIN__DURATION:
+			case AdaptiveCyberDefensePackage.DURATION_REQUIREMENT__DURATION:
 				setDuration(DURATION_EDEFAULT);
 				return;
 		}
@@ -135,7 +137,7 @@ public class MaintainImpl extends DeadlineMaintainImpl implements Maintain {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case AdaptiveCyberDefensePackage.MAINTAIN__DURATION:
+			case AdaptiveCyberDefensePackage.DURATION_REQUIREMENT__DURATION:
 				return DURATION_EDEFAULT == null ? duration != null : !DURATION_EDEFAULT.equals(duration);
 		}
 		return super.eIsSet(featureID);
@@ -157,4 +159,4 @@ public class MaintainImpl extends DeadlineMaintainImpl implements Maintain {
 		return result.toString();
 	}
 
-} //MaintainImpl
+} //DurationRequirementImpl

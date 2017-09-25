@@ -5,22 +5,22 @@ package org.emftext.language.AdaptiveCyberDefense.impl;
 import org.eclipse.emf.ecore.EClass;
 
 import org.emftext.language.AdaptiveCyberDefense.AdaptiveCyberDefensePackage;
-import org.emftext.language.AdaptiveCyberDefense.ConditionalAchieve;
+import org.emftext.language.AdaptiveCyberDefense.UA;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Conditional Achieve</b></em>'.
+ * An implementation of the model object '<em><b>UA</b></em>'.
  * <!-- end-user-doc -->
  *
  * @generated
  */
-public class ConditionalAchieveImpl extends ConditionalRequirementImpl implements ConditionalAchieve {
+public class UAImpl extends RequirementImpl implements UA {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected ConditionalAchieveImpl() {
+	protected UAImpl() {
 		super();
 	}
 
@@ -31,7 +31,7 @@ public class ConditionalAchieveImpl extends ConditionalRequirementImpl implement
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return AdaptiveCyberDefensePackage.Literals.CONDITIONAL_ACHIEVE;
+		return AdaptiveCyberDefensePackage.Literals.UA;
 	}
 
-} //ConditionalAchieveImpl
+} //UAImpl

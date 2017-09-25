@@ -112,22 +112,13 @@ public interface AdaptiveCyberDefenseFactory extends EFactory {
 	Parentheses createParentheses();
 
 	/**
-	 * Returns a new object of class '<em>Achieve</em>'.
+	 * Returns a new object of class '<em>DEA</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Achieve</em>'.
+	 * @return a new object of class '<em>DEA</em>'.
 	 * @generated
 	 */
-	Achieve createAchieve();
-
-	/**
-	 * Returns a new object of class '<em>Maintain</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Maintain</em>'.
-	 * @generated
-	 */
-	Maintain createMaintain();
+	DEA createDEA();
 
 	/**
 	 * Returns a new object of class '<em>True</em>'.
@@ -148,13 +139,13 @@ public interface AdaptiveCyberDefenseFactory extends EFactory {
 	False createFalse();
 
 	/**
-	 * Returns a new object of class '<em>Unconditional Maintain</em>'.
+	 * Returns a new object of class '<em>UM</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Unconditional Maintain</em>'.
+	 * @return a new object of class '<em>UM</em>'.
 	 * @generated
 	 */
-	UnconditionalMaintain createUnconditionalMaintain();
+	UM createUM();
 
 	/**
 	 * Returns a new object of class '<em>Contextual Effect</em>'.
@@ -193,85 +184,112 @@ public interface AdaptiveCyberDefenseFactory extends EFactory {
 	FormulaAtom createFormulaAtom();
 
 	/**
-	 * Returns a new object of class '<em>Conditional Achieve</em>'.
+	 * Returns a new object of class '<em>CA</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Conditional Achieve</em>'.
+	 * @return a new object of class '<em>CA</em>'.
 	 * @generated
 	 */
-	ConditionalAchieve createConditionalAchieve();
+	CA createCA();
 
 	/**
-	 * Returns a new object of class '<em>Conditional Maintain</em>'.
+	 * Returns a new object of class '<em>CM</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Conditional Maintain</em>'.
+	 * @return a new object of class '<em>CM</em>'.
 	 * @generated
 	 */
-	ConditionalMaintain createConditionalMaintain();
+	CM createCM();
 
 	/**
-	 * Returns a new object of class '<em>Deadline Maintain</em>'.
+	 * Returns a new object of class '<em>DFM</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Deadline Maintain</em>'.
+	 * @return a new object of class '<em>DFM</em>'.
 	 * @generated
 	 */
-	DeadlineMaintain createDeadlineMaintain();
+	DFM createDFM();
 
 	/**
-	 * Returns a new object of class '<em>Rigid Maintain</em>'.
+	 * Returns a new object of class '<em>PDEM</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Rigid Maintain</em>'.
+	 * @return a new object of class '<em>PDEM</em>'.
 	 * @generated
 	 */
-	RigidMaintain createRigidMaintain();
+	PDEM createPDEM();
 
 	/**
-	 * Returns a new object of class '<em>RMaintain</em>'.
+	 * Returns a new object of class '<em>RPDFM</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>RMaintain</em>'.
+	 * @return a new object of class '<em>RPDFM</em>'.
 	 * @generated
 	 */
-	RMaintain createRMaintain();
+	RPDFM createRPDFM();
 
 	/**
-	 * Returns a new object of class '<em>RRigid Maintain</em>'.
+	 * Returns a new object of class '<em>RPDEM</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>RRigid Maintain</em>'.
+	 * @return a new object of class '<em>RPDEM</em>'.
 	 * @generated
 	 */
-	RRigidMaintain createRRigidMaintain();
+	RPDEM createRPDEM();
 
 	/**
-	 * Returns a new object of class '<em>RDeadline Maintain</em>'.
+	 * Returns a new object of class '<em>DEM</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>RDeadline Maintain</em>'.
+	 * @return a new object of class '<em>DEM</em>'.
 	 * @generated
 	 */
-	RDeadlineMaintain createRDeadlineMaintain();
+	DEM createDEM();
 
 	/**
-	 * Returns a new object of class '<em>RAchieve</em>'.
+	 * Returns a new object of class '<em>DFA</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>RAchieve</em>'.
+	 * @return a new object of class '<em>DFA</em>'.
 	 * @generated
 	 */
-	RAchieve createRAchieve();
+	DFA createDFA();
 
 	/**
-	 * Returns a new object of class '<em>Unconditional Achieve</em>'.
+	 * Returns a new object of class '<em>UA</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Unconditional Achieve</em>'.
+	 * @return a new object of class '<em>UA</em>'.
 	 * @generated
 	 */
-	UnconditionalAchieve createUnconditionalAchieve();
+	UA createUA();
+
+	/**
+	 * Returns a new object of class '<em>RPM</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>RPM</em>'.
+	 * @generated
+	 */
+	RPM createRPM();
+
+	/**
+	 * Returns a new object of class '<em>PDFM</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>PDFM</em>'.
+	 * @generated
+	 */
+	PDFM createPDFM();
+
+	/**
+	 * Returns a new object of class '<em>PM</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>PM</em>'.
+	 * @generated
+	 */
+	PM createPM();
 
 	/**
 	 * Returns the package supported by this factory.

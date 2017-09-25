@@ -5,22 +5,22 @@ package org.emftext.language.AdaptiveCyberDefense.impl;
 import org.eclipse.emf.ecore.EClass;
 
 import org.emftext.language.AdaptiveCyberDefense.AdaptiveCyberDefensePackage;
-import org.emftext.language.AdaptiveCyberDefense.RAchieve;
+import org.emftext.language.AdaptiveCyberDefense.RPM;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>RAchieve</b></em>'.
+ * An implementation of the model object '<em><b>RPM</b></em>'.
  * <!-- end-user-doc -->
  *
  * @generated
  */
-public class RAchieveImpl extends AchieveImpl implements RAchieve {
+public class RPMImpl extends DurationRequirementImpl implements RPM {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected RAchieveImpl() {
+	protected RPMImpl() {
 		super();
 	}
 
@@ -31,7 +31,7 @@ public class RAchieveImpl extends AchieveImpl implements RAchieve {
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return AdaptiveCyberDefensePackage.Literals.RACHIEVE;
+		return AdaptiveCyberDefensePackage.Literals.RPM;
 	}
 
-} //RAchieveImpl
+} //RPMImpl

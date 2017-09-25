@@ -5,22 +5,22 @@ package org.emftext.language.AdaptiveCyberDefense.impl;
 import org.eclipse.emf.ecore.EClass;
 
 import org.emftext.language.AdaptiveCyberDefense.AdaptiveCyberDefensePackage;
-import org.emftext.language.AdaptiveCyberDefense.UnconditionalMaintain;
+import org.emftext.language.AdaptiveCyberDefense.PDFM;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Unconditional Maintain</b></em>'.
+ * An implementation of the model object '<em><b>PDFM</b></em>'.
  * <!-- end-user-doc -->
  *
  * @generated
  */
-public class UnconditionalMaintainImpl extends RequirementImpl implements UnconditionalMaintain {
+public class PDFMImpl extends DeadlineDurationRequirementImpl implements PDFM {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected UnconditionalMaintainImpl() {
+	protected PDFMImpl() {
 		super();
 	}
 
@@ -31,7 +31,7 @@ public class UnconditionalMaintainImpl extends RequirementImpl implements Uncond
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return AdaptiveCyberDefensePackage.Literals.UNCONDITIONAL_MAINTAIN;
+		return AdaptiveCyberDefensePackage.Literals.PDFM;
 	}
 
-} //UnconditionalMaintainImpl
+} //PDFMImpl

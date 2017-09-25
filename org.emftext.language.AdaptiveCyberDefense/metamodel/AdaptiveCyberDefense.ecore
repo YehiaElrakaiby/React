@@ -92,8 +92,9 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="formula" lowerBound="1"
         eType="#//Formula" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Achieve" eSuperTypes="#//DeadlineRequirement"/>
-  <eClassifiers xsi:type="ecore:EClass" name="Maintain" eSuperTypes="#//DeadlineMaintain">
+  <eClassifiers xsi:type="ecore:EClass" name="DEA" eSuperTypes="#//DeadlineRequirement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="DeadlineDurationRequirement" abstract="true"
+      eSuperTypes="#//DeadlineRequirement">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="duration" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EIntegerObject"
         defaultValueLiteral="1"/>
@@ -110,7 +111,7 @@
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EIntegerObject"
         defaultValueLiteral="-1"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="UnconditionalMaintain" eSuperTypes="#//Requirement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="UM" eSuperTypes="#//Requirement"/>
   <eClassifiers xsi:type="ecore:EClass" name="ContextualEffect">
     <eStructuralFeatures xsi:type="ecore:EReference" name="context" lowerBound="1"
         eType="#//Formula" containment="true"/>
@@ -130,7 +131,7 @@
   <eClassifiers xsi:type="ecore:EClass" name="ProbabilisticContextualEffect" eSuperTypes="#//ContextualEffect">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="occurrence_probability"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBigDecimal"
-        defaultValueLiteral="0"/>
+        defaultValueLiteral="0.00001"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="DescriptionEntity" abstract="true">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
@@ -149,13 +150,22 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="cancellation" eType="#//Formula"
         containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ConditionalAchieve" eSuperTypes="#//ConditionalRequirement"/>
-  <eClassifiers xsi:type="ecore:EClass" name="ConditionalMaintain" eSuperTypes="#//ConditionalRequirement"/>
-  <eClassifiers xsi:type="ecore:EClass" name="DeadlineMaintain" eSuperTypes="#//DeadlineRequirement"/>
-  <eClassifiers xsi:type="ecore:EClass" name="RigidMaintain" eSuperTypes="#//Maintain"/>
-  <eClassifiers xsi:type="ecore:EClass" name="RMaintain" eSuperTypes="#//Maintain"/>
-  <eClassifiers xsi:type="ecore:EClass" name="RRigidMaintain" eSuperTypes="#//RigidMaintain"/>
-  <eClassifiers xsi:type="ecore:EClass" name="RDeadlineMaintain" eSuperTypes="#//DeadlineMaintain"/>
-  <eClassifiers xsi:type="ecore:EClass" name="RAchieve" eSuperTypes="#//Achieve"/>
-  <eClassifiers xsi:type="ecore:EClass" name="UnconditionalAchieve" eSuperTypes="#//Requirement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="CA" eSuperTypes="#//ConditionalRequirement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="CM" eSuperTypes="#//ConditionalRequirement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="DFM" eSuperTypes="#//DeadlineRequirement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="PDEM" eSuperTypes="#//DeadlineDurationRequirement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="RPDFM" eSuperTypes="#//DeadlineDurationRequirement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="RPDEM" eSuperTypes="#//DeadlineDurationRequirement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="DEM" eSuperTypes="#//DeadlineRequirement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="DFA" eSuperTypes="#//DeadlineRequirement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="UA" eSuperTypes="#//Requirement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="DurationRequirement" abstract="true"
+      eSuperTypes="#//ConditionalRequirement">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="duration" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EIntegerObject"
+        defaultValueLiteral="1"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="RPM" eSuperTypes="#//DurationRequirement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="PDFM" eSuperTypes="#//DeadlineDurationRequirement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="PM" eSuperTypes="#//DurationRequirement"/>
 </ecore:EPackage>

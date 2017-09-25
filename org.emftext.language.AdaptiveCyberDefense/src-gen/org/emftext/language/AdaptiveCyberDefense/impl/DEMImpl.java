@@ -5,22 +5,22 @@ package org.emftext.language.AdaptiveCyberDefense.impl;
 import org.eclipse.emf.ecore.EClass;
 
 import org.emftext.language.AdaptiveCyberDefense.AdaptiveCyberDefensePackage;
-import org.emftext.language.AdaptiveCyberDefense.UnconditionalAchieve;
+import org.emftext.language.AdaptiveCyberDefense.DEM;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Unconditional Achieve</b></em>'.
+ * An implementation of the model object '<em><b>DEM</b></em>'.
  * <!-- end-user-doc -->
  *
  * @generated
  */
-public class UnconditionalAchieveImpl extends RequirementImpl implements UnconditionalAchieve {
+public class DEMImpl extends DeadlineRequirementImpl implements DEM {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected UnconditionalAchieveImpl() {
+	protected DEMImpl() {
 		super();
 	}
 
@@ -31,7 +31,7 @@ public class UnconditionalAchieveImpl extends RequirementImpl implements Uncondi
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return AdaptiveCyberDefensePackage.Literals.UNCONDITIONAL_ACHIEVE;
+		return AdaptiveCyberDefensePackage.Literals.DEM;
 	}
 
-} //UnconditionalAchieveImpl
+} //DEMImpl
