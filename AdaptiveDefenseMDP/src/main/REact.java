@@ -23,7 +23,7 @@ public class REact {
 	 * 			Output: a MDP solution, that is the optimal action to take in every possible state
 	 * 			Procedure:
 	 * 				1) the input is transformed into a LTS so that it can be visualized
-	 * 				2) the transition matrix and the reward matrix are calculated
+	 * 				2) the transition matrix and the reward matrix are computed
 	 * 				3) MDPToolBox is used to solve the MDP problem 
 	 */
 
