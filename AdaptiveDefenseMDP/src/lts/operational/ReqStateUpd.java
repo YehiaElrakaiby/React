@@ -4,7 +4,7 @@ import java.util.HashMap;
 
 import resources.RequirementDescription;
 
-final public class RequirementStateUpdater {
+final public class ReqStateUpd {
 
 	static public void updateCAReqAtomInState(
 			HashMap<String, String> state, 

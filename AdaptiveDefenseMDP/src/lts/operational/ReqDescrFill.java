@@ -22,7 +22,7 @@ import org.emftext.language.AdaptiveCyberDefense.UM;
 
 import resources.RequirementDescription;
 
-final public class RequirementDescriptionCreator {
+final public class ReqDescrFill {
 	
 	//protected HashSet<Reward> rewards = new HashSet<Reward>();
 	private final static Logger LOGGER = LogManager.getRootLogger();

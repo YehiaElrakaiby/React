@@ -255,46 +255,46 @@ public class LTSG {
 
 			if(requirement.getClass().getName().endsWith(".UAImpl")){
 				UA req = (UA) requirement;
-				RequirementDescriptionCreator.fillUARequirementDescription(req,descr,domain);
+				ReqDescrFill.fillUARequirementDescription(req,descr,domain);
 			} else if(requirement.getClass().getName().endsWith(".CAImpl")){
 					CA req = (CA) requirement;
-					RequirementDescriptionCreator.fillCARequirementDescription(req,descr,domain);
+					ReqDescrFill.fillCARequirementDescription(req,descr,domain);
 			} else if(requirement.getClass().getName().endsWith(".DEAImpl")){
 				DEA req = (DEA) requirement;
-				RequirementDescriptionCreator.fillDEARequirementDescription(req,descr,domain);
+				ReqDescrFill.fillDEARequirementDescription(req,descr,domain);
 			} else if(requirement.getClass().getName().endsWith(".DFAImpl")){
 				DFA req = (DFA) requirement;
-				RequirementDescriptionCreator.fillDFARequirementDescription(req,descr,domain);
+				ReqDescrFill.fillDFARequirementDescription(req,descr,domain);
 			} else 	if(requirement.getClass().getName().endsWith(".UMImpl")){
 				UM req = (UM) requirement;
-				RequirementDescriptionCreator.fillUMRequirementDescription(req,descr,domain);
+				ReqDescrFill.fillUMRequirementDescription(req,descr,domain);
 			} else 	if(requirement.getClass().getName().endsWith(".CMImpl")){
 				CM req = (CM) requirement;
-				RequirementDescriptionCreator.fillCMRequirementDescription(req,descr,domain);
+				ReqDescrFill.fillCMRequirementDescription(req,descr,domain);
 			} else 	if(requirement.getClass().getName().endsWith(".DEMImpl")){
 				DEM req = (DEM) requirement;
-				RequirementDescriptionCreator.fillDEMRequirementDescription(req,descr,domain);
+				ReqDescrFill.fillDEMRequirementDescription(req,descr,domain);
 			} else 	if(requirement.getClass().getName().endsWith(".DFMImpl")){
 				DFM req = (DFM) requirement;
-				RequirementDescriptionCreator.fillDFMRequirementDescription(req,descr,domain);
+				ReqDescrFill.fillDFMRequirementDescription(req,descr,domain);
 			} else 	if(requirement.getClass().getName().endsWith(".PMImpl")){
 				PM req = (PM) requirement;
-				RequirementDescriptionCreator.fillPMRequirementDescription(req,descr,domain);
+				ReqDescrFill.fillPMRequirementDescription(req,descr,domain);
 			} else 	if(requirement.getClass().getName().endsWith(".RPMImpl")){
 				RPM req = (RPM) requirement;
-				RequirementDescriptionCreator.fillRPMRequirementDescription(req,descr,domain);
+				ReqDescrFill.fillRPMRequirementDescription(req,descr,domain);
 			} else if(requirement.getClass().getName().endsWith(".PDEMImpl")){
 				PDEM req = (PDEM) requirement;
-				RequirementDescriptionCreator.fillPDEMRequirementDescription(req,descr,domain);
+				ReqDescrFill.fillPDEMRequirementDescription(req,descr,domain);
 			} else 	if(requirement.getClass().getName().endsWith(".RPDEMImpl")){
 				RPDEM req = (RPDEM) requirement;
-				RequirementDescriptionCreator.fillRPDEMRequirementDescription(req,descr,domain);
+				ReqDescrFill.fillRPDEMRequirementDescription(req,descr,domain);
 			} else 	if(requirement.getClass().getName().endsWith(".PDFMImpl")){
 				PDFM req = (PDFM) requirement;
-				RequirementDescriptionCreator.fillPDFMRequirementDescription(req,descr,domain);
+				ReqDescrFill.fillPDFMRequirementDescription(req,descr,domain);
 			} else if(requirement.getClass().getName().endsWith(".RPDFMImpl")){
 				RPDFM req = (RPDFM) requirement;
-				RequirementDescriptionCreator.fillRPDFMRequirementDescription(req,descr,domain);
+				ReqDescrFill.fillRPDFMRequirementDescription(req,descr,domain);
 			} 
 			
 			/**
@@ -650,33 +650,33 @@ public class LTSG {
 			String reqID = it.next();
 			req = requirements_description.get(reqID);
 			if(req.getType().equals("ua")){
-				RequirementStateUpdater.updateUAReqAtomInState(state,req);
+				ReqStateUpd.updateUAReqAtomInState(state,req);
 			} else if(req.getType().equals("ca")){
-				RequirementStateUpdater.updateCAReqAtomInState(state,req);
+				ReqStateUpd.updateCAReqAtomInState(state,req);
 			} else if(req.getType().equals("dfa")){
-				RequirementStateUpdater.updateDFAReqAtomInState(state,req);
+				ReqStateUpd.updateDFAReqAtomInState(state,req);
 			} else if(req.getType().equals("dea")){
-				RequirementStateUpdater.updateDEAReqAtomInState(state,req);
+				ReqStateUpd.updateDEAReqAtomInState(state,req);
 			}  else if(req.getType().equals("um")){
-				RequirementStateUpdater.updateUMReqAtomInState(state,req);
+				ReqStateUpd.updateUMReqAtomInState(state,req);
 			} else if(req.getType().equals("cm")){
-				RequirementStateUpdater.updateCMReqAtomInState(state,req);
+				ReqStateUpd.updateCMReqAtomInState(state,req);
 			} else if(req.getType().equals("dfm")){
-				RequirementStateUpdater.updateDFMReqAtomInState(state,req);
+				ReqStateUpd.updateDFMReqAtomInState(state,req);
 			} else if(req.getType().equals("dem")){
-				RequirementStateUpdater.updateDEMReqAtomInState(state,req);
+				ReqStateUpd.updateDEMReqAtomInState(state,req);
 			} else if(req.getType().equals("pm")){
-				RequirementStateUpdater.updatePMReqAtomInState(state,req);
+				ReqStateUpd.updatePMReqAtomInState(state,req);
 			} else if(req.getType().equals("rpm")){
-				RequirementStateUpdater.updateRPMReqAtomInState(state,req);
+				ReqStateUpd.updateRPMReqAtomInState(state,req);
 			} else if(req.getType().equals("pdem")){
-				RequirementStateUpdater.updatePDEMReqAtomInState(state,req);
+				ReqStateUpd.updatePDEMReqAtomInState(state,req);
 			} else if(req.getType().equals("rpdem")){
-				RequirementStateUpdater.updateRPDEMReqAtomInState(state,req);
+				ReqStateUpd.updateRPDEMReqAtomInState(state,req);
 			} else if(req.getType().equals("pdfm")) {
-				RequirementStateUpdater.updatePDFMReqAtomInState(state,req);
+				ReqStateUpd.updatePDFMReqAtomInState(state,req);
 			} else if(req.getType().equals("rpdfm")){
-				RequirementStateUpdater.updateRPDFMReqAtomInState(state,req);
+				ReqStateUpd.updateRPDFMReqAtomInState(state,req);
 			} 
 		}
 	}
