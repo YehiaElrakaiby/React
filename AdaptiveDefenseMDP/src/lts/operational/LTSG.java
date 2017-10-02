@@ -346,7 +346,7 @@ public class LTSG {
 	}
 
 	/*
-	 * 				LTS States and Transitions Identification PART
+	 * 				LTS States and Transitions Identification From Initial State PART
 	 */
 	private void generateLTSFromInitialState() {
 		/*
