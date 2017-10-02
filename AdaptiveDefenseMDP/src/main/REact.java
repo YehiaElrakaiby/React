@@ -30,10 +30,11 @@ public class REact {
 	/*
 	 * 			MAIN CONFIGURATION OPTIONS
 	 */
-	static String descriptionFileName = "2.exogenous_events_a.AdaptiveCyberDefense";
+	static String descriptionFileName = "test_state_construction1.AdaptiveCyberDefense";
 
 	static public String dotOption = Graphviz_Writer.SHOW_ALL;
 
+	static String generationOption = LTSG.FULL;
 	/*
 	 * 			OTHER CONFIGURATION OPTIONS
 	 */
@@ -86,7 +87,7 @@ public class REact {
 		/*
 		 * 2. Build the LTS using State and Action Variables, Action Descriptions and Requirements
 		 */
-		lts = new LTSG(description,LTSG.INITIAL);
+		lts = new LTSG(description,generationOption);
 		LOGGER.info("The labeled transition system LTSG created");
 
 		lts.print();

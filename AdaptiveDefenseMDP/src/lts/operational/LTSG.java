@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedList;
+import java.util.Set;
 import java.util.TreeSet;
 
 import org.apache.commons.lang.mutable.MutableInt;
@@ -41,6 +42,7 @@ import org.emftext.language.AdaptiveCyberDefense.UM;
 
 import main.REact;
 import resources.RequirementDescription;
+import resources.StateVariableDescription;
 import resources.Transition;
 
 /**
@@ -137,12 +139,15 @@ public class LTSG {
 		 * (4) Generate the state space
 		 * (5) Generate Transitions
 		 */
-		//if(option.equals(FULL)) {
+		if(option.equals(FULL)) {
 
-		//generateStatesFromFluentDescriptions();
+			generateStatesFromFluentDescriptions();
+			LOGGER.info("The states are computed");
 
-		//generateTransitions(this.requirements_description);
-		//}
+			generateTransitions(this.requirements_description);
+			LOGGER.info("The transitions are computed");
+
+		}
 
 		if(option.equals(INITIAL)) {
 			setInitialState(description);
@@ -257,8 +262,8 @@ public class LTSG {
 				UA req = (UA) requirement;
 				ReqDescrFill.fillUARequirementDescription(req,descr,domain);
 			} else if(requirement.getClass().getName().endsWith(".CAImpl")){
-					CA req = (CA) requirement;
-					ReqDescrFill.fillCARequirementDescription(req,descr,domain);
+				CA req = (CA) requirement;
+				ReqDescrFill.fillCARequirementDescription(req,descr,domain);
 			} else if(requirement.getClass().getName().endsWith(".DEAImpl")){
 				DEA req = (DEA) requirement;
 				ReqDescrFill.fillDEARequirementDescription(req,descr,domain);
@@ -296,7 +301,7 @@ public class LTSG {
 				RPDFM req = (RPDFM) requirement;
 				ReqDescrFill.fillRPDFMRequirementDescription(req,descr,domain);
 			} 
-			
+
 			/**
 			 * add the requirement to the HashMap requirements_description
 			 */
@@ -311,7 +316,107 @@ public class LTSG {
 		}
 	}
 
-	
+	private void generateStatesFromFluentDescriptions() {
+
+		// number of fluents
+
+		int nb_fluents = variables_domain.size();
+
+		// array index
+
+		MutableInt index = new MutableInt(0);
+
+		// number used as state identifier
+
+		MutableInt state_nb = new MutableInt(0);
+
+
+		// 1. Create and fill an array of fluent descriptions from fluent_descriptions
+
+		Set<String> keys = variables_domain.keySet();
+		Iterator<String> it = keys.iterator();
+		java.util.ArrayList<StateVariableDescription> fluents_array = new java.util.ArrayList<StateVariableDescription>();
+		while(it.hasNext()){
+			String name = it.next();
+			HashSet<String> domain = variables_domain.get(name);
+			StateVariableDescription fluent_description = new StateVariableDescription(name,domain);
+			fluents_array.add(fluent_description);
+		}
+
+
+		// 2. Create a HashMap<String(fluent),String(value)> to hold the constructed state
+		HashMap<String,String> state = new HashMap<String,String>();
+
+		/* 3. Call a recursive function to construct the states, 
+		 * the basic idea of the function is to construct one initial state 
+		 * and then change the value of one state variable to compute a new state
+		 * and repeat this until all possibilities are exhausted and all states are computed
+		 * This function fills both the states and states_id hashmaps*/
+
+		add(state, fluents_array.get(index.intValue()), fluents_array, index, nb_fluents, state_nb);
+		System.out.println("\nnumber of states="+states.size()+"\n");
+
+	}
+	private void add(HashMap<String, String> state, 
+			StateVariableDescription fluentDescription, 
+			java.util.ArrayList<StateVariableDescription> fluents_array, 
+			MutableInt index,
+			int total, MutableInt state_nb) {
+
+		String name = fluentDescription.getName();
+		Set<String> domain = fluentDescription.getDomain();
+		Iterator<String> it = domain.iterator();
+		if(index.intValue()==total-1){
+			while(it.hasNext()){
+				String value = it.next();
+				state.put(name, value);
+				HashMap<String,String> temp_st = new HashMap<String,String>();
+				temp_st = (HashMap<String, String>) state.clone();
+				//System.out.println(state.toString()+"\n\n");
+				states.put(state_nb.toInteger(), temp_st);
+				states_id.put(temp_st,state_nb.toInteger());
+				state_nb.add(1);
+				//System.out.println(states.toString()+"\n\n");
+			} 
+			index.subtract(1);
+		} else {
+			while(it.hasNext()){
+				String value = it.next();
+				state.put(name,value);
+				index.add(1);
+				add(state,fluents_array.get(index.intValue()), fluents_array, index, total, state_nb);
+			} 
+			index.subtract(1);
+		}
+	}
+
+
+	private void generateTransitions(HashMap<String, RequirementDescription> requirements_description) {
+
+		/* (1) Iterate Over All States
+		 * (2) Iterate over all control, exogenous and exploit events and update the transition and reward matrix accordingly
+		 * (*) Notice that when the event is a control event then only the dreward and dtransition are updated
+		 * (2.1) If there is an effect law of an event that is applicable, then apply it
+		 * (2.2) If there is an effect law that is not applicable, then it is a self transition in the transition matrix*/
+
+
+		Iterator<Integer> it = states.keySet().iterator();
+		/*
+		 * the following variable is created just to allow calling the update functions, it is not actually being used
+		 * the is done just to reuse the update functions and not redefine new ones
+		 */
+		LinkedList<Integer> to_explore=new LinkedList<Integer>();
+
+		while(it.hasNext()){
+			Integer state_id = it.next();
+			HashMap<String, String> state = states.get(state_id);
+			MutableInt state_nb=new MutableInt(state_id);
+			
+			updateControlTransitionsFromState(state,state_nb,to_explore);
+			updateEventTransitionsFromState(state,state_nb,to_explore);
+
+		}
+	}
 
 
 	/*
@@ -398,8 +503,7 @@ public class LTSG {
 		 * 1.1.1) yes, explore every application of effects, if an effect exists
 		 * 1.1.2) no, create a self-transition
 		 * 2) update the transition matrix of a
-		 * 3) update the reward structure (s,s') if necessary
-		 * 4) update the to_explore, states and states_id structures
+		 * 3) update the to_explore, states and states_id structures
 		 */
 		for( String event_name:this.exogenous_events) {
 			/*
@@ -439,7 +543,6 @@ public class LTSG {
 						if(effect!=null) {
 							updateStateVariables(dst_state,effect);
 						} 
-						//Reward rew = new Reward();
 
 						dst_state.put(descr.getName(), descr.getValue());
 						updateReqVariables(dst_state, requirements_description);
@@ -451,15 +554,8 @@ public class LTSG {
 
 						Transition trans = new Transition(event_name,src_id,dest_id,prob);
 						event_transitions.add(trans);
-						//rew.setSrc(src_id);
-						//rew.setDest(dest_id);
-						//rewards.add(rew);
-
+						
 						total_prob = total_prob.add(effect.getProbability());
-
-						//transitions.add(trans);
-						//src_label_dest_transitions_map.put(trans.hashCode(), trans);
-						//updateTransitions3(Transition.hashCode(src_id, action_name),dest_id);
 
 					}
 					if(total_prob.compareTo(one)==-1) {
@@ -473,9 +569,6 @@ public class LTSG {
 
 						Transition trans = new Transition(event_name,src_id,dest_id,one.subtract(total_prob));
 						event_transitions.add(trans);
-						//transitions.add(trans);
-						//src_label_dest_transitions_map.put(trans.hashCode(), trans);
-						//updateTransitions3(Transition.hashCode(src_id, action_name),dest_id);
 
 					}
 					break;
@@ -495,7 +588,7 @@ public class LTSG {
 
 				Transition trans = new Transition(event_name,src_id,dest_id,one);
 				event_transitions.add(trans);
-			
+
 
 			}
 		}
@@ -511,8 +604,7 @@ public class LTSG {
 		 * 1.1.1) yes, explore every application of effects, if an effect exists
 		 * 1.1.2) no, create a self-transition
 		 * 2) update the transition matrix of a
-		 * 3) update the reward structure (s,s') if necessary
-		 * 4) update the to_explore, states and states_id structures
+		 * 3) update the to_explore, states and states_id structures
 		 */
 		for( String action_name:this.control_events) {
 			ActionDescription descr = this.action_descriptions.get(action_name);
@@ -558,13 +650,9 @@ public class LTSG {
 						Transition trans = new Transition(action_name,src_id,dest_id,prob);
 						action_transitions.add(trans);
 
-				
+
 
 						total_prob = total_prob.add(effect.getProbability());
-
-						//transitions.add(trans);
-						//src_label_dest_transitions_map.put(trans.hashCode(), trans);
-						//updateTransitions3(Transition.hashCode(src_id, action_name),dest_id);
 
 					}
 					if(total_prob.compareTo(one)==-1) {
@@ -579,11 +667,6 @@ public class LTSG {
 
 						Transition trans = new Transition(action_name,src_id,dest_id,one.subtract(total_prob));
 						action_transitions.add(trans);
-					
-
-						//transitions.add(trans);
-						//src_label_dest_transitions_map.put(trans.hashCode(), trans);
-						//updateTransitions3(Transition.hashCode(src_id, action_name),dest_id);
 
 					}
 					break;
@@ -600,7 +683,7 @@ public class LTSG {
 
 				Transition trans = new Transition(action_name,src_id,dest_id,one);
 				action_transitions.add(trans);
-			
+
 
 			}
 		}
@@ -681,7 +764,7 @@ public class LTSG {
 		}
 	}
 
-	
+
 
 
 
@@ -942,90 +1025,7 @@ private void updateTransitions3(int hashCode, Integer dest_id) {
 }*/
 
 
-/*private void generateTransitions(HashMap<String, RequirementDescription> requirements_description) {
 
- * (1) Iterate Over All States
- * (2) Iterate over all control, exogenous and exploit events and update the transition and reward matrix accordingly
- * (*) Notice that when the event is a control event then only the dreward and dtransition are updated
- * (2.1) If there is an effect law of an event that is applicable, then apply it
- * (2.2) If there is an effect law that is not applicable, then it is a self transition in the transition matrix
-
-
-	Iterator<Integer> it = states.keySet().iterator();
-	while(it.hasNext()){
-		Integer state_id = it.next();
-		HashMap<String, String> state = states.get(state_id);
-
-		addTransitions(control_events_id,state);
-		addTransitions(exogenous_events_id,state);
-
-	}
-}*/
-
-/*private void addTransitions(
-		HashMap<String, Integer> id_events, 
-		HashMap<String, String> state) {
-	Iterator<String> it_control = id_events.keySet().iterator();
-	while(it_control.hasNext()) {
-		String event = it_control.next();
-		//String event = id_control_events2.get(event_id);
-		ActionDescription descr = this.event_description.get(event);
-
- * A transition is defined for every two states and event label has 
- * (1) a name (event label), 
- * (2) a boolean representing the applicability of the event, 
- * (3) a source state,
- * (4) a destination state,
- * (5) a transition probability,
- * (6) a reward
-
-
-		if(applicable(descr,state)) {
-			EList<ProbabilisticEffect> effects = descr.getProbabilisticeffect();
-			BigDecimal total_prob = new BigDecimal(0);
-			BigDecimal one = new BigDecimal(1);
-			Integer src = states_id.get(state);
-			for(ProbabilisticEffect effect : effects) {
-				Transition trans = new Transition();
-				trans.setName(event);
-				trans.setSrc(src);
-				trans.setProbability(effect.getProbability());
-				trans.setApplicability(Transition.APPLICABLE);
-				HashMap<String, String> dest_state = getDestinationState(event,state,effect,descr,requirements_description,trans);
-				total_prob.add(effect.getProbability());
-				Integer dest_id= states_id.get(dest_state);
-				trans.setDest(dest_id);
-				trans.setId(id_events.get(event));
-				transitions.add(trans);
-				src_label_dest_transitions_map.put(trans.hashCode(), trans);
-				updateTransitions3(Transition.hashCode(src, event),dest_id);
-				nb_of_transitions.add(1);	
-
-				//addTransition(state,dest_state,event,effect.getProbability(),Transition.APPLICABLE);
-			}
-
- * if the total probability is less than one, then add a self transition with 1 - total_prob
-
-			if(total_prob.compareTo(one)==-1) {
-				Transition trans = new Transition();
-				trans.setName(event);
-				trans.setSrc(src);
-				trans.setProbability(one.subtract(total_prob));
-				trans.setApplicability(Transition.APPLICABLE);
-
-				HashMap<String, String> dest_state = getDestinationState(event,state,null,descr,requirements_description,trans);
-				Integer dest_id = states_id.get(dest_state);
-				trans.setId(id_events.get(event));
-				transitions.add(trans);
-				src_label_dest_transitions_map.put(trans.hashCode(), trans);
-				updateTransitions3(Transition.hashCode(src, event),dest_id);
-
-
-				nb_of_transitions.add(1);
-			}
-		}
-	}		
-}*/
 
 /*private HashMap<String, String> getDestinationState(String event, 
 		HashMap<String, String> state, 
@@ -1106,40 +1106,8 @@ private boolean applicable(ActionDescription descr, HashMap<String, String> stat
 
 	add(state, fluents_array.get(index.intValue()), fluents_array, index, nb_fluents, state_nb);
 	System.out.println("\nnumber of states="+states.size()+"\n");
-}*/
-
-/*private void add(HashMap<String, String> state, 
-		StateVariableDescription fluentDescription, 
-		ArrayList<StateVariableDescription> fluents_array, 
-		MutableInt index,
-		int total, MutableInt state_nb) {
-
-	String name = fluentDescription.getName();
-	Set<String> domain = fluentDescription.getDomain();
-	Iterator<String> it = domain.iterator();
-	if(index.intValue()==total-1){
-		while(it.hasNext()){
-			String value = it.next();
-			state.put(name, value);
-			HashMap<String,String> temp_st = new HashMap<String,String>();
-			temp_st = (HashMap<String, String>) state.clone();
-			//System.out.println(state.toString()+"\n\n");
-			states.put(state_nb.toInteger(), temp_st);
-			states_id.put(temp_st,state_nb.toInteger());
-			state_nb.add(1);
-			//System.out.println(states.toString()+"\n\n");
-		} 
-		index.subtract(1);
-	} else {
-		while(it.hasNext()){
-			String value = it.next();
-			state.put(name,value);
-			index.add(1);
-			add(state,fluents_array.get(index.intValue()), fluents_array, index, total, state_nb);
-		} 
-		index.subtract(1);
-	}
 }
+
  */
 
 
