@@ -1472,7 +1472,7 @@
         </ownedStyle>
         <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@subNodeMappings[name='EC%20EAttribute']"/>
       </ownedElements>
-      <ownedElements xmi:type="diagram:DNodeListElement" xmi:id="_MnX_wBt_EeeGfof52nvISQ" name="reward : EIntegerObject" tooltipText="">
+      <ownedElements xmi:type="diagram:DNodeListElement" xmi:id="_MnX_wBt_EeeGfof52nvISQ" name="reward : EIntegerObject = 100" tooltipText="">
         <target xmi:type="ecore:EAttribute" href="AdaptiveCyberDefense.ecore#//Requirement/reward"/>
         <semanticElements xmi:type="ecore:EAttribute" href="AdaptiveCyberDefense.ecore#//Requirement/reward"/>
         <ownedStyle xmi:type="diagram:BundledImage" xmi:id="_R62EgBt_EeeGfof52nvISQ" labelAlignment="LEFT" description="_oiotkBt7Eeeobc1oZnWsww">

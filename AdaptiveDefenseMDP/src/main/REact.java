@@ -30,7 +30,7 @@ public class REact {
 	/*
 	 * 			MAIN CONFIGURATION OPTIONS
 	 */
-	static String descriptionFileName = "toy_example.AdaptiveCyberDefense";
+	static String descriptionFileName = "2.exogenous_events_a.AdaptiveCyberDefense";
 
 	static public String dotOption = Graphviz_Writer.SHOW_ALL;
 
@@ -40,7 +40,7 @@ public class REact {
 	static String files_location = "/Users/yehia/Documents/GraphivFilesReact/";
 
 	static Path domain_description_location = Paths.get( "Users","yehia","Documents",
-			"runtime-EclipseApplication","ReactV3",
+			"runtime-EclipseApplication","ReactV4-PaperExamples",
 			descriptionFileName);
 
 	static public String noop_event_identifier = "noop";
@@ -96,12 +96,15 @@ public class REact {
 
 		double[][] ex_tm = solver.buildExogeousEventsMatrix(lts.getExogenous_events_id(), lts.getOccurrence_vectors(),lts.getExo_events_transitions_map());
 		LOGGER.info("The exogenous event matrix PrE = PrE1 x...x PrEn is computed");
+		LOGGER.trace("The exogenous event matrix \n"+print(ex_tm));
 
 		double[][][] tm = solver.buildTransitionMatrix(lts.getCtrl_actions_transitions_map(),ex_tm);
 		LOGGER.info("The Transition Matrix of the MDP is created");
+		LOGGER.trace("The transition matrix \n"+print(tm));
 
 		double[][][] rm = solver.buildRewardMatrix(tm, lts.getRequirements_description(),lts.getActionDescriptions(),lts.getId_control_events(),lts.getStates());
 		LOGGER.info("The Reward Matrix of the MDP is created");
+		LOGGER.trace("The reward matrix \n"+print(rm));
 
 		solver.checkInput();
 
@@ -136,6 +139,36 @@ public class REact {
 		//LOGGER.info("The value vector based on security goals is computed");
 
 		//computeTradeOffStrategyAndPlan(valueA,valueO);
+	}
+
+	private static String print(double[][][] tm) {
+		StringBuilder str = new StringBuilder();
+		int nb_of_states = tm.length;
+		int nb_of_actions = tm[0][0].length;
+		for(int k =0; k<nb_of_actions;k++){
+			str.append("\nAction "+k+"\n");
+			for(int i=0; i<nb_of_states;i++) {
+				for(int j =0; j< nb_of_states;j++) {
+					str.append(tm[i][j][k]);
+					str.append(" ");
+				}
+				str.append("\n");
+			}
+		}
+		return str.toString();
+	}
+
+	private static String print(double[][] ex_tm) {
+		StringBuilder str = new StringBuilder();
+		int nb_of_states = ex_tm.length;
+		for(int i=0; i<nb_of_states;i++) {
+			for(int j =0; j< nb_of_states;j++) {
+				str.append(ex_tm[i][j]);
+				str.append(" ");
+			}
+			str.append("\n");
+		}
+		return str.toString();
 	}
 
 	private static void initializeFileNames(String name) {

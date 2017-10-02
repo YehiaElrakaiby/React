@@ -320,7 +320,7 @@ public class Graphviz_Writer {
 		}
 	}
 
-	private static void writeTransitions_original(
+	/*private static void writeTransitions_original(
 			HashMap<Integer, String> id_controlEvents, 
 			double[][][] tm, 
 			double[][][] rm) {
@@ -356,7 +356,7 @@ public class Graphviz_Writer {
 				}
 			}
 		}	
-	}
+	}*/
 
 	private static void writeTransitions(
 			HashMap<Integer, String> id_controlEvents, 

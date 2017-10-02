@@ -162,6 +162,9 @@ public class MDPSolver {
 
 	public void solveMDP() {
 		try {
+			//ml.eval("P");
+			//ml.eval("R");
+
 			ml.eval("[V,policy,iter,cpu_time]=mdp_policy_iteration(P,R,discount);");
 
 			Future<double[]> future_v = ml.getVariableAsync("V");
@@ -459,7 +462,26 @@ public class MDPSolver {
 				}
 			}
 		}
-		return rm;
+		try {
+			ml.putVariableAsync("R", rm);
+		} catch (IllegalStateException | InterruptedException | ExecutionException e) {
+			LOGGER.error("Problem creating reward matrix in matlab \n"+e.getMessage());
+			e.printStackTrace();
+		}	
+
+
+		//retrieve the reward matrix R from matlab
+
+		Future<double[][][]> future_r;
+		try {
+			future_r = ml.getVariableAsync("R");
+			this.r = future_r.get();
+		} catch (IllegalStateException | InterruptedException | ExecutionException e) {
+			LOGGER.error("Problem retrieving EXTM from MatLab \n"+e.getMessage());
+			e.printStackTrace();
+		}
+		return r;
+		//return rm;
 	}
 
 	private BigDecimal reward_ua(
