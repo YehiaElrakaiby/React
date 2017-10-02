@@ -30,7 +30,7 @@ public class REact {
 	/*
 	 * 			MAIN CONFIGURATION OPTIONS
 	 */
-	static String descriptionFileName = "test_state_construction1.AdaptiveCyberDefense";
+	static String descriptionFileName = "2.exogenous_events_b.AdaptiveCyberDefense";
 
 	static public String dotOption = Graphviz_Writer.SHOW_ALL;
 

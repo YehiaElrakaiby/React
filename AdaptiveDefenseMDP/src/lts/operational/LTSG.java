@@ -7,6 +7,7 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.Set;
 import java.util.TreeSet;
+import java.util.ArrayList;
 
 import org.apache.commons.lang.mutable.MutableInt;
 import org.apache.logging.log4j.LogManager;
@@ -255,7 +256,6 @@ public class LTSG {
 		for(Requirement requirement : eList) {
 			HashSet<String> domain = new HashSet<String>();
 			String name = requirement.getName();
-			//System.out.println(name);
 			RequirementDescription descr = new RequirementDescription();
 
 			if(requirement.getClass().getName().endsWith(".UAImpl")){
@@ -310,32 +310,34 @@ public class LTSG {
 			/**
 			 * add requirements and their domains to domain variables
 			 */
-			variables_domain.put(name,domain);
+			if(!domain.isEmpty()) {
+				variables_domain.put(name,domain);
+				nb_of_states = nb_of_states * domain.size();
+			}
 
-			nb_of_states = nb_of_states * domain.size();
 		}
 	}
 
 	private void generateStatesFromFluentDescriptions() {
-
-		// number of fluents
-
+		/*
+		 * number of fluents
+		 */
 		int nb_fluents = variables_domain.size();
-
-		// array index
-
+		/*
+		 * array index
+		 */
 		MutableInt index = new MutableInt(0);
-
-		// number used as state identifier
-
+		/*
+		 * number used as state identifier
+		 */
 		MutableInt state_nb = new MutableInt(0);
 
-
-		// 1. Create and fill an array of fluent descriptions from fluent_descriptions
-
+		/* 
+		 * 1. Create and fill an array of fluent descriptions from fluent_descriptions
+		 */
 		Set<String> keys = variables_domain.keySet();
 		Iterator<String> it = keys.iterator();
-		java.util.ArrayList<StateVariableDescription> fluents_array = new java.util.ArrayList<StateVariableDescription>();
+		ArrayList<StateVariableDescription> fluents_array = new ArrayList<StateVariableDescription>();
 		while(it.hasNext()){
 			String name = it.next();
 			HashSet<String> domain = variables_domain.get(name);
@@ -343,25 +345,29 @@ public class LTSG {
 			fluents_array.add(fluent_description);
 		}
 
-
-		// 2. Create a HashMap<String(fluent),String(value)> to hold the constructed state
+		/*
+		 * 2. Create a HashMap<String(fluent),String(value)> to hold the constructed state
+		 */
 		HashMap<String,String> state = new HashMap<String,String>();
 
-		/* 3. Call a recursive function to construct the states, 
+
+		/*
+		 * 3. Call a recursive function to construct the states, 
 		 * the basic idea of the function is to construct one initial state 
 		 * and then change the value of one state variable to compute a new state
 		 * and repeat this until all possibilities are exhausted and all states are computed
-		 * This function fills both the states and states_id hashmaps*/
-
+		 * This function fills both the states and states_id hashmaps
+		 */
 		add(state, fluents_array.get(index.intValue()), fluents_array, index, nb_fluents, state_nb);
 		System.out.println("\nnumber of states="+states.size()+"\n");
-
 	}
+
 	private void add(HashMap<String, String> state, 
 			StateVariableDescription fluentDescription, 
-			java.util.ArrayList<StateVariableDescription> fluents_array, 
+			ArrayList<StateVariableDescription> fluents_array, 
 			MutableInt index,
-			int total, MutableInt state_nb) {
+			int total, 
+			MutableInt state_nb) {
 
 		String name = fluentDescription.getName();
 		Set<String> domain = fluentDescription.getDomain();
@@ -370,8 +376,8 @@ public class LTSG {
 			while(it.hasNext()){
 				String value = it.next();
 				state.put(name, value);
-				HashMap<String,String> temp_st = new HashMap<String,String>();
-				temp_st = (HashMap<String, String>) state.clone();
+				HashMap<String,String> temp_st = new HashMap<String,String>(state);
+				//temp_st = (HashMap<String, String>) state.clone();
 				//System.out.println(state.toString()+"\n\n");
 				states.put(state_nb.toInteger(), temp_st);
 				states_id.put(temp_st,state_nb.toInteger());
@@ -846,10 +852,11 @@ public class LTSG {
 
 
 	public void print() {
-		LOGGER.info("Nb of fluent Descriptions: "+this.variables_domain.size()+"\n");
-		LOGGER.trace("Fluent Descriptions:\n "+this.variables_domain.toString()+"\n");
+		LOGGER.info("Nb of Variable Descriptions: "+this.variables_domain.size()+"\n");
+		LOGGER.trace("Variable Descriptions:\n "+this.variables_domain.toString()+"\n");
 
-		LOGGER.info("Total Number of States: "+this.nb_of_states+"\n");
+		LOGGER.info("Total Number of States Based on Variables and Domain Size: "+this.nb_of_states+"\n");
+		LOGGER.info("Total Number of Computed States: "+this.states.size()+"\n");
 
 		LOGGER.info("Nb of Action Descriptions: "+this.action_descriptions.size()+"\n");
 		LOGGER.trace("Action Descriptions:\n "+this.action_descriptions.toString()+"\n");		
@@ -857,8 +864,8 @@ public class LTSG {
 		LOGGER.info("Nb of States to Explore: "+this.states.size()+"\n");
 		LOGGER.trace("States:\n "+this.states.toString()+"\n");
 
-		LOGGER.info("Nb of Control Events: "+this.control_events.size()+"\n");
-		LOGGER.trace("Controlled Events:\n "+this.control_events_id.toString()+"\n");
+		LOGGER.info("Nb of Action Events: "+this.control_events.size()+"\n");
+		LOGGER.trace("Action Events:\n "+this.control_events_id.toString()+"\n");
 
 		LOGGER.info("Nb of Exogenous Events: "+this.exogenous_events.size()+"\n");
 		LOGGER.trace("Exogenous Events:\n "+this.exogenous_events_id.toString()+"\n");
@@ -887,7 +894,8 @@ public class LTSG {
 			LOGGER.trace(treeSet.toString()+"\n");
 		}
 
-		LOGGER.info("Nb of Transitions: "+this.nb_of_transitions+"\n");
+		LOGGER.info("Nb of Action Transitions + Nb of Event Transitions: "+this.nb_of_transitions+"\n");
+		//LOGGER.info("Nb of Transitions: "+this.nb_of_transitions+"\n");
 
 		LOGGER.info("Nb of Requirements: "+this.requirements_description.size()+"\n");
 		LOGGER.trace("Requirements:\n "+this.requirements_description.toString()+"\n");
