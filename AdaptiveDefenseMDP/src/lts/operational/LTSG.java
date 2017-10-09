@@ -6,6 +6,7 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.Set;
+import java.util.TreeMap;
 import java.util.TreeSet;
 import java.util.ArrayList;
 
@@ -65,7 +66,7 @@ public class LTSG {
 	 * Fluent Description:
 	 *  Mapping variable_name --> Domain(variable) 
 	 */
-	protected HashMap<String, HashSet<String>> variables_domain = new HashMap<String, HashSet<String>> ();
+	protected TreeMap<String, HashSet<String>> variables_domain = new TreeMap<String, HashSet<String>> ();
 
 	/*
 	 * event_description:
@@ -110,6 +111,7 @@ public class LTSG {
 	protected HashMap<Integer, String> id_control_events = new HashMap<Integer, String>();
 	protected HashMap<Integer, HashSet<Transition>> actions_transitions_map = new HashMap<Integer, HashSet<Transition>>();
 
+	protected HashSet<String> event_names = new HashSet<String>();
 	protected HashSet<String> exogenous_events = new HashSet<String>();
 	protected HashMap<String, Integer> exogenous_events_id = new HashMap<String,Integer>();
 	protected HashMap<Integer, String> id_exogenous_events = new HashMap<Integer, String>();
@@ -177,6 +179,8 @@ public class LTSG {
 		readRequirements(description.getRequirements());	
 	}
 	private void readActionDescriptions(EList<ActionDescription> action_descriptions) {
+		HashSet<String> action_domain=new HashSet<String>();
+
 		for(ActionDescription action : action_descriptions) {
 			String name = action.getName() + "=" + action.getValue();
 
@@ -185,11 +189,17 @@ public class LTSG {
 			this.id_control_events.put(nb_of_control_events,name);
 			this.actions_transitions_map.put(nb_of_control_events, new HashSet<Transition>());
 
+			action_domain.add(action.getName());
+
 			this.action_descriptions.put(name, action);
 			this.nb_of_control_events++;
 			//System.out.println(event);
 
 		}
+		action_domain.add("noop");
+		this.variables_domain.put("action", action_domain);
+		nb_of_states = nb_of_states * action_domain.size();
+
 
 	}
 	private void readEventDescriptions(EList<EventDescription> event_descriptions) {
@@ -197,11 +207,19 @@ public class LTSG {
 
 			String event = action.getName() + "=" + action.getValue();
 
+			this.event_names.add(action.getName());
 			this.exogenous_events.add(event);
 			this.exogenous_events_id.put(event,nb_of_exogenous_events);
 			this.id_exogenous_events.put(nb_of_exogenous_events,event);
 			this.exo_events_transitions_map.put(nb_of_exogenous_events, new HashSet<Transition>());
 			this.occurrence_vectors.put(nb_of_exogenous_events, new HashMap<Integer,Double>());
+
+			HashSet<String> event_domain=new HashSet<String>();
+			event_domain.add("tt");
+			event_domain.add("ff");
+			this.variables_domain.put(action.getName(), event_domain);
+
+			nb_of_states = nb_of_states * event_domain.size();
 
 			this.event_descriptions.put(event, action);
 			this.nb_of_exogenous_events++;
@@ -255,8 +273,15 @@ public class LTSG {
 		this.id_control_events.put(nb_of_control_events,ev);
 		this.actions_transitions_map.put(nb_of_control_events, new HashSet<Transition>());
 
+
 		this.action_descriptions.put(ev, descr);
 		this.nb_of_control_events++;	
+
+		//HashSet<String> action_domain=new HashSet<String>();
+		//action_domain.add("tt");
+		//action_domain.add("ff");
+		//this.variables_domain.put("noop", action_domain);
+
 	}
 	private void readRequirements(EList<Requirement> eList) {
 		for(Requirement requirement : eList) {
@@ -464,6 +489,11 @@ public class LTSG {
 				initial_state.put(reqID, "I");
 			}
 		}
+		initial_state.put("action", "noop");
+		for(String event : event_names) {
+			//for(String event :this.exogenous_events) {
+			initial_state.put(event, "ff");
+		}
 	}
 
 	/*
@@ -557,10 +587,14 @@ public class LTSG {
 							updateStateVariables(dst_state,effect);
 						} 
 
-						dst_state.put(descr.getName(), descr.getValue());
+						for(String event :this.event_names) {
+							if(event.equals(descr.getName())) {
+								dst_state.put(event, "tt");
+							} else {
+								dst_state.put(event, "ff");
+							}
+						}
 						updateReqVariablesE(dst_state, requirements_description);
-						dst_state.remove(descr.getName());						
-
 
 						Integer dest_id = updateStates(to_explore,dst_state,state_nb);
 
@@ -592,9 +626,14 @@ public class LTSG {
 
 				HashMap<String, String> dst_state = new HashMap<String, String>(state);
 
-				dst_state.put(descr.getName(), descr.getValue());
+				for(String event :this.event_names) {
+					if(event.equals(descr.getName())) {
+						dst_state.put(event, "tt");
+					} else {
+						dst_state.put(event, "ff");
+					}
+				}
 				updateReqVariables(dst_state, requirements_description);
-				dst_state.remove(descr.getName());						
 
 
 				Integer dest_id = updateStates(to_explore,dst_state,state_nb);
@@ -652,9 +691,12 @@ public class LTSG {
 						} 
 
 
-						dst_state.put(descr.getName(), descr.getValue());
+						for(String event :this.event_names) {
+							dst_state.put(event, "ff");
+						}					
+						dst_state.put("action", descr.getName());
+
 						updateReqVariables(dst_state, requirements_description);
-						dst_state.remove(descr.getName());						
 
 
 						Integer dest_id = updateStates(to_explore,dst_state,state_nb);
@@ -671,10 +713,12 @@ public class LTSG {
 					if(total_prob.compareTo(one)==-1) {
 						HashMap<String, String> dst_state = new HashMap<String, String>(state);
 
-						dst_state.put(descr.getName(), descr.getValue());
+						for(String event :this.event_names) {
+							dst_state.put(event, "ff");
+						}					
+						dst_state.put("action", descr.getName());
 						updateReqVariables(dst_state, requirements_description);
-						dst_state.remove(descr.getName());						
-
+						
 
 						Integer dest_id = updateStates(to_explore,dst_state,state_nb);
 
@@ -688,10 +732,12 @@ public class LTSG {
 			if(!holds) {
 				HashMap<String, String> dst_state = new HashMap<String, String>(state);
 
-				dst_state.put(descr.getName(), descr.getValue());
+				for(String event :this.event_names) {
+					dst_state.put(event, "ff");
+				}					
+				dst_state.put("action", descr.getName());
 				updateReqVariables(dst_state, requirements_description);
-				dst_state.remove(descr.getName());						
-
+				
 				Integer dest_id = updateStates(to_explore,dst_state,state_nb);
 
 				Transition trans = new Transition(action_name,src_id,dest_id,one);

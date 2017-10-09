@@ -15,7 +15,6 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.EObjectImpl;
 
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
@@ -23,8 +22,6 @@ import org.eclipse.emf.ecore.util.InternalEList;
 import org.emftext.language.AdaptiveCyberDefense.ActionDescription;
 import org.emftext.language.AdaptiveCyberDefense.AdaptiveCyberDefensePackage;
 import org.emftext.language.AdaptiveCyberDefense.ContextualEffect;
-import org.emftext.language.AdaptiveCyberDefense.Formula;
-import org.emftext.language.AdaptiveCyberDefense.ProbabilisticEffect;
 
 /**
  * <!-- begin-user-doc -->
