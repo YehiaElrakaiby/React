@@ -159,7 +159,7 @@ public class Transition implements Comparable {
 	public String toString(){
 
 		String  s; 
-		s =  "\n"+"("+src +"<" +event +"(" + probability + ")"+ ">" + dest+")";
+		s =  "("+src +"<" +event +"(" + probability + ")"+ ">" + dest+")";
 
 		return s;
 

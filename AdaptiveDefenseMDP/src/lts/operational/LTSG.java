@@ -60,7 +60,7 @@ public class LTSG {
 	private Integer nb_of_control_events=0;
 	private Integer nb_of_exogenous_events=0;
 	private Integer nb_of_transitions=0;
-
+	private String generation_option;
 	/**
 	 * Fluent Description:
 	 *  Mapping variable_name --> Domain(variable) 
@@ -105,10 +105,10 @@ public class LTSG {
 	/**
 	 * Control and Exogenous Events 
 	 */
-	protected HashSet<String> control_events = new HashSet<String>();
-	protected HashMap<String, Integer> control_events_id = new HashMap<String,Integer>();
+	protected HashSet<String> actions = new HashSet<String>();
+	protected HashMap<String, Integer> actions_id = new HashMap<String,Integer>();
 	protected HashMap<Integer, String> id_control_events = new HashMap<Integer, String>();
-	protected HashMap<Integer, HashSet<Transition>> ctrl_actions_transitions_map = new HashMap<Integer, HashSet<Transition>>();
+	protected HashMap<Integer, HashSet<Transition>> actions_transitions_map = new HashMap<Integer, HashSet<Transition>>();
 
 	protected HashSet<String> exogenous_events = new HashSet<String>();
 	protected HashMap<String, Integer> exogenous_events_id = new HashMap<String,Integer>();
@@ -129,6 +129,7 @@ public class LTSG {
 		/*
 		 *  Initialize
 		 */
+		this.generation_option = option;
 		initialize(description);
 		LOGGER.info("The LTS is initialized");
 
@@ -142,12 +143,17 @@ public class LTSG {
 		 */
 		if(option.equals(FULL)) {
 
-			generateStatesFromFluentDescriptions();
+			generateStatesFromVariables(states,states_id);
 			LOGGER.info("The states are computed");
+
+			HashMap<Integer,HashMap<String,String>> cpy = new HashMap<Integer,HashMap<String,String>>(states);
 
 			generateTransitions(this.requirements_description);
 			LOGGER.info("The transitions are computed");
 
+			if(!cpy.equals(states)) {
+				LOGGER.error("states have modified when computing transitions");
+			}
 		}
 
 		if(option.equals(INITIAL)) {
@@ -174,10 +180,10 @@ public class LTSG {
 		for(ActionDescription action : action_descriptions) {
 			String name = action.getName() + "=" + action.getValue();
 
-			this.control_events.add(name);
-			this.control_events_id.put(name,nb_of_control_events);
+			this.actions.add(name);
+			this.actions_id.put(name,nb_of_control_events);
 			this.id_control_events.put(nb_of_control_events,name);
-			this.ctrl_actions_transitions_map.put(nb_of_control_events, new HashSet<Transition>());
+			this.actions_transitions_map.put(nb_of_control_events, new HashSet<Transition>());
 
 			this.action_descriptions.put(name, action);
 			this.nb_of_control_events++;
@@ -244,10 +250,10 @@ public class LTSG {
 
 		String ev = REact.noop_event_identifier + "=" + descr.getValue();
 
-		this.control_events.add(ev);
-		this.control_events_id.put(ev,nb_of_control_events);
+		this.actions.add(ev);
+		this.actions_id.put(ev,nb_of_control_events);
 		this.id_control_events.put(nb_of_control_events,ev);
-		this.ctrl_actions_transitions_map.put(nb_of_control_events, new HashSet<Transition>());
+		this.actions_transitions_map.put(nb_of_control_events, new HashSet<Transition>());
 
 		this.action_descriptions.put(ev, descr);
 		this.nb_of_control_events++;	
@@ -318,7 +324,10 @@ public class LTSG {
 		}
 	}
 
-	private void generateStatesFromFluentDescriptions() {
+	private HashMap<Integer, HashMap<String, String>> generateStatesFromVariables(
+			HashMap<Integer, HashMap<String, String>> temp_states,
+			HashMap<HashMap<String, String>, Integer> temp_states_id) {
+
 		/*
 		 * number of fluents
 		 */
@@ -358,8 +367,9 @@ public class LTSG {
 		 * and repeat this until all possibilities are exhausted and all states are computed
 		 * This function fills both the states and states_id hashmaps
 		 */
-		add(state, fluents_array.get(index.intValue()), fluents_array, index, nb_fluents, state_nb);
-		System.out.println("\nnumber of states="+states.size()+"\n");
+		add(state, fluents_array.get(index.intValue()), fluents_array, index, nb_fluents, state_nb, temp_states, temp_states_id);
+		System.out.println("\nnumber of states="+temp_states.size()+"\n");
+		return temp_states;
 	}
 
 	private void add(HashMap<String, String> state, 
@@ -367,7 +377,9 @@ public class LTSG {
 			ArrayList<StateVariableDescription> fluents_array, 
 			MutableInt index,
 			int total, 
-			MutableInt state_nb) {
+			MutableInt state_nb, 
+			HashMap<Integer, HashMap<String, String>> temp_states, 
+			HashMap<HashMap<String, String>, Integer> temp_states_id) {
 
 		String name = fluentDescription.getName();
 		Set<String> domain = fluentDescription.getDomain();
@@ -377,12 +389,10 @@ public class LTSG {
 				String value = it.next();
 				state.put(name, value);
 				HashMap<String,String> temp_st = new HashMap<String,String>(state);
-				//temp_st = (HashMap<String, String>) state.clone();
-				//System.out.println(state.toString()+"\n\n");
-				states.put(state_nb.toInteger(), temp_st);
-				states_id.put(temp_st,state_nb.toInteger());
+				temp_states.put(state_nb.toInteger(), temp_st);
+				temp_states_id.put(temp_st,state_nb.toInteger());
 				state_nb.add(1);
-				//System.out.println(states.toString()+"\n\n");
+				System.out.println(state_nb.toInteger() + " " +temp_st.toString()+"\n");
 			} 
 			index.subtract(1);
 		} else {
@@ -390,7 +400,7 @@ public class LTSG {
 				String value = it.next();
 				state.put(name,value);
 				index.add(1);
-				add(state,fluents_array.get(index.intValue()), fluents_array, index, total, state_nb);
+				add(state,fluents_array.get(index.intValue()), fluents_array, index, total, state_nb, temp_states, temp_states_id);
 			} 
 			index.subtract(1);
 		}
@@ -417,9 +427,9 @@ public class LTSG {
 			Integer state_id = it.next();
 			HashMap<String, String> state = states.get(state_id);
 			MutableInt state_nb=new MutableInt(state_id);
-			
-			updateControlTransitionsFromState(state,state_nb,to_explore);
-			updateEventTransitionsFromState(state,state_nb,to_explore);
+
+			findActionTransitionsFromState(state,state_nb,to_explore);
+			findEventTransitionsFromState(state,state_nb,to_explore);
 
 		}
 	}
@@ -488,15 +498,12 @@ public class LTSG {
 			 * get one of the states in to_explore
 			 */
 			HashMap<String, String> state = states.get(to_explore.remove());
-			updateControlTransitionsFromState(state,state_nb,to_explore);
-			updateEventTransitionsFromState(state,state_nb,to_explore);
-
+			findActionTransitionsFromState(state,state_nb,to_explore);
+			findEventTransitionsFromState(state,state_nb,to_explore);
 		}
-
-
 	}
 
-	private void updateEventTransitionsFromState(
+	private void findEventTransitionsFromState(
 			HashMap<String, String> state, 
 			MutableInt state_nb,
 			LinkedList<Integer> to_explore) {
@@ -551,7 +558,7 @@ public class LTSG {
 						} 
 
 						dst_state.put(descr.getName(), descr.getValue());
-						updateReqVariables(dst_state, requirements_description);
+						updateReqVariablesE(dst_state, requirements_description);
 						dst_state.remove(descr.getName());						
 
 
@@ -560,7 +567,7 @@ public class LTSG {
 
 						Transition trans = new Transition(event_name,src_id,dest_id,prob);
 						event_transitions.add(trans);
-						
+
 						total_prob = total_prob.add(effect.getProbability());
 
 					}
@@ -568,7 +575,7 @@ public class LTSG {
 						HashMap<String, String> dst_state = new HashMap<String, String>(state);
 
 						dst_state.put(descr.getName(), descr.getValue());
-						updateReqVariables(dst_state, requirements_description);
+						updateReqVariablesE(dst_state, requirements_description);
 						dst_state.remove(descr.getName());
 
 						Integer dest_id = updateStates(to_explore,dst_state,state_nb);
@@ -600,7 +607,7 @@ public class LTSG {
 		}
 	}
 
-	private void updateControlTransitionsFromState(HashMap<String, String> state, MutableInt state_nb, LinkedList<Integer> to_explore) {
+	private void findActionTransitionsFromState(HashMap<String, String> state, MutableInt state_nb, LinkedList<Integer> to_explore) {
 		Integer src_id = states_id.get(state);
 		/*
 		 * iterate over actions, for every action a, 
@@ -612,11 +619,11 @@ public class LTSG {
 		 * 2) update the transition matrix of a
 		 * 3) update the to_explore, states and states_id structures
 		 */
-		for( String action_name:this.control_events) {
+		for( String action_name:this.actions) {
 			ActionDescription descr = this.action_descriptions.get(action_name);
-			Integer action_id = control_events_id.get(action_name);
+			Integer action_id = actions_id.get(action_name);
 			EList<ContextualEffect> contextual_effects = descr.getContextual_effects();
-			HashSet<Transition> action_transitions = this.ctrl_actions_transitions_map.get(action_id);
+			HashSet<Transition> action_transitions = this.actions_transitions_map.get(action_id);
 			BigDecimal one = new BigDecimal(1);
 			Boolean holds= false;
 			EList<ProbabilisticEffect> effects=null;
@@ -709,16 +716,18 @@ public class LTSG {
 			LinkedList<Integer> to_explore, 
 			HashMap<String, String> dest_state, 
 			MutableInt state_nb) {
-		Integer dest;
-		if(!states_id.containsKey(dest_state)) {
+		Integer dest=-1;
+		if(!states_id.containsKey(dest_state) && this.generation_option==this.INITIAL) {
 			state_nb.add(1);
 			dest = state_nb.toInteger();
 			states.put(state_nb.toInteger(), dest_state);
 			states_id.put(dest_state, state_nb.toInteger());
 			to_explore.add(state_nb.toInteger());
-		} else {
+		} else if (states_id.containsKey(dest_state)){
 			dest = states_id.get(dest_state);
-		}		
+		}	else {
+			LOGGER.error("Transition Generation Problem: An Unknown Destination State Encountered! "+dest_state.toString());
+		}
 		return dest;
 	}
 
@@ -771,6 +780,44 @@ public class LTSG {
 	}
 
 
+	private void updateReqVariablesE(HashMap<String, String> state,  
+			HashMap<String, RequirementDescription> requirements_description) {
+		Iterator<String> it = requirements_description.keySet().iterator();
+		RequirementDescription req;
+		while(it.hasNext()) {
+			String reqID = it.next();
+			req = requirements_description.get(reqID);
+			if(req.getType().equals("ua")){
+				EReqStateUpd.updateUAReqAtomInState(state,req);
+			} else if(req.getType().equals("ca")){
+				EReqStateUpd.updateCAReqAtomInState(state,req);
+			} else if(req.getType().equals("dfa")){
+				EReqStateUpd.updateDFAReqAtomInState(state,req);
+			} else if(req.getType().equals("dea")){
+				EReqStateUpd.updateDEAReqAtomInState(state,req);
+			}  else if(req.getType().equals("um")){
+				EReqStateUpd.updateUMReqAtomInState(state,req);
+			} else if(req.getType().equals("cm")){
+				EReqStateUpd.updateCMReqAtomInState(state,req);
+			} else if(req.getType().equals("dfm")){
+				EReqStateUpd.updateDFMReqAtomInState(state,req);
+			} else if(req.getType().equals("dem")){
+				EReqStateUpd.updateDEMReqAtomInState(state,req);
+			} else if(req.getType().equals("pm")){
+				EReqStateUpd.updatePMReqAtomInState(state,req);
+			} else if(req.getType().equals("rpm")){
+				EReqStateUpd.updateRPMReqAtomInState(state,req);
+			} else if(req.getType().equals("pdem")){
+				EReqStateUpd.updatePDEMReqAtomInState(state,req);
+			} else if(req.getType().equals("rpdem")){
+				EReqStateUpd.updateRPDEMReqAtomInState(state,req);
+			} else if(req.getType().equals("pdfm")) {
+				EReqStateUpd.updatePDFMReqAtomInState(state,req);
+			} else if(req.getType().equals("rpdfm")){
+				EReqStateUpd.updateRPDFMReqAtomInState(state,req);
+			} 
+		}
+	}
 
 
 
@@ -790,7 +837,7 @@ public class LTSG {
 	}
 
 	public HashMap<String, Integer> getControl_events_id() {
-		return control_events_id;
+		return actions_id;
 	}
 
 	public Integer getNumberOfStates() {
@@ -810,15 +857,15 @@ public class LTSG {
 	}
 
 	public HashSet<String> getControl_events() {
-		return control_events;
+		return actions;
 	}
 
 	public void setControl_events(HashSet<String> control_events) {
-		this.control_events = control_events;
+		this.actions = control_events;
 	}
 
 	public HashMap<Integer, HashSet<Transition>> getCtrl_actions_transitions_map() {
-		return ctrl_actions_transitions_map;
+		return actions_transitions_map;
 	}
 
 	public HashSet<String> getExogenous_events() {
@@ -834,7 +881,7 @@ public class LTSG {
 	}
 
 	public void setControl_events_id(HashMap<String, Integer> control_events_id) {
-		this.control_events_id = control_events_id;
+		this.actions_id = control_events_id;
 	}
 
 	public void setExogenous_events_id(HashMap<String, Integer> exogenous_events_id) {
@@ -842,7 +889,7 @@ public class LTSG {
 	}
 
 	public Integer getNbActions() {
-		return this.control_events.size();
+		return this.actions.size();
 	}
 
 	public HashMap<String, ActionDescription> getActionDescriptions() {
@@ -858,30 +905,65 @@ public class LTSG {
 		LOGGER.info("Total Number of States Based on Variables and Domain Size: "+this.nb_of_states+"\n");
 		LOGGER.info("Total Number of Computed States: "+this.states.size()+"\n");
 
+		StringBuilder str = print(states);
+		LOGGER.trace(str.toString());
+
+		if(this.states.size()>this.nb_of_states){
+			HashMap<Integer,HashMap<String,String>> temp_states = new HashMap<Integer,HashMap<String,String>>();
+			HashMap<HashMap<String,String>,Integer> temp_states_id = new HashMap<HashMap<String,String>,Integer>();
+
+			this.generateStatesFromVariables(temp_states, temp_states_id);
+
+			str = print(temp_states);
+
+			LOGGER.trace(str.toString());
+
+			LOGGER.error("Number of computed states exceeds the maximum number of states");
+		}
+
+
 		LOGGER.info("Nb of Action Descriptions: "+this.action_descriptions.size()+"\n");
-		LOGGER.trace("Action Descriptions:\n "+this.action_descriptions.toString()+"\n");		
+		//LOGGER.trace("Action Descriptions:\n "+this.action_descriptions.toString()+"\n");		
 
-		LOGGER.info("Nb of States to Explore: "+this.states.size()+"\n");
-		LOGGER.trace("States:\n "+this.states.toString()+"\n");
+		LOGGER.info("Nb of Actions: "+this.actions.size()+"\n");
 
-		LOGGER.info("Nb of Action Events: "+this.control_events.size()+"\n");
-		LOGGER.trace("Action Events:\n "+this.control_events_id.toString()+"\n");
+		str = new StringBuilder();
+		str.append("Actions:\n");
+		for(String action_name:actions) {
+			str.append(actions_id.get(action_name)+" "+action_name+"\n");
+		}
+		LOGGER.trace(str.toString());
 
 		LOGGER.info("Nb of Exogenous Events: "+this.exogenous_events.size()+"\n");
-		LOGGER.trace("Exogenous Events:\n "+this.exogenous_events_id.toString()+"\n");
+
+		str = new StringBuilder();
+		str.append("Exogenous Events:\n");
+		for(String event_name:exogenous_events) {
+			str.append(exogenous_events_id.get(event_name)+" "+event_name+"\n");
+		}
+		LOGGER.trace(str.toString());
 
 
 		//LOGGER.trace("Transitions:\n "+this.transitions.toString()+"\n");
-		Iterator<Integer> it = this.ctrl_actions_transitions_map.keySet().iterator();
+		Iterator<Integer> it = this.actions_transitions_map.keySet().iterator();
 		while(it.hasNext()) {
 			Integer key = it.next();
-			HashSet<Transition> set = ctrl_actions_transitions_map.get(key);
+			HashSet<Transition> set = actions_transitions_map.get(key);
 			TreeSet<Transition> treeSet = new TreeSet<Transition>(set);
+			int nb_trans = set.size();
+			this.nb_of_transitions += nb_trans;
 
-			this.nb_of_transitions += set.size();
-			LOGGER.trace("Transitions of "+this.id_control_events.get(key)+"\n");
-			LOGGER.trace(treeSet.toString()+"\n");
-
+			str = new StringBuilder();
+			str.append("Transitions of "+this.id_control_events.get(key)+"\n");
+			Transition trans = treeSet.pollFirst();
+			while(trans!=null) {
+				if(!trans.getDest().equals(trans.getSrc())) {
+					str.append("### ");
+				}
+				str.append(trans.toString()+"\n");
+				trans = treeSet.pollFirst();
+			}
+			LOGGER.trace(str.toString()+"\n");
 		}
 		it = this.exo_events_transitions_map.keySet().iterator();
 		while(it.hasNext()) {
@@ -890,8 +972,18 @@ public class LTSG {
 			this.nb_of_transitions += set.size();
 			TreeSet<Transition> treeSet = new TreeSet<Transition>(set);
 
-			LOGGER.trace("Transitions of "+this.id_exogenous_events.get(key)+"\n");
-			LOGGER.trace(treeSet.toString()+"\n");
+			str = new StringBuilder();
+			str.append("Transitions of "+this.id_exogenous_events.get(key)+"\n");
+			Transition trans = treeSet.pollFirst();
+			while(trans!=null) {
+				if(!trans.getDest().equals(trans.getSrc())) {
+					str.append("### ");
+				}
+				str.append(trans.toString()+"\n");
+				trans = treeSet.pollFirst();
+			}
+			LOGGER.trace(str.toString()+"\n");
+
 		}
 
 		LOGGER.info("Nb of Action Transitions + Nb of Event Transitions: "+this.nb_of_transitions+"\n");
@@ -900,6 +992,17 @@ public class LTSG {
 		LOGGER.info("Nb of Requirements: "+this.requirements_description.size()+"\n");
 		LOGGER.trace("Requirements:\n "+this.requirements_description.toString()+"\n");
 
+	}
+
+	private StringBuilder print(HashMap<Integer, HashMap<String, String>> temp_states) {
+		StringBuilder str = new StringBuilder();
+		str.append("States:\n ");
+
+		for(int i =0; i<states.size();i++) {
+			str.append("state "+i+" " + states.get(i).toString()+"\n");
+		}
+		LOGGER.trace(str.toString());
+		return str;
 	}
 
 }

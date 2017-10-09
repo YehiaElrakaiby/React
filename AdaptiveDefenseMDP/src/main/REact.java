@@ -30,11 +30,11 @@ public class REact {
 	/*
 	 * 			MAIN CONFIGURATION OPTIONS
 	 */
-	static String descriptionFileName = "2.exogenous_events_b.AdaptiveCyberDefense";
+	static String descriptionFileName = "3.trade_offs_a3.AdaptiveCyberDefense";
 
 	static public String dotOption = Graphviz_Writer.SHOW_ALL;
 
-	static String generationOption = LTSG.FULL;
+	static String generationOption = LTSG.INITIAL;
 	/*
 	 * 			OTHER CONFIGURATION OPTIONS
 	 */
@@ -101,11 +101,11 @@ public class REact {
 
 		double[][][] tm = solver.buildTransitionMatrix(lts.getCtrl_actions_transitions_map(),ex_tm);
 		LOGGER.info("The Transition Matrix of the MDP is created");
-		LOGGER.trace("The transition matrix \n"+print(tm));
+		//LOGGER.trace("The transition matrix \n"+print(tm));
 
 		double[][][] rm = solver.buildRewardMatrix(tm, lts.getRequirements_description(),lts.getActionDescriptions(),lts.getId_control_events(),lts.getStates());
 		LOGGER.info("The Reward Matrix of the MDP is created");
-		LOGGER.trace("The reward matrix \n"+print(rm));
+		//LOGGER.trace("The reward matrix \n"+print(rm));
 
 		solver.checkInput();
 

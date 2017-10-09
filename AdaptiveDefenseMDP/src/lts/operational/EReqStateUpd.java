@@ -4,7 +4,7 @@ import java.util.HashMap;
 
 import resources.RequirementDescription;
 
-final public class ReqStateUpd {
+final public class EReqStateUpd {
 
 	static public void updateCAReqAtomInState(
 			HashMap<String, String> state, 
@@ -63,10 +63,7 @@ final public class ReqStateUpd {
 				state.put(req_id, "I");
 			} else if (status.equals("A-0")){
 				state.put(req_id, "I");
-			} else {
-				Integer remainingTime = new Integer(status.substring(2));
-				state.put(req_id, "A-"+(remainingTime-1));
-			}
+			} 
 
 		} 
 
@@ -102,10 +99,7 @@ final public class ReqStateUpd {
 				state.put(req_id, "I");
 			} else if (status.equals("A-0")){
 				state.put(req_id, "I");
-			} else {
-				Integer remainingTime = new Integer(status.substring(2));
-				state.put(req_id, "A-"+(remainingTime-1));
-			}
+			} 
 		} 	
 	}
 	
@@ -175,10 +169,7 @@ final public class ReqStateUpd {
 				state.put(req_id, "I");
 			} else if (status.equals("A-0")){
 				state.put(req_id, "R");
-			} else  {
-				Integer remainingTime = new Integer(status.substring(2));
-				state.put(req_id, "A-"+(remainingTime-1));
-			}
+			} 
 		}
 
 		if(status.startsWith("R")){
@@ -227,10 +218,7 @@ final public class ReqStateUpd {
 				 */
 			} else if (status.equals("A-0")){
 				state.put(req_id, "R");
-			} else  {
-				Integer remainingTime = new Integer(status.substring(2));
-				state.put(req_id, "A-"+(remainingTime-1));
-			}
+			} 
 		}
 
 		if(status.startsWith("R")){
@@ -280,9 +268,6 @@ final public class ReqStateUpd {
 				state.put(req_id, "I");
 			} else if (status.equals("R-0")){
 				state.put(req_id, "I");
-			} else {
-				Integer remainingTime = new Integer(status.substring(2));
-				state.put(req_id, "R-"+(remainingTime-1));
 			}
 		}		
 	}
@@ -328,10 +313,7 @@ final public class ReqStateUpd {
 				state.put(req_id, "I");
 			} else if (status.equals("R-0")){
 				state.put(req_id, "I");
-			} else {
-				Integer remainingTime = new Integer(status.substring(2));
-				state.put(req_id, "R-"+(remainingTime-1));
-			}
+			} 
 		}		
 	}
 	static public void updatePDFMReqAtomInState(
@@ -367,10 +349,7 @@ final public class ReqStateUpd {
 				state.put(req_id, "I");
 			} else  if (status.equals("A-0")){
 				state.put(req_id, "R-"+(req.getDuration()-1));
-			} else  {
-				Integer remainingTime = new Integer(status.substring(2));
-				state.put(req_id, "A-"+(remainingTime-1));
-			}
+			} 
 		}
 
 		if(status.startsWith("R-")){
@@ -378,10 +357,7 @@ final public class ReqStateUpd {
 				state.put(req_id, "I");
 			} else if (status.equals("R-0")){
 				state.put(req_id, "I");
-			} else {
-				Integer remainingTime = new Integer(status.substring(2));
-				state.put(req_id, "R-"+(remainingTime-1));
-			}
+			} 
 		}
 	} 
 	static public void updateRPDFMReqAtomInState(
@@ -423,10 +399,7 @@ final public class ReqStateUpd {
 				 */
 			} else  if (status.equals("A-0")){
 				state.put(req_id, "R-"+(req.getDuration()-1));
-			} else  {
-				Integer remainingTime = new Integer(status.substring(2));
-				state.put(req_id, "A-"+(remainingTime-1));
-			}
+			} 
 		}
 
 		if(status.startsWith("R-")){
@@ -434,10 +407,7 @@ final public class ReqStateUpd {
 				state.put(req_id, "I");
 			} else if (status.equals("R-0")){
 				state.put(req_id, "I");
-			} else {
-				Integer remainingTime = new Integer(status.substring(2));
-				state.put(req_id, "R-"+(remainingTime-1));
-			}
+			} 
 		}
 	}
 	static public void updatePDEMReqAtomInState(
@@ -473,10 +443,7 @@ final public class ReqStateUpd {
 				state.put(req_id, "I");
 			} else if (status.equals("A-0")) {
 				state.put(req_id, "R-"+(req.getDuration()-1));
-			} else  {
-				Integer remainingTime = new Integer(status.substring(2));
-				state.put(req_id, "A-"+(remainingTime-1));
-			}
+			} 
 		}
 
 		if(status.startsWith("R-")){
@@ -486,10 +453,7 @@ final public class ReqStateUpd {
 				state.put(req_id, "I");
 			} else if (status.equals("R-0")){
 				state.put(req_id, "I");
-			} else {
-				Integer remainingTime = new Integer(status.substring(2));
-				state.put(req_id, "R-"+(remainingTime-1));
-			}
+			} 
 		}		
 	}
 	static public void updateRPDEMReqAtomInState(
@@ -527,10 +491,7 @@ final public class ReqStateUpd {
 				state.put(req_id, "R-"+(req.getDuration()-1));
 			} else  if (status.equals("A-0")){
 				state.put(req_id, "R-"+(req.getDuration()-1));
-			} else  {
-				Integer remainingTime = new Integer(status.substring(2));
-				state.put(req_id, "A-"+(remainingTime-1));
-			}
+			} 
 		}
 
 		if(status.startsWith("R-")){
@@ -541,10 +502,7 @@ final public class ReqStateUpd {
 
 			} else if (status.equals("R-0")){
 				state.put(req_id, "I");
-			} else {
-				Integer remainingTime = new Integer(status.substring(2));
-				state.put(req_id, "R-"+(remainingTime-1));
-			}
+			} 
 		}		
 	}
 
