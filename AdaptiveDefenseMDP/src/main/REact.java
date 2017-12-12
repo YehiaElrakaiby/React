@@ -30,11 +30,11 @@ public class REact {
 	/*
 	 * 			MAIN CONFIGURATION OPTIONS
 	 */
-	static String descriptionFileName = "3.trade_offs_a3.AdaptiveCyberDefense";
+	static String descriptionFileName = "toy_example2.AdaptiveCyberDefense";
 
 	static public String dotOption = Graphviz_Writer.SHOW_ALL;
 
-	static String generationOption = LTSG.INITIAL;
+	static String generationOption = LTSG.FULL;
 	/*
 	 * 			OTHER CONFIGURATION OPTIONS
 	 */
@@ -91,18 +91,29 @@ public class REact {
 		LOGGER.info("The labeled transition system LTSG created");
 
 		lts.print();
-
+		/*
+		 * Initialize the MDPSolver class
+		 */
 		solver = new MDPSolver(lts.getNumberOfStates(),lts.getNbActions());
 		LOGGER.info("The MDP Solver is initialized");
 
+		/*
+		 * Build the exogenous events matrix PrE based on the transition matrix of exogenous events PrE1,...,PrEn 
+		 */
 		double[][] ex_tm = solver.buildExogeousEventsMatrix(lts.getExogenous_events_id(), lts.getOccurrence_vectors(),lts.getExo_events_transitions_map());
 		LOGGER.info("The exogenous event matrix PrE = PrE1 x...x PrEn is computed");
 		LOGGER.trace("The exogenous event matrix \n"+print(ex_tm));
 
+		/*
+		 * Build the implicit transition matrix
+		 */
 		double[][][] tm = solver.buildTransitionMatrix(lts.getCtrl_actions_transitions_map(),ex_tm);
 		LOGGER.info("The Transition Matrix of the MDP is created");
 		//LOGGER.trace("The transition matrix \n"+print(tm));
 
+		/*
+		 * Construct the reward matrix
+		 */
 		double[][][] rm = solver.buildRewardMatrix(tm, lts.getRequirements_description(),lts.getActionDescriptions(),lts.getId_control_events(),lts.getStates());
 		LOGGER.info("The Reward Matrix of the MDP is created");
 		//LOGGER.trace("The reward matrix \n"+print(rm));
@@ -114,6 +125,9 @@ public class REact {
 		Graphviz_Writer.create(files_location+ltsFileName, lts.getStates(), lts.getId_control_events(), tm, rm, dotOption);
 		LOGGER.info("The LTS Graphviz file is created");
 
+		/*
+		 * Solve the MDP and compute the policy and value functions
+		 */
 		solver.solveMDP();
 		double[] policy = solver.getPolicy();
 		double[] value = solver.getValue();

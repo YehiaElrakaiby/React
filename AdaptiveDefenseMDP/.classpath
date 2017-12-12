@@ -33,12 +33,12 @@
 	<classpathentry kind="lib" path="/Users/yehia/Library/Mobile Documents/com~apple~CloudDocs/Software Development/JarFiles/commons-collections4-4.1.jar"/>
 	<classpathentry kind="lib" path="/Users/yehia/Library/Mobile Documents/com~apple~CloudDocs/Software Development/JarFiles/engine.jar"/>
 	<classpathentry kind="src" path="/org.emftext.language.AdaptiveCyberDefense"/>
-	<classpathentry kind="lib" path="/Users/yehia/Downloads/org.eclipse.emf.common-2.12.0.jar"/>
-	<classpathentry kind="lib" path="/Users/yehia/Downloads/org-apache-commons-lang.jar"/>
 	<classpathentry kind="con" path="org.eclipse.m2e.MAVEN2_CLASSPATH_CONTAINER">
 		<attributes>
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="/Users/yehia/Library/Mobile Documents/com~apple~CloudDocs/Software Development/JarFiles/org-apache-commons-lang.jar"/>
+	<classpathentry kind="lib" path="/Users/yehia/Library/Mobile Documents/com~apple~CloudDocs/Software Development/JarFiles/org.eclipse.emf.common-2.12.0.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

@@ -51,6 +51,7 @@ public interface Requirement extends InitialVariable {
 
 	/**
 	 * Returns the value of the '<em><b>Reward</b></em>' attribute.
+	 * The default value is <code>"100"</code>.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Reward</em>' attribute isn't clear,
@@ -60,7 +61,7 @@ public interface Requirement extends InitialVariable {
 	 * @return the value of the '<em>Reward</em>' attribute.
 	 * @see #setReward(Integer)
 	 * @see org.emftext.language.AdaptiveCyberDefense.AdaptiveCyberDefensePackage#getRequirement_Reward()
-	 * @model required="true"
+	 * @model default="100" required="true"
 	 * @generated
 	 */
 	Integer getReward();

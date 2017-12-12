@@ -59,7 +59,7 @@ public abstract class RequirementImpl extends InitialVariableImpl implements Req
 	 * @generated
 	 * @ordered
 	 */
-	protected static final Integer REWARD_EDEFAULT = null;
+	protected static final Integer REWARD_EDEFAULT = new Integer(100);
 
 	/**
 	 * The cached value of the '{@link #getReward() <em>Reward</em>}' attribute.

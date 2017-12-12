@@ -21,11 +21,11 @@ final public class ReqStateUpd {
 		 */
 		if(status.equals("I")) {
 			if(req.getActivation().verify(state)) {
-				state.put(req_id, "A");
+				state.put(req_id, "R");
 			}
 		}
 
-		if(status.equals("A")){
+		if(status.equals("R")){
 			if(req.getCancellation().verify(state)) {
 				state.put(req_id, "I");
 			} else if(req.getCondition().verify(state)) {
