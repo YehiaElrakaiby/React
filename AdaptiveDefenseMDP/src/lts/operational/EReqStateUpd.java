@@ -6,13 +6,15 @@ import resources.RequirementDescription;
 
 final public class EReqStateUpd {
 
+	
+	
 	static public void updateCAReqAtomInState(
 			HashMap<String, String> state, 
 			RequirementDescription req) {
 		String req_id = req.getName();
 		String status = state.get(req_id);
-		/**
-		 * For a conditional achieve requirement, its status is updated according to activation, cancellation and condition as follows:
+		
+		/** for a CONDITIONAL ACHIEVE requirement, its status is updated according to activation, cancellation and condition as follows:
 		 * (1) if status is inact: if activation is true, then act 
 		 * (2) if status is act:
 		 * (2.1) if cancellation holds then inact
@@ -21,11 +23,11 @@ final public class EReqStateUpd {
 		 */
 		if(status.equals("I")) {
 			if(req.getActivation().verify(state)) {
-				state.put(req_id, "A");
+				state.put(req_id, "R");
 			}
 		}
 
-		if(status.equals("A")){
+		if(status.equals("R")){
 			if(req.getCancellation().verify(state)) {
 				state.put(req_id, "I");
 			} else if(req.getCondition().verify(state)) {
@@ -33,6 +35,8 @@ final public class EReqStateUpd {
 			} 
 		} 		
 	}
+	
+	
 	static public void updateDFAReqAtomInState(
 			HashMap<String, String> state, 
 			RequirementDescription req) {
@@ -68,6 +72,9 @@ final public class EReqStateUpd {
 		} 
 
 	}
+	
+	
+	
 	static public void updateDEAReqAtomInState(
 			HashMap<String, String> state, 
 			RequirementDescription req) {
@@ -103,12 +110,17 @@ final public class EReqStateUpd {
 		} 	
 	}
 	
+	
 	static public void updateUMReqAtomInState(HashMap<String, String> state, 
 			RequirementDescription req) {
 	}
 	static public void updateUAReqAtomInState(HashMap<String, String> state, 
 			RequirementDescription req) {
 	}
+	
+	
+	
+	
 	static public void updateCMReqAtomInState(
 			HashMap<String, String> state, 
 			RequirementDescription req) {
@@ -179,6 +191,9 @@ final public class EReqStateUpd {
 		}
 
 	}
+	
+	
+	
 	static public void updateDEMReqAtomInState(
 			HashMap<String, String> state, 
 			RequirementDescription req) {
@@ -228,6 +243,10 @@ final public class EReqStateUpd {
 		}
 
 	}
+	
+	
+	
+	
 	static public void updatePMReqAtomInState(
 			HashMap<String, String> state, 
 			RequirementDescription req) {
@@ -271,6 +290,9 @@ final public class EReqStateUpd {
 			}
 		}		
 	}
+	
+	
+	
 	static public void updateRPMReqAtomInState(
 			HashMap<String, String> state, 
 			RequirementDescription req) {
@@ -316,6 +338,9 @@ final public class EReqStateUpd {
 			} 
 		}		
 	}
+	
+	
+	
 	static public void updatePDFMReqAtomInState(
 			HashMap<String, String> state, 
 			RequirementDescription req) {
@@ -360,6 +385,9 @@ final public class EReqStateUpd {
 			} 
 		}
 	} 
+	
+	
+	
 	static public void updateRPDFMReqAtomInState(
 			HashMap<String, String> state, 
 			RequirementDescription req) {
@@ -410,6 +438,9 @@ final public class EReqStateUpd {
 			} 
 		}
 	}
+	
+	
+	
 	static public void updatePDEMReqAtomInState(
 			HashMap<String, String> state, 
 			RequirementDescription req) {
@@ -456,6 +487,9 @@ final public class EReqStateUpd {
 			} 
 		}		
 	}
+	
+	
+	
 	static public void updateRPDEMReqAtomInState(
 			HashMap<String, String> state, 
 			RequirementDescription req) {
