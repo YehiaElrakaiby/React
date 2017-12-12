@@ -154,7 +154,7 @@ public class LTSG {
 			LOGGER.info("The transitions are computed");
 
 			if(!cpy.equals(states)) {
-				LOGGER.error("states have modified when computing transitions");
+				LOGGER.error("states have been modified while computing transitions");
 			}
 		}
 
@@ -197,7 +197,10 @@ public class LTSG {
 
 		}
 		action_domain.add("noop");
-		this.variables_domain.put("action", action_domain);
+		/*
+		 * Add the following line to add actions into the states
+		 */
+		//this.variables_domain.put("action", action_domain);
 		nb_of_states = nb_of_states * action_domain.size();
 
 
@@ -217,7 +220,10 @@ public class LTSG {
 			HashSet<String> event_domain=new HashSet<String>();
 			event_domain.add("tt");
 			event_domain.add("ff");
-			this.variables_domain.put(action.getName(), event_domain);
+			/*
+			 * Add the following line to add events into the states
+			 */
+			//this.variables_domain.put(action.getName(), event_domain);
 
 			nb_of_states = nb_of_states * event_domain.size();
 
@@ -587,13 +593,17 @@ public class LTSG {
 							updateStateVariables(dst_state,effect);
 						} 
 
-						for(String event :this.event_names) {
-							if(event.equals(descr.getName())) {
-								dst_state.put(event, "tt");
-							} else {
-								dst_state.put(event, "ff");
-							}
-						}
+						/*
+						 * The following lines add the event that lead to this state into the state 
+						 */
+						//for(String event :this.event_names) {
+							//if(event.equals(descr.getName())) {
+								//dst_state.put(event, "tt");
+							//} else {
+								//dst_state.put(event, "ff");
+							//}
+						//}
+						
 						updateReqVariablesE(dst_state, requirements_description);
 
 						Integer dest_id = updateStates(to_explore,dst_state,state_nb);
@@ -608,9 +618,9 @@ public class LTSG {
 					if(total_prob.compareTo(one)==-1) {
 						HashMap<String, String> dst_state = new HashMap<String, String>(state);
 
-						dst_state.put(descr.getName(), descr.getValue());
+						//dst_state.put(descr.getName(), descr.getValue());
 						updateReqVariablesE(dst_state, requirements_description);
-						dst_state.remove(descr.getName());
+						//dst_state.remove(descr.getName());
 
 						Integer dest_id = updateStates(to_explore,dst_state,state_nb);
 
@@ -626,13 +636,17 @@ public class LTSG {
 
 				HashMap<String, String> dst_state = new HashMap<String, String>(state);
 
-				for(String event :this.event_names) {
-					if(event.equals(descr.getName())) {
-						dst_state.put(event, "tt");
-					} else {
-						dst_state.put(event, "ff");
-					}
-				}
+				/*
+				 * The following lines add the event that lead to this state into the state 
+				 */
+				//for(String event :this.event_names) {
+					//if(event.equals(descr.getName())) {
+						//dst_state.put(event, "tt");
+					//} else {
+						//dst_state.put(event, "ff");
+					//}
+				//}
+
 				updateReqVariables(dst_state, requirements_description);
 
 
@@ -690,11 +704,13 @@ public class LTSG {
 							updateStateVariables(dst_state,effect);
 						} 
 
-
-						for(String event :this.event_names) {
-							dst_state.put(event, "ff");
-						}					
-						dst_state.put("action", descr.getName());
+						/*
+						 * The following lines add the action that lead to the event to the state 
+						 */
+						//for(String event :this.event_names) {
+							//dst_state.put(event, "ff");
+						//}					
+						//dst_state.put("action", descr.getName());
 
 						updateReqVariables(dst_state, requirements_description);
 
@@ -713,10 +729,15 @@ public class LTSG {
 					if(total_prob.compareTo(one)==-1) {
 						HashMap<String, String> dst_state = new HashMap<String, String>(state);
 
-						for(String event :this.event_names) {
-							dst_state.put(event, "ff");
-						}					
-						dst_state.put("action", descr.getName());
+						/*
+						 * The following lines add the action that lead to the event to the state 
+						 */
+						//for(String event :this.event_names) {
+							//dst_state.put(event, "ff");
+						//}					
+						//dst_state.put("action", descr.getName());
+						
+						
 						updateReqVariables(dst_state, requirements_description);
 						
 
@@ -732,10 +753,14 @@ public class LTSG {
 			if(!holds) {
 				HashMap<String, String> dst_state = new HashMap<String, String>(state);
 
-				for(String event :this.event_names) {
-					dst_state.put(event, "ff");
-				}					
-				dst_state.put("action", descr.getName());
+				/*
+				 * The following lines add the action that lead to the event to the state 
+				 */
+				//for(String event :this.event_names) {
+					//dst_state.put(event, "ff");
+				//}					
+				//dst_state.put("action", descr.getName());
+				
 				updateReqVariables(dst_state, requirements_description);
 				
 				Integer dest_id = updateStates(to_explore,dst_state,state_nb);
