@@ -26,7 +26,7 @@ public final class ComputeRwd {
 		BigDecimal reward = new BigDecimal(0);
 		String req_id = req.getName();
 		String src_status = src.get(req_id);
-		if(src_status.startsWith("A")){
+		if(src_status.startsWith("R")){
 			if(req.getCondition().verify(dst)) {
 				reward=reward.add(new BigDecimal(req.getCost_reward()));
 			}
