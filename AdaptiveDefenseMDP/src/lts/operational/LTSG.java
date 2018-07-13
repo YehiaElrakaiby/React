@@ -201,7 +201,7 @@ public class LTSG {
 		 * Add the following line to add actions into the states
 		 */
 		//this.variables_domain.put("action", action_domain);
-		nb_of_states = nb_of_states * action_domain.size();
+		//nb_of_states = nb_of_states * action_domain.size();
 
 
 	}
@@ -225,7 +225,7 @@ public class LTSG {
 			 */
 			//this.variables_domain.put(action.getName(), event_domain);
 
-			nb_of_states = nb_of_states * event_domain.size();
+			//nb_of_states = nb_of_states * event_domain.size();
 
 			this.event_descriptions.put(event, action);
 			this.nb_of_exogenous_events++;

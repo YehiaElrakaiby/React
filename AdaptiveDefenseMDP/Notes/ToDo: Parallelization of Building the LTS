@@ -1,1 +1,8 @@
-When identifying transitions, parallelization can be used to explore the different actions in parallel with synchronization of states to explore
+When identifying transitions, parallelization can be used:
+parallelization can be used not only to explore multiple states in parallel but also to compute the result of execution of actions and events from a state
+Input: a set of states S that includes initial states only, all marked unexplored
+1) select states s that are marked unexplored from S and mark them explored,
+2) explore in parallel those states,
+3) compute in parallel the result of executing different actions and events from a state to identify other reachable states, 
+3.1) add reachable states to S
+4) when exploration of states s ends, go to 1)

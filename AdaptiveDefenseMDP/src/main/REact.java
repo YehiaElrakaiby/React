@@ -30,7 +30,7 @@ public class REact {
 	/*
 	 * 			MAIN CONFIGURATION OPTIONS
 	 */
-	static String descriptionFileName = "toy_example2.AdaptiveCyberDefense";
+	static String descriptionFileName = "example_event_case.AdaptiveCyberDefense";
 
 	static public String dotOption = Graphviz_Writer.SHOW_ALL;
 
@@ -38,10 +38,10 @@ public class REact {
 	/*
 	 * 			OTHER CONFIGURATION OPTIONS
 	 */
-	static String files_location = "/Users/yehia/Documents/GraphivFilesReact/";
+	static String files_location = "/Users/yehia/Documents/GraphivFilesReact/07-2018-Examples/";
 
 	static Path domain_description_location = Paths.get( "Users","yehia","Documents",
-			"runtime-EclipseApplication","ReactV4-PaperExamples",
+			"runtime-EclipseApplication(1)","REactV5-PaperExamples", "IllustrationExample_Section5.3",
 			descriptionFileName);
 
 	static public String noop_event_identifier = "noop";
@@ -50,14 +50,14 @@ public class REact {
 	/**
 	 * Based on the contents of a description:
 	 * (1) State Variables,
-	 * (2) Attack and Adaptation Action Variables,
-	 * (3) Action Descriptions,
+	 * (2) Action Descriptions,
+	 * (3) Exogenous Events,
 	 * (4) Requirements,
 	 * (5) Achieve and Maintain Reward Structures
 	 * 
-	 * Step 1: Construct a LTS based on State, Action Variables, Requirements and Action Descriptions. A LTS is a tuple <States, Transitions>
+	 * Step 1: Construct a LTS based on State Variables, Action and Event Descriptions and Requirements. A LTS is a tuple <States, Transitions>
 	 * Step 2: Construct Transition and Reward Matrices based on Transitions and Requirements
-	 * Step 3: Construct a MDP = <Transition Matrix, Reward Matrix> and solve the MDP
+	 * Step 3: Construct an MDP = <Transition Matrix, Reward Matrix> and solve the MDP
 	 * @param args
 	 */
 
