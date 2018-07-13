@@ -1,0 +1,16 @@
+Type of Version: Major Change 
+
+Fix a problem in version 003 where due to the computation of the implicit-event transition matrix 
+by computing separately the transition matrices of the actions and events: it is the case that the update of 
+requirements with deadline is not correct. For example, when two events occur concurrently with an action, the 
+remaining time for the satisfaction of a deadline requirement is reduced by the number of concurrent events
+which is not desired
+
+To fix the problem: we compute transitions by
+1) identifying events that are applicable in a state
+2) identifying actions that are applicable in a state 
+3) computing change in state for possible concurrent executions of actions and events
+4) update the states of requirements in state
+5) repeat from 3 until all possible concurrent executions are explored
+
+This is a major change as it impacts the computation of the transition matrix and possibly the reward matrix

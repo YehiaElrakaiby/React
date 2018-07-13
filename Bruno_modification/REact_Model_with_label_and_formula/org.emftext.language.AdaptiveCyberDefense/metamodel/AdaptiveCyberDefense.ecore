@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="AdaptiveCyberDefense" nsURI="http://www.emftext.org/language/AdaptiveCyberDefense"
+    nsPrefix="AdaptiveCyberDefense">
+  <eClassifiers xsi:type="ecore:EClass" name="DomainDescription">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="state_variables" upperBound="-1"
+        eType="#//StateVariable" containment="true">
+      <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+        <details key="name" value="statevariables"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="action_descriptions" upperBound="-1"
+        eType="#//ActionDescription" containment="true">
+      <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+        <details key="name" value="actiondescriptions"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="requirements" upperBound="-1"
+        eType="#//Requirement" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="initial_atoms" lowerBound="1"
+        upperBound="-1" eType="#//InitialAtom" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="event_descriptions" upperBound="-1"
+        eType="#//EventDescription" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        iD="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="labels" upperBound="-1"
+        eType="#//Label" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="properties" upperBound="-1"
+        eType="#//PCTLStateFormula" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ActionDescription" eSuperTypes="#//DescriptionEntity">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="cost" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBigDecimal"
+        defaultValueLiteral="0.00001"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="contextual_effects" lowerBound="1"
+        upperBound="-1" eType="#//ContextualEffect" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        defaultValueLiteral="tt"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="StateVariable" eSuperTypes="#//InitialVariable #//DescriptionEntity">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="values" lowerBound="1"
+        upperBound="-1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ProbabilisticEffect">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="probability" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBigDecimal"
+        defaultValueLiteral="1.0"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="state_atoms" upperBound="-1"
+        eType="#//StateAtom" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Requirement" abstract="true" eSuperTypes="#//InitialVariable">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        iD="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="reward" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EIntegerObject"
+        defaultValueLiteral="100"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="condition" lowerBound="1"
+        eType="#//Formula" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="description" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="InitialAtom">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+        <details key="name" value="status"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="initialvariable" lowerBound="1"
+        eType="#//InitialVariable"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="InitialVariable" abstract="true">
+    <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+      <details key="name" value="InitialState"/>
+    </eAnnotations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="StateAtom">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="state_variable" lowerBound="1"
+        eType="#//StateVariable"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        defaultValueLiteral="tt"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Formula" abstract="true"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Conjunction" eSuperTypes="#//Formula">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="rhs" lowerBound="1" eType="#//Formula"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="lhs" lowerBound="1" eType="#//Formula"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Disjunction" eSuperTypes="#//Formula">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="lhs" lowerBound="1" eType="#//Formula"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="rhs" lowerBound="1" eType="#//Formula"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Negation" eSuperTypes="#//Formula">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="formula" lowerBound="1"
+        eType="#//Formula" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Parentheses" eSuperTypes="#//Formula">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="formula" lowerBound="1"
+        eType="#//Formula" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="DEA" eSuperTypes="#//DeadlineRequirement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="DeadlineDurationRequirement" abstract="true"
+      eSuperTypes="#//DeadlineRequirement">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="duration" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EIntegerObject"
+        defaultValueLiteral="1"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="True" eSuperTypes="#//Formula"/>
+  <eClassifiers xsi:type="ecore:EEnum" name="ActionType">
+    <eLiterals name="control" value="1"/>
+    <eLiterals name="exogenous" value="2"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="False" eSuperTypes="#//Formula"/>
+  <eClassifiers xsi:type="ecore:EClass" name="DeadlineRequirement" abstract="true"
+      eSuperTypes="#//ConditionalRequirement">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="deadline" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EIntegerObject"
+        defaultValueLiteral="-1"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="UM" eSuperTypes="#//Requirement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ContextualEffect">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="context" lowerBound="1"
+        eType="#//Formula" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="effects" upperBound="-1"
+        eType="#//ProbabilisticEffect" containment="true">
+      <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+        <details key="name" value="probabilisticeffects"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="EventDescription" eSuperTypes="#//DescriptionEntity">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="probabilistic_contextual_effects"
+        lowerBound="1" upperBound="-1" eType="#//ProbabilisticContextualEffect" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        defaultValueLiteral="tt"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ProbabilisticContextualEffect" eSuperTypes="#//ContextualEffect">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="occurrence_probability"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBigDecimal"
+        defaultValueLiteral="0.00001"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="DescriptionEntity" abstract="true">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        iD="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="FormulaAtom" eSuperTypes="#//Formula">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="description_entity" lowerBound="1"
+        eType="#//DescriptionEntity"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        defaultValueLiteral="tt"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ConditionalRequirement" abstract="true"
+      eSuperTypes="#//Requirement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="activation" lowerBound="1"
+        eType="#//Formula" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="cancellation" eType="#//Formula"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="CA" eSuperTypes="#//ConditionalRequirement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="CM" eSuperTypes="#//ConditionalRequirement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="DFM" eSuperTypes="#//DeadlineRequirement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="PDEM" eSuperTypes="#//DeadlineDurationRequirement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="RPDFM" eSuperTypes="#//DeadlineDurationRequirement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="RPDEM" eSuperTypes="#//DeadlineDurationRequirement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="DEM" eSuperTypes="#//DeadlineRequirement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="DFA" eSuperTypes="#//DeadlineRequirement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="UA" eSuperTypes="#//Requirement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="DurationRequirement" abstract="true"
+      eSuperTypes="#//ConditionalRequirement">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="duration" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EIntegerObject"
+        defaultValueLiteral="1"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="RPM" eSuperTypes="#//DurationRequirement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="PDFM" eSuperTypes="#//DeadlineDurationRequirement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="PM" eSuperTypes="#//DurationRequirement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Label">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="property" lowerBound="1"
+        eType="#//Formula" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="PCTLStateFormula" abstract="true"/>
+  <eClassifiers xsi:type="ecore:EClass" name="PConjunction" eSuperTypes="#//PCTLStateFormula">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="rhs" lowerBound="1" eType="#//PCTLStateFormula"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="lhs" lowerBound="1" eType="#//PCTLStateFormula"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="PDisjunction" eSuperTypes="#//PCTLStateFormula">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="rhs" lowerBound="1" eType="#//PCTLStateFormula"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="lhs" lowerBound="1" eType="#//PCTLStateFormula"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="PNegation" eSuperTypes="#//PCTLStateFormula">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="op" lowerBound="1" eType="#//PCTLStateFormula"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="POperator" eSuperTypes="#//PCTLStateFormula">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="operator" lowerBound="1"
+        eType="#//ComparaisonOperator"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="bound" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBigDecimal"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="op" lowerBound="1" eType="#//PCTLPathFormula"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" lowerBound="1" eType="#//POperatorType"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="PCTLPathFormula" abstract="true"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Until" eSuperTypes="#//PCTLPathFormula">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="lhs" lowerBound="1" eType="#//PCTLStateFormula"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="rhs" lowerBound="1" eType="#//PCTLStateFormula"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Eventually" eSuperTypes="#//PCTLPathFormula">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="op" lowerBound="1" upperBound="-1"
+        eType="#//PCTLStateFormula" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="BoundedUntil" eSuperTypes="#//PCTLPathFormula">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="rhs" lowerBound="1" eType="#//PCTLStateFormula"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="lhs" lowerBound="1" eType="#//PCTLStateFormula"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="bound" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EIntegerObject"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="operator" lowerBound="1"
+        eType="#//ComparaisonOperator"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Globally" eSuperTypes="#//PCTLPathFormula">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="op" lowerBound="1" eType="#//PCTLStateFormula"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="BoundedEventually" eSuperTypes="#//PCTLPathFormula">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="op" lowerBound="1" eType="#//PCTLStateFormula"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="bound" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EIntegerObject"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="operator" lowerBound="1"
+        eType="#//ComparaisonOperator"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="PTrue" eSuperTypes="#//PCTLPathFormula"/>
+  <eClassifiers xsi:type="ecore:EClass" name="PFalse" eSuperTypes="#//PCTLPathFormula"/>
+  <eClassifiers xsi:type="ecore:EEnum" name="ComparaisonOperator">
+    <eLiterals name="lessThan" value="1"/>
+    <eLiterals name="lessThanEquals" value="2"/>
+    <eLiterals name="equals" value="3"/>
+    <eLiterals name="greater" value="4"/>
+    <eLiterals name="greaterThanEquals" value="5"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="LabelReference" eSuperTypes="#//PCTLStateFormula">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="label" lowerBound="1" eType="#//Label"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="POperatorType">
+    <eLiterals name="Min" value="1"/>
+    <eLiterals name="Max" value="2"/>
+  </eClassifiers>
+</ecore:EPackage>
