@@ -373,6 +373,177 @@ public class AdaptiveCyberDefenseSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case AdaptiveCyberDefensePackage.LABEL: {
+				Label label = (Label)theEObject;
+				T result = caseLabel(label);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case AdaptiveCyberDefensePackage.PCTL_STATE_FORMULA: {
+				PCTLStateFormula pctlStateFormula = (PCTLStateFormula)theEObject;
+				T result = casePCTLStateFormula(pctlStateFormula);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case AdaptiveCyberDefensePackage.PCONJUNCTION: {
+				PConjunction pConjunction = (PConjunction)theEObject;
+				T result = casePConjunction(pConjunction);
+				if (result == null) result = casePCTLStateFormula(pConjunction);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case AdaptiveCyberDefensePackage.PDISJUNCTION: {
+				PDisjunction pDisjunction = (PDisjunction)theEObject;
+				T result = casePDisjunction(pDisjunction);
+				if (result == null) result = casePCTLStateFormula(pDisjunction);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case AdaptiveCyberDefensePackage.PNEGATION: {
+				PNegation pNegation = (PNegation)theEObject;
+				T result = casePNegation(pNegation);
+				if (result == null) result = casePCTLStateFormula(pNegation);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case AdaptiveCyberDefensePackage.POPERATOR: {
+				POperator pOperator = (POperator)theEObject;
+				T result = casePOperator(pOperator);
+				if (result == null) result = casePCTLStateFormula(pOperator);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case AdaptiveCyberDefensePackage.PCTL_PATH_FORMULA: {
+				PCTLPathFormula pctlPathFormula = (PCTLPathFormula)theEObject;
+				T result = casePCTLPathFormula(pctlPathFormula);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case AdaptiveCyberDefensePackage.UNTIL: {
+				Until until = (Until)theEObject;
+				T result = caseUntil(until);
+				if (result == null) result = casePCTLPathFormula(until);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case AdaptiveCyberDefensePackage.EVENTUALLY: {
+				Eventually eventually = (Eventually)theEObject;
+				T result = caseEventually(eventually);
+				if (result == null) result = casePCTLPathFormula(eventually);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case AdaptiveCyberDefensePackage.BOUNDED_UNTIL: {
+				BoundedUntil boundedUntil = (BoundedUntil)theEObject;
+				T result = caseBoundedUntil(boundedUntil);
+				if (result == null) result = casePCTLPathFormula(boundedUntil);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case AdaptiveCyberDefensePackage.GLOBALLY: {
+				Globally globally = (Globally)theEObject;
+				T result = caseGlobally(globally);
+				if (result == null) result = casePCTLPathFormula(globally);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case AdaptiveCyberDefensePackage.BOUNDED_EVENTUALLY: {
+				BoundedEventually boundedEventually = (BoundedEventually)theEObject;
+				T result = caseBoundedEventually(boundedEventually);
+				if (result == null) result = casePCTLPathFormula(boundedEventually);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case AdaptiveCyberDefensePackage.PTRUE: {
+				PTrue pTrue = (PTrue)theEObject;
+				T result = casePTrue(pTrue);
+				if (result == null) result = casePCTLStateFormula(pTrue);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case AdaptiveCyberDefensePackage.PFALSE: {
+				PFalse pFalse = (PFalse)theEObject;
+				T result = casePFalse(pFalse);
+				if (result == null) result = casePCTLStateFormula(pFalse);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case AdaptiveCyberDefensePackage.LABEL_REFERENCE: {
+				LabelReference labelReference = (LabelReference)theEObject;
+				T result = caseLabelReference(labelReference);
+				if (result == null) result = casePCTLStateFormula(labelReference);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case AdaptiveCyberDefensePackage.LRA: {
+				LRA lra = (LRA)theEObject;
+				T result = caseLRA(lra);
+				if (result == null) result = casePCTLStateFormula(lra);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case AdaptiveCyberDefensePackage.QUANTITATIVE_POPERATOR: {
+				QuantitativePOperator quantitativePOperator = (QuantitativePOperator)theEObject;
+				T result = caseQuantitativePOperator(quantitativePOperator);
+				if (result == null) result = casePCTLStateFormula(quantitativePOperator);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case AdaptiveCyberDefensePackage.REWARD_FORMULA: {
+				RewardFormula rewardFormula = (RewardFormula)theEObject;
+				T result = caseRewardFormula(rewardFormula);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case AdaptiveCyberDefensePackage.INSTANTANEOUS_REWARD: {
+				InstantaneousReward instantaneousReward = (InstantaneousReward)theEObject;
+				T result = caseInstantaneousReward(instantaneousReward);
+				if (result == null) result = caseRewardFormula(instantaneousReward);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case AdaptiveCyberDefensePackage.CUMULATIVE_REWARD: {
+				CumulativeReward cumulativeReward = (CumulativeReward)theEObject;
+				T result = caseCumulativeReward(cumulativeReward);
+				if (result == null) result = caseRewardFormula(cumulativeReward);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case AdaptiveCyberDefensePackage.RECHABILITY_REWARD: {
+				RechabilityReward rechabilityReward = (RechabilityReward)theEObject;
+				T result = caseRechabilityReward(rechabilityReward);
+				if (result == null) result = caseRewardFormula(rechabilityReward);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case AdaptiveCyberDefensePackage.LRA_REWARD: {
+				LRAReward lraReward = (LRAReward)theEObject;
+				T result = caseLRAReward(lraReward);
+				if (result == null) result = caseRewardFormula(lraReward);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case AdaptiveCyberDefensePackage.ROPERATOR: {
+				ROperator rOperator = (ROperator)theEObject;
+				T result = caseROperator(rOperator);
+				if (result == null) result = casePCTLStateFormula(rOperator);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case AdaptiveCyberDefensePackage.QUANTITATIVE_ROPERATOR: {
+				QuantitativeROperator quantitativeROperator = (QuantitativeROperator)theEObject;
+				T result = caseQuantitativeROperator(quantitativeROperator);
+				if (result == null) result = casePCTLStateFormula(quantitativeROperator);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case AdaptiveCyberDefensePackage.MULTI_OBJECTIVE: {
+				MultiObjective multiObjective = (MultiObjective)theEObject;
+				T result = caseMultiObjective(multiObjective);
+				if (result == null) result = casePCTLStateFormula(multiObjective);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			default: return defaultCase(theEObject);
 		}
 	}
@@ -944,6 +1115,381 @@ public class AdaptiveCyberDefenseSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T casePM(PM object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Label</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Label</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseLabel(Label object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>PCTL State Formula</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>PCTL State Formula</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T casePCTLStateFormula(PCTLStateFormula object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>PConjunction</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>PConjunction</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T casePConjunction(PConjunction object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>PDisjunction</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>PDisjunction</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T casePDisjunction(PDisjunction object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>PNegation</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>PNegation</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T casePNegation(PNegation object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>POperator</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>POperator</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T casePOperator(POperator object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>PCTL Path Formula</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>PCTL Path Formula</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T casePCTLPathFormula(PCTLPathFormula object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Until</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Until</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseUntil(Until object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Eventually</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Eventually</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseEventually(Eventually object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Bounded Until</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Bounded Until</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseBoundedUntil(BoundedUntil object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Globally</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Globally</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseGlobally(Globally object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Bounded Eventually</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Bounded Eventually</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseBoundedEventually(BoundedEventually object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>PTrue</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>PTrue</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T casePTrue(PTrue object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>PFalse</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>PFalse</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T casePFalse(PFalse object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Label Reference</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Label Reference</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseLabelReference(LabelReference object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>LRA</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>LRA</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseLRA(LRA object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Quantitative POperator</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Quantitative POperator</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseQuantitativePOperator(QuantitativePOperator object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Reward Formula</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Reward Formula</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseRewardFormula(RewardFormula object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Instantaneous Reward</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Instantaneous Reward</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseInstantaneousReward(InstantaneousReward object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Cumulative Reward</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Cumulative Reward</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseCumulativeReward(CumulativeReward object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Rechability Reward</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Rechability Reward</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseRechabilityReward(RechabilityReward object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>LRA Reward</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>LRA Reward</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseLRAReward(LRAReward object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>ROperator</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>ROperator</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseROperator(ROperator object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Quantitative ROperator</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Quantitative ROperator</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseQuantitativeROperator(QuantitativeROperator object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Multi Objective</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Multi Objective</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseMultiObjective(MultiObjective object) {
 		return null;
 	}
 

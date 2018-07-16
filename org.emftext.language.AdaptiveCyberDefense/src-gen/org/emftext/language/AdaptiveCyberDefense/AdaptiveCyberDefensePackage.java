@@ -121,13 +121,31 @@ public interface AdaptiveCyberDefensePackage extends EPackage {
 	int DOMAIN_DESCRIPTION__NAME = 5;
 
 	/**
+	 * The feature id for the '<em><b>Labels</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DOMAIN_DESCRIPTION__LABELS = 6;
+
+	/**
+	 * The feature id for the '<em><b>Properties</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DOMAIN_DESCRIPTION__PROPERTIES = 7;
+
+	/**
 	 * The number of structural features of the '<em>Domain Description</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DOMAIN_DESCRIPTION_FEATURE_COUNT = 6;
+	int DOMAIN_DESCRIPTION_FEATURE_COUNT = 8;
 
 	/**
 	 * The meta object id for the '{@link org.emftext.language.AdaptiveCyberDefense.impl.DescriptionEntityImpl <em>Description Entity</em>}' class.
@@ -2228,6 +2246,823 @@ public interface AdaptiveCyberDefensePackage extends EPackage {
 	int PM_FEATURE_COUNT = DURATION_REQUIREMENT_FEATURE_COUNT + 0;
 
 	/**
+	 * The meta object id for the '{@link org.emftext.language.AdaptiveCyberDefense.impl.LabelImpl <em>Label</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.emftext.language.AdaptiveCyberDefense.impl.LabelImpl
+	 * @see org.emftext.language.AdaptiveCyberDefense.impl.AdaptiveCyberDefensePackageImpl#getLabel()
+	 * @generated
+	 */
+	int LABEL = 38;
+
+	/**
+	 * The feature id for the '<em><b>Value</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LABEL__VALUE = 0;
+
+	/**
+	 * The feature id for the '<em><b>Property</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LABEL__PROPERTY = 1;
+
+	/**
+	 * The number of structural features of the '<em>Label</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LABEL_FEATURE_COUNT = 2;
+
+	/**
+	 * The meta object id for the '{@link org.emftext.language.AdaptiveCyberDefense.impl.PCTLStateFormulaImpl <em>PCTL State Formula</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.emftext.language.AdaptiveCyberDefense.impl.PCTLStateFormulaImpl
+	 * @see org.emftext.language.AdaptiveCyberDefense.impl.AdaptiveCyberDefensePackageImpl#getPCTLStateFormula()
+	 * @generated
+	 */
+	int PCTL_STATE_FORMULA = 39;
+
+	/**
+	 * The number of structural features of the '<em>PCTL State Formula</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PCTL_STATE_FORMULA_FEATURE_COUNT = 0;
+
+	/**
+	 * The meta object id for the '{@link org.emftext.language.AdaptiveCyberDefense.impl.PConjunctionImpl <em>PConjunction</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.emftext.language.AdaptiveCyberDefense.impl.PConjunctionImpl
+	 * @see org.emftext.language.AdaptiveCyberDefense.impl.AdaptiveCyberDefensePackageImpl#getPConjunction()
+	 * @generated
+	 */
+	int PCONJUNCTION = 40;
+
+	/**
+	 * The feature id for the '<em><b>Rhs</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PCONJUNCTION__RHS = PCTL_STATE_FORMULA_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Lhs</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PCONJUNCTION__LHS = PCTL_STATE_FORMULA_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of structural features of the '<em>PConjunction</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PCONJUNCTION_FEATURE_COUNT = PCTL_STATE_FORMULA_FEATURE_COUNT + 2;
+
+	/**
+	 * The meta object id for the '{@link org.emftext.language.AdaptiveCyberDefense.impl.PDisjunctionImpl <em>PDisjunction</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.emftext.language.AdaptiveCyberDefense.impl.PDisjunctionImpl
+	 * @see org.emftext.language.AdaptiveCyberDefense.impl.AdaptiveCyberDefensePackageImpl#getPDisjunction()
+	 * @generated
+	 */
+	int PDISJUNCTION = 41;
+
+	/**
+	 * The feature id for the '<em><b>Rhs</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PDISJUNCTION__RHS = PCTL_STATE_FORMULA_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Lhs</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PDISJUNCTION__LHS = PCTL_STATE_FORMULA_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of structural features of the '<em>PDisjunction</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PDISJUNCTION_FEATURE_COUNT = PCTL_STATE_FORMULA_FEATURE_COUNT + 2;
+
+	/**
+	 * The meta object id for the '{@link org.emftext.language.AdaptiveCyberDefense.impl.PNegationImpl <em>PNegation</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.emftext.language.AdaptiveCyberDefense.impl.PNegationImpl
+	 * @see org.emftext.language.AdaptiveCyberDefense.impl.AdaptiveCyberDefensePackageImpl#getPNegation()
+	 * @generated
+	 */
+	int PNEGATION = 42;
+
+	/**
+	 * The feature id for the '<em><b>Op</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PNEGATION__OP = PCTL_STATE_FORMULA_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>PNegation</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PNEGATION_FEATURE_COUNT = PCTL_STATE_FORMULA_FEATURE_COUNT + 1;
+
+	/**
+	 * The meta object id for the '{@link org.emftext.language.AdaptiveCyberDefense.impl.POperatorImpl <em>POperator</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.emftext.language.AdaptiveCyberDefense.impl.POperatorImpl
+	 * @see org.emftext.language.AdaptiveCyberDefense.impl.AdaptiveCyberDefensePackageImpl#getPOperator()
+	 * @generated
+	 */
+	int POPERATOR = 43;
+
+	/**
+	 * The feature id for the '<em><b>Operator</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int POPERATOR__OPERATOR = PCTL_STATE_FORMULA_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Bound</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int POPERATOR__BOUND = PCTL_STATE_FORMULA_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Op</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int POPERATOR__OP = PCTL_STATE_FORMULA_FEATURE_COUNT + 2;
+
+	/**
+	 * The feature id for the '<em><b>Type</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int POPERATOR__TYPE = PCTL_STATE_FORMULA_FEATURE_COUNT + 3;
+
+	/**
+	 * The number of structural features of the '<em>POperator</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int POPERATOR_FEATURE_COUNT = PCTL_STATE_FORMULA_FEATURE_COUNT + 4;
+
+	/**
+	 * The meta object id for the '{@link org.emftext.language.AdaptiveCyberDefense.impl.PCTLPathFormulaImpl <em>PCTL Path Formula</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.emftext.language.AdaptiveCyberDefense.impl.PCTLPathFormulaImpl
+	 * @see org.emftext.language.AdaptiveCyberDefense.impl.AdaptiveCyberDefensePackageImpl#getPCTLPathFormula()
+	 * @generated
+	 */
+	int PCTL_PATH_FORMULA = 44;
+
+	/**
+	 * The number of structural features of the '<em>PCTL Path Formula</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PCTL_PATH_FORMULA_FEATURE_COUNT = 0;
+
+	/**
+	 * The meta object id for the '{@link org.emftext.language.AdaptiveCyberDefense.impl.UntilImpl <em>Until</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.emftext.language.AdaptiveCyberDefense.impl.UntilImpl
+	 * @see org.emftext.language.AdaptiveCyberDefense.impl.AdaptiveCyberDefensePackageImpl#getUntil()
+	 * @generated
+	 */
+	int UNTIL = 45;
+
+	/**
+	 * The feature id for the '<em><b>Lhs</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UNTIL__LHS = PCTL_PATH_FORMULA_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Rhs</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UNTIL__RHS = PCTL_PATH_FORMULA_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of structural features of the '<em>Until</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UNTIL_FEATURE_COUNT = PCTL_PATH_FORMULA_FEATURE_COUNT + 2;
+
+	/**
+	 * The meta object id for the '{@link org.emftext.language.AdaptiveCyberDefense.impl.EventuallyImpl <em>Eventually</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.emftext.language.AdaptiveCyberDefense.impl.EventuallyImpl
+	 * @see org.emftext.language.AdaptiveCyberDefense.impl.AdaptiveCyberDefensePackageImpl#getEventually()
+	 * @generated
+	 */
+	int EVENTUALLY = 46;
+
+	/**
+	 * The feature id for the '<em><b>Op</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EVENTUALLY__OP = PCTL_PATH_FORMULA_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Eventually</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EVENTUALLY_FEATURE_COUNT = PCTL_PATH_FORMULA_FEATURE_COUNT + 1;
+
+	/**
+	 * The meta object id for the '{@link org.emftext.language.AdaptiveCyberDefense.impl.BoundedUntilImpl <em>Bounded Until</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.emftext.language.AdaptiveCyberDefense.impl.BoundedUntilImpl
+	 * @see org.emftext.language.AdaptiveCyberDefense.impl.AdaptiveCyberDefensePackageImpl#getBoundedUntil()
+	 * @generated
+	 */
+	int BOUNDED_UNTIL = 47;
+
+	/**
+	 * The feature id for the '<em><b>Rhs</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BOUNDED_UNTIL__RHS = PCTL_PATH_FORMULA_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Lhs</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BOUNDED_UNTIL__LHS = PCTL_PATH_FORMULA_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Bound</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BOUNDED_UNTIL__BOUND = PCTL_PATH_FORMULA_FEATURE_COUNT + 2;
+
+	/**
+	 * The feature id for the '<em><b>Operator</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BOUNDED_UNTIL__OPERATOR = PCTL_PATH_FORMULA_FEATURE_COUNT + 3;
+
+	/**
+	 * The number of structural features of the '<em>Bounded Until</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BOUNDED_UNTIL_FEATURE_COUNT = PCTL_PATH_FORMULA_FEATURE_COUNT + 4;
+
+	/**
+	 * The meta object id for the '{@link org.emftext.language.AdaptiveCyberDefense.impl.GloballyImpl <em>Globally</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.emftext.language.AdaptiveCyberDefense.impl.GloballyImpl
+	 * @see org.emftext.language.AdaptiveCyberDefense.impl.AdaptiveCyberDefensePackageImpl#getGlobally()
+	 * @generated
+	 */
+	int GLOBALLY = 48;
+
+	/**
+	 * The feature id for the '<em><b>Op</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GLOBALLY__OP = PCTL_PATH_FORMULA_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Globally</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GLOBALLY_FEATURE_COUNT = PCTL_PATH_FORMULA_FEATURE_COUNT + 1;
+
+	/**
+	 * The meta object id for the '{@link org.emftext.language.AdaptiveCyberDefense.impl.BoundedEventuallyImpl <em>Bounded Eventually</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.emftext.language.AdaptiveCyberDefense.impl.BoundedEventuallyImpl
+	 * @see org.emftext.language.AdaptiveCyberDefense.impl.AdaptiveCyberDefensePackageImpl#getBoundedEventually()
+	 * @generated
+	 */
+	int BOUNDED_EVENTUALLY = 49;
+
+	/**
+	 * The feature id for the '<em><b>Op</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BOUNDED_EVENTUALLY__OP = PCTL_PATH_FORMULA_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Bound</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BOUNDED_EVENTUALLY__BOUND = PCTL_PATH_FORMULA_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Operator</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BOUNDED_EVENTUALLY__OPERATOR = PCTL_PATH_FORMULA_FEATURE_COUNT + 2;
+
+	/**
+	 * The number of structural features of the '<em>Bounded Eventually</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BOUNDED_EVENTUALLY_FEATURE_COUNT = PCTL_PATH_FORMULA_FEATURE_COUNT + 3;
+
+	/**
+	 * The meta object id for the '{@link org.emftext.language.AdaptiveCyberDefense.impl.PTrueImpl <em>PTrue</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.emftext.language.AdaptiveCyberDefense.impl.PTrueImpl
+	 * @see org.emftext.language.AdaptiveCyberDefense.impl.AdaptiveCyberDefensePackageImpl#getPTrue()
+	 * @generated
+	 */
+	int PTRUE = 50;
+
+	/**
+	 * The number of structural features of the '<em>PTrue</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PTRUE_FEATURE_COUNT = PCTL_STATE_FORMULA_FEATURE_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link org.emftext.language.AdaptiveCyberDefense.impl.PFalseImpl <em>PFalse</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.emftext.language.AdaptiveCyberDefense.impl.PFalseImpl
+	 * @see org.emftext.language.AdaptiveCyberDefense.impl.AdaptiveCyberDefensePackageImpl#getPFalse()
+	 * @generated
+	 */
+	int PFALSE = 51;
+
+	/**
+	 * The number of structural features of the '<em>PFalse</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PFALSE_FEATURE_COUNT = PCTL_STATE_FORMULA_FEATURE_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link org.emftext.language.AdaptiveCyberDefense.impl.LabelReferenceImpl <em>Label Reference</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.emftext.language.AdaptiveCyberDefense.impl.LabelReferenceImpl
+	 * @see org.emftext.language.AdaptiveCyberDefense.impl.AdaptiveCyberDefensePackageImpl#getLabelReference()
+	 * @generated
+	 */
+	int LABEL_REFERENCE = 52;
+
+	/**
+	 * The feature id for the '<em><b>Label</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LABEL_REFERENCE__LABEL = PCTL_STATE_FORMULA_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Label Reference</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LABEL_REFERENCE_FEATURE_COUNT = PCTL_STATE_FORMULA_FEATURE_COUNT + 1;
+
+	/**
+	 * The meta object id for the '{@link org.emftext.language.AdaptiveCyberDefense.impl.LRAImpl <em>LRA</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.emftext.language.AdaptiveCyberDefense.impl.LRAImpl
+	 * @see org.emftext.language.AdaptiveCyberDefense.impl.AdaptiveCyberDefensePackageImpl#getLRA()
+	 * @generated
+	 */
+	int LRA = 53;
+
+	/**
+	 * The feature id for the '<em><b>Operator</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LRA__OPERATOR = PCTL_STATE_FORMULA_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Bound</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LRA__BOUND = PCTL_STATE_FORMULA_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Op</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LRA__OP = PCTL_STATE_FORMULA_FEATURE_COUNT + 2;
+
+	/**
+	 * The number of structural features of the '<em>LRA</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LRA_FEATURE_COUNT = PCTL_STATE_FORMULA_FEATURE_COUNT + 3;
+
+	/**
+	 * The meta object id for the '{@link org.emftext.language.AdaptiveCyberDefense.impl.QuantitativePOperatorImpl <em>Quantitative POperator</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.emftext.language.AdaptiveCyberDefense.impl.QuantitativePOperatorImpl
+	 * @see org.emftext.language.AdaptiveCyberDefense.impl.AdaptiveCyberDefensePackageImpl#getQuantitativePOperator()
+	 * @generated
+	 */
+	int QUANTITATIVE_POPERATOR = 54;
+
+	/**
+	 * The feature id for the '<em><b>Type</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int QUANTITATIVE_POPERATOR__TYPE = PCTL_STATE_FORMULA_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Op</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int QUANTITATIVE_POPERATOR__OP = PCTL_STATE_FORMULA_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of structural features of the '<em>Quantitative POperator</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int QUANTITATIVE_POPERATOR_FEATURE_COUNT = PCTL_STATE_FORMULA_FEATURE_COUNT + 2;
+
+	/**
+	 * The meta object id for the '{@link org.emftext.language.AdaptiveCyberDefense.impl.RewardFormulaImpl <em>Reward Formula</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.emftext.language.AdaptiveCyberDefense.impl.RewardFormulaImpl
+	 * @see org.emftext.language.AdaptiveCyberDefense.impl.AdaptiveCyberDefensePackageImpl#getRewardFormula()
+	 * @generated
+	 */
+	int REWARD_FORMULA = 55;
+
+	/**
+	 * The number of structural features of the '<em>Reward Formula</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REWARD_FORMULA_FEATURE_COUNT = 0;
+
+	/**
+	 * The meta object id for the '{@link org.emftext.language.AdaptiveCyberDefense.impl.InstantaneousRewardImpl <em>Instantaneous Reward</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.emftext.language.AdaptiveCyberDefense.impl.InstantaneousRewardImpl
+	 * @see org.emftext.language.AdaptiveCyberDefense.impl.AdaptiveCyberDefensePackageImpl#getInstantaneousReward()
+	 * @generated
+	 */
+	int INSTANTANEOUS_REWARD = 56;
+
+	/**
+	 * The feature id for the '<em><b>Step</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INSTANTANEOUS_REWARD__STEP = REWARD_FORMULA_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Instantaneous Reward</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INSTANTANEOUS_REWARD_FEATURE_COUNT = REWARD_FORMULA_FEATURE_COUNT + 1;
+
+	/**
+	 * The meta object id for the '{@link org.emftext.language.AdaptiveCyberDefense.impl.CumulativeRewardImpl <em>Cumulative Reward</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.emftext.language.AdaptiveCyberDefense.impl.CumulativeRewardImpl
+	 * @see org.emftext.language.AdaptiveCyberDefense.impl.AdaptiveCyberDefensePackageImpl#getCumulativeReward()
+	 * @generated
+	 */
+	int CUMULATIVE_REWARD = 57;
+
+	/**
+	 * The feature id for the '<em><b>Step</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CUMULATIVE_REWARD__STEP = REWARD_FORMULA_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Cumulative Reward</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CUMULATIVE_REWARD_FEATURE_COUNT = REWARD_FORMULA_FEATURE_COUNT + 1;
+
+	/**
+	 * The meta object id for the '{@link org.emftext.language.AdaptiveCyberDefense.impl.RechabilityRewardImpl <em>Rechability Reward</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.emftext.language.AdaptiveCyberDefense.impl.RechabilityRewardImpl
+	 * @see org.emftext.language.AdaptiveCyberDefense.impl.AdaptiveCyberDefensePackageImpl#getRechabilityReward()
+	 * @generated
+	 */
+	int RECHABILITY_REWARD = 58;
+
+	/**
+	 * The feature id for the '<em><b>Op</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RECHABILITY_REWARD__OP = REWARD_FORMULA_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Rechability Reward</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RECHABILITY_REWARD_FEATURE_COUNT = REWARD_FORMULA_FEATURE_COUNT + 1;
+
+	/**
+	 * The meta object id for the '{@link org.emftext.language.AdaptiveCyberDefense.impl.LRARewardImpl <em>LRA Reward</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.emftext.language.AdaptiveCyberDefense.impl.LRARewardImpl
+	 * @see org.emftext.language.AdaptiveCyberDefense.impl.AdaptiveCyberDefensePackageImpl#getLRAReward()
+	 * @generated
+	 */
+	int LRA_REWARD = 59;
+
+	/**
+	 * The number of structural features of the '<em>LRA Reward</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LRA_REWARD_FEATURE_COUNT = REWARD_FORMULA_FEATURE_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link org.emftext.language.AdaptiveCyberDefense.impl.ROperatorImpl <em>ROperator</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.emftext.language.AdaptiveCyberDefense.impl.ROperatorImpl
+	 * @see org.emftext.language.AdaptiveCyberDefense.impl.AdaptiveCyberDefensePackageImpl#getROperator()
+	 * @generated
+	 */
+	int ROPERATOR = 60;
+
+	/**
+	 * The feature id for the '<em><b>Operator</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ROPERATOR__OPERATOR = PCTL_STATE_FORMULA_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Type</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ROPERATOR__TYPE = PCTL_STATE_FORMULA_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Bound</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ROPERATOR__BOUND = PCTL_STATE_FORMULA_FEATURE_COUNT + 2;
+
+	/**
+	 * The feature id for the '<em><b>Op</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ROPERATOR__OP = PCTL_STATE_FORMULA_FEATURE_COUNT + 3;
+
+	/**
+	 * The number of structural features of the '<em>ROperator</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ROPERATOR_FEATURE_COUNT = PCTL_STATE_FORMULA_FEATURE_COUNT + 4;
+
+	/**
+	 * The meta object id for the '{@link org.emftext.language.AdaptiveCyberDefense.impl.QuantitativeROperatorImpl <em>Quantitative ROperator</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.emftext.language.AdaptiveCyberDefense.impl.QuantitativeROperatorImpl
+	 * @see org.emftext.language.AdaptiveCyberDefense.impl.AdaptiveCyberDefensePackageImpl#getQuantitativeROperator()
+	 * @generated
+	 */
+	int QUANTITATIVE_ROPERATOR = 61;
+
+	/**
+	 * The feature id for the '<em><b>Type</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int QUANTITATIVE_ROPERATOR__TYPE = PCTL_STATE_FORMULA_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Op</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int QUANTITATIVE_ROPERATOR__OP = PCTL_STATE_FORMULA_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of structural features of the '<em>Quantitative ROperator</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int QUANTITATIVE_ROPERATOR_FEATURE_COUNT = PCTL_STATE_FORMULA_FEATURE_COUNT + 2;
+
+	/**
+	 * The meta object id for the '{@link org.emftext.language.AdaptiveCyberDefense.impl.MultiObjectiveImpl <em>Multi Objective</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.emftext.language.AdaptiveCyberDefense.impl.MultiObjectiveImpl
+	 * @see org.emftext.language.AdaptiveCyberDefense.impl.AdaptiveCyberDefensePackageImpl#getMultiObjective()
+	 * @generated
+	 */
+	int MULTI_OBJECTIVE = 62;
+
+	/**
+	 * The feature id for the '<em><b>Objectives</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MULTI_OBJECTIVE__OBJECTIVES = PCTL_STATE_FORMULA_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Multi Objective</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MULTI_OBJECTIVE_FEATURE_COUNT = PCTL_STATE_FORMULA_FEATURE_COUNT + 1;
+
+	/**
 	 * The meta object id for the '{@link org.emftext.language.AdaptiveCyberDefense.ActionType <em>Action Type</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2235,7 +3070,59 @@ public interface AdaptiveCyberDefensePackage extends EPackage {
 	 * @see org.emftext.language.AdaptiveCyberDefense.impl.AdaptiveCyberDefensePackageImpl#getActionType()
 	 * @generated
 	 */
-	int ACTION_TYPE = 38;
+	int ACTION_TYPE = 63;
+
+
+	/**
+	 * The meta object id for the '{@link org.emftext.language.AdaptiveCyberDefense.ComparaisonOperator <em>Comparaison Operator</em>}' enum.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.emftext.language.AdaptiveCyberDefense.ComparaisonOperator
+	 * @see org.emftext.language.AdaptiveCyberDefense.impl.AdaptiveCyberDefensePackageImpl#getComparaisonOperator()
+	 * @generated
+	 */
+	int COMPARAISON_OPERATOR = 64;
+
+	/**
+	 * The meta object id for the '{@link org.emftext.language.AdaptiveCyberDefense.POperatorType <em>POperator Type</em>}' enum.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.emftext.language.AdaptiveCyberDefense.POperatorType
+	 * @see org.emftext.language.AdaptiveCyberDefense.impl.AdaptiveCyberDefensePackageImpl#getPOperatorType()
+	 * @generated
+	 */
+	int POPERATOR_TYPE = 65;
+
+	/**
+	 * The meta object id for the '{@link org.emftext.language.AdaptiveCyberDefense.ROperatorType <em>ROperator Type</em>}' enum.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.emftext.language.AdaptiveCyberDefense.ROperatorType
+	 * @see org.emftext.language.AdaptiveCyberDefense.impl.AdaptiveCyberDefensePackageImpl#getROperatorType()
+	 * @generated
+	 */
+	int ROPERATOR_TYPE = 66;
+
+
+	/**
+	 * The meta object id for the '{@link org.emftext.language.AdaptiveCyberDefense.PQuantitativeOperatorType <em>PQuantitative Operator Type</em>}' enum.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.emftext.language.AdaptiveCyberDefense.PQuantitativeOperatorType
+	 * @see org.emftext.language.AdaptiveCyberDefense.impl.AdaptiveCyberDefensePackageImpl#getPQuantitativeOperatorType()
+	 * @generated
+	 */
+	int PQUANTITATIVE_OPERATOR_TYPE = 67;
+
+	/**
+	 * The meta object id for the '{@link org.emftext.language.AdaptiveCyberDefense.RQuantitativeOperatorType <em>RQuantitative Operator Type</em>}' enum.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.emftext.language.AdaptiveCyberDefense.RQuantitativeOperatorType
+	 * @see org.emftext.language.AdaptiveCyberDefense.impl.AdaptiveCyberDefensePackageImpl#getRQuantitativeOperatorType()
+	 * @generated
+	 */
+	int RQUANTITATIVE_OPERATOR_TYPE = 68;
 
 
 	/**
@@ -2313,6 +3200,28 @@ public interface AdaptiveCyberDefensePackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getDomainDescription_Name();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link org.emftext.language.AdaptiveCyberDefense.DomainDescription#getLabels <em>Labels</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Labels</em>'.
+	 * @see org.emftext.language.AdaptiveCyberDefense.DomainDescription#getLabels()
+	 * @see #getDomainDescription()
+	 * @generated
+	 */
+	EReference getDomainDescription_Labels();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link org.emftext.language.AdaptiveCyberDefense.DomainDescription#getProperties <em>Properties</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Properties</em>'.
+	 * @see org.emftext.language.AdaptiveCyberDefense.DomainDescription#getProperties()
+	 * @see #getDomainDescription()
+	 * @generated
+	 */
+	EReference getDomainDescription_Properties();
 
 	/**
 	 * Returns the meta object for class '{@link org.emftext.language.AdaptiveCyberDefense.ActionDescription <em>Action Description</em>}'.
@@ -3048,6 +3957,674 @@ public interface AdaptiveCyberDefensePackage extends EPackage {
 	EClass getPM();
 
 	/**
+	 * Returns the meta object for class '{@link org.emftext.language.AdaptiveCyberDefense.Label <em>Label</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Label</em>'.
+	 * @see org.emftext.language.AdaptiveCyberDefense.Label
+	 * @generated
+	 */
+	EClass getLabel();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.emftext.language.AdaptiveCyberDefense.Label#getValue <em>Value</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Value</em>'.
+	 * @see org.emftext.language.AdaptiveCyberDefense.Label#getValue()
+	 * @see #getLabel()
+	 * @generated
+	 */
+	EAttribute getLabel_Value();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link org.emftext.language.AdaptiveCyberDefense.Label#getProperty <em>Property</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Property</em>'.
+	 * @see org.emftext.language.AdaptiveCyberDefense.Label#getProperty()
+	 * @see #getLabel()
+	 * @generated
+	 */
+	EReference getLabel_Property();
+
+	/**
+	 * Returns the meta object for class '{@link org.emftext.language.AdaptiveCyberDefense.PCTLStateFormula <em>PCTL State Formula</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>PCTL State Formula</em>'.
+	 * @see org.emftext.language.AdaptiveCyberDefense.PCTLStateFormula
+	 * @generated
+	 */
+	EClass getPCTLStateFormula();
+
+	/**
+	 * Returns the meta object for class '{@link org.emftext.language.AdaptiveCyberDefense.PConjunction <em>PConjunction</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>PConjunction</em>'.
+	 * @see org.emftext.language.AdaptiveCyberDefense.PConjunction
+	 * @generated
+	 */
+	EClass getPConjunction();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link org.emftext.language.AdaptiveCyberDefense.PConjunction#getRhs <em>Rhs</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Rhs</em>'.
+	 * @see org.emftext.language.AdaptiveCyberDefense.PConjunction#getRhs()
+	 * @see #getPConjunction()
+	 * @generated
+	 */
+	EReference getPConjunction_Rhs();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link org.emftext.language.AdaptiveCyberDefense.PConjunction#getLhs <em>Lhs</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Lhs</em>'.
+	 * @see org.emftext.language.AdaptiveCyberDefense.PConjunction#getLhs()
+	 * @see #getPConjunction()
+	 * @generated
+	 */
+	EReference getPConjunction_Lhs();
+
+	/**
+	 * Returns the meta object for class '{@link org.emftext.language.AdaptiveCyberDefense.PDisjunction <em>PDisjunction</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>PDisjunction</em>'.
+	 * @see org.emftext.language.AdaptiveCyberDefense.PDisjunction
+	 * @generated
+	 */
+	EClass getPDisjunction();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link org.emftext.language.AdaptiveCyberDefense.PDisjunction#getRhs <em>Rhs</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Rhs</em>'.
+	 * @see org.emftext.language.AdaptiveCyberDefense.PDisjunction#getRhs()
+	 * @see #getPDisjunction()
+	 * @generated
+	 */
+	EReference getPDisjunction_Rhs();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link org.emftext.language.AdaptiveCyberDefense.PDisjunction#getLhs <em>Lhs</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Lhs</em>'.
+	 * @see org.emftext.language.AdaptiveCyberDefense.PDisjunction#getLhs()
+	 * @see #getPDisjunction()
+	 * @generated
+	 */
+	EReference getPDisjunction_Lhs();
+
+	/**
+	 * Returns the meta object for class '{@link org.emftext.language.AdaptiveCyberDefense.PNegation <em>PNegation</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>PNegation</em>'.
+	 * @see org.emftext.language.AdaptiveCyberDefense.PNegation
+	 * @generated
+	 */
+	EClass getPNegation();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link org.emftext.language.AdaptiveCyberDefense.PNegation#getOp <em>Op</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Op</em>'.
+	 * @see org.emftext.language.AdaptiveCyberDefense.PNegation#getOp()
+	 * @see #getPNegation()
+	 * @generated
+	 */
+	EReference getPNegation_Op();
+
+	/**
+	 * Returns the meta object for class '{@link org.emftext.language.AdaptiveCyberDefense.POperator <em>POperator</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>POperator</em>'.
+	 * @see org.emftext.language.AdaptiveCyberDefense.POperator
+	 * @generated
+	 */
+	EClass getPOperator();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.emftext.language.AdaptiveCyberDefense.POperator#getOperator <em>Operator</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Operator</em>'.
+	 * @see org.emftext.language.AdaptiveCyberDefense.POperator#getOperator()
+	 * @see #getPOperator()
+	 * @generated
+	 */
+	EAttribute getPOperator_Operator();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.emftext.language.AdaptiveCyberDefense.POperator#getBound <em>Bound</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Bound</em>'.
+	 * @see org.emftext.language.AdaptiveCyberDefense.POperator#getBound()
+	 * @see #getPOperator()
+	 * @generated
+	 */
+	EAttribute getPOperator_Bound();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link org.emftext.language.AdaptiveCyberDefense.POperator#getOp <em>Op</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Op</em>'.
+	 * @see org.emftext.language.AdaptiveCyberDefense.POperator#getOp()
+	 * @see #getPOperator()
+	 * @generated
+	 */
+	EReference getPOperator_Op();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.emftext.language.AdaptiveCyberDefense.POperator#getType <em>Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Type</em>'.
+	 * @see org.emftext.language.AdaptiveCyberDefense.POperator#getType()
+	 * @see #getPOperator()
+	 * @generated
+	 */
+	EAttribute getPOperator_Type();
+
+	/**
+	 * Returns the meta object for class '{@link org.emftext.language.AdaptiveCyberDefense.PCTLPathFormula <em>PCTL Path Formula</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>PCTL Path Formula</em>'.
+	 * @see org.emftext.language.AdaptiveCyberDefense.PCTLPathFormula
+	 * @generated
+	 */
+	EClass getPCTLPathFormula();
+
+	/**
+	 * Returns the meta object for class '{@link org.emftext.language.AdaptiveCyberDefense.Until <em>Until</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Until</em>'.
+	 * @see org.emftext.language.AdaptiveCyberDefense.Until
+	 * @generated
+	 */
+	EClass getUntil();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link org.emftext.language.AdaptiveCyberDefense.Until#getLhs <em>Lhs</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Lhs</em>'.
+	 * @see org.emftext.language.AdaptiveCyberDefense.Until#getLhs()
+	 * @see #getUntil()
+	 * @generated
+	 */
+	EReference getUntil_Lhs();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link org.emftext.language.AdaptiveCyberDefense.Until#getRhs <em>Rhs</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Rhs</em>'.
+	 * @see org.emftext.language.AdaptiveCyberDefense.Until#getRhs()
+	 * @see #getUntil()
+	 * @generated
+	 */
+	EReference getUntil_Rhs();
+
+	/**
+	 * Returns the meta object for class '{@link org.emftext.language.AdaptiveCyberDefense.Eventually <em>Eventually</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Eventually</em>'.
+	 * @see org.emftext.language.AdaptiveCyberDefense.Eventually
+	 * @generated
+	 */
+	EClass getEventually();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link org.emftext.language.AdaptiveCyberDefense.Eventually#getOp <em>Op</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Op</em>'.
+	 * @see org.emftext.language.AdaptiveCyberDefense.Eventually#getOp()
+	 * @see #getEventually()
+	 * @generated
+	 */
+	EReference getEventually_Op();
+
+	/**
+	 * Returns the meta object for class '{@link org.emftext.language.AdaptiveCyberDefense.BoundedUntil <em>Bounded Until</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Bounded Until</em>'.
+	 * @see org.emftext.language.AdaptiveCyberDefense.BoundedUntil
+	 * @generated
+	 */
+	EClass getBoundedUntil();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link org.emftext.language.AdaptiveCyberDefense.BoundedUntil#getRhs <em>Rhs</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Rhs</em>'.
+	 * @see org.emftext.language.AdaptiveCyberDefense.BoundedUntil#getRhs()
+	 * @see #getBoundedUntil()
+	 * @generated
+	 */
+	EReference getBoundedUntil_Rhs();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link org.emftext.language.AdaptiveCyberDefense.BoundedUntil#getLhs <em>Lhs</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Lhs</em>'.
+	 * @see org.emftext.language.AdaptiveCyberDefense.BoundedUntil#getLhs()
+	 * @see #getBoundedUntil()
+	 * @generated
+	 */
+	EReference getBoundedUntil_Lhs();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.emftext.language.AdaptiveCyberDefense.BoundedUntil#getBound <em>Bound</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Bound</em>'.
+	 * @see org.emftext.language.AdaptiveCyberDefense.BoundedUntil#getBound()
+	 * @see #getBoundedUntil()
+	 * @generated
+	 */
+	EAttribute getBoundedUntil_Bound();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.emftext.language.AdaptiveCyberDefense.BoundedUntil#getOperator <em>Operator</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Operator</em>'.
+	 * @see org.emftext.language.AdaptiveCyberDefense.BoundedUntil#getOperator()
+	 * @see #getBoundedUntil()
+	 * @generated
+	 */
+	EAttribute getBoundedUntil_Operator();
+
+	/**
+	 * Returns the meta object for class '{@link org.emftext.language.AdaptiveCyberDefense.Globally <em>Globally</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Globally</em>'.
+	 * @see org.emftext.language.AdaptiveCyberDefense.Globally
+	 * @generated
+	 */
+	EClass getGlobally();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link org.emftext.language.AdaptiveCyberDefense.Globally#getOp <em>Op</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Op</em>'.
+	 * @see org.emftext.language.AdaptiveCyberDefense.Globally#getOp()
+	 * @see #getGlobally()
+	 * @generated
+	 */
+	EReference getGlobally_Op();
+
+	/**
+	 * Returns the meta object for class '{@link org.emftext.language.AdaptiveCyberDefense.BoundedEventually <em>Bounded Eventually</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Bounded Eventually</em>'.
+	 * @see org.emftext.language.AdaptiveCyberDefense.BoundedEventually
+	 * @generated
+	 */
+	EClass getBoundedEventually();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link org.emftext.language.AdaptiveCyberDefense.BoundedEventually#getOp <em>Op</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Op</em>'.
+	 * @see org.emftext.language.AdaptiveCyberDefense.BoundedEventually#getOp()
+	 * @see #getBoundedEventually()
+	 * @generated
+	 */
+	EReference getBoundedEventually_Op();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.emftext.language.AdaptiveCyberDefense.BoundedEventually#getBound <em>Bound</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Bound</em>'.
+	 * @see org.emftext.language.AdaptiveCyberDefense.BoundedEventually#getBound()
+	 * @see #getBoundedEventually()
+	 * @generated
+	 */
+	EAttribute getBoundedEventually_Bound();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.emftext.language.AdaptiveCyberDefense.BoundedEventually#getOperator <em>Operator</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Operator</em>'.
+	 * @see org.emftext.language.AdaptiveCyberDefense.BoundedEventually#getOperator()
+	 * @see #getBoundedEventually()
+	 * @generated
+	 */
+	EAttribute getBoundedEventually_Operator();
+
+	/**
+	 * Returns the meta object for class '{@link org.emftext.language.AdaptiveCyberDefense.PTrue <em>PTrue</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>PTrue</em>'.
+	 * @see org.emftext.language.AdaptiveCyberDefense.PTrue
+	 * @generated
+	 */
+	EClass getPTrue();
+
+	/**
+	 * Returns the meta object for class '{@link org.emftext.language.AdaptiveCyberDefense.PFalse <em>PFalse</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>PFalse</em>'.
+	 * @see org.emftext.language.AdaptiveCyberDefense.PFalse
+	 * @generated
+	 */
+	EClass getPFalse();
+
+	/**
+	 * Returns the meta object for class '{@link org.emftext.language.AdaptiveCyberDefense.LabelReference <em>Label Reference</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Label Reference</em>'.
+	 * @see org.emftext.language.AdaptiveCyberDefense.LabelReference
+	 * @generated
+	 */
+	EClass getLabelReference();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.emftext.language.AdaptiveCyberDefense.LabelReference#getLabel <em>Label</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Label</em>'.
+	 * @see org.emftext.language.AdaptiveCyberDefense.LabelReference#getLabel()
+	 * @see #getLabelReference()
+	 * @generated
+	 */
+	EReference getLabelReference_Label();
+
+	/**
+	 * Returns the meta object for class '{@link org.emftext.language.AdaptiveCyberDefense.LRA <em>LRA</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>LRA</em>'.
+	 * @see org.emftext.language.AdaptiveCyberDefense.LRA
+	 * @generated
+	 */
+	EClass getLRA();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.emftext.language.AdaptiveCyberDefense.LRA#getOperator <em>Operator</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Operator</em>'.
+	 * @see org.emftext.language.AdaptiveCyberDefense.LRA#getOperator()
+	 * @see #getLRA()
+	 * @generated
+	 */
+	EAttribute getLRA_Operator();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.emftext.language.AdaptiveCyberDefense.LRA#getBound <em>Bound</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Bound</em>'.
+	 * @see org.emftext.language.AdaptiveCyberDefense.LRA#getBound()
+	 * @see #getLRA()
+	 * @generated
+	 */
+	EAttribute getLRA_Bound();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link org.emftext.language.AdaptiveCyberDefense.LRA#getOp <em>Op</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Op</em>'.
+	 * @see org.emftext.language.AdaptiveCyberDefense.LRA#getOp()
+	 * @see #getLRA()
+	 * @generated
+	 */
+	EReference getLRA_Op();
+
+	/**
+	 * Returns the meta object for class '{@link org.emftext.language.AdaptiveCyberDefense.QuantitativePOperator <em>Quantitative POperator</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Quantitative POperator</em>'.
+	 * @see org.emftext.language.AdaptiveCyberDefense.QuantitativePOperator
+	 * @generated
+	 */
+	EClass getQuantitativePOperator();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.emftext.language.AdaptiveCyberDefense.QuantitativePOperator#getType <em>Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Type</em>'.
+	 * @see org.emftext.language.AdaptiveCyberDefense.QuantitativePOperator#getType()
+	 * @see #getQuantitativePOperator()
+	 * @generated
+	 */
+	EAttribute getQuantitativePOperator_Type();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link org.emftext.language.AdaptiveCyberDefense.QuantitativePOperator#getOp <em>Op</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Op</em>'.
+	 * @see org.emftext.language.AdaptiveCyberDefense.QuantitativePOperator#getOp()
+	 * @see #getQuantitativePOperator()
+	 * @generated
+	 */
+	EReference getQuantitativePOperator_Op();
+
+	/**
+	 * Returns the meta object for class '{@link org.emftext.language.AdaptiveCyberDefense.RewardFormula <em>Reward Formula</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Reward Formula</em>'.
+	 * @see org.emftext.language.AdaptiveCyberDefense.RewardFormula
+	 * @generated
+	 */
+	EClass getRewardFormula();
+
+	/**
+	 * Returns the meta object for class '{@link org.emftext.language.AdaptiveCyberDefense.InstantaneousReward <em>Instantaneous Reward</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Instantaneous Reward</em>'.
+	 * @see org.emftext.language.AdaptiveCyberDefense.InstantaneousReward
+	 * @generated
+	 */
+	EClass getInstantaneousReward();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.emftext.language.AdaptiveCyberDefense.InstantaneousReward#getStep <em>Step</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Step</em>'.
+	 * @see org.emftext.language.AdaptiveCyberDefense.InstantaneousReward#getStep()
+	 * @see #getInstantaneousReward()
+	 * @generated
+	 */
+	EAttribute getInstantaneousReward_Step();
+
+	/**
+	 * Returns the meta object for class '{@link org.emftext.language.AdaptiveCyberDefense.CumulativeReward <em>Cumulative Reward</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Cumulative Reward</em>'.
+	 * @see org.emftext.language.AdaptiveCyberDefense.CumulativeReward
+	 * @generated
+	 */
+	EClass getCumulativeReward();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.emftext.language.AdaptiveCyberDefense.CumulativeReward#getStep <em>Step</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Step</em>'.
+	 * @see org.emftext.language.AdaptiveCyberDefense.CumulativeReward#getStep()
+	 * @see #getCumulativeReward()
+	 * @generated
+	 */
+	EAttribute getCumulativeReward_Step();
+
+	/**
+	 * Returns the meta object for class '{@link org.emftext.language.AdaptiveCyberDefense.RechabilityReward <em>Rechability Reward</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Rechability Reward</em>'.
+	 * @see org.emftext.language.AdaptiveCyberDefense.RechabilityReward
+	 * @generated
+	 */
+	EClass getRechabilityReward();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link org.emftext.language.AdaptiveCyberDefense.RechabilityReward#getOp <em>Op</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Op</em>'.
+	 * @see org.emftext.language.AdaptiveCyberDefense.RechabilityReward#getOp()
+	 * @see #getRechabilityReward()
+	 * @generated
+	 */
+	EReference getRechabilityReward_Op();
+
+	/**
+	 * Returns the meta object for class '{@link org.emftext.language.AdaptiveCyberDefense.LRAReward <em>LRA Reward</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>LRA Reward</em>'.
+	 * @see org.emftext.language.AdaptiveCyberDefense.LRAReward
+	 * @generated
+	 */
+	EClass getLRAReward();
+
+	/**
+	 * Returns the meta object for class '{@link org.emftext.language.AdaptiveCyberDefense.ROperator <em>ROperator</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>ROperator</em>'.
+	 * @see org.emftext.language.AdaptiveCyberDefense.ROperator
+	 * @generated
+	 */
+	EClass getROperator();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.emftext.language.AdaptiveCyberDefense.ROperator#getOperator <em>Operator</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Operator</em>'.
+	 * @see org.emftext.language.AdaptiveCyberDefense.ROperator#getOperator()
+	 * @see #getROperator()
+	 * @generated
+	 */
+	EAttribute getROperator_Operator();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.emftext.language.AdaptiveCyberDefense.ROperator#getType <em>Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Type</em>'.
+	 * @see org.emftext.language.AdaptiveCyberDefense.ROperator#getType()
+	 * @see #getROperator()
+	 * @generated
+	 */
+	EAttribute getROperator_Type();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.emftext.language.AdaptiveCyberDefense.ROperator#getBound <em>Bound</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Bound</em>'.
+	 * @see org.emftext.language.AdaptiveCyberDefense.ROperator#getBound()
+	 * @see #getROperator()
+	 * @generated
+	 */
+	EAttribute getROperator_Bound();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link org.emftext.language.AdaptiveCyberDefense.ROperator#getOp <em>Op</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Op</em>'.
+	 * @see org.emftext.language.AdaptiveCyberDefense.ROperator#getOp()
+	 * @see #getROperator()
+	 * @generated
+	 */
+	EReference getROperator_Op();
+
+	/**
+	 * Returns the meta object for class '{@link org.emftext.language.AdaptiveCyberDefense.QuantitativeROperator <em>Quantitative ROperator</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Quantitative ROperator</em>'.
+	 * @see org.emftext.language.AdaptiveCyberDefense.QuantitativeROperator
+	 * @generated
+	 */
+	EClass getQuantitativeROperator();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.emftext.language.AdaptiveCyberDefense.QuantitativeROperator#getType <em>Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Type</em>'.
+	 * @see org.emftext.language.AdaptiveCyberDefense.QuantitativeROperator#getType()
+	 * @see #getQuantitativeROperator()
+	 * @generated
+	 */
+	EAttribute getQuantitativeROperator_Type();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link org.emftext.language.AdaptiveCyberDefense.QuantitativeROperator#getOp <em>Op</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Op</em>'.
+	 * @see org.emftext.language.AdaptiveCyberDefense.QuantitativeROperator#getOp()
+	 * @see #getQuantitativeROperator()
+	 * @generated
+	 */
+	EReference getQuantitativeROperator_Op();
+
+	/**
+	 * Returns the meta object for class '{@link org.emftext.language.AdaptiveCyberDefense.MultiObjective <em>Multi Objective</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Multi Objective</em>'.
+	 * @see org.emftext.language.AdaptiveCyberDefense.MultiObjective
+	 * @generated
+	 */
+	EClass getMultiObjective();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link org.emftext.language.AdaptiveCyberDefense.MultiObjective#getObjectives <em>Objectives</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Objectives</em>'.
+	 * @see org.emftext.language.AdaptiveCyberDefense.MultiObjective#getObjectives()
+	 * @see #getMultiObjective()
+	 * @generated
+	 */
+	EReference getMultiObjective_Objectives();
+
+	/**
 	 * Returns the meta object for enum '{@link org.emftext.language.AdaptiveCyberDefense.ActionType <em>Action Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3056,6 +4633,56 @@ public interface AdaptiveCyberDefensePackage extends EPackage {
 	 * @generated
 	 */
 	EEnum getActionType();
+
+	/**
+	 * Returns the meta object for enum '{@link org.emftext.language.AdaptiveCyberDefense.ComparaisonOperator <em>Comparaison Operator</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for enum '<em>Comparaison Operator</em>'.
+	 * @see org.emftext.language.AdaptiveCyberDefense.ComparaisonOperator
+	 * @generated
+	 */
+	EEnum getComparaisonOperator();
+
+	/**
+	 * Returns the meta object for enum '{@link org.emftext.language.AdaptiveCyberDefense.POperatorType <em>POperator Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for enum '<em>POperator Type</em>'.
+	 * @see org.emftext.language.AdaptiveCyberDefense.POperatorType
+	 * @generated
+	 */
+	EEnum getPOperatorType();
+
+	/**
+	 * Returns the meta object for enum '{@link org.emftext.language.AdaptiveCyberDefense.ROperatorType <em>ROperator Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for enum '<em>ROperator Type</em>'.
+	 * @see org.emftext.language.AdaptiveCyberDefense.ROperatorType
+	 * @generated
+	 */
+	EEnum getROperatorType();
+
+	/**
+	 * Returns the meta object for enum '{@link org.emftext.language.AdaptiveCyberDefense.PQuantitativeOperatorType <em>PQuantitative Operator Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for enum '<em>PQuantitative Operator Type</em>'.
+	 * @see org.emftext.language.AdaptiveCyberDefense.PQuantitativeOperatorType
+	 * @generated
+	 */
+	EEnum getPQuantitativeOperatorType();
+
+	/**
+	 * Returns the meta object for enum '{@link org.emftext.language.AdaptiveCyberDefense.RQuantitativeOperatorType <em>RQuantitative Operator Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for enum '<em>RQuantitative Operator Type</em>'.
+	 * @see org.emftext.language.AdaptiveCyberDefense.RQuantitativeOperatorType
+	 * @generated
+	 */
+	EEnum getRQuantitativeOperatorType();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -3136,6 +4763,22 @@ public interface AdaptiveCyberDefensePackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute DOMAIN_DESCRIPTION__NAME = eINSTANCE.getDomainDescription_Name();
+
+		/**
+		 * The meta object literal for the '<em><b>Labels</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference DOMAIN_DESCRIPTION__LABELS = eINSTANCE.getDomainDescription_Labels();
+
+		/**
+		 * The meta object literal for the '<em><b>Properties</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference DOMAIN_DESCRIPTION__PROPERTIES = eINSTANCE.getDomainDescription_Properties();
 
 		/**
 		 * The meta object literal for the '{@link org.emftext.language.AdaptiveCyberDefense.impl.ActionDescriptionImpl <em>Action Description</em>}' class.
@@ -3772,6 +5415,560 @@ public interface AdaptiveCyberDefensePackage extends EPackage {
 		EClass PM = eINSTANCE.getPM();
 
 		/**
+		 * The meta object literal for the '{@link org.emftext.language.AdaptiveCyberDefense.impl.LabelImpl <em>Label</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.emftext.language.AdaptiveCyberDefense.impl.LabelImpl
+		 * @see org.emftext.language.AdaptiveCyberDefense.impl.AdaptiveCyberDefensePackageImpl#getLabel()
+		 * @generated
+		 */
+		EClass LABEL = eINSTANCE.getLabel();
+
+		/**
+		 * The meta object literal for the '<em><b>Value</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute LABEL__VALUE = eINSTANCE.getLabel_Value();
+
+		/**
+		 * The meta object literal for the '<em><b>Property</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference LABEL__PROPERTY = eINSTANCE.getLabel_Property();
+
+		/**
+		 * The meta object literal for the '{@link org.emftext.language.AdaptiveCyberDefense.impl.PCTLStateFormulaImpl <em>PCTL State Formula</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.emftext.language.AdaptiveCyberDefense.impl.PCTLStateFormulaImpl
+		 * @see org.emftext.language.AdaptiveCyberDefense.impl.AdaptiveCyberDefensePackageImpl#getPCTLStateFormula()
+		 * @generated
+		 */
+		EClass PCTL_STATE_FORMULA = eINSTANCE.getPCTLStateFormula();
+
+		/**
+		 * The meta object literal for the '{@link org.emftext.language.AdaptiveCyberDefense.impl.PConjunctionImpl <em>PConjunction</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.emftext.language.AdaptiveCyberDefense.impl.PConjunctionImpl
+		 * @see org.emftext.language.AdaptiveCyberDefense.impl.AdaptiveCyberDefensePackageImpl#getPConjunction()
+		 * @generated
+		 */
+		EClass PCONJUNCTION = eINSTANCE.getPConjunction();
+
+		/**
+		 * The meta object literal for the '<em><b>Rhs</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference PCONJUNCTION__RHS = eINSTANCE.getPConjunction_Rhs();
+
+		/**
+		 * The meta object literal for the '<em><b>Lhs</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference PCONJUNCTION__LHS = eINSTANCE.getPConjunction_Lhs();
+
+		/**
+		 * The meta object literal for the '{@link org.emftext.language.AdaptiveCyberDefense.impl.PDisjunctionImpl <em>PDisjunction</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.emftext.language.AdaptiveCyberDefense.impl.PDisjunctionImpl
+		 * @see org.emftext.language.AdaptiveCyberDefense.impl.AdaptiveCyberDefensePackageImpl#getPDisjunction()
+		 * @generated
+		 */
+		EClass PDISJUNCTION = eINSTANCE.getPDisjunction();
+
+		/**
+		 * The meta object literal for the '<em><b>Rhs</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference PDISJUNCTION__RHS = eINSTANCE.getPDisjunction_Rhs();
+
+		/**
+		 * The meta object literal for the '<em><b>Lhs</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference PDISJUNCTION__LHS = eINSTANCE.getPDisjunction_Lhs();
+
+		/**
+		 * The meta object literal for the '{@link org.emftext.language.AdaptiveCyberDefense.impl.PNegationImpl <em>PNegation</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.emftext.language.AdaptiveCyberDefense.impl.PNegationImpl
+		 * @see org.emftext.language.AdaptiveCyberDefense.impl.AdaptiveCyberDefensePackageImpl#getPNegation()
+		 * @generated
+		 */
+		EClass PNEGATION = eINSTANCE.getPNegation();
+
+		/**
+		 * The meta object literal for the '<em><b>Op</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference PNEGATION__OP = eINSTANCE.getPNegation_Op();
+
+		/**
+		 * The meta object literal for the '{@link org.emftext.language.AdaptiveCyberDefense.impl.POperatorImpl <em>POperator</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.emftext.language.AdaptiveCyberDefense.impl.POperatorImpl
+		 * @see org.emftext.language.AdaptiveCyberDefense.impl.AdaptiveCyberDefensePackageImpl#getPOperator()
+		 * @generated
+		 */
+		EClass POPERATOR = eINSTANCE.getPOperator();
+
+		/**
+		 * The meta object literal for the '<em><b>Operator</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute POPERATOR__OPERATOR = eINSTANCE.getPOperator_Operator();
+
+		/**
+		 * The meta object literal for the '<em><b>Bound</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute POPERATOR__BOUND = eINSTANCE.getPOperator_Bound();
+
+		/**
+		 * The meta object literal for the '<em><b>Op</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference POPERATOR__OP = eINSTANCE.getPOperator_Op();
+
+		/**
+		 * The meta object literal for the '<em><b>Type</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute POPERATOR__TYPE = eINSTANCE.getPOperator_Type();
+
+		/**
+		 * The meta object literal for the '{@link org.emftext.language.AdaptiveCyberDefense.impl.PCTLPathFormulaImpl <em>PCTL Path Formula</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.emftext.language.AdaptiveCyberDefense.impl.PCTLPathFormulaImpl
+		 * @see org.emftext.language.AdaptiveCyberDefense.impl.AdaptiveCyberDefensePackageImpl#getPCTLPathFormula()
+		 * @generated
+		 */
+		EClass PCTL_PATH_FORMULA = eINSTANCE.getPCTLPathFormula();
+
+		/**
+		 * The meta object literal for the '{@link org.emftext.language.AdaptiveCyberDefense.impl.UntilImpl <em>Until</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.emftext.language.AdaptiveCyberDefense.impl.UntilImpl
+		 * @see org.emftext.language.AdaptiveCyberDefense.impl.AdaptiveCyberDefensePackageImpl#getUntil()
+		 * @generated
+		 */
+		EClass UNTIL = eINSTANCE.getUntil();
+
+		/**
+		 * The meta object literal for the '<em><b>Lhs</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference UNTIL__LHS = eINSTANCE.getUntil_Lhs();
+
+		/**
+		 * The meta object literal for the '<em><b>Rhs</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference UNTIL__RHS = eINSTANCE.getUntil_Rhs();
+
+		/**
+		 * The meta object literal for the '{@link org.emftext.language.AdaptiveCyberDefense.impl.EventuallyImpl <em>Eventually</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.emftext.language.AdaptiveCyberDefense.impl.EventuallyImpl
+		 * @see org.emftext.language.AdaptiveCyberDefense.impl.AdaptiveCyberDefensePackageImpl#getEventually()
+		 * @generated
+		 */
+		EClass EVENTUALLY = eINSTANCE.getEventually();
+
+		/**
+		 * The meta object literal for the '<em><b>Op</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference EVENTUALLY__OP = eINSTANCE.getEventually_Op();
+
+		/**
+		 * The meta object literal for the '{@link org.emftext.language.AdaptiveCyberDefense.impl.BoundedUntilImpl <em>Bounded Until</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.emftext.language.AdaptiveCyberDefense.impl.BoundedUntilImpl
+		 * @see org.emftext.language.AdaptiveCyberDefense.impl.AdaptiveCyberDefensePackageImpl#getBoundedUntil()
+		 * @generated
+		 */
+		EClass BOUNDED_UNTIL = eINSTANCE.getBoundedUntil();
+
+		/**
+		 * The meta object literal for the '<em><b>Rhs</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference BOUNDED_UNTIL__RHS = eINSTANCE.getBoundedUntil_Rhs();
+
+		/**
+		 * The meta object literal for the '<em><b>Lhs</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference BOUNDED_UNTIL__LHS = eINSTANCE.getBoundedUntil_Lhs();
+
+		/**
+		 * The meta object literal for the '<em><b>Bound</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute BOUNDED_UNTIL__BOUND = eINSTANCE.getBoundedUntil_Bound();
+
+		/**
+		 * The meta object literal for the '<em><b>Operator</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute BOUNDED_UNTIL__OPERATOR = eINSTANCE.getBoundedUntil_Operator();
+
+		/**
+		 * The meta object literal for the '{@link org.emftext.language.AdaptiveCyberDefense.impl.GloballyImpl <em>Globally</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.emftext.language.AdaptiveCyberDefense.impl.GloballyImpl
+		 * @see org.emftext.language.AdaptiveCyberDefense.impl.AdaptiveCyberDefensePackageImpl#getGlobally()
+		 * @generated
+		 */
+		EClass GLOBALLY = eINSTANCE.getGlobally();
+
+		/**
+		 * The meta object literal for the '<em><b>Op</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference GLOBALLY__OP = eINSTANCE.getGlobally_Op();
+
+		/**
+		 * The meta object literal for the '{@link org.emftext.language.AdaptiveCyberDefense.impl.BoundedEventuallyImpl <em>Bounded Eventually</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.emftext.language.AdaptiveCyberDefense.impl.BoundedEventuallyImpl
+		 * @see org.emftext.language.AdaptiveCyberDefense.impl.AdaptiveCyberDefensePackageImpl#getBoundedEventually()
+		 * @generated
+		 */
+		EClass BOUNDED_EVENTUALLY = eINSTANCE.getBoundedEventually();
+
+		/**
+		 * The meta object literal for the '<em><b>Op</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference BOUNDED_EVENTUALLY__OP = eINSTANCE.getBoundedEventually_Op();
+
+		/**
+		 * The meta object literal for the '<em><b>Bound</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute BOUNDED_EVENTUALLY__BOUND = eINSTANCE.getBoundedEventually_Bound();
+
+		/**
+		 * The meta object literal for the '<em><b>Operator</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute BOUNDED_EVENTUALLY__OPERATOR = eINSTANCE.getBoundedEventually_Operator();
+
+		/**
+		 * The meta object literal for the '{@link org.emftext.language.AdaptiveCyberDefense.impl.PTrueImpl <em>PTrue</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.emftext.language.AdaptiveCyberDefense.impl.PTrueImpl
+		 * @see org.emftext.language.AdaptiveCyberDefense.impl.AdaptiveCyberDefensePackageImpl#getPTrue()
+		 * @generated
+		 */
+		EClass PTRUE = eINSTANCE.getPTrue();
+
+		/**
+		 * The meta object literal for the '{@link org.emftext.language.AdaptiveCyberDefense.impl.PFalseImpl <em>PFalse</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.emftext.language.AdaptiveCyberDefense.impl.PFalseImpl
+		 * @see org.emftext.language.AdaptiveCyberDefense.impl.AdaptiveCyberDefensePackageImpl#getPFalse()
+		 * @generated
+		 */
+		EClass PFALSE = eINSTANCE.getPFalse();
+
+		/**
+		 * The meta object literal for the '{@link org.emftext.language.AdaptiveCyberDefense.impl.LabelReferenceImpl <em>Label Reference</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.emftext.language.AdaptiveCyberDefense.impl.LabelReferenceImpl
+		 * @see org.emftext.language.AdaptiveCyberDefense.impl.AdaptiveCyberDefensePackageImpl#getLabelReference()
+		 * @generated
+		 */
+		EClass LABEL_REFERENCE = eINSTANCE.getLabelReference();
+
+		/**
+		 * The meta object literal for the '<em><b>Label</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference LABEL_REFERENCE__LABEL = eINSTANCE.getLabelReference_Label();
+
+		/**
+		 * The meta object literal for the '{@link org.emftext.language.AdaptiveCyberDefense.impl.LRAImpl <em>LRA</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.emftext.language.AdaptiveCyberDefense.impl.LRAImpl
+		 * @see org.emftext.language.AdaptiveCyberDefense.impl.AdaptiveCyberDefensePackageImpl#getLRA()
+		 * @generated
+		 */
+		EClass LRA = eINSTANCE.getLRA();
+
+		/**
+		 * The meta object literal for the '<em><b>Operator</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute LRA__OPERATOR = eINSTANCE.getLRA_Operator();
+
+		/**
+		 * The meta object literal for the '<em><b>Bound</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute LRA__BOUND = eINSTANCE.getLRA_Bound();
+
+		/**
+		 * The meta object literal for the '<em><b>Op</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference LRA__OP = eINSTANCE.getLRA_Op();
+
+		/**
+		 * The meta object literal for the '{@link org.emftext.language.AdaptiveCyberDefense.impl.QuantitativePOperatorImpl <em>Quantitative POperator</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.emftext.language.AdaptiveCyberDefense.impl.QuantitativePOperatorImpl
+		 * @see org.emftext.language.AdaptiveCyberDefense.impl.AdaptiveCyberDefensePackageImpl#getQuantitativePOperator()
+		 * @generated
+		 */
+		EClass QUANTITATIVE_POPERATOR = eINSTANCE.getQuantitativePOperator();
+
+		/**
+		 * The meta object literal for the '<em><b>Type</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute QUANTITATIVE_POPERATOR__TYPE = eINSTANCE.getQuantitativePOperator_Type();
+
+		/**
+		 * The meta object literal for the '<em><b>Op</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference QUANTITATIVE_POPERATOR__OP = eINSTANCE.getQuantitativePOperator_Op();
+
+		/**
+		 * The meta object literal for the '{@link org.emftext.language.AdaptiveCyberDefense.impl.RewardFormulaImpl <em>Reward Formula</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.emftext.language.AdaptiveCyberDefense.impl.RewardFormulaImpl
+		 * @see org.emftext.language.AdaptiveCyberDefense.impl.AdaptiveCyberDefensePackageImpl#getRewardFormula()
+		 * @generated
+		 */
+		EClass REWARD_FORMULA = eINSTANCE.getRewardFormula();
+
+		/**
+		 * The meta object literal for the '{@link org.emftext.language.AdaptiveCyberDefense.impl.InstantaneousRewardImpl <em>Instantaneous Reward</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.emftext.language.AdaptiveCyberDefense.impl.InstantaneousRewardImpl
+		 * @see org.emftext.language.AdaptiveCyberDefense.impl.AdaptiveCyberDefensePackageImpl#getInstantaneousReward()
+		 * @generated
+		 */
+		EClass INSTANTANEOUS_REWARD = eINSTANCE.getInstantaneousReward();
+
+		/**
+		 * The meta object literal for the '<em><b>Step</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute INSTANTANEOUS_REWARD__STEP = eINSTANCE.getInstantaneousReward_Step();
+
+		/**
+		 * The meta object literal for the '{@link org.emftext.language.AdaptiveCyberDefense.impl.CumulativeRewardImpl <em>Cumulative Reward</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.emftext.language.AdaptiveCyberDefense.impl.CumulativeRewardImpl
+		 * @see org.emftext.language.AdaptiveCyberDefense.impl.AdaptiveCyberDefensePackageImpl#getCumulativeReward()
+		 * @generated
+		 */
+		EClass CUMULATIVE_REWARD = eINSTANCE.getCumulativeReward();
+
+		/**
+		 * The meta object literal for the '<em><b>Step</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute CUMULATIVE_REWARD__STEP = eINSTANCE.getCumulativeReward_Step();
+
+		/**
+		 * The meta object literal for the '{@link org.emftext.language.AdaptiveCyberDefense.impl.RechabilityRewardImpl <em>Rechability Reward</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.emftext.language.AdaptiveCyberDefense.impl.RechabilityRewardImpl
+		 * @see org.emftext.language.AdaptiveCyberDefense.impl.AdaptiveCyberDefensePackageImpl#getRechabilityReward()
+		 * @generated
+		 */
+		EClass RECHABILITY_REWARD = eINSTANCE.getRechabilityReward();
+
+		/**
+		 * The meta object literal for the '<em><b>Op</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference RECHABILITY_REWARD__OP = eINSTANCE.getRechabilityReward_Op();
+
+		/**
+		 * The meta object literal for the '{@link org.emftext.language.AdaptiveCyberDefense.impl.LRARewardImpl <em>LRA Reward</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.emftext.language.AdaptiveCyberDefense.impl.LRARewardImpl
+		 * @see org.emftext.language.AdaptiveCyberDefense.impl.AdaptiveCyberDefensePackageImpl#getLRAReward()
+		 * @generated
+		 */
+		EClass LRA_REWARD = eINSTANCE.getLRAReward();
+
+		/**
+		 * The meta object literal for the '{@link org.emftext.language.AdaptiveCyberDefense.impl.ROperatorImpl <em>ROperator</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.emftext.language.AdaptiveCyberDefense.impl.ROperatorImpl
+		 * @see org.emftext.language.AdaptiveCyberDefense.impl.AdaptiveCyberDefensePackageImpl#getROperator()
+		 * @generated
+		 */
+		EClass ROPERATOR = eINSTANCE.getROperator();
+
+		/**
+		 * The meta object literal for the '<em><b>Operator</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute ROPERATOR__OPERATOR = eINSTANCE.getROperator_Operator();
+
+		/**
+		 * The meta object literal for the '<em><b>Type</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute ROPERATOR__TYPE = eINSTANCE.getROperator_Type();
+
+		/**
+		 * The meta object literal for the '<em><b>Bound</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute ROPERATOR__BOUND = eINSTANCE.getROperator_Bound();
+
+		/**
+		 * The meta object literal for the '<em><b>Op</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference ROPERATOR__OP = eINSTANCE.getROperator_Op();
+
+		/**
+		 * The meta object literal for the '{@link org.emftext.language.AdaptiveCyberDefense.impl.QuantitativeROperatorImpl <em>Quantitative ROperator</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.emftext.language.AdaptiveCyberDefense.impl.QuantitativeROperatorImpl
+		 * @see org.emftext.language.AdaptiveCyberDefense.impl.AdaptiveCyberDefensePackageImpl#getQuantitativeROperator()
+		 * @generated
+		 */
+		EClass QUANTITATIVE_ROPERATOR = eINSTANCE.getQuantitativeROperator();
+
+		/**
+		 * The meta object literal for the '<em><b>Type</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute QUANTITATIVE_ROPERATOR__TYPE = eINSTANCE.getQuantitativeROperator_Type();
+
+		/**
+		 * The meta object literal for the '<em><b>Op</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference QUANTITATIVE_ROPERATOR__OP = eINSTANCE.getQuantitativeROperator_Op();
+
+		/**
+		 * The meta object literal for the '{@link org.emftext.language.AdaptiveCyberDefense.impl.MultiObjectiveImpl <em>Multi Objective</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.emftext.language.AdaptiveCyberDefense.impl.MultiObjectiveImpl
+		 * @see org.emftext.language.AdaptiveCyberDefense.impl.AdaptiveCyberDefensePackageImpl#getMultiObjective()
+		 * @generated
+		 */
+		EClass MULTI_OBJECTIVE = eINSTANCE.getMultiObjective();
+
+		/**
+		 * The meta object literal for the '<em><b>Objectives</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference MULTI_OBJECTIVE__OBJECTIVES = eINSTANCE.getMultiObjective_Objectives();
+
+		/**
 		 * The meta object literal for the '{@link org.emftext.language.AdaptiveCyberDefense.ActionType <em>Action Type</em>}' enum.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -3780,6 +5977,56 @@ public interface AdaptiveCyberDefensePackage extends EPackage {
 		 * @generated
 		 */
 		EEnum ACTION_TYPE = eINSTANCE.getActionType();
+
+		/**
+		 * The meta object literal for the '{@link org.emftext.language.AdaptiveCyberDefense.ComparaisonOperator <em>Comparaison Operator</em>}' enum.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.emftext.language.AdaptiveCyberDefense.ComparaisonOperator
+		 * @see org.emftext.language.AdaptiveCyberDefense.impl.AdaptiveCyberDefensePackageImpl#getComparaisonOperator()
+		 * @generated
+		 */
+		EEnum COMPARAISON_OPERATOR = eINSTANCE.getComparaisonOperator();
+
+		/**
+		 * The meta object literal for the '{@link org.emftext.language.AdaptiveCyberDefense.POperatorType <em>POperator Type</em>}' enum.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.emftext.language.AdaptiveCyberDefense.POperatorType
+		 * @see org.emftext.language.AdaptiveCyberDefense.impl.AdaptiveCyberDefensePackageImpl#getPOperatorType()
+		 * @generated
+		 */
+		EEnum POPERATOR_TYPE = eINSTANCE.getPOperatorType();
+
+		/**
+		 * The meta object literal for the '{@link org.emftext.language.AdaptiveCyberDefense.ROperatorType <em>ROperator Type</em>}' enum.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.emftext.language.AdaptiveCyberDefense.ROperatorType
+		 * @see org.emftext.language.AdaptiveCyberDefense.impl.AdaptiveCyberDefensePackageImpl#getROperatorType()
+		 * @generated
+		 */
+		EEnum ROPERATOR_TYPE = eINSTANCE.getROperatorType();
+
+		/**
+		 * The meta object literal for the '{@link org.emftext.language.AdaptiveCyberDefense.PQuantitativeOperatorType <em>PQuantitative Operator Type</em>}' enum.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.emftext.language.AdaptiveCyberDefense.PQuantitativeOperatorType
+		 * @see org.emftext.language.AdaptiveCyberDefense.impl.AdaptiveCyberDefensePackageImpl#getPQuantitativeOperatorType()
+		 * @generated
+		 */
+		EEnum PQUANTITATIVE_OPERATOR_TYPE = eINSTANCE.getPQuantitativeOperatorType();
+
+		/**
+		 * The meta object literal for the '{@link org.emftext.language.AdaptiveCyberDefense.RQuantitativeOperatorType <em>RQuantitative Operator Type</em>}' enum.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.emftext.language.AdaptiveCyberDefense.RQuantitativeOperatorType
+		 * @see org.emftext.language.AdaptiveCyberDefense.impl.AdaptiveCyberDefensePackageImpl#getRQuantitativeOperatorType()
+		 * @generated
+		 */
+		EEnum RQUANTITATIVE_OPERATOR_TYPE = eINSTANCE.getRQuantitativeOperatorType();
 
 	}
 

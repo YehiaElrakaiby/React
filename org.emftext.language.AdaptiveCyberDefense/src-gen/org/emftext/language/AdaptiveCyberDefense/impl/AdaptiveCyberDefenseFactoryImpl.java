@@ -87,6 +87,28 @@ public class AdaptiveCyberDefenseFactoryImpl extends EFactoryImpl implements Ada
 			case AdaptiveCyberDefensePackage.RPM: return createRPM();
 			case AdaptiveCyberDefensePackage.PDFM: return createPDFM();
 			case AdaptiveCyberDefensePackage.PM: return createPM();
+			case AdaptiveCyberDefensePackage.LABEL: return createLabel();
+			case AdaptiveCyberDefensePackage.PCONJUNCTION: return createPConjunction();
+			case AdaptiveCyberDefensePackage.PDISJUNCTION: return createPDisjunction();
+			case AdaptiveCyberDefensePackage.PNEGATION: return createPNegation();
+			case AdaptiveCyberDefensePackage.POPERATOR: return createPOperator();
+			case AdaptiveCyberDefensePackage.UNTIL: return createUntil();
+			case AdaptiveCyberDefensePackage.EVENTUALLY: return createEventually();
+			case AdaptiveCyberDefensePackage.BOUNDED_UNTIL: return createBoundedUntil();
+			case AdaptiveCyberDefensePackage.GLOBALLY: return createGlobally();
+			case AdaptiveCyberDefensePackage.BOUNDED_EVENTUALLY: return createBoundedEventually();
+			case AdaptiveCyberDefensePackage.PTRUE: return createPTrue();
+			case AdaptiveCyberDefensePackage.PFALSE: return createPFalse();
+			case AdaptiveCyberDefensePackage.LABEL_REFERENCE: return createLabelReference();
+			case AdaptiveCyberDefensePackage.LRA: return createLRA();
+			case AdaptiveCyberDefensePackage.QUANTITATIVE_POPERATOR: return createQuantitativePOperator();
+			case AdaptiveCyberDefensePackage.INSTANTANEOUS_REWARD: return createInstantaneousReward();
+			case AdaptiveCyberDefensePackage.CUMULATIVE_REWARD: return createCumulativeReward();
+			case AdaptiveCyberDefensePackage.RECHABILITY_REWARD: return createRechabilityReward();
+			case AdaptiveCyberDefensePackage.LRA_REWARD: return createLRAReward();
+			case AdaptiveCyberDefensePackage.ROPERATOR: return createROperator();
+			case AdaptiveCyberDefensePackage.QUANTITATIVE_ROPERATOR: return createQuantitativeROperator();
+			case AdaptiveCyberDefensePackage.MULTI_OBJECTIVE: return createMultiObjective();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -102,6 +124,16 @@ public class AdaptiveCyberDefenseFactoryImpl extends EFactoryImpl implements Ada
 		switch (eDataType.getClassifierID()) {
 			case AdaptiveCyberDefensePackage.ACTION_TYPE:
 				return createActionTypeFromString(eDataType, initialValue);
+			case AdaptiveCyberDefensePackage.COMPARAISON_OPERATOR:
+				return createComparaisonOperatorFromString(eDataType, initialValue);
+			case AdaptiveCyberDefensePackage.POPERATOR_TYPE:
+				return createPOperatorTypeFromString(eDataType, initialValue);
+			case AdaptiveCyberDefensePackage.ROPERATOR_TYPE:
+				return createROperatorTypeFromString(eDataType, initialValue);
+			case AdaptiveCyberDefensePackage.PQUANTITATIVE_OPERATOR_TYPE:
+				return createPQuantitativeOperatorTypeFromString(eDataType, initialValue);
+			case AdaptiveCyberDefensePackage.RQUANTITATIVE_OPERATOR_TYPE:
+				return createRQuantitativeOperatorTypeFromString(eDataType, initialValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
@@ -117,6 +149,16 @@ public class AdaptiveCyberDefenseFactoryImpl extends EFactoryImpl implements Ada
 		switch (eDataType.getClassifierID()) {
 			case AdaptiveCyberDefensePackage.ACTION_TYPE:
 				return convertActionTypeToString(eDataType, instanceValue);
+			case AdaptiveCyberDefensePackage.COMPARAISON_OPERATOR:
+				return convertComparaisonOperatorToString(eDataType, instanceValue);
+			case AdaptiveCyberDefensePackage.POPERATOR_TYPE:
+				return convertPOperatorTypeToString(eDataType, instanceValue);
+			case AdaptiveCyberDefensePackage.ROPERATOR_TYPE:
+				return convertROperatorTypeToString(eDataType, instanceValue);
+			case AdaptiveCyberDefensePackage.PQUANTITATIVE_OPERATOR_TYPE:
+				return convertPQuantitativeOperatorTypeToString(eDataType, instanceValue);
+			case AdaptiveCyberDefensePackage.RQUANTITATIVE_OPERATOR_TYPE:
+				return convertRQuantitativeOperatorTypeToString(eDataType, instanceValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
@@ -427,6 +469,226 @@ public class AdaptiveCyberDefenseFactoryImpl extends EFactoryImpl implements Ada
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public Label createLabel() {
+		LabelImpl label = new LabelImpl();
+		return label;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public PConjunction createPConjunction() {
+		PConjunctionImpl pConjunction = new PConjunctionImpl();
+		return pConjunction;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public PDisjunction createPDisjunction() {
+		PDisjunctionImpl pDisjunction = new PDisjunctionImpl();
+		return pDisjunction;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public PNegation createPNegation() {
+		PNegationImpl pNegation = new PNegationImpl();
+		return pNegation;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public POperator createPOperator() {
+		POperatorImpl pOperator = new POperatorImpl();
+		return pOperator;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Until createUntil() {
+		UntilImpl until = new UntilImpl();
+		return until;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Eventually createEventually() {
+		EventuallyImpl eventually = new EventuallyImpl();
+		return eventually;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public BoundedUntil createBoundedUntil() {
+		BoundedUntilImpl boundedUntil = new BoundedUntilImpl();
+		return boundedUntil;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Globally createGlobally() {
+		GloballyImpl globally = new GloballyImpl();
+		return globally;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public BoundedEventually createBoundedEventually() {
+		BoundedEventuallyImpl boundedEventually = new BoundedEventuallyImpl();
+		return boundedEventually;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public PTrue createPTrue() {
+		PTrueImpl pTrue = new PTrueImpl();
+		return pTrue;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public PFalse createPFalse() {
+		PFalseImpl pFalse = new PFalseImpl();
+		return pFalse;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public LabelReference createLabelReference() {
+		LabelReferenceImpl labelReference = new LabelReferenceImpl();
+		return labelReference;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public LRA createLRA() {
+		LRAImpl lra = new LRAImpl();
+		return lra;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public QuantitativePOperator createQuantitativePOperator() {
+		QuantitativePOperatorImpl quantitativePOperator = new QuantitativePOperatorImpl();
+		return quantitativePOperator;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public InstantaneousReward createInstantaneousReward() {
+		InstantaneousRewardImpl instantaneousReward = new InstantaneousRewardImpl();
+		return instantaneousReward;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public CumulativeReward createCumulativeReward() {
+		CumulativeRewardImpl cumulativeReward = new CumulativeRewardImpl();
+		return cumulativeReward;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public RechabilityReward createRechabilityReward() {
+		RechabilityRewardImpl rechabilityReward = new RechabilityRewardImpl();
+		return rechabilityReward;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public LRAReward createLRAReward() {
+		LRARewardImpl lraReward = new LRARewardImpl();
+		return lraReward;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ROperator createROperator() {
+		ROperatorImpl rOperator = new ROperatorImpl();
+		return rOperator;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public QuantitativeROperator createQuantitativeROperator() {
+		QuantitativeROperatorImpl quantitativeROperator = new QuantitativeROperatorImpl();
+		return quantitativeROperator;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public MultiObjective createMultiObjective() {
+		MultiObjectiveImpl multiObjective = new MultiObjectiveImpl();
+		return multiObjective;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public ActionType createActionTypeFromString(EDataType eDataType, String initialValue) {
 		ActionType result = ActionType.get(initialValue);
 		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
@@ -439,6 +701,106 @@ public class AdaptiveCyberDefenseFactoryImpl extends EFactoryImpl implements Ada
 	 * @generated
 	 */
 	public String convertActionTypeToString(EDataType eDataType, Object instanceValue) {
+		return instanceValue == null ? null : instanceValue.toString();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ComparaisonOperator createComparaisonOperatorFromString(EDataType eDataType, String initialValue) {
+		ComparaisonOperator result = ComparaisonOperator.get(initialValue);
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertComparaisonOperatorToString(EDataType eDataType, Object instanceValue) {
+		return instanceValue == null ? null : instanceValue.toString();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public POperatorType createPOperatorTypeFromString(EDataType eDataType, String initialValue) {
+		POperatorType result = POperatorType.get(initialValue);
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertPOperatorTypeToString(EDataType eDataType, Object instanceValue) {
+		return instanceValue == null ? null : instanceValue.toString();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ROperatorType createROperatorTypeFromString(EDataType eDataType, String initialValue) {
+		ROperatorType result = ROperatorType.get(initialValue);
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertROperatorTypeToString(EDataType eDataType, Object instanceValue) {
+		return instanceValue == null ? null : instanceValue.toString();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public PQuantitativeOperatorType createPQuantitativeOperatorTypeFromString(EDataType eDataType, String initialValue) {
+		PQuantitativeOperatorType result = PQuantitativeOperatorType.get(initialValue);
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertPQuantitativeOperatorTypeToString(EDataType eDataType, Object instanceValue) {
+		return instanceValue == null ? null : instanceValue.toString();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public RQuantitativeOperatorType createRQuantitativeOperatorTypeFromString(EDataType eDataType, String initialValue) {
+		RQuantitativeOperatorType result = RQuantitativeOperatorType.get(initialValue);
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertRQuantitativeOperatorTypeToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 

@@ -220,6 +220,106 @@ public class AdaptiveCyberDefenseAdapterFactory extends AdapterFactoryImpl {
 				return createPMAdapter();
 			}
 			@Override
+			public Adapter caseLabel(Label object) {
+				return createLabelAdapter();
+			}
+			@Override
+			public Adapter casePCTLStateFormula(PCTLStateFormula object) {
+				return createPCTLStateFormulaAdapter();
+			}
+			@Override
+			public Adapter casePConjunction(PConjunction object) {
+				return createPConjunctionAdapter();
+			}
+			@Override
+			public Adapter casePDisjunction(PDisjunction object) {
+				return createPDisjunctionAdapter();
+			}
+			@Override
+			public Adapter casePNegation(PNegation object) {
+				return createPNegationAdapter();
+			}
+			@Override
+			public Adapter casePOperator(POperator object) {
+				return createPOperatorAdapter();
+			}
+			@Override
+			public Adapter casePCTLPathFormula(PCTLPathFormula object) {
+				return createPCTLPathFormulaAdapter();
+			}
+			@Override
+			public Adapter caseUntil(Until object) {
+				return createUntilAdapter();
+			}
+			@Override
+			public Adapter caseEventually(Eventually object) {
+				return createEventuallyAdapter();
+			}
+			@Override
+			public Adapter caseBoundedUntil(BoundedUntil object) {
+				return createBoundedUntilAdapter();
+			}
+			@Override
+			public Adapter caseGlobally(Globally object) {
+				return createGloballyAdapter();
+			}
+			@Override
+			public Adapter caseBoundedEventually(BoundedEventually object) {
+				return createBoundedEventuallyAdapter();
+			}
+			@Override
+			public Adapter casePTrue(PTrue object) {
+				return createPTrueAdapter();
+			}
+			@Override
+			public Adapter casePFalse(PFalse object) {
+				return createPFalseAdapter();
+			}
+			@Override
+			public Adapter caseLabelReference(LabelReference object) {
+				return createLabelReferenceAdapter();
+			}
+			@Override
+			public Adapter caseLRA(LRA object) {
+				return createLRAAdapter();
+			}
+			@Override
+			public Adapter caseQuantitativePOperator(QuantitativePOperator object) {
+				return createQuantitativePOperatorAdapter();
+			}
+			@Override
+			public Adapter caseRewardFormula(RewardFormula object) {
+				return createRewardFormulaAdapter();
+			}
+			@Override
+			public Adapter caseInstantaneousReward(InstantaneousReward object) {
+				return createInstantaneousRewardAdapter();
+			}
+			@Override
+			public Adapter caseCumulativeReward(CumulativeReward object) {
+				return createCumulativeRewardAdapter();
+			}
+			@Override
+			public Adapter caseRechabilityReward(RechabilityReward object) {
+				return createRechabilityRewardAdapter();
+			}
+			@Override
+			public Adapter caseLRAReward(LRAReward object) {
+				return createLRARewardAdapter();
+			}
+			@Override
+			public Adapter caseROperator(ROperator object) {
+				return createROperatorAdapter();
+			}
+			@Override
+			public Adapter caseQuantitativeROperator(QuantitativeROperator object) {
+				return createQuantitativeROperatorAdapter();
+			}
+			@Override
+			public Adapter caseMultiObjective(MultiObjective object) {
+				return createMultiObjectiveAdapter();
+			}
+			@Override
 			public Adapter defaultCase(EObject object) {
 				return createEObjectAdapter();
 			}
@@ -768,6 +868,356 @@ public class AdaptiveCyberDefenseAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createPMAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.emftext.language.AdaptiveCyberDefense.Label <em>Label</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.emftext.language.AdaptiveCyberDefense.Label
+	 * @generated
+	 */
+	public Adapter createLabelAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.emftext.language.AdaptiveCyberDefense.PCTLStateFormula <em>PCTL State Formula</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.emftext.language.AdaptiveCyberDefense.PCTLStateFormula
+	 * @generated
+	 */
+	public Adapter createPCTLStateFormulaAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.emftext.language.AdaptiveCyberDefense.PConjunction <em>PConjunction</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.emftext.language.AdaptiveCyberDefense.PConjunction
+	 * @generated
+	 */
+	public Adapter createPConjunctionAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.emftext.language.AdaptiveCyberDefense.PDisjunction <em>PDisjunction</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.emftext.language.AdaptiveCyberDefense.PDisjunction
+	 * @generated
+	 */
+	public Adapter createPDisjunctionAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.emftext.language.AdaptiveCyberDefense.PNegation <em>PNegation</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.emftext.language.AdaptiveCyberDefense.PNegation
+	 * @generated
+	 */
+	public Adapter createPNegationAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.emftext.language.AdaptiveCyberDefense.POperator <em>POperator</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.emftext.language.AdaptiveCyberDefense.POperator
+	 * @generated
+	 */
+	public Adapter createPOperatorAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.emftext.language.AdaptiveCyberDefense.PCTLPathFormula <em>PCTL Path Formula</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.emftext.language.AdaptiveCyberDefense.PCTLPathFormula
+	 * @generated
+	 */
+	public Adapter createPCTLPathFormulaAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.emftext.language.AdaptiveCyberDefense.Until <em>Until</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.emftext.language.AdaptiveCyberDefense.Until
+	 * @generated
+	 */
+	public Adapter createUntilAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.emftext.language.AdaptiveCyberDefense.Eventually <em>Eventually</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.emftext.language.AdaptiveCyberDefense.Eventually
+	 * @generated
+	 */
+	public Adapter createEventuallyAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.emftext.language.AdaptiveCyberDefense.BoundedUntil <em>Bounded Until</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.emftext.language.AdaptiveCyberDefense.BoundedUntil
+	 * @generated
+	 */
+	public Adapter createBoundedUntilAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.emftext.language.AdaptiveCyberDefense.Globally <em>Globally</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.emftext.language.AdaptiveCyberDefense.Globally
+	 * @generated
+	 */
+	public Adapter createGloballyAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.emftext.language.AdaptiveCyberDefense.BoundedEventually <em>Bounded Eventually</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.emftext.language.AdaptiveCyberDefense.BoundedEventually
+	 * @generated
+	 */
+	public Adapter createBoundedEventuallyAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.emftext.language.AdaptiveCyberDefense.PTrue <em>PTrue</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.emftext.language.AdaptiveCyberDefense.PTrue
+	 * @generated
+	 */
+	public Adapter createPTrueAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.emftext.language.AdaptiveCyberDefense.PFalse <em>PFalse</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.emftext.language.AdaptiveCyberDefense.PFalse
+	 * @generated
+	 */
+	public Adapter createPFalseAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.emftext.language.AdaptiveCyberDefense.LabelReference <em>Label Reference</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.emftext.language.AdaptiveCyberDefense.LabelReference
+	 * @generated
+	 */
+	public Adapter createLabelReferenceAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.emftext.language.AdaptiveCyberDefense.LRA <em>LRA</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.emftext.language.AdaptiveCyberDefense.LRA
+	 * @generated
+	 */
+	public Adapter createLRAAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.emftext.language.AdaptiveCyberDefense.QuantitativePOperator <em>Quantitative POperator</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.emftext.language.AdaptiveCyberDefense.QuantitativePOperator
+	 * @generated
+	 */
+	public Adapter createQuantitativePOperatorAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.emftext.language.AdaptiveCyberDefense.RewardFormula <em>Reward Formula</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.emftext.language.AdaptiveCyberDefense.RewardFormula
+	 * @generated
+	 */
+	public Adapter createRewardFormulaAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.emftext.language.AdaptiveCyberDefense.InstantaneousReward <em>Instantaneous Reward</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.emftext.language.AdaptiveCyberDefense.InstantaneousReward
+	 * @generated
+	 */
+	public Adapter createInstantaneousRewardAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.emftext.language.AdaptiveCyberDefense.CumulativeReward <em>Cumulative Reward</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.emftext.language.AdaptiveCyberDefense.CumulativeReward
+	 * @generated
+	 */
+	public Adapter createCumulativeRewardAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.emftext.language.AdaptiveCyberDefense.RechabilityReward <em>Rechability Reward</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.emftext.language.AdaptiveCyberDefense.RechabilityReward
+	 * @generated
+	 */
+	public Adapter createRechabilityRewardAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.emftext.language.AdaptiveCyberDefense.LRAReward <em>LRA Reward</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.emftext.language.AdaptiveCyberDefense.LRAReward
+	 * @generated
+	 */
+	public Adapter createLRARewardAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.emftext.language.AdaptiveCyberDefense.ROperator <em>ROperator</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.emftext.language.AdaptiveCyberDefense.ROperator
+	 * @generated
+	 */
+	public Adapter createROperatorAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.emftext.language.AdaptiveCyberDefense.QuantitativeROperator <em>Quantitative ROperator</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.emftext.language.AdaptiveCyberDefense.QuantitativeROperator
+	 * @generated
+	 */
+	public Adapter createQuantitativeROperatorAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.emftext.language.AdaptiveCyberDefense.MultiObjective <em>Multi Objective</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.emftext.language.AdaptiveCyberDefense.MultiObjective
+	 * @generated
+	 */
+	public Adapter createMultiObjectiveAdapter() {
 		return null;
 	}
 

@@ -14,9 +14,13 @@ import org.emftext.language.AdaptiveCyberDefense.ActionDescription;
 import org.emftext.language.AdaptiveCyberDefense.ActionType;
 import org.emftext.language.AdaptiveCyberDefense.AdaptiveCyberDefenseFactory;
 import org.emftext.language.AdaptiveCyberDefense.AdaptiveCyberDefensePackage;
+import org.emftext.language.AdaptiveCyberDefense.BoundedEventually;
+import org.emftext.language.AdaptiveCyberDefense.BoundedUntil;
+import org.emftext.language.AdaptiveCyberDefense.ComparaisonOperator;
 import org.emftext.language.AdaptiveCyberDefense.ConditionalRequirement;
 import org.emftext.language.AdaptiveCyberDefense.Conjunction;
 import org.emftext.language.AdaptiveCyberDefense.ContextualEffect;
+import org.emftext.language.AdaptiveCyberDefense.CumulativeReward;
 import org.emftext.language.AdaptiveCyberDefense.DeadlineDurationRequirement;
 import org.emftext.language.AdaptiveCyberDefense.DeadlineRequirement;
 import org.emftext.language.AdaptiveCyberDefense.DescriptionEntity;
@@ -24,19 +28,46 @@ import org.emftext.language.AdaptiveCyberDefense.Disjunction;
 import org.emftext.language.AdaptiveCyberDefense.DomainDescription;
 import org.emftext.language.AdaptiveCyberDefense.DurationRequirement;
 import org.emftext.language.AdaptiveCyberDefense.EventDescription;
+import org.emftext.language.AdaptiveCyberDefense.Eventually;
 import org.emftext.language.AdaptiveCyberDefense.False;
 import org.emftext.language.AdaptiveCyberDefense.Formula;
 import org.emftext.language.AdaptiveCyberDefense.FormulaAtom;
+import org.emftext.language.AdaptiveCyberDefense.Globally;
 import org.emftext.language.AdaptiveCyberDefense.InitialAtom;
 import org.emftext.language.AdaptiveCyberDefense.InitialVariable;
+import org.emftext.language.AdaptiveCyberDefense.InstantaneousReward;
+import org.emftext.language.AdaptiveCyberDefense.LRAReward;
+import org.emftext.language.AdaptiveCyberDefense.Label;
+import org.emftext.language.AdaptiveCyberDefense.LabelReference;
+import org.emftext.language.AdaptiveCyberDefense.MCFormulas;
+import org.emftext.language.AdaptiveCyberDefense.MultiObjective;
 import org.emftext.language.AdaptiveCyberDefense.Negation;
+import org.emftext.language.AdaptiveCyberDefense.PCTLPathFormula;
+import org.emftext.language.AdaptiveCyberDefense.PCTLStateFormula;
+import org.emftext.language.AdaptiveCyberDefense.PConjunction;
+import org.emftext.language.AdaptiveCyberDefense.PDisjunction;
+import org.emftext.language.AdaptiveCyberDefense.PFalse;
+import org.emftext.language.AdaptiveCyberDefense.PNegation;
+import org.emftext.language.AdaptiveCyberDefense.POperator;
+import org.emftext.language.AdaptiveCyberDefense.POperatorType;
+import org.emftext.language.AdaptiveCyberDefense.PQuantitativeOperatorType;
+import org.emftext.language.AdaptiveCyberDefense.PTrue;
 import org.emftext.language.AdaptiveCyberDefense.Parentheses;
 import org.emftext.language.AdaptiveCyberDefense.ProbabilisticContextualEffect;
 import org.emftext.language.AdaptiveCyberDefense.ProbabilisticEffect;
+import org.emftext.language.AdaptiveCyberDefense.Property;
+import org.emftext.language.AdaptiveCyberDefense.QuantitativePOperator;
+import org.emftext.language.AdaptiveCyberDefense.QuantitativeROperator;
+import org.emftext.language.AdaptiveCyberDefense.ROperator;
+import org.emftext.language.AdaptiveCyberDefense.ROperatorType;
+import org.emftext.language.AdaptiveCyberDefense.RQuantitativeOperatorType;
+import org.emftext.language.AdaptiveCyberDefense.RechabilityReward;
 import org.emftext.language.AdaptiveCyberDefense.Requirement;
+import org.emftext.language.AdaptiveCyberDefense.RewardFormula;
 import org.emftext.language.AdaptiveCyberDefense.StateAtom;
 import org.emftext.language.AdaptiveCyberDefense.StateVariable;
 import org.emftext.language.AdaptiveCyberDefense.True;
+import org.emftext.language.AdaptiveCyberDefense.Until;
 
 
 /**
@@ -317,7 +348,217 @@ public class AdaptiveCyberDefensePackageImpl extends EPackageImpl implements Ada
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	private EClass labelEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass pctlStateFormulaEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass pConjunctionEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass pDisjunctionEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass pNegationEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass pOperatorEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass pctlPathFormulaEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass untilEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass eventuallyEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass boundedUntilEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass globallyEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass boundedEventuallyEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass pTrueEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass pFalseEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass labelReferenceEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass lraEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass quantitativePOperatorEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass rewardFormulaEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass instantaneousRewardEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass cumulativeRewardEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass rechabilityRewardEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass lraRewardEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass rOperatorEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass quantitativeROperatorEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass multiObjectiveEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	private EEnum actionTypeEEnum = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EEnum comparaisonOperatorEEnum = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EEnum pOperatorTypeEEnum = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EEnum rOperatorTypeEEnum = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EEnum pQuantitativeOperatorTypeEEnum = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EEnum rQuantitativeOperatorTypeEEnum = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -441,6 +682,24 @@ public class AdaptiveCyberDefensePackageImpl extends EPackageImpl implements Ada
 	 */
 	public EAttribute getDomainDescription_Name() {
 		return (EAttribute)domainDescriptionEClass.getEStructuralFeatures().get(5);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getDomainDescription_Labels() {
+		return (EReference)domainDescriptionEClass.getEStructuralFeatures().get(6);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getDomainDescription_Properties() {
+		return (EReference)domainDescriptionEClass.getEStructuralFeatures().get(7);
 	}
 
 	/**
@@ -1078,8 +1337,620 @@ public class AdaptiveCyberDefensePackageImpl extends EPackageImpl implements Ada
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getLabel() {
+		return labelEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getLabel_Value() {
+		return (EAttribute)labelEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getLabel_Property() {
+		return (EReference)labelEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getPCTLStateFormula() {
+		return pctlStateFormulaEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getPConjunction() {
+		return pConjunctionEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getPConjunction_Rhs() {
+		return (EReference)pConjunctionEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getPConjunction_Lhs() {
+		return (EReference)pConjunctionEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getPDisjunction() {
+		return pDisjunctionEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getPDisjunction_Rhs() {
+		return (EReference)pDisjunctionEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getPDisjunction_Lhs() {
+		return (EReference)pDisjunctionEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getPNegation() {
+		return pNegationEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getPNegation_Op() {
+		return (EReference)pNegationEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getPOperator() {
+		return pOperatorEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getPOperator_Operator() {
+		return (EAttribute)pOperatorEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getPOperator_Bound() {
+		return (EAttribute)pOperatorEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getPOperator_Op() {
+		return (EReference)pOperatorEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getPOperator_Type() {
+		return (EAttribute)pOperatorEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getPCTLPathFormula() {
+		return pctlPathFormulaEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getUntil() {
+		return untilEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getUntil_Lhs() {
+		return (EReference)untilEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getUntil_Rhs() {
+		return (EReference)untilEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getEventually() {
+		return eventuallyEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getEventually_Op() {
+		return (EReference)eventuallyEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getBoundedUntil() {
+		return boundedUntilEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getBoundedUntil_Rhs() {
+		return (EReference)boundedUntilEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getBoundedUntil_Lhs() {
+		return (EReference)boundedUntilEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getBoundedUntil_Bound() {
+		return (EAttribute)boundedUntilEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getBoundedUntil_Operator() {
+		return (EAttribute)boundedUntilEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getGlobally() {
+		return globallyEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getGlobally_Op() {
+		return (EReference)globallyEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getBoundedEventually() {
+		return boundedEventuallyEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getBoundedEventually_Op() {
+		return (EReference)boundedEventuallyEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getBoundedEventually_Bound() {
+		return (EAttribute)boundedEventuallyEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getBoundedEventually_Operator() {
+		return (EAttribute)boundedEventuallyEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getPTrue() {
+		return pTrueEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getPFalse() {
+		return pFalseEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getLabelReference() {
+		return labelReferenceEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getLabelReference_Label() {
+		return (EReference)labelReferenceEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getLRA() {
+		return lraEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getLRA_Operator() {
+		return (EAttribute)lraEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getLRA_Bound() {
+		return (EAttribute)lraEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getLRA_Op() {
+		return (EReference)lraEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getQuantitativePOperator() {
+		return quantitativePOperatorEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getQuantitativePOperator_Type() {
+		return (EAttribute)quantitativePOperatorEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getQuantitativePOperator_Op() {
+		return (EReference)quantitativePOperatorEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getRewardFormula() {
+		return rewardFormulaEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getInstantaneousReward() {
+		return instantaneousRewardEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getInstantaneousReward_Step() {
+		return (EAttribute)instantaneousRewardEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getCumulativeReward() {
+		return cumulativeRewardEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getCumulativeReward_Step() {
+		return (EAttribute)cumulativeRewardEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getRechabilityReward() {
+		return rechabilityRewardEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getRechabilityReward_Op() {
+		return (EReference)rechabilityRewardEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getLRAReward() {
+		return lraRewardEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getROperator() {
+		return rOperatorEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getROperator_Operator() {
+		return (EAttribute)rOperatorEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getROperator_Type() {
+		return (EAttribute)rOperatorEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getROperator_Bound() {
+		return (EAttribute)rOperatorEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getROperator_Op() {
+		return (EReference)rOperatorEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getQuantitativeROperator() {
+		return quantitativeROperatorEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getQuantitativeROperator_Type() {
+		return (EAttribute)quantitativeROperatorEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getQuantitativeROperator_Op() {
+		return (EReference)quantitativeROperatorEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getMultiObjective() {
+		return multiObjectiveEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getMultiObjective_Objectives() {
+		return (EReference)multiObjectiveEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EEnum getActionType() {
 		return actionTypeEEnum;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EEnum getComparaisonOperator() {
+		return comparaisonOperatorEEnum;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EEnum getPOperatorType() {
+		return pOperatorTypeEEnum;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EEnum getROperatorType() {
+		return rOperatorTypeEEnum;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EEnum getPQuantitativeOperatorType() {
+		return pQuantitativeOperatorTypeEEnum;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EEnum getRQuantitativeOperatorType() {
+		return rQuantitativeOperatorTypeEEnum;
 	}
 
 	/**
@@ -1117,6 +1988,8 @@ public class AdaptiveCyberDefensePackageImpl extends EPackageImpl implements Ada
 		createEReference(domainDescriptionEClass, DOMAIN_DESCRIPTION__INITIAL_ATOMS);
 		createEReference(domainDescriptionEClass, DOMAIN_DESCRIPTION__EVENT_DESCRIPTIONS);
 		createEAttribute(domainDescriptionEClass, DOMAIN_DESCRIPTION__NAME);
+		createEReference(domainDescriptionEClass, DOMAIN_DESCRIPTION__LABELS);
+		createEReference(domainDescriptionEClass, DOMAIN_DESCRIPTION__PROPERTIES);
 
 		actionDescriptionEClass = createEClass(ACTION_DESCRIPTION);
 		createEAttribute(actionDescriptionEClass, ACTION_DESCRIPTION__COST);
@@ -1225,8 +2098,101 @@ public class AdaptiveCyberDefensePackageImpl extends EPackageImpl implements Ada
 
 		pmEClass = createEClass(PM);
 
+		labelEClass = createEClass(LABEL);
+		createEAttribute(labelEClass, LABEL__VALUE);
+		createEReference(labelEClass, LABEL__PROPERTY);
+
+		pctlStateFormulaEClass = createEClass(PCTL_STATE_FORMULA);
+
+		pConjunctionEClass = createEClass(PCONJUNCTION);
+		createEReference(pConjunctionEClass, PCONJUNCTION__RHS);
+		createEReference(pConjunctionEClass, PCONJUNCTION__LHS);
+
+		pDisjunctionEClass = createEClass(PDISJUNCTION);
+		createEReference(pDisjunctionEClass, PDISJUNCTION__RHS);
+		createEReference(pDisjunctionEClass, PDISJUNCTION__LHS);
+
+		pNegationEClass = createEClass(PNEGATION);
+		createEReference(pNegationEClass, PNEGATION__OP);
+
+		pOperatorEClass = createEClass(POPERATOR);
+		createEAttribute(pOperatorEClass, POPERATOR__OPERATOR);
+		createEAttribute(pOperatorEClass, POPERATOR__BOUND);
+		createEReference(pOperatorEClass, POPERATOR__OP);
+		createEAttribute(pOperatorEClass, POPERATOR__TYPE);
+
+		pctlPathFormulaEClass = createEClass(PCTL_PATH_FORMULA);
+
+		untilEClass = createEClass(UNTIL);
+		createEReference(untilEClass, UNTIL__LHS);
+		createEReference(untilEClass, UNTIL__RHS);
+
+		eventuallyEClass = createEClass(EVENTUALLY);
+		createEReference(eventuallyEClass, EVENTUALLY__OP);
+
+		boundedUntilEClass = createEClass(BOUNDED_UNTIL);
+		createEReference(boundedUntilEClass, BOUNDED_UNTIL__RHS);
+		createEReference(boundedUntilEClass, BOUNDED_UNTIL__LHS);
+		createEAttribute(boundedUntilEClass, BOUNDED_UNTIL__BOUND);
+		createEAttribute(boundedUntilEClass, BOUNDED_UNTIL__OPERATOR);
+
+		globallyEClass = createEClass(GLOBALLY);
+		createEReference(globallyEClass, GLOBALLY__OP);
+
+		boundedEventuallyEClass = createEClass(BOUNDED_EVENTUALLY);
+		createEReference(boundedEventuallyEClass, BOUNDED_EVENTUALLY__OP);
+		createEAttribute(boundedEventuallyEClass, BOUNDED_EVENTUALLY__BOUND);
+		createEAttribute(boundedEventuallyEClass, BOUNDED_EVENTUALLY__OPERATOR);
+
+		pTrueEClass = createEClass(PTRUE);
+
+		pFalseEClass = createEClass(PFALSE);
+
+		labelReferenceEClass = createEClass(LABEL_REFERENCE);
+		createEReference(labelReferenceEClass, LABEL_REFERENCE__LABEL);
+
+		lraEClass = createEClass(LRA);
+		createEAttribute(lraEClass, LRA__OPERATOR);
+		createEAttribute(lraEClass, LRA__BOUND);
+		createEReference(lraEClass, LRA__OP);
+
+		quantitativePOperatorEClass = createEClass(QUANTITATIVE_POPERATOR);
+		createEAttribute(quantitativePOperatorEClass, QUANTITATIVE_POPERATOR__TYPE);
+		createEReference(quantitativePOperatorEClass, QUANTITATIVE_POPERATOR__OP);
+
+		rewardFormulaEClass = createEClass(REWARD_FORMULA);
+
+		instantaneousRewardEClass = createEClass(INSTANTANEOUS_REWARD);
+		createEAttribute(instantaneousRewardEClass, INSTANTANEOUS_REWARD__STEP);
+
+		cumulativeRewardEClass = createEClass(CUMULATIVE_REWARD);
+		createEAttribute(cumulativeRewardEClass, CUMULATIVE_REWARD__STEP);
+
+		rechabilityRewardEClass = createEClass(RECHABILITY_REWARD);
+		createEReference(rechabilityRewardEClass, RECHABILITY_REWARD__OP);
+
+		lraRewardEClass = createEClass(LRA_REWARD);
+
+		rOperatorEClass = createEClass(ROPERATOR);
+		createEAttribute(rOperatorEClass, ROPERATOR__OPERATOR);
+		createEAttribute(rOperatorEClass, ROPERATOR__TYPE);
+		createEAttribute(rOperatorEClass, ROPERATOR__BOUND);
+		createEReference(rOperatorEClass, ROPERATOR__OP);
+
+		quantitativeROperatorEClass = createEClass(QUANTITATIVE_ROPERATOR);
+		createEAttribute(quantitativeROperatorEClass, QUANTITATIVE_ROPERATOR__TYPE);
+		createEReference(quantitativeROperatorEClass, QUANTITATIVE_ROPERATOR__OP);
+
+		multiObjectiveEClass = createEClass(MULTI_OBJECTIVE);
+		createEReference(multiObjectiveEClass, MULTI_OBJECTIVE__OBJECTIVES);
+
 		// Create enums
 		actionTypeEEnum = createEEnum(ACTION_TYPE);
+		comparaisonOperatorEEnum = createEEnum(COMPARAISON_OPERATOR);
+		pOperatorTypeEEnum = createEEnum(POPERATOR_TYPE);
+		rOperatorTypeEEnum = createEEnum(ROPERATOR_TYPE);
+		pQuantitativeOperatorTypeEEnum = createEEnum(PQUANTITATIVE_OPERATOR_TYPE);
+		rQuantitativeOperatorTypeEEnum = createEEnum(RQUANTITATIVE_OPERATOR_TYPE);
 	}
 
 	/**
@@ -1288,6 +2254,27 @@ public class AdaptiveCyberDefensePackageImpl extends EPackageImpl implements Ada
 		rpmEClass.getESuperTypes().add(this.getDurationRequirement());
 		pdfmEClass.getESuperTypes().add(this.getDeadlineDurationRequirement());
 		pmEClass.getESuperTypes().add(this.getDurationRequirement());
+		pConjunctionEClass.getESuperTypes().add(this.getPCTLStateFormula());
+		pDisjunctionEClass.getESuperTypes().add(this.getPCTLStateFormula());
+		pNegationEClass.getESuperTypes().add(this.getPCTLStateFormula());
+		pOperatorEClass.getESuperTypes().add(this.getPCTLStateFormula());
+		untilEClass.getESuperTypes().add(this.getPCTLPathFormula());
+		eventuallyEClass.getESuperTypes().add(this.getPCTLPathFormula());
+		boundedUntilEClass.getESuperTypes().add(this.getPCTLPathFormula());
+		globallyEClass.getESuperTypes().add(this.getPCTLPathFormula());
+		boundedEventuallyEClass.getESuperTypes().add(this.getPCTLPathFormula());
+		pTrueEClass.getESuperTypes().add(this.getPCTLStateFormula());
+		pFalseEClass.getESuperTypes().add(this.getPCTLStateFormula());
+		labelReferenceEClass.getESuperTypes().add(this.getPCTLStateFormula());
+		lraEClass.getESuperTypes().add(this.getPCTLStateFormula());
+		quantitativePOperatorEClass.getESuperTypes().add(this.getPCTLStateFormula());
+		instantaneousRewardEClass.getESuperTypes().add(this.getRewardFormula());
+		cumulativeRewardEClass.getESuperTypes().add(this.getRewardFormula());
+		rechabilityRewardEClass.getESuperTypes().add(this.getRewardFormula());
+		lraRewardEClass.getESuperTypes().add(this.getRewardFormula());
+		rOperatorEClass.getESuperTypes().add(this.getPCTLStateFormula());
+		quantitativeROperatorEClass.getESuperTypes().add(this.getPCTLStateFormula());
+		multiObjectiveEClass.getESuperTypes().add(this.getPCTLStateFormula());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(domainDescriptionEClass, DomainDescription.class, "DomainDescription", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -1297,6 +2284,8 @@ public class AdaptiveCyberDefensePackageImpl extends EPackageImpl implements Ada
 		initEReference(getDomainDescription_Initial_atoms(), this.getInitialAtom(), null, "initial_atoms", null, 1, -1, DomainDescription.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getDomainDescription_Event_descriptions(), this.getEventDescription(), null, "event_descriptions", null, 0, -1, DomainDescription.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getDomainDescription_Name(), ecorePackage.getEString(), "name", null, 1, 1, DomainDescription.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getDomainDescription_Labels(), this.getLabel(), null, "labels", null, 0, -1, DomainDescription.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getDomainDescription_Properties(), this.getPCTLStateFormula(), null, "properties", null, 0, -1, DomainDescription.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(actionDescriptionEClass, ActionDescription.class, "ActionDescription", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getActionDescription_Cost(), ecorePackage.getEBigDecimal(), "cost", "0.00001", 0, 1, ActionDescription.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1405,10 +2394,125 @@ public class AdaptiveCyberDefensePackageImpl extends EPackageImpl implements Ada
 
 		initEClass(pmEClass, org.emftext.language.AdaptiveCyberDefense.PM.class, "PM", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
+		initEClass(labelEClass, Label.class, "Label", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getLabel_Value(), ecorePackage.getEString(), "value", null, 1, 1, Label.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getLabel_Property(), this.getFormula(), null, "property", null, 1, 1, Label.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(pctlStateFormulaEClass, PCTLStateFormula.class, "PCTLStateFormula", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(pConjunctionEClass, PConjunction.class, "PConjunction", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getPConjunction_Rhs(), this.getPCTLStateFormula(), null, "rhs", null, 1, 1, PConjunction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getPConjunction_Lhs(), this.getPCTLStateFormula(), null, "lhs", null, 1, 1, PConjunction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(pDisjunctionEClass, PDisjunction.class, "PDisjunction", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getPDisjunction_Rhs(), this.getPCTLStateFormula(), null, "rhs", null, 1, 1, PDisjunction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getPDisjunction_Lhs(), this.getPCTLStateFormula(), null, "lhs", null, 1, 1, PDisjunction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(pNegationEClass, PNegation.class, "PNegation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getPNegation_Op(), this.getPCTLStateFormula(), null, "op", null, 1, 1, PNegation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(pOperatorEClass, POperator.class, "POperator", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getPOperator_Operator(), this.getComparaisonOperator(), "operator", null, 1, 1, POperator.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getPOperator_Bound(), ecorePackage.getEBigDecimal(), "bound", null, 1, 1, POperator.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getPOperator_Op(), this.getPCTLPathFormula(), null, "op", null, 1, 1, POperator.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getPOperator_Type(), this.getPOperatorType(), "type", null, 1, 1, POperator.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(pctlPathFormulaEClass, PCTLPathFormula.class, "PCTLPathFormula", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(untilEClass, Until.class, "Until", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getUntil_Lhs(), this.getPCTLStateFormula(), null, "lhs", null, 1, 1, Until.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getUntil_Rhs(), this.getPCTLStateFormula(), null, "rhs", null, 1, 1, Until.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(eventuallyEClass, Eventually.class, "Eventually", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getEventually_Op(), this.getPCTLStateFormula(), null, "op", null, 1, -1, Eventually.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(boundedUntilEClass, BoundedUntil.class, "BoundedUntil", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getBoundedUntil_Rhs(), this.getPCTLStateFormula(), null, "rhs", null, 1, 1, BoundedUntil.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getBoundedUntil_Lhs(), this.getPCTLStateFormula(), null, "lhs", null, 1, 1, BoundedUntil.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getBoundedUntil_Bound(), ecorePackage.getEIntegerObject(), "bound", null, 1, 1, BoundedUntil.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getBoundedUntil_Operator(), this.getComparaisonOperator(), "operator", null, 1, 1, BoundedUntil.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(globallyEClass, Globally.class, "Globally", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getGlobally_Op(), this.getPCTLStateFormula(), null, "op", null, 1, 1, Globally.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(boundedEventuallyEClass, BoundedEventually.class, "BoundedEventually", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getBoundedEventually_Op(), this.getPCTLStateFormula(), null, "op", null, 1, 1, BoundedEventually.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getBoundedEventually_Bound(), ecorePackage.getEIntegerObject(), "bound", null, 1, 1, BoundedEventually.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getBoundedEventually_Operator(), this.getComparaisonOperator(), "operator", null, 1, 1, BoundedEventually.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(pTrueEClass, PTrue.class, "PTrue", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(pFalseEClass, PFalse.class, "PFalse", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(labelReferenceEClass, LabelReference.class, "LabelReference", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getLabelReference_Label(), this.getLabel(), null, "label", null, 1, 1, LabelReference.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(lraEClass, org.emftext.language.AdaptiveCyberDefense.LRA.class, "LRA", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getLRA_Operator(), this.getComparaisonOperator(), "operator", null, 1, 1, org.emftext.language.AdaptiveCyberDefense.LRA.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getLRA_Bound(), ecorePackage.getEBigDecimal(), "bound", null, 1, 1, org.emftext.language.AdaptiveCyberDefense.LRA.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getLRA_Op(), this.getPCTLStateFormula(), null, "op", null, 1, 1, org.emftext.language.AdaptiveCyberDefense.LRA.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(quantitativePOperatorEClass, QuantitativePOperator.class, "QuantitativePOperator", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getQuantitativePOperator_Type(), this.getPOperatorType(), "type", null, 1, 1, QuantitativePOperator.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getQuantitativePOperator_Op(), this.getPCTLPathFormula(), null, "op", null, 1, 1, QuantitativePOperator.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(rewardFormulaEClass, RewardFormula.class, "RewardFormula", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(instantaneousRewardEClass, InstantaneousReward.class, "InstantaneousReward", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getInstantaneousReward_Step(), ecorePackage.getEIntegerObject(), "step", null, 1, 1, InstantaneousReward.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(cumulativeRewardEClass, CumulativeReward.class, "CumulativeReward", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getCumulativeReward_Step(), ecorePackage.getEIntegerObject(), "step", null, 1, 1, CumulativeReward.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(rechabilityRewardEClass, RechabilityReward.class, "RechabilityReward", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getRechabilityReward_Op(), this.getPCTLStateFormula(), null, "op", null, 1, 1, RechabilityReward.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(lraRewardEClass, LRAReward.class, "LRAReward", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(rOperatorEClass, ROperator.class, "ROperator", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getROperator_Operator(), this.getComparaisonOperator(), "operator", null, 1, 1, ROperator.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getROperator_Type(), this.getROperatorType(), "type", null, 1, 1, ROperator.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getROperator_Bound(), ecorePackage.getEBigDecimal(), "bound", null, 1, 1, ROperator.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getROperator_Op(), this.getRewardFormula(), null, "op", null, 1, 1, ROperator.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(quantitativeROperatorEClass, QuantitativeROperator.class, "QuantitativeROperator", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getQuantitativeROperator_Type(), this.getRQuantitativeOperatorType(), "type", null, 1, 1, QuantitativeROperator.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getQuantitativeROperator_Op(), this.getRewardFormula(), null, "op", null, 1, 1, QuantitativeROperator.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(multiObjectiveEClass, MultiObjective.class, "MultiObjective", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getMultiObjective_Objectives(), this.getPCTLStateFormula(), null, "objectives", null, 2, -1, MultiObjective.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
 		// Initialize enums and add enum literals
 		initEEnum(actionTypeEEnum, ActionType.class, "ActionType");
 		addEEnumLiteral(actionTypeEEnum, ActionType.CONTROL);
 		addEEnumLiteral(actionTypeEEnum, ActionType.EXOGENOUS);
+
+		initEEnum(comparaisonOperatorEEnum, ComparaisonOperator.class, "ComparaisonOperator");
+		addEEnumLiteral(comparaisonOperatorEEnum, ComparaisonOperator.LESS_THAN);
+		addEEnumLiteral(comparaisonOperatorEEnum, ComparaisonOperator.LESS_THAN_EQUALS);
+		addEEnumLiteral(comparaisonOperatorEEnum, ComparaisonOperator.EQUALS);
+		addEEnumLiteral(comparaisonOperatorEEnum, ComparaisonOperator.GREATER);
+		addEEnumLiteral(comparaisonOperatorEEnum, ComparaisonOperator.GREATER_THAN_EQUALS);
+
+		initEEnum(pOperatorTypeEEnum, POperatorType.class, "POperatorType");
+		addEEnumLiteral(pOperatorTypeEEnum, POperatorType.MIN);
+		addEEnumLiteral(pOperatorTypeEEnum, POperatorType.MAX);
+		addEEnumLiteral(pOperatorTypeEEnum, POperatorType.NA);
+
+		initEEnum(rOperatorTypeEEnum, ROperatorType.class, "ROperatorType");
+		addEEnumLiteral(rOperatorTypeEEnum, ROperatorType.MIN);
+		addEEnumLiteral(rOperatorTypeEEnum, ROperatorType.MAX);
+		addEEnumLiteral(rOperatorTypeEEnum, ROperatorType.NA);
+
+		initEEnum(pQuantitativeOperatorTypeEEnum, PQuantitativeOperatorType.class, "PQuantitativeOperatorType");
+		addEEnumLiteral(pQuantitativeOperatorTypeEEnum, PQuantitativeOperatorType.MIN);
+		addEEnumLiteral(pQuantitativeOperatorTypeEEnum, PQuantitativeOperatorType.MAX);
+		addEEnumLiteral(pQuantitativeOperatorTypeEEnum, PQuantitativeOperatorType.NA);
+
+		initEEnum(rQuantitativeOperatorTypeEEnum, RQuantitativeOperatorType.class, "RQuantitativeOperatorType");
+		addEEnumLiteral(rQuantitativeOperatorTypeEEnum, RQuantitativeOperatorType.MIN);
+		addEEnumLiteral(rQuantitativeOperatorTypeEEnum, RQuantitativeOperatorType.MAX);
+		addEEnumLiteral(rQuantitativeOperatorTypeEEnum, RQuantitativeOperatorType.NA);
 
 		// Create resource
 		createResource(eNS_URI);

@@ -31,6 +31,8 @@ TOKENSTYLES {
 RULES {
 	DomainDescription ::= "DomainDescription" name[] "{" 
 		"StateVariables" "=" "<" (state_variables ";")* ">" 
+		"Label" "=" "<"(labels";")* ">"
+		"Properties" "=" "<"(properties";")* ">"
 		"ActionDescriptions" "=" "<" (action_descriptions ";")* ">" 
 		"EventDescriptions" "=" "<" (event_descriptions ";")* ">" 
 		"Requirements" "=" "<" (requirements ";")* ">" 		
@@ -40,7 +42,6 @@ RULES {
 		
 	StateVariable ::=  "Variable" name[] 
 						"domain" "{" values[] ("," values[])* "}";
-	
 	
 	ActionDescription ::= 
 		"Action" name[]  ("=" value[])?
@@ -217,6 +218,67 @@ RULES {
 	StateAtom ::= state_variable[] ("=" value[])?;
 
 	InitialAtom ::= initialvariable[] ("=" value[])?;
+	
+	
+	Label::= "label" property "as" value[];
+	
+	@Operator(type="primitive",weight="5",superclass="PCTLStateFormula")
+	LabelReference::= label[];
+	
+	@Operator(type="primitive",weight="5",superclass="PCTLStateFormula")	
+	PTrue::= "true";
+	
+	@Operator(type="primitive",weight="5",superclass="PCTLStateFormula")	
+	PFalse::= "false";
+	
+	//Negation
+	@Operator(type="unary_prefix",weight="4",superclass="PCTLStateFormula")
+	PNegation ::= "!" op;
+	
+	@Operator(type="unary_prefix",weight="3",superclass="PCTLStateFormula")
+	LRA ::=  "LRA" operator[lessThan:"<", lessThanEquals:"<=", equals:"=", greater:">", greaterThanEquals:">="] bound[FLOAT] op ;
+	
+	@Operator(type="binary_left_associative",weight="2",superclass="PCTLStateFormula")
+	PConjunction ::= lhs "&" rhs  ;
+	
+	@Operator(type="binary_left_associative",weight="1",superclass="PCTLStateFormula")
+	PDisjunction ::= lhs "|" rhs  ;
+
+	@Operator(type="primitive",weight="5",superclass="PCTLStateFormula")
+	POperator ::=  type[Max:"Pmax",Min:"Pmin",NA:"P"]  operator[lessThan:"<", lessThanEquals:"<=", equals:"=", greater:">", greaterThanEquals:">="] bound[FLOAT] op ;
+	
+	@Operator(type="primitive",weight="5",superclass="PCTLStateFormula")	
+	QuantitativePOperator ::=  type[Max:"Pmax=?",Min:"Pmin=?",NA:"P=?"] op;
+	
+	
+	Until ::= "[" lhs "U" rhs  "]";
+	
+	BoundedUntil  ::= "[" lhs "U" operator[lessThan:"<", lessThanEquals:"<=", equals:"=", greater:">", greaterThanEquals:">="] bound[INTEGER] rhs  "]";
+	
+	Eventually ::= "[" "F" op  "]";
+
+	BoundedEventually ::= "[" "F" operator[lessThan:"<", lessThanEquals:"<=", equals:"=", greater:">", greaterThanEquals:">="] bound[INTEGER] op  "]";
+	
+	Globally ::= "[" "G" op  "]";
+	
+	
+	
+	InstantaneousReward ::= "[" "I=" step[INTEGER] "]";
+	
+	CumulativeReward ::= "[" "C<=" step[INTEGER] "]";
+	
+	RechabilityReward ::= "[" "F" op "]";
+	
+	LRAReward ::= "[" "LRA" "]";
+	
+	@Operator(type="primitive",weight="5",superclass="PCTLStateFormula")	
+	ROperator ::= type[Min:"Rmin", Max:"Rmax", NA:"R"] operator[lessThan:"<", lessThanEquals:"<=", equals:"=", greater:">", greaterThanEquals:">="] bound[INTEGER] op ;
+	
+	@Operator(type="primitive",weight="5",superclass="PCTLStateFormula")	
+	QuantitativeROperator ::= type[Min:"Rmin=?", Max:"Rmax=?", NA:"R=?"] op;
+
+	@Operator(type="primitive",weight="5",superclass="PCTLStateFormula")			
+	MultiObjective ::= "multi" "(" objectives ("," objectives)+ ")" ;
 		
 
 }

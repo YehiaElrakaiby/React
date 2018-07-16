@@ -21,6 +21,8 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link org.emftext.language.AdaptiveCyberDefense.DomainDescription#getInitial_atoms <em>Initial atoms</em>}</li>
  *   <li>{@link org.emftext.language.AdaptiveCyberDefense.DomainDescription#getEvent_descriptions <em>Event descriptions</em>}</li>
  *   <li>{@link org.emftext.language.AdaptiveCyberDefense.DomainDescription#getName <em>Name</em>}</li>
+ *   <li>{@link org.emftext.language.AdaptiveCyberDefense.DomainDescription#getLabels <em>Labels</em>}</li>
+ *   <li>{@link org.emftext.language.AdaptiveCyberDefense.DomainDescription#getProperties <em>Properties</em>}</li>
  * </ul>
  *
  * @see org.emftext.language.AdaptiveCyberDefense.AdaptiveCyberDefensePackage#getDomainDescription()
@@ -135,6 +137,38 @@ public interface DomainDescription extends EObject {
 	 * @generated
 	 */
 	void setName(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Labels</b></em>' containment reference list.
+	 * The list contents are of type {@link org.emftext.language.AdaptiveCyberDefense.Label}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Labels</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Labels</em>' containment reference list.
+	 * @see org.emftext.language.AdaptiveCyberDefense.AdaptiveCyberDefensePackage#getDomainDescription_Labels()
+	 * @model containment="true"
+	 * @generated
+	 */
+	EList<Label> getLabels();
+
+	/**
+	 * Returns the value of the '<em><b>Properties</b></em>' containment reference list.
+	 * The list contents are of type {@link org.emftext.language.AdaptiveCyberDefense.PCTLStateFormula}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Properties</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Properties</em>' containment reference list.
+	 * @see org.emftext.language.AdaptiveCyberDefense.AdaptiveCyberDefensePackage#getDomainDescription_Properties()
+	 * @model containment="true"
+	 * @generated
+	 */
+	EList<PCTLStateFormula> getProperties();
 
 	
 

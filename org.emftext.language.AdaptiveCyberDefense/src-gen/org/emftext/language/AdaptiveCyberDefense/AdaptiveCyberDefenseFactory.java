@@ -292,6 +292,204 @@ public interface AdaptiveCyberDefenseFactory extends EFactory {
 	PM createPM();
 
 	/**
+	 * Returns a new object of class '<em>Label</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Label</em>'.
+	 * @generated
+	 */
+	Label createLabel();
+
+	/**
+	 * Returns a new object of class '<em>PConjunction</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>PConjunction</em>'.
+	 * @generated
+	 */
+	PConjunction createPConjunction();
+
+	/**
+	 * Returns a new object of class '<em>PDisjunction</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>PDisjunction</em>'.
+	 * @generated
+	 */
+	PDisjunction createPDisjunction();
+
+	/**
+	 * Returns a new object of class '<em>PNegation</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>PNegation</em>'.
+	 * @generated
+	 */
+	PNegation createPNegation();
+
+	/**
+	 * Returns a new object of class '<em>POperator</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>POperator</em>'.
+	 * @generated
+	 */
+	POperator createPOperator();
+
+	/**
+	 * Returns a new object of class '<em>Until</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Until</em>'.
+	 * @generated
+	 */
+	Until createUntil();
+
+	/**
+	 * Returns a new object of class '<em>Eventually</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Eventually</em>'.
+	 * @generated
+	 */
+	Eventually createEventually();
+
+	/**
+	 * Returns a new object of class '<em>Bounded Until</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Bounded Until</em>'.
+	 * @generated
+	 */
+	BoundedUntil createBoundedUntil();
+
+	/**
+	 * Returns a new object of class '<em>Globally</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Globally</em>'.
+	 * @generated
+	 */
+	Globally createGlobally();
+
+	/**
+	 * Returns a new object of class '<em>Bounded Eventually</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Bounded Eventually</em>'.
+	 * @generated
+	 */
+	BoundedEventually createBoundedEventually();
+
+	/**
+	 * Returns a new object of class '<em>PTrue</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>PTrue</em>'.
+	 * @generated
+	 */
+	PTrue createPTrue();
+
+	/**
+	 * Returns a new object of class '<em>PFalse</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>PFalse</em>'.
+	 * @generated
+	 */
+	PFalse createPFalse();
+
+	/**
+	 * Returns a new object of class '<em>Label Reference</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Label Reference</em>'.
+	 * @generated
+	 */
+	LabelReference createLabelReference();
+
+	/**
+	 * Returns a new object of class '<em>LRA</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>LRA</em>'.
+	 * @generated
+	 */
+	LRA createLRA();
+
+	/**
+	 * Returns a new object of class '<em>Quantitative POperator</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Quantitative POperator</em>'.
+	 * @generated
+	 */
+	QuantitativePOperator createQuantitativePOperator();
+
+	/**
+	 * Returns a new object of class '<em>Instantaneous Reward</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Instantaneous Reward</em>'.
+	 * @generated
+	 */
+	InstantaneousReward createInstantaneousReward();
+
+	/**
+	 * Returns a new object of class '<em>Cumulative Reward</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Cumulative Reward</em>'.
+	 * @generated
+	 */
+	CumulativeReward createCumulativeReward();
+
+	/**
+	 * Returns a new object of class '<em>Rechability Reward</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Rechability Reward</em>'.
+	 * @generated
+	 */
+	RechabilityReward createRechabilityReward();
+
+	/**
+	 * Returns a new object of class '<em>LRA Reward</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>LRA Reward</em>'.
+	 * @generated
+	 */
+	LRAReward createLRAReward();
+
+	/**
+	 * Returns a new object of class '<em>ROperator</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>ROperator</em>'.
+	 * @generated
+	 */
+	ROperator createROperator();
+
+	/**
+	 * Returns a new object of class '<em>Quantitative ROperator</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Quantitative ROperator</em>'.
+	 * @generated
+	 */
+	QuantitativeROperator createQuantitativeROperator();
+
+	/**
+	 * Returns a new object of class '<em>Multi Objective</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Multi Objective</em>'.
+	 * @generated
+	 */
+	MultiObjective createMultiObjective();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

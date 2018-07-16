@@ -1,0 +1,7 @@
+Type of Version: Major Change 
+
+Enable the specification of actions in formulas:
+Expand the state space such that it encodes information about the actions/events that produced the destination state
+the initial state is the only state that is produced by no action and no events
+
+
