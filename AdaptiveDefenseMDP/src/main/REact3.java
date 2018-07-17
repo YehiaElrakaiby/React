@@ -13,11 +13,12 @@ import org.emftext.language.AdaptiveCyberDefense.DomainDescription;
 import org.emftext.language.AdaptiveCyberDefense.resource.AdaptiveCyberDefense.mopp.AdaptiveCyberDefenseMetaInformation;
 
 import lts.operational.LTSG;
+import lts.operational.MDPBuilder;
 import mdp.MDPSolver;
 import visualizer.Graphviz_Writer;
 
 
-public class REact {
+public class REact3 {
 	/** This AdaptiveDefenseMDP class is the main class:
 	 * 			Input: a domain description in the form of the emfText DSL specification file
 	 * 			Output: a MDP solution, that is the optimal action to take in every possible state
@@ -38,7 +39,7 @@ public class REact {
 	/*
 	 * 			OTHER CONFIGURATION OPTIONS
 	 */
-	static String files_location = "/Users/yehia/Documents/GraphivFilesReact/07-2018-Examples/";
+	static String files_location = "/Users/yehia/Documents/GraphivFilesReact/16-07-2018-Examples/";
 
 	static Path domain_description_location = Paths.get( "Users","yehia","Documents",
 			"runtime-EclipseApplication(1)","REactV5-PaperExamples", "IllustrationExample_Section5.3",
@@ -65,8 +66,8 @@ public class REact {
 	static String controlPlanFileName = "";
 	static String ltsFileName = "";
 	static DomainDescription description;
-	static LTSG lts;
-	static MDPSolver solver;
+	static MDPBuilder lts;
+	//static MDPSolver solver;
 	private static Logger LOGGER;
 
 	public static void main(String[] args) {
@@ -87,56 +88,56 @@ public class REact {
 		/*
 		 * 2. Build the LTS using State and Action Variables, Action Descriptions and Requirements
 		 */
-		lts = new LTSG(description,generationOption);
+		lts = new MDPBuilder(description,generationOption);
 		LOGGER.info("The labeled transition system LTSG created");
 
 		lts.print();
 		/*
 		 * Initialize the MDPSolver class
 		 */
-		solver = new MDPSolver(lts.getNumberOfStates(),lts.getNbActions());
-		LOGGER.info("The MDP Solver is initialized");
+		//solver = new MDPSolver(lts.getNumberOfStates(),lts.getNbActions());
+		//LOGGER.info("The MDP Solver is initialized");
 
 		/*
 		 * Build the exogenous events matrix PrE based on the transition matrix of exogenous events PrE1,...,PrEn 
 		 */
-		double[][] ex_tm = solver.buildExogeousEventsMatrix(lts.getExogenous_events_id(), lts.getOccurrence_vectors(),lts.getExo_events_transitions_map());
-		LOGGER.info("The exogenous event matrix PrE = PrE1 x...x PrEn is computed");
-		LOGGER.trace("The exogenous event matrix \n"+print(ex_tm));
+		//double[][] ex_tm = solver.buildExogeousEventsMatrix(lts.getExogenous_events_id(), lts.getOccurrence_vectors(),lts.getExo_events_transitions_map());
+		//LOGGER.info("The exogenous event matrix PrE = PrE1 x...x PrEn is computed");
+		//LOGGER.trace("The exogenous event matrix \n"+print(ex_tm));
 
 		/*
 		 * Build the implicit transition matrix
 		 */
-		double[][][] tm = solver.buildTransitionMatrix(lts.getCtrl_actions_transitions_map(),ex_tm);
-		LOGGER.info("The Transition Matrix of the MDP is created");
+		//double[][][] tm = solver.buildTransitionMatrix(lts.getCtrl_actions_transitions_map(),ex_tm);
+		//LOGGER.info("The Transition Matrix of the MDP is created");
 		//LOGGER.trace("The transition matrix \n"+print(tm));
 
 		/*
 		 * Construct the reward matrix
 		 */
-		double[][][] rm = solver.buildRewardMatrix(tm, lts.getRequirements_description(),lts.getActionDescriptions(),lts.getId_control_events(),lts.getStates());
-		LOGGER.info("The Reward Matrix of the MDP is created");
+		//double[][][] rm = solver.buildRewardMatrix(tm, lts.getRequirements_description(),lts.getActionDescriptions(),lts.getId_control_events(),lts.getStates());
+		//LOGGER.info("The Reward Matrix of the MDP is created");
 		//LOGGER.trace("The reward matrix \n"+print(rm));
 
-		solver.checkInput();
+		lts.checkInput();
 
 		LOGGER.info("The MDP input is checked");
 
-		Graphviz_Writer.create(files_location+ltsFileName, lts.getStates(), lts.getId_control_events(), tm, rm, dotOption);
+		Graphviz_Writer.create(files_location+ltsFileName, lts.getStates(), lts.getId_control_events(), lts.getP(), lts.getR(), dotOption);
 		LOGGER.info("The LTS Graphviz file is created");
 
 		/*
 		 * Solve the MDP and compute the policy and value functions
 		 */
-		solver.solveMDP();
-		double[] policy = solver.getPolicy();
-		double[] value = solver.getValue();
+		//solver.solveMDP();
+		double[] policy = lts.getPolicy();
+		double[] value = lts.getValue();
 		LOGGER.info("The MDP is solved: The policy and value vectors based on the MDP are computed");
 
-		Graphviz_Writer.create(files_location+controlStrategyFileName, lts.getStates(), lts.getId_control_events(), policy, value, tm, rm, dotOption);
+		Graphviz_Writer.create(files_location+controlStrategyFileName, lts.getStates(), lts.getId_control_events(), policy, value, lts.getP(), lts.getR(), dotOption);
 		LOGGER.info("The Control Strategy Graphviz file is created");
 
-		Graphviz_Writer.createPlan(files_location+controlPlanFileName, lts.getStates(), lts.getId_control_events(), policy, value, tm, rm, dotOption);
+		Graphviz_Writer.createPlan(files_location+controlPlanFileName, lts.getStates(), lts.getId_control_events(), policy, value, lts.getP(), lts.getR(), dotOption);
 		LOGGER.info("The Control Plan Graphviz file is created");
 
 		//showInGraphiv(graphiz_file, lts.getStates(), lts.getTransitions(), DOT_Writer.SHOW_ALL);

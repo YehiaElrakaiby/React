@@ -428,33 +428,33 @@ public class MDPSolver {
 							String reqID = it.next();
 							req = requirements_description.get(reqID);
 							if(req.getType().equals("ua")){
-								rew=rew.add(ComputeRwd.reward_ua(req,src,dst,action_name));
+								rew=rew.add(ComputeRwd.reward_ua(req,src,dst));
 							} else if(req.getType().equals("ca")){
-								rew=rew.add(ComputeRwd.reward_ca(req,src,dst,action_name));
+								rew=rew.add(ComputeRwd.reward_ca(req,src,dst));
 							} else if(req.getType().equals("dfa")){
-								rew=rew.add(ComputeRwd.reward_dfa(req,src,dst,action_name));
+								rew=rew.add(ComputeRwd.reward_dfa(req,src,dst));
 							} else if(req.getType().equals("dea")){
-								rew=rew.add(ComputeRwd.reward_dea(req,src,dst,action_name));
+								rew=rew.add(ComputeRwd.reward_dea(req,src,dst));
 							} else if(req.getType().equals("um")){
-								rew=rew.add(ComputeRwd.reward_um(req,src,dst,action_name));
+								rew=rew.add(ComputeRwd.reward_um(req,src,dst));
 							} else if(req.getType().equals("cm")){
-								rew=rew.add(ComputeRwd.reward_cm(req,src,dst,action_name));
+								rew=rew.add(ComputeRwd.reward_cm(req,src,dst));
 							} else if(req.getType().equals("dfm")){
-								rew=rew.add(ComputeRwd.reward_dfm(req,src,dst,action_name));
+								rew=rew.add(ComputeRwd.reward_dfm(req,src,dst));
 							} else if(req.getType().equals("dem")){
-								rew=rew.add(ComputeRwd.reward_dem(req,src,dst,action_name));
+								rew=rew.add(ComputeRwd.reward_dem(req,src,dst));
 							} else if(req.getType().equals("pdem")){
-								rew=rew.add(ComputeRwd.reward_pdem(req,src,dst,action_name));
+								rew=rew.add(ComputeRwd.reward_pdem(req,src,dst));
 							} else if(req.getType().equals("pm")){
-								rew=rew.add(ComputeRwd.reward_pm(req,src,dst,action_name));
+								rew=rew.add(ComputeRwd.reward_pm(req,src,dst));
 							} else if(req.getType().equals("rpm")){
-								rew=rew.add(ComputeRwd.reward_rpm(req,src,dst,action_name));
+								rew=rew.add(ComputeRwd.reward_rpm(req,src,dst));
 							} else if(req.getType().equals("rpdem")){
-								rew=rew.add(ComputeRwd.reward_rpdem(req,src,dst,action_name));
+								rew=rew.add(ComputeRwd.reward_rpdem(req,src,dst));
 							} else if(req.getType().equals("pdfm")) {
-								rew=rew.add(ComputeRwd.reward_pdfm(req,src,dst,action_name));
+								rew=rew.add(ComputeRwd.reward_pdfm(req,src,dst));
 							} else if(req.getType().equals("rpdfm")){
-								rew=rew.add(ComputeRwd.reward_rpdfm(req,src,dst,action_name));
+								rew=rew.add(ComputeRwd.reward_rpdfm(req,src,dst));
 							} 
 						}
 						dst.remove(action_name.substring(0,action_name.indexOf("=tt")));
@@ -469,7 +469,6 @@ public class MDPSolver {
 			LOGGER.error("Problem creating reward matrix in matlab \n"+e.getMessage());
 			e.printStackTrace();
 		}	
-
 
 		//retrieve the reward matrix R from matlab
 
