@@ -1,0 +1,24 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: EMFText Parser Plugin: AdaptiveCyberDefense
+Bundle-SymbolicName: org.emftext.language.AdaptiveCyberDefense.resource.AdaptiveCyberDefense;singleton:=true
+Bundle-Version: 1.0.0
+Bundle-Vendor: Software Technology Group - TU Dresden Germany
+Require-Bundle: org.eclipse.core.runtime;resolution:=optional,
+  org.eclipse.emf.ecore,
+  org.eclipse.emf.ecore.change,
+  org.eclipse.emf.validation;resolution:=optional,
+  org.emftext.access;resolution:=optional,
+  org.eclipse.debug.core;resolution:=optional,
+  org.emftext.commons.antlr3_4_0,
+  org.emftext.language.AdaptiveCyberDefense
+Bundle-ActivationPolicy: lazy
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Export-Package: org.emftext.language.AdaptiveCyberDefense.resource.AdaptiveCyberDefense,
+  org.emftext.language.AdaptiveCyberDefense.resource.AdaptiveCyberDefense.analysis,
+  org.emftext.language.AdaptiveCyberDefense.resource.AdaptiveCyberDefense.mopp,
+  org.emftext.language.AdaptiveCyberDefense.resource.AdaptiveCyberDefense.debug,
+  org.emftext.language.AdaptiveCyberDefense.resource.AdaptiveCyberDefense.launch,
+  org.emftext.language.AdaptiveCyberDefense.resource.AdaptiveCyberDefense.grammar,
+  org.emftext.language.AdaptiveCyberDefense.resource.AdaptiveCyberDefense.util
+Bundle-Activator: org.emftext.language.AdaptiveCyberDefense.resource.AdaptiveCyberDefense.mopp.AdaptiveCyberDefensePlugin

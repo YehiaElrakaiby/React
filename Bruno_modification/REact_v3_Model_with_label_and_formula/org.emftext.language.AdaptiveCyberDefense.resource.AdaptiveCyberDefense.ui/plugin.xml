@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?>
+<plugin>
+	<extension point="org.emftext.access.syntax.ui">
+		<metaInformationProvider class="org.emftext.language.AdaptiveCyberDefense.resource.AdaptiveCyberDefense.ui.AdaptiveCyberDefenseUIMetaInformation" id="org.emftext.language.AdaptiveCyberDefense.resource.AdaptiveCyberDefense.ui.AdaptiveCyberDefenseUIMetaInformation">
+		</metaInformationProvider>
+	</extension>
+	
+	<extension point="org.eclipse.ui.editors">
+		<editor class="org.emftext.language.AdaptiveCyberDefense.resource.AdaptiveCyberDefense.ui.AdaptiveCyberDefenseEditor" contributorClass="org.eclipse.ui.texteditor.BasicTextEditorActionContributor" extensions="AdaptiveCyberDefense" icon="icons/editor_icon.gif" id="org.emftext.language.AdaptiveCyberDefense.resource.AdaptiveCyberDefense.ui.AdaptiveCyberDefenseEditor" name="EMFText AdaptiveCyberDefense Editor">
+			<contentTypeBinding contentTypeId="org.emftext.language.AdaptiveCyberDefense.resource.AdaptiveCyberDefense">
+			</contentTypeBinding>
+		</editor>
+	</extension>
+	
+	<extension point="org.eclipse.core.runtime.preferences">
+		<initializer class="org.emftext.language.AdaptiveCyberDefense.resource.AdaptiveCyberDefense.ui.AdaptiveCyberDefensePreferenceInitializer">
+		</initializer>
+	</extension>
+	
+	<extension point="org.eclipse.ui.preferencePages">
+		<page name="AdaptiveCyberDefense Text Editor" id="org.emftext.language.AdaptiveCyberDefense.resource.AdaptiveCyberDefense.ui.AdaptiveCyberDefensePreferencePage" class="org.emftext.language.AdaptiveCyberDefense.resource.AdaptiveCyberDefense.ui.AdaptiveCyberDefensePreferencePage" category="org.eclipse.ui.preferencePages.GeneralTextEditor">
+		</page>
+		<page name="Syntax Coloring" id="org.emftext.language.AdaptiveCyberDefense.resource.AdaptiveCyberDefense.ui.AdaptiveCyberDefenseSyntaxColoringPreferencePage" class="org.emftext.language.AdaptiveCyberDefense.resource.AdaptiveCyberDefense.ui.AdaptiveCyberDefenseSyntaxColoringPreferencePage" category="org.emftext.language.AdaptiveCyberDefense.resource.AdaptiveCyberDefense.ui.AdaptiveCyberDefensePreferencePage">
+		</page>
+		<page name="Brackets" id="org.emftext.language.AdaptiveCyberDefense.resource.AdaptiveCyberDefense.ui.AdaptiveCyberDefenseBracketPreferencePage" class="org.emftext.language.AdaptiveCyberDefense.resource.AdaptiveCyberDefense.ui.AdaptiveCyberDefenseBracketPreferencePage" category="org.emftext.language.AdaptiveCyberDefense.resource.AdaptiveCyberDefense.ui.AdaptiveCyberDefensePreferencePage">
+		</page>
+	</extension>
+	
+	<extension point="org.eclipse.ui.newWizards">
+		<category id="org.emftext.runtime.ui.EMFTextFileCategory" name="EMFText File">
+		</category>
+		<wizard category="org.emftext.runtime.ui.EMFTextFileCategory" icon="/icons/default_new_icon.gif" class="org.emftext.language.AdaptiveCyberDefense.resource.AdaptiveCyberDefense.ui.AdaptiveCyberDefenseNewFileWizard" id="org.emftext.language.AdaptiveCyberDefense.resource.AdaptiveCyberDefense.ui.AdaptiveCyberDefenseNewFileWizard" name="EMFText .AdaptiveCyberDefense file">
+		</wizard>
+		<category id="org.emftext.runtime.ui.EMFTextProjectCategory" name="EMFText Project">
+		</category>
+		<wizard category="org.emftext.runtime.ui.EMFTextProjectCategory" icon="/icons/default_new_icon.gif" class="org.emftext.language.AdaptiveCyberDefense.resource.AdaptiveCyberDefense.ui.AdaptiveCyberDefenseNewProjectWizard" id="org.emftext.language.AdaptiveCyberDefense.resource.AdaptiveCyberDefense.ui.AdaptiveCyberDefenseNewProjectWizard" name="EMFText AdaptiveCyberDefense project" project="true">
+		</wizard>
+	</extension>
+	
+	<extension point="org.eclipse.ui.ide.markerResolution">
+		<markerResolutionGenerator class="org.emftext.language.AdaptiveCyberDefense.resource.AdaptiveCyberDefense.ui.AdaptiveCyberDefenseMarkerResolutionGenerator" markerType="org.emftext.language.AdaptiveCyberDefense.resource.AdaptiveCyberDefense.problem">
+		</markerResolutionGenerator>
+	</extension>
+	
+	<extension point="org.eclipse.core.filebuffers.annotationModelCreation">
+		<factory class="org.emftext.language.AdaptiveCyberDefense.resource.AdaptiveCyberDefense.ui.AdaptiveCyberDefenseAnnotationModelFactory" extensions="AdaptiveCyberDefense">
+		</factory>
+	</extension>
+	
+	<extension point="org.eclipse.core.contenttype.contentTypes">
+		<content-type id="org.emftext.language.AdaptiveCyberDefense.resource.AdaptiveCyberDefense" name=".AdaptiveCyberDefense File" base-type="org.eclipse.core.runtime.text" file-extensions="AdaptiveCyberDefense">
+		</content-type>
+	</extension>
+	
+	<extension point="org.eclipse.ui.editors.documentProviders">
+		<provider class="org.eclipse.ui.editors.text.TextFileDocumentProvider" extensions="AdaptiveCyberDefense" id="org.emftext.language.AdaptiveCyberDefense.resource.AdaptiveCyberDefense.ui.provider">
+		</provider>
+	</extension>
+	
+	<extension point="org.eclipse.ui.editors.annotationTypes">
+		<type name="org.emftext.language.AdaptiveCyberDefense.resource.AdaptiveCyberDefense.ui.occurences">
+		</type>
+		<type name="org.emftext.language.AdaptiveCyberDefense.resource.AdaptiveCyberDefense.ui.occurences.declaration" super="org.emftext.language.AdaptiveCyberDefense.resource.AdaptiveCyberDefense.ui.occurences">
+		</type>
+	</extension>
+	
+	<extension point="org.eclipse.ui.editors.markerAnnotationSpecification">
+		<specification annotationType="org.emftext.language.AdaptiveCyberDefense.resource.AdaptiveCyberDefense.ui.occurences" label="Occurrences (in .AdaptiveCyberDefense files)" icon="/icons/occurrence_icon.gif" textPreferenceKey="AdaptiveCyberDefense.occurrenceIndication" textPreferenceValue="false" highlightPreferenceKey="AdaptiveCyberDefense.occurrenceHighlighting" highlightPreferenceValue="true" contributesToHeader="false" overviewRulerPreferenceKey="AdaptiveCyberDefense.occurrenceIndicationInOverviewRuler" overviewRulerPreferenceValue="true" verticalRulerPreferenceKey="AdaptiveCyberDefense.occurrenceIndicationInVerticalRuler" verticalRulerPreferenceValue="false" colorPreferenceKey="AdaptiveCyberDefense.occurrenceIndicationColor" colorPreferenceValue="212,212,212" presentationLayer="4" showInNextPrevDropdownToolbarActionKey="AdaptiveCyberDefense.showOccurrenceInNextPrevDropdownToolbarAction" showInNextPrevDropdownToolbarAction="true" isGoToNextNavigationTargetKey="AdaptiveCyberDefense.isOccurrenceGoToNextNavigationTarget" isGoToNextNavigationTarget="false" isGoToPreviousNavigationTargetKey="AdaptiveCyberDefense.isOccurrenceGoToPreviousNavigationTarget" isGoToPreviousNavigationTarget="false" textStylePreferenceKey="AdaptiveCyberDefense.occurrenceTextStyle" textStylePreferenceValue="NONE">
+		</specification>
+		<specification annotationType="org.emftext.language.AdaptiveCyberDefense.resource.AdaptiveCyberDefense.ui.occurences.declaration" label="Declarations (in .AdaptiveCyberDefense files)" textPreferenceKey="AdaptiveCyberDefense.declarationIndication" textPreferenceValue="false" highlightPreferenceKey="AdaptiveCyberDefense.declarationHighlighting" highlightPreferenceValue="true" overviewRulerPreferenceKey="AdaptiveCyberDefense.declarationIndicationInOverviewRuler" overviewRulerPreferenceValue="true" verticalRulerPreferenceKey="AdaptiveCyberDefense.declarationIndicationInVerticalRuler" verticalRulerPreferenceValue="false" colorPreferenceKey="AdaptiveCyberDefense.declarationIndicationColor" colorPreferenceValue="240,216,168" presentationLayer="4" textStylePreferenceKey="AdaptiveCyberDefense.declarationTextStyle" textStylePreferenceValue="NONE">
+		</specification>
+	</extension>
+	
+	<extension point="org.eclipse.debug.ui.launchConfigurationTypeImages">
+		<launchConfigurationTypeImage icon="/icons/launch_type_icon.gif" configTypeID="org.emftext.language.AdaptiveCyberDefense.resource.AdaptiveCyberDefense.ui.launchConfigurationType" id="org.emftext.language.AdaptiveCyberDefense.launchImage">
+		</launchConfigurationTypeImage>
+	</extension>
+	
+	<extension point="org.eclipse.debug.ui.launchConfigurationTabGroups">
+		<launchConfigurationTabGroup type="org.emftext.language.AdaptiveCyberDefense.resource.AdaptiveCyberDefense.ui.launchConfigurationType" class="org.emftext.language.AdaptiveCyberDefense.resource.AdaptiveCyberDefense.ui.launch.AdaptiveCyberDefenseLaunchConfigurationTabGroup" id="org.emftext.language.AdaptiveCyberDefense.launchConfigurationTabGroup" helpContextId="org.emftext.language.AdaptiveCyberDefense.launchConfigHelpContext">
+			<launchMode mode="debug" perspective="org.eclipse.debug.ui.DebugPerspective" description="Debug AdaptiveCyberDefense model.">
+			</launchMode>
+			<launchMode mode="run" description="Run AdaptiveCyberDefense model.">
+			</launchMode>
+		</launchConfigurationTabGroup>
+	</extension>
+	
+	<extension point="org.eclipse.debug.ui.launchShortcuts">
+		<shortcut label="AdaptiveCyberDefense Application" icon="/icons/launch_shortcut_icon.gif" helpContextId="org.emftext.language.AdaptiveCyberDefense.launch" modes="run,debug" class="org.emftext.language.AdaptiveCyberDefense.resource.AdaptiveCyberDefense.ui.launch.AdaptiveCyberDefenseLaunchShortcut" description="Launch a AdaptiveCyberDefense model" id="org.emftext.language.AdaptiveCyberDefense.launchShortcut">
+			<description description="Run AdaptiveCyberDefense model" mode="run">
+			</description>
+			<description description="Debug AdaptiveCyberDefense model" mode="debug">
+			</description>
+			<contextualLaunch>
+				<enablement>
+					<with variable="selection">
+						<count value="1">
+						</count>
+						<iterate>
+							<test property="org.emftext.language.AdaptiveCyberDefense.isLaunchable">
+							</test>
+						</iterate>
+					</with>
+				</enablement>
+			</contextualLaunch>
+			<configurationType id="org.emftext.language.AdaptiveCyberDefense.resource.AdaptiveCyberDefense.ui.launchConfigurationType">
+			</configurationType>
+		</shortcut>
+	</extension>
+	
+	<extension point="org.eclipse.core.expressions.propertyTesters">
+		<propertyTester id="org.emftext.language.AdaptiveCyberDefense.PropertyTester" type="java.lang.Object" namespace="org.emftext.language.AdaptiveCyberDefense" properties="isLaunchable" class="org.emftext.language.AdaptiveCyberDefense.resource.AdaptiveCyberDefense.ui.AdaptiveCyberDefensePropertyTester">
+		</propertyTester>
+	</extension>
+	
+	<extension point="org.eclipse.ui.editors.annotationTypes">
+		<type name="org.emftext.language.AdaptiveCyberDefense.resource.AdaptiveCyberDefense.ui.debug.lineBreakpoint" markerType="org.emftext.language.AdaptiveCyberDefense.resource.AdaptiveCyberDefense.debug.lineBreakpoint.marker" super="org.eclipse.debug.core.breakpoint">
+		</type>
+	</extension>
+	
+	<extension point="org.eclipse.ui.editors.markerAnnotationSpecification">
+		<specification annotationType="org.emftext.language.AdaptiveCyberDefense.resource.AdaptiveCyberDefense.ui.debug.lineBreakpoint" label="Breakpoints (in .AdaptiveCyberDefense files)" icon="/icons/breakpoint_icon.gif" textPreferenceKey="org.emftext.language.AdaptiveCyberDefense.resource.AdaptiveCyberDefense.ui.lineBreakpoint" textPreferenceValue="false" highlightPreferenceKey="org.emftext.language.AdaptiveCyberDefense.resource.AdaptiveCyberDefense.ui.lineBreakpointHighlighting" highlightPreferenceValue="true" contributesToHeader="false" overviewRulerPreferenceKey="org.emftext.language.AdaptiveCyberDefense.resource.AdaptiveCyberDefense.ui.lineBreakpointIndicationInOverviewRuler" overviewRulerPreferenceValue="true" verticalRulerPreferenceKey="org.emftext.language.AdaptiveCyberDefense.resource.AdaptiveCyberDefense.ui.lineBreakpointIndicationInVerticalRuler" verticalRulerPreferenceValue="false" colorPreferenceKey="org.emftext.language.AdaptiveCyberDefense.resource.AdaptiveCyberDefense.ui.lineBreakpointColor" colorPreferenceValue="212,212,212" presentationLayer="4" showInNextPrevDropdownToolbarActionKey="org.emftext.language.AdaptiveCyberDefense.resource.AdaptiveCyberDefense.ui.showLineBreakpointInNextPrevDropdownToolbarAction" showInNextPrevDropdownToolbarAction="true" isGoToNextNavigationTargetKey="org.emftext.language.AdaptiveCyberDefense.resource.AdaptiveCyberDefense.ui.isLineBreakpointGoToNextNavigationTarget" isGoToNextNavigationTarget="false" isGoToPreviousNavigationTargetKey="org.emftext.language.AdaptiveCyberDefense.resource.AdaptiveCyberDefense.ui.isLineBreakpointGoToPreviousNavigationTarget" isGoToPreviousNavigationTarget="false" textStylePreferenceKey="org.emftext.language.AdaptiveCyberDefense.resource.AdaptiveCyberDefense.ui.lineBreakpointTextStyle" textStylePreferenceValue="NONE">
+		</specification>
+	</extension>
+	
+	<extension point="org.eclipse.core.runtime.adapters">
+		<factory adaptableType="org.emftext.language.AdaptiveCyberDefense.resource.AdaptiveCyberDefense.ui.AdaptiveCyberDefenseEditor" class="org.emftext.language.AdaptiveCyberDefense.resource.AdaptiveCyberDefense.ui.debug.AdaptiveCyberDefenseAdapterFactory">
+			<adapter type="org.eclipse.debug.ui.actions.IToggleBreakpointsTarget">
+			</adapter>
+		</factory>
+		<factory adaptableType="org.emftext.language.AdaptiveCyberDefense.resource.AdaptiveCyberDefense.debug.AdaptiveCyberDefenseDebugVariable" class="org.emftext.language.AdaptiveCyberDefense.resource.AdaptiveCyberDefense.ui.debug.AdaptiveCyberDefenseAdapterFactory">
+			<adapter type="org.eclipse.debug.internal.ui.viewers.model.provisional.IElementLabelProvider">
+			</adapter>
+		</factory>
+		<factory adaptableType="org.emftext.language.AdaptiveCyberDefense.resource.AdaptiveCyberDefense.debug.AdaptiveCyberDefenseDebugVariable" class="org.emftext.language.AdaptiveCyberDefense.resource.AdaptiveCyberDefense.ui.debug.AdaptiveCyberDefenseAdapterFactory">
+			<adapter type="org.eclipse.debug.internal.ui.viewers.model.provisional.IElementContentProvider">
+			</adapter>
+		</factory>
+	</extension>
+	
+	<extension point="org.eclipse.ui.popupMenus">
+		<viewerContribution id="org.emftext.language.AdaptiveCyberDefense.resource.AdaptiveCyberDefense.ui.RulerPopupActions" targetID="org.emftext.language.AdaptiveCyberDefense.resource.AdaptiveCyberDefense.EditorRuler">
+			<action id="org.emftext.language.AdaptiveCyberDefense.resource.AdaptiveCyberDefense.ui.toggleBreakpointAction" icon="icons/breakpoint_icon.gif" label="Toggle Breakpoint" class="org.eclipse.debug.ui.actions.RulerToggleBreakpointActionDelegate" menubarPath="debug">
+			</action>
+		</viewerContribution>
+	</extension>
+	
+	<extension point="org.eclipse.ui.editorActions">
+		<editorContribution targetID="org.emftext.language.AdaptiveCyberDefense.resource.AdaptiveCyberDefense.ui.AdaptiveCyberDefenseEditor" id="org.emftext.language.AdaptiveCyberDefense.resource.AdaptiveCyberDefense.ui.BreakpointRulerActions">
+			<action id="org.emftext.language.AdaptiveCyberDefense.resource.AdaptiveCyberDefense.ui.debug.RulerToggleBreakpointAction" label="Add breakpoint" class="org.eclipse.debug.ui.actions.RulerToggleBreakpointActionDelegate" actionID="RulerDoubleClick">
+			</action>
+		</editorContribution>
+	</extension>
+	
+	<extension point="org.eclipse.debug.ui.debugModelPresentations">
+		<debugModelPresentation id="org.emftext.language.AdaptiveCyberDefense.resource.AdaptiveCyberDefense.debugModel" class="org.emftext.language.AdaptiveCyberDefense.resource.AdaptiveCyberDefense.ui.debug.AdaptiveCyberDefenseDebugModelPresentation">
+		</debugModelPresentation>
+	</extension>
+	
+</plugin>
