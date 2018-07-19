@@ -1,0 +1,35 @@
+
+	1) nb_of_states = Integer
+	2) nb_of_transitions = Integer
+	
+	3) nb_of_control_events = Integer
+	4) nb_of_exogenous_events = Integer
+	
+	5) variables_domain = HashMap<String, HashSet<String>>
+
+	6) action_descriptions = HashMap<String,ActionDescription>
+	7) event_descriptions = HashMap<String,EventDescription>
+
+	8) requirements_description = HashMap<String,RequirementDescription>
+
+	9) initial_state = HashMap<String,String>
+
+	// Every state has an id (Integer) and is a HashMap<String,String> where the first string is the variable name and the second string its value
+	10) states = HashMap<Integer,HashMap<String,String>>
+	11) states_id = HashMap<HashMap<String,String>,Integer>
+
+	// transitions store the valid transitions of the LTS
+	12) transitions = HashSet<Transition>
+
+	// Actions have a name (String) and an identifier (Integer)
+	13) control_events = HashSet<String>Integer: names of actions
+	14) control_events_id = HashMap<String,Integer>: map from action names to action identifier
+	15) id_control_events = HashMap<Integer, String>:
+	16) ctrl_actions_transitions_map = HashMap<Integer, HashSet<Transition>>
+
+	// Events have a name (String) and an identifier (Integer)
+	17) exogenous_events = HashSet<String>
+	18) exogenous_events_id = HashMap<String,Integer>
+	19) id_exogenous_events = HashMap<Integer, String>
+	20) exo_events_transitions_map = HashMap<Integer, HashSet<Transition>>
+	21) occurrence_vectors = HashMap<Integer, HashMap<Integer,Double>> 

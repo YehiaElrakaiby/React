@@ -1,0 +1,9 @@
+To Add Support of a new Requirement Type REQTYPE:
+
+1) Update the metamodel and the .cs to support the requirement expression
+
+2) Update the LTSG class
+2.1) Update Function: readRequirements(EList<Requirement> eList) - add an else if statement to read the new REQTYPE
+2.2) Create Function: fillREQTYPERequirementDescription
+2.2) Update Function: updateReqVariables - add an else if statement
+2.3) Create Function: updateREQTYPEReqAtomInState
