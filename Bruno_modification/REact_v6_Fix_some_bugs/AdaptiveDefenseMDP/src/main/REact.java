@@ -18,12 +18,16 @@ import java.util.Set;
 import java.util.TreeSet;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.emftext.language.AdaptiveCyberDefense.ActionDescription;
 import org.emftext.language.AdaptiveCyberDefense.DomainDescription;
+import org.emftext.language.AdaptiveCyberDefense.EventDescription;
 import org.emftext.language.AdaptiveCyberDefense.Formula;
+import org.emftext.language.AdaptiveCyberDefense.ProbabilisticContextualEffect;
+import org.emftext.language.AdaptiveCyberDefense.ProbabilisticEffect;
 import org.emftext.language.AdaptiveCyberDefense.resource.AdaptiveCyberDefense.IAdaptiveCyberDefenseTextPrinter;
 import org.emftext.language.AdaptiveCyberDefense.resource.AdaptiveCyberDefense.mopp.AdaptiveCyberDefenseMetaInformation;
 
@@ -66,6 +70,9 @@ public class REact implements REactInterface {
 	static double averageTime = 0;
 	static double averageTimeMDP = 0; 
 	public static int output = 0;
+	public static double[] finalPolicy;
+	public static HashMap<Integer, String> controlEvents;
+	public static double[][][] tm;
 
 	/**
 	 * Based on the contents of a description:
@@ -106,6 +113,7 @@ public class REact implements REactInterface {
 		if((output < 0) ||(output>2)){
 			output = 0;
 		}
+
 
 		//Performance test : the program is executed 5 times
 		//for(int i = 0;i < 5;i++) {
@@ -149,7 +157,7 @@ public class REact implements REactInterface {
 		/*
 		 * Build the implicit transition matrix
 		 */
-		double[][][] tm = solver.buildTransitionMatrix(lts.getCtrl_actions_transitions_map(),ex_tm);
+		tm = solver.buildTransitionMatrix(lts.getCtrl_actions_transitions_map(),ex_tm);
 		LOGGER.info("The Transition Matrix of the MDP is created");
 		//If output is Storm or Prism file
 		if(output != 0) {
@@ -186,6 +194,8 @@ public class REact implements REactInterface {
 		double[] value = solver.getValue();
 		LOGGER.info("The MDP is solved: The policy and value vectors based on the MDP are computed");
 
+		finalPolicy = policy;
+
 		long endTimeMDP = System.nanoTime();
 
 		double[][] dtmc_tm = new double[policy.length][policy.length];
@@ -198,16 +208,18 @@ public class REact implements REactInterface {
 		LOGGER.info("The Control Plan Graphviz file is created");
 
 		findDTMC(policy,tm,rm,dtmc_tm,dtmc_rm);
-		
+
 		//System.out.println(" DTMC Transitions");
 		//System.out.println(print(dtmc_tm));
 
 		//System.out.println(" DTMC Rewards");
 		//System.out.println(print(dtmc_rm));
-		
+
+		controlEvents = lts.getId_control_events();
+
 		printDTMC(files_location, dtmc_tm);
 		printDTMCReward(files_location, dtmc_rm);
-		
+
 		if(output == 1) {
 			storm(files_location,1);
 			stormDTMC(files_location,1);
@@ -216,10 +228,11 @@ public class REact implements REactInterface {
 			prism(files_location,1);
 		}
 		//IAdaptiveCyberDefenseTextPrinter printer = new AdaptiveCyberDefenseMetaInformation().createPrinter(System.out, null);
+		//System.out.println(description.getEvent_descriptions());
 		//printer.print(description.getProperties().get(0));
 
 		//long endTimeMDP = System.nanoTime();
-		
+
 		//showInGraphiv(graphiz_file, lts.getStates(), lts.getTransitions(), DOT_Writer.SHOW_ALL);
 		//showInGraphiv(graphiz_file, lts.getStates(), lts.getTransitions(), DOT_Writer.SHOW_REQ);
 		//showInGraphiv(files_location+ltsFileName, lts.getStates(), lts.getTransitions(), DOT_Writer.SHOW_ALL);
@@ -248,14 +261,37 @@ public class REact implements REactInterface {
 		System.out.println("Took "+ elapsedTimeSecond + " s");
 		System.out.println("MDP Took "+ elapsedTimeSecondMDP + " s");
 		/* On if Boucle for = on
-
 		averageTime = averageTime + elapsedTimeSecond;
 		averageTimeMDP = averageTimeMDP + elapsedTimeSecondMDP;
 		}
 
 		System.out.println("Average time : " + averageTime / 5);
 		System.out.println("Average time MDP : " + averageTimeMDP / 5);
-		 */		
+		 */	
+	}
+	
+	public EList<EventDescription> getEvent(){
+		return description.getEvent_descriptions();
+	}
+	
+	public double[][][] getTM(){
+		return this.tm;
+	}
+
+	public HashMap<String, ActionDescription> getActions(){
+		return lts.getActionDescriptions();
+	}
+	
+	public HashMap<String, Integer> getActionsId(){
+		return lts.getActionsId();
+	}
+
+	public double[] getPolicy() {
+		return this.finalPolicy;
+	}
+
+	public HashMap<Integer, HashMap<String, String>> getStates() {
+		return lts.getStates();
 	}
 
 	/**
@@ -270,10 +306,10 @@ public class REact implements REactInterface {
 	private static void findDTMC(double[] policy, double[][][] tm, double[][][] rm, double[][] dtmc_tm,
 			double[][] dtmc_rm) {
 		for(int j=0;j<policy.length; j++) {
-				for(int k=0;k<policy.length; k++) {
-					dtmc_tm[j][k] = tm[j][k][(int) policy[j]-1];
-					dtmc_rm[j][k] = rm[j][k][(int) policy[j]-1];
-				}
+			for(int k=0;k<policy.length; k++) {
+				dtmc_tm[j][k] = tm[j][k][(int) policy[j]-1];
+				dtmc_rm[j][k] = rm[j][k][(int) policy[j]-1];
+			}
 		}
 
 
@@ -293,17 +329,17 @@ public class REact implements REactInterface {
 		ffw.write("dtmc\n");
 		int nb_of_states = dtmc_tm.length;
 		int nb_of_actions = dtmc_tm[0].length;
-		
+
 		for(int k =0; k<nb_of_states;k++){
 			for(int i=0; i<nb_of_actions;i++) {
-					if(dtmc_tm[k][i] != 0) {
-						ffw.write(k +" "+i+" "+dtmc_tm[k][i] +"\n");
-					}
+				if(dtmc_tm[k][i] != 0) {
+					ffw.write(k +" "+i+" "+dtmc_tm[k][i] +"\n");
+				}
 			}
 		}
 		ffw.close();
 	}
-	
+
 	/**
 	 * Export the DTMC Reward matrix into the file "stormDTMC.tra.rew"
 	 * 
@@ -319,12 +355,12 @@ public class REact implements REactInterface {
 		ffw.write("dtmc\n");
 		int nb_of_states = dtmc_rm.length;
 		int nb_of_actions = dtmc_rm[0].length;
-		
+
 		for(int k =0; k<nb_of_states;k++){
 			for(int i=0; i<nb_of_actions;i++) {
-					if(dtmc_rm[k][i] != 0) {
-						ffw.write(k +" "+i+" "+dtmc_rm[k][i] +"\n");
-					}
+				if(dtmc_rm[k][i] != 0) {
+					ffw.write(k +" "+i+" "+dtmc_rm[k][i] +"\n");
+				}
 			}
 		}
 		ffw.close();
@@ -545,13 +581,13 @@ public class REact implements REactInterface {
 					else {
 						ffw.write(i +" "+label.get(i).toString().substring(1, label.get(i).toString().length()-1)+"\n");	
 					}
-					
+
 				}
 			}
 		}
 		ffw.close();	
 	}
-	
+
 	/**
 	 * Generate the label file for Prism
 	 * 
@@ -578,10 +614,10 @@ public class REact implements REactInterface {
 				if(i==init)
 					ffw.write(init+": 0\n");
 				else {
-				for(int j = 0 ; j< labelName.length ; j++) {
-					if(label.get(i).toString().substring(1, label.get(i).toString().length()-1).trim().equals(labelName[j].trim())) {
-						int value = j + 1;	
-						ffw.write(i +": "+ value +"\n");
+					for(int j = 0 ; j< labelName.length ; j++) {
+						if(label.get(i).toString().substring(1, label.get(i).toString().length()-1).trim().equals(labelName[j].trim())) {
+							int value = j + 1;	
+							ffw.write(i +": "+ value +"\n");
 						}
 					}
 				}
@@ -669,7 +705,7 @@ public class REact implements REactInterface {
 			}
 		}
 	}
-	
+
 	/**
 	 * Model construction and model checking with Storm for DTMC
 	 * Generate the associate dot file if the variable intDot equals "1"
@@ -722,7 +758,7 @@ public class REact implements REactInterface {
 			}
 		}
 	}
-	
+
 	/**
 	 * Model construction and model checking with Prism for MDP
 	 * Generate the associate dot file if the variable intDot equals "1"

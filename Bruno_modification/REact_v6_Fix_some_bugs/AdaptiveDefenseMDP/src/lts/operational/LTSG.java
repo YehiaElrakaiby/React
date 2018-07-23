@@ -299,7 +299,7 @@ public class LTSG {
 		for(EventDescription action : event_descriptions) {
 
 			String event = action.getName() + "=" + action.getValue();
-
+			
 			this.event_names.add(action.getName());
 			this.exogenous_events.add(event);
 			this.exogenous_events_id.put(event,nb_of_exogenous_events);
@@ -782,25 +782,32 @@ public class LTSG {
 		 * 3) update the to_explore, states and states_id structures
 		 */
 		for( String action_name:this.actions) {
+			//System.out.println(this.actions);
 			ActionDescription descr = this.action_descriptions.get(action_name);
+			//
 			Integer action_id = actions_id.get(action_name);
 			EList<ContextualEffect> contextual_effects = descr.getContextual_effects();
+			//
+			
 			HashSet<Transition> action_transitions = this.actions_transitions_map.get(action_id);
 			BigDecimal one = new BigDecimal(1);
 			Boolean holds= false;
+			//
 			EList<ProbabilisticEffect> effects=null;
+			//
+			
 			/*
 			 * check if a context applies:
 			 * if yes, 
 			 * 1) effects = the effects associated with the context
 			 * 2) set holds to true
 			 */
+			//
 			for(ContextualEffect contextual_effect : contextual_effects) {
 				Formula context = contextual_effect.getContext();
 				if(holds(context,state)) {
 					holds = true;
 					effects = contextual_effect.getEffects();
-
 					BigDecimal total_prob = new BigDecimal(0);
 
 					/*
@@ -809,10 +816,11 @@ public class LTSG {
 					for(ProbabilisticEffect effect : effects){
 						BigDecimal prob = effect.getProbability();
 						HashMap<String, String> dst_state = new HashMap<String, String>(state);
+						//System.out.println(state);
 						if(effect!=null) {
 							updateStateVariables(dst_state,effect);
 						} 
-
+						//System.out.println("dest"+dst_state);
 						/*
 						 * The following lines add the action that lead to the event to the state 
 						 */
@@ -822,10 +830,10 @@ public class LTSG {
 						//dst_state.put("action", descr.getName());
 
 						updateReqVariables(dst_state, requirements_description);
-
-
+						//
+						//System.out.println(state);
 						Integer dest_id = updateStates(to_explore,dst_state,state_nb);
-
+						//System.out.println("dest"+dest_id);
 
 						Transition trans = new Transition(action_name,src_id,dest_id,prob);
 						action_transitions.add(trans);
@@ -837,7 +845,6 @@ public class LTSG {
 					}
 					if(total_prob.compareTo(one)==-1) {
 						HashMap<String, String> dst_state = new HashMap<String, String>(state);
-
 						/*
 						 * The following lines add the action that lead to the event to the state 
 						 */
@@ -846,14 +853,11 @@ public class LTSG {
 						//}					
 						//dst_state.put("action", descr.getName());
 						
-						
 						updateReqVariables(dst_state, requirements_description);
 						
 						Integer dest_id = updateStates(to_explore,dst_state,state_nb);
-
 						Transition trans = new Transition(action_name,src_id,dest_id,one.subtract(total_prob));
 						action_transitions.add(trans);
-
 					}
 					break;
 				} 
@@ -1019,6 +1023,10 @@ public class LTSG {
 	 */
 	public HashMap<Integer, HashMap<String, String>> getStates() {
 		return states;
+	}
+	
+	public HashMap<String, Integer> getActionsId() {
+		return actions_id;
 	}
 		
 	public HashMap<String, Formula> getLabels() {
