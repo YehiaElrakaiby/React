@@ -33,6 +33,7 @@ import org.emftext.language.AdaptiveCyberDefense.resource.AdaptiveCyberDefense.m
 
 import lts.operational.LTSG;
 import mdp.MDPSolver;
+import resources.RequirementDescription;
 import visualizer.Graphviz_Writer;
 
 
@@ -274,8 +275,8 @@ public class REact implements REactInterface {
 		return description.getEvent_descriptions();
 	}
 	
-	public double[][][] getTM(){
-		return this.tm;
+	public HashMap<String, RequirementDescription> getRequirementsDesciptions(){
+		return lts.getRequirements_description();
 	}
 
 	public HashMap<String, ActionDescription> getActions(){

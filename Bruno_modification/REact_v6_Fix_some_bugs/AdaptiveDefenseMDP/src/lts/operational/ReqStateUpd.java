@@ -2,6 +2,7 @@ package lts.operational;
 
 import java.util.HashMap;
 
+import resources.ComputeRwd;
 import resources.RequirementDescription;
 
 final public class ReqStateUpd {
@@ -445,6 +446,7 @@ final public class ReqStateUpd {
 			RequirementDescription req) {
 		String req_id = req.getName();
 		String status = state.get(req_id);
+		
 		/**
 		 * For a maintain requirement, its status is updated according to activation, cancellation and control actions as follows:
 		 * Notice that condition does not affect the update of status

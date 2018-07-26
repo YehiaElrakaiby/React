@@ -425,7 +425,6 @@ public class Graphviz_Writer {
 			writeNodes(states);
 			writeTransitions(transitions);
 			writeRedTransitions(transitions2);
-
 			bw.write("}");
 			bw.close();
 		} catch (IOException e) {
