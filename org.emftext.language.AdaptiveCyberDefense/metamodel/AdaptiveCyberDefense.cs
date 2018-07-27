@@ -19,24 +19,48 @@ TOKENS {
 }
 
 TOKENSTYLES {
-	"DomainDescription" COLOR #7F0055, BOLD;
-	"ActionDescriptions" COLOR #7F0055, BOLD;
-	"EventDescriptions" COLOR #7F0055, BOLD;
-	"StateVariables" COLOR #7F0055, BOLD;	
-	"Requirements" COLOR #7F0055, BOLD;
-	"CurrentState" COLOR #7F0055, BOLD;	
+	"DomainDescription" COLOR #CB4335, BOLD;
+	
+	//Violet
+	"StateVariables" COLOR #BB8FCE, BOLD;
+	"Variable" COLOR #6C3483, BOLD;
+	"domain" COLOR #6C3483, BOLD;
+
+	//Blue
+	"ActionDescriptions" COLOR #7FB3D5, BOLD;
+	"Action" COLOR #1F618D, BOLD;
+	"cost" COLOR #2874A6, BOLD;
+
+	//Green
+	"EventDescriptions" COLOR #76D7C4, BOLD;
+	"Event" COLOR #117A65, BOLD;
+	"occurrence probability" COLOR #239B56, BOLD; 
+	
+	//Orange
+	"Labels" COLOR #F7DC6F, BOLD;
+	"label" COLOR #B9770E, BOLD;
+	
+	//DarkOrange
+	"Properties" COLOR #EB984E, BOLD;	
+	
+	//Red
+	"Requirements" COLOR #E74C3C, BOLD;
+	"ReqID" COLOR #922B21, BOLD;
+	
+	//Golden
+	"CurrentState" COLOR #D4AC0D, BOLD;	
 }
 
 
 RULES {
 	DomainDescription ::= "DomainDescription" name[] "{" 
 		"StateVariables" "=" "<" (state_variables ";")* ">" 
-		"Label" "=" "<"(labels";")* ">"
-		"Properties" "=" "<"(properties";")* ">"
 		"ActionDescriptions" "=" "<" (action_descriptions ";")* ">" 
 		"EventDescriptions" "=" "<" (event_descriptions ";")* ">" 
 		"Requirements" "=" "<" (requirements ";")* ">" 		
 		"CurrentState" "=" "<"  initial_atoms ("," initial_atoms)*   ">"
+		"Labels" "=" "<"(labels";")* ">"
+		"Properties" "=" "<"(properties";")* ">"
 		"}"
 		;		
 		

@@ -32,7 +32,7 @@ public class REact2 {
 	/*
 	 * 			MAIN CONFIGURATION OPTIONS
 	 */
-	static String descriptionFileName = "example_base_case.AdaptiveCyberDefense";
+	static String descriptionFileName = "example_event_case.AdaptiveCyberDefense";
 
 	static public String dotOption = Graphviz_Writer.SHOW_ALL;
 
@@ -67,7 +67,7 @@ public class REact2 {
 	static String controlPlanFileName = "";
 	static String ltsFileName = "";
 	static DomainDescription description;
-	static MDPBuilder2 lts;
+	static MDPBuilder lts;
 	//static MDPSolver solver;
 	private static Logger LOGGER;
 
@@ -89,10 +89,10 @@ public class REact2 {
 		/*
 		 * 2. Build the LTS using State and Action Variables, Action Descriptions and Requirements
 		 */
-		lts = new MDPBuilder2(description,generationOption);
+		lts = new MDPBuilder(description,generationOption);
 		LOGGER.info("The labeled transition system LTSG created");
 
-		lts.print();
+		//lts.print();
 		/*
 		 * Initialize the MDPSolver class
 		 */

@@ -1,7 +1,4 @@
 Type of Version: Major Change 
 
-Enable the specification of actions in formulas:
-Include in the state space the action that produced the destination state to evaluate formulas that include actions
-the initial state is the only state that is produced by no action and no events
-
+- Building of transition and reward matrices directly form states, action and event descriptions
 

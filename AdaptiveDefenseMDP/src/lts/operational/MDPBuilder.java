@@ -125,7 +125,7 @@ public class MDPBuilder {
 	protected HashSet<String> actions = new HashSet<String>();
 	protected HashMap<String, Integer> actions_id = new HashMap<String,Integer>();
 	protected HashMap<Integer, String> id_actions = new HashMap<Integer, String>();
-	protected HashMap<Integer, HashSet<Transition>> actions_transitions_map = new HashMap<Integer, HashSet<Transition>>();
+	//protected HashMap<Integer, HashSet<Transition>> actions_transitions_map = new HashMap<Integer, HashSet<Transition>>();
 	protected HashMap<Integer, HashSet<Integer>> states_actions_executability_map = new HashMap<Integer, HashSet<Integer>>();
 
 	/**
@@ -310,7 +310,7 @@ public class MDPBuilder {
 		this.actions.add(noop_action_name);
 		this.actions_id.put(noop_action_name,nb_of_actions);
 		this.id_actions.put(nb_of_actions,noop_action_name);
-		this.actions_transitions_map.put(nb_of_actions, new HashSet<Transition>());
+		//this.actions_transitions_map.put(nb_of_actions, new HashSet<Transition>());
 
 		this.action_descriptions.put(noop_action_name, descr);
 		this.nb_of_actions++;	
@@ -563,7 +563,7 @@ public class MDPBuilder {
 
 		Future<double[][][]> future_p;
 		try {
-			future_p = ml.getVariableAsync("P");
+			future_p = ml.getVariableAsync("P");	
 			this.p = future_p.get();
 		} catch (IllegalStateException | InterruptedException | ExecutionException e) {
 			LOGGER.error("Problem retrieving EXTM from MatLab \n"+e.getMessage());
@@ -1104,9 +1104,9 @@ public class MDPBuilder {
 		this.actions = control_events;
 	}
 
-	public HashMap<Integer, HashSet<Transition>> getCtrl_actions_transitions_map() {
-		return actions_transitions_map;
-	}
+//	public HashMap<Integer, HashSet<Transition>> getCtrl_actions_transitions_map() {
+//		return actions_transitions_map;
+//	}
 
 	public HashSet<String> getExogenous_events() {
 		return exogenous_events;
@@ -1139,112 +1139,112 @@ public class MDPBuilder {
 
 
 
-	public void print() {
-		LOGGER.info("Nb of Variable Descriptions: "+this.variables_domain.size()+"\n");
-		LOGGER.trace("Variable Descriptions:\n "+this.variables_domain.toString()+"\n");
-
-		LOGGER.info("Total Number of States Based on Variables and Domain Size: "+this.nb_of_states+"\n");
-		LOGGER.info("Total Number of Computed States: "+this.states.size()+"\n");
-
-		StringBuilder str = print(states);
-		LOGGER.trace(str.toString());
-
-		if(this.states.size()>this.nb_of_states){
-			HashMap<Integer,HashMap<String,String>> temp_states = new HashMap<Integer,HashMap<String,String>>();
-			HashMap<HashMap<String,String>,Integer> temp_states_id = new HashMap<HashMap<String,String>,Integer>();
-
-			this.generateStatesFromVariables(temp_states, temp_states_id);
-
-			str = print(temp_states);
-
-			LOGGER.trace(str.toString());
-
-			LOGGER.error("Number of computed states exceeds the maximum number of states");
-		}
-
-
-		LOGGER.info("Nb of Action Descriptions: "+this.action_descriptions.size()+"\n");
-		//LOGGER.trace("Action Descriptions:\n "+this.action_descriptions.toString()+"\n");		
-
-		LOGGER.info("Nb of Actions: "+this.actions.size()+"\n");
-
-		str = new StringBuilder();
-		str.append("Actions:\n");
-		for(String action_name:actions) {
-			str.append(actions_id.get(action_name)+" "+action_name+"\n");
-		}
-		LOGGER.trace(str.toString());
-
-		LOGGER.info("Nb of Exogenous Events: "+this.exogenous_events.size()+"\n");
-
-		str = new StringBuilder();
-		str.append("Exogenous Events:\n");
-		for(String event_name:exogenous_events) {
-			str.append(exogenous_events_id.get(event_name)+" "+event_name+"\n");
-		}
-		LOGGER.trace(str.toString());
-
-
-		//LOGGER.trace("Transitions:\n "+this.transitions.toString()+"\n");
-		Iterator<Integer> it = this.actions_transitions_map.keySet().iterator();
-		while(it.hasNext()) {
-			Integer key = it.next();
-			HashSet<Transition> set = actions_transitions_map.get(key);
-			TreeSet<Transition> treeSet = new TreeSet<Transition>(set);
-			int nb_trans = set.size();
-			this.nb_of_transitions += nb_trans;
-
-			str = new StringBuilder();
-			str.append("Transitions of "+this.id_actions.get(key)+"\n");
-			Transition trans = treeSet.pollFirst();
-			while(trans!=null) {
-				if(!trans.getDest().equals(trans.getSrc())) {
-					str.append("### ");
-				}
-				str.append(trans.toString()+"\n");
-				trans = treeSet.pollFirst();
-			}
-			LOGGER.trace(str.toString()+"\n");
-		}
-		it = this.exo_events_transitions_map.keySet().iterator();
-		while(it.hasNext()) {
-			Integer key = it.next();
-			HashSet<Transition> set = exo_events_transitions_map.get(key);
-			this.nb_of_transitions += set.size();
-			TreeSet<Transition> treeSet = new TreeSet<Transition>(set);
-
-			str = new StringBuilder();
-			str.append("Transitions of "+this.id_exogenous_events.get(key)+"\n");
-			Transition trans = treeSet.pollFirst();
-			while(trans!=null) {
-				if(!trans.getDest().equals(trans.getSrc())) {
-					str.append("### ");
-				}
-				str.append(trans.toString()+"\n");
-				trans = treeSet.pollFirst();
-			}
-			LOGGER.trace(str.toString()+"\n");
-
-		}
-
-		LOGGER.info("Nb of Action Transitions + Nb of Event Transitions: "+this.nb_of_transitions+"\n");
-		//LOGGER.info("Nb of Transitions: "+this.nb_of_transitions+"\n");
-
-		LOGGER.info("Nb of Requirements: "+this.requirements_description.size()+"\n");
-		LOGGER.trace("Requirements:\n "+this.requirements_description.toString()+"\n");
-
-	}
-
-	private StringBuilder print(HashMap<Integer, HashMap<String, String>> temp_states) {
-		StringBuilder str = new StringBuilder();
-		str.append("States:\n ");
-
-		for(int i =0; i<states.size();i++) {
-			str.append("state "+i+" " + states.get(i).toString()+"\n");
-		}
-		LOGGER.trace(str.toString());
-		return str;
-	}
+//	public void print() {
+//		LOGGER.info("Nb of Variable Descriptions: "+this.variables_domain.size()+"\n");
+//		LOGGER.trace("Variable Descriptions:\n "+this.variables_domain.toString()+"\n");
+//
+//		LOGGER.info("Total Number of States Based on Variables and Domain Size: "+this.nb_of_states+"\n");
+//		LOGGER.info("Total Number of Computed States: "+this.states.size()+"\n");
+//
+//		StringBuilder str = print(states);
+//		LOGGER.trace(str.toString());
+//
+//		if(this.states.size()>this.nb_of_states){
+//			HashMap<Integer,HashMap<String,String>> temp_states = new HashMap<Integer,HashMap<String,String>>();
+//			HashMap<HashMap<String,String>,Integer> temp_states_id = new HashMap<HashMap<String,String>,Integer>();
+//
+//			this.generateStatesFromVariables(temp_states, temp_states_id);
+//
+//			str = print(temp_states);
+//
+//			LOGGER.trace(str.toString());
+//
+//			LOGGER.error("Number of computed states exceeds the maximum number of states");
+//		}
+//
+//
+//		LOGGER.info("Nb of Action Descriptions: "+this.action_descriptions.size()+"\n");
+//		//LOGGER.trace("Action Descriptions:\n "+this.action_descriptions.toString()+"\n");		
+//
+//		LOGGER.info("Nb of Actions: "+this.actions.size()+"\n");
+//
+//		str = new StringBuilder();
+//		str.append("Actions:\n");
+//		for(String action_name:actions) {
+//			str.append(actions_id.get(action_name)+" "+action_name+"\n");
+//		}
+//		LOGGER.trace(str.toString());
+//
+//		LOGGER.info("Nb of Exogenous Events: "+this.exogenous_events.size()+"\n");
+//
+//		str = new StringBuilder();
+//		str.append("Exogenous Events:\n");
+//		for(String event_name:exogenous_events) {
+//			str.append(exogenous_events_id.get(event_name)+" "+event_name+"\n");
+//		}
+//		LOGGER.trace(str.toString());
+//
+//
+//		//LOGGER.trace("Transitions:\n "+this.transitions.toString()+"\n");
+//		Iterator<Integer> it = this.actions_transitions_map.keySet().iterator();
+//		while(it.hasNext()) {
+//			Integer key = it.next();
+//			HashSet<Transition> set = actions_transitions_map.get(key);
+//			TreeSet<Transition> treeSet = new TreeSet<Transition>(set);
+//			int nb_trans = set.size();
+//			this.nb_of_transitions += nb_trans;
+//
+//			str = new StringBuilder();
+//			str.append("Transitions of "+this.id_actions.get(key)+"\n");
+//			Transition trans = treeSet.pollFirst();
+//			while(trans!=null) {
+//				if(!trans.getDest().equals(trans.getSrc())) {
+//					str.append("### ");
+//				}
+//				str.append(trans.toString()+"\n");
+//				trans = treeSet.pollFirst();
+//			}
+//			LOGGER.trace(str.toString()+"\n");
+//		}
+//		it = this.exo_events_transitions_map.keySet().iterator();
+//		while(it.hasNext()) {
+//			Integer key = it.next();
+//			HashSet<Transition> set = exo_events_transitions_map.get(key);
+//			this.nb_of_transitions += set.size();
+//			TreeSet<Transition> treeSet = new TreeSet<Transition>(set);
+//
+//			str = new StringBuilder();
+//			str.append("Transitions of "+this.id_exogenous_events.get(key)+"\n");
+//			Transition trans = treeSet.pollFirst();
+//			while(trans!=null) {
+//				if(!trans.getDest().equals(trans.getSrc())) {
+//					str.append("### ");
+//				}
+//				str.append(trans.toString()+"\n");
+//				trans = treeSet.pollFirst();
+//			}
+//			LOGGER.trace(str.toString()+"\n");
+//
+//		}
+//
+//		LOGGER.info("Nb of Action Transitions + Nb of Event Transitions: "+this.nb_of_transitions+"\n");
+//		//LOGGER.info("Nb of Transitions: "+this.nb_of_transitions+"\n");
+//
+//		LOGGER.info("Nb of Requirements: "+this.requirements_description.size()+"\n");
+//		LOGGER.trace("Requirements:\n "+this.requirements_description.toString()+"\n");
+//
+//	}
+//
+//	private StringBuilder print(HashMap<Integer, HashMap<String, String>> temp_states) {
+//		StringBuilder str = new StringBuilder();
+//		str.append("States:\n ");
+//
+//		for(int i =0; i<states.size();i++) {
+//			str.append("state "+i+" " + states.get(i).toString()+"\n");
+//		}
+//		LOGGER.trace(str.toString());
+//		return str;
+//	}
 
 	public double[] getValue() {
 		return value;
