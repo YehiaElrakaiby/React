@@ -32,6 +32,8 @@ public class Window {
 	private JTextPane reqName;
 	private JTextPane total;
 	private JTextPane reqRew;
+	private JTextPane reqDescr;
+	private JTextPane Status;
 
 	/**
 	 * Launch the application.
@@ -61,15 +63,15 @@ public class Window {
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.setBounds(100, 100, 1200, 500);
+		frame.setBounds(100, 100, 1200, 600);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		JButton btnNewButton = new JButton("Find next action");
-		btnNewButton.setBounds(0, 0, 1200, 29);
+		btnNewButton.setBounds(0, 0, 1194, 21);
 		btnNewButton.setBackground(Color.WHITE);
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				ModelCheck.leftClickAction(e,jc,panelPicture, rewardText,reqName,reqRew,total);
+				ModelCheck.leftClickAction(e,jc,panelPicture, rewardText,reqName,reqRew,total,Status, reqDescr);
 			}
 		});
 		frame.getContentPane().setLayout(null);
@@ -82,13 +84,13 @@ public class Window {
 		
 		//Scrollbar
 		JScrollPane scroller = new JScrollPane(jc);
-		scroller.setBounds(0, 29, 604, 449);
+		scroller.setBounds(0, 23, 580, 549);
 		frame.getContentPane().add(scroller);
 		
 		ModelCheck.drawInitialState(jc);
 		
 		panelPicture = new JCanvas();
-		panelPicture.setBounds(582, 23, 596, 449);
+		panelPicture.setBounds(582, 23, 596, 549);
 		panelPicture.setForeground(Color.WHITE);
 		panelPicture.setBackground(Color.WHITE);
 		ImageIcon image = new ImageIcon(new ImageIcon("/Users/forensics/Desktop/restaurant.png").getImage().getScaledInstance(600, 350, Image.SCALE_DEFAULT));
@@ -109,19 +111,31 @@ public class Window {
 		
 		reqName = new JTextPane();
 		reqName.setBounds(37, 377, 553, 16);
-		reqName.setText("Requirement Name");
+		reqName.setText("Name :");
 		reqName.setEditable(false);
 		panelPicture.add(reqName);
 		
 		total = new JTextPane();
-		total.setText("total");
-		total.setBounds(36, 416, 554, 16);
+		total.setText("Total :");
+		total.setBounds(37, 439, 554, 16);
 		panelPicture.add(total);
 		
-		ModelCheck.drawInitialPoint(panelPicture,reqName);
 		
 		reqRew = new JTextPane();
-		reqRew.setBounds(37, 398, 553, 16);
+		reqRew.setText("Reward :");
+		reqRew.setBounds(37, 460, 553, 16);
 		panelPicture.add(reqRew);
+		
+		reqDescr = new JTextPane();
+		reqDescr.setText("Description : ");
+		reqDescr.setBounds(37, 399, 553, 16);
+		panelPicture.add(reqDescr);
+		
+		Status = new JTextPane();
+		Status.setText("Status :");
+		Status.setBounds(37, 421, 553, 16);
+		panelPicture.add(Status);
+
+		ModelCheck.drawInitialPoint(panelPicture,reqName);
 		}
 }

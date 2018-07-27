@@ -93,8 +93,11 @@ public class REact implements REactInterface {
 	static String controlPlanFileName = "";
 	static String ltsFileName = "";
 	static DomainDescription description;
+	static DomainDescription description2;
 	static LTSG lts;
+	static LTSG lts2;
 	static MDPSolver solver;
+	static MDPSolver solver2;
 	private static Logger LOGGER;
 
 	/**
@@ -133,7 +136,21 @@ public class REact implements REactInterface {
 			LOGGER.error("domain description load failed"+e1.getMessage());
 			e1.printStackTrace();
 		}
-
+		
+		/*
+		 * 1. Read the Domain Description for the second file
+		 */		
+		Path domain_description_location2 = Paths.get("/Users/forensics/Documents/runtime-EclipseApplication/ReactV5-PaperExamples/5.mix1.AdaptiveCyberDefense"); 
+		try {
+			description2 = loadTextual(domain_description_location2);
+			initializeFileNames(description2.getName());
+			LOGGER.info("domain description loaded");
+		} catch (IOException e1) {
+			LOGGER.error("domain description load failed"+e1.getMessage());
+			e1.printStackTrace();
+		}
+		lts2 = new LTSG(description2,generationOption,output,files_location);
+		solver2 = new MDPSolver(lts2.getNumberOfStates(),lts2.getNbActions());
 
 		/*
 		 * 2. Build the LTS using State and Action Variables, Action Descriptions and Requirements
@@ -275,16 +292,32 @@ public class REact implements REactInterface {
 		return description.getEvent_descriptions();
 	}
 	
+	public EList<EventDescription> getEvent2(){
+		return description2.getEvent_descriptions();
+	}
+	
 	public HashMap<String, RequirementDescription> getRequirementsDesciptions(){
 		return lts.getRequirements_description();
+	}
+	
+	public static HashMap<String, RequirementDescription> getRequirementsDesciptions2(){
+		return lts2.getRequirements_description();
 	}
 
 	public HashMap<String, ActionDescription> getActions(){
 		return lts.getActionDescriptions();
 	}
 	
+	public HashMap<String, ActionDescription> getActions2(){
+		return lts2.getActionDescriptions();
+	}
+	
 	public HashMap<String, Integer> getActionsId(){
 		return lts.getActionsId();
+	}
+	
+	public HashMap<String, Integer> getActionsId2(){
+		return lts2.getActionsId();
 	}
 
 	public double[] getPolicy() {
@@ -293,6 +326,10 @@ public class REact implements REactInterface {
 
 	public HashMap<Integer, HashMap<String, String>> getStates() {
 		return lts.getStates();
+	}
+	
+	public HashMap<Integer, HashMap<String, String>> getStates2() {
+		return lts2.getStates();
 	}
 
 	/**

@@ -1,4 +1,4 @@
-package lts.operational;
+package main;
 import java.io.FileOutputStream;
 
 import java.io.FileWriter;
@@ -67,7 +67,7 @@ import resources.Transition;
  * @author yehia
  *
  */
-public class LTSG {
+public class LTSG2 {
 
 	public static final String FULL = "full";
 	public static final String INITIAL = "initial";
@@ -148,7 +148,7 @@ public class LTSG {
 	/*
 	 * 				MAIN PART
 	 */
-	public LTSG(DomainDescription description, String option, int output, String files_location) throws IOException {
+	public LTSG2(DomainDescription description, String option, int output, String files_location) throws IOException {
 		/*
 		 *  Initialize
 		 */
@@ -245,7 +245,7 @@ public class LTSG {
 		addNoOpAction();
 		readActionDescriptions(description.getAction_descriptions());
 		readEventDescriptions(description.getEvent_descriptions());
-		readRequirements(description.getRequirements());	
+		//readRequirements(description.getRequirements());	
 		readLabels(description.getLabels());
 		readProperties(description.getProperties());
 	}
@@ -378,7 +378,7 @@ public class LTSG {
 		//this.variables_domain.put("noop", action_domain);
 
 	}
-	private void readRequirements(EList<Requirement> eList) throws IOException {
+/*	private void readRequirements(EList<Requirement> eList) throws IOException {
 		int index = 0;
 		String[] tab_reward = new String[eList.size()];
 		String[] tab_value = new String[eList.size()];
@@ -431,9 +431,7 @@ public class LTSG {
 				ReqDescrFill.fillRPDFMRequirementDescription(req,descr,domain);
 			} 
 
-			/**
-			 * add the requirement to the HashMap requirements_description
-			 */
+			
 			String value_req[] = null;
 			this.requirements_description.put(name, descr);
 			//System.out.println(this.requirements_description.toString());
@@ -451,9 +449,6 @@ public class LTSG {
 				tab_reward[index] = matcher_rew.group();
 			}
 			
-			/**
-			 * add requirements and their domains to domain variables
-			 */
 			if(!domain.isEmpty()) {
 				variables_domain.put(name,domain);
 				nb_of_states = nb_of_states * domain.size();
@@ -461,7 +456,7 @@ public class LTSG {
 			index++;
 		}
 	}
-
+*/
 	private HashMap<Integer, HashMap<String, String>> generateStatesFromVariables(
 			HashMap<Integer, HashMap<String, String>> temp_states,
 			HashMap<HashMap<String, String>, Integer> temp_states_id) throws IOException {
@@ -714,7 +709,7 @@ public class LTSG {
 							//}
 						//}
 						
-						updateReqVariablesE(dst_state, requirements_description);
+						//updateReqVariablesE(dst_state, requirements_description);
 
 						Integer dest_id = updateStates(to_explore,dst_state,state_nb);
 
@@ -729,7 +724,7 @@ public class LTSG {
 						HashMap<String, String> dst_state = new HashMap<String, String>(state);
 
 						//dst_state.put(descr.getName(), descr.getValue());
-						updateReqVariablesE(dst_state, requirements_description);
+						//updateReqVariablesE(dst_state, requirements_description);
 						//dst_state.remove(descr.getName());
 
 						Integer dest_id = updateStates(to_explore,dst_state,state_nb);
@@ -757,7 +752,7 @@ public class LTSG {
 					//}
 				//}
 
-				updateReqVariables(dst_state, requirements_description);
+				//updateReqVariables(dst_state, requirements_description);
 
 
 				Integer dest_id = updateStates(to_explore,dst_state,state_nb);
@@ -830,7 +825,7 @@ public class LTSG {
 						//}					
 						//dst_state.put("action", descr.getName());
 
-						updateReqVariables(dst_state, requirements_description);
+						//updateReqVariables(dst_state, requirements_description);
 						//
 						//System.out.println(state);
 						Integer dest_id = updateStates(to_explore,dst_state,state_nb);
@@ -854,7 +849,7 @@ public class LTSG {
 						//}					
 						//dst_state.put("action", descr.getName());
 						
-						updateReqVariables(dst_state, requirements_description);
+						//updateReqVariables(dst_state, requirements_description);
 						
 						Integer dest_id = updateStates(to_explore,dst_state,state_nb);
 						Transition trans = new Transition(action_name,src_id,dest_id,one.subtract(total_prob));
@@ -874,7 +869,7 @@ public class LTSG {
 				//}					
 				//dst_state.put("action", descr.getName());
 				
-				updateReqVariables(dst_state, requirements_description);
+				//updateReqVariables(dst_state, requirements_description);
 				
 				Integer dest_id = updateStates(to_explore,dst_state,state_nb);
 
@@ -938,7 +933,7 @@ public class LTSG {
 		}		
 	}
 
-	private void updateReqVariables(HashMap<String, String> state,  
+/*	private void updateReqVariables(HashMap<String, String> state,  
 			HashMap<String, RequirementDescription> requirements_description) {
 		Iterator<String> it = requirements_description.keySet().iterator();
 		RequirementDescription req;
@@ -977,8 +972,7 @@ public class LTSG {
 		}
 	}
 
-
-	private void updateReqVariablesE(HashMap<String, String> state,  
+/*	private void updateReqVariablesE(HashMap<String, String> state,  
 			HashMap<String, RequirementDescription> requirements_description) {
 		Iterator<String> it = requirements_description.keySet().iterator();
 		RequirementDescription req;
@@ -1017,7 +1011,7 @@ public class LTSG {
 		}
 	}
 
-
+*/
 
 	/*
 	 * 				Getters and Setters PART

@@ -51,4 +51,14 @@ public class JCanvas extends JPanel {
 			drawablesEvent.remove(0);
 		}
 	}
+	
+	public void removeAll() {
+		for(int i =0;i<drawables.size();i++) {
+			drawables.remove(i);
+		}
+		for(int j =0;j<drawablesEvent.size();j++) {
+			drawablesEvent.remove(j);
+		}
+		repaint();
+	}
 }
