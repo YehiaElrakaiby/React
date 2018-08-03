@@ -1,0 +1,230 @@
+// Overview
+// This is a waiter robot description.
+// ***  Environment description
+// = four possible locations {kitchen, table1, counter}, the robot has to go through the counter to reach anywhere else
+// = exogenous events {raise_hand1, put_hand_down1, order1, order_ready1}
+// raise_hand1: customer wants to order
+// put_hand_down1: customer does not want to order anymore
+// order1: the customer orders
+// order_ready1: order is ready
+// ***  Robot capabilities (basic behaviors):
+// move_to(L)
+// take_order(Table)
+// pass_order(Table)
+// fetch_food
+// deliver_food(Table)
+// 		
+
+DomainDescription exogenous_events_b {
+
+
+//
+//				Internal Knowledge Base of the Robot
+//
+
+StateVariables=
+<
+
+Variable location
+	domain {kitchen, dining_room, table1, table2, hallway, office};
+
+
+Variable table1
+	domain {empty, occupied, requested, received, in_preparation, ready, collected, delivered, paid};
+	
+Variable table2
+	domain {empty, occupied, requested, received, in_preparation, ready, collected, delivered, paid};
+>
+
+Label= <
+>
+Properties=<
+>
+
+
+//Variable looking1
+//	domain {tt,ff};
+
+//Variable looking2
+//	domain {tt,ff};
+
+//Variable looking3
+//	domain {tt,ff};›
+
+
+//
+//				Basic Capabilities/Behaviors
+//
+
+ActionDescriptions=
+< 
+Action move_to_kitchen  
+	if location=hallway 
+	effects <location=kitchen> ;
+
+Action move_to_hallway
+	if location=dining_room | location=kitchen | location=office 
+	effects <location=hallway> ;
+	
+Action move_to_dining_room
+	if location=hallway | location=table1 | location=table2 
+	effects <location=dining_room>;
+
+Action move_to_office 
+	if location=hallway  
+	effects <location=office>;
+		
+Action move_to_table1
+	if location=dining_room 
+	effects <location=table1 prob 0.1><location=table2 prob 0.9>;
+
+Action ask_order1
+	if table1=occupied & location=table1 
+	effects <table1=requested>;
+	
+Action pass_order1
+	if location=kitchen & table1=received 
+	effects <table1=in_preparation>;
+
+Action collect_order1
+	if location=kitchen & table1=ready
+	 effects <table1=collected>;
+
+Action deliver_order1
+	if location=table1 & table1=collected 
+	effects <table1=delivered>;
+	
+Action clean_table1
+	if location=table1 & table1=paid 
+	effects <table1=empty>;
+	
+Action move_to_table2
+	if location=dining_room 
+	effects <location=table2>;
+
+Action ask_order2
+	if table2=occupied & location=table2
+	effects <table2=requested>;
+	
+Action pass_order2
+	if location=kitchen & table2=received 
+	effects <table2=in_preparation>;
+
+Action collect_order2
+	if location=kitchen & table2=ready
+	 effects <table2=collected>;
+
+Action deliver_order2
+	if location=table2 & table2=collected 
+	effects <table2=delivered>;
+
+Action clean_table2
+	if location=table2 & table2=paid 
+	effects <table2=empty>;
+>
+
+//
+//				Events/Signals which can be received from the Environment
+//
+
+EventDescriptions=
+< 
+
+Event customer_arrives
+	if table1=empty 	occurrence probability 0.3 effects <table1=occupied>
+	if table2=empty & !table1=empty occurrence probability 0.1 effects <table2=occupied>;
+
+Event table1_orders
+	if location=table1 
+		& table1=requested
+	occurrence probability 0.8 
+	effects <table1=received prob 0.8>;
+
+Event table1_pays
+	if table1=delivered 
+	occurrence probability 0.3 
+	effects <table1=paid>;
+
+Event order_ready1
+	if table1=in_preparation 
+	occurrence probability 0.3 
+	effects <table1=ready>;
+	
+Event table2_arrives
+	if table2=empty & location=table2
+	occurrence probability 0.1
+	effects <table2=occupied>;
+
+Event table2_orders
+	if location=table2 
+		& table2=requested
+	occurrence probability 0.8 
+	effects <table2=received prob 0.8>;
+
+Event table2_pays
+	if table2=delivered 
+	occurrence probability 0.3 
+	effects <table2=paid>;
+	
+Event order_ready2
+	if table2=in_preparation 
+	occurrence probability 0.3 
+	effects <table2=ready>;
+	
+>
+
+//Event table2_requests
+//	if table2=occupied & location=dining_room 
+//	occurrence probability 0.2 
+//	effects <table2=requested>;
+
+//Event table1_leaves
+//	if table1=paid 
+//	occurrence probability 0.3 
+//	effects <table1=empty>;
+
+//Event table2_leaves
+//	if table2=paid 
+//	occurrence probability 0.3 
+//	effects <table2=empty>;
+
+//
+//				High-level Goals or Requirements of the Plan: 
+// "This (plan) structure constitutes the focus of the language. 
+// 	In general, it describes actions that are to be executed in order to achieve a certain goal, 
+//	maintain a condition, or control a dynamic system"
+//
+
+Requirements=
+<
+ReqID req1 achieve table1=requested reward 1000;
+ReqID req2 achieve table2=requested reward 1000;
+>
+
+//	ReqID req1 maintain location=counter reward 100
+//		description "you should remain at the counter";
+		
+//	ReqID req2 achieve order1=received | order1=na 
+//		if raise_hand1 unless put_hand_down1 reward 700
+//		description "if a customer raises his hand then see to 
+//				it that to get the customer order unless the 
+//				customer cancels his request - reward of 700";
+	
+//	ReqID req3 achieve order1=na 
+//		if order1=received reward 700
+//		description "after you take an order, see to it that 
+//			the order is delivered - reward 700";			
+
+
+
+CurrentState=
+<
+location=office,
+table1=empty,
+table2=empty
+//looking1=ff
+>
+
+
+
+}
