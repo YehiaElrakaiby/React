@@ -1,0 +1,82 @@
+DomainDescription exogenous_events_b {
+
+StateVariables=
+<
+
+Variable location
+	domain {dining_room, table1, table2, hallway, kitchen};
+
+
+Variable table1
+	domain {received, in_preparation, ready, delivered, collected};
+	
+Variable table2
+	domain {delivered, paid};
+	
+
+>
+
+Label= <
+>
+Properties=<
+>
+
+ActionDescriptions=
+< 	
+Action move_to_dining_room
+	if location=hallway | location=table1 | location=table2
+	effects <location=dining_room>;
+		
+Action move_to_table1
+	if location=dining_room 
+	effects <location=table1>;
+
+Action deliver_order1
+	if location=table1 & table1=collected 
+	effects <table1=delivered>;
+ 
+Action move_to_table2
+	if location=dining_room 
+	effects <location=table2>;
+    
+Action collect_order1
+	if location=kitchen & table1=ready
+	 effects <table1=collected>;
+     
+Action move_to_kitchen  
+	if location=hallway 
+	effects <location=kitchen> ;
+    
+Action move_to_hallway
+	if location=dining_room | location=kitchen
+	effects <location=hallway> ;
+>
+
+EventDescriptions=
+< 
+Event order_ready1
+	if table1=in_preparation 
+	occurrence probability 0.4 
+	effects <table1=ready>;
+    
+Event table2_pays
+	if table2=delivered 
+	occurrence probability 0.4 
+	effects <table2=paid>;
+	
+>
+
+Requirements=
+<
+ReqID req1 achieve table1=delivered within 10 if table1=ready  reward 1000;
+ReqID req2 achieve table2=empty within 2 if table2=paid reward 500;
+>
+
+CurrentState=
+<
+location=hallway,
+table1=in_preparation,
+table2=delivered
+>
+
+}
