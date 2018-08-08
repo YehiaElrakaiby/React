@@ -15,7 +15,10 @@ import java.util.List;
 import java.util.Set;
 
 import org.apache.logging.log4j.LogManager;
+
+import resources.DomainRewriter;
 import resources.Transition;
+import resources.Utils;
 
 
 public class Graphviz_Writer {
@@ -74,7 +77,195 @@ public class Graphviz_Writer {
 			bw.write("}");
 			bw.close();
 		} catch (IOException e) {
+			e.printStackTrace();
+		}		
+	}
+
+	/*
+	 * To draw transitions as having one source state and multiple destinations
+	 */
+	public static void writePolicyTransitions(
+			ArrayList<String> actions, 
+			double[][][] tm,
+			double[][][] rm, 
+			double[] policy) {
+		Integer nbOfStates = tm.length;
+		for(int i = 0; i<nbOfStates;i++) {
+			Integer optimal_action = new Double(policy[i]).intValue()-1;
+			String trans_name=actions.get(optimal_action);
+
+			String temp_node = "n"+ i +"_" + optimal_action;
+			try {
+				bw.write(i+" -> "+temp_node + " [color=blue] ");
+
+				bw.write("[arrowhead=none fontcolor=blue label=\"");
+				if(trans_name.endsWith("=tt")){
+					trans_name=trans_name.substring(0,trans_name.indexOf("=tt"));
+				} 
+				bw.write(optimal_action +":"+trans_name);
+				bw.write("\"];\n");
+				bw.write(temp_node + "[shape=point,width=0.1,height=0.1,label=\"\"];\n");
+
+				for(int j = 0; j<nbOfStates;j++) {
+
+					if(tm[i][j][optimal_action]!=0){
+						bw.write(temp_node +" -> " + j);
+						bw.write("[color=purple][fontcolor=purple label=\"" +
+								+ round(tm[i][j][optimal_action],3) +" "
+								+ intFormat(rm[i][j][optimal_action]) +" "		
+								);
+
+						bw.write("\"]\n");
+
+						bw.write("\n");
+					} 
+				} 
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+	public static void createFullMDP(String pathTographivFile, 
+			DomainRewriter rewriter, 
+			ArrayList<String> actions, 
+			double[][][] p,
+			double[][][] ds, 
+			String op) {
+		file = createFile(pathTographivFile);
+		setOptions();
+		option=op;
+		try {
+			fw = new FileWriter(file);
+			bw = new BufferedWriter(fw);
+			bw.write("digraph R {\n");
+
+			writeMDPNodes(rewriter,null);
+			writeTransitions(actions,p,ds);
+
+			bw.write("}");
+			bw.close();
+		} catch (IOException e) {
 			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}		
+	}
+	public static void createStrategyMDP(String pathTographivFile, 
+			DomainRewriter rewriter, 
+			ArrayList<String> actions, 
+			double[][][] p,
+			double[][][] ds, 
+			double[] policy,
+			float[] value,
+			String op) {
+		file = createFile(pathTographivFile);
+		setOptions();
+		option=op;
+		try {
+			fw = new FileWriter(file);
+			bw = new BufferedWriter(fw);
+			bw.write("digraph R {\n");
+
+			writeMDPNodes(rewriter,value);
+			writePolicyTransitions(actions,p,ds,policy);
+
+			bw.write("}");
+			bw.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}		
+	}
+	private static void writeTransitions(ArrayList<String> actions, 
+			double[][][] tm, 
+			double[][][] ds) {
+		Integer nbOfStates = tm.length;
+		Integer nbOfActions = tm[0][0].length;
+
+		for(int k = 0; k<nbOfActions; k++) {
+			String trans_name=actions.get(k);
+			for(int i = 0; i<nbOfStates; i++) {
+				String temp_node = "n"+ i +"_" + k;
+				try {
+					bw.write(i+" -> "+temp_node + " [color=blue] ");
+
+					bw.write("[arrowhead=none fontcolor=blue label=\"");
+					if(trans_name.endsWith("=tt")){
+						trans_name=trans_name.substring(0,trans_name.indexOf("=tt"));
+					} 
+					bw.write(k +":"+trans_name);
+					bw.write("\"];\n");
+					bw.write(temp_node + "[shape=point,width=0.1,height=0.1,label=\"\"];\n");
+
+					for(int j = 0; j<nbOfStates;j++) {
+						if(tm[i][j][k]!=0){
+							bw.write(temp_node +" -> " + j);
+							bw.write("[color=purple][fontcolor=purple label=\"" +
+									+ round(tm[i][j][k],3) +" "
+									+ intFormat(ds[i][j][k]) +" "		
+									);
+
+							bw.write("\"]\n");
+
+							bw.write("\n");
+
+						} 
+					}
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+	}
+	private static void writeMDPNodes(DomainRewriter rewriter, float[] value) {
+		Integer index=rewriter.state_variable_names.size()-1;
+		int[] state = new int[rewriter.state_variable_names.size()];
+		findNodes(index,state,rewriter, value);
+	}
+	private static void findNodes(Integer index, 
+			int[] state, 
+			DomainRewriter rewriter, 
+			float[] value) {
+		if(index==0) {
+			for(int i = 0; i < rewriter.state_variables_domain_size.get(index); i++) {
+				state[index] = i;
+				printState(state,rewriter,value);
+			}
+		} else {
+			for(int i = 0; i < rewriter.state_variables_domain_size.get(index); i++) {
+				state[index] = i;
+				findNodes(index-1, state, rewriter, value);
+			}
+		}	
+	}
+
+	private static void printState(int[] state, DomainRewriter rewriter, float[] value2) {
+		Integer stateName = Utils.getStateIdentifier(state, rewriter.variables_weight);
+
+		try {
+			bw.write(stateName+" [label=\"");
+
+			if(show_state_name_in_node){
+				bw.write(stateName+"\n");
+				if(value2!=null)bw.write("("+intFormat(value2[stateName])+")\\n");
+			}
+
+			for(int i=0; i<state.length; i++) {
+				String fluent_name = rewriter.state_variable_names.get(i);
+				String value = rewriter.state_variables_domain_values.get(i).get(state[i]);
+				if(!filter(fluent_name)) {
+					if(value.equals("tt")) {
+						bw.write(fluent_name+"\\n");
+					} else if(value.equals("ff")) {
+
+					} else {
+						bw.write(fluent_name+"="+value+"\\n");
+					}
+				}
+			}
+
+			bw.write("\"]\n");
+
+		} catch (IOException e) {
 			e.printStackTrace();
 		}		
 	}
@@ -147,6 +338,9 @@ public class Graphviz_Writer {
 	private static Integer intFormat(Double value) {
 		return new Double(value).intValue();
 	}
+	private static Integer intFormat(Float value) {
+		return new Double(value).intValue();
+	}
 	private static void writeNodes(
 			HashSet<Integer> visited, 
 			HashMap<Integer, HashMap<String, String>> lts_states, 
@@ -189,6 +383,66 @@ public class Graphviz_Writer {
 
 	}
 
+	/*
+	 * To draw transitions as having one source state and multiple destinations
+	 */
+	private static HashSet<Integer> writePlanFromInitialStateTransitions(
+			HashMap<Integer, String> id_control_events, 
+			double[] policy,
+			double[][][] tm, 
+			double[][][] rm) {
+
+		Integer nbOfStates = policy.length;
+
+		LinkedList<Integer> to_explore = new LinkedList<Integer>();
+		HashSet<Integer> visited = new HashSet<Integer>();
+
+		to_explore.add(0);
+
+		while(!to_explore.isEmpty()) {
+			Integer i = to_explore.remove();
+			visited.add(i);
+			Integer optimal_action = new Double(policy[i]).intValue()-1;
+			String trans_name=id_control_events.get(optimal_action);
+
+			String temp_node = "n"+ i +"_" + optimal_action;
+			try {
+				bw.write(i+" -> "+temp_node + " [color=blue] ");
+
+				bw.write("[arrowhead=none fontcolor=blue label=\"");
+				if(trans_name.endsWith("=tt")){
+					trans_name=trans_name.substring(0,trans_name.indexOf("=tt"));
+				} 
+				bw.write(optimal_action +":"+trans_name);
+				bw.write("\"];\n");
+				bw.write(temp_node + "[shape=point,width=0.1,height=0.1,label=\"\"];\n");
+
+				for(int j = 0; j<nbOfStates;j++) {
+
+					if(tm[i][j][optimal_action]!=0){
+
+						if(!visited.contains(j)){
+							if(!to_explore.contains(j))to_explore.add(j);
+						}
+						bw.write(temp_node +" -> " + j);
+						bw.write("[color=purple][fontcolor=purple label=\"" +
+								+ round(tm[i][j][optimal_action],3) +" "
+								+ intFormat(rm[i][j][optimal_action]) +" "		
+								);
+
+						bw.write("\"]\n");
+
+						bw.write("\n");
+					} 
+				} 
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		return visited;
+	}
+
+	
 	/*
 	 * To draw transitions as having one source state and multiple destinations
 	 */
@@ -1389,6 +1643,93 @@ public class Graphviz_Writer {
 	public void setShow_action_names(Boolean show_action_names) {
 		this.show_action_names = show_action_names;
 	}
+
+	public static void createPlanFromInitialState(String pathTographivFile, 
+			DomainRewriter rewriter, 
+			ArrayList<String> actions,
+			double[] policy, 
+			float[] value, 
+			double[][][] tm, 
+			double[][][] rm, 
+			int[] initial_state, 
+			String op) {
+		file = createFile(pathTographivFile);
+		setOptions();
+		option=op;
+		try {
+			fw = new FileWriter(file);
+			bw = new BufferedWriter(fw);
+			bw.write("digraph R {\n");
+
+			HashSet<Integer> visited = writePlanFromInitialStateTransitions(initial_state,rewriter,actions,policy,tm,rm);
+			for(Integer state : visited) {
+				printState(Utils.findStateFromIdentifier(state, rewriter.variables_weight),rewriter,value);
+			}
+			bw.write("}");
+			bw.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+
+	private static HashSet<Integer> writePlanFromInitialStateTransitions(int[] initial_state, 
+			DomainRewriter rewriter, 
+			ArrayList<String> actions,
+			double[] policy, 
+			double[][][] tm, 
+			double[][][] rm) {
+		Integer nbOfStates = policy.length;
+
+		LinkedList<Integer> to_explore = new LinkedList<Integer>();
+		HashSet<Integer> visited = new HashSet<Integer>();
+
+		to_explore.add(Utils.getStateIdentifier(initial_state, rewriter.variables_weight));
+
+		while(!to_explore.isEmpty()) {
+			Integer i = to_explore.remove();
+			visited.add(i);
+			Integer optimal_action = new Double(policy[i]).intValue()-1;
+			String trans_name=actions.get(optimal_action);
+
+			String temp_node = "n"+ i +"_" + optimal_action;
+			try {
+				bw.write(i+" -> "+temp_node + " [color=blue] ");
+
+				bw.write("[arrowhead=none fontcolor=blue label=\"");
+				if(trans_name.endsWith("=tt")){
+					trans_name=trans_name.substring(0,trans_name.indexOf("=tt"));
+				} 
+				bw.write(optimal_action +":"+trans_name);
+				bw.write("\"];\n");
+				bw.write(temp_node + "[shape=point,width=0.1,height=0.1,label=\"\"];\n");
+
+				for(int j = 0; j<nbOfStates;j++) {
+
+					if(tm[i][j][optimal_action]!=0){
+
+						if(!visited.contains(j)){
+							if(!to_explore.contains(j))to_explore.add(j);
+						}
+						bw.write(temp_node +" -> " + j);
+						bw.write("[color=purple][fontcolor=purple label=\"" +
+								+ round(tm[i][j][optimal_action],3) +" "
+								+ intFormat(rm[i][j][optimal_action]) +" "		
+								);
+
+						bw.write("\"]\n");
+
+						bw.write("\n");
+					} 
+				} 
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		return visited;
+	}
+
 
 
 

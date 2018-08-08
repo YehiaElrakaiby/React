@@ -1,8 +1,12 @@
 package resources;
 
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.util.HashSet;
 
 import org.emftext.language.AdaptiveCyberDefense.Formula;
+import org.emftext.language.AdaptiveCyberDefense.resource.AdaptiveCyberDefense.IAdaptiveCyberDefenseTextPrinter;
+import org.emftext.language.AdaptiveCyberDefense.resource.AdaptiveCyberDefense.mopp.AdaptiveCyberDefenseMetaInformation;
 
 public class RequirementDescription {
 	private Formula activation;
@@ -70,15 +74,41 @@ public class RequirementDescription {
 	public void setCost_reward(int cost_reward) {
 		this.cost_reward = cost_reward;
 	}
-
+	IAdaptiveCyberDefenseTextPrinter printer;
+	ByteArrayOutputStream out = new ByteArrayOutputStream();
+	
 	@Override
 	public String toString() {
+		printer = new AdaptiveCyberDefenseMetaInformation().createPrinter(out, null);
+
 		StringBuilder str = new StringBuilder();
-		str.append("req [" + name + " = " + type + " "+ condition); 
-		if(duration!=0) str.append(" for " + duration);
-		if(deadline!=0) str.append(" within " + deadline);
-		if(activation!=null)str.append(" after " + activation.toString());
-		if(cancellation!=null)str.append(" unless " + cancellation.toString());
+		try {
+			printer.print(condition);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		str.append("req [" + name + " = " + type + " \n if " + out);
+		
+		//System.out.println(out);
+		
+		if(duration!=0) str.append("\n for " + duration);
+		if(deadline!=0) str.append("\n within " + deadline);
+		try {
+			out.reset();
+			if(activation!=null)printer.print(activation);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		if(activation!=null)str.append("\n after "+out);
+		try {
+			out.reset();
+			if(cancellation!=null)printer.print(cancellation);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		if(cancellation!=null)str.append("\n unless "+out);
+		
 		str.append(" reward " + cost_reward);
 		str.append("]\n");
 		return str.toString();

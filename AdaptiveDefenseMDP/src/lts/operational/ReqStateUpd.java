@@ -1,16 +1,15 @@
 package lts.operational;
 
-import java.util.HashMap;
-
 import resources.RequirementDescription;
 
 final public class ReqStateUpd {
 
 	static public void updateCAReqAtomInState(
-			HashMap<String, String> state, 
-			RequirementDescription req) {
-		String req_id = req.getName();
-		String status = state.get(req_id);
+			int[] state, 
+			RequirementDescription req,
+			Integer index) {
+		//String req_id = req.getName();
+		//String status = state.get(req_id);
 		/**
 		 * For a conditional achieve requirement, its status is updated according to activation, cancellation and condition as follows:
 		 * (1) if status is inact: if activation is true, then act 
@@ -19,25 +18,30 @@ final public class ReqStateUpd {
 		 * (2.2) if condition holds then inact (and update reward of transition)
 		 * 
 		 */
-		if(status.equals("I")) {
+		//		if(status.equals("I")) {
+		//			if(req.getActivation().verify(state)) {
+		//				state.put(req_id, "R");
+		//			}
+		//		}
+		if(state[index]==0) {
 			if(req.getActivation().verify(state)) {
-				state.put(req_id, "R");
+				state[index]=1;
 			}
 		}
 
-		if(status.equals("R")){
+		if(state[index]==1){
 			if(req.getCancellation().verify(state)) {
-				state.put(req_id, "I");
+				state[index]=0;
 			} else if(req.getCondition().verify(state)) {
-				state.put(req_id, "I");
+				state[index]=0;
 			} 
 		} 		
 	}
 	static public void updateDFAReqAtomInState(
-			HashMap<String, String> state, 
-			RequirementDescription req) {
-		String req_id = req.getName();
-		String status = state.get(req_id);
+			int[] state, 
+			RequirementDescription req,Integer index) {
+		//String req_id = req.getName();
+		//String status = state.get(req_id);
 		/**
 		 * For an achieve requirement, its status is updated according to activation, cancellation, condition and control actions (time) as follows:
 		 * (1) if status is inact: if activation is true, then act-D where D is the deadline
@@ -50,32 +54,33 @@ final public class ReqStateUpd {
 		 * (2.3.2) else control action, then act-(X-1)
 		 * 
 		 */
-		if(status.equals("I")) {
+		if(state[index]==0) {
 			if(req.getActivation().verify(state)) {
-				Integer deadline = req.getDeadline()-1;
-				state.put(req_id, "A-"+deadline);
+				state[index]=req.getDeadline();
+				//Integer deadline = req.getDeadline()-1;
+				//state.put(req_id, "A-"+deadline);
 			}
 		}
-		if(status.startsWith("A-")){
+		else if(0<state[index]){
 			if(req.getCancellation().verify(state)) {
-				state.put(req_id, "I");
+				state[index]=0;
 			} else if(req.getCondition().verify(state)) {
-				state.put(req_id, "I");
-			} else if (status.equals("A-0")){
-				state.put(req_id, "I");
+				state[index]=0;
+			} else if (state[index]==1){
+				state[index]=0;
 			} else {
-				Integer remainingTime = new Integer(status.substring(2));
-				state.put(req_id, "A-"+(remainingTime-1));
+				Integer remainingTime = state[index];
+				state[index]=remainingTime-1;
 			}
 
 		} 
 
 	}
 	static public void updateDEAReqAtomInState(
-			HashMap<String, String> state, 
-			RequirementDescription req) {
-		String req_id = req.getName();
-		String status = state.get(req_id);
+			int[] state, 
+			RequirementDescription req,Integer index) {
+		//String req_id = req.getName();
+		//String status = state.get(req_id);
 		/**
 		 * For an achieve requirement, its status is updated according to activation, cancellation, condition and control actions (time) as follows:
 		 * (1) if status is inact: if activation is true, then act-D where D is the deadline
@@ -88,38 +93,39 @@ final public class ReqStateUpd {
 		 * (2.3.2) else control action, then act-(X-1)
 		 * 
 		 */
-		if(status.equals("I")) {
+		if(state[index]==0) {
 			if(req.getActivation().verify(state)) {
-				Integer deadline = req.getDeadline()-1;
-				state.put(req_id, "A-"+deadline);
+				state[index]=req.getDeadline();
 			}
 		}
 
-		if(status.startsWith("A-")){
+		else if(0<state[index]){
 			if(req.getCancellation().verify(state)) {
-				state.put(req_id, "I");
-			} else if(status.equals("A-0") && req.getCondition().verify(state)) {
-				state.put(req_id, "I");
-			} else if (status.equals("A-0")){
-				state.put(req_id, "I");
+				state[index]=0;
+			} else if(state[index]==1 && req.getCondition().verify(state)) {
+				state[index]=0;
+			} else if (state[index]==1){
+				state[index]=0;
 			} else {
-				Integer remainingTime = new Integer(status.substring(2));
-				state.put(req_id, "A-"+(remainingTime-1));
+				Integer remainingTime = state[index];
+				state[index]=remainingTime-1;
 			}
 		} 	
 	}
-	
-	static public void updateUMReqAtomInState(HashMap<String, String> state, 
-			RequirementDescription req) {
+
+	static public void updateUMReqAtomInState(int[] state, 
+			RequirementDescription req,
+			Integer index) {
 	}
-	static public void updateUAReqAtomInState(HashMap<String, String> state, 
-			RequirementDescription req) {
+	static public void updateUAReqAtomInState(int[] state, 
+			RequirementDescription req,
+			Integer index) {
 	}
 	static public void updateCMReqAtomInState(
-			HashMap<String, String> state, 
-			RequirementDescription req) {
-		String req_id = req.getName();
-		String status = state.get(req_id);
+			int[] state, 
+			RequirementDescription req,
+			Integer index) {
+
 		/**
 		 * For a conditional achieve requirement, its status is updated according to activation, cancellation and condition as follows:
 		 * (1) if status is inact: if activation is true, then act 
@@ -128,25 +134,28 @@ final public class ReqStateUpd {
 		 * (2.2) if condition holds then inact (and update reward of transition)
 		 * 
 		 */
-		if(status.equals("I")) {
+		if(state[index]==0) {//status.equals("I")) {
 			if(req.getActivation().verify(state)) {
-				state.put(req_id, "R");
+				//state.put(req_id, "R");
+				state[index]=1;
 			}
 		}
 
-		if(status.equals("R")){
+		else if(state[index]==1) {//status.equals("R")){
 			if(req.getCancellation().verify(state)) {
-				state.put(req_id, "I");
+				//state.put(req_id, "I");
+				state[index]=0;
 			} 
 		}
 
 	} 				
 
 	static public void updateDFMReqAtomInState(
-			HashMap<String, String> state, 
-			RequirementDescription req) {
-		String req_id = req.getName();
-		String status = state.get(req_id);
+			int[] state, 
+			RequirementDescription req,
+			Integer index) {
+		//String req_id = req.getName();
+		//String status = state.get(req_id);
 		/**
 		 * For a maintain requirement, its status is updated according to activation, cancellation and control actions as follows:
 		 * Notice that condition does not affect the update of status
@@ -163,36 +172,35 @@ final public class ReqStateUpd {
 		 * (3.2) else if req-0 then inact (and add satisfaction reward)
 		 * (3.3) else control action, then req-(X-1) ()
 		 */
-		if(status.equals("I")) {
+		if(state[index]==0) {//status.equals("I")) {
 			if(req.getActivation().verify(state)) {
-				Integer deadline = req.getDeadline()-1;
-				state.put(req_id, "A-"+deadline);
+				state[index] = req.getDeadline()+1;
 			}
 		}
 
-		if(status.startsWith("A-")){
+		else if(1<state[index]){
 			if(req.getCancellation().verify(state)) {
-				state.put(req_id, "I");
-			} else if (status.equals("A-0")){
-				state.put(req_id, "R");
+				state[index]=0;
+			} else if(req.getCondition().verify(state)) {
+				state[index]=1;
 			} else  {
-				Integer remainingTime = new Integer(status.substring(2));
-				state.put(req_id, "A-"+(remainingTime-1));
+				Integer remainingTime = state[index];
+				state[index]=remainingTime-1;
 			}
 		}
 
-		if(status.startsWith("R")){
+		else if(state[index]==1){
 			if(req.getCancellation().verify(state)) {
-				state.put(req_id, "I");
+				state[index]=0;
 			} 			
 		}
 
 	}
 	static public void updateDEMReqAtomInState(
-			HashMap<String, String> state, 
-			RequirementDescription req) {
-		String req_id = req.getName();
-		String status = state.get(req_id);
+			int[] state, 
+			RequirementDescription req,Integer index) {
+		//String req_id = req.getName();
+		//String status = state.get(req_id);
 		/**
 		 * For a maintain requirement, its status is updated according to activation, cancellation and control actions as follows:
 		 * Notice that condition does not affect the update of status
@@ -209,42 +217,33 @@ final public class ReqStateUpd {
 		 * (3.2) else if req-0 then inact (and add satisfaction reward)
 		 * (3.3) else control action, then req-(X-1) ()
 		 */
-		if(status.equals("I")) {
+		if(state[index]==0) {
 			if(req.getActivation().verify(state)) {
-				Integer deadline = req.getDeadline()-1;
-				state.put(req_id, "A-"+deadline);
+				state[index] = req.getDeadline()+1;
 			}
 		}
 
-		if(status.startsWith("A-")){
+		else if(1<state[index]){
 			if(req.getCancellation().verify(state)) {
-				state.put(req_id, "I");
-			} else if (req.getCondition().verify(state)){
-				state.put(req_id, "R");
-				/*
-				 * Satisfaction and reward update: Notice that no reward is given here
-				 * since the system is not actually obliged to maintain the requirement yet
-				 */
-			} else if (status.equals("A-0")){
-				state.put(req_id, "R");
+				state[index]=0;
 			} else  {
-				Integer remainingTime = new Integer(status.substring(2));
-				state.put(req_id, "A-"+(remainingTime-1));
+				Integer remainingTime = state[index];
+				state[index] = remainingTime-1;
 			}
 		}
 
-		if(status.startsWith("R")){
+		else if(state[index]==1){
 			if(req.getCancellation().verify(state)) {
-				state.put(req_id, "I");
+				state[index]=0;
 			} 
 		}
 
 	}
 	static public void updatePMReqAtomInState(
-			HashMap<String, String> state, 
-			RequirementDescription req) {
-		String req_id = req.getName();
-		String status = state.get(req_id);
+			int[] state, 
+			RequirementDescription req,Integer index) {
+		//String req_id = req.getName();
+		//String status = state.get(req_id);
 		/**
 		 * For a maintain requirement, its status is updated according to activation, cancellation and control actions as follows:
 		 * Notice that condition does not affect the update of status
@@ -261,36 +260,38 @@ final public class ReqStateUpd {
 		 * (3.2) else if req-0 then inact (and add satisfaction reward)
 		 * (3.3) else control action, then req-(X-1) ()
 		 */
-		if(status.equals("I")) {
-			if(req.getActivation().verify(state)) {
-				state.put(req_id, "A");
+		if(state[index]==0) {
+			if(req.getActivation().verify(state) && !req.getCondition().verify(state)) {
+				state[index]=1;
+			} else if(req.getActivation().verify(state) && req.getCondition().verify(state)) {
+				state[index]=req.getDuration()+1;
 			}
 		}
 
-		if(status.startsWith("A")){
+		else if(state[index]==1){
 			if(req.getCancellation().verify(state)) {
-				state.put(req_id, "I");
+				state[index]=0;
 			} else if (req.getCondition().verify(state)) {
-				state.put(req_id, "R-"+(req.getDuration()-1));
+				state[index]=req.getDuration()+1;
 			} 
 		}
 
-		if(status.startsWith("R-")){
+		else if(1<state[index]){
 			if(req.getCancellation().verify(state)) {
-				state.put(req_id, "I");
-			} else if (status.equals("R-0")){
-				state.put(req_id, "I");
+				state[index]=0;
+			} else if (state[index]==2){
+				state[index]=0;
 			} else {
-				Integer remainingTime = new Integer(status.substring(2));
-				state.put(req_id, "R-"+(remainingTime-1));
+				Integer remainingTime = state[index];
+				state[index]=remainingTime-1;
 			}
 		}		
 	}
 	static public void updateRPMReqAtomInState(
-			HashMap<String, String> state, 
-			RequirementDescription req) {
-		String req_id = req.getName();
-		String status = state.get(req_id);
+			int[] state, 
+			RequirementDescription req,Integer index) {
+		//String req_id = req.getName();
+		//String status = state.get(req_id);
 		/**
 		 * For a maintain requirement, its status is updated according to activation, cancellation and control actions as follows:
 		 * Notice that condition does not affect the update of status
@@ -307,38 +308,40 @@ final public class ReqStateUpd {
 		 * (3.2) else if req-0 then inact (and add satisfaction reward)
 		 * (3.3) else control action, then req-(X-1) ()
 		 */
-		if(status.equals("I")) {
-			if(req.getActivation().verify(state)) {
-				state.put(req_id, "A");
+		if(state[index]==0) {
+			if(req.getActivation().verify(state) && !req.getCondition().verify(state)) {
+				state[index]=1;
+			} else if(req.getActivation().verify(state) && req.getCondition().verify(state)) {
+				state[index]=req.getDuration()+1;
 			}
 		}
 
-		if(status.startsWith("A")){
+		else if(state[index]==1){
 			if(req.getCancellation().verify(state)) {
-				state.put(req_id, "I");
+				state[index]=0;
 			} else if (req.getCondition().verify(state)) {
-				state.put(req_id, "R-"+(req.getDuration()-1));
+				state[index]=req.getDuration()+1;;
 			} 
 		}
 
-		if(status.startsWith("R-")){
+		else if(1<state[index]){
 			if(req.getCancellation().verify(state)) {
-				state.put(req_id, "I");
+				state[index]=0;
 			} else if(!req.getCondition().verify(state)) {
-				state.put(req_id, "I");
-			} else if (status.equals("R-0")){
-				state.put(req_id, "I");
+				state[index]=0;
+			} else if (state[index]==2){
+				state[index]=0;
 			} else {
-				Integer remainingTime = new Integer(status.substring(2));
-				state.put(req_id, "R-"+(remainingTime-1));
+				Integer remainingTime = state[index];
+				state[index]=remainingTime-1;
 			}
 		}		
 	}
 	static public void updatePDFMReqAtomInState(
-			HashMap<String, String> state, 
-			RequirementDescription req) {
-		String req_id = req.getName();
-		String status = state.get(req_id);
+			int[] state, 
+			RequirementDescription req,Integer index) {
+		//String req_id = req.getName();
+		//String status = state.get(req_id);
 		/**
 		 * For a maintain requirement, its status is updated according to activation, cancellation and control actions as follows:
 		 * Notice that condition does not affect the update of status
@@ -355,40 +358,41 @@ final public class ReqStateUpd {
 		 * (3.2) else if req-0 then inact (and add satisfaction reward)
 		 * (3.3) else control action, then req-(X-1) ()
 		 */
-		if(status.equals("I")) {
-			if(req.getActivation().verify(state)) {
-				Integer deadline = req.getDeadline();
-				state.put(req_id, "A-"+(deadline-1));
+		if(state[index]==0) {
+			if(req.getActivation().verify(state) && ! req.getCondition().verify(state)) {
+				state[index] = req.getDeadline();
+			} else if(req.getActivation().verify(state) && req.getCondition().verify(state)) {
+				state[index] = req.getDeadline()+req.getDuration();
 			}
 		}
 
-		if(status.startsWith("A-")){
+		else if(0<state[index] && state[index]<= req.getDeadline()){
 			if(req.getCancellation().verify(state)) {
-				state.put(req_id, "I");
-			} else  if (status.equals("A-0")){
-				state.put(req_id, "R-"+(req.getDuration()-1));
+				state[index]=0;
+			} else  if (state[index]==1){
+				state[index]=req.getDuration()+req.getDeadline();
 			} else  {
-				Integer remainingTime = new Integer(status.substring(2));
-				state.put(req_id, "A-"+(remainingTime-1));
+				Integer remainingTime = state[index];
+				state[index]=remainingTime-1;
 			}
 		}
 
-		if(status.startsWith("R-")){
+		else if(req.getDeadline()<state[index] && state[index]<= req.getDeadline()+req.getDuration()){
 			if(req.getCancellation().verify(state)) {
-				state.put(req_id, "I");
-			} else if (status.equals("R-0")){
-				state.put(req_id, "I");
+				state[index]=0;
+			} else if (state[index]==req.getDeadline()+1){
+				state[index]=0;
 			} else {
-				Integer remainingTime = new Integer(status.substring(2));
-				state.put(req_id, "R-"+(remainingTime-1));
+				Integer remainingTime = state[index];
+				state[index]=remainingTime-1;
 			}
 		}
 	} 
 	static public void updateRPDFMReqAtomInState(
-			HashMap<String, String> state, 
-			RequirementDescription req) {
-		String req_id = req.getName();
-		String status = state.get(req_id);
+			int[] state, 
+			RequirementDescription req,Integer index) {
+		//String req_id = req.getName();
+		//String status = state.get(req_id);
 		/**
 		 * For a maintain requirement, its status is updated according to activation, cancellation and control actions as follows:
 		 * Notice that condition does not affect the update of status
@@ -405,46 +409,45 @@ final public class ReqStateUpd {
 		 * (3.2) else if req-0 then inact (and add satisfaction reward)
 		 * (3.3) else control action, then req-(X-1) ()
 		 */
-		if(status.equals("I")) {
+		if(state[index]==0) {
 			if(req.getActivation().verify(state)) {
-				Integer deadline = req.getDeadline();
-				state.put(req_id, "A-"+(deadline-1));
+				state[index]=req.getDeadline();
 			}
 		}
 
-		if(status.startsWith("A-")){
+		else if(0<state[index]&& state[index]<=req.getDeadline()){
 			if(req.getCancellation().verify(state)) {
-				state.put(req_id, "I");
+				state[index]=0;
 			} else if (req.getCondition().verify(state)){
-				state.put(req_id, "R-"+(req.getDuration()-1));
+				state[index]=req.getDeadline()+req.getDuration();
 				/*
 				 * Satisfaction and reward update: Notice that no reward is given here
 				 * since the system is not actually obliged to maintain the requirement yet
 				 */
-			} else  if (status.equals("A-0")){
-				state.put(req_id, "R-"+(req.getDuration()-1));
+			} else  if (state[index]==1){
+				state[index]=req.getDeadline()+req.getDuration();
 			} else  {
-				Integer remainingTime = new Integer(status.substring(2));
-				state.put(req_id, "A-"+(remainingTime-1));
+				Integer remainingTime = state[index];
+				state[index]=remainingTime-1;
 			}
 		}
 
-		if(status.startsWith("R-")){
+		else if(req.getDeadline()<state[index]){
 			if(req.getCancellation().verify(state)) {
-				state.put(req_id, "I");
-			} else if (status.equals("R-0")){
-				state.put(req_id, "I");
+				state[index]=0;
+			} else if (state[index]==req.getDeadline()+1){
+				state[index]=0;
 			} else {
-				Integer remainingTime = new Integer(status.substring(2));
-				state.put(req_id, "R-"+(remainingTime-1));
+				Integer remainingTime = state[index];
+				state[index]=remainingTime-1;
 			}
 		}
 	}
 	static public void updatePDEMReqAtomInState(
-			HashMap<String, String> state, 
-			RequirementDescription req) {
-		String req_id = req.getName();
-		String status = state.get(req_id);
+			int[] state, 
+			RequirementDescription req,Integer index) {
+		//String req_id = req.getName();
+		//String status = state.get(req_id);
 		/**
 		 * For a maintain requirement, its status is updated according to activation, cancellation and control actions as follows:
 		 * Notice that condition does not affect the update of status
@@ -461,42 +464,41 @@ final public class ReqStateUpd {
 		 * (3.2) else if req-0 then inact (and add satisfaction reward)
 		 * (3.3) else control action, then req-(X-1) ()
 		 */
-		if(status.equals("I")) {
+		if(state[index]==0) {
 			if(req.getActivation().verify(state)) {
-				Integer deadline = req.getDeadline();
-				state.put(req_id, "A-"+(deadline-1));
+				state[index] = req.getDeadline();
 			}
 		}
 
-		if(status.startsWith("A-")){
+		else if(0<state[index] && state[index]<=req.getDeadline()){
 			if(req.getCancellation().verify(state)) {
-				state.put(req_id, "I");
-			} else if (status.equals("A-0")) {
-				state.put(req_id, "R-"+(req.getDuration()-1));
+				state[index]=0;
+			} else if (state[index]==1) {
+				state[index]=req.getDeadline()+req.getDuration();
 			} else  {
-				Integer remainingTime = new Integer(status.substring(2));
-				state.put(req_id, "A-"+(remainingTime-1));
+				Integer remainingTime = state[index];
+				state[index]=remainingTime-1;
 			}
 		}
 
-		if(status.startsWith("R-")){
+		else if(req.getDeadline()<state[index]){
 			if(req.getCancellation().verify(state)) {
-				state.put(req_id, "I");
+				state[index]=0;
 			} else if(!req.getCondition().verify(state)) {
-				state.put(req_id, "I");
-			} else if (status.equals("R-0")){
-				state.put(req_id, "I");
+				state[index]=0;
+			} else if (state[index]==req.getDeadline()+1){
+				state[index]=0;
 			} else {
-				Integer remainingTime = new Integer(status.substring(2));
-				state.put(req_id, "R-"+(remainingTime-1));
+				Integer remainingTime = state[index];
+				state[index]=remainingTime-1;
 			}
 		}		
 	}
 	static public void updateRPDEMReqAtomInState(
-			HashMap<String, String> state, 
-			RequirementDescription req) {
-		String req_id = req.getName();
-		String status = state.get(req_id);
+			int[] state, 
+			RequirementDescription req,Integer index) {
+		//String req_id = req.getName();
+		//String status = state.get(req_id);
 		/**
 		 * For a maintain requirement, its status is updated according to activation, cancellation and control actions as follows:
 		 * Notice that condition does not affect the update of status
@@ -513,38 +515,67 @@ final public class ReqStateUpd {
 		 * (3.2) else if req-0 then inact (and add satisfaction reward)
 		 * (3.3) else control action, then req-(X-1) ()
 		 */
-		if(status.equals("I")) {
+		if(state[index]==0) {
 			if(req.getActivation().verify(state)) {
-				Integer deadline = req.getDeadline();
-				state.put(req_id, "A-"+(deadline-1));
+				state[index] = req.getDeadline();
 			}
 		}
 
-		if(status.startsWith("A-")){
+		else if(0<state[index] && state[index]<=req.getDeadline()){
 			if(req.getCancellation().verify(state)) {
-				state.put(req_id, "I");
+				state[index]=0;
 			} else if (req.getCondition().verify(state)) {
-				state.put(req_id, "R-"+(req.getDuration()-1));
-			} else  if (status.equals("A-0")){
-				state.put(req_id, "R-"+(req.getDuration()-1));
+				state[index]=req.getDeadline()+req.getDuration();
+			} else  if (state[index]==1){
+				state[index]=req.getDeadline()+req.getDuration();
 			} else  {
-				Integer remainingTime = new Integer(status.substring(2));
-				state.put(req_id, "A-"+(remainingTime-1));
+				Integer remainingTime = state[index];
+				state[index]=remainingTime-1;
 			}
 		}
 
-		if(status.startsWith("R-")){
+		else if(req.getDeadline()<state[index]){
 			if(req.getCancellation().verify(state)) {
-				state.put(req_id, "I");
+				state[index]=0;
 			} else if(!req.getCondition().verify(state)) {
-				state.put(req_id, "I");
+				state[index]=0;
 
-			} else if (status.equals("R-0")){
-				state.put(req_id, "I");
+			} else if (state[index]==req.getDeadline()+1){
+				state[index]=0;
 			} else {
-				Integer remainingTime = new Integer(status.substring(2));
-				state.put(req_id, "R-"+(remainingTime-1));
+				state[index]--;
 			}
+		}		
+	}
+	public static void updateReqAtomInState(int[] state, RequirementDescription req, Integer index) {
+		if(req.getType().equals("ua")){
+			ReqStateUpd.updateUAReqAtomInState(state,req,index);
+		} else if(req.getType().equals("ca")){
+			ReqStateUpd.updateCAReqAtomInState(state,req,index);
+		} else if(req.getType().equals("dfa")){
+			ReqStateUpd.updateDFAReqAtomInState(state,req,index);
+		} else if(req.getType().equals("dea")){
+			ReqStateUpd.updateDEAReqAtomInState(state,req,index);
+		}  else if(req.getType().equals("um")){
+			ReqStateUpd.updateUMReqAtomInState(state,req,index);
+		} else if(req.getType().equals("cm")){
+			ReqStateUpd.updateCMReqAtomInState(state,req,index);
+		} else if(req.getType().equals("dfm")){
+			ReqStateUpd.updateDFMReqAtomInState(state,req,index);
+		} else if(req.getType().equals("dem")){
+			ReqStateUpd.updateDEMReqAtomInState(state,req,index);
+		} else if(req.getType().equals("pm")){
+			ReqStateUpd.updatePMReqAtomInState(state,req,index);
+		} else if(req.getType().equals("rpm")){
+			ReqStateUpd.updateRPMReqAtomInState(state,req,index);
+		} else if(req.getType().equals("pdem")){
+			ReqStateUpd.updatePDEMReqAtomInState(state,req,index);
+		} else if(req.getType().equals("rpdem")){
+			ReqStateUpd.updateRPDEMReqAtomInState(state,req,index);
+		} else if(req.getType().equals("pdfm")) {
+			ReqStateUpd.updatePDFMReqAtomInState(state,req,index);
+		} else if(req.getType().equals("rpdfm")){
+			ReqStateUpd.updateRPDFMReqAtomInState(state,req,index);
 		}		
 	}
 

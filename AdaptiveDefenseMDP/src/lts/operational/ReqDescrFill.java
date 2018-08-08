@@ -17,6 +17,7 @@ import org.emftext.language.AdaptiveCyberDefense.PM;
 import org.emftext.language.AdaptiveCyberDefense.RPDEM;
 import org.emftext.language.AdaptiveCyberDefense.RPDFM;
 import org.emftext.language.AdaptiveCyberDefense.RPM;
+import org.emftext.language.AdaptiveCyberDefense.Requirement;
 import org.emftext.language.AdaptiveCyberDefense.UA;
 import org.emftext.language.AdaptiveCyberDefense.UM;
 
@@ -41,9 +42,56 @@ final public class ReqDescrFill {
 
 		descr.setCost_reward(req.getReward());
 
-		//domain.add("req");
+		domain.add("tt");
 
 	}
+	public static void fillRequirementDescription(Requirement requirement, RequirementDescription descr,
+			HashSet<String> domain) {
+		if(requirement.getClass().getName().endsWith(".UAImpl")){
+			UA req = (UA) requirement;
+			ReqDescrFill.fillUARequirementDescription(req,descr,domain);
+		} else if(requirement.getClass().getName().endsWith(".CAImpl")){
+			CA req = (CA) requirement;
+			ReqDescrFill.fillCARequirementDescription(req,descr,domain);
+		} else if(requirement.getClass().getName().endsWith(".DEAImpl")){
+			DEA req = (DEA) requirement;
+			ReqDescrFill.fillDEARequirementDescription(req,descr,domain);
+		} else if(requirement.getClass().getName().endsWith(".DFAImpl")){
+			DFA req = (DFA) requirement;
+			ReqDescrFill.fillDFARequirementDescription(req,descr,domain);
+		} else 	if(requirement.getClass().getName().endsWith(".UMImpl")){
+			UM req = (UM) requirement;
+			ReqDescrFill.fillUMRequirementDescription(req,descr,domain);
+		} else 	if(requirement.getClass().getName().endsWith(".CMImpl")){
+			CM req = (CM) requirement;
+			ReqDescrFill.fillCMRequirementDescription(req,descr,domain);
+		} else 	if(requirement.getClass().getName().endsWith(".DEMImpl")){
+			DEM req = (DEM) requirement;
+			ReqDescrFill.fillDEMRequirementDescription(req,descr,domain);
+		} else 	if(requirement.getClass().getName().endsWith(".DFMImpl")){
+			DFM req = (DFM) requirement;
+			ReqDescrFill.fillDFMRequirementDescription(req,descr,domain);
+		} else 	if(requirement.getClass().getName().endsWith(".PMImpl")){
+			PM req = (PM) requirement;
+			ReqDescrFill.fillPMRequirementDescription(req,descr,domain);
+		} else 	if(requirement.getClass().getName().endsWith(".RPMImpl")){
+			RPM req = (RPM) requirement;
+			ReqDescrFill.fillRPMRequirementDescription(req,descr,domain);
+		} else if(requirement.getClass().getName().endsWith(".PDEMImpl")){
+			PDEM req = (PDEM) requirement;
+			ReqDescrFill.fillPDEMRequirementDescription(req,descr,domain);
+		} else 	if(requirement.getClass().getName().endsWith(".RPDEMImpl")){
+			RPDEM req = (RPDEM) requirement;
+			ReqDescrFill.fillRPDEMRequirementDescription(req,descr,domain);
+		} else 	if(requirement.getClass().getName().endsWith(".PDFMImpl")){
+			PDFM req = (PDFM) requirement;
+			ReqDescrFill.fillPDFMRequirementDescription(req,descr,domain);
+		} else if(requirement.getClass().getName().endsWith(".RPDFMImpl")){
+			RPDFM req = (RPDFM) requirement;
+			ReqDescrFill.fillRPDFMRequirementDescription(req,descr,domain);
+		} 
+	}
+
 	static public void fillCARequirementDescription(
 			CA req, 
 			RequirementDescription descr,
@@ -69,8 +117,10 @@ final public class ReqDescrFill {
 
 		descr.setCost_reward(req.getReward());
 
-		domain.add("I");
-		domain.add("R");
+		//domain.add("I");
+		domain.add("0");
+		//domain.add("R");
+		domain.add("1");
 
 	}
 	static public void fillDFARequirementDescription(
@@ -99,12 +149,16 @@ final public class ReqDescrFill {
 
 		descr.setCost_reward(req.getReward());
 
-		domain.add("I");
+		//domain.add("I");
+		domain.add("0");
+
 		if(req.getDeadline()==-1) {
-			domain.add("A-0");
+			//domain.add("A-0");
+			domain.add("1");
 		} else {
-			for(int i=0; i< req.getDeadline(); i++) {
-				domain.add("A-"+i);
+			for(Integer i=1; i<= req.getDeadline(); i++) {
+				//domain.add("A-"+i);
+				domain.add(i.toString());
 			}
 		}
 
@@ -135,12 +189,15 @@ final public class ReqDescrFill {
 
 		descr.setCost_reward(req.getReward());
 
-		domain.add("I");
+		//domain.add("I");
+		domain.add("0");
 		if(req.getDeadline()==-1) {
-			domain.add("A-0");
+			//domain.add("A-0");
+			domain.add("1");
 		} else {
-			for(int i=0; i< req.getDeadline(); i++) {
-				domain.add("A-"+i);
+			for(Integer i=1; i<= req.getDeadline(); i++) {
+				//domain.add("A-"+i);
+				domain.add(i.toString());
 			}
 		}
 
@@ -160,7 +217,7 @@ final public class ReqDescrFill {
 
 		descr.setCost_reward(req.getReward());
 
-		//domain.add("req");
+		domain.add("tt");
 	}
 	static public void fillCMRequirementDescription(
 			CM req, 
@@ -187,8 +244,10 @@ final public class ReqDescrFill {
 
 		descr.setCost_reward(req.getReward());
 
-		domain.add("I");
-		domain.add("R");
+		//domain.add("I");
+		domain.add("0");
+		//domain.add("R");
+		domain.add("1");
 
 	}
 	static public void fillDFMRequirementDescription(
@@ -217,14 +276,17 @@ final public class ReqDescrFill {
 
 		descr.setCost_reward(req.getReward());
 
-		domain.add("I");
-		domain.add("R");
-
+		//domain.add("I");
+		domain.add("0");
+		//domain.add("R");
+		domain.add("1");
+		
 		if(req.getDeadline()==-1) {
 			LOGGER.error("deadline not set for requirement "+req.getName());
 		} else {
-			for(int i=0; i< req.getDeadline(); i++) {
-				domain.add("A-"+i);
+			for(Integer i=2; i<= req.getDeadline()+1; i++) {
+				//domain.add("A-"+i);
+				domain.add(i.toString());
 			}
 		}
 
@@ -255,14 +317,17 @@ final public class ReqDescrFill {
 
 		descr.setCost_reward(req.getReward());
 
-		domain.add("I");
-		domain.add("R");
-
+		//domain.add("I");
+		domain.add("0");
+		//domain.add("R");
+		domain.add("1");
+		
 		if(req.getDeadline()==-1) {
 			LOGGER.error("deadline not set for requirement "+req.getName());
 		} else {
-			for(int i=0; i< req.getDeadline(); i++) {
-				domain.add("A-"+i);
+			for(Integer i=2; i<= req.getDeadline()+1; i++) {
+				//domain.add("A-"+i);
+				domain.add(i.toString());
 			}
 		}
 
@@ -293,14 +358,16 @@ final public class ReqDescrFill {
 
 		descr.setCost_reward(req.getReward());
 
-		domain.add("I");
-		domain.add("A");
-
+		//domain.add("I");
+		domain.add("0");
+		//domain.add("A");
+		domain.add("1");
 		/**
 		 * Notice that if there is no deadline, i.e., deadline =0, then the requirement has to be fulfilled immediately
 		 */
-		for(int i=0; i< req.getDuration(); i++) {
-			domain.add("R-"+i);
+		for(Integer i=2; i<= req.getDuration()+1; i++) {
+			//domain.add("R-"+i);
+			domain.add(i.toString());
 		}
 
 	}
@@ -330,14 +397,15 @@ final public class ReqDescrFill {
 
 		descr.setCost_reward(req.getReward());
 
-		domain.add("I");
-		domain.add("A");
-
+		//domain.add("I");
+		domain.add("0");
+		//domain.add("A");
+		domain.add("1");
 		/**
 		 * Notice that if there is no deadline, i.e., deadline =0, then the requirement has to be fulfilled immediately
 		 */
-		for(int i=0; i< req.getDuration(); i++) {
-			domain.add("R-"+i);
+		for(Integer i=2; i<= req.getDuration()+1; i++) {
+			domain.add(i.toString());
 		}
 
 	}
@@ -368,19 +436,24 @@ final public class ReqDescrFill {
 
 		descr.setCost_reward(req.getReward());
 
-		domain.add("I");
+		//domain.add("I");
+		domain.add("0");
+		
 		if(req.getDeadline()==-1) {
-			domain.add("A-0");
+			//domain.add("A-0");
+			domain.add("1");
 		} else {
-			for(int i=0; i< req.getDeadline(); i++) {
-				domain.add("A-"+i);
+			for(Integer i=1; i<=req.getDeadline(); i++) {
+				//domain.add("A-"+i);
+				domain.add(i.toString());
 			}
 		}
 		/**
 		 * Notice that if there is no deadline, i.e., deadline =0, then the requirement has to be fulfilled immediately
 		 */
-		for(int i=0; i< req.getDuration(); i++) {
-			domain.add("R-"+i);
+		for(Integer i=req.getDeadline()+1; i<req.getDeadline()+ req.getDuration(); i++) {
+			//domain.add("R-"+i);
+			domain.add(i.toString());
 		}
 
 	}
@@ -411,19 +484,24 @@ final public class ReqDescrFill {
 
 		descr.setCost_reward(req.getReward());
 
-		domain.add("I");
+		//domain.add("I");
+		domain.add("0");
+		
 		if(req.getDeadline()==-1) {
-			domain.add("A-0");
+			//domain.add("A-0");
+			domain.add("1");
 		} else {
-			for(int i=0; i< req.getDeadline(); i++) {
-				domain.add("A-"+i);
+			for(Integer i=1; i<= req.getDeadline(); i++) {
+				//domain.add("A-"+i);
+				domain.add(i.toString());
 			}
 		}
 		/**
 		 * Notice that if there is no deadline, i.e., deadline =0, then the requirement has to be fulfilled immediately
 		 */
-		for(int i=0; i< req.getDuration(); i++) {
-			domain.add("R-"+i);
+		for(Integer i=req.getDeadline()+1; i< req.getDuration()+req.getDeadline(); i++) {
+			//domain.add("R-"+i);
+			domain.add(i.toString());
 		}
 
 	}
@@ -454,19 +532,24 @@ final public class ReqDescrFill {
 
 		descr.setCost_reward(req.getReward());
 
-		domain.add("I");
+		//domain.add("I");
+		domain.add("0");
+		
 		if(req.getDeadline()==-1) {
 			domain.add("A-0");
+			domain.add("1");
 		} else {
-			for(int i=0; i< req.getDeadline(); i++) {
-				domain.add("A-"+i);
+			for(Integer i=1; i<= req.getDeadline(); i++) {
+				//domain.add("A-"+i);
+				domain.add(i.toString());
 			}
 		}
 		/**
 		 * Notice that if there is no deadline, i.e., deadline =0, then the requirement has to be fulfilled immediately
 		 */
-		for(int i=0; i< req.getDuration(); i++) {
-			domain.add("R-"+i);
+		for(Integer i= req.getDeadline()+1; i<= req.getDeadline() + req.getDuration(); i++) {
+			//domain.add("R-"+i);
+			domain.add(i.toString());
 		}
 
 	}
@@ -497,19 +580,25 @@ final public class ReqDescrFill {
 
 		descr.setCost_reward(req.getReward());
 
-		domain.add("I");
+		//domain.add("I");
+		domain.add("0");
+		
 		if(req.getDeadline()==-1) {
-			domain.add("A-0");
+			//domain.add("A-0");
+			domain.add("1");
+			
 		} else {
-			for(int i=0; i< req.getDeadline(); i++) {
-				domain.add("A-"+i);
+			for(Integer i=1; i<= req.getDeadline(); i++) {
+				//domain.add("A-"+i);
+				domain.add(i.toString());
 			}
 		}
 		/**
 		 * Notice that if there is no deadline, i.e., deadline =0, then the requirement has to be fulfilled immediately
 		 */
-		for(int i=0; i< req.getDuration(); i++) {
-			domain.add("R-"+i);
+		for(Integer i=req.getDeadline()+1; i<=req.getDeadline() + req.getDuration(); i++) {
+			//domain.add("R-"+i);
+			domain.add(i.toString());
 		}		
 	}
 

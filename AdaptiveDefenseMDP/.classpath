@@ -40,5 +40,7 @@
 	</classpathentry>
 	<classpathentry kind="lib" path="/Users/yehia/Library/Mobile Documents/com~apple~CloudDocs/Software Development/JarFiles/org-apache-commons-lang.jar"/>
 	<classpathentry kind="lib" path="/Users/yehia/Library/Mobile Documents/com~apple~CloudDocs/Software Development/JarFiles/org.eclipse.emf.common-2.12.0.jar"/>
+	<classpathentry kind="src" path="/pddl4j"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

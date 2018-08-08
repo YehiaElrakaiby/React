@@ -1,0 +1,8 @@
+Notes:
+
+To go from variable name to a number: 
+	ArrayList<String> state_variable_names, variable_names.get(id)
+To go from a number to a variable name: 
+	ArrayList<String> state_variable_names, variable_names.indexOf(variableName)
+
+To go from a variable (String) value to a number: the number of the value in the domain 
