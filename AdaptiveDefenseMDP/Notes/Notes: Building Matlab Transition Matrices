@@ -1,0 +1,17 @@
+Building Exogenous Event Matrix
+
+1) create exogenous events matrix
+//ml.eval("EXTM = eye(" + nbOfStates + ");")
+EXTM = eye ( nbOfStates );
+
+2) for every event matrix TTM and its occurrence vectorV
+//ml.eval("TM = (diag(V) * TTM) + diag((1 - V));");
+//ml.eval("EXTM = EXTM*TM;");
+TM = (diag(V) * TTM) + diag ((1-V));
+EXTM = EXTM * TM;
+
+3) For every action matrix TM_A of action with id ID
+//ml.eval("P(:,:,"+(action_id+1)+")" +"="+matrix_id+ "*EXTM;");
+P(:,:,Id+1) = TM_A * EXTM;
+
+4) the matrix P will be the implicit-event action matrix
