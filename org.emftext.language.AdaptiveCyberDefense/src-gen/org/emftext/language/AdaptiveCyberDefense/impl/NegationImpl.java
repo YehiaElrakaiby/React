@@ -2,6 +2,7 @@
  */
 package org.emftext.language.AdaptiveCyberDefense.impl;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -175,8 +176,15 @@ public class NegationImpl extends FormulaImpl implements Negation {
 	}
 
 	@Override
-	public boolean verify(HashMap<String, String> state) {
+	public boolean verify(int[] state) {
 		return !formula.verify(state);
+	}
+
+	@Override
+	public void rewrite(ArrayList<String> state_variable_names,
+			ArrayList<ArrayList<String>> state_variables_domain_values) {
+		this.getFormula().rewrite(state_variable_names, state_variables_domain_values);
+		
 	}
 
 } //NegationImpl

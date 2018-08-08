@@ -2,6 +2,8 @@
  */
 package org.emftext.language.AdaptiveCyberDefense.impl;
 
+import java.util.ArrayList;
+
 import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.ecore.EClass;
@@ -145,11 +147,11 @@ public class StateAtomImpl extends EObjectImpl implements StateAtom {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case AdaptiveCyberDefensePackage.STATE_ATOM__STATE_VARIABLE:
-				if (resolve) return getState_variable();
-				return basicGetState_variable();
-			case AdaptiveCyberDefensePackage.STATE_ATOM__VALUE:
-				return getValue();
+		case AdaptiveCyberDefensePackage.STATE_ATOM__STATE_VARIABLE:
+			if (resolve) return getState_variable();
+			return basicGetState_variable();
+		case AdaptiveCyberDefensePackage.STATE_ATOM__VALUE:
+			return getValue();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -162,12 +164,12 @@ public class StateAtomImpl extends EObjectImpl implements StateAtom {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case AdaptiveCyberDefensePackage.STATE_ATOM__STATE_VARIABLE:
-				setState_variable((StateVariable)newValue);
-				return;
-			case AdaptiveCyberDefensePackage.STATE_ATOM__VALUE:
-				setValue((String)newValue);
-				return;
+		case AdaptiveCyberDefensePackage.STATE_ATOM__STATE_VARIABLE:
+			setState_variable((StateVariable)newValue);
+			return;
+		case AdaptiveCyberDefensePackage.STATE_ATOM__VALUE:
+			setValue((String)newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -180,12 +182,12 @@ public class StateAtomImpl extends EObjectImpl implements StateAtom {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case AdaptiveCyberDefensePackage.STATE_ATOM__STATE_VARIABLE:
-				setState_variable((StateVariable)null);
-				return;
-			case AdaptiveCyberDefensePackage.STATE_ATOM__VALUE:
-				setValue(VALUE_EDEFAULT);
-				return;
+		case AdaptiveCyberDefensePackage.STATE_ATOM__STATE_VARIABLE:
+			setState_variable((StateVariable)null);
+			return;
+		case AdaptiveCyberDefensePackage.STATE_ATOM__VALUE:
+			setValue(VALUE_EDEFAULT);
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -198,10 +200,10 @@ public class StateAtomImpl extends EObjectImpl implements StateAtom {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case AdaptiveCyberDefensePackage.STATE_ATOM__STATE_VARIABLE:
-				return state_variable != null;
-			case AdaptiveCyberDefensePackage.STATE_ATOM__VALUE:
-				return VALUE_EDEFAULT == null ? value != null : !VALUE_EDEFAULT.equals(value);
+		case AdaptiveCyberDefensePackage.STATE_ATOM__STATE_VARIABLE:
+			return state_variable != null;
+		case AdaptiveCyberDefensePackage.STATE_ATOM__VALUE:
+			return VALUE_EDEFAULT == null ? value != null : !VALUE_EDEFAULT.equals(value);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -220,6 +222,14 @@ public class StateAtomImpl extends EObjectImpl implements StateAtom {
 		result.append(value);
 		result.append(')');
 		return result.toString();
+	}
+
+	@Override
+	public void rewrite(ArrayList<String> state_variable_names,
+			ArrayList<ArrayList<String>> state_variables_domain_values) {
+	
+		Integer newValue = state_variables_domain_values.get(Integer.valueOf(this.getState_variable().getName())).indexOf(this.value);
+		this.setValue(newValue.toString());
 	}
 
 } //StateAtomImpl

@@ -3,6 +3,7 @@
 package org.emftext.language.AdaptiveCyberDefense;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 
 import org.eclipse.emf.common.util.EList;
 
@@ -68,5 +69,7 @@ public interface ProbabilisticEffect extends EObject {
 	 * @generated
 	 */
 	EList<StateAtom> getState_atoms();
+
+	void rewrite(ArrayList<String> state_variable_names, ArrayList<ArrayList<String>> state_variables_domain_values);
 
 } // ProbabilisticEffect

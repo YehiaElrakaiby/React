@@ -2,6 +2,7 @@
  */
 package org.emftext.language.AdaptiveCyberDefense;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import org.eclipse.emf.ecore.EObject;
@@ -18,5 +19,7 @@ import org.eclipse.emf.ecore.EObject;
  */
 public interface Formula extends EObject {
 
-	boolean verify(HashMap<String, String> state);
+	boolean verify(int[] state);
+
+	void rewrite(ArrayList<String> state_variable_names, ArrayList<ArrayList<String>> state_variables_domain_values);
 } // Formula

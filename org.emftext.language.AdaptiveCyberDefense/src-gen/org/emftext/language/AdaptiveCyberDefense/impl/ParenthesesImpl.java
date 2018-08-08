@@ -2,8 +2,7 @@
  */
 package org.emftext.language.AdaptiveCyberDefense.impl;
 
-import java.util.HashMap;
-
+import java.util.ArrayList;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 
@@ -175,8 +174,14 @@ public class ParenthesesImpl extends FormulaImpl implements Parentheses {
 	}
 
 	@Override
-	public boolean verify(HashMap<String, String> state) {
+	public boolean verify(int[] state) {
 		return this.formula.verify(state);
+	}
+
+	@Override
+	public void rewrite(ArrayList<String> state_variable_names,
+			ArrayList<ArrayList<String>> state_variables_domain_values) {
+		this.getFormula().rewrite(state_variable_names, state_variables_domain_values);
 	}
 
 } //ParenthesesImpl

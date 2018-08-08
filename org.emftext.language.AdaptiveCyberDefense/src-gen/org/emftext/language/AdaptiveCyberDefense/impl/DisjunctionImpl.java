@@ -2,6 +2,7 @@
  */
 package org.emftext.language.AdaptiveCyberDefense.impl;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -241,8 +242,15 @@ public class DisjunctionImpl extends FormulaImpl implements Disjunction {
 	}
 
 	@Override
-	public boolean verify(HashMap<String, String> state) {
+	public boolean verify(int[] state) {
 		return (lhs.verify(state)||rhs.verify(state));
+	}
+
+	@Override
+	public void rewrite(ArrayList<String> state_variable_names,
+			ArrayList<ArrayList<String>> state_variables_domain_values) {
+		lhs.rewrite(state_variable_names, state_variables_domain_values);
+		rhs.rewrite(state_variable_names, state_variables_domain_values);	
 	}
 
 } //DisjunctionImpl

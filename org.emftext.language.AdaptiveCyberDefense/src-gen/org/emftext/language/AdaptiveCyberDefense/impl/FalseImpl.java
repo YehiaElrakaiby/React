@@ -2,6 +2,7 @@
  */
 package org.emftext.language.AdaptiveCyberDefense.impl;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import org.eclipse.emf.ecore.EClass;
@@ -37,8 +38,15 @@ public class FalseImpl extends FormulaImpl implements False {
 	}
 
 	@Override
-	public boolean verify(HashMap<String, String> state) {
+	public boolean verify(int[] state) {
 		return false;
+	}
+
+	@Override
+	public void rewrite(ArrayList<String> state_variable_names,
+			ArrayList<ArrayList<String>> state_variables_domain_values) {
+		// TODO Auto-generated method stub
+		
 	}
 
 } //FalseImpl

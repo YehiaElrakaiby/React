@@ -2,6 +2,8 @@
  */
 package org.emftext.language.AdaptiveCyberDefense;
 
+import java.util.ArrayList;
+
 import org.eclipse.emf.ecore.EObject;
 
 /**
@@ -74,5 +76,7 @@ public interface StateAtom extends EObject {
 	 * @generated
 	 */
 	void setValue(String value);
+
+	void rewrite(ArrayList<String> state_variable_names, ArrayList<ArrayList<String>> state_variables_domain_values);
 
 } // StateAtom

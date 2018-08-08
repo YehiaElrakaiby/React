@@ -2,6 +2,7 @@
  */
 package org.emftext.language.AdaptiveCyberDefense.impl;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -224,19 +225,31 @@ public class FormulaAtomImpl extends FormulaImpl implements FormulaAtom {
 	}
 
 	@Override
-	public boolean verify(HashMap<String, String> state) {
+	public boolean verify(int[] state) {
 		//System.out.println("Verify "+this.description_entity.getName()+value+" in "+state.toString());
-		if(state.containsKey(this.description_entity.getName())) {
+		//if(state.containsKey(this.description_entity.getName())) {
 			//System.out.println("Found Verify "+this.description_entity.getName()+value+" in "+state.toString());
 
-			if(state.get(this.description_entity.getName()).equals(value)){
+			//if(state.get(this.description_entity.getName()).equals(value)){
 				//System.out.println("Success Verify "+this.description_entity.getName()+value+" in "+state.toString());
-				return true;
-			}
-		}			
+				//return true;
+			//}
+		//}			
 		//System.out.println("Fail Verify "+this.description_entity.getName()+value+" in "+state.toString());
-
+		if(state[Integer.valueOf(this.description_entity.getName())]==Integer.valueOf(this.value)) {
+			return true;
+		} else
 		return false;
 	}
+
+	@Override
+	public void rewrite(ArrayList<String> state_variable_names,
+			ArrayList<ArrayList<String>> state_variables_domain_values) {
+		
+		//Integer id = state_variable_names.indexOf(this.description_entity.getName());
+		Integer newValue = state_variables_domain_values.get(Integer.valueOf(this.description_entity.getName())).indexOf(this.value);
+		this.setValue(newValue.toString());
+	}
+	
 
 } //FormulaAtomImpl

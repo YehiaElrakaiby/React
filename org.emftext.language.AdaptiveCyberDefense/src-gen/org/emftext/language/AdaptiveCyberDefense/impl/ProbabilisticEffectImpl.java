@@ -3,7 +3,7 @@
 package org.emftext.language.AdaptiveCyberDefense.impl;
 
 import java.math.BigDecimal;
-
+import java.util.ArrayList;
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -219,6 +219,15 @@ public class ProbabilisticEffectImpl extends EObjectImpl implements Probabilisti
 		result.append(probability);
 		result.append(')');
 		return result.toString();
+	}
+
+	@Override
+	public void rewrite(ArrayList<String> state_variable_names,
+			ArrayList<ArrayList<String>> state_variables_domain_values) {
+		for(StateAtom state_atom :this.getState_atoms()) {
+			state_atom.rewrite(state_variable_names,state_variables_domain_values);
+		}
+		
 	}
 
 } //ProbabilisticEffectImpl
