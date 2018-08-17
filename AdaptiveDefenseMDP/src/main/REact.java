@@ -10,6 +10,7 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.emftext.language.AdaptiveCyberDefense.DomainDescription;
+import org.emftext.language.AdaptiveCyberDefense.resource.AdaptiveCyberDefense.IAdaptiveCyberDefenseTextPrinter;
 import org.emftext.language.AdaptiveCyberDefense.resource.AdaptiveCyberDefense.mopp.AdaptiveCyberDefenseMetaInformation;
 
 import lts.operational.MDPBuilder;
@@ -30,7 +31,7 @@ public class REact {
 	/*
 	 * 			MAIN CONFIGURATION OPTIONS
 	 */
-	static String descriptionFileName = "4.trade_offs.AdaptiveCyberDefense";
+	static String descriptionFileName = "REact_deterministic_3.AdaptiveCyberDefense";
 
 	static public String dotOption = Graphviz_Writer.SHOW_ALL;
 
@@ -40,11 +41,11 @@ public class REact {
 	static String files_location = "/Users/yehia/Documents/GraphivFilesReact/EvaluationICSE/";
 
 	static Path domain_description_location = Paths.get( "Users","yehia","Documents",
-			"runtime-EclipseApplication(1)","REactV5-PaperExamples", "REact_Evaluation_Section6",
+			"runtime-EclipseApplication(1)","REactV5-PaperExamples", "Evaluation_Performance",
 			descriptionFileName);
 
 	static public String noop_event_identifier = "noop";
-	static public float discount_factor = (float) 0.98;
+	static public float discount_factor = (float) 0.99;
 
 	/**
 	 * Based on the contents of a description:
@@ -77,8 +78,8 @@ public class REact {
 			description = loadTextual(domain_description_location);
 			initializeFileNames(description.getName());
 			LOGGER.info("domain description loaded");
-			new Planner();
-			LOGGER.info("Planner initialized");
+			//new Planner();
+			//LOGGER.info("Planner initialized");
 
 		} catch (IOException e1) {
 			LOGGER.error("domain description load failed"+e1.getMessage());
@@ -124,13 +125,13 @@ public class REact {
 
 		LOGGER.info("The MDP input is checked");
 
-		Graphviz_Writer.createFullMDP(files_location+ltsFileName, 
-				lts.rewriter, 
-				lts.getActions(), 
-				lts.getP(), 
-				lts.getR(), 
-				dotOption);
-		LOGGER.info("The LTS Graphviz file is created");
+//		Graphviz_Writer.createFullMDP(files_location+ltsFileName, 
+//				lts.rewriter, 
+//				lts.getActions(), 
+//				lts.getP(), 
+//				lts.getR(), 
+//				dotOption);
+//		LOGGER.info("The LTS Graphviz file is created");
 
 		/*
 		 * Solve the MDP and compute the policy and value functions
@@ -140,25 +141,25 @@ public class REact {
 		float[] value = lts.getValue();
 		LOGGER.info("The MDP is solved: The policy and value vectors based on the MDP are computed");
 
-		Graphviz_Writer.createStrategyMDP(files_location+controlStrategyFileName, 
-				lts.rewriter,
-				lts.getActions(), 
-				lts.getP(), 
-				lts.getR(), 
-				policy,
-				value,
-				dotOption);
-		LOGGER.info("The Control Strategy Graphviz file is created");
-
-		Graphviz_Writer.createPlanFromInitialState(files_location+controlPlanFileName, 
-				lts.rewriter, 
-				lts.getActions(), 
-				policy, value, 
-				lts.getP(), 
-				lts.getR(), 
-				lts.getInitial_state(), 
-				dotOption);
-		LOGGER.info("The Control Plan Graphviz file is created");
+//		Graphviz_Writer.createStrategyMDP(files_location+controlStrategyFileName, 
+//				lts.rewriter,
+//				lts.getActions(), 
+//				lts.getP(), 
+//				lts.getR(), 
+//				policy,
+//				value,
+//				dotOption);
+//		LOGGER.info("The Control Strategy Graphviz file is created");
+//
+//		Graphviz_Writer.createPlanFromInitialState(files_location+controlPlanFileName, 
+//				lts.rewriter, 
+//				lts.getActions(), 
+//				policy, value, 
+//				lts.getP(), 
+//				lts.getR(), 
+//				lts.getInitial_state(), 
+//				dotOption);
+//		LOGGER.info("The Control Plan Graphviz file is created");
 
 		//showInGraphiv(graphiz_file, lts.getStates(), lts.getTransitions(), DOT_Writer.SHOW_ALL);
 		//showInGraphiv(graphiz_file, lts.getStates(), lts.getTransitions(), DOT_Writer.SHOW_REQ);
@@ -219,16 +220,7 @@ public class REact {
 		LOGGER = LogManager.getLogger();
 	}
 	
-	/*
-	static private void printElement(EObject object) {
-		IAdaptiveCyberDefenseTextPrinter printer = new AdaptiveCyberDefenseMetaInformation().createPrinter(System.out, null);
-		try {
-			printer.print(object);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
-	*/
+	
 	/*
 	private static void showInGraphiv(
 			String file_path, 
