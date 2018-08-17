@@ -40,7 +40,8 @@ final public class EventReqStateUpd {
 	}
 	static public void updateDFAReqAtomInState(
 			int[] state, 
-			RequirementDescription req,Integer index) {
+			RequirementDescription req,
+			Integer index) {
 		//String req_id = req.getName();
 		//String status = state.get(req_id);
 		/**

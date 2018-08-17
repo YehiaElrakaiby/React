@@ -22,4 +22,5 @@ public interface Formula extends EObject {
 	boolean verify(int[] state);
 
 	void rewrite(ArrayList<String> state_variable_names, ArrayList<ArrayList<String>> state_variables_domain_values);
+
 } // Formula

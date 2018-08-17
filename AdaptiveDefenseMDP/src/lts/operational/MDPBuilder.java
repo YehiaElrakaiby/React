@@ -29,6 +29,7 @@ import org.emftext.language.AdaptiveCyberDefense.StateVariable;
 import org.emftext.language.AdaptiveCyberDefense.resource.AdaptiveCyberDefense.IAdaptiveCyberDefenseTextPrinter;
 import org.emftext.language.AdaptiveCyberDefense.resource.AdaptiveCyberDefense.mopp.AdaptiveCyberDefenseMetaInformation;
 
+import com.mathworks.engine.EngineException;
 import com.mathworks.engine.MatlabEngine;
 
 import main.REact;
@@ -102,7 +103,6 @@ public class MDPBuilder {
 		LOGGER.info("Start initialisation");
 		try {
 
-			this.nbStateVariables=description.getState_variables().size();
 
 			/*
 			 * add requirement variables to state variables
@@ -111,6 +111,8 @@ public class MDPBuilder {
 			addRequirementsVariables(description);	
 			LOGGER.info("Added Requirements Variables to Description");
 
+			this.nbStateVariables=description.getState_variables().size();
+
 			for(StateVariable variable : description.getState_variables()) {
 				this.nb_of_states *= variable.getValues().size();
 			}
@@ -118,24 +120,39 @@ public class MDPBuilder {
 			addNoOpAction(description);
 			LOGGER.info("Added Noop Action to Description");
 
+			//int p = 0;
+
 			for(ActionDescription action_descr : description.getAction_descriptions()) {
+				//System.out.println(action_descr.getName() +" : "+p);
+				//System.out.println(description.getAction_descriptions().get(p).getName() +" : "+p);
+
 				this.actions.add(action_descr.getName());
+				//p++;
 			}
+
+			//for(int l=0;l<actions.size();l++) {
+			//System.out.println(l +" : "+actions.get(l));
+			//}
 
 			for(EventDescription event_descr : description.getEvent_descriptions()) {
 				this.events.add(event_descr.getName());
 			}
 
-			createFileWriters();
-			LOGGER.info("File Writers Created");
-
 			rewriter = new DomainRewriter(description,this.requirements_description);
 			LOGGER.info("Description Rewritten");
+
+			setInitialState(description);
+			LOGGER.info("The initial state is set");
 
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		LOGGER.info("End initialisation");
+	}
+
+	public void constructMDP() {
+		createFileWriters();
+		LOGGER.info("File Writers Created");
 
 		LOGGER.info("Start Transition Generation");
 		generateTransitions(this.requirements_description);
@@ -165,14 +182,14 @@ public class MDPBuilder {
 		this.buildTransitionMatrix(ml);
 		LOGGER.info("End Computation Transition and Reward Matrix Matlab");
 
+		LOGGER.info("Start Computation Reward Matrix Matlab");
+		//buildRewardMatrixFromReqDescriptions(this.requirements_description, rewriter);
 		buildRewardMatrix(ml);
 
 		closeFileWriters();
+		LOGGER.info("File writers closed");
 
-		//LOGGER.info("Matlab is initialized");
 
-		setInitialState(description);
-		LOGGER.info("The initial state is set");
 
 		//p = computeTransitionMatrix();
 
@@ -196,10 +213,60 @@ public class MDPBuilder {
 		//				LOGGER.error("Problem retrieving EXTM from MatLab \n"+e.getMessage());
 		//				e.printStackTrace();
 		//			}
-		LOGGER.info("Start Solving of MDP Matlab");
-		solveMDP();
-		LOGGER.info("End Solving of MDP Matlab");
 
+	}
+
+	//	private void buildRewardMatrixFromReqDescriptions(ArrayList<RequirementDescription> requirements_description,
+	//			DomainRewriter rewriter) {
+	//		ArrayList<ArrayList<Integer>> temp = new ArrayList<ArrayList<Integer>>(); 
+	//		for(int i =0; i<this.rewriter.state_variable_names.size();i++) {
+	//			temp.add(i, new ArrayList<Integer>());
+	//			for(int k=0; k<rewriter.state_variables_domain_size.get(i);k++) {
+	//				temp.get(i).add(k);
+	//			}
+	//		}
+	//		ArrayList<ArrayList<ArrayList<Integer>>> dest_cond = new ArrayList<ArrayList<ArrayList<Integer>>>();
+	//		dest_cond.add(temp);
+	//		
+	//		ArrayList<ArrayList<ArrayList<Integer>>> src_cond = dest_cond;
+	//		
+	//		for(RequirementDescription req : requirements_description) {
+	//			if(req.getType().equals("ua")) {
+	//				Formula cond = req.getCondition();
+	//				cond.adjust(dest_cond);
+	//			}
+	//		}
+	//	}
+
+	public void solveMDP() {
+		LOGGER.info("Start Solving of MDP Matlab");
+		try {
+			//ml.eval("P");
+			//ml.eval("R");
+			//ml.eval("discount");
+			ml.eval("mdp_check(P,R)");
+			LOGGER.info("MDP is checked");
+
+			ml.eval("[V,policy,iter,cpu_time]=mdp_policy_iteration_modified(P,R,discount);");
+
+			Future<float[]> future_v = ml.getVariableAsync("V");
+			value = future_v.get();
+
+			Future<double[]> future_policy = ml.getVariableAsync("policy");
+			policy = future_policy.get();
+
+			//			Future<float[]> future_iter = ml.getVariableAsync("iter");
+			//			float[] iter = future_iter.get();
+			//			System.out.println("Nb of Iterations is: "+iter[0]);
+			//			
+			//			Future<float[]> future_cpu_time = ml.getVariableAsync("cpu_time");
+			//			float[] cpu_time = future_cpu_time.get();
+			//			System.out.println("CPU Time is: "+cpu_time[0]);
+
+		} catch (CancellationException | InterruptedException | ExecutionException e) {
+			e.printStackTrace();
+		}
+		LOGGER.info("End Solving of MDP Matlab");
 	}
 
 	//		if(option.equals(INITIAL)) {
@@ -519,9 +586,9 @@ public class MDPBuilder {
 				LOGGER.info("Start Printing Implicit Event Transition Matrix of "+ action_name + " into File");
 				ml.eval("print_matrix('" + imp_action_file_path +"',"+action_name +")"+";");
 				LOGGER.info("End Printing Transition Matrix into File");
-				LOGGER.info("Start Union Operation of "+ action_name + " to determine rewards to compute");
+				//LOGGER.info("Start Union Operation of "+ action_name + " to determine rewards to compute");
 				ml.eval("REW=union(REW,find(" +action_name+"))"+";");
-				LOGGER.info("End Union Operation of "+ action_name + " to determine rewards to compute");
+				//LOGGER.info("End Union Operation of "+ action_name + " to determine rewards to compute");
 			} catch (IllegalStateException | InterruptedException | ExecutionException e) {
 				LOGGER.error("Problem multiplying EXTM and the action's computed TM \n"+e.getMessage());
 				e.printStackTrace();
@@ -546,15 +613,14 @@ public class MDPBuilder {
 		}
 		LOGGER.info("Computation of Transition Matrix Finished");
 
-		Future<double[][][]> future_p;
-		try {
-			future_p = ml.getVariableAsync("P");
-			p = future_p.get();
-		} catch (IllegalStateException | InterruptedException | ExecutionException e) {
-			LOGGER.error("Problem retrieving REW from MatLab \n"+e.getMessage());
-			e.printStackTrace();
-		}
-		LOGGER.info("Start Computation Reward Matrix Matlab");
+		//		Future<double[][][]> future_p;
+		//		try {
+		//			future_p = ml.getVariableAsync("P");
+		//			p = future_p.get();
+		//		} catch (IllegalStateException | InterruptedException | ExecutionException e) {
+		//			LOGGER.error("Problem retrieving P from MatLab \n"+e.getMessage());
+		//			e.printStackTrace();
+		//		}
 
 
 	}
@@ -602,6 +668,93 @@ public class MDPBuilder {
 		}
 	}*/
 
+	//	public void buildRewardMatrix(double[] rw) {
+	//
+	//
+	//		LOGGER.info("Start Computation of Generic Reward Matrix Java");
+	//
+	//		double[][] rm = new double[this.nb_of_states][nb_of_states];
+	//
+	//
+	//		for(int k=0; k<rw.length; k++) {
+	//			Integer x = ((int) (rw[k]-1)) % nb_of_states;
+	//			Integer y = ((int) (rw[k]-1)) / nb_of_states;
+	//
+	//			BigDecimal rew = new BigDecimal(0);
+	//
+	//
+	//			int[] src_state = Utils.findStateFromIdentifier(x,rewriter.variables_weight);
+	//			int[] dest_state = Utils.findStateFromIdentifier(y,rewriter.variables_weight);
+	//			for( RequirementDescription req : this.requirements_description){
+	//				Integer req_index = Integer.valueOf(req.getName());
+	//				rew=ComputeRwd.reward(req,src_state,dest_state,req_index,rew);
+	//			}
+	////			for(int l=0; l<actions.size(); l++) {
+	////				BigDecimal action_cost = description.getAction_descriptions().get(l).getCost();
+	////				rm[x][y][l] = rew.subtract(action_cost).doubleValue();
+	////			}
+	//		}
+	//
+	////		String matrix_id = "RG";
+	////		try {
+	////			ml.putVariableAsync(matrix_id, rm);
+	////
+	////		} catch (InterruptedException | ExecutionException e) {
+	////			LOGGER.error("Problem putting the generic reward matrix R into matlab "+ "\n" +e.getMessage());
+	////			e.printStackTrace();
+	////		}	
+	//
+	//
+	//		LOGGER.info("End Computation of Generic Reward Matrix Java");
+	//
+	//		LOGGER.info("Start Insert of Generic Reward Matrix Matlab");
+	//
+	//				String matrix_id = "TR";
+	//				try {
+	//					ml.putVariableAsync(matrix_id, rm);
+	//					ml.eval("print_matrix('" + files_path +"tr.txt',TR)"+";");
+	//
+	//				} catch (CancellationException | InterruptedException | ExecutionException e) {
+	//					LOGGER.error("Problem putting the reward matrix into matlab "+ "\n" +e.getMessage());
+	//					e.printStackTrace();
+	//				}	
+	//		
+	//				LOGGER.info("End Insert of Generic Reward Matrix Matlab");
+	//		//
+	//				LOGGER.info("Start Computation of Action-based Reward Matrix Matlab");
+	//		
+	//				for(int l=0; l<actions.size(); l++) {
+	//					String action_id=actions.get(l);
+	//					BigDecimal action_cost = description.getAction_descriptions().get(l).getCost();
+	//						try {
+	//							ml.eval("Temp" +"="+matrix_id +"-"+ action_cost.doubleValue() + ";");
+	//							ml.eval("R(:,:,"+(l+1)+")" +"= Temp;");
+	//
+	//						} catch (CancellationException | InterruptedException | ExecutionException e) {
+	//							LOGGER.error("Problem with creating reward matri in matlab");
+	//							e.printStackTrace();
+	//						}
+	//					
+	//				}
+	//				LOGGER.info("End Computation of Action-based Reward Matrix Matlab");
+	//
+	//		//			//fillRwdsMatrix(src_id,dest_id,rew);
+	//		//			done.add(cell_id);
+	//		//			//this.reward_writer.println(cell_id);
+	//		//		} 
+	//		//
+	//		//retrieve the reward matrix R from matlab
+	////		Future<double[][][]> future_r;
+	////		try {
+	////			future_r = ml.getVariableAsync("R");
+	////			this.r = future_r.get();
+	////		} catch (IllegalStateException | InterruptedException | ExecutionException e) {
+	////			LOGGER.error("Problem retrieving R from MatLab \n"+e.getMessage());
+	////			e.printStackTrace();
+	////		}
+	//	}
+
+
 	public void buildRewardMatrix(double[] rw) {
 
 
@@ -629,91 +782,68 @@ public class MDPBuilder {
 			}
 		}
 
-		String matrix_id = "R";
+		//String matrix_id = "R";
 		try {
-			ml.putVariableAsync(matrix_id, rm);
-
-		} catch (InterruptedException | ExecutionException e) {
-			LOGGER.error("Problem putting the reward matrix into matlab "+ "\n" +e.getMessage());
-			e.printStackTrace();
-		}	
-
-
-		//LOGGER.info("End Computation of Generic Reward Matrix Java");
-
-		//LOGGER.info("Start Insert of Generic Reward Matrix Matlab");
-
-		//		String matrix_id = "TR";
-		//		try {
-		//			ml.putVariableAsync(matrix_id, rm);
-		//
-		//		} catch (InterruptedException | ExecutionException e) {
-		//			LOGGER.error("Problem putting the reward matrix into matlab "+ "\n" +e.getMessage());
-		//			e.printStackTrace();
-		//		}	
-		//
-		//		LOGGER.info("End Insert of Generic Reward Matrix Matlab");
-		//
-		//		LOGGER.info("Start Computation of Action-based Reward Matrix Matlab");
-		//
-		//		for(int l=0; l<actions.size(); l++) {
-		//			String action_id=actions.get(l);
-		//			BigDecimal action_cost = description.getAction_descriptions().get(l).getCost();
-		//			try {
-		//				ml.eval("Temp" +"="+matrix_id +"-"+ action_cost + ";");
-		//				ml.eval("R(:,:,"+(l+1)+")" +"= Temp"+ ";");
-		//			} catch (InterruptedException | ExecutionException e) {
-		//				LOGGER.error("Problem computing the transition matrix of action " + action_id + "\n" +e.getMessage());
-		//				e.printStackTrace();
-		//			}	
-		//		}
-		//		LOGGER.info("End Computation of Action-based Reward Matrix Matlab");
-
-		//			//fillRwdsMatrix(src_id,dest_id,rew);
-		//			done.add(cell_id);
-		//			//this.reward_writer.println(cell_id);
-		//		} 
-		//
-		//retrieve the reward matrix R from matlab
-		Future<double[][][]> future_r;
-		try {
-			future_r = ml.getVariableAsync("R");
-			this.r = future_r.get();
-		} catch (IllegalStateException | InterruptedException | ExecutionException e) {
-			LOGGER.error("Problem retrieving R from MatLab \n"+e.getMessage());
-			e.printStackTrace();
+			ml.putVariableAsync("R", rm);
+		} catch (EngineException | IllegalStateException | InterruptedException e) {
+			LOGGER.error("Problem putting the reward matrix R into matlab "+ "\n" +e.getMessage());
+			e.printStackTrace();			
 		}
-	}
-
-
-	private void solveMDP() {
 
 		try {
-			//ml.eval("P");
-			//ml.eval("R");
-			//ml.eval("discount");
-			ml.eval("mdp_check(P,R)");
-
-			ml.eval("[V,policy,iter,cpu_time]=mdp_policy_iteration_modified(P,R,discount);");
-
-			Future<float[]> future_v = ml.getVariableAsync("V");
-			value = future_v.get();
-
-			Future<double[]> future_policy = ml.getVariableAsync("policy");
-			policy = future_policy.get();
-
-			//			Future<float[]> future_iter = ml.getVariableAsync("iter");
-			//			float[] iter = future_iter.get();
-			//			System.out.println("Nb of Iterations is: "+iter[0]);
-			//			
-			//			Future<float[]> future_cpu_time = ml.getVariableAsync("cpu_time");
-			//			float[] cpu_time = future_cpu_time.get();
-			//			System.out.println("CPU Time is: "+cpu_time[0]);
-
+			ml.eval("R");
 		} catch (CancellationException | InterruptedException | ExecutionException e) {
 			e.printStackTrace();
 		}
-	}
+	}	
+
+
+	//LOGGER.info("End Computation of Generic Reward Matrix Java");
+
+	//LOGGER.info("Start Insert of Generic Reward Matrix Matlab");
+
+	//		String matrix_id = "TR";
+	//		try {
+	//			ml.putVariableAsync(matrix_id, rm);
+	//
+	//		} catch (InterruptedException | ExecutionException e) {
+	//			LOGGER.error("Problem putting the reward matrix into matlab "+ "\n" +e.getMessage());
+	//			e.printStackTrace();
+	//		}	
+	//
+	//		LOGGER.info("End Insert of Generic Reward Matrix Matlab");
+	//
+	//		LOGGER.info("Start Computation of Action-based Reward Matrix Matlab");
+	//
+	//		for(int l=0; l<actions.size(); l++) {
+	//			String action_id=actions.get(l);
+	//			BigDecimal action_cost = description.getAction_descriptions().get(l).getCost();
+	//			try {
+	//				ml.eval("Temp" +"="+matrix_id +"-"+ action_cost + ";");
+	//				ml.eval("R(:,:,"+(l+1)+")" +"= Temp"+ ";");
+	//			} catch (InterruptedException | ExecutionException e) {
+	//				LOGGER.error("Problem computing the transition matrix of action " + action_id + "\n" +e.getMessage());
+	//				e.printStackTrace();
+	//			}	
+	//		}
+	//		LOGGER.info("End Computation of Action-based Reward Matrix Matlab");
+
+	//			//fillRwdsMatrix(src_id,dest_id,rew);
+	//			done.add(cell_id);
+	//			//this.reward_writer.println(cell_id);
+	//		} 
+	//
+	//retrieve the reward matrix R from matlab
+	//		Future<double[][][]> future_r;
+	//		try {
+	//			future_r = ml.getVariableAsync("R");
+	//			this.r = future_r.get();
+	//		} catch (IllegalStateException | InterruptedException | ExecutionException e) {
+	//			LOGGER.error("Problem retrieving R from MatLab \n"+e.getMessage());
+	//			e.printStackTrace();
+	//		}
+
+
 
 	private void findEventTransitions(int[] state) {
 		Boolean selfTransitionLastState=false;
@@ -900,7 +1030,7 @@ public class MDPBuilder {
 						BigDecimal prob = effect.getProbability();
 						int[] dst_state = state.clone();
 						//if(dst_state[1]==1 && dst_state[2]==0) {
-							//System.out.println();
+						//System.out.println();
 						//}
 						if(effect!=null) {
 							updateStateVariables(dst_state,effect);
@@ -979,7 +1109,7 @@ public class MDPBuilder {
 	/*
 	 * 				Auxiliary Functions for LTS States and Transitions Identification PART
 	 */
-	private boolean holds(Formula context, int[] state) {
+	public static boolean holds(Formula context, int[] state) {
 		if(context.verify(state)) {
 			return true;
 		}
@@ -987,16 +1117,16 @@ public class MDPBuilder {
 	}
 
 
-	private void updateStateVariables(int[] dst_state, ProbabilisticEffect effect) {
+	public static void updateStateVariables(int[] dst_state, ProbabilisticEffect effect) {
 		EList<StateAtom> atoms = effect.getState_atoms();
 		for(StateAtom atom : atoms) {
 			dst_state[Integer.valueOf(atom.getState_variable().getName())]=Integer.valueOf(atom.getValue());
 		}		
 	}
 
-	private void updateReqVariables(int[] state,  
+	public static void updateReqVariables(int[] state,  
 			ArrayList<RequirementDescription> requirements_descriptions) {
-		Integer index = this.nbStateVariables;
+		Integer index = state.length - requirements_descriptions.size();//this.nbStateVariables;
 		for(RequirementDescription req : requirements_descriptions) {
 			ReqStateUpd.updateReqAtomInState(state,req,index);
 			index++;
@@ -1005,7 +1135,7 @@ public class MDPBuilder {
 
 	private void updateReqVariablesEvent(int[] state,  
 			ArrayList<RequirementDescription> requirements_descriptions) {
-		Integer index = this.nbStateVariables;
+		Integer index = this.nbStateVariables-requirements_description.size();
 		for(RequirementDescription req : requirements_descriptions) {
 			EventReqStateUpd.updateReqAtomInState(state,req,index);
 			index++;
@@ -1052,7 +1182,11 @@ public class MDPBuilder {
 		return initial_state;
 	}
 
-	
+	public ArrayList<RequirementDescription> getRequirements_description() {
+		return requirements_description;
+	}
+
+
 
 
 }

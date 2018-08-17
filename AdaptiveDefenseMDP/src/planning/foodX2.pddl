@@ -5,12 +5,11 @@
 (define (domain FOODX)
   (:requirements :strips :typing :disjunctive-preconditions :equality)
   (:types location status)
-  (:constants kitchen dining_room table1 table2 table3 hallway office - location
+  (:constants kitchen dining_room table1 table2 hallway office - location
   	empty occupied requested received in_preparation ready collected delivered paid - status)
   (:predicates (location ?x - location)
 	       (table1 ?x - status)
 	       (table2 ?x - status)
-	       (table3 ?x - status)
 	       )
 
 (:action move_to_kitchen
@@ -37,16 +36,15 @@
 
 (:action move_to_dining_room
 	     :parameters ()
-	     :precondition (or (location hallway) (location table1) (location table2) (location table3)) 
+	     :precondition (or (location hallway) (location table1) (location table2)) 
 	     :effect
 	     (and
 	     (location dining_room)
 	     (not (location hallway))
 	     (not (location table1))
 	     (not (location table2))
-	     (not (location table3))
 	     )
-)	
+)	     
 	     
 
 (:action move_to_office
@@ -184,68 +182,6 @@
 	     )
 )
 
-(:action move_to_table3
-	     :parameters ()
-	     :precondition (location dining_room)
-	     :effect
-	     (and 
-	     	(location table3)
-	     	(not (location dining_room))
-	     )
-	     
-)	
-
-(:action get_order3
-	     :parameters ()
-	     :precondition (and (location table3)(table3 occupied))
-	     :effect
-	     (and 
-	     (table3 requested)
-	     (not (table3 occupied))
-	     )
-	     
-)	
-
-(:action pass_order3
-	     :parameters ()
-	     :precondition (and (location kitchen)(table3 received))
-	     :effect
-	     (and
-	     (table3 in_preparation)
-	     (not (table3 received))
-	     )
-)
-	
-
-(:action collect_order3
-	     :parameters ()
-	     :precondition (and (location kitchen)(table3 ready))
-	     :effect
-	     (and
-	     (table3 collected)
-	     (not (table3 ready))
-	     )
-)		
-
-(:action deliver_order3
-	     :parameters ()
-	     :precondition (and (location table3) (table3 collected))
-	     :effect
-	     (and
-	     (table3 delivered)
-	     (not (table3 collected))
-	     )
-)	
-
-(:action clean_table3
-	     :parameters ()
-	     :precondition (and (location table3) (table3 paid))
-	     :effect
-	     (and
-	     (table3 empty)
-	     (not (table3 paid))
-	     )
-)
 	
 )
 

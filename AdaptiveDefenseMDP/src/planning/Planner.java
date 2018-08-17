@@ -3,9 +3,11 @@ package planning;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Set;
 
 import org.junit.Assert;
@@ -17,6 +19,7 @@ import fr.uga.pddl4j.parser.Message;
 import fr.uga.pddl4j.planners.ProblemFactory;
 import fr.uga.pddl4j.planners.statespace.ff.FF;
 import fr.uga.pddl4j.test.Tools;
+import fr.uga.pddl4j.util.BitOp;
 import fr.uga.pddl4j.util.Plan;
 
 public class Planner {
@@ -46,107 +49,93 @@ public class Planner {
 	 */
 	private static final boolean STATISTICS = false;
 
-	public Planner() {
+	String localTestPath="";
+
+	String currentDomain=null;
+
+	String currentProblem=null;
+
+	ProblemFactory factory=null;
+
+	public Planner(String localTestPath) {
 		planner = new FF(TIMEOUT * 1000, HEURISTIC_TYPE, HEURISTIC_WEIGHT, STATISTICS, TRACE_LEVEL);
-		final String localTestPath = "/Users/yehia/git/AdaptiveDefenseMDP/src/planning/";
-		generateValOutputPlans(localTestPath);
+		this.localTestPath = localTestPath;
+		factory = new ProblemFactory();
+		factory.setTraceLevel(TRACE_LEVEL);
 
 	}
+	
+	public Planner() {
+		planner = new FF(TIMEOUT * 1000, HEURISTIC_TYPE, HEURISTIC_WEIGHT, STATISTICS, TRACE_LEVEL);
+		factory = new ProblemFactory();
+		factory.setTraceLevel(TRACE_LEVEL);
+	}
+
+	public void setDomain(String domain) {
+		this.currentDomain = localTestPath + domain;
+	}
+
 	/**
 	 * Generate output plan KLC-planning validator formatted.
 	 *
 	 * @param currentTestPath the current sub dir to test
+	 * @return 
 	 */
-	private void generateValOutputPlans(String currentTestPath) {
-		Tools.cleanValPlan(currentTestPath);
-		final ProblemFactory factory = new ProblemFactory();
-		String currentDomain = currentTestPath + "foodX.pddl";
-		boolean oneDomainPerProblem = false;
+	public List<BitOp> generatePlan(String problem) {
+		this.currentProblem = localTestPath + problem;
+		Plan plan = null;
 
-		String problemFile;
-		String currentProblem;
+		// Parses the PDDL domain and problem description
+		try {
 
-		// Counting the number of problem files
-		File[] pbFileList = new File(currentTestPath)
-				.listFiles((dir, name) -> name.startsWith("p") && name.endsWith(".pddl") && !name.contains("dom"));
-
-		int nbTest = 0;
-		if (pbFileList != null) {
-			nbTest = pbFileList.length;
-		}
-
-		// Check if there is on domain per problem or a shared domain for all
-		if (!new File(currentDomain).exists()) {
-			oneDomainPerProblem = true;
-		}
-
-		System.out.println("FFTest: Test FF planner on " + currentTestPath);
-		// Loop around problems in one category
-		for (int i = 1; i < nbTest + 1; i++) {
-			if (i < 10) {
-				problemFile = "p0" + i + Tools.PDDL_EXT;
-			} else {
-				problemFile = "p" + i + Tools.PDDL_EXT;
+			ErrorManager errorManager = factory.parse(new File(currentDomain), new File(currentProblem));
+			Iterator<Message> it1 = errorManager.getMessages().iterator();
+			while(it1.hasNext()) {
+				System.out.println(it1.next().toString());
 			}
+			Assert.assertTrue(errorManager.isEmpty());
 
-			currentProblem = currentTestPath + problemFile;
-
-			if (oneDomainPerProblem) {
-				currentDomain = currentTestPath + problemFile.split(".p")[0] + "-" + Tools.DOMAIN;
-			}
-			// Parses the PDDL domain and problem description
+			CodedProblem pb = null;
 			try {
-				factory.setTraceLevel(TRACE_LEVEL);
-
-				ErrorManager errorManager = factory.parse(new File(currentDomain), new File(currentProblem));
-				Iterator<Message> it1 = errorManager.getMessages().iterator();
-				while(it1.hasNext()) {
-					System.out.println(it1.next().toString());
+				// Encodes and instantiates the problem in a compact representation
+				//System.out.println("* Encoding [" + currentProblem + "]" + "...");
+				pb = factory.encode();
+				if (pb.isSolvable()) {
+					// Searches for a solution plan
+					//System.out.println("* Trying to solve [" + currentProblem + "]"
+						//	+ " in " + TIMEOUT + " seconds");
+					plan = planner.search(pb);
+				} else {
+					System.err.println("* Problem [" + currentProblem + "]" + " not solvable.");
 				}
-				Assert.assertTrue(errorManager.isEmpty());
-
-				CodedProblem pb = null;
-				Plan plan = null;
-				try {
-					// Encodes and instantiates the problem in a compact representation
-					System.out.println("* Encoding [" + currentProblem + "]" + "...");
-					pb = factory.encode();
-					if (pb.isSolvable()) {
-						// Searches for a solution plan
-						System.out.println("* Trying to solve [" + currentProblem + "]"
-								+ " in " + TIMEOUT + " seconds");
-						plan = planner.search(pb);
-					} else {
-						System.err.println("* Problem [" + currentProblem + "]" + " not solvable.");
-					}
-				} catch (OutOfMemoryError err) {
-					System.out.println("ERR: " + err.getMessage() + " - test aborted");
-					return;
-				} catch (IllegalArgumentException iaex) {
-					if (iaex.getMessage().equalsIgnoreCase("problem to encode not ADL")) {
-						System.err.println("[" + currentProblem + "]: Not ADL problem!");
-					} else {
-						throw iaex;
-					}
+			} catch (OutOfMemoryError err) {
+				System.out.println("ERR: " + err.getMessage() + " - test aborted");
+				//return;
+			} catch (IllegalArgumentException iaex) {
+				if (iaex.getMessage().equalsIgnoreCase("problem to encode not ADL")) {
+					System.err.println("[" + currentProblem + "]: Not ADL problem!");
+				} else {
+					throw iaex;
 				}
-
-				if (plan == null) { // no solution in TIMEOUT computation time
-					System.out.println("* No solution found in " + TIMEOUT + " seconds for " + currentProblem);
-				} else if (plan.isEmpty()) { // Empty solution
-					System.out.println("* Empty solution for " + currentProblem);
-				} else { // Save output plan
-					try (BufferedWriter bw = Files.newBufferedWriter(Paths.get(currentProblem.substring(0,
-							currentProblem.length() - Tools.PDDL_EXT.length()) + Tools.PLAN_EXT))) {
-						bw.write(pb.toString(plan));
-					}
-					System.out.println("* Solution found for " + currentProblem);
-				}
-
-			} catch (IOException ioEx) {
-				ioEx.printStackTrace();
 			}
-			System.out.println();
-		}
-	}
 
+			if (plan == null) { // no solution in TIMEOUT computation time
+				System.out.println("* No solution found in " + TIMEOUT + " seconds for " + currentProblem);
+			} else if (plan.isEmpty()) { // Empty solution
+				System.out.println("* Empty solution for " + currentProblem);
+			} else { // Save output plan
+				try (BufferedWriter bw = Files.newBufferedWriter(Paths.get(currentProblem.substring(0,
+						currentProblem.length() - Tools.PDDL_EXT.length()) + Tools.PLAN_EXT))) {
+					bw.write(pb.toString(plan));
+				}
+				//System.out.println("* Solution found for " + currentProblem);
+			}
+
+		} catch (IOException ioEx) {
+			ioEx.printStackTrace();
+		}
+		return plan.actions();
+	}
 }
+
+

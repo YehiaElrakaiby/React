@@ -1,6 +1,9 @@
 package main;
 
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
@@ -13,7 +16,7 @@ import org.emftext.language.AdaptiveCyberDefense.DomainDescription;
 import org.emftext.language.AdaptiveCyberDefense.resource.AdaptiveCyberDefense.mopp.AdaptiveCyberDefenseMetaInformation;
 
 import lts.operational.MDPBuilder;
-import planning.Planner;
+import simulation.Simulator;
 import visualizer.Graphviz_Writer;
 
 
@@ -30,21 +33,23 @@ public class REact {
 	/*
 	 * 			MAIN CONFIGURATION OPTIONS
 	 */
-	static String descriptionFileName = "4.trade_offs.AdaptiveCyberDefense";
-
+	//static String descriptionFileName = "4.trade_offs.AdaptiveCyberDefense";
+	//static String descriptionFileNamePlanning = "5.new_evaluation_planning.AdaptiveCyberDefense";
+	static String localPath = "/Users/yehia/git/AdaptiveDefenseMDP/src/planning/";
+	static String domainFileName = "foodX.pddl";
+	static PrintWriter results_writer=null, time_writer=null;
 	static public String dotOption = Graphviz_Writer.SHOW_ALL;
-
+	static public Integer nbOfSteps = 100000;
 	/*
 	 * 			OTHER CONFIGURATION OPTIONS
 	 */
 	static String files_location = "/Users/yehia/Documents/GraphivFilesReact/EvaluationICSE/";
 
-	static Path domain_description_location = Paths.get( "Users","yehia","Documents",
-			"runtime-EclipseApplication(1)","REactV5-PaperExamples", "REact_Evaluation_Section6",
-			descriptionFileName);
+
+
 
 	static public String noop_event_identifier = "noop";
-	static public float discount_factor = (float) 0.98;
+	static public float discount_factor = (float) 0.99;
 
 	/**
 	 * Based on the contents of a description:
@@ -64,117 +69,227 @@ public class REact {
 	static String controlPlanFileName = "";
 	static String ltsFileName = "";
 	static DomainDescription description;
-	static MDPBuilder lts;
-	//static MDPSolver solver;
+	static DomainDescription descriptionPlanning;
+	static long startTime, endTime=0;
+
+	static MDPBuilder lts, ltsPlanning;
 	private static Logger LOGGER;
 
 	public static void main(String[] args) {
 
-		/*
-		 * 1. Read the Domain Description 
-		 */		
-		try {
-			description = loadTextual(domain_description_location);
-			initializeFileNames(description.getName());
-			LOGGER.info("domain description loaded");
-			new Planner();
-			LOGGER.info("Planner initialized");
+		constructAndSimulateREact();
 
-		} catch (IOException e1) {
-			LOGGER.error("domain description load failed"+e1.getMessage());
-			e1.printStackTrace();
+		//constructAndSimulateMAPE();
+
+	}
+
+	private static void constructAndSimulateMAPE() {
+		String[] list_file_names = { 
+				"MAPE_deterministic_1", 
+				"MAPE_nonDeterministic_0.9_1",
+				"MAPE_nonDeterministic_0.8_1",
+				"MAPE_nonDeterministic_0.7_1",
+				"MAPE_nonDeterministic_0.6_1",
+				"MAPE_nonDeterministic_0.5_1",
+				"MAPE_deterministic_2", 
+				"MAPE_nonDeterministic_0.9_2",
+				"MAPE_nonDeterministic_0.8_2",
+				"MAPE_nonDeterministic_0.7_2",
+				"MAPE_nonDeterministic_0.6_2",
+				"MAPE_nonDeterministic_0.5_2",
+				"MAPE_deterministic_3", 
+				"MAPE_nonDeterministic_0.9_3",
+				"MAPE_nonDeterministic_0.8_3",
+				"MAPE_nonDeterministic_0.7_3",
+				"MAPE_nonDeterministic_0.6_3",
+				"MAPE_nonDeterministic_0.5_3"
+		};
+
+		try {
+			results_writer = new PrintWriter(new FileOutputStream("/Users/yehia/git/AdaptiveDefenseMDP/performance_files/mape_results") , true);
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
 		}
 
-		
-		/*
-		 * 2. Build the LTS using State and Action Variables, Action Descriptions and Requirements
-		 */
-		lts = new MDPBuilder(description);
-		LOGGER.info("The labeled transition system LTSG created");
 
-		//lts.print();
-		/*
-		 * Initialize the MDPSolver class
-		 */
-		//solver = new MDPSolver(lts.getNumberOfStates(),lts.getNbActions());
-		//LOGGER.info("The MDP Solver is initialized");
 
-		/*
-		 * Build the exogenous events matrix PrE based on the transition matrix of exogenous events PrE1,...,PrEn 
-		 */
-		//double[][] ex_tm = solver.buildExogeousEventsMatrix(lts.getExogenous_events_id(), lts.getOccurrence_vectors(),lts.getExo_events_transitions_map());
-		//LOGGER.info("The exogenous event matrix PrE = PrE1 x...x PrEn is computed");
-		//LOGGER.trace("The exogenous event matrix \n"+print(ex_tm));
+		//for(int i=1;i==3;i++) {
 
-		/*
-		 * Build the implicit transition matrix
-		 */
-		//double[][][] tm = solver.buildTransitionMatrix(lts.getCtrl_actions_transitions_map(),ex_tm);
-		//LOGGER.info("The Transition Matrix of the MDP is created");
-		//LOGGER.trace("The transition matrix \n"+print(tm));
+		//		String descriptionFileNamePlanning = "MAPE_deterministic_"+1;
+		//		String descriptionFileNamePlanning = "MAPE_deterministic_"+2;
+		//		String descriptionFileNamePlanning = "MAPE_deterministic_"+3;
+		//		String descriptionFileNamePlanning = "MAPE_nonDeterministic_0.5_"+1;
+		//		String descriptionFileNamePlanning = "MAPE_nonDeterministic_0.6_"+1;
+		//		String descriptionFileNamePlanning = "MAPE_nonDeterministic_0.7_"+1;
+		//		String descriptionFileNamePlanning = "MAPE_nonDeterministic_0.8_"+1;
+		//		String descriptionFileNamePlanning = "MAPE_nonDeterministic_0.9_"+1;
+		//		String descriptionFileNamePlanning = "MAPE_nonDeterministic_0.5_"+2;
+		//		String descriptionFileNamePlanning = "MAPE_nonDeterministic_0.6_"+2;
+		//		String descriptionFileNamePlanning = "MAPE_nonDeterministic_0.7_"+2;
+		//		String descriptionFileNamePlanning = "MAPE_nonDeterministic_0.8_"+2;
+		//		String descriptionFileNamePlanning = "MAPE_nonDeterministic_0.9_"+2;
+		//		String descriptionFileNamePlanning = "MAPE_nonDeterministic_0.5_"+3;
+		//		String descriptionFileNamePlanning = "MAPE_nonDeterministic_0.6_"+3;
+		//		String descriptionFileNamePlanning = "MAPE_nonDeterministic_0.7_"+3;
+		//		String descriptionFileNamePlanning = "MAPE_nonDeterministic_0.8_"+3;
+		//		String descriptionFileNamePlanning = "MAPE_nonDeterministic_0.9_"+3;
+		for(String descriptionFileNamePlanning: list_file_names) {
+			Path domain_description_location_planning = Paths.get( "Users","yehia","Documents",
+					"runtime-EclipseApplication(1)","REactV5-PaperExamples", "Evaluation_Performance",
+					(descriptionFileNamePlanning+".AdaptiveCyberDefense"));
 
-		/*
-		 * Construct the reward matrix
-		 */
-		//double[][][] rm = solver.buildRewardMatrix(tm, lts.getRequirements_description(),lts.getActionDescriptions(),lts.getId_control_events(),lts.getStates());
-		//LOGGER.info("The Reward Matrix of the MDP is created");
-		//LOGGER.trace("The reward matrix \n"+print(rm));
+			/*
+			 * 1. Read the Domain Description 
+			 */		
+			try {
+				descriptionPlanning = loadTextual(domain_description_location_planning);
+				//initializeFileNames(description.getName());
+				updateLog4jConfiguration(descriptionPlanning.getName());
+				LOGGER.info("domain description loaded");
+				//new Planner();
+				//LOGGER.info("Planner initialized");
 
-		//lts.checkInput();
+			} catch (IOException e1) {
+				LOGGER.error("domain description load failed"+e1.getMessage());
+				e1.printStackTrace();
+			}
 
-		LOGGER.info("The MDP input is checked");
 
-		Graphviz_Writer.createFullMDP(files_location+ltsFileName, 
-				lts.rewriter, 
-				lts.getActions(), 
-				lts.getP(), 
-				lts.getR(), 
-				dotOption);
-		LOGGER.info("The LTS Graphviz file is created");
+			/*
+			 * 2. Build the LTS using State and Action Variables, Action Descriptions and Requirements
+			 */
+			lts = new MDPBuilder(descriptionPlanning);
+			LOGGER.info("The data structures are prepared");
 
-		/*
-		 * Solve the MDP and compute the policy and value functions
-		 */
-		//solver.solveMDP();
-		double[] policy = lts.getPolicy();
-		float[] value = lts.getValue();
-		LOGGER.info("The MDP is solved: The policy and value vectors based on the MDP are computed");
+			new Simulator(lts.rewriter, 
+					lts.getRequirements_description(), 
+					nbOfSteps, 
+					descriptionPlanning, 
+					lts.getInitial_state(),
+					localPath,
+					domainFileName,
+					descriptionFileNamePlanning
+					,results_writer);
+			//}
+		}
+	}
 
-		Graphviz_Writer.createStrategyMDP(files_location+controlStrategyFileName, 
-				lts.rewriter,
-				lts.getActions(), 
-				lts.getP(), 
-				lts.getR(), 
-				policy,
-				value,
-				dotOption);
-		LOGGER.info("The Control Strategy Graphviz file is created");
+	private static void constructAndSimulateREact() {
 
-		Graphviz_Writer.createPlanFromInitialState(files_location+controlPlanFileName, 
-				lts.rewriter, 
-				lts.getActions(), 
-				policy, value, 
-				lts.getP(), 
-				lts.getR(), 
-				lts.getInitial_state(), 
-				dotOption);
-		LOGGER.info("The Control Plan Graphviz file is created");
 
-		//showInGraphiv(graphiz_file, lts.getStates(), lts.getTransitions(), DOT_Writer.SHOW_ALL);
-		//showInGraphiv(graphiz_file, lts.getStates(), lts.getTransitions(), DOT_Writer.SHOW_REQ);
-		//showInGraphiv(files_location+ltsFileName, lts.getStates(), lts.getTransitions(), DOT_Writer.SHOW_ALL);
+		String[] list_file_names = { 
+//								"REact_deterministic_1"
+//								, 
+//								"REact_nonDeterministic_0.9_1",
+//								"REact_nonDeterministic_0.8_1",
+//								"REact_nonDeterministic_0.7_1",
+//								"REact_nonDeterministic_0.6_1",
+//								"REact_nonDeterministic_0.5_1",
+//								"REact_deterministic_2", 
+//								"REact_nonDeterministic_0.9_2",
+//								"REact_nonDeterministic_0.8_2",
+//								"REact_nonDeterministic_0.7_2",
+//								"REact_nonDeterministic_0.6_2",
+//								"REact_nonDeterministic_0.5_2",
+				"REact_deterministic_3"
+				//				, 
+				//				"REact_nonDeterministic_0.5_3",
+				//				"REact_nonDeterministic_0.6_3",
+				//				"REact_nonDeterministic_0.7_3",
+				//				"REact_nonDeterministic_0.8_3",
+				//				"REact_nonDeterministic_0.9_3"
+		};
+		try {
+			results_writer = new PrintWriter(new FileOutputStream("/Users/yehia/git/AdaptiveDefenseMDP/performance_files/react_results") , true);
+			time_writer = new PrintWriter(new FileOutputStream("/Users/yehia/git/AdaptiveDefenseMDP/performance_files/react_times") , true);
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+		for(String descriptionFileName : list_file_names) {
+			//String descriptionFileName = "5.new_evaluation";
+			Path domain_description_location = Paths.get( "Users","yehia","Documents",
+					"runtime-EclipseApplication(1)","REactV5-PaperExamples", "Evaluation_Performance",
+					descriptionFileName+".AdaptiveCyberDefense");
+			/*
+			 * 1. Read the Domain Description 
+			 */		
+			try {
+				description = loadTextual(domain_description_location);
+				initializeFileNames(description.getName());
+				LOGGER.info("domain description loaded: "+descriptionFileName);
+				//new Planner();
+				//LOGGER.info("Planner initialized");
 
-		//LOGGER.info("The labeled transition system .dot file is created");
+			} catch (IOException e1) {
+				LOGGER.error("domain description load failed"+e1.getMessage());
+				e1.printStackTrace();
+			}
 
-		//double[] valueO = computeOperationalStrategyAndPlan();
+			/*
+			 * 2. Build the LTS using State and Action Variables, Action Descriptions and Requirements
+			 */
+			lts = new MDPBuilder(description);
+			LOGGER.info("The data structures are prepared");
 
-		//LOGGER.info("The value vector based on operational goals is computed");
+			//startTime = System.nanoTime();
+			/*
+			 * 3. Build the transition and reward matrices
+			 */
+			startTime=System.nanoTime();
+			lts.constructMDP();
+			time_writer.print(System.nanoTime()-startTime+"\t");
+			/*
+			 * 4. Solve the MDP
+			 */
+			startTime=System.nanoTime();
+			lts.solveMDP();
+			time_writer.println(System.nanoTime()-startTime);
 
-		//double[] valueA = computeAttackStrategyAndPlan();
+			//			Graphviz_Writer.createFullMDP(files_location+ltsFileName, 
+			//					lts.rewriter, 
+			//					lts.getActions(), 
+			//					lts.getP(), 
+			//					lts.getR(), 
+			//					dotOption);
+			//			LOGGER.info("The LTS Graphviz file is created");
 
-		//LOGGER.info("The value vector based on security goals is computed");
+			/*
+			 * Solve the MDP and compute the policy and value functions
+			 */
+			//solver.solveMDP();
+			double[] policy = lts.getPolicy();
+			//float[] value = lts.getValue();
+			LOGGER.info("The MDP is solved: The policy and value vectors based on the MDP are computed");
 
-		//computeTradeOffStrategyAndPlan(valueA,valueO);
+			//			Graphviz_Writer.createStrategyMDP(files_location+controlStrategyFileName, 
+			//					lts.rewriter,
+			//					lts.getActions(), 
+			//					lts.getP(), 
+			//					lts.getR(), 
+			//					policy,
+			//					value,
+			//					dotOption);
+			//			LOGGER.info("The Control Strategy Graphviz file is created");
+
+			//			Graphviz_Writer.createPlanFromInitialState(files_location+controlPlanFileName, 
+			//					lts.rewriter, 
+			//					lts.getActions(), 
+			//					policy, value, 
+			//					lts.getP(), 
+			//					lts.getR(), 
+			//					lts.getInitial_state(), 
+			//					dotOption);
+			//			LOGGER.info("The Control Plan Graphviz file is created");
+
+			new Simulator(lts.rewriter, 
+					lts.getRequirements_description(), 
+					nbOfSteps, 
+					description, 
+					policy, 
+					lts.getInitial_state(),
+					descriptionFileName,
+					results_writer);		
+		}
 	}
 
 	private static String print(double[][][] tm) {
@@ -218,7 +333,7 @@ public class REact {
 		System.setProperty("descriptionName", name);
 		LOGGER = LogManager.getLogger();
 	}
-	
+
 	/*
 	static private void printElement(EObject object) {
 		IAdaptiveCyberDefenseTextPrinter printer = new AdaptiveCyberDefenseMetaInformation().createPrinter(System.out, null);
@@ -228,7 +343,7 @@ public class REact {
 			e.printStackTrace();
 		}
 	}
-	*/
+	 */
 	/*
 	private static void showInGraphiv(
 			String file_path, 
